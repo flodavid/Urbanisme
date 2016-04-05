@@ -1,4 +1,6 @@
 *.db
+# Kdev files
+.kdev4/
 
 
 ## Ignore Visual Studio temporary files, build results, and
@@ -23,6 +25,8 @@ x86/
 bld/
 [Bb]in/
 [Oo]bj/
+build/
+build-release/
 
 # Visual Studio 2015 cache/options directory
 .vs/
