@@ -15,7 +15,14 @@ private:
 	std::vector<std::vector<State>> parcels;
 
 public:
-	Field(std::list<Coordinates>& inputs_and_ouputs);
+	Field(unsigned width, unsigned height, std::list<Coordinates>& inputs_and_ouputs = std::list<Coordinates>());
 	~Field();
+
+	// Affichage
+	void show_ins_and_outs() const;
+
+	// Fonctions générales
+	void generateInsAndOuts(unsigned nb);
+
 };
 
