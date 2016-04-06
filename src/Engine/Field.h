@@ -24,20 +24,26 @@ public:
 	~Field();
 
 /*=== Getters ===*/
-    
+	unsigned get_width() const	{ return nb_cols; }
+	unsigned get_height() const	{ return nb_rows; }
+	
+	unsigned getNbParcels() const	{ return nb_cols * nb_rows; }
+	
 private:
 /*=== Setters ===*/
 	void resizeWithDimensions();
 	
 /**=== Operators ===**/
 public:
-	std::vector<State>::const_iterator begin() const { return parcels[0].cbegin(); }
-	std::vector<State>::const_iterator end() const { return parcels[nb_rows-1].cend(); }
+	std::vector<std::vector<State>>::const_iterator begin() const { return parcels.cbegin(); }
+	std::vector<std::vector<State>>::const_iterator end() const { return parcels.cend(); }
 	
-	std::vector<State>::iterator begin() { return parcels[0].begin(); }
-	std::vector<State>::iterator end() { return parcels[nb_rows-1].end(); }
+	std::vector<std::vector<State>>::iterator begin() { return parcels.begin(); }
+	std::vector<std::vector<State>>::iterator end() { return parcels.end(); }
 	
-	friend std::vector<State>::const_iterator begin(const Field& f) { return f.begin();}
+	friend std::vector<std::vector<State>>::const_iterator begin(const Field& f) { return f.begin();}
+	friend std::vector<std::vector<State>>::const_iterator end(const Field& f) { return f.end();}
+// 	friend std::vector<State>::const_iterator& std::vector<State>::const_iterator::operator++();
 	
 public:
 	/* Affichage */

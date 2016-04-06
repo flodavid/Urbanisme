@@ -12,12 +12,12 @@ using namespace std;
 
 int main()
 {
-	Field myField(50, 50);
+	Field myField(5, 5);
 	Parameters myParameters(1, 2);
 	
 	Resolution myResolution(myField, myParameters);
 	
-    /**	Tests		**/	
+    /**		Tests		**/
 	myField.generateInsAndOuts(2);
 	myField.show_ins_and_outs();
 	

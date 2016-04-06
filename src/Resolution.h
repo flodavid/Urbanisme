@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine/Field.h"
 #include "Engine/Parameters.h"
+#include "Engine/coordinates.h"
 
 class Resolution
 {
@@ -20,5 +21,7 @@ public:
 /* Evaluations */
 	
 	unsigned evaluateTotalUsable() const;
+	float ratioBetweenParcels(const Coordinates& p1, const Coordinates& p2) const;
+	float evaluateRatio() const;
 };
 
