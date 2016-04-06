@@ -9,3 +9,5 @@ set(CURRENT_DIR Engine)
 set(Engine_SRCS ${CURRENT_DIR}/coordinates.cpp ${CURRENT_DIR}/Field.cpp ${CURRENT_DIR}/Parameters.cpp)
 
 set(Engine_SRCS ${Engine_SRCS} PARENT_SCOPE)
+
+add_subdirectory(Tests)
