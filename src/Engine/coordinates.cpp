@@ -20,7 +20,16 @@ std::ostream& Coordinates::print(std::ostream& out) const
 	return out;
 }
 
-std::ostream& operator<<(std::ostream& out, const Coordinates & coord)
+unsigned Coordinates::manhattanDistance(const Coordinates& other) const
 {
-	return coord.print(out);
+    assert(abs(col- other.col) + abs(row - other.row) >= 0);
+    return abs(col- other.col) + abs(row - other.row); 
 }
+
+float Coordinates::euclideanDistance(const Coordinates& other) const
+{
+    assert(sqrt( pow((col - other.col), 2)  + pow((row - other.row), 2)) >= 0.0);
+    // square-root(square(x1 - x2) + square(y1 - y2))
+    return sqrt( pow((col - other.col), 2)  + pow((row - other.row), 2));
+}
+

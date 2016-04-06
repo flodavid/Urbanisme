@@ -35,6 +35,8 @@ private:
 	
 /**=== Operators ===**/
 public:
+	State operator[](const Coordinates& pos) const { return parcels[pos.row][pos.col]; }
+    
 	std::vector<std::vector<State>>::const_iterator begin() const { return parcels.cbegin(); }
 	std::vector<std::vector<State>>::const_iterator end() const { return parcels.cend(); }
 	
@@ -46,11 +48,16 @@ public:
 // 	friend std::vector<State>::const_iterator& std::vector<State>::const_iterator::operator++();
 	
 public:
-	/* Affichage */
+    /* Affichage */
 	void show_ins_and_outs() const;
 
-	// Fonctions générales
+    /**=== Fonctions générales	===**/
+	/** Crée aléatoirement des entrées et sorties
+	 * @param nb nombre d'entrées et sorties à générer
+	 */
 	void generateInsAndOuts(unsigned nb);
+	
+	
 
 };
 
