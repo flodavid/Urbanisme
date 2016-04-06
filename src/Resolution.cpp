@@ -53,7 +53,15 @@ unsigned int Resolution::evaluateTotalUsable() const
 }
 
 
-float Resolution::evaluateTotalRatio() const
+
+float Resolution::manhattanRatioBetween2Parcels(const Coordinates& p1, const Coordinates& p2) const
+{
+    float ratio= field.get_distance(p1, p2) / p1.manhattanDistance(p2);
+    
+    return ratio;
+}
+
+float Resolution::evaluateRatio() const
 {
     float total_ratio= 0.0;
     

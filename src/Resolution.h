@@ -19,9 +19,18 @@ public:
 	void setParams(const Parameters& _params);
     
 /* Evaluations */
-	
+	/**
+	 * Compte le nombre total de parcelles exploitables sur la surface
+	 * @return nombre de parcelles exploitables
+	 */
 	unsigned evaluateTotalUsable() const;
-	float ratioBetweenParcels(const Coordinates& p1, const Coordinates& p2) const;
+	/**
+	 * Calcule le ratio entre distance par la route et distance Manhattan entre deux positions
+	 * @param p1 premières coordonnées
+	 * @param p2 secondes coordonnées
+	 * @return le ratio, sous forme de flottant
+	 */
+	float manhattanRatioBetween2Parcels(const Coordinates& p1, const Coordinates& p2) const;
 	float evaluateRatio() const;
 };
 
