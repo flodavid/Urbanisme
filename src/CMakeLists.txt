@@ -1,6 +1,10 @@
 project(sim-city)
 cmake_minimum_required(VERSION 2.6)
 
+# Compilers
+set (CMAKE_C_COMPILER D:/Apps/Qt/Tools/mingw492_32/bin/gcc.exe)
+set (CMAKE_CXX_COMPILER D:/Apps/Qt/Tools/mingw492_32/bin/g++.exe)
+
 # FILES
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
@@ -12,12 +16,11 @@ add_definitions(-Wall -std=c++11)
 add_definitions(-I/usr/local/include -L/usr/local/lib -lcppunit)
 # add_library( -L/usr/local/lib)
 
-set(sim-city_SRCS ${Engine_SRCS} ${Display_SRCS} Sim\ City.cpp)
+set(sim-city_SRCS ${Engine_SRCS} ${Display_SRCS} Sim-City.cpp)
 
 #set(HEADERS coordinates.h debug.h)
 
-add_executable(sim-city stdafx.cpp ${Engine_SRCS} Resolution.cpp Sim\ City.cpp)
-
+add_executable(sim-city stdafx.cpp ${Engine_SRCS} Resolution.cpp Sim-City.cpp)
 
 install(TARGETS sim-city RUNTIME DESTINATION bin)
 
