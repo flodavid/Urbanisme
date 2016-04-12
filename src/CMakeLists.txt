@@ -12,9 +12,6 @@ add_subdirectory(Engine) # must set ${Engine_SRCS}
 # add_subdirectory(Display) # must set ${Display_SRCS}
 
 add_definitions(-Wall -std=c++11)
-# Tests
-add_definitions(-I/usr/local/include -L/usr/local/lib -lcppunit)
-# add_library( -L/usr/local/lib)
 
 set(sim-city_SRCS ${Engine_SRCS} ${Display_SRCS} Sim-City.cpp)
 
@@ -23,6 +20,9 @@ set(sim-city_SRCS ${Engine_SRCS} ${Display_SRCS} Sim-City.cpp)
 add_executable(sim-city stdafx.cpp ${Engine_SRCS} Resolution.cpp Sim-City.cpp)
 
 install(TARGETS sim-city RUNTIME DESTINATION bin)
+
+
+#add_subdirectory(Tests)
 
 
 # UNUSED
@@ -43,4 +43,3 @@ install(TARGETS sim-city RUNTIME DESTINATION bin)
 #     set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${LOFAR_LIBDIR}")
 #     set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 #   endif(BUILD_STATIC_EXECUTABLES)
-add_subdirectory(Tests)

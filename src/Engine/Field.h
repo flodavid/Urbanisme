@@ -19,8 +19,7 @@ private:
 	std::vector<std::vector<State>> parcels;
 
 public:
-	Field(unsigned width, unsigned height,
-	      std::list<Coordinates>& inputs_and_ouputs = *(new std::list<Coordinates>()));
+	Field(unsigned width, unsigned height/*, std::list< Coordinates >& inputs_and_ouputs = *(new std::list<Coordinates>()) */);
 	~Field();
 
 /*=== Getters ===*/
@@ -43,15 +42,30 @@ public:
 	std::vector<std::vector<State>>::iterator begin() { return parcels.begin(); }
 	std::vector<std::vector<State>>::iterator end() { return parcels.end(); }
 	
-	friend std::vector<std::vector<State>>::const_iterator begin(const Field& f) { return f.begin();}
-	friend std::vector<std::vector<State>>::const_iterator end(const Field& f) { return f.end();}
-// 	friend std::vector<State>::const_iterator& std::vector<State>::const_iterator::operator++();
+	friend std::vector<std::vector<State>>::const_iterator begin(const Field& f) { return f.begin(); }
+	friend std::vector<std::vector<State>>::const_iterator end(const Field& f) { return f.end(); }
+	friend std::vector<State>::const_iterator& std::vector<State>::const_iterator::operator++();
 	
 public:
     /* Affichage */
 	void show_ins_and_outs() const;
 
-    /**=== Fonctions générales	===**/
+    /**=== Fonctions sur les coordonnées ===**/
+        /**
+         * Effectue un test d'appartenance des coordonnées à la matrice
+         * @param x abscisse de la coordonnée
+         * @param y ordonnée de la coordonnée
+         * @return true si la coordonnée appartient à la matrice
+         */
+        bool contains(int x, int y) const ;
+        /**
+         * Effectue un test d'appartenance des coordonnées à la matrice
+         * @param coord Coordonées de la position
+         * @return true si la coordonnée appartient à la matrice
+         */
+        bool contains(const Coordinates& coord) const ;
+        
+    /**=== Méthodes générales	===**/
 	/** Crée aléatoirement des entrées et sorties
 	 * @param nb nombre d'entrées et sorties à générer
 	 */

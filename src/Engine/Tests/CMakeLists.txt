@@ -6,9 +6,13 @@ cmake_minimum_required(VERSION 2.6)
 add_definitions(-Wall -std=c++11)
 
 # Tests
+# Tests
 add_definitions(-lcppunit)
 include_directories(/usr/local/include/)
+#add_definitions(-I/usr/local/include)
 link_directories(/usr/local/lib/)
+#add_definitions(-L/usr/local/lib)
+# add_library( -L/usr/local/lib)
 
 # Executable
 add_executable(tests_engine ../coordinates.cpp test_coordinates.cpp all_tests.cpp)
