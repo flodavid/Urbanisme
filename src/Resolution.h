@@ -1,4 +1,7 @@
 #pragma once
+
+#include <list>
+
 #include "Engine/Field.h"
 #include "Engine/Parameters.h"
 #include "Engine/coordinates.h"
@@ -37,8 +40,26 @@ public:
 	/**
 	 * Initialise la matrice de disance entre les points selon leur distance avec les routes
 	 *  avec la distance Manhattan
+         * TODO
 	 */
-	void initManhattanDistancesMatrice();
+	void TODO_parcours_cellules();
+        
+/* Fonctions auxiliaires */
+        /**
+         * Recherche des portions de routes qui peuvent désservir la parcelle
+         * @param coord Coordonnées de la parcelle desservir
+         * @return une liste de routes distance inférieure ou égale à la distance de desserte
+         */
+        std::list<const Coordinates *> *getServingRoads(const Coordinates& coord) const;
+        
+        /**
+         * Recherche des portions de routes qui sont collées à la parcelle courante
+         * @param coord Coordonnées de la parcelle
+         * @return une liste de routes adjacentes à la parcelle
+         */
+        std::list<const Coordinates *> *getNeighbourRoads(const Coordinates& coord) const;
+
+        int calcRoadDistance(const Coordinates& coord1, const Coordinates& coord2) const;
 	
 /* Evaluations */
 	/**
@@ -49,27 +70,24 @@ public:
 	
 	/**
 	 * Calcule le ratio entre distance par la route et distance Manhattan entre deux positions
-	 * @param p1 premières coordonnées
-	 * @param p2 secondes coordonnées
+     * @param p1 premières coordonnées
+     * @param p2 secondes coordonnées
 	 * @return le ratio, sous forme de flottant
 	 */
 	float manhattanRatioBetween2Parcels(const Coordinates& p1, const Coordinates& p2) const;
 	/**
 	 * Evalue le ratio de toutes les solutions
-	 * @return l'évaluation en flottant
+     * @return l'évaluation en flottant
 	 */
 	float evaluateRatio() const;
 	
 /* Autres méthodes utiles */
 	/**
-	 * Modifie la coordonnée en entrée pour obtenir celle qu'elle précède
-	 * Agit comme une itération sur l'ensemble des coordonnées de la surface
-	 * @param coord Coordonnée qui va être modifiée, non modifiée si il n'y a pas de suivante
-	 * @return vrai si il y a une coordonnées, faux si on est à la fin ou en dehors de la surface
+     * Modifie la coordonnée en entrée pour obtenir celle qu'elle précède
+     * Agit comme une itération sur l'ensemble des coordonnées de la surface
+     * @param coord Coordonnée qui va être modifiée, non modifiée si il n'y a pas de suivante
+     * @return vrai si il y a une coordonnées, faux si on est à la fin ou en dehors de la surface
 	 */
 	bool nextCoordinates(Coordinates* coord);
 
-	
 };
-	
-
