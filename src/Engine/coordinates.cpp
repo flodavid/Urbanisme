@@ -9,6 +9,12 @@ Coordinates::Coordinates(const Coordinates& other)
 	:col(other.col), row(other.row)
 {}
 
+Coordinates::~Coordinates()
+{
+
+}
+
+
 bool Coordinates::operator==(const Coordinates& other) const
 {
 	return (other.col==col && other.row==row);

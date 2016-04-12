@@ -17,6 +17,10 @@ public:
 public:
 	Coordinates(int _x, int _y);
 	Coordinates(const Coordinates& other);
+	virtual~ Coordinates();
+	
+	Coordinates& operator=(const Coordinates& other) const;
+	
 	virtual bool operator==(const Coordinates& other) const;
 
     // Affichage

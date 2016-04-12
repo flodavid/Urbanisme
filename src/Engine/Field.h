@@ -56,9 +56,6 @@ public:
 	 * @param nb nombre d'entrées et sorties à générer
 	 */
 	void generateInsAndOuts(unsigned nb);
-	
-	
-
 };
 
 #endif //FIELD_H
