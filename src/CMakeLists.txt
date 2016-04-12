@@ -2,8 +2,8 @@ project(sim-city)
 cmake_minimum_required(VERSION 2.6)
 
 # Compilers
-set (CMAKE_C_COMPILER D:/Apps/Qt/Tools/mingw492_32/bin/gcc.exe)
-set (CMAKE_CXX_COMPILER D:/Apps/Qt/Tools/mingw492_32/bin/g++.exe)
+#set (CMAKE_C_COMPILER D:/Apps/Qt/Tools/mingw492_32/bin/gcc.exe)
+#set (CMAKE_CXX_COMPILER D:/Apps/Qt/Tools/mingw492_32/bin/g++.exe)
 
 # FILES
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
