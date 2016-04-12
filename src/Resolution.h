@@ -34,7 +34,7 @@ public:
 	 * @brief set_road_distance
 	 * @deprecated TODO
 	 */
-	void increment_road_distance(const Coordinates& coord, unsigned value);
+	void increment_road_distance(const Coordinates& coord, unsigned value) __attribute__ ( ( deprecated ) );
     
 /* Calculs de données */
 	/**
@@ -70,23 +70,23 @@ public:
 	
 	/**
 	 * Calcule le ratio entre distance par la route et distance Manhattan entre deux positions
-     * @param p1 premières coordonnées
-     * @param p2 secondes coordonnées
+         * @param p1 premières coordonnées
+         * @param p2 secondes coordonnées
 	 * @return le ratio, sous forme de flottant
 	 */
 	float manhattanRatioBetween2Parcels(const Coordinates& p1, const Coordinates& p2) const;
 	/**
 	 * Evalue le ratio de toutes les solutions
-     * @return l'évaluation en flottant
+         * @return l'évaluation en flottant
 	 */
 	float evaluateRatio() const;
 	
 /* Autres méthodes utiles */
 	/**
-     * Modifie la coordonnée en entrée pour obtenir celle qu'elle précède
-     * Agit comme une itération sur l'ensemble des coordonnées de la surface
-     * @param coord Coordonnée qui va être modifiée, non modifiée si il n'y a pas de suivante
-     * @return vrai si il y a une coordonnées, faux si on est à la fin ou en dehors de la surface
+         * Modifie la coordonnée en entrée pour obtenir celle qu'elle précède
+         * Agit comme une itération sur l'ensemble des coordonnées de la surface
+         * @param coord Coordonnée qui va être modifiée, non modifiée si il n'y a pas de suivante
+         * @return vrai si il y a une coordonnées, faux si on est à la fin ou en dehors de la surface
 	 */
 	bool nextCoordinates(Coordinates* coord);
 
