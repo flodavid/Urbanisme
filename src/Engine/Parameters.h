@@ -10,9 +10,9 @@ public:
 	Parameters(unsigned _road_width, unsigned _serve_distance);
 	~Parameters();
         
-        unsigned get_road_width() const
+        inline unsigned get_road_width() const
             { return road_width; }
-        unsigned get_serve_distance() const
+        inline unsigned get_serve_distance() const
             { return serve_distance; }
         
 };

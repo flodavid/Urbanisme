@@ -22,7 +22,7 @@ add_executable(sim-city stdafx.cpp ${Engine_SRCS} Resolution.cpp Sim-City.cpp ${
 install(TARGETS sim-city RUNTIME DESTINATION bin)
 
 
-#add_subdirectory(Tests)
+add_subdirectory(Tests)
 
 
 # UNUSED

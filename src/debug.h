@@ -13,8 +13,8 @@
 
 /* define all debug if DEBUG_ALL defined to 1 */
 #if DEBUG_ALL
-    #define DEBUG                   1
-    #define DEBUG_EVALUATION        1
+    #define DEBUG                   	1
+    #define DEBUG_EVALUATION        	1
     #define DEBUG_PARCOURS_COORDS	1
-    #define DEBUG_PARCOURS_DIST     1
+    #define DEBUG_PARCOURS_DIST     	1
 #endif

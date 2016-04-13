@@ -1,6 +1,6 @@
 // g++ -o test_my_class_full.exe test_my_class_full.cpp -I/usr/local/include -L/usr/local/lib -lcppunit
-#ifndef TEST_COORDINATES_H_
-#define TEST_COORDINATES_H_
+#ifndef TEST_NEXT_COORDINATES_H_
+#define TEST_NEXT_COORDINATES_H_
 
 #include "cppunit/TestCase.h"
 #include "cppunit/TestFixture.h"
@@ -11,13 +11,8 @@
 #include "cppunit/XmlOutputter.h"
 #include "cppunit/ui/text/TestRunner.h"
 
-using namespace std;
-
 #include "../Engine/coordinates.h"
-#include "../Engine/Parameters.h"
-#include "../Engine/Field.h"
 #include "../Resolution.h"
-
 
 class CoordinatesTestFixture : public CppUnit::TestFixture {
  private:
@@ -34,7 +29,7 @@ class CoordinatesTestFixture : public CppUnit::TestFixture {
     // Next of coord_last_col
     Coordinates* expected_next_last_col;
 
- public:
+public:
     void setUp();
     void tearDown();
 
@@ -44,6 +39,6 @@ class CoordinatesTestFixture : public CppUnit::TestFixture {
 };
 
 
-#endif /* TEST_COORDINATES_H_ */
+#endif /* TEST_NEXT_COORDINATES_H_ */
 
 

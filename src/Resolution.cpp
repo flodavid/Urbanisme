@@ -4,8 +4,6 @@
 #include <cassert>
 #include <map>
 
-#define UNSIGNED_INFINITI std::numeric_limits<unsigned>::max()
-
 using namespace std;
 
 Resolution::Resolution(const Field& _field, const Parameters& _params):
@@ -78,9 +76,11 @@ std::list<const Coordinates *>* Resolution::getServingRoads(const Coordinates& c
             // On vérifie que la parcelle n'est pas en dehors de la matrice et qu'elle n'est pas la coordonnée courante
             if (field.contains(j, i) && j != coord.col && i != coord.row
                 // TODO changer, ne pas utiliser manhattanDistance,  peu performant ? si on l'utilise,  crée Coordinate(j, i) avant !
-                && coord.manhattanDistance(Coordinates(j,  i)) <= 2) {
-                #if DEBUG_ROADS
-                cout << "parcelle en "<< j<< " ; "<< i<< "est voisine de celle en "<< coord.col<< " ; "<< coord.row<< endl;
+                && coord.manhattanDistance(Coordinates(j,  i)) <= 2 // TODO améliorer (utilisation Coordinates())
+		&& field[Coordinates(j, i)] == is_road) // TODO améliorer (utilisation Coordinates())
+	    {
+                #if DEBUG_ROADS_DIST
+                cout << "parcelle en "<< j<< " ; "<< i<< "est une route voisine de la parcelle en "<< coord.col<< " ; "<< coord.row<< endl;
                 #endif
                 // Ajout dans les routes voisines de la parcelle
                 Coordinates* road_coord= new Coordinates(j, i);
@@ -96,28 +96,29 @@ std::list<const Coordinates *>* Resolution::getNeighbourRoads(const Coordinates&
 {
     list<const Coordinates*>* neighbour_roads= new list<const Coordinates*>;
 
+    Coordinates* west= new Coordinates(coord.col -1, coord.row);
+    Coordinates* east= new Coordinates(coord.col +1, coord.row);
+    Coordinates* north= new Coordinates(coord.col, coord.row -1);
+    Coordinates* south= new Coordinates(coord.col, coord.row +1);
 // On vérifie que chaque voisin n'est pas en dehors de la matrice
-    if (field.contains(coord.col -1, coord.row)) {
+    
+    if (field.contains(*west) && field[*west] == is_road) {
         // Ajout dans les routes voisines de la parcelle
-        Coordinates* road_coord= new Coordinates(coord.col -1, coord.row);
-        neighbour_roads->push_back(road_coord);
+        neighbour_roads->push_back(west);
     }
-    if (field.contains(coord.col +1, coord.row)) {
+    if (field.contains(*east) && field[*east] == is_road) {
         // Ajout dans les routes voisines de la parcelle
-        Coordinates* road_coord= new Coordinates(coord.col +1, coord.row);
-        neighbour_roads->push_back(road_coord);
+        neighbour_roads->push_back(east);
     }
-    if (field.contains(coord.col, coord.row -1)) {
+    if (field.contains(*north) && field[*north] == is_road) {
         // Ajout dans les routes voisines de la parcelle
-        Coordinates* road_coord= new Coordinates(coord.col, coord.row -1);
-        neighbour_roads->push_back(road_coord);
+        neighbour_roads->push_back(north);
     }
-    if (field.contains(coord.col, coord.row +1)) {
+    if (field.contains(*south) && field[*south] == is_road) {
         // Ajout dans les routes voisines de la parcelle
-        Coordinates* road_coord= new Coordinates(coord.col, coord.row +1);
-        neighbour_roads->push_back(road_coord);
+        neighbour_roads->push_back(south);
     }
-    #if DEBUG_ROADS
+    #if DEBUG_ROADS_DIST
     cout << "parcelle en "<< coord.col<< " ; "<< coord.row<< "est voisine de celle en "<< coord.col<< " ; "<< coord.row<< endl;
     #endif
 
@@ -126,7 +127,14 @@ std::list<const Coordinates *>* Resolution::getNeighbourRoads(const Coordinates&
 
 unsigned Resolution::calcRoadDistance (const Coordinates &coord1, const Coordinates &coord2) const
 {
-    unsigned min_dist= UNSIGNED_INFINITI;
+    if (coord1 == coord2){
+#if DEBUG_ROADS_DIST
+	clog<< "les cases de départ et d'arrivée sont identiques"<< endl;
+#endif
+	return 0;
+    }
+    
+    unsigned min_dist= UNSIGNED_INFINITY;
 #if DEBUG_ROADS_DIST
     const Coordinates* min_dist_neighbour_c1= NULL;
     const Coordinates* min_dist_neighbour_c2= NULL;
@@ -134,32 +142,40 @@ unsigned Resolution::calcRoadDistance (const Coordinates &coord1, const Coordina
 
     list<const Coordinates*>* serving_roads_c1 = getServingRoads(coord1);
     list<const Coordinates*>* serving_roads_c2 = getServingRoads(coord2);
-    for(const Coordinates* serv_c1 : *serving_roads_c1) {
-        for(const Coordinates* serv_c2 : *serving_roads_c2) {
-            unsigned dist = recCalcRoadDistance(*serv_c1, *serv_c2, new list<const Coordinates*>);
+    for(const Coordinates* road_c1 : *serving_roads_c1) {
+        for(const Coordinates* road_c2 : *serving_roads_c2) {
+            unsigned dist = recCalcRoadDistance(*road_c1, *road_c2, new list<const Coordinates*>);
             if (dist < min_dist) {
                 min_dist= dist;
 #if DEBUG_ROADS_DIST
-                min_dist_neighbour_c1= serv_c1;
-                min_dist_neighbour_c2= serv_c2;
+                min_dist_neighbour_c1= road_c1;
+                min_dist_neighbour_c2= road_c2;
 #endif
             }
         }
     }
-    #if DEBUG_ROADS_DIST
-    cout << "Les plus court chemin de "<< coord1<< " à "<< coord2<< " est de longueur "<< min_dist<<
-            " et passe par "<< (*min_dist_neighbour_c1)<< " et "<< (*min_dist_neighbour_c2)<< endl;
-    #endif
+    
+    if (min_dist_neighbour_c1 != NULL && min_dist_neighbour_c2 != NULL){
+	#if DEBUG_ROADS_DIST
+	cout << "Les plus court chemin de "<< coord1<< " à "<< coord2<< " est de longueur "<< min_dist<<
+		" et passe par "<< (*min_dist_neighbour_c1)<< " et "<< 
+		(*min_dist_neighbour_c2)<< endl;
+	#endif
+    } else {
+	cerr<< "au moins une des 2 parcelle n'a pas de route à proximité (distance < "<<params.get_serve_distance()<< ")"<< endl;
+    }
 
     return min_dist;
 }
 
 unsigned Resolution::recCalcRoadDistance(const Coordinates& coord1, const Coordinates& coord2, list<const Coordinates*>* visited) const
 {
-    if (coord1 ==  coord2) {
+    assert(field[coord1] == is_road);
+    
+    if (coord1 == coord2) {
         return 0;
     } else {
-        unsigned min_dist= UNSIGNED_INFINITI;
+        unsigned min_dist= UNSIGNED_INFINITY;
         const Coordinates* min_dist_neighbour= NULL;
 
         list<const Coordinates*>* neighbour_roads = getNeighbourRoads(coord1);
@@ -167,13 +183,16 @@ unsigned Resolution::recCalcRoadDistance(const Coordinates& coord1, const Coordi
             // TODO On vérifie que le voisin n'a pas déjà été parcouru :
             //  recherche de cet élément dans la liste des visités
             if (find(visited->begin(), visited->end(), new_coord) == visited->end()) {
+		// On applique la recursivité avec la coordonnée envisagée courante
                 visited->push_back(&coord1);
                 unsigned dist = recCalcRoadDistance(*new_coord,  coord2, visited);
+                visited->pop_back();
+		
+		// On compare le résultat obtenu avec le minimum courant
                 if (dist < min_dist) {
                     min_dist= dist;
                     min_dist_neighbour= new_coord;
                 }
-                visited->pop_back();
             }
         }
 
@@ -181,13 +200,13 @@ unsigned Resolution::recCalcRoadDistance(const Coordinates& coord1, const Coordi
 #if DEBUG_ROADS_DIST
             clog << "Impossible d'aller de "<< coord1<< " à "<< coord2<< endl;
 #endif
-            assert(min_dist == UNSIGNED_INFINITI);
-        } else {
+            assert(min_dist == UNSIGNED_INFINITY);
+        } 
 #if DEBUG_ROADS_DIST
+        else {
             clog << "On passe par "<< (*min_dist_neighbour)<< "pour aller de "<< coord1<< " à "<< coord2<< endl;
-#endif
         }
-#if DEBUG_ROADS_DIST
+        
         cout << "Pour aller de "<< coord1<< " à "<< coord2<< ", on est passé par "<< (*min_dist_neighbour)<<
                 "avec un trajet de longueur "<< min_dist<< endl;
 #endif
@@ -208,8 +227,8 @@ unsigned int Resolution::evaluateTotalUsable() const
     for (vector<State> row_parcel_state : field) {
         for (State parcel_state : row_parcel_state) {
             cout << "parcel_state = "<< parcel_state<<endl;
-            assert(parcel_state >= -1 &&  parcel_state<= unusable);
-            if (parcel_state == usable) {
+            assert(parcel_state >= -1 &&  parcel_state<= is_unusable);
+            if (parcel_state == is_usable) {
                 ++nb_usables;
             }
         }

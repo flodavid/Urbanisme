@@ -2,6 +2,8 @@
 #include "../Engine/Field.h"
 #include "../Engine/Parameters.h"
 
+using namespace std;
+
 void CoordinatesTestFixture::setUp() {
     
     resol= new Resolution(Field(20,20), Parameters(1, 2));

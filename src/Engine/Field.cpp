@@ -13,31 +13,34 @@ Field::~Field()
 {
 }
 
-//#######################
-//      Setters
-//#######################
+///#######################
+///      Setters
+///#######################
 
 void Field::resizeWithDimensions()
 {
     parcels.resize(nb_cols);
     
     for (vector<State>& parcel_row : parcels){
-	parcel_row.resize(nb_cols, undefined);
+	parcel_row.resize(nb_cols, is_undefined);
     }
 }
 
-//#######################
-//      Affichage
-//#######################
+///###################
+///      Affichage
+///###################
 
 void Field::show_ins_and_outs() const
 {
     for (const Coordinates& in_or_out : ins_outs) {
-            cout << in_or_out << " ; ";
+	cout << in_or_out << " ; ";
     }
     cout << endl;
 }
 
+///########################################
+///=== Fonctions sur les coordonnées ===///
+///########################################
 bool Field::contains(int x, int y) const
 {
     return ( x >= 0 &&  ((unsigned)x) < nb_cols )     // abscisse correcte
@@ -49,8 +52,6 @@ bool Field::contains(const Coordinates& coord) const
 {
     return contains(coord.col, coord.row);
 }
-
-
 
 void Field::generateInsAndOuts(unsigned nb)
 {
