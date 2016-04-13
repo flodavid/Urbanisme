@@ -12,26 +12,25 @@ using namespace std;
 
 int main()
 {
-	Field myField(5, 5);
-	Parameters myParameters(1, 2);
-	
-	Resolution myResolution(myField, myParameters);
-	
-    /**		Tests		**/
-	myField.generateInsAndOuts(2);
-	myField.show_ins_and_outs();
-	
-	unsigned nb_usables= myResolution.evaluateTotalUsable();
-	
-#if DEBUG_EVALUATION
-	clog << "Nombre total de parcels exploitables au début : "<< nb_usables<< endl;
-#endif
-	
-	
-	
-    /**	Fin tests	**/
+    Field myField(5, 5);
+    Parameters myParameters(1, 2);
 
-	cout << "FIN" << endl;
+    Resolution myResolution(myField, myParameters);
+
+/**		Tests		**/
+    myField.generateInsAndOuts(2);
+    myField.show_ins_and_outs();
+
+//	unsigned nb_usables= myResolution.evaluateTotalUsable();
+
+#if DEBUG_EVALUATION
+    clog << "Nombre total de parcelles exploitables au début : "<< nb_usables<< endl;
+#endif
+
+
+/**	Fin tests	**/
+
+    cout << "FIN" << endl;
 
     return 0;
 }

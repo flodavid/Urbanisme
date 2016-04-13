@@ -15,9 +15,9 @@ add_definitions(-Wall -std=c++11)
 
 set(sim-city_SRCS ${Engine_SRCS} ${Display_SRCS} Sim-City.cpp)
 
-#set(HEADERS coordinates.h debug.h)
+set(HEADERS debug.h)
 
-add_executable(sim-city stdafx.cpp ${Engine_SRCS} Resolution.cpp Sim-City.cpp)
+add_executable(sim-city stdafx.cpp ${Engine_SRCS} Resolution.cpp Sim-City.cpp ${HEADERS})
 
 install(TARGETS sim-city RUNTIME DESTINATION bin)
 
