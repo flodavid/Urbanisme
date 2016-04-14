@@ -33,13 +33,13 @@ private:
     void resizeWithDimensions();
 public:
     /**
-	* Ajoute une entrée/sortie à partir de coordonnées
-	* @param coord Coordonnées de l'E/S
+	* Ajoute une entrÃ©e/sortie Ã  partir de coordonnÃ©es
+	* @param coord CoordonnÃ©es de l'E/S
 	*/
     void add_in_out(const Coordinates& coord)
     { ins_outs.push_back(coord); }
     /**
-	* Ajoute une entrée/sortie à partir de coordonnées
+	* Ajoute une entrÃ©e/sortie Ã  partir de coordonnÃ©es
 	* @param col Colonne de l'E/S
 	* @param row Ligne de l'E/S
 	*/
@@ -47,7 +47,7 @@ public:
     { ins_outs.push_back(Coordinates(col, row)); }
 
     /**
-	* Ajoute une route à partir de coordonnées
+	* Ajoute une route Ã  partir de coordonnÃ©es
 	* @param col Colonne de la route
 	* @param row Ligne de la route
 	*/
@@ -56,7 +56,7 @@ public:
     
 /**=== Operators ===**/
 public:
-    State operator[](const Coordinates& pos) const { return parcels[pos.row][pos.col]; }
+    State operator[](const Coordinates& pos) const { return parcels[pos.col][pos.row]; }
 
     std::vector<std::vector<State>>::const_iterator begin() const { return parcels.cbegin(); }
     std::vector<std::vector<State>>::const_iterator end() const { return parcels.cend(); }
@@ -72,24 +72,24 @@ public:
 /* Affichage */
     void show_ins_and_outs() const;
 
-/**=== Fonctions sur les coordonnées ===**/
+/**=== Fonctions sur les coordonnÃ©es ===**/
     /**
-	* Effectue un test d'appartenance des coordonnées à la matrice
-	* @param x abscisse de la coordonnée
-	* @param y ordonnée de la coordonnée
-	* @return true si la coordonnée appartient à la matrice
+	* Effectue un test d'appartenance des coordonnÃ©es Ã  la matrice
+	* @param x abscisse de la coordonnÃ©e
+	* @param y ordonnÃ©e de la coordonnÃ©e
+	* @return true si la coordonnÃ©e appartient Ã  la matrice
 	*/
     bool contains(int x, int y) const ;
     /**
-	* Effectue un test d'appartenance des coordonnées à la matrice
-	* @param coord Coordonnées de la position
-	* @return true si la coordonnée appartient à la matrice
+	* Effectue un test d'appartenance des coordonnÃ©es Ã  la matrice
+	* @param coord CoordonnÃ©es de la position
+	* @return true si la coordonnÃ©e appartient Ã  la matrice
 	*/
     bool contains(const Coordinates& coord) const ;
     
-/**=== Méthodes générales	===**/
-    /** Crée aléatoirement des entrées et sorties
-	* @param nb nombre d'entrées et sorties à générer
+/**=== MÃ©thodes gÃ©nÃ©rales	===**/
+    /** CrÃ©e alÃ©atoirement des entrÃ©es et sorties
+	* @param nb nombre d'entrÃ©es et sorties Ã  gÃ©nÃ©rer
 	*/
     void generateInsAndOuts(unsigned nb);
 };

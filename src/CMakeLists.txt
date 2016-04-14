@@ -24,7 +24,6 @@ install(TARGETS sim-city RUNTIME DESTINATION bin)
 
 add_subdirectory(Tests)
 
-
 # UNUSED
 
 #   if(BUILD_STATIC_EXECUTABLES)

@@ -179,6 +179,14 @@ void MinPathRoadTestFixture::test_invalidsPath()
 //     CPPUNIT_ASSERT(dist_unusable == UNSIGNED_INFINITY);
 }
 
+#include <list>
+void MinPathRoadTestFixture::test_findVisisted()
+{
+    list<const Coordinates*> visited;
+    visited.push_back(coord1);
+    
+    CPPUNIT_ASSERT(find(visited.begin(), visited.end(), coord1) != visited.end());
+}
 
 
 

@@ -14,6 +14,13 @@ Coordinates::~Coordinates()
 
 }
 
+Coordinates& Coordinates::operator=(const Coordinates& other)
+{
+    col= other.col;
+    row= other.row;
+    
+    return *this;
+}
 
 bool Coordinates::operator==(const Coordinates& other) const
 {

@@ -14,8 +14,10 @@ link_directories(/usr/local/lib/)
 #add_definitions(-L/usr/local/lib)
 # add_library( -L/usr/local/lib)
 
+set(OTHERS_SOURCES  ../coordinates.cpp ../Field.cpp)
+
 # Executable
-add_executable(tests_engine ../coordinates.cpp test_coordinates.cpp all_tests.cpp)
+add_executable(tests_engine ${OTHERS_SOURCES} test_coordinates.cpp fieldtestfixture.cpp all_tests.cpp)
 
 install(TARGETS tests_engine RUNTIME DESTINATION bin)
 

@@ -1,5 +1,7 @@
 #include "test_coordinates.h"
 
+using namespace std;
+
 void CoordinatesTestFixture::setUp() {
     
     coord1= new Coordinates(0,0);

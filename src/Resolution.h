@@ -50,14 +50,14 @@ public:
 	* @param coord Coordonnées de la parcelle desservir
 	* @return une liste de routes distance inférieure ou égale à la distance de desserte
 	*/
-    std::list<const Coordinates *> *getServingRoads(const Coordinates& coord) const;
+    std::list<Coordinates> *getServingRoads(const Coordinates& coord) const;
 
     /**
 	* Recherche des portions de routes qui sont collées à la parcelle courante
 	* @param coord Coordonnées de la parcelle
 	* @return une liste de routes adjacentes à la parcelle
 	*/
-    std::list<const Coordinates *> *getNeighbourRoads(const Coordinates& coord) const;
+    std::list<Coordinates> *getNeighbourRoads(const Coordinates& coord) const;
 
     unsigned calcRoadDistance(const Coordinates& coord1, const Coordinates& coord2) const;
 
@@ -66,7 +66,7 @@ private:
      * Calcule la distance entre deux points, en passant de route en route
      * On suppose ques les coordonées courantes sont des routes
      */
-    unsigned recCalcRoadDistance(const Coordinates& coord1, const Coordinates& coord2, std::list<const Coordinates *> *visited) const;
+    unsigned recCalcRoadDistance(const Coordinates& coord1, const Coordinates& coord2, std::list<Coordinates> *visited) const;
     
 public:
 /* Evaluations */

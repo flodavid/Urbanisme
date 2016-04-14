@@ -11,8 +11,6 @@
 #include "cppunit/XmlOutputter.h"
 #include "cppunit/ui/text/TestRunner.h"
 
-using namespace std;
-
 #include "../coordinates.h"
 
 class CoordinatesTestFixture : public CppUnit::TestFixture {

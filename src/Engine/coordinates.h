@@ -19,7 +19,7 @@ public:
 	Coordinates(const Coordinates& other);
 	virtual~ Coordinates();
 	
-	Coordinates& operator=(const Coordinates& other) const;
+	Coordinates& operator=(const Coordinates& other);
 	
 	virtual bool operator==(const Coordinates& other) const;
 

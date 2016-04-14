@@ -10,13 +10,20 @@ CppUnit::TestSuite *make_suite() {
     cout << "==============================================" << endl;
 
     // Tests test next_coordinates()
-    suite->addTest( new CppUnit::TestCaller<CoordinatesTestFixture>("test_validsCoords", &CoordinatesTestFixture::test_validsCoords) );
-    suite->addTest( new CppUnit::TestCaller<CoordinatesTestFixture>("test_invalidsCoords", &CoordinatesTestFixture::test_invalidsCoords) );
+    suite->addTest( new CppUnit::TestCaller<CoordinatesTestFixture>("test_validsCoords",
+			&CoordinatesTestFixture::test_validsCoords) );
+    suite->addTest( new CppUnit::TestCaller<CoordinatesTestFixture>("test_invalidsCoords",
+			&CoordinatesTestFixture::test_invalidsCoords) );
 
     // Tests calcRoadDistance
-    suite->addTest( new CppUnit::TestCaller<MinPathRoadTestFixture>("test_validsPath", &MinPathRoadTestFixture::test_validsPath) );
-    suite->addTest( new CppUnit::TestCaller<MinPathRoadTestFixture>("test_sameParcel", &MinPathRoadTestFixture::test_sameParcel) );
-    suite->addTest( new CppUnit::TestCaller<MinPathRoadTestFixture>("test_invalidsPath", &MinPathRoadTestFixture::test_invalidsPath) );
+    suite->addTest( new CppUnit::TestCaller<MinPathRoadTestFixture>("test_validsPath",
+			&MinPathRoadTestFixture::test_validsPath) );
+    suite->addTest( new CppUnit::TestCaller<MinPathRoadTestFixture>("test_sameParcel",
+			&MinPathRoadTestFixture::test_sameParcel) );
+    suite->addTest( new CppUnit::TestCaller<MinPathRoadTestFixture>("test_invalidsPath",
+			&MinPathRoadTestFixture::test_invalidsPath) );
+    suite->addTest( new CppUnit::TestCaller<MinPathRoadTestFixture>("test_findVisisted",
+			&MinPathRoadTestFixture::test_findVisisted) );
     
     return suite;
 }

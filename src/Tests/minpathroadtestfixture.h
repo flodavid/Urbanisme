@@ -36,6 +36,8 @@ public:
     void test_validsPath();
     void test_sameParcel();
     void test_invalidsPath();
+    
+    void test_findVisisted();
 };
 
 #endif // MINPATHROADTESTFIXTURE_H
