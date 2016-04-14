@@ -6,10 +6,9 @@ TER visant à l'optimisation du placement de routes sur une surface, en maximisa
 
 # Organisation :
 
-[![Build Status](https://travis-ci.org/atom/atom.svg?branch=master)](https://travis-ci.org/atom/atom)
-[![Build status](https://ci.appveyor.com/api/projects/status/1tkktwh654w07eim?svg=true)](https://ci.appveyor.com/project/Atom/atom)
-[![Dependency Status](https://david-dm.org/atom/atom.svg)](https://david-dm.org/atom/atom)
-
+![Build Status](https://blogs.jetbrains.com/teamcity/wp-content/uploads/2012/07/statusIcon-Ok.png)
+[comment]: # (Build failed : ![Build status](https://blogs.jetbrains.com/teamcity/wp-content/uploads/2012/07/statusIcon-Failed.png))
+[comment]: # (Build canceled : ![Build status](https://blogs.jetbrains.com/teamcity/wp-content/uploads/2012/07/statusIcon-Canceled.png))
 
 ## Tâches : 
 
