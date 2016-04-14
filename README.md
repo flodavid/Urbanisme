@@ -6,8 +6,9 @@ TER visant à l'optimisation du placement de routes sur une surface, en maximisa
 
 # Organisation :
 
-![Build Status](https://wiki.jenkins-ci.org/download/attachments/60918124/snapshot-1.7.png?version=1&modificationDate=1427265647000)
-![Build status](https://ci.appveyor.com/api/projects/status/1tkktwh654w07eim?svg=true)
+![Build Status](https://blogs.jetbrains.com/teamcity/wp-content/uploads/2012/07/statusIcon-Ok.png)
+[comment]: # (Build failed : ![Build status](https://blogs.jetbrains.com/teamcity/wp-content/uploads/2012/07/statusIcon-Failed.png))
+[comment]: # (Build canceled : ![Build status](https://blogs.jetbrains.com/teamcity/wp-content/uploads/2012/07/statusIcon-Canceled.png))
 
 ## Tâches : 
 
