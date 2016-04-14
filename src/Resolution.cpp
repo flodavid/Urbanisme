@@ -86,6 +86,7 @@ std::list<Coordinates>* Resolution::getServingRoads ( const Coordinates& coord )
                 // Ajout dans les routes voisines de la parcelle
                 Coordinates& road_coord= * ( new Coordinates ( j, i ) );
                 serving_roads->push_back ( road_coord );
+		delete &road_coord; // @SEE utilisation pointeur ou non
 #if DEBUG_ROADS_DIST
                 cout << "parcelle en "<< j<< " ; "<< i<< " est une route voisine de la parcelle en "
                      << coord.col<< " ; "<< coord.row<< endl;
@@ -138,6 +139,13 @@ std::list<Coordinates>* Resolution::getNeighbourRoads ( const Coordinates& coord
         cout << "\tparcelle "<< south<< endl;
 #endif
     }
+    
+    // @SEE améliorer les listes, utiliser pointeurs ou non ?
+    delete &north;
+    delete &south;
+    delete &west;
+    delete &east;
+    
 
     return neighbour_roads;
 }
@@ -164,7 +172,10 @@ unsigned Resolution::calcRoadDistance ( const Coordinates &coord1, const Coordin
     list<Coordinates>* serving_roads_c2 = getServingRoads ( coord2 );
     for ( Coordinates road_c1 : *serving_roads_c1 ) {
         for ( Coordinates road_c2 : *serving_roads_c2 ) {
-            unsigned int dist = recCalcRoadDistance ( road_c1, road_c2, new list<Coordinates> );
+	    list<Coordinates>* empty_visited =new list<Coordinates>;
+            unsigned int dist = recCalcRoadDistance ( road_c1, road_c2, empty_visited);
+	    delete empty_visited;
+	    
             if ( dist < min_dist ) {
                 min_dist= dist +1;
 #if DEBUG_ROADS_DIST
@@ -174,6 +185,9 @@ unsigned Resolution::calcRoadDistance ( const Coordinates &coord1, const Coordin
             }
         }
     }
+    
+    delete serving_roads_c1;
+    delete serving_roads_c2;
 
     if ( min_dist ) {
 #if DEBUG_ROADS_DIST
@@ -225,6 +239,8 @@ unsigned Resolution::recCalcRoadDistance ( const Coordinates& coord1, const Coor
 #endif
             }
         }
+        
+        delete neighbour_roads;
 
 #if DEBUG_ROADS_DIST
 //         if (min_dist_neighbour == NULL) {
@@ -240,7 +256,6 @@ unsigned Resolution::recCalcRoadDistance ( const Coordinates& coord1, const Coor
              << endl;
 
 #endif
-
         return min_dist;
     }
 }

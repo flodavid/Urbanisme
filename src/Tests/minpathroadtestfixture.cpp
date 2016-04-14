@@ -152,10 +152,10 @@ void MinPathRoadTestFixture::test_validsPath()
     cout << "Valeur infinity : "<< UNSIGNED_INFINITY <<" OMFG !"<< endl
 	<<endl;
     
-    unsigned nb_serving_c1= resol->getServingRoads(*coord1)->size();
-    unsigned nb_serving_c2= resol->getServingRoads(*coord2)->size();
-    cout << "coord1 a "<< nb_serving_c1<< " routes qui la desservent";
-    cout << " ; coord2 a "<< nb_serving_c2<< " routes qui la desservent"<< endl;
+//     unsigned nb_serving_c1= resol->getServingRoads(*coord1)->size();
+//     unsigned nb_serving_c2= resol->getServingRoads(*coord2)->size();
+//     cout << "coord1 a "<< nb_serving_c1<< " routes qui la desservent";
+//     cout << " ; coord2 a "<< nb_serving_c2<< " routes qui la desservent"<< endl;
     
     CPPUNIT_ASSERT_EQUAL(expected_dist, dist);
 }
