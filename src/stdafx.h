@@ -9,8 +9,6 @@
 // Others
 #include "targetver.h"
 
-// TODO: reference additional headers your program requires here
-
 // To represent infinity
 #define UNSIGNED_INFINITY std::numeric_limits<unsigned>::max()
 
