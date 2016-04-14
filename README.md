@@ -6,10 +6,8 @@ TER visant à l'optimisation du placement de routes sur une surface, en maximisa
 
 # Organisation :
 
-[![Build Status](https://travis-ci.org/atom/atom.svg?branch=master)](https://travis-ci.org/atom/atom)
-[![Build status](https://ci.appveyor.com/api/projects/status/1tkktwh654w07eim?svg=true)](https://ci.appveyor.com/project/Atom/atom)
-[![Dependency Status](https://david-dm.org/atom/atom.svg)](https://david-dm.org/atom/atom)
-
+![Build Status](https://wiki.jenkins-ci.org/download/attachments/60918124/snapshot-1.7.png?version=1&modificationDate=1427265647000)
+![Build status](https://ci.appveyor.com/api/projects/status/1tkktwh654w07eim?svg=true)
 
 ## Tâches : 
 
