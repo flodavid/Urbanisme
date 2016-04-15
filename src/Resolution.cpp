@@ -217,8 +217,8 @@ float Resolution::evaluateRatio() const
     float total_ratio= 0.0;
     
     // Calculs des distances
-    Coordinates coord1(-1,0);
-    while(field.nextCoordinates(&coord1)){
+    Coordinates coord1= Field::first();
+    do {
         if (field[coord1] == is_usable) {
         // On calcule et additionne le ratio pour aller vers chacun des successeurs
             Coordinates coord2(coord1);
@@ -228,7 +228,7 @@ float Resolution::evaluateRatio() const
                 }
             }
         }
-    }
+    } while(field.nextCoordinates(&coord1));
 
     return total_ratio;
 }

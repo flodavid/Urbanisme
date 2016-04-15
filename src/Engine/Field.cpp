@@ -39,10 +39,11 @@ void Field::show_ins_and_outs() const
 }
 
 void Field::show_states() const {
-    while(nextCoordinates(&coord)){
+    Coordinates coord= Field::first();
+    do {
         if ((coord.col) == 0) cout << endl<< coord<< "= "<< at(coord);
         else cout<<  "; "<< coord<< "= "<< at(coord);
-    }
+    } while(nextCoordinates(&coord));
 }
 
 ///########################################
@@ -212,8 +213,8 @@ void Field::defineUsables(unsigned int servingDistance)
     // @SEE je vérifie que chaque route a un voisin (en cherchant tous ses voisins,
     //  alors qu'on pourrait s'arrêter au premier), l'inverse est possible : 
     //  définir toutes les voisins de chaque route comme étant exploitable
-    Coordinates coord (-1,0);
-    while(nextCoordinates(&coord)){
+    Coordinates coord= first();
+    do {
 #if DEBUG
         if ((coord.col) == 0) cout << endl<< coord;
         else cout<<  "; "<< coord;
@@ -226,5 +227,5 @@ void Field::defineUsables(unsigned int servingDistance)
                 parcels[coord.row][coord.col] = is_unusable;
             }
         }
-    }
+    } while(nextCoordinates(&coord));
 }

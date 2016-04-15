@@ -74,9 +74,14 @@ public:
 //    friend std::vector<std::vector<State>>::const_iterator end(const Field& f) { return f.end(); }
     friend std::vector<State>::const_iterator& std::vector<State>::const_iterator::operator++();
 
+    static inline const Coordinates& first()
+    { return *(new Coordinates(0,0)); }
+
 public:
 /* Affichage */
     void show_ins_and_outs() const;
+
+    void show_states() const;
 
 /**=== Fonctions sur les coordonnées ===**/
     /**
