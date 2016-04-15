@@ -61,6 +61,7 @@ public:
 
 /**=== Operators ===**/
 public:
+    inline State at(const Coordinates& pos) const { return parcels[pos.col][pos.row]; }
     State operator[](const Coordinates& pos) const { return parcels[pos.col][pos.row]; }
 
     std::vector<std::vector<State>>::const_iterator begin() const { return parcels.cbegin(); }
@@ -91,12 +92,34 @@ public:
     * @return true si la coordonnée appartient à la matrice
     */
     bool contains(const Coordinates& coord) const ;
+    /**
+     * Modifie la coordonnée en entrée pour obtenir celle qu'elle précède
+     * Agit comme une itération sur l'ensemble des coordonnées de la surface
+         * @param coord Coordonnée qui va être modifiée, non modifiée si il n'y a pas de suivante
+     * @return vrai si il y a une coordonnées, faux si on est à la fin ou en dehors de la surface
+     */
+    bool nextCoordinates ( Coordinates* coord ) const;
 
 /**=== Méthodes générales	===**/
     /** Crée aléatoirement des entrées et sorties
     * @param nb nombre d'entrées et sorties à générer
     */
     void generateInsAndOuts(unsigned nb);
+
+    /**
+    * Recherche des portions de routes qui sont collées à la parcelle courante
+    * @param coord Coordonnées de la parcelle
+    * @return une liste de routes adjacentes à la parcelle
+    */
+    std::list<Coordinates> *getNeighbourRoads ( const Coordinates& coord ) const;
+
+    /**
+    * Recherche des portions de routes qui peuvent désservir la parcelle
+    * @param coord Coordonnées de la parcelle desservir
+    * @return une liste de routes distance inférieure ou égale à la distance de desserte
+    */
+    std::list<Coordinates> *getServingRoads ( const Coordinates& coord, unsigned servingDistance ) const;
+
 };
 
 #endif //FIELD_H

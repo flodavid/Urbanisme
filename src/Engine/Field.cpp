@@ -53,6 +53,48 @@ bool Field::contains(const Coordinates& coord) const
     return contains(coord.col, coord.row);
 }
 
+bool Field::nextCoordinates ( Coordinates* coord ) const
+{
+    // On vérifie que la coordonnée actuelle est dans la surface
+    //  (vérification sur les colonnes puis sur les lignes)
+    if ( ( coord->col < 0 || coord->col >= ( int ) ( get_width() ) ) ||
+            ( coord->row < 0 || coord->row >= ( int ) (get_height() ) ) ) {
+#if DEBUG_PARCOURS_COORDS
+        cout << "Passage à la ligne suivante" <<endl;
+#endif
+        return false;
+    } else {
+        // Si on est à la fin de la ligne, on passe à la ligne suivante
+        if ( ( unsigned ) ( coord->col ) +1 == get_width() ) {
+            // seulement si on n'est pas à la fin de la surface
+            if ( ( unsigned ) ( coord->row ) +1 < get_width() ) {
+                coord->col= 0;
+                coord->row+= 1;
+#if DEBUG_PARCOURS_COORDS
+                cout << "Passage àla ligne suivante" <<endl;
+#endif
+                return true;
+            } else {
+                // dernière case de la surface
+#if DEBUG_PARCOURS_COORDS
+                cout << "Dernière case de la matrice" <<endl;
+#endif
+                return false;
+            }
+        }// Sinon, on se décale sur la ligne
+        else {
+            coord->col+= 1;
+#if DEBUG_PARCOURS_COORDS
+            cout << "Passage à la case suivante (à droite)" <<endl;
+#endif
+            return true;
+        }
+    }
+}
+
+///#############################
+///===  Méthodes générales	===/
+///#############################
 void Field::generateInsAndOuts(unsigned nb)
 {
     bool on_top_or_down;
@@ -73,4 +115,87 @@ void Field::generateInsAndOuts(unsigned nb)
 
         ins_outs.push_back(Coordinates(col, row));
     }
+}
+
+std::list<Coordinates>* Field::getNeighbourRoads ( const Coordinates& coord ) const
+{
+#if DEBUG_ROADS_DIST
+    cout << "Recherche des voisins de la parcelle en "<< coord.col<< " ; "<< coord.row<< endl;
+#endif
+    list<Coordinates>* neighbour_roads= new list<Coordinates>;
+
+    Coordinates& west= * ( new Coordinates ( coord.col -1, coord.row ) );
+    Coordinates& east= * ( new Coordinates ( coord.col +1, coord.row ) );
+    Coordinates& north= * ( new Coordinates ( coord.col, coord.row -1 ) );
+    Coordinates& south= * ( new Coordinates ( coord.col, coord.row +1 ) );
+// On vérifie que chaque voisin n'est pas en dehors de la matrice
+
+    if ( contains ( west ) && at(west) == is_road ) {
+        // Ajout dans les routes voisines de la parcelle
+        neighbour_roads->push_back ( west );
+#if DEBUG_ROADS_DIST
+        cout << "\tparcelle "<< west<< endl;
+#endif
+    }
+    if ( contains ( east ) && at(east) == is_road ) {
+        // Ajout dans les routes voisines de la parcelle
+        neighbour_roads->push_back ( east );
+#if DEBUG_ROADS_DIST
+        cout << "\tparcelle "<< east<< endl;
+#endif
+    }
+    if ( contains ( north ) && at(north) == is_road ) {
+        // Ajout dans les routes voisines de la parcelle
+        neighbour_roads->push_back ( north );
+#if DEBUG_ROADS_DIST
+        cout << "\tparcelle "<< north<< endl;
+#endif
+    }
+    if ( contains ( south ) && at(south) == is_road ) {
+        // Ajout dans les routes voisines de la parcelle
+        neighbour_roads->push_back ( south );
+#if DEBUG_ROADS_DIST
+        cout << "\tparcelle "<< south<< endl;
+#endif
+    }
+
+    // @SEE améliorer les listes, utiliser pointeurs ou non ?
+    delete &north;
+    delete &south;
+    delete &west;
+    delete &east;
+
+
+    return neighbour_roads;
+}
+
+std::list<Coordinates>* Field::getServingRoads (const Coordinates& coord , unsigned servingDistance) const
+{
+    list<Coordinates>* serving_roads= new list<Coordinates>;
+
+    int serve_dist= (int)servingDistance; // il est plus simple de convertir en entier
+
+    // On vérifie si les routes entre (x +dist;y +dist) et (x -dist;y -dist)
+    // @SEE on vérifie serve_dist² parcelles,  alors qu'on pourrait en vérifier ?? (moins)
+    for ( int i= coord.row + serve_dist; i >= coord.row -serve_dist; --i ) {
+        for ( int j= coord.col + serve_dist; j >= coord.col -serve_dist; --j ) {
+
+            // On vérifie que la parcelle n'est pas en dehors de la matrice et qu'elle n'est pas la coordonnée courante
+            Coordinates neighbour ( j,  i );
+            if ( contains ( neighbour ) && ! ( neighbour == coord )
+                    && coord.manhattanDistance ( neighbour ) <= 2 // TODO changer, ne pas utiliser manhattanDistance,  peu performant ?
+                    && at(neighbour) == is_road ) {
+                // Ajout dans les routes voisines de la parcelle
+                Coordinates& road_coord= * ( new Coordinates ( j, i ) );
+                serving_roads->push_back ( road_coord );
+        delete &road_coord; // @SEE utilisation pointeur ou non
+#if DEBUG_ROADS_DIST
+                cout << "parcelle en "<< j<< " ; "<< i<< " est une route voisine de la parcelle en "
+                     << coord.col<< " ; "<< coord.row<< endl;
+#endif
+            }
+        }
+    }
+
+    return serving_roads;
 }

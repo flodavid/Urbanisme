@@ -44,19 +44,6 @@ public:
     void initNeighbourhoodManhattan();
 
     /* Fonctions auxiliaires */
-    /**
-    * Recherche des portions de routes qui peuvent désservir la parcelle
-    * @param coord Coordonnées de la parcelle desservir
-    * @return une liste de routes distance inférieure ou égale à la distance de desserte
-    */
-    std::list<Coordinates> *getServingRoads ( const Coordinates& coord ) const;
-
-    /**
-    * Recherche des portions de routes qui sont collées à la parcelle courante
-    * @param coord Coordonnées de la parcelle
-    * @return une liste de routes adjacentes à la parcelle
-    */
-    std::list<Coordinates> *getNeighbourRoads ( const Coordinates& coord ) const;
 
     /**
      * Calcule la distance par les routes entre deux cellules, en respectant les paramètres
@@ -96,13 +83,6 @@ public:
     float evaluateRatio() const;
 
     /* Autres méthodes utiles */
-    /**
-     * Modifie la coordonnée en entrée pour obtenir celle qu'elle précède
-     * Agit comme une itération sur l'ensemble des coordonnées de la surface
-         * @param coord Coordonnée qui va être modifiée, non modifiée si il n'y a pas de suivante
-     * @return vrai si il y a une coordonnées, faux si on est à la fin ou en dehors de la surface
-     */
-    bool nextCoordinates ( Coordinates* coord ) const;
     /**
       * @brief createExample
       * @test

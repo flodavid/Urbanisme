@@ -53,88 +53,6 @@ void Resolution::increment_road_distance ( const Coordinates& coord, unsigned in
 ///	Fonctions auxiliaires
 /// ###############################
 //@{
-std::list<Coordinates>* Resolution::getServingRoads ( const Coordinates& coord ) const
-{
-    list<Coordinates>* serving_roads= new list<Coordinates>;
-
-    int serve_dist= params.get_serve_distance(); // on pourrait utiliser unsigned
-
-    // On vérifie si les routes entre (x +dist;y +dist) et (x -dist;y -dist)
-    // @SEE on vérifie serve_dist² parcelles,  alors qu'on pourrait en vérifier ?? (moins)
-    for ( int i= coord.row + serve_dist; i >= coord.row -serve_dist; --i ) {
-        for ( int j= coord.col + serve_dist; j >= coord.col -serve_dist; --j ) {
-
-            // On vérifie que la parcelle n'est pas en dehors de la matrice et qu'elle n'est pas la coordonnée courante
-            Coordinates neighbour ( j,  i );
-            if ( field.contains ( neighbour ) && ! ( neighbour == coord )
-                    && coord.manhattanDistance ( neighbour ) <= 2 // TODO changer, ne pas utiliser manhattanDistance,  peu performant ?
-                    && field[neighbour] == is_road ) {
-                // Ajout dans les routes voisines de la parcelle
-                Coordinates& road_coord= * ( new Coordinates ( j, i ) );
-                serving_roads->push_back ( road_coord );
-		delete &road_coord; // @SEE utilisation pointeur ou non
-#if DEBUG_ROADS_DIST
-                cout << "parcelle en "<< j<< " ; "<< i<< " est une route voisine de la parcelle en "
-                     << coord.col<< " ; "<< coord.row<< endl;
-#endif
-            }
-        }
-    }
-
-    return serving_roads;
-}
-
-std::list<Coordinates>* Resolution::getNeighbourRoads ( const Coordinates& coord ) const
-{
-#if DEBUG_ROADS_DIST
-    cout << "Recherche des voisins de la parcelle en "<< coord.col<< " ; "<< coord.row<< endl;
-#endif
-    list<Coordinates>* neighbour_roads= new list<Coordinates>;
-
-    Coordinates& west= * ( new Coordinates ( coord.col -1, coord.row ) );
-    Coordinates& east= * ( new Coordinates ( coord.col +1, coord.row ) );
-    Coordinates& north= * ( new Coordinates ( coord.col, coord.row -1 ) );
-    Coordinates& south= * ( new Coordinates ( coord.col, coord.row +1 ) );
-// On vérifie que chaque voisin n'est pas en dehors de la matrice
-
-    if ( field.contains ( west ) && field[west] == is_road ) {
-        // Ajout dans les routes voisines de la parcelle
-        neighbour_roads->push_back ( west );
-#if DEBUG_ROADS_DIST
-        cout << "\tparcelle "<< west<< endl;
-#endif
-    }
-    if ( field.contains ( east ) && field[east] == is_road ) {
-        // Ajout dans les routes voisines de la parcelle
-        neighbour_roads->push_back ( east );
-#if DEBUG_ROADS_DIST
-        cout << "\tparcelle "<< east<< endl;
-#endif
-    }
-    if ( field.contains ( north ) && field[north] == is_road ) {
-        // Ajout dans les routes voisines de la parcelle
-        neighbour_roads->push_back ( north );
-#if DEBUG_ROADS_DIST
-        cout << "\tparcelle "<< north<< endl;
-#endif
-    }
-    if ( field.contains ( south ) && field[south] == is_road ) {
-        // Ajout dans les routes voisines de la parcelle
-        neighbour_roads->push_back ( south );
-#if DEBUG_ROADS_DIST
-        cout << "\tparcelle "<< south<< endl;
-#endif
-    }
-    
-    // @SEE améliorer les listes, utiliser pointeurs ou non ?
-    delete &north;
-    delete &south;
-    delete &west;
-    delete &east;
-    
-
-    return neighbour_roads;
-}
 
 unsigned Resolution::calcRoadDistance ( const Coordinates &coord1, const Coordinates &coord2 ) const
 {
@@ -152,10 +70,10 @@ unsigned Resolution::calcRoadDistance ( const Coordinates &coord1, const Coordin
 #endif
 
     cout << "Premier point : "<< coord1<< endl;
-    list<Coordinates>* serving_roads_c1 = getServingRoads ( coord1 );
+    list<Coordinates>* serving_roads_c1 = field.getServingRoads ( coord1, params.get_serve_distance() );
 
     cout << endl<< "Deuxième point : "<< coord2<< endl;
-    list<Coordinates>* serving_roads_c2 = getServingRoads ( coord2 );
+    list<Coordinates>* serving_roads_c2 = field.getServingRoads ( coord2, params.get_serve_distance() );
     for ( Coordinates road_c1 : *serving_roads_c1 ) {
         for ( Coordinates road_c2 : *serving_roads_c2 ) {
 	    list<Coordinates>* empty_visited =new list<Coordinates>;
@@ -202,7 +120,7 @@ unsigned Resolution::recCalcRoadDistance ( const Coordinates& coord1, const Coor
         unsigned min_dist= UNSIGNED_INFINITY;
 //         Coordinates& min_dist_neighbour;
 
-        list<Coordinates>* neighbour_roads = getNeighbourRoads ( coord1 );
+        list<Coordinates>* neighbour_roads = field.getNeighbourRoads ( coord1 );
         for ( Coordinates new_coord : *neighbour_roads ) {
 #if DEBUG_ROADS_DIST
             cout << "Taille de la liste des visitées : "<< visited->size() << endl;
@@ -289,13 +207,16 @@ float Resolution::evaluateRatio() const
     
     // Calculs des distances
     Coordinates coord1(0,0);
-    while(nextCoordinates(&coord1)){
+    while(field.nextCoordinates(&coord1)){
+        if (field[coord1] == is_usable) {
         // On calcule et additionne le ratio pour aller vers chacun des successeurs
             Coordinates coord2(coord1);
-            while(nextCoordinates(&coord2)){
+            while(field.nextCoordinates(&coord2)){
+                if (field[coord2] == is_usable) {
                     total_ratio += manhattanRatioBetween2Parcels(coord1, coord2);
-//                }
+                }
             }
+        }
     }
 
     return total_ratio;
@@ -306,46 +227,8 @@ float Resolution::evaluateRatio() const
 /// Autres méthodes utiles
 /// #########################
 //@{
-bool Resolution::nextCoordinates ( Coordinates* coord ) const
-{
-    // On vérifie que la coordonnée actuelle est dans la surface
-    //  (vérification sur les colonnes puis sur les lignes)
-    if ( ( coord->col < 0 || coord->col >= ( int ) ( field.get_width() ) ) ||
-            ( coord->row < 0 || coord->row >= ( int ) ( field.get_height() ) ) ) {
-#if DEBUG_PARCOURS_COORDS
-        cout << "Passage à la ligne suivante" <<endl;
-#endif
-        return false;
-    } else {
-        // Si on est à la fin de la ligne, on passe à la ligne suivante
-        if ( ( unsigned ) ( coord->col ) +1 == field.get_width() ) {
-            // seulement si on n'est pas à la fin de la surface
-            if ( ( unsigned ) ( coord->row ) +1 < field.get_width() ) {
-                coord->col= 0;
-                coord->row+= 1;
-#if DEBUG_PARCOURS_COORDS
-                cout << "Passage àla ligne suivante" <<endl;
-#endif
-                return true;
-            } else {
-                // dernière case de la surface
-#if DEBUG_PARCOURS_COORDS
-                cout << "Dernière case de la matrice" <<endl;
-#endif
-                return false;
-            }
-        }// Sinon, on se décale sur la ligne
-        else {
-            coord->col+= 1;
-#if DEBUG_PARCOURS_COORDS
-            cout << "Passage à la case suivante (à droite)" <<endl;
-#endif
-            return true;
-        }
-    }
-}
-//@}
 
+//@}
 
 void Resolution::createExample()
 {
