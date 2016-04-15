@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <ctime>
 
 #include "stdafx.h"
 #include "Engine/Field.h"
@@ -18,14 +19,27 @@ int main()
     Resolution myResolution(myField, myParameters);
 
 /**		Tests		**/
-    myField.generateInsAndOuts(2);
-    myField.show_ins_and_outs();
+    myResolution.createExample();
 
-//	unsigned nb_usables= myResolution.evaluateTotalUsable();
-
-#if DEBUG_EVALUATION
+    unsigned nb_usables= myResolution.evaluateTotalUsable();
     clog << "Nombre total de parcelles exploitables au début : "<< nb_usables<< endl;
-#endif
+
+    time_t evaluation_startTime;
+    evaluation_startTime = time(NULL);
+
+    float total_ratio= myResolution.evaluateRatio();
+
+    time_t stopTime;
+    stopTime = time(NULL);
+    time_t elapsedTime = stopTime - evaluation_startTime;
+
+    printf("The number elapsed seconds is %ld\n",elapsedTime);
+    cout << "Ratio total : "<< total_ratio<< endl;
+
+    srand(time(NULL));
+//    myField.generateInsAndOuts(2);
+//    myField.show_ins_and_outs();
+
 
 
 /**	Fin tests	**/

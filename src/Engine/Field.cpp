@@ -4,7 +4,7 @@
 using namespace std;
 
 Field::Field(unsigned width, unsigned height/*, std::list<Coordinates>& inputs_and_ouputs*/) :
-	nb_cols(width), nb_rows(height)/*, ins_outs(inputs_and_ouputs)*/
+    nb_cols(width), nb_rows(height)/*, ins_outs(inputs_and_ouputs)*/
 {
     resizeWithDimensions();
 }
@@ -20,9 +20,9 @@ Field::~Field()
 void Field::resizeWithDimensions()
 {
     parcels.resize(nb_cols);
-    
+
     for (vector<State>& parcel_row : parcels){
-	parcel_row.resize(nb_cols, is_undefined);
+        parcel_row.resize(nb_cols, is_undefined);
     }
 }
 
@@ -33,7 +33,7 @@ void Field::resizeWithDimensions()
 void Field::show_ins_and_outs() const
 {
     for (const Coordinates& in_or_out : ins_outs) {
-	cout << in_or_out << " ; ";
+    cout << in_or_out << " ; ";
     }
     cout << endl;
 }

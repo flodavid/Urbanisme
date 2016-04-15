@@ -14,6 +14,11 @@ public:
             { return road_width; }
         inline unsigned get_serve_distance() const
             { return serve_distance; }
-        
+
+        inline void set_road_width(unsigned width)
+            { road_width= width; }
+        inline void set_serve_distance(unsigned distance)
+            { serve_distance= distance; }
+
 };
 

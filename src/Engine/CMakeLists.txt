@@ -10,4 +10,6 @@ set(Engine_SRCS ${CURRENT_DIR}/coordinates.cpp ${CURRENT_DIR}/Field.cpp ${CURREN
 
 set(Engine_SRCS ${Engine_SRCS} PARENT_SCOPE)
 
-add_subdirectory(Tests)
+if (UNIX)
+    add_subdirectory(Tests)
+endif (UNIX)

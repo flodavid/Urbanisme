@@ -38,11 +38,10 @@ public:
 
     /* Calculs de données */
     /**
-     * Initialise la matrice de disance entre les points selon leur distance avec les routes
-     *  avec la distance Manhattan
-         * @see
+     * Initialise la matrice de voisinage avec les routes avec la distance Manhattan
+     * TODO
      */
-    void parcours_cellules();
+    void initNeighbourhoodManhattan();
 
     /* Fonctions auxiliaires */
     /**
@@ -103,6 +102,11 @@ public:
          * @param coord Coordonnée qui va être modifiée, non modifiée si il n'y a pas de suivante
      * @return vrai si il y a une coordonnées, faux si on est à la fin ou en dehors de la surface
      */
-    bool nextCoordinates ( Coordinates* coord );
+    bool nextCoordinates ( Coordinates* coord ) const;
+    /**
+      * @brief createExample
+      * @test
+      */
+     void createExample() __attribute__ ( ( test ) );
 
 };
