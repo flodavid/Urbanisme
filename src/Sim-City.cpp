@@ -27,8 +27,8 @@ int main()
     time_t evaluation_startTime;
     evaluation_startTime = time(NULL);
 
-//    float total_ratio= myResolution.evaluateRatio();
-//    cout << "Ratio total : "<< total_ratio<< endl;
+   float total_ratio= myResolution.evaluateRatio();
+   cout << "Ratio total : "<< total_ratio<< endl;
 
     time_t stopTime;
     stopTime = time(NULL);

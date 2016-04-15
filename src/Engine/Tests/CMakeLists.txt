@@ -17,7 +17,7 @@ link_directories(/usr/local/lib/)
 set(OTHERS_SOURCES  ../coordinates.cpp ../Field.cpp)
 
 # Executable
-add_executable(tests_engine ${OTHERS_SOURCES} test_coordinates.cpp fieldtestfixture.cpp all_tests.cpp)
+add_executable(tests_engine ${OTHERS_SOURCES} test_next_coordinates.cpp test_coordinates.cpp fieldtestfixture.cpp all_tests.cpp)
 
 install(TARGETS tests_engine RUNTIME DESTINATION bin)
 

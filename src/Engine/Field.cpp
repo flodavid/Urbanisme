@@ -213,7 +213,7 @@ void Field::defineUsables(unsigned int servingDistance)
     // @SEE je vérifie que chaque route a un voisin (en cherchant tous ses voisins,
     //  alors qu'on pourrait s'arrêter au premier), l'inverse est possible : 
     //  définir toutes les voisins de chaque route comme étant exploitable
-    Coordinates coord= first();
+    Coordinates& coord= first();
     do {
 #if DEBUG
         if ((coord.col) == 0) cout << endl<< coord;
@@ -226,6 +226,9 @@ void Field::defineUsables(unsigned int servingDistance)
             } else {
                 parcels[coord.row][coord.col] = is_unusable;
             }
+
+            delete road_neighbours;
         }
     } while(nextCoordinates(&coord));
+    delete &coord;
 }

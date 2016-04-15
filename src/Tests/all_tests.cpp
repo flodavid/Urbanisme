@@ -1,4 +1,3 @@
-#include "test_next_coordinates.h"
 #include "minpathroadtestfixture.h"
 
 using namespace std;
@@ -8,12 +7,6 @@ CppUnit::TestSuite *make_suite() {
     cout << "==============================================" << endl;
     cout << "TEST " << suite->getName() << " (" << __FILE__ << ")" << endl;
     cout << "==============================================" << endl;
-
-    // Tests test next_coordinates()
-    suite->addTest( new CppUnit::TestCaller<CoordinatesTestFixture>("test_validsCoords",
-			&CoordinatesTestFixture::test_validsCoords) );
-    suite->addTest( new CppUnit::TestCaller<CoordinatesTestFixture>("test_invalidsCoords",
-			&CoordinatesTestFixture::test_invalidsCoords) );
 
     // Tests calcRoadDistance
     suite->addTest( new CppUnit::TestCaller<MinPathRoadTestFixture>("test_validsPath",

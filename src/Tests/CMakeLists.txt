@@ -12,11 +12,10 @@ link_directories(/usr/local/lib/)
 # add_library( -L/usr/local/lib)
 
 set(OTHERS_SOURCES  ../Engine/coordinates.cpp ../Engine/Field.cpp ../Engine/Parameters.cpp ../Resolution.cpp)
-set(NEXT_COORD_SOURCES test_next_coordinates.cpp)
 set(MIN_PATH_SOURCES minpathroadtestfixture.cpp)
 
 # Executable
-add_executable(tests_operations ${OTHERS_SOURCES} ${NEXT_COORD_SOURCES} ${MIN_PATH_SOURCES} all_tests.cpp)
+add_executable(tests_operations ${OTHERS_SOURCES} ${MIN_PATH_SOURCES} all_tests.cpp)
 
 install(TARGETS tests_operations RUNTIME DESTINATION bin)
 

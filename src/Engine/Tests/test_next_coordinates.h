@@ -11,12 +11,12 @@
 #include "cppunit/XmlOutputter.h"
 #include "cppunit/ui/text/TestRunner.h"
 
-#include "../Engine/coordinates.h"
-#include "../Resolution.h"
+#include "../coordinates.h"
+#include "../Field.h"
 
-class CoordinatesTestFixture : public CppUnit::TestFixture {
+class NextCoordinatesTestFixture : public CppUnit::TestFixture {
  private:
-    Resolution* resol;
+    Field* resol;
      
     Coordinates* coord_in;
     Coordinates* coord_last_col;

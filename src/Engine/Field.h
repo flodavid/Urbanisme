@@ -74,7 +74,12 @@ public:
 //    friend std::vector<std::vector<State>>::const_iterator end(const Field& f) { return f.end(); }
     friend std::vector<State>::const_iterator& std::vector<State>::const_iterator::operator++();
 
-    static inline const Coordinates& first()
+    /**
+     * Retourne la première coordonée de la matrice, elle peut ensuite
+     * être modifée pour servir d'itérateur à l'aide de nextCoordinates()
+     * @return une référence, non constante, sur la première coordonnée de la matrice
+     */
+    static inline Coordinates& first()
     { return *(new Coordinates(0,0)); }
 
 public:

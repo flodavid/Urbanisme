@@ -1,4 +1,5 @@
 #include "test_coordinates.h"
+#include "test_next_coordinates.h"
 #include "fieldtestfixture.h"
 
 using namespace std;
@@ -13,6 +14,12 @@ CppUnit::TestSuite *make_suite() {
 			    &CoordinatesTestFixture::test_calcManhattan) );
 	suite->addTest( new CppUnit::TestCaller<CoordinatesTestFixture>("test_calcEuclidean",
 			    &CoordinatesTestFixture::test_calcEuclidean) );
+	
+	// Tests test next_coordinates()
+	suite->addTest( new CppUnit::TestCaller<NextCoordinatesTestFixture>("test_validsCoords",
+				&NextCoordinatesTestFixture::test_validsCoords) );
+	suite->addTest( new CppUnit::TestCaller<NextCoordinatesTestFixture>("test_invalidsCoords",
+				&NextCoordinatesTestFixture::test_invalidsCoords) );
 	
 	suite->addTest( new CppUnit::TestCaller<FieldTestFixture>("test_containsValids",
 			    &FieldTestFixture::test_containsValids) );
