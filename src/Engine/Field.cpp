@@ -38,6 +38,13 @@ void Field::show_ins_and_outs() const
     cout << endl;
 }
 
+void Field::show_states() const {
+    while(nextCoordinates(&coord)){
+        if ((coord.col) == 0) cout << endl<< coord<< "= "<< at(coord);
+        else cout<<  "; "<< coord<< "= "<< at(coord);
+    }
+}
+
 ///########################################
 ///=== Fonctions sur les coordonnées ===///
 ///########################################
@@ -57,10 +64,10 @@ bool Field::nextCoordinates ( Coordinates* coord ) const
 {
     // On vérifie que la coordonnée actuelle est dans la surface
     //  (vérification sur les colonnes puis sur les lignes)
-    if ( ( coord->col < 0 || coord->col >= ( int ) ( get_width() ) ) ||
+    if ( ( coord->col < -1 || coord->col >= ( int ) ( get_width() ) ) ||
             ( coord->row < 0 || coord->row >= ( int ) (get_height() ) ) ) {
 #if DEBUG_PARCOURS_COORDS
-        cout << "Passage à la ligne suivante" <<endl;
+        cout << "Coordonnées "<< (*coord)<< " en dehors de la surface" <<endl;
 #endif
         return false;
     } else {
@@ -71,7 +78,7 @@ bool Field::nextCoordinates ( Coordinates* coord ) const
                 coord->col= 0;
                 coord->row+= 1;
 #if DEBUG_PARCOURS_COORDS
-                cout << "Passage àla ligne suivante" <<endl;
+                cout << "Passage à la ligne suivante" <<endl;
 #endif
                 return true;
             } else {
@@ -198,4 +205,26 @@ std::list<Coordinates>* Field::getServingRoads (const Coordinates& coord , unsig
     }
 
     return serving_roads;
+}
+
+void Field::defineUsables(unsigned int servingDistance)
+{
+    // @SEE je vérifie que chaque route a un voisin (en cherchant tous ses voisins,
+    //  alors qu'on pourrait s'arrêter au premier), l'inverse est possible : 
+    //  définir toutes les voisins de chaque route comme étant exploitable
+    Coordinates coord (-1,0);
+    while(nextCoordinates(&coord)){
+#if DEBUG
+        if ((coord.col) == 0) cout << endl<< coord;
+        else cout<<  "; "<< coord;
+#endif
+        if (at(coord) == is_undefined) {
+            list<Coordinates>* road_neighbours = getServingRoads(coord, servingDistance);
+            if (road_neighbours->size() > 0 ) {
+                parcels[coord.row][coord.col] = is_usable;
+            } else {
+                parcels[coord.row][coord.col] = is_unusable;
+            }
+        }
+    }
 }

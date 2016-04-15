@@ -57,12 +57,12 @@ public:
     * @param row Ligne de la route
     */
     void add_road(unsigned col, unsigned row)
-    { parcels[col][row]= is_road; }
+    { parcels[row][col]= is_road; }
 
 /**=== Operators ===**/
 public:
-    inline State at(const Coordinates& pos) const { return parcels[pos.col][pos.row]; }
-    State operator[](const Coordinates& pos) const { return parcels[pos.col][pos.row]; }
+    inline State at(const Coordinates& pos) const { return parcels[pos.row][pos.col]; }
+    State operator[](const Coordinates& pos) const { return parcels[pos.row][pos.col]; }
 
     std::vector<std::vector<State>>::const_iterator begin() const { return parcels.cbegin(); }
     std::vector<std::vector<State>>::const_iterator end() const { return parcels.cend(); }
@@ -70,8 +70,8 @@ public:
     std::vector<std::vector<State>>::iterator begin() { return parcels.begin(); }
     std::vector<std::vector<State>>::iterator end() { return parcels.end(); }
 
-    friend std::vector<std::vector<State>>::const_iterator begin(const Field& f) { return f.begin(); }
-    friend std::vector<std::vector<State>>::const_iterator end(const Field& f) { return f.end(); }
+//    friend std::vector<std::vector<State>>::const_iterator begin(const Field& f) { return f.begin(); }
+//    friend std::vector<std::vector<State>>::const_iterator end(const Field& f) { return f.end(); }
     friend std::vector<State>::const_iterator& std::vector<State>::const_iterator::operator++();
 
 public:
@@ -119,6 +119,11 @@ public:
     * @return une liste de routes distance inférieure ou égale à la distance de desserte
     */
     std::list<Coordinates> *getServingRoads ( const Coordinates& coord, unsigned servingDistance ) const;
+    /**
+     * Définit les parcelles dans le voisinage d'une route comme étant exploitables
+     * @param servingDistance Distance maximale du voisinage
+     */
+    void defineUsables(unsigned servingDistance);
 
 };
 

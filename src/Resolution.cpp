@@ -174,14 +174,25 @@ unsigned Resolution::recCalcRoadDistance ( const Coordinates& coord1, const Coor
 unsigned int Resolution::evaluateTotalUsable() const
 {
     unsigned nb_usables= 0;
+#if DEBUG_EVALUATION
+    int x= 0, y= 0;
+#endif
     for ( vector<State> row_parcel_state : field ) {
         for ( State parcel_state : row_parcel_state ) {
-            cout << "parcel_state = "<< parcel_state<<endl;
+#if DEBUG_EVALUATION
+            cout << "state("<<x<< ","<< y<< ")= "<< parcel_state<< "; ";
+            if(x==0) cout << endl;
+            ++x;
+#endif
             assert ( parcel_state >= -1 &&  parcel_state<= is_unusable );
             if ( parcel_state == is_usable ) {
                 ++nb_usables;
             }
         }
+#if DEBUG_EVALUATION
+        ++y;
+        x= 0;
+#endif
     }
 
 #if DEBUG_EVALUATION
@@ -206,7 +217,7 @@ float Resolution::evaluateRatio() const
     float total_ratio= 0.0;
     
     // Calculs des distances
-    Coordinates coord1(0,0);
+    Coordinates coord1(-1,0);
     while(field.nextCoordinates(&coord1)){
         if (field[coord1] == is_usable) {
         // On calcule et additionne le ratio pour aller vers chacun des successeurs
@@ -227,8 +238,6 @@ float Resolution::evaluateRatio() const
 /// Autres méthodes utiles
 /// #########################
 //@{
-
-//@}
 
 void Resolution::createExample()
 {
@@ -345,7 +354,14 @@ void Resolution::createExample()
 
     example.add_in_out(9, 19);
 
+    evaluateTotalUsable();
+
     // Paramètres
     params.set_road_width(1);
     params.set_serve_distance(2);
+
+    // Définition des états des parcelles
+    field.defineUsables(params.get_serve_distance());
 }
+
+//@}
