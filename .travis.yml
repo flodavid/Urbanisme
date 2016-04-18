@@ -1,2 +1,7 @@
-language: c++
+language: cpp
 install: make get-deps
+
+script:
+  - cd src/
+  - cmake CMakeLists.txt
+  - make --file Makefile
