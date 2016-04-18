@@ -6,7 +6,6 @@ TER visant à l'optimisation du placement de routes sur une surface, en maximisa
 
 # Organisation :
 
-![Build Status](https://blogs.jetbrains.com/teamcity/wp-content/uploads/2012/07/statusIcon-Ok.png)
 [![Build Status](https://travis-ci.org/flodavid/Urbanisme.svg?branch=master)](https://travis-ci.org/flodavid/Urbanisme)
 [comment]: # (Build failed : ![Build status](https://blogs.jetbrains.com/teamcity/wp-content/uploads/2012/07/statusIcon-Failed.png))
 [comment]: # (Build canceled : ![Build status](https://blogs.jetbrains.com/teamcity/wp-content/uploads/2012/07/statusIcon-Canceled.png))
