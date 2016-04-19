@@ -105,8 +105,10 @@ public:
     /**
      * Modifie la coordonnée en entrée pour obtenir celle qu'elle précède
      * Agit comme une itération sur l'ensemble des coordonnées de la surface
-         * @param coord Coordonnée qui va être modifiée, non modifiée si il n'y a pas de suivante
-     * @return vrai si il y a une coordonnées, faux si on est à la fin ou en dehors de la surface
+         * @param coord Coordonnée courante, va être modifiée pour devenir sa "suivante".
+         * Elle est non modifiée si il n'y a pas de suivante.
+     * @return vrai si il y a une coordonnées,
+     * faux si on est à la fin ou en dehors de la surface
      */
     bool nextCoordinates ( Coordinates* coord ) const;
 
@@ -116,19 +118,38 @@ public:
     */
     void generateInsAndOuts(unsigned nb);
 
+private:
+    /**
+     * Vérifie que deux parcelles sont voisines, supposant une distance de voisinage
+        * @param neighbour Coordonnées de la parcelle qui peut être voisine de l'autre
+        * @param coord Coordonnées de la seconde parcelle
+     * @return vrai si la première parcelle est une route, voisine de la seconde
+     */
+    bool isRoadAndNeighbourOf(const Coordinates& neighbour, const Coordinates& coord, unsigned servingDistance) const;
+
+public:
     /**
     * Recherche des portions de routes qui sont collées à la parcelle courante
     * @param coord Coordonnées de la parcelle
     * @return une liste de routes adjacentes à la parcelle
     */
     std::list<Coordinates> *getNeighbourRoads ( const Coordinates& coord ) const;
-
     /**
     * Recherche des portions de routes qui peuvent désservir la parcelle
     * @param coord Coordonnées de la parcelle desservir
     * @return une liste de routes distance inférieure ou égale à la distance de desserte
     */
     std::list<Coordinates> *getServingRoads ( const Coordinates& coord, unsigned servingDistance ) const;
+
+private:
+    /**
+    * Vérifie que la parcelle a un voisin
+    * @param coord Coordonnées de la parcelle desservir
+    * @return une liste de routes distance inférieure ou égale à la distance de desserte
+    */
+    bool hasServingRoad ( const Coordinates& coord, unsigned servingDistance ) const;
+
+public:
     /**
      * Définit les parcelles dans le voisinage d'une route comme étant exploitables
      * @param servingDistance Distance maximale du voisinage
