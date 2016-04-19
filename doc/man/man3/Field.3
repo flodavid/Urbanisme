@@ -1,0 +1,311 @@
+.TH "Field" 3 "Tue Apr 19 2016" "Urbanisme" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Field \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBField\fP (unsigned width, unsigned height)"
+.br
+.ti -1c
+.RI "unsigned \fBget_width\fP () const "
+.br
+.ti -1c
+.RI "unsigned \fBget_height\fP () const "
+.br
+.ti -1c
+.RI "unsigned \fBgetNbParcels\fP () const "
+.br
+.ti -1c
+.RI "void \fBset_width\fP (unsigned width)"
+.br
+.ti -1c
+.RI "void \fBset_height\fP (unsigned height)"
+.br
+.ti -1c
+.RI "void \fBadd_in_out\fP (const \fBCoordinates\fP &coord)"
+.br
+.ti -1c
+.RI "void \fBadd_in_out\fP (unsigned col, unsigned row)"
+.br
+.ti -1c
+.RI "void \fBadd_road\fP (unsigned col, unsigned row)"
+.br
+.ti -1c
+.RI "State \fBat\fP (const \fBCoordinates\fP &pos) const "
+.br
+.ti -1c
+.RI "State \fBoperator[]\fP (const \fBCoordinates\fP &pos) const "
+.br
+.ti -1c
+.RI "std::vector< std::vector< State > >::const_iterator \fBbegin\fP () const "
+.br
+.ti -1c
+.RI "std::vector< std::vector< State > >::const_iterator \fBend\fP () const "
+.br
+.ti -1c
+.RI "std::vector< std::vector< State > >::iterator \fBbegin\fP ()"
+.br
+.ti -1c
+.RI "std::vector< std::vector< State > >::iterator \fBend\fP ()"
+.br
+.ti -1c
+.RI "void \fBdeleteUselessRoad\fP ()"
+.br
+.in -1c
+.PP
+.RI "\fB\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "void \fBresizeWithDimensions\fP ()"
+.br
+.in -1c
+.in -1c
+.PP
+.RI "\fB\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "void \fBshow_ins_and_outs\fP () const "
+.br
+.ti -1c
+.RI "void \fBshow_states\fP () const "
+.br
+.in -1c
+.in -1c
+.PP
+.RI "\fB\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "bool \fBcontains\fP (int x, int y) const "
+.br
+.ti -1c
+.RI "bool \fBcontains\fP (const \fBCoordinates\fP &coord) const "
+.br
+.ti -1c
+.RI "bool \fBnextCoordinates\fP (\fBCoordinates\fP *coord) const "
+.br
+.in -1c
+.in -1c
+.PP
+.RI "\fB\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "void \fBgenerateRandomSolution\fP ()"
+.br
+.in -1c
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBCoordinates\fP & \fBfirst\fP ()"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "std::vector< State >::const_iterator & \fBstd::vector\fP ()"
+.br
+.in -1c
+.in +1c
+.ti -1c
+.RI "void \fBgenerateInsAndOuts\fP (unsigned nb)"
+.br
+.ti -1c
+.RI "std::list< \fBCoordinates\fP > * \fBgetNeighbourRoads\fP (const \fBCoordinates\fP &coord) const "
+.br
+.ti -1c
+.RI "std::list< \fBCoordinates\fP > * \fBgetServingRoads\fP (const \fBCoordinates\fP &coord, unsigned servingDistance) const "
+.br
+.ti -1c
+.RI "void \fBdefineUsables\fP (unsigned servingDistance)"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "void Field::add_in_out (const \fBCoordinates\fP & coord)\fC [inline]\fP"
+Ajoute une entrée/sortie à partir de coordonnées 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcoord\fP Coordonnées de l'E/S 
+.RE
+.PP
+
+.SS "void Field::add_in_out (unsigned col, unsigned row)\fC [inline]\fP"
+Ajoute une entrée/sortie à partir de coordonnées 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcol\fP Colonne de l'E/S 
+.br
+\fIrow\fP Ligne de l'E/S 
+.RE
+.PP
+
+.SS "void Field::add_road (unsigned col, unsigned row)\fC [inline]\fP"
+Ajoute une route à partir de coordonnées 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcol\fP Colonne de la route 
+.br
+\fIrow\fP Ligne de la route 
+.RE
+.PP
+
+.SS "State Field::at (const \fBCoordinates\fP & pos) const\fC [inline]\fP"
+=== Operators === 
+.SS "bool Field::contains (int x, int y) const"
+=== Fonctions sur les coordonnées === Effectue un test d'appartenance des coordonnées à la matrice 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP abscisse de la coordonnée 
+.br
+\fIy\fP ordonnée de la coordonnée 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+true si la coordonnée appartient à la matrice
+.RE
+.PP
+.SS ""
+.PP
+=== Fonctions sur les coordonnées ===/// 
+.SS ""
+
+.SS "bool Field::contains (const \fBCoordinates\fP & coord) const"
+Effectue un test d'appartenance des coordonnées à la matrice 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcoord\fP Coordonnées de la position 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+true si la coordonnée appartient à la matrice 
+.RE
+.PP
+
+.SS "void Field::defineUsables (unsigned servingDistance)"
+Définit les parcelles dans le voisinage d'une route comme étant exploitables 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIservingDistance\fP Distance maximale du voisinage 
+.RE
+.PP
+
+.SS "void Field::deleteUselessRoad ()"
+TODO 
+.SS "static \fBCoordinates\fP& Field::first ()\fC [inline]\fP, \fC [static]\fP"
+Retourne la première coordonée de la matrice, elle peut ensuite être modifée pour servir d'itérateur à l'aide de \fBnextCoordinates()\fP 
+.PP
+\fBReturns:\fP
+.RS 4
+une référence, non constante, sur la première coordonnée de la matrice 
+.RE
+.PP
+
+.SS "void Field::generateInsAndOuts (unsigned nb)"
+=== Méthodes générales === Crée aléatoirement des entrées et sorties 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInb\fP nombre d'entrées et sorties à générer
+.RE
+.PP
+.SS ""
+.PP
+=== Méthodes générales ===/ 
+.SS ""
+
+.SS "void Field::generateRandomSolution ()"
+=== Recherche de solutions ===
+.PP
+.SS ""
+.PP
+=== Recherche de solutions ===/ 
+.SS ""
+
+.SS "std::list< \fBCoordinates\fP > * Field::getNeighbourRoads (const \fBCoordinates\fP & coord) const"
+Recherche des portions de routes qui sont collées à la parcelle courante 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcoord\fP Coordonnées de la parcelle 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+une liste de routes adjacentes à la parcelle 
+.RE
+.PP
+
+.SS "std::list< \fBCoordinates\fP > * Field::getServingRoads (const \fBCoordinates\fP & coord, unsigned servingDistance) const"
+Recherche des portions de routes qui peuvent désservir la parcelle 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcoord\fP Coordonnées de la parcelle desservir 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+une liste de routes distance inférieure ou égale à la distance de desserte 
+.RE
+.PP
+
+.SS "bool Field::nextCoordinates (\fBCoordinates\fP * coord) const"
+Modifie la coordonnée en entrée pour obtenir celle qu'elle précède Agit comme une itération sur l'ensemble des coordonnées de la surface 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcoord\fP Coordonnée courante, va être modifiée pour devenir sa 'suivante'\&. Elle est non modifiée si il n'y a pas de suivante\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+vrai si il y a une coordonnées, faux si on est à la fin ou en dehors de la surface 
+.RE
+.PP
+
+.SS "void Field::resizeWithDimensions ()"
+
+.SS ""
+.PP
+Setters 
+.SS ""
+
+.SS "void Field::show_ins_and_outs () const"
+
+.SS ""
+.PP
+Affichage 
+.SS ""
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Urbanisme from the source code\&.

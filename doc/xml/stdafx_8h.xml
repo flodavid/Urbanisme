@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="stdafx_8h" kind="file" language="C++">
+    <compoundname>stdafx.h</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes refid="targetver_8h" local="yes">targetver.h</includes>
+    <includes refid="debug_8h" local="yes">debug.h</includes>
+    <includedby refid="coordinates_8cpp" local="yes">Engine/coordinates.cpp</includedby>
+    <includedby refid="_field_8cpp" local="yes">Engine/Field.cpp</includedby>
+    <includedby refid="_parameters_8cpp" local="yes">Engine/Parameters.cpp</includedby>
+    <includedby refid="_resolution_8cpp" local="yes">Resolution.cpp</includedby>
+    <includedby refid="_sim-_city_8cpp" local="yes">Sim-City.cpp</includedby>
+    <includedby refid="stdafx_8cpp" local="yes">stdafx.cpp</includedby>
+    <includedby refid="minpathroadtestfixture_8cpp" local="yes">Tests/minpathroadtestfixture.cpp</includedby>
+    <incdepgraph>
+      <node id="280">
+        <label>targetver.h</label>
+        <link refid="targetver_8h_source"/>
+      </node>
+      <node id="278">
+        <label>stdafx.h</label>
+        <link refid="stdafx.h"/>
+        <childnode refid="279" relation="include">
+        </childnode>
+        <childnode refid="280" relation="include">
+        </childnode>
+        <childnode refid="281" relation="include">
+        </childnode>
+      </node>
+      <node id="281">
+        <label>debug.h</label>
+        <link refid="debug_8h_source"/>
+      </node>
+      <node id="279">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="stdafx_8h_1ab6836e01c113e25ea60938a395e29e03" prot="public" static="no">
+        <name>UNSIGNED_INFINITY</name>
+        <initializer>std::numeric_limits&lt;unsigned&gt;::max()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="stdafx.h" line="13" column="9" bodyfile="stdafx.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="stdafx_8h_1a6df1d22fb5f09eccc23b9f399670cfd7" prot="public" static="no">
+        <name>STRINGIFY</name>
+        <param><defname>x</defname></param>
+        <initializer>#x</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="stdafx.h" line="17" column="9" bodyfile="stdafx.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="stdafx_8h_1a9063e80f8777300c93afde6e6f4c9cea" prot="public" static="no">
+        <name>TOSTRING</name>
+        <param><defname>x</defname></param>
+        <initializer>STRINGIFY(x)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="stdafx.h" line="18" column="9" bodyfile="stdafx.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="stdafx_8h_1ad37a804df2a1060b453ce07fe0ee3cbc" prot="public" static="no">
+        <name>AT</name>
+        <initializer>TOSTRING(__FILE__) &quot;:l&quot; TOSTRING(__LINE__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="stdafx.h" line="19" column="9" bodyfile="stdafx.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="stdafx_8h_1a175861b526bcac9760f8659857adddfc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void error</definition>
+        <argsstring>(const char *location, const char *msg)</argsstring>
+        <name>error</name>
+        <param>
+          <type>const char *</type>
+          <declname>location</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="stdafx.h" line="21" column="1" bodyfile="stdafx.cpp" bodystart="8" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="stdafx_8h_1ae5c089e18c67b2db0fe0b51e0802c10a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void debug</definition>
+        <argsstring>(const char *msg, const char *location)</argsstring>
+        <name>debug</name>
+        <param>
+          <type>const char *</type>
+          <declname>msg</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>location</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="stdafx.h" line="22" column="1" bodyfile="stdafx.cpp" bodystart="14" bodyend="19"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//<sp/>stdafx.h<sp/>:<sp/>include<sp/>file<sp/>for<sp/>standard<sp/>system<sp/>include<sp/>files,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>or<sp/>project<sp/>specific<sp/>include<sp/>files<sp/>that<sp/>are<sp/>used<sp/>frequently,<sp/>but</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>are<sp/>changed<sp/>infrequently</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>#include<sp/>&lt;tchar.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Others</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;targetver.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>To<sp/>represent<sp/>infinity</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>UNSIGNED_INFINITY<sp/>std::numeric_limits&lt;unsigned&gt;::max()</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>For<sp/>error<sp/>and<sp/>debug<sp/>output</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>STRINGIFY(x)<sp/>#x</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TOSTRING(x)<sp/>STRINGIFY(x)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT<sp/>TOSTRING(__FILE__)<sp/>&quot;:l&quot;<sp/>TOSTRING(__LINE__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>error(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*location,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*msg);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>debug(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*msg,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*location);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>For<sp/>debugging<sp/>logs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;debug.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="stdafx.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="dir_7900c4a2b1cb4828e120fb453edda12b" kind="dir">
+    <compoundname>Engine/Tests</compoundname>
+    <innerfile refid="_engine_2_tests_2all__tests_8cpp">all_tests.cpp</innerfile>
+    <innerfile refid="fieldtestfixture_8cpp">fieldtestfixture.cpp</innerfile>
+    <innerfile refid="fieldtestfixture_8h">fieldtestfixture.h</innerfile>
+    <innerfile refid="test__coordinates_8cpp">test_coordinates.cpp</innerfile>
+    <innerfile refid="test__coordinates_8h">test_coordinates.h</innerfile>
+    <innerfile refid="test__my__class__dummy_8cpp">test_my_class_dummy.cpp</innerfile>
+    <innerfile refid="test__my__class__dummy_8h">test_my_class_dummy.h</innerfile>
+    <innerfile refid="test__next__coordinates_8cpp">test_next_coordinates.cpp</innerfile>
+    <innerfile refid="test__next__coordinates_8h">test_next_coordinates.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Engine/Tests/"/>
+  </compounddef>
+</doxygen>

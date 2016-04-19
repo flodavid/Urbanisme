@@ -1,0 +1,80 @@
+.TH "Coordinates" 3 "Tue Apr 19 2016" "Urbanisme" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Coordinates \- Normalement inutile, permet de ne pas utilise -lm lors compilation  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <coordinates\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCoordinates\fP (int _x, int _y)"
+.br
+.ti -1c
+.RI "\fBCoordinates\fP (const \fBCoordinates\fP &other)"
+.br
+.ti -1c
+.RI "\fBCoordinates\fP & \fBoperator=\fP (const \fBCoordinates\fP &other)"
+.br
+.ti -1c
+.RI "virtual bool \fBoperator==\fP (const \fBCoordinates\fP &other) const "
+.br
+.ti -1c
+.RI "std::ostream & \fBprint\fP (std::ostream &out) const "
+.br
+.ti -1c
+.RI "unsigned \fBmanhattanDistance\fP (const \fBCoordinates\fP &other) const "
+.br
+.ti -1c
+.RI "float \fBeuclideanDistance\fP (const \fBCoordinates\fP &other) const "
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBcol\fP"
+.br
+.ti -1c
+.RI "int \fBrow\fP"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "std::ostream & \fBoperator<<\fP (std::ostream &out, const \fBCoordinates\fP &coord)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Normalement inutile, permet de ne pas utilise -lm lors compilation 
+.SH "Member Function Documentation"
+.PP 
+.SS "float Coordinates::euclideanDistance (const \fBCoordinates\fP & other) const"
+Calcul de la distance euclidienne entre deux points 
+.PP
+\fBReturns:\fP
+.RS 4
+distance euclidienne : flottant non signé 
+.RE
+.PP
+
+.SS "unsigned Coordinates::manhattanDistance (const \fBCoordinates\fP & other) const"
+Calcul de la distance Manhattan entre deux points 
+.PP
+\fBReturns:\fP
+.RS 4
+distance manhattan : entier non signé 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Urbanisme from the source code\&.

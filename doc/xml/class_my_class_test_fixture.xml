@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="class_my_class_test_fixture" kind="class" language="C++" prot="public">
+    <compoundname>MyClassTestFixture</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">TestFixture</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_my_class_test_fixture_1a4ab97c685fb4a7f192e3adbb47b17f54" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MyClassTestFixture::setUp</definition>
+        <argsstring>()</argsstring>
+        <name>setUp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Engine/Tests/test_my_class_dummy.h" line="21" column="1" bodyfile="Engine/Tests/test_my_class_dummy.cpp" bodystart="3" bodyend="5"/>
+      </memberdef>
+      <memberdef kind="function" id="class_my_class_test_fixture_1a956310478695bd922a29335d10abec9e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MyClassTestFixture::tearDown</definition>
+        <argsstring>()</argsstring>
+        <name>tearDown</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Engine/Tests/test_my_class_dummy.h" line="22" column="1" bodyfile="Engine/Tests/test_my_class_dummy.cpp" bodystart="7" bodyend="9"/>
+      </memberdef>
+      <memberdef kind="function" id="class_my_class_test_fixture_1a65aaff5c7b7bad22137823a8a99f8c5c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MyClassTestFixture::test_set</definition>
+        <argsstring>()</argsstring>
+        <name>test_set</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Engine/Tests/test_my_class_dummy.h" line="24" column="1" bodyfile="Engine/Tests/test_my_class_dummy.cpp" bodystart="11" bodyend="18"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="17">
+        <label>TestFixture</label>
+      </node>
+      <node id="16">
+        <label>MyClassTestFixture</label>
+        <link refid="class_my_class_test_fixture"/>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="19">
+        <label>TestFixture</label>
+      </node>
+      <node id="18">
+        <label>MyClassTestFixture</label>
+        <link refid="class_my_class_test_fixture"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Engine/Tests/test_my_class_dummy.h" line="17" column="1" bodyfile="Engine/Tests/test_my_class_dummy.h" bodystart="17" bodyend="26"/>
+    <listofallmembers>
+      <member refid="class_my_class_test_fixture_1a4ab97c685fb4a7f192e3adbb47b17f54" prot="public" virt="non-virtual"><scope>MyClassTestFixture</scope><name>setUp</name></member>
+      <member refid="class_my_class_test_fixture_1a956310478695bd922a29335d10abec9e" prot="public" virt="non-virtual"><scope>MyClassTestFixture</scope><name>tearDown</name></member>
+      <member refid="class_my_class_test_fixture_1a65aaff5c7b7bad22137823a8a99f8c5c" prot="public" virt="non-virtual"><scope>MyClassTestFixture</scope><name>test_set</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

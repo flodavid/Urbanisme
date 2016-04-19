@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="_resolution_8h" kind="file" language="C++">
+    <compoundname>Resolution.h</compoundname>
+    <includes local="no">list</includes>
+    <includes refid="_field_8h" local="yes">Engine/Field.h</includes>
+    <includes refid="_parameters_8h" local="yes">Engine/Parameters.h</includes>
+    <includes refid="coordinates_8h" local="yes">Engine/coordinates.h</includes>
+    <includedby refid="_resolution_8cpp" local="yes">Resolution.cpp</includedby>
+    <includedby refid="_sim-_city_8cpp" local="yes">Sim-City.cpp</includedby>
+    <includedby refid="minpathroadtestfixture_8h" local="yes">Tests/minpathroadtestfixture.h</includedby>
+    <incdepgraph>
+      <node id="243">
+        <label>list</label>
+      </node>
+      <node id="249">
+        <label>cmath</label>
+      </node>
+      <node id="248">
+        <label>cassert</label>
+      </node>
+      <node id="245">
+        <label>vector</label>
+      </node>
+      <node id="244">
+        <label>Engine/Field.h</label>
+        <link refid="_field_8h_source"/>
+        <childnode refid="243" relation="include">
+        </childnode>
+        <childnode refid="245" relation="include">
+        </childnode>
+        <childnode refid="246" relation="include">
+        </childnode>
+      </node>
+      <node id="242">
+        <label>Resolution.h</label>
+        <link refid="Resolution.h"/>
+        <childnode refid="243" relation="include">
+        </childnode>
+        <childnode refid="244" relation="include">
+        </childnode>
+        <childnode refid="251" relation="include">
+        </childnode>
+        <childnode refid="246" relation="include">
+        </childnode>
+      </node>
+      <node id="247">
+        <label>iostream</label>
+      </node>
+      <node id="250">
+        <label>algorithm</label>
+      </node>
+      <node id="246">
+        <label>coordinates.h</label>
+        <link refid="coordinates_8h_source"/>
+        <childnode refid="247" relation="include">
+        </childnode>
+        <childnode refid="248" relation="include">
+        </childnode>
+        <childnode refid="249" relation="include">
+        </childnode>
+        <childnode refid="250" relation="include">
+        </childnode>
+      </node>
+      <node id="251">
+        <label>Engine/Parameters.h</label>
+        <link refid="_parameters_8h_source"/>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="252">
+        <label>Resolution.h</label>
+        <link refid="Resolution.h"/>
+        <childnode refid="253" relation="include">
+        </childnode>
+      </node>
+      <node id="253">
+        <label>Tests/minpathroadtestfixture.h</label>
+        <link refid="minpathroadtestfixture_8h_source"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_resolution" prot="public">Resolution</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;list&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;Engine/Field.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;Engine/Parameters.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;Engine/coordinates.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="class_resolution" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_resolution" kindref="compound">Resolution</ref></highlight></codeline>
+<codeline lineno="10"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Données<sp/>sur<sp/>lesquelles<sp/>on<sp/>travaille</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_field" kindref="compound">Field</ref><sp/>field;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_parameters" kindref="compound">Parameters</ref><sp/>params;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Données<sp/>calculées</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::vector&lt;unsigned&gt;&gt;<sp/>road_distances;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>FLAGS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>road_distances_are_initiated=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_resolution" kindref="compound">Resolution</ref><sp/>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_field" kindref="compound">Field</ref><sp/>&amp;<sp/>_field,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_parameters" kindref="compound">Parameters</ref><sp/>&amp;<sp/>_params<sp/>);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>~<ref refid="class_resolution" kindref="compound">Resolution</ref>();</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Getters<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/***<sp/>Setters<sp/>*/</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_resolution_1abd8e338344e55a33ff6731feca59182f" kindref="member">set_params</ref><sp/>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_parameters" kindref="compound">Parameters</ref>&amp;<sp/>_params<sp/>);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_resolution_1ab5173a2312a8bb303bfc90f3844fb4e3" kindref="member">increment_road_distance</ref><sp/>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_coordinates" kindref="compound">Coordinates</ref>&amp;<sp/>coord,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>value<sp/>)<sp/>__attribute__<sp/>(<sp/>(<sp/>deprecated<sp/>)<sp/>);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Calculs<sp/>de<sp/>données<sp/>*/</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_resolution_1a422f19851732418ba28a30473a79903a" kindref="member">initNeighbourhoodManhattan</ref>();</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Fonctions<sp/>auxiliaires<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="class_resolution_1acb691fc917fc10e4b1d331ad676aedd2" kindref="member">calcRoadDistance</ref><sp/>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_coordinates" kindref="compound">Coordinates</ref>&amp;<sp/>coord1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_coordinates" kindref="compound">Coordinates</ref>&amp;<sp/>coord2<sp/>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>recCalcRoadDistance<sp/>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_coordinates" kindref="compound">Coordinates</ref>&amp;<sp/>coord1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_coordinates" kindref="compound">Coordinates</ref>&amp;<sp/>coord2,<sp/>std::list&lt;Coordinates&gt;<sp/>*visited<sp/>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Evaluations<sp/>*/</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="class_resolution_1a1509c394e3e18cfef17144d3a2cf9e0d" kindref="member">evaluateTotalUsable</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_resolution_1a1f5c3f17b49886ca79e09103beebebe8" kindref="member">manhattanRatioBetween2Parcels</ref><sp/>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_coordinates" kindref="compound">Coordinates</ref>&amp;<sp/>p1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_coordinates" kindref="compound">Coordinates</ref>&amp;<sp/>p2<sp/>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_resolution_1aeba706393d4c5d6849e7ed20a36da491" kindref="member">evaluateRatio</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Autres<sp/>méthodes<sp/>utiles<sp/>*/</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_resolution_1a28545da49beb685cda5935cb9fb9cf8d" kindref="member">createExample</ref>()<sp/>__attribute__<sp/>(<sp/>(<sp/>test<sp/>)<sp/>);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal">};</highlight></codeline>
+    </programlisting>
+    <location file="Resolution.h"/>
+  </compounddef>
+</doxygen>

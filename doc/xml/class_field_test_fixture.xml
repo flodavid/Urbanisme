@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="class_field_test_fixture" kind="class" language="C++" prot="public">
+    <compoundname>FieldTestFixture</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">TestFixture</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_field_test_fixture_1a67317b9b7dd8f4de099a033a1f631eb0" prot="private" static="no" mutable="no">
+        <type><ref refid="class_field" kindref="compound">Field</ref> *</type>
+        <definition>Field* FieldTestFixture::field</definition>
+        <argsstring></argsstring>
+        <name>field</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Engine/Tests/fieldtestfixture.h" line="18" column="1" bodyfile="Engine/Tests/fieldtestfixture.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_field_test_fixture_1a54f487f92e62a3359748c7a26fa57b42" prot="private" static="no" mutable="no">
+        <type><ref refid="class_coordinates" kindref="compound">Coordinates</ref> *</type>
+        <definition>Coordinates* FieldTestFixture::coord_in</definition>
+        <argsstring></argsstring>
+        <name>coord_in</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Engine/Tests/fieldtestfixture.h" line="20" column="1" bodyfile="Engine/Tests/fieldtestfixture.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_field_test_fixture_1afac348e2a65884dd8753f7d149d3c3a0" prot="private" static="no" mutable="no">
+        <type><ref refid="class_coordinates" kindref="compound">Coordinates</ref> *</type>
+        <definition>Coordinates* FieldTestFixture::coord_border_bot</definition>
+        <argsstring></argsstring>
+        <name>coord_border_bot</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Engine/Tests/fieldtestfixture.h" line="21" column="1" bodyfile="Engine/Tests/fieldtestfixture.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_field_test_fixture_1a4650c000f11b30deda741613a7b697a7" prot="private" static="no" mutable="no">
+        <type><ref refid="class_coordinates" kindref="compound">Coordinates</ref> *</type>
+        <definition>Coordinates* FieldTestFixture::coord_border_top</definition>
+        <argsstring></argsstring>
+        <name>coord_border_top</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Engine/Tests/fieldtestfixture.h" line="22" column="1" bodyfile="Engine/Tests/fieldtestfixture.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_field_test_fixture_1a76094c97dc9177d1576e25504a316eea" prot="private" static="no" mutable="no">
+        <type><ref refid="class_coordinates" kindref="compound">Coordinates</ref> *</type>
+        <definition>Coordinates* FieldTestFixture::coord_border_left</definition>
+        <argsstring></argsstring>
+        <name>coord_border_left</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Engine/Tests/fieldtestfixture.h" line="23" column="1" bodyfile="Engine/Tests/fieldtestfixture.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_field_test_fixture_1a2eaebf4c8723736e5a01eb55609ee320" prot="private" static="no" mutable="no">
+        <type><ref refid="class_coordinates" kindref="compound">Coordinates</ref> *</type>
+        <definition>Coordinates* FieldTestFixture::coord_border_right</definition>
+        <argsstring></argsstring>
+        <name>coord_border_right</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Engine/Tests/fieldtestfixture.h" line="24" column="1" bodyfile="Engine/Tests/fieldtestfixture.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_field_test_fixture_1a765b128c42c5d813e6915823afc103fd" prot="private" static="no" mutable="no">
+        <type><ref refid="class_coordinates" kindref="compound">Coordinates</ref> *</type>
+        <definition>Coordinates* FieldTestFixture::coord_out</definition>
+        <argsstring></argsstring>
+        <name>coord_out</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Engine/Tests/fieldtestfixture.h" line="26" column="1" bodyfile="Engine/Tests/fieldtestfixture.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_field_test_fixture_1a5112c55476929d486e9aac920a065def" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FieldTestFixture::setUp</definition>
+        <argsstring>()</argsstring>
+        <name>setUp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Engine/Tests/fieldtestfixture.h" line="29" column="1" bodyfile="Engine/Tests/fieldtestfixture.cpp" bodystart="5" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="class_field_test_fixture_1a26c4e39b4d02dba41c50dbee1dd2864d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FieldTestFixture::tearDown</definition>
+        <argsstring>()</argsstring>
+        <name>tearDown</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Engine/Tests/fieldtestfixture.h" line="30" column="1" bodyfile="Engine/Tests/fieldtestfixture.cpp" bodystart="26" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="class_field_test_fixture_1a5ebd51a8e9af644b266177733907c25f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FieldTestFixture::test_containsValids</definition>
+        <argsstring>()</argsstring>
+        <name>test_containsValids</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Engine/Tests/fieldtestfixture.h" line="32" column="1" bodyfile="Engine/Tests/fieldtestfixture.cpp" bodystart="42" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="class_field_test_fixture_1af9005a4804532efcb0c123c35a4fa7a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FieldTestFixture::test_containsInvalids</definition>
+        <argsstring>()</argsstring>
+        <name>test_containsInvalids</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Engine/Tests/fieldtestfixture.h" line="33" column="1" bodyfile="Engine/Tests/fieldtestfixture.cpp" bodystart="52" bodyend="55"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="9">
+        <label>TestFixture</label>
+      </node>
+      <node id="8">
+        <label>FieldTestFixture</label>
+        <link refid="class_field_test_fixture"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="11">
+        <label>TestFixture</label>
+      </node>
+      <node id="10">
+        <label>FieldTestFixture</label>
+        <link refid="class_field_test_fixture"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="Engine/Tests/fieldtestfixture.h" line="16" column="1" bodyfile="Engine/Tests/fieldtestfixture.h" bodystart="16" bodyend="34"/>
+    <listofallmembers>
+      <member refid="class_field_test_fixture_1afac348e2a65884dd8753f7d149d3c3a0" prot="private" virt="non-virtual"><scope>FieldTestFixture</scope><name>coord_border_bot</name></member>
+      <member refid="class_field_test_fixture_1a76094c97dc9177d1576e25504a316eea" prot="private" virt="non-virtual"><scope>FieldTestFixture</scope><name>coord_border_left</name></member>
+      <member refid="class_field_test_fixture_1a2eaebf4c8723736e5a01eb55609ee320" prot="private" virt="non-virtual"><scope>FieldTestFixture</scope><name>coord_border_right</name></member>
+      <member refid="class_field_test_fixture_1a4650c000f11b30deda741613a7b697a7" prot="private" virt="non-virtual"><scope>FieldTestFixture</scope><name>coord_border_top</name></member>
+      <member refid="class_field_test_fixture_1a54f487f92e62a3359748c7a26fa57b42" prot="private" virt="non-virtual"><scope>FieldTestFixture</scope><name>coord_in</name></member>
+      <member refid="class_field_test_fixture_1a765b128c42c5d813e6915823afc103fd" prot="private" virt="non-virtual"><scope>FieldTestFixture</scope><name>coord_out</name></member>
+      <member refid="class_field_test_fixture_1a67317b9b7dd8f4de099a033a1f631eb0" prot="private" virt="non-virtual"><scope>FieldTestFixture</scope><name>field</name></member>
+      <member refid="class_field_test_fixture_1a5112c55476929d486e9aac920a065def" prot="public" virt="non-virtual"><scope>FieldTestFixture</scope><name>setUp</name></member>
+      <member refid="class_field_test_fixture_1a26c4e39b4d02dba41c50dbee1dd2864d" prot="public" virt="non-virtual"><scope>FieldTestFixture</scope><name>tearDown</name></member>
+      <member refid="class_field_test_fixture_1af9005a4804532efcb0c123c35a4fa7a4" prot="public" virt="non-virtual"><scope>FieldTestFixture</scope><name>test_containsInvalids</name></member>
+      <member refid="class_field_test_fixture_1a5ebd51a8e9af644b266177733907c25f" prot="public" virt="non-virtual"><scope>FieldTestFixture</scope><name>test_containsValids</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

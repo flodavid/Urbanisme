@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="test__next__coordinates_8h" kind="file" language="C++">
+    <compoundname>test_next_coordinates.h</compoundname>
+    <includes local="yes">cppunit/TestCase.h</includes>
+    <includes local="yes">cppunit/TestFixture.h</includes>
+    <includes local="yes">cppunit/TestCaller.h</includes>
+    <includes local="yes">cppunit/TestResult.h</includes>
+    <includes local="yes">cppunit/TestSuite.h</includes>
+    <includes local="yes">cppunit/CompilerOutputter.h</includes>
+    <includes local="yes">cppunit/XmlOutputter.h</includes>
+    <includes local="yes">cppunit/ui/text/TestRunner.h</includes>
+    <includes refid="coordinates_8h" local="yes">../coordinates.h</includes>
+    <includes refid="_field_8h" local="yes">../Field.h</includes>
+    <includedby refid="_engine_2_tests_2all__tests_8cpp" local="yes">Engine/Tests/all_tests.cpp</includedby>
+    <includedby refid="test__next__coordinates_8cpp" local="yes">Engine/Tests/test_next_coordinates.cpp</includedby>
+    <incdepgraph>
+      <node id="222">
+        <label>list</label>
+      </node>
+      <node id="215">
+        <label>cppunit/ui/text/TestRunner.h</label>
+      </node>
+      <node id="219">
+        <label>cmath</label>
+      </node>
+      <node id="218">
+        <label>cassert</label>
+      </node>
+      <node id="210">
+        <label>cppunit/TestCaller.h</label>
+      </node>
+      <node id="212">
+        <label>cppunit/TestSuite.h</label>
+      </node>
+      <node id="214">
+        <label>cppunit/XmlOutputter.h</label>
+      </node>
+      <node id="209">
+        <label>cppunit/TestFixture.h</label>
+      </node>
+      <node id="207">
+        <label>Engine/Tests/test_next_coordinates.h</label>
+        <link refid="test_next_coordinates.h"/>
+        <childnode refid="208" relation="include">
+        </childnode>
+        <childnode refid="209" relation="include">
+        </childnode>
+        <childnode refid="210" relation="include">
+        </childnode>
+        <childnode refid="211" relation="include">
+        </childnode>
+        <childnode refid="212" relation="include">
+        </childnode>
+        <childnode refid="213" relation="include">
+        </childnode>
+        <childnode refid="214" relation="include">
+        </childnode>
+        <childnode refid="215" relation="include">
+        </childnode>
+        <childnode refid="216" relation="include">
+        </childnode>
+        <childnode refid="221" relation="include">
+        </childnode>
+      </node>
+      <node id="223">
+        <label>vector</label>
+      </node>
+      <node id="221">
+        <label>../Field.h</label>
+        <link refid="_field_8h_source"/>
+        <childnode refid="222" relation="include">
+        </childnode>
+        <childnode refid="223" relation="include">
+        </childnode>
+        <childnode refid="216" relation="include">
+        </childnode>
+      </node>
+      <node id="213">
+        <label>cppunit/CompilerOutputter.h</label>
+      </node>
+      <node id="217">
+        <label>iostream</label>
+      </node>
+      <node id="208">
+        <label>cppunit/TestCase.h</label>
+      </node>
+      <node id="211">
+        <label>cppunit/TestResult.h</label>
+      </node>
+      <node id="220">
+        <label>algorithm</label>
+      </node>
+      <node id="216">
+        <label>../coordinates.h</label>
+        <link refid="coordinates_8h_source"/>
+        <childnode refid="217" relation="include">
+        </childnode>
+        <childnode refid="218" relation="include">
+        </childnode>
+        <childnode refid="219" relation="include">
+        </childnode>
+        <childnode refid="220" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="class_next_coordinates_test_fixture" prot="public">NextCoordinatesTestFixture</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//<sp/>g++<sp/>-o<sp/>test_my_class_full.exe<sp/>test_my_class_full.cpp<sp/>-I/usr/local/include<sp/>-L/usr/local/lib<sp/>-lcppunit</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>TEST_NEXT_COORDINATES_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TEST_NEXT_COORDINATES_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cppunit/TestCase.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cppunit/TestFixture.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cppunit/TestCaller.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cppunit/TestResult.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cppunit/TestSuite.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cppunit/CompilerOutputter.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cppunit/XmlOutputter.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cppunit/ui/text/TestRunner.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../coordinates.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Field.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="class_next_coordinates_test_fixture" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_next_coordinates_test_fixture" kindref="compound">NextCoordinatesTestFixture</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>CppUnit::TestFixture<sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_field" kindref="compound">Field</ref>*<sp/>resol;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_coordinates" kindref="compound">Coordinates</ref>*<sp/>coord_in;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_coordinates" kindref="compound">Coordinates</ref>*<sp/>coord_last_col;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_coordinates" kindref="compound">Coordinates</ref>*<sp/>out_1;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_coordinates" kindref="compound">Coordinates</ref>*<sp/>out_2;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Expected<sp/>results<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Next<sp/>of<sp/>coord_in</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_coordinates" kindref="compound">Coordinates</ref>*<sp/>expected_next_in;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Next<sp/>of<sp/>coord_last_col</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_coordinates" kindref="compound">Coordinates</ref>*<sp/>expected_next_last_col;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setUp();</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>tearDown();</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>test_validsCoords();</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>test_invalidsCoords();</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="39"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>TEST_NEXT_COORDINATES_H_<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="Engine/Tests/test_next_coordinates.h"/>
+  </compounddef>
+</doxygen>

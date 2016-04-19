@@ -60,12 +60,13 @@ les "points chauds", qui on un rapport élevé distance "directe"/distance_Manha
     on garde les routes qui sont à moins de 2 de distance.
     - Faudrait-il stocker les routes voisines d'une parcelle dans un vecteur de listes
      de paires d'une coordonnée et d'une distance ? ou juste une coordonnée ?
+- Les E/S sont-elles bien des routes ?
 - Pour II.6, faire une moyenne ? un maximum ? garder total à coté ?
     - Noté : moyenne 80 %
     - Utiliser également distance euclidienne ?
     - Distance par les routes : compte la distance entre la parcelle et la première route ?
 - Transformer en graphe (voir Code 2. et 4. )
-- Collection solutions, comment démarrer ? aléatoire ? voisinage ? 
+- Collection solutions, comment démarrer ? aléatoire ? voisinage ? Comment relier les E/S ?
 
 #### Code/Technique :
 - Dans listes (`list<Coordinates>*`) utiliser pointeurs ? si oui, comment utiliser,

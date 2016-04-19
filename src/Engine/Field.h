@@ -113,6 +113,8 @@ public:
     bool nextCoordinates ( Coordinates* coord ) const;
 
 /**=== Méthodes générales	===**/
+//@{
+
     /** Crée aléatoirement des entrées et sorties
     * @param nb nombre d'entrées et sorties à générer
     */
@@ -156,6 +158,14 @@ public:
      */
     void defineUsables(unsigned servingDistance);
 
+//@}
+/**=== Recherche de solutions	===**/
+    void generateRandomSolution();
+    
+    /**
+     * TODO
+     */
+    void deleteUselessRoad();
 };
 
 #endif //FIELD_H
