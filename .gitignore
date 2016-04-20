@@ -2,6 +2,9 @@
 # Kdev files
 .kdev4/
 
+#doc
+doc/man/
+
 # ??
 src/*.kate-swp
 
