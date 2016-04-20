@@ -119,10 +119,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><xrefsect id="test_1_test000011"><xreftitle>Test</xreftitle><xrefdescription><para>de la méthode calcRoadDistance() entre des parcelles &quot;reliées&quot; par des routes La méthode doit alors retourner une valeur supérieure à 0 </para></xrefdescription></xrefsect></para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Tests/minpathroadtestfixture.h" line="45" column="1" bodyfile="Tests/minpathroadtestfixture.cpp" bodystart="148" bodyend="161"/>
+        <location file="Tests/minpathroadtestfixture.h" line="49" column="1" bodyfile="Tests/minpathroadtestfixture.cpp" bodystart="148" bodyend="161"/>
       </memberdef>
       <memberdef kind="function" id="class_min_path_road_test_fixture_1a3e351654a409fea66809330d8a709a28" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -132,10 +132,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><xrefsect id="test_1_test000012"><xreftitle>Test</xreftitle><xrefdescription><para>de la méthode calcRoadDistance() entre une parcelle et elle-même La méthode doit alors retourner 0 </para></xrefdescription></xrefsect></para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Tests/minpathroadtestfixture.h" line="46" column="1" bodyfile="Tests/minpathroadtestfixture.cpp" bodystart="163" bodyend="168"/>
+        <location file="Tests/minpathroadtestfixture.h" line="54" column="1" bodyfile="Tests/minpathroadtestfixture.cpp" bodystart="163" bodyend="168"/>
       </memberdef>
       <memberdef kind="function" id="class_min_path_road_test_fixture_1ad242362a0b16418a96613e9fac79e41c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -145,10 +145,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><xrefsect id="test_1_test000013"><xreftitle>Test</xreftitle><xrefdescription><para>de la méthode calcRoadDistance() entre des parcelles non &quot;reliées&quot; par des routes La méthode doit alors retourner l&apos;infini </para></xrefdescription></xrefsect></para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Tests/minpathroadtestfixture.h" line="47" column="1" bodyfile="Tests/minpathroadtestfixture.cpp" bodystart="170" bodyend="180"/>
+        <location file="Tests/minpathroadtestfixture.h" line="59" column="1" bodyfile="Tests/minpathroadtestfixture.cpp" bodystart="170" bodyend="180"/>
       </memberdef>
       <memberdef kind="function" id="class_min_path_road_test_fixture_1a2b35c21c61183aa973b0c5fe7f1af69c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -158,16 +158,16 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><xrefsect id="test_1_test000014"><xreftitle>Test</xreftitle><xrefdescription><para>d&apos;un find() sur un vecteur de coordonnée, utilisé dans recCalcRoadDistance, lors de l&apos;ajout d&apos;un voisin d&apos;une route </para></xrefdescription></xrefsect></para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Tests/minpathroadtestfixture.h" line="49" column="1" bodyfile="Tests/minpathroadtestfixture.cpp" bodystart="183" bodyend="189"/>
+        <location file="Tests/minpathroadtestfixture.h" line="65" column="1" bodyfile="Tests/minpathroadtestfixture.cpp" bodystart="183" bodyend="189"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para>Tests sur la méthode calcRoadDistance() de la classe <ref refid="class_resolution" kindref="compound">Resolution</ref> <xrefsect id="test_1_test000005"><xreftitle>Test</xreftitle><xrefdescription></xrefdescription></xrefsect></para>    </detaileddescription>
+<para>Tests sur la méthode calcRoadDistance() de la classe <ref refid="class_resolution" kindref="compound">Resolution</ref> <xrefsect id="test_1_test000010"><xreftitle>Test</xreftitle><xrefdescription></xrefdescription></xrefsect></para>    </detaileddescription>
     <inheritancegraph>
       <node id="12">
         <label>MinPathRoadTestFixture</label>
@@ -190,7 +190,7 @@
         <label>CppUnit::TestFixture</label>
       </node>
     </collaborationgraph>
-    <location file="Tests/minpathroadtestfixture.h" line="22" column="1" bodyfile="Tests/minpathroadtestfixture.h" bodystart="21" bodyend="50"/>
+    <location file="Tests/minpathroadtestfixture.h" line="22" column="1" bodyfile="Tests/minpathroadtestfixture.h" bodystart="21" bodyend="66"/>
     <listofallmembers>
       <member refid="class_min_path_road_test_fixture_1abcc9e48bd0d1cd7cb30be04d8d36f7db" prot="private" virt="non-virtual"><scope>MinPathRoadTestFixture</scope><name>coord1</name></member>
       <member refid="class_min_path_road_test_fixture_1a7a9ca2dac9228134154f1ee6f51cd5fe" prot="private" virt="non-virtual"><scope>MinPathRoadTestFixture</scope><name>coord2</name></member>

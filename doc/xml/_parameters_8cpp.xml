@@ -48,7 +48,7 @@
 <codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;Parameters.h&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal">Parameters::Parameters(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>_road_width,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>_serve_distance):</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><ref refid="class_parameters_1a4e06cac4197074e0e9e922cc6306494c" kindref="member">Parameters::Parameters</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>_road_width,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>_serve_distance):</highlight></codeline>
 <codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/>road_width(_road_width),<sp/>serve_distance(_serve_distance)</highlight></codeline>
 <codeline lineno="7"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="8"><highlight class="normal">}</highlight></codeline>

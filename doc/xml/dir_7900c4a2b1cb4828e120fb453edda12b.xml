@@ -7,8 +7,6 @@
     <innerfile refid="fieldtestfixture_8h">fieldtestfixture.h</innerfile>
     <innerfile refid="test__coordinates_8cpp">test_coordinates.cpp</innerfile>
     <innerfile refid="test__coordinates_8h">test_coordinates.h</innerfile>
-    <innerfile refid="test__my__class__dummy_8cpp">test_my_class_dummy.cpp</innerfile>
-    <innerfile refid="test__my__class__dummy_8h">test_my_class_dummy.h</innerfile>
     <innerfile refid="test__next__coordinates_8cpp">test_next_coordinates.cpp</innerfile>
     <innerfile refid="test__next__coordinates_8h">test_next_coordinates.h</innerfile>
     <briefdescription>

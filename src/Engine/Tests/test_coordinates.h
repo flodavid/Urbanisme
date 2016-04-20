@@ -36,8 +36,14 @@ class CoordinatesTestFixture : public CppUnit::TestFixture {
      */
     void tearDown();
 
-  void test_calcManhattan();
-  void test_calcEuclidean();
+    /**
+     * @test le calcul de la distance Manhattan entre deux coordonnées
+     */
+    void test_calcManhattan();
+    /**
+     * @test le calcul de la distance Euclidienne entre deux coordonnées
+     */
+    void test_calcEuclidean();
  
 };
 

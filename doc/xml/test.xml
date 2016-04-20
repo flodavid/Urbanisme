@@ -5,15 +5,33 @@
     <title>Test List</title>
     <detaileddescription>
 <para><variablelist>
+<varlistentry><term><anchor id="test_1_test000005"/>Member <ref refid="class_coordinates_test_fixture_1a631679568eccbfb84a4f88151943a047" kindref="member">CoordinatesTestFixture::test_calcEuclidean</ref>  ()</term></varlistentry>
+<listitem><para>le calcul de la distance Euclidienne entre deux coordonnées  </para></listitem>
+<varlistentry><term><anchor id="test_1_test000004"/>Member <ref refid="class_coordinates_test_fixture_1a4377358e70e7b69f1539a9f89cda3c61" kindref="member">CoordinatesTestFixture::test_calcManhattan</ref>  ()</term></varlistentry>
+<listitem><para>le calcul de la distance Manhattan entre deux coordonnées  </para></listitem>
 <varlistentry><term><anchor id="test_1_test000001"/>Class <ref refid="class_field_test_fixture" kindref="compound">FieldTestFixture</ref>  </term></varlistentry>
 <listitem><para></para></listitem>
-<varlistentry><term><anchor id="test_1_test000005"/>Class <ref refid="class_min_path_road_test_fixture" kindref="compound">MinPathRoadTestFixture</ref>  </term></varlistentry>
+<varlistentry><term><anchor id="test_1_test000003"/>Member <ref refid="class_field_test_fixture_1af9005a4804532efcb0c123c35a4fa7a4" kindref="member">FieldTestFixture::test_containsInvalids</ref>  ()</term></varlistentry>
+<listitem><para>de la méthode contains() sur des coordonnées hors de la surface Contains doit retourner faux  </para></listitem>
+<varlistentry><term><anchor id="test_1_test000002"/>Member <ref refid="class_field_test_fixture_1a5ebd51a8e9af644b266177733907c25f" kindref="member">FieldTestFixture::test_containsValids</ref>  ()</term></varlistentry>
+<listitem><para>de la méthode contains() sur des coordonnées dans la surface Contains doit retourner vrai  </para></listitem>
+<varlistentry><term><anchor id="test_1_test000010"/>Class <ref refid="class_min_path_road_test_fixture" kindref="compound">MinPathRoadTestFixture</ref>  </term></varlistentry>
 <listitem><para></para></listitem>
-<varlistentry><term><anchor id="test_1_test000002"/>Class <ref refid="class_my_class_test_fixture" kindref="compound">MyClassTestFixture</ref>  </term></varlistentry>
+<varlistentry><term><anchor id="test_1_test000014"/>Member <ref refid="class_min_path_road_test_fixture_1a2b35c21c61183aa973b0c5fe7f1af69c" kindref="member">MinPathRoadTestFixture::test_findVisisted</ref>  ()</term></varlistentry>
+<listitem><para>d&apos;un find() sur un vecteur de coordonnée, utilisé dans recCalcRoadDistance, lors de l&apos;ajout d&apos;un voisin d&apos;une route  </para></listitem>
+<varlistentry><term><anchor id="test_1_test000013"/>Member <ref refid="class_min_path_road_test_fixture_1ad242362a0b16418a96613e9fac79e41c" kindref="member">MinPathRoadTestFixture::test_invalidsPath</ref>  ()</term></varlistentry>
+<listitem><para>de la méthode calcRoadDistance() entre des parcelles non &quot;reliées&quot; par des routes La méthode doit alors retourner l&apos;infini  </para></listitem>
+<varlistentry><term><anchor id="test_1_test000012"/>Member <ref refid="class_min_path_road_test_fixture_1a3e351654a409fea66809330d8a709a28" kindref="member">MinPathRoadTestFixture::test_sameParcel</ref>  ()</term></varlistentry>
+<listitem><para>de la méthode calcRoadDistance() entre une parcelle et elle-même La méthode doit alors retourner 0  </para></listitem>
+<varlistentry><term><anchor id="test_1_test000011"/>Member <ref refid="class_min_path_road_test_fixture_1ae0448460a924c47237cde215f4175886" kindref="member">MinPathRoadTestFixture::test_validsPath</ref>  ()</term></varlistentry>
+<listitem><para>de la méthode calcRoadDistance() entre des parcelles &quot;reliées&quot; par des routes La méthode doit alors retourner une valeur supérieure à 0  </para></listitem>
+<varlistentry><term><anchor id="test_1_test000006"/>Class <ref refid="class_next_coordinates_test_fixture" kindref="compound">NextCoordinatesTestFixture</ref>  </term></varlistentry>
 <listitem><para></para></listitem>
-<varlistentry><term><anchor id="test_1_test000003"/>Class <ref refid="class_next_coordinates_test_fixture" kindref="compound">NextCoordinatesTestFixture</ref>  </term></varlistentry>
-<listitem><para></para></listitem>
-<varlistentry><term><anchor id="test_1_test000004"/>Member <ref refid="class_resolution_1a28545da49beb685cda5935cb9fb9cf8d" kindref="member">Resolution::createExample</ref>  () __attribute__((test))</term></varlistentry>
+<varlistentry><term><anchor id="test_1_test000008"/>Member <ref refid="class_next_coordinates_test_fixture_1a97704e03f63ed1753d5fb98732314ae0" kindref="member">NextCoordinatesTestFixture::test_invalidsCoords</ref>  ()</term></varlistentry>
+<listitem><para>de la méthode nextCoordinates() sur des coordonnées non &quot;valides&quot; Doit retourner faux et ne pas modifier la coordonnée en entrée  </para></listitem>
+<varlistentry><term><anchor id="test_1_test000007"/>Member <ref refid="class_next_coordinates_test_fixture_1a3c7bcb20dfb66817af9e6162554d28ea" kindref="member">NextCoordinatesTestFixture::test_validsCoords</ref>  ()</term></varlistentry>
+<listitem><para>de la méthode nextCoordinates() sur des coordonnées &quot;valides&quot; Doit retourner vrai et modifier la coordonnée en entrée  </para></listitem>
+<varlistentry><term><anchor id="test_1_test000009"/>Member <ref refid="class_resolution_1a28545da49beb685cda5935cb9fb9cf8d" kindref="member">Resolution::createExample</ref>  () __attribute__((test))</term></varlistentry>
 <listitem><para></para></listitem>
 </variablelist>
 </para>    </detaileddescription>

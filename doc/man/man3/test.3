@@ -4,10 +4,29 @@
 .SH NAME
 test \- Test List 
 
+.IP "\fBMember \fBCoordinatesTestFixture::test_calcEuclidean\fP ()\fP" 1c
+le calcul de la distance Euclidienne entre deux coordonnées  
+.IP "\fBMember \fBCoordinatesTestFixture::test_calcManhattan\fP ()\fP" 1c
+le calcul de la distance Manhattan entre deux coordonnées  
 .IP "\fBClass \fBFieldTestFixture\fP \fP" 1c
+.IP "\fBMember \fBFieldTestFixture::test_containsInvalids\fP ()\fP" 1c
+de la méthode contains() sur des coordonnées hors de la surface Contains doit retourner faux  
+.IP "\fBMember \fBFieldTestFixture::test_containsValids\fP ()\fP" 1c
+de la méthode contains() sur des coordonnées dans la surface Contains doit retourner vrai  
 .IP "\fBClass \fBMinPathRoadTestFixture\fP \fP" 1c
-.IP "\fBClass \fBMyClassTestFixture\fP \fP" 1c
+.IP "\fBMember \fBMinPathRoadTestFixture::test_findVisisted\fP ()\fP" 1c
+d'un find() sur un vecteur de coordonnée, utilisé dans recCalcRoadDistance, lors de l'ajout d'un voisin d'une route  
+.IP "\fBMember \fBMinPathRoadTestFixture::test_invalidsPath\fP ()\fP" 1c
+de la méthode calcRoadDistance() entre des parcelles non 'reliées' par des routes La méthode doit alors retourner l'infini  
+.IP "\fBMember \fBMinPathRoadTestFixture::test_sameParcel\fP ()\fP" 1c
+de la méthode calcRoadDistance() entre une parcelle et elle-même La méthode doit alors retourner 0  
+.IP "\fBMember \fBMinPathRoadTestFixture::test_validsPath\fP ()\fP" 1c
+de la méthode calcRoadDistance() entre des parcelles 'reliées' par des routes La méthode doit alors retourner une valeur supérieure à 0  
 .IP "\fBClass \fBNextCoordinatesTestFixture\fP \fP" 1c
+.IP "\fBMember \fBNextCoordinatesTestFixture::test_invalidsCoords\fP ()\fP" 1c
+de la méthode nextCoordinates() sur des coordonnées non 'valides' Doit retourner faux et ne pas modifier la coordonnée en entrée  
+.IP "\fBMember \fBNextCoordinatesTestFixture::test_validsCoords\fP ()\fP" 1c
+de la méthode nextCoordinates() sur des coordonnées 'valides' Doit retourner vrai et modifier la coordonnée en entrée  
 .IP "\fBMember \fBResolution::createExample\fP () __attribute__((test))\fP" 1c
 .PP
 

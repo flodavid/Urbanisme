@@ -115,7 +115,6 @@ bool Field::nextCoordinates ( Coordinates* coord ) const
 ///#############################
 ///===  Méthodes générales	===/
 ///#############################
-//@{
 
 void Field::generateInsAndOuts ( unsigned nb )
 {
@@ -189,7 +188,7 @@ std::list<Coordinates>* Field::getNeighbourRoads ( const Coordinates& coord ) co
 #endif
     }
 
-    // @SEE améliorer les listes, utiliser pointeurs ou non ?
+    /// @see améliorer les listes, utiliser pointeurs ou non ?
     delete &north;
     delete &south;
     delete &west;
@@ -205,7 +204,7 @@ std::list<Coordinates>* Field::getServingRoads ( const Coordinates& coord , unsi
     int serve_dist= ( int ) servingDistance; // il est plus simple de convertir en entier
 
     // On vérifie si les routes entre (x +dist;y +dist) et (x -dist;y -dist)
-    // @SEE on vérifie serve_dist² parcelles,  alors qu'on pourrait en vérifier ?? (moins)
+    /// @see on vérifie serve_dist² parcelles,  alors qu'on pourrait en vérifier ?? (moins)
     for ( int i= coord.row + serve_dist; i >= coord.row -serve_dist; --i ) {
         for ( int j= coord.col + serve_dist; j >= coord.col -serve_dist; --j ) {
 
@@ -232,7 +231,7 @@ bool Field::hasServingRoad ( const Coordinates& coord , unsigned servingDistance
     int serve_dist= ( int ) servingDistance; // il est plus simple de convertir en entier
 
     // On vérifie si les routes entre (x +dist;y +dist) et (x -dist;y -dist)
-    // @SEE on vérifie serve_dist² parcelles,  alors qu'on pourrait en vérifier ?? (moins)
+    /// @see on vérifie serve_dist² parcelles,  alors qu'on pourrait en vérifier ?? (moins)
     for ( int i= coord.row + serve_dist; i >= coord.row -serve_dist; --i ) {
         for ( int j= coord.col + serve_dist; j >= coord.col -serve_dist; --j ) {
 
@@ -255,7 +254,7 @@ bool Field::hasServingRoad ( const Coordinates& coord , unsigned servingDistance
 
 void Field::defineUsables ( unsigned int servingDistance )
 {
-    // @SEE je vérifie que chaque route a un voisin (en cherchant tous ses voisins,
+    /// @see je vérifie que chaque route a un voisin (en cherchant tous ses voisins,
     //  alors qu'on pourrait s'arrêter au premier), l'inverse est possible :
     //  définir toutes les voisins de chaque route comme étant exploitable
     Coordinates& coord= first();

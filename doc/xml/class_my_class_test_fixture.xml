@@ -48,7 +48,7 @@
     <briefdescription>
 <para>Classe &apos;coquille&apos; : ne pas utiliser Tests sur les méthodes de la classe Dummy. </para>    </briefdescription>
     <detaileddescription>
-<para><xrefsect id="test_1_test000002"><xreftitle>Test</xreftitle><xrefdescription></xrefdescription></xrefsect></para>    </detaileddescription>
+<para><xrefsect id="test_1_test000006"><xreftitle>Test</xreftitle><xrefdescription></xrefdescription></xrefsect></para>    </detaileddescription>
     <inheritancegraph>
       <node id="17">
         <label>TestFixture</label>

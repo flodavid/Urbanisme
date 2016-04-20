@@ -145,7 +145,7 @@
 <codeline lineno="39"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight></codeline>
-<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FieldTestFixture::test_containsValids()</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_field_test_fixture_1a5ebd51a8e9af644b266177733907c25f" kindref="member">FieldTestFixture::test_containsValids</ref>()</highlight></codeline>
 <codeline lineno="43"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>CPPUNIT_ASSERT(field-&gt;contains(*coord_in));</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>CPPUNIT_ASSERT(field-&gt;contains(*coord_border_bot));</highlight></codeline>
@@ -155,7 +155,7 @@
 <codeline lineno="49"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="50"><highlight class="normal"></highlight></codeline>
 <codeline lineno="51"><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FieldTestFixture::test_containsInvalids()</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_field_test_fixture_1af9005a4804532efcb0c123c35a4fa7a4" kindref="member">FieldTestFixture::test_containsInvalids</ref>()</highlight></codeline>
 <codeline lineno="53"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>CPPUNIT_ASSERT(!<sp/>field-&gt;contains(*coord_out));</highlight></codeline>
 <codeline lineno="55"><highlight class="normal">}</highlight></codeline>

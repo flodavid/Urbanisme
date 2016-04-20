@@ -4,7 +4,7 @@
 #include <iostream>
 #include <cassert>
 #include <cmath>
-#include <algorithm> /// @SEE Normalement inutile, permet de ne pas utilise -lm lors compilation
+#include <algorithm> /// @see Normalement inutile, permet de ne pas utilise -lm lors compilation
 
 /**
  * Représentation et opérations simple sur des coordonnées dans un plan.
@@ -13,20 +13,59 @@ class Coordinates
 {
 
 public:
-	int col;
+    /**
+     * Colonne, abscisse des coordonnées
+     */
+    int col;
+    /**
+     * Ligne, ordonnée des coordonnées
+     */
 	int row;
 
 public:
+    /**
+     * Constructeur de la classe Coordinates, crée les coordonnées à partir de la position
+     * sur les axes
+     * @param _x Abscisse des coordonnées, axe horizontal
+     * @param _y Ordonnée des coordonnées, axe vertical
+     */
 	Coordinates(int _x, int _y);
+    /**
+     * Constructeur par recopie de la classe Coordinates, crée les coordonnées à partir
+     * d'autres coordonnées
+     * @param other Les autres coordonnées, que l'on va recopier pour créer la nouvelle instance
+     */
 	Coordinates(const Coordinates& other);
 	virtual~ Coordinates();
 	
+    /**
+     * Surcharge de l'opérateur = d'affectation, pour la classe
+     * @param other Les autres coordonnées, que l'on va recopier dans l'instance
+     * @return Les nouvelles coordonnnées
+     */
 	Coordinates& operator=(const Coordinates& other);
-	
+
+    /**
+     * Surcharge de l'opérateur == de comparaison, pour la classe
+     * @param other Les autres coordonnées, que l'on va comparer avec l'instance
+     * @return vrai si les deux coordonnées sont identiques (même position)
+     */
 	virtual bool operator==(const Coordinates& other) const;
 
     // Affichage
+    /**
+     * Imprime dans un flux les informations de l'instance
+     * @param out Flux dans lequel on imprime les informations
+     * @return Le flux en entrée sur lequel on a imprimé les informations
+     */
 	std::ostream& print(std::ostream& out) const;
+    /**
+     * Surcharge de l'opérateur << de sortie sur flux
+     * @param out Flux dans lequel on imprime les informations
+     * @param coord Coordonnées que l'on souhaite imprimer
+     * @return  Le flux en entrée sur lequel on a imprimé les informations des
+     * coordonnées passées en entrée
+     */
 	friend std::ostream& operator<<(std::ostream& out, const Coordinates& coord)
 	    { return coord.print(out); }
 	

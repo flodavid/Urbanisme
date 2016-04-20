@@ -39,8 +39,16 @@ public:
      */
     void tearDown();
 
-  void test_containsValids();
-  void test_containsInvalids();
+    /**
+     * @test de la méthode contains() sur des coordonnées dans la surface
+     * Contains doit retourner vrai
+     */
+    void test_containsValids();
+    /**
+     * @test de la méthode contains() sur des coordonnées hors de la surface
+     * Contains doit retourner faux
+     */
+    void test_containsInvalids();
 };
 
 #endif // FIELDTESTFIXTURE_H

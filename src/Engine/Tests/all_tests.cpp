@@ -4,6 +4,10 @@
 
 using namespace std;
 
+/**
+ * Crée la suite de tests du "moteur" de l'application
+ * @return Une TestSuite, contenant les tests à effectuer sur le "moteur"
+ */
 CppUnit::TestSuite *make_suite() {    
 	CppUnit::TestSuite *suite = new CppUnit::TestSuite("Coordinates");
 	cout << "==============================================" << endl;
@@ -29,7 +33,10 @@ CppUnit::TestSuite *make_suite() {
 	return suite;
 }
 
-
+/**
+ * Exécute des tests sur le "moteur" de l'application
+ * @return l'état de retour de la fonction
+ */
 int main() {
     
 	CppUnit::TextUi::TestRunner runner;
@@ -37,5 +44,5 @@ int main() {
 	runner.addTest(make_suite());
 	runner.setOutputter(new CppUnit::CompilerOutputter(&runner.result(), cout));
 	runner.run();
-	return 0;
+    return EXIT_SUCCESS;
 }

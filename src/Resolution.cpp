@@ -18,13 +18,14 @@ Resolution::~Resolution()
 /// #########################
 ///      Getters
 /// #########################
-
 //@{
+
+//@}
 /// #########################
 ///      Setters
 /// #########################
-//@}
-
+//@{
+    
 void Resolution::set_params ( const Parameters& _params )
 {
     params= _params;
@@ -49,9 +50,9 @@ void Resolution::increment_road_distance ( const Coordinates& coord, unsigned in
 //     }
 
 //@}
-/// ###############################
-///	Fonctions auxiliaires
-/// ###############################
+/// #########################
+///   Fonctions auxiliaires
+/// #########################
 //@{
 
 unsigned Resolution::calcRoadDistance ( const Coordinates &coord1, const Coordinates &coord2 ) const

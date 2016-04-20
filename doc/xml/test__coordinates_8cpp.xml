@@ -105,13 +105,13 @@
 <codeline lineno="17"><highlight class="normal"></highlight></codeline>
 <codeline lineno="18"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>CoordinatesTestFixture::test_calcManhattan()</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_coordinates_test_fixture_1a4377358e70e7b69f1539a9f89cda3c61" kindref="member">CoordinatesTestFixture::test_calcManhattan</ref>()</highlight></codeline>
 <codeline lineno="21"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>manhattan_dist=<sp/>coord1-&gt;manhattanDistance(*coord2);</highlight></codeline>
 <codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>CPPUNIT_ASSERT(manhattan_dist<sp/>==<sp/>expected_manhattan);</highlight></codeline>
 <codeline lineno="24"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>CoordinatesTestFixture::test_calcEuclidean()</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_coordinates_test_fixture_1a631679568eccbfb84a4f88151943a047" kindref="member">CoordinatesTestFixture::test_calcEuclidean</ref>()</highlight></codeline>
 <codeline lineno="27"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>euclidean_dist=<sp/>coord1-&gt;euclideanDistance(*coord2);</highlight></codeline>
 <codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>CPPUNIT_ASSERT(<sp/>(expected_euclid<sp/>-<sp/>euclidean_dist)<sp/>&lt;=<sp/><sp/>0.001<sp/>);</highlight></codeline>

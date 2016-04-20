@@ -132,10 +132,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><xrefsect id="test_1_test000002"><xreftitle>Test</xreftitle><xrefdescription><para>de la méthode contains() sur des coordonnées dans la surface Contains doit retourner vrai </para></xrefdescription></xrefsect></para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Tests/fieldtestfixture.h" line="42" column="1" bodyfile="Engine/Tests/fieldtestfixture.cpp" bodystart="42" bodyend="49"/>
+        <location file="Engine/Tests/fieldtestfixture.h" line="46" column="1" bodyfile="Engine/Tests/fieldtestfixture.cpp" bodystart="42" bodyend="49"/>
       </memberdef>
       <memberdef kind="function" id="class_field_test_fixture_1af9005a4804532efcb0c123c35a4fa7a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -145,10 +145,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><xrefsect id="test_1_test000003"><xreftitle>Test</xreftitle><xrefdescription><para>de la méthode contains() sur des coordonnées hors de la surface Contains doit retourner faux </para></xrefdescription></xrefsect></para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Tests/fieldtestfixture.h" line="43" column="1" bodyfile="Engine/Tests/fieldtestfixture.cpp" bodystart="52" bodyend="55"/>
+        <location file="Engine/Tests/fieldtestfixture.h" line="51" column="1" bodyfile="Engine/Tests/fieldtestfixture.cpp" bodystart="52" bodyend="55"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -177,7 +177,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Engine/Tests/fieldtestfixture.h" line="20" column="1" bodyfile="Engine/Tests/fieldtestfixture.h" bodystart="20" bodyend="44"/>
+    <location file="Engine/Tests/fieldtestfixture.h" line="20" column="1" bodyfile="Engine/Tests/fieldtestfixture.h" bodystart="20" bodyend="52"/>
     <listofallmembers>
       <member refid="class_field_test_fixture_1afac348e2a65884dd8753f7d149d3c3a0" prot="private" virt="non-virtual"><scope>FieldTestFixture</scope><name>coord_border_bot</name></member>
       <member refid="class_field_test_fixture_1a76094c97dc9177d1576e25504a316eea" prot="private" virt="non-virtual"><scope>FieldTestFixture</scope><name>coord_border_left</name></member>

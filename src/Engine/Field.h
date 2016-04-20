@@ -23,22 +23,53 @@ private:
     std::vector<std::vector<State>> parcels;
 
 public:
+    /**
+     * Constructeur de la classe
+     * @param width Largeur à définir de la surface
+     * @param height Hauteur à définir de la surface
+     */
     Field(unsigned width, unsigned height/*, std::list< Coordinates >& inputs_and_ouputs = *(new std::list<Coordinates>()) */);
     ~Field();
 
-/*=== Getters ===*/
+    /*=== Getters ===*/
+    /**
+     * Accesseur sur le nombre de colonnes -la largeur- de la surface
+     * @return La largeur de la surface
+     */
     inline unsigned get_width() const	{ return nb_cols; }
+    /**
+     * Accesseur sur le nombre de lignes -la hauteur- de la surface
+     * @return La hauteur de la surface
+     */
     inline unsigned get_height() const	{ return nb_rows; }
 
-    unsigned getNbParcels() const	{ return nb_cols * nb_rows; }
+    /**
+     * Donne le nombre de parcelles de la surface
+     * @return Le nombre de parcelles, nombre de ligne facteur nombre de colonnes,
+     * un entier non signé
+     */
+    inline unsigned getNbParcels() const	{ return nb_cols * nb_rows; }
 
-/*=== Setters ===*/
+    /*=== Setters ===*/
+    /**
+     * Mutateur sur le nombre de colonnes -la largeur- de la surface
+     * @param width La nouvelle largeur de la surface
+     */
     inline void set_width(unsigned width)
-        { nb_cols =  width; }
+    { nb_cols =  width; }
+    /**
+     * Mutateur sur le nombre de lignes -la hauteur- de la surface
+     * @param height La nouvelle hauteur de la surface
+     */
     inline void set_height(unsigned height)
-        { nb_rows =  height; }
+    { nb_rows =  height; }
 
-//private:
+    //private:
+    /**
+     * Redéfinit la taille du vecteur de vecteur d'états selon le nombre de lignes
+     * et de colonnes contenues dans la classe. On utilise la fonction resize().
+     * Attention, les données contenues dans le vecteur peuvent être modifiées
+     */
     void resizeWithDimensions();
 public:
     /**
@@ -63,7 +94,7 @@ public:
     void add_road(unsigned col, unsigned row)
     { parcels[row][col]= is_road; }
 
-/**=== Operators ===**/
+    /**=== Operators ===**/
 public:
     /**
      * Retourne la parcelle de la surface aux coordonnées passées en paramètre
@@ -104,8 +135,8 @@ public:
      */
     std::vector<std::vector<State>>::iterator end() { return parcels.end(); }
 
-//    friend std::vector<std::vector<State>>::const_iterator begin(const Field& f) { return f.begin(); }
-//    friend std::vector<std::vector<State>>::const_iterator end(const Field& f) { return f.end(); }
+    //    friend std::vector<std::vector<State>>::const_iterator begin(const Field& f) { return f.begin(); }
+    //    friend std::vector<std::vector<State>>::const_iterator end(const Field& f) { return f.end(); }
     /**
      * @brief std::vector<State>::const_iterator::operator ++
      * @return Un itérateur constant sur la surface
@@ -121,7 +152,7 @@ public:
     { return *(new Coordinates(0,0)); }
 
 public:
-/* Affichage */
+    /* Affichage */
     /**
      * Impression sur la sortie standard des entrées et sorties de la surface
      */
@@ -131,7 +162,23 @@ public:
      */
     void show_states() const;
 
-/**=== Fonctions sur les coordonnées ===**/
+    /**
+     * Imprime dans un flux les informations de l'instance
+     * @param out Flux dans lequel on imprime les informations
+     * @return Le flux en entrée sur lequel on a imprimé les informations
+     */
+    std::ostream& print(std::ostream& out) const;
+    /**
+     * Surcharge de l'opérateur << de sortie sur flux
+     * @param out Flux dans lequel on imprime les informations
+     * @param Field Surface que l'on souhaite imprimer
+     * @return  Le flux en entrée sur lequel on a imprimé les informations des
+     * coordonnées passées en entrée
+     */
+    friend std::ostream& operator<<(std::ostream& out, const Field& coord)
+        { return coord.print(out); }
+
+    /**=== Fonctions sur les coordonnées ===**/
     /**
     * Effectue un test d'appartenance des coordonnées à la matrice
     * @param x abscisse de la coordonnée
@@ -155,12 +202,12 @@ public:
      */
     bool nextCoordinates ( Coordinates* coord ) const;
 
-/**=== Méthodes générales	===**/
-//@{
+    /**=== Méthodes générales	===**/
+    //@{
 
     /** Crée aléatoirement des entrées et sorties
-    * @param nb nombre d'entrées et sorties à générer
-    */
+     * @param nb nombre d'entrées et sorties à générer
+     */
     void generateInsAndOuts(unsigned nb);
 
 private:
@@ -168,41 +215,44 @@ private:
      * Vérifie que deux parcelles sont voisines, supposant une distance de voisinage
         * @param neighbour Coordonnées de la parcelle qui peut être voisine de l'autre
         * @param coord Coordonnées de la seconde parcelle
+        * @param servingDistance Distance de desserte des routes
      * @return vrai si la première parcelle est une route, voisine de la seconde
      */
     bool isRoadAndNeighbourOf(const Coordinates& neighbour, const Coordinates& coord, unsigned servingDistance) const;
 
 public:
     /**
-    * Recherche des portions de routes qui sont collées à la parcelle courante
-    * @param coord Coordonnées de la parcelle
-    * @return une liste de routes adjacentes à la parcelle
-    */
+     * Recherche des portions de routes qui sont concomitantes à la parcelle courante
+        * @param coord Coordonnées de la parcelle
+     * @return une liste de routes adjacentes à la parcelle
+     */
     std::list<Coordinates> *getNeighbourRoads ( const Coordinates& coord ) const;
     /**
-    * Recherche des portions de routes qui peuvent désservir la parcelle
-    * @param coord Coordonnées de la parcelle desservir
-    * @return une liste de routes distance inférieure ou égale à la distance de desserte
-    */
+     * Recherche des portions de routes qui peuvent désservir la parcelle
+         * @param coord Coordonnées de la parcelle à desservir
+         * @param servingDistance Distance maximale à laquelle un route peut desservir une parcelle
+     * @return une liste de routes distance inférieure ou égale à la distance de desserte
+     */
     std::list<Coordinates> *getServingRoads ( const Coordinates& coord, unsigned servingDistance ) const;
 
 private:
     /**
     * Vérifie que la parcelle a un voisin
-    * @param coord Coordonnées de la parcelle desservir
-    * @return une liste de routes distance inférieure ou égale à la distance de desserte
+        * @param coord Coordonnées de la parcelle à desservir
+        * @param servingDistance Distance de desserte des routes
+    * @return vrai si la parcelle est desservie par au moins une route
     */
     bool hasServingRoad ( const Coordinates& coord, unsigned servingDistance ) const;
 
 public:
     /**
      * Définit les parcelles dans le voisinage d'une route comme étant exploitables
-     * @param servingDistance Distance maximale du voisinage
+        * @param servingDistance Distance maximale du voisinage
      */
     void defineUsables(unsigned servingDistance);
 
-//@}
-/**=== Recherche de solutions	===**/
+    //@}
+    /**=== Recherche de solutions	===**/
     /**
      * Doit générer une solution réalisable aléatoire
      */

@@ -160,10 +160,11 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Crée la suite de tests du &quot;moteur&quot; de l&apos;application <simplesect kind="return"><para>Une TestSuite, contenant les tests à effectuer sur le &quot;moteur&quot; </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Tests/all_tests.cpp" line="7" column="1" bodyfile="Engine/Tests/all_tests.cpp" bodystart="7" bodyend="30"/>
+        <location file="Engine/Tests/all_tests.cpp" line="11" column="1" bodyfile="Engine/Tests/all_tests.cpp" bodystart="11" bodyend="34"/>
       </memberdef>
       <memberdef kind="function" id="_engine_2_tests_2all__tests_8cpp_1ae66f6b31b5ad750f1fe042a706a4e3d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -173,10 +174,11 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Exécute des tests sur le &quot;moteur&quot; de l&apos;application <simplesect kind="return"><para>l&apos;état de retour de la fonction </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Tests/all_tests.cpp" line="33" column="1" bodyfile="Engine/Tests/all_tests.cpp" bodystart="33" bodyend="41"/>
+        <location file="Engine/Tests/all_tests.cpp" line="40" column="1" bodyfile="Engine/Tests/all_tests.cpp" bodystart="40" bodyend="48"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -190,41 +192,40 @@
 <codeline lineno="4"><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacestd" kindref="compound">std</ref>;</highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal">CppUnit::TestSuite<sp/>*make_suite()<sp/>{<sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>CppUnit::TestSuite<sp/>*suite<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestSuite(</highlight><highlight class="stringliteral">&quot;Coordinates&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;==============================================&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;TEST<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>suite-&gt;getName()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>(&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>__FILE__<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;)&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;==============================================&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight></codeline>
-<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>suite-&gt;addTest(<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestCaller&lt;CoordinatesTestFixture&gt;(</highlight><highlight class="stringliteral">&quot;test_calcManhattan&quot;</highlight><highlight class="normal">,</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;CoordinatesTestFixture::test_calcManhattan)<sp/>);</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>suite-&gt;addTest(<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestCaller&lt;CoordinatesTestFixture&gt;(</highlight><highlight class="stringliteral">&quot;test_calcEuclidean&quot;</highlight><highlight class="normal">,</highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;CoordinatesTestFixture::test_calcEuclidean)<sp/>);</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Tests<sp/>test<sp/>next_coordinates()</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>suite-&gt;addTest(<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestCaller&lt;NextCoordinatesTestFixture&gt;(</highlight><highlight class="stringliteral">&quot;test_validsCoords&quot;</highlight><highlight class="normal">,</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;NextCoordinatesTestFixture::test_validsCoords)<sp/>);</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>suite-&gt;addTest(<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestCaller&lt;NextCoordinatesTestFixture&gt;(</highlight><highlight class="stringliteral">&quot;test_invalidsCoords&quot;</highlight><highlight class="normal">,</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;NextCoordinatesTestFixture::test_invalidsCoords)<sp/>);</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>suite-&gt;addTest(<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestCaller&lt;FieldTestFixture&gt;(</highlight><highlight class="stringliteral">&quot;test_containsValids&quot;</highlight><highlight class="normal">,</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;FieldTestFixture::test_containsValids)<sp/>);</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>suite-&gt;addTest(<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestCaller&lt;FieldTestFixture&gt;(</highlight><highlight class="stringliteral">&quot;test_containsInvalids&quot;</highlight><highlight class="normal">,</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;FieldTestFixture::test_containsInvalids)<sp/>);</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>suite;</highlight></codeline>
-<codeline lineno="30"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">CppUnit::TestSuite<sp/>*make_suite()<sp/>{<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>CppUnit::TestSuite<sp/>*suite<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestSuite(</highlight><highlight class="stringliteral">&quot;Coordinates&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;==============================================&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;TEST<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>suite-&gt;getName()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>(&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>__FILE__<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;)&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;==============================================&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>suite-&gt;addTest(<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestCaller&lt;CoordinatesTestFixture&gt;(</highlight><highlight class="stringliteral">&quot;test_calcManhattan&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;<ref refid="class_coordinates_test_fixture_1a4377358e70e7b69f1539a9f89cda3c61" kindref="member">CoordinatesTestFixture::test_calcManhattan</ref>)<sp/>);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>suite-&gt;addTest(<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestCaller&lt;CoordinatesTestFixture&gt;(</highlight><highlight class="stringliteral">&quot;test_calcEuclidean&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;<ref refid="class_coordinates_test_fixture_1a631679568eccbfb84a4f88151943a047" kindref="member">CoordinatesTestFixture::test_calcEuclidean</ref>)<sp/>);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Tests<sp/>test<sp/>next_coordinates()</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>suite-&gt;addTest(<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestCaller&lt;NextCoordinatesTestFixture&gt;(</highlight><highlight class="stringliteral">&quot;test_validsCoords&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;<ref refid="class_next_coordinates_test_fixture_1a3c7bcb20dfb66817af9e6162554d28ea" kindref="member">NextCoordinatesTestFixture::test_validsCoords</ref>)<sp/>);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>suite-&gt;addTest(<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestCaller&lt;NextCoordinatesTestFixture&gt;(</highlight><highlight class="stringliteral">&quot;test_invalidsCoords&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;<ref refid="class_next_coordinates_test_fixture_1a97704e03f63ed1753d5fb98732314ae0" kindref="member">NextCoordinatesTestFixture::test_invalidsCoords</ref>)<sp/>);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>suite-&gt;addTest(<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestCaller&lt;FieldTestFixture&gt;(</highlight><highlight class="stringliteral">&quot;test_containsValids&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;<ref refid="class_field_test_fixture_1a5ebd51a8e9af644b266177733907c25f" kindref="member">FieldTestFixture::test_containsValids</ref>)<sp/>);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>suite-&gt;addTest(<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestCaller&lt;FieldTestFixture&gt;(</highlight><highlight class="stringliteral">&quot;test_containsInvalids&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;<ref refid="class_field_test_fixture_1af9005a4804532efcb0c123c35a4fa7a4" kindref="member">FieldTestFixture::test_containsInvalids</ref>)<sp/>);</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main()<sp/>{</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>CppUnit::TextUi::TestRunner<sp/>runner;</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"></highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>runner.addTest(make_suite());</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>runner.setOutputter(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::CompilerOutputter(&amp;runner.result(),<sp/>cout));</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>runner.run();</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
-<codeline lineno="41"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>suite;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main()<sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>CppUnit::TextUi::TestRunner<sp/>runner;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>runner.addTest(make_suite());</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>runner.setOutputter(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::CompilerOutputter(&amp;runner.result(),<sp/>cout));</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>runner.run();</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>EXIT_SUCCESS;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="Engine/Tests/all_tests.cpp"/>
   </compounddef>

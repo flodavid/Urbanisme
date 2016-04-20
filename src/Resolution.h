@@ -29,6 +29,11 @@ private:
     bool road_distances_are_initiated= false;
 
 public:
+    /**
+     * Constructeur de la casse résolution
+     * @param _field Surface sur laquelle on travaille
+     * @param _params Paramètres du problème
+     */
     Resolution ( const Field & _field, const Parameters & _params );
     ~Resolution();
 

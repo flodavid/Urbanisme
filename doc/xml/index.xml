@@ -88,11 +88,6 @@
     <member refid="class_min_path_road_test_fixture_1ad242362a0b16418a96613e9fac79e41c" kind="function"><name>test_invalidsPath</name></member>
     <member refid="class_min_path_road_test_fixture_1a2b35c21c61183aa973b0c5fe7f1af69c" kind="function"><name>test_findVisisted</name></member>
   </compound>
-  <compound refid="class_my_class_test_fixture" kind="class"><name>MyClassTestFixture</name>
-    <member refid="class_my_class_test_fixture_1a4ab97c685fb4a7f192e3adbb47b17f54" kind="function"><name>setUp</name></member>
-    <member refid="class_my_class_test_fixture_1a956310478695bd922a29335d10abec9e" kind="function"><name>tearDown</name></member>
-    <member refid="class_my_class_test_fixture_1a65aaff5c7b7bad22137823a8a99f8c5c" kind="function"><name>test_set</name></member>
-  </compound>
   <compound refid="class_next_coordinates_test_fixture" kind="class"><name>NextCoordinatesTestFixture</name>
     <member refid="class_next_coordinates_test_fixture_1ab60390a56e34577d318c298a2f2af0c6" kind="variable"><name>resol</name></member>
     <member refid="class_next_coordinates_test_fixture_1a0b8069de331b3576f554538543928e6f" kind="variable"><name>coord_in</name></member>
@@ -117,6 +112,8 @@
     <member refid="class_parameters_1a34640826d215df735015b9261112f289" kind="function"><name>set_serve_distance</name></member>
   </compound>
   <compound refid="class_resolution" kind="class"><name>Resolution</name>
+    <member refid="class_resolution_1abd8e338344e55a33ff6731feca59182f" kind="function"><name>set_params</name></member>
+    <member refid="class_resolution_1ab5173a2312a8bb303bfc90f3844fb4e3" kind="function"><name>increment_road_distance</name></member>
     <member refid="class_resolution_1acb691fc917fc10e4b1d331ad676aedd2" kind="function"><name>calcRoadDistance</name></member>
     <member refid="class_resolution_1aa5337c8a330c885a1ce59402d3dec1c7" kind="function"><name>recCalcRoadDistance</name></member>
     <member refid="class_resolution_1a1509c394e3e18cfef17144d3a2cf9e0d" kind="function"><name>evaluateTotalUsable</name></member>
@@ -129,8 +126,6 @@
     <member refid="class_resolution_1acba7bcaa0530b031e22d3aa96f4f655d" kind="variable"><name>road_distances_are_initiated</name></member>
     <member refid="class_resolution_1aee5874369769e870df7eb56fc0e28668" kind="function"><name>Resolution</name></member>
     <member refid="class_resolution_1a2507efd085fed95ede3c378c2f97e8d8" kind="function"><name>~Resolution</name></member>
-    <member refid="class_resolution_1abd8e338344e55a33ff6731feca59182f" kind="function"><name>set_params</name></member>
-    <member refid="class_resolution_1ab5173a2312a8bb303bfc90f3844fb4e3" kind="function"><name>increment_road_distance</name></member>
     <member refid="class_resolution_1a422f19851732418ba28a30473a79903a" kind="function"><name>initNeighbourhoodManhattan</name></member>
   </compound>
   <compound refid="namespacestd" kind="namespace"><name>std</name>
@@ -174,10 +169,6 @@
   <compound refid="test__coordinates_8cpp" kind="file"><name>test_coordinates.cpp</name>
   </compound>
   <compound refid="test__coordinates_8h" kind="file"><name>test_coordinates.h</name>
-  </compound>
-  <compound refid="test__my__class__dummy_8cpp" kind="file"><name>test_my_class_dummy.cpp</name>
-  </compound>
-  <compound refid="test__my__class__dummy_8h" kind="file"><name>test_my_class_dummy.h</name>
   </compound>
   <compound refid="test__next__coordinates_8cpp" kind="file"><name>test_next_coordinates.cpp</name>
   </compound>

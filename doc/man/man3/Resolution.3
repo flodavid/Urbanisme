@@ -15,6 +15,16 @@ Resolution \-
 .RI "\fBResolution\fP (const \fBField\fP &_field, const \fBParameters\fP &_params)"
 .br
 .ti -1c
+.RI "void \fBinitNeighbourhoodManhattan\fP ()"
+.br
+.in -1c
+.PP
+.RI "\fB\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
 .RI "void \fBset_params\fP (const \fBParameters\fP &_params)"
 .br
 .RI "\fIset_params \fP"
@@ -22,9 +32,7 @@ Resolution \-
 .RI "void \fBincrement_road_distance\fP (const \fBCoordinates\fP &coord, unsigned value) __attribute__((deprecated))"
 .br
 .RI "\fIset_road_distance \fP"
-.ti -1c
-.RI "void \fBinitNeighbourhoodManhattan\fP ()"
-.br
+.in -1c
 .in -1c
 .PP
 .RI "\fB\fP"
@@ -70,6 +78,19 @@ Minimiser la moyenne, la plus grande ou la somme des ratios entre distance des c
 .PP
 .PP
 On pourra éventuellement avoir plusieurs instances de \fBField\fP dans une \fBResolution\fP\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Resolution::Resolution (const \fBField\fP & _field, const \fBParameters\fP & _params)"
+Constructeur de la casse résolution 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_field\fP Surface sur laquelle on travaille 
+.br
+\fI_params\fP Paramètres du problème 
+.RE
+.PP
+
 .SH "Member Function Documentation"
 .PP 
 .SS "unsigned Resolution::calcRoadDistance (const \fBCoordinates\fP & coord1, const \fBCoordinates\fP & coord2) const"

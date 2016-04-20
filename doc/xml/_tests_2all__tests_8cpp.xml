@@ -124,10 +124,11 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Crée la suite de tests de la partie résolution de l&apos;application <simplesect kind="return"><para>Une TestSuite, contenant les tests à effectuer sur la résolution </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Tests/all_tests.cpp" line="5" column="1" bodyfile="Tests/all_tests.cpp" bodystart="5" bodyend="22"/>
+        <location file="Tests/all_tests.cpp" line="9" column="1" bodyfile="Tests/all_tests.cpp" bodystart="9" bodyend="26"/>
       </memberdef>
       <memberdef kind="function" id="_tests_2all__tests_8cpp_1ae66f6b31b5ad750f1fe042a706a4e3d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -137,10 +138,11 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Exécute des tests sur la partie résolution de l&apos;application <simplesect kind="return"><para>l&apos;état de retour de la fonction </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Tests/all_tests.cpp" line="25" column="1" bodyfile="Tests/all_tests.cpp" bodystart="25" bodyend="33"/>
+        <location file="Tests/all_tests.cpp" line="32" column="1" bodyfile="Tests/all_tests.cpp" bodystart="32" bodyend="40"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -152,35 +154,34 @@
 <codeline lineno="2"><highlight class="normal"></highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacestd" kindref="compound">std</ref>;</highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal">CppUnit::TestSuite<sp/>*make_suite()<sp/>{<sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/>CppUnit::TestSuite<sp/>*suite<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestSuite(</highlight><highlight class="stringliteral">&quot;Operations&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;==============================================&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;TEST<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>suite-&gt;getName()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>(&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>__FILE__<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;)&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;==============================================&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Tests<sp/>calcRoadDistance</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>suite-&gt;addTest(<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestCaller&lt;MinPathRoadTestFixture&gt;(</highlight><highlight class="stringliteral">&quot;test_validsPath&quot;</highlight><highlight class="normal">,</highlight></codeline>
-<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;MinPathRoadTestFixture::test_validsPath)<sp/>);</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>suite-&gt;addTest(<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestCaller&lt;MinPathRoadTestFixture&gt;(</highlight><highlight class="stringliteral">&quot;test_sameParcel&quot;</highlight><highlight class="normal">,</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;MinPathRoadTestFixture::test_sameParcel)<sp/>);</highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>suite-&gt;addTest(<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestCaller&lt;MinPathRoadTestFixture&gt;(</highlight><highlight class="stringliteral">&quot;test_invalidsPath&quot;</highlight><highlight class="normal">,</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;MinPathRoadTestFixture::test_invalidsPath)<sp/>);</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>suite-&gt;addTest(<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestCaller&lt;MinPathRoadTestFixture&gt;(</highlight><highlight class="stringliteral">&quot;test_findVisisted&quot;</highlight><highlight class="normal">,</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;MinPathRoadTestFixture::test_findVisisted)<sp/>);</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>suite;</highlight></codeline>
-<codeline lineno="22"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main()<sp/>{</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>CppUnit::TextUi::TestRunner<sp/>runner;</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>runner.addTest(make_suite());</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>runner.setOutputter(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::CompilerOutputter(&amp;runner.result(),<sp/>cout));</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>runner.run();</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
-<codeline lineno="33"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">CppUnit::TestSuite<sp/>*make_suite()<sp/>{<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>CppUnit::TestSuite<sp/>*suite<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestSuite(</highlight><highlight class="stringliteral">&quot;Operations&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;==============================================&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;TEST<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>suite-&gt;getName()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>(&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>__FILE__<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;)&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;==============================================&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Tests<sp/>calcRoadDistance</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>suite-&gt;addTest(<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestCaller&lt;MinPathRoadTestFixture&gt;(</highlight><highlight class="stringliteral">&quot;test_validsPath&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;<ref refid="class_min_path_road_test_fixture_1ae0448460a924c47237cde215f4175886" kindref="member">MinPathRoadTestFixture::test_validsPath</ref>)<sp/>);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>suite-&gt;addTest(<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestCaller&lt;MinPathRoadTestFixture&gt;(</highlight><highlight class="stringliteral">&quot;test_sameParcel&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;<ref refid="class_min_path_road_test_fixture_1a3e351654a409fea66809330d8a709a28" kindref="member">MinPathRoadTestFixture::test_sameParcel</ref>)<sp/>);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>suite-&gt;addTest(<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestCaller&lt;MinPathRoadTestFixture&gt;(</highlight><highlight class="stringliteral">&quot;test_invalidsPath&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;<ref refid="class_min_path_road_test_fixture_1ad242362a0b16418a96613e9fac79e41c" kindref="member">MinPathRoadTestFixture::test_invalidsPath</ref>)<sp/>);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>suite-&gt;addTest(<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::TestCaller&lt;MinPathRoadTestFixture&gt;(</highlight><highlight class="stringliteral">&quot;test_findVisisted&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;<ref refid="class_min_path_road_test_fixture_1a2b35c21c61183aa973b0c5fe7f1af69c" kindref="member">MinPathRoadTestFixture::test_findVisisted</ref>)<sp/>);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>suite;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main()<sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>CppUnit::TextUi::TestRunner<sp/>runner;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>runner.addTest(make_suite());</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>runner.setOutputter(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>CppUnit::CompilerOutputter(&amp;runner.result(),<sp/>cout));</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>runner.run();</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="Tests/all_tests.cpp"/>
   </compounddef>

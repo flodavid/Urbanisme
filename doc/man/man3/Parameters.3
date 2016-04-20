@@ -6,6 +6,8 @@ Parameters \-
 .SH SYNOPSIS
 .br
 .PP
+.PP
+\fC#include <Parameters\&.h>\fP
 .SS "Public Member Functions"
 
 .in +1c
@@ -25,6 +27,60 @@ Parameters \-
 .RI "void \fBset_serve_distance\fP (unsigned distance)"
 .br
 .in -1c
+.SH "Detailed Description"
+.PP 
+Représente les paramètres du problèmes 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Parameters::Parameters (unsigned _road_width, unsigned _serve_distance)"
+Constructeur de la classe paramètres 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_road_width\fP Largeur des routes 
+.br
+\fI_serve_distance\fP Distance de desserte des routes 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "unsigned Parameters::get_road_width () const\fC [inline]\fP"
+Accesseur sur la largeur de la route 
+.PP
+\fBReturns:\fP
+.RS 4
+La largeur de la route, unsigned int 
+.RE
+.PP
+
+.SS "unsigned Parameters::get_serve_distance () const\fC [inline]\fP"
+Accesseur sur la distance à laquelle les parcelles sont desservies 
+.PP
+\fBReturns:\fP
+.RS 4
+La distance de desserte, unsigned int 
+.RE
+.PP
+
+.SS "void Parameters::set_road_width (unsigned width)\fC [inline]\fP"
+Mutateur sur la largeur de la route 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIwidth\fP La nouvelle largeur de la route, unsigned int 
+.RE
+.PP
+
+.SS "void Parameters::set_serve_distance (unsigned distance)\fC [inline]\fP"
+Mutateur sur la distance à laquelle les parcelles sont desservies 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdistance\fP La nouvelle distance de desserte, unsigned int 
+.RE
+.PP
+
 
 .SH "Author"
 .PP 

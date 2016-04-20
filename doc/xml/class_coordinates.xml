@@ -12,10 +12,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Colonne, abscisse des coordonnées </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/coordinates.h" line="16" column="1" bodyfile="Engine/coordinates.h" bodystart="16" bodyend="-1"/>
+        <location file="Engine/coordinates.h" line="19" column="1" bodyfile="Engine/coordinates.h" bodystart="19" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_coordinates_1aa3e522bbc0eab18fe35a7b17186df35e" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -25,10 +25,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Ligne, ordonnée des coordonnées </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/coordinates.h" line="17" column="1" bodyfile="Engine/coordinates.h" bodystart="17" bodyend="-1"/>
+        <location file="Engine/coordinates.h" line="23" column="1" bodyfile="Engine/coordinates.h" bodystart="23" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -48,10 +48,25 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Constructeur de la classe <ref refid="class_coordinates" kindref="compound">Coordinates</ref>, crée les coordonnées à partir de la position sur les axes <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Abscisse des coordonnées, axe horizontal </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Ordonnée des coordonnées, axe vertical </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/coordinates.h" line="20" column="1" bodyfile="Engine/coordinates.cpp" bodystart="4" bodyend="6"/>
+        <location file="Engine/coordinates.h" line="32" column="1" bodyfile="Engine/coordinates.cpp" bodystart="4" bodyend="6"/>
       </memberdef>
       <memberdef kind="function" id="class_coordinates_1ac5d41909a5b219ee3dbec3699039c562" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -65,10 +80,18 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Constructeur par recopie de la classe <ref refid="class_coordinates" kindref="compound">Coordinates</ref>, crée les coordonnées à partir d&apos;autres coordonnées <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Les autres coordonnées, que l&apos;on va recopier pour créer la nouvelle instance </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/coordinates.h" line="21" column="1" bodyfile="Engine/coordinates.cpp" bodystart="8" bodyend="10"/>
+        <location file="Engine/coordinates.h" line="38" column="1" bodyfile="Engine/coordinates.cpp" bodystart="8" bodyend="10"/>
       </memberdef>
       <memberdef kind="function" id="class_coordinates_1add7d735f38950ba96dcc3f9ebfac7870" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -81,7 +104,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/coordinates.h" line="22" column="1" bodyfile="Engine/coordinates.cpp" bodystart="12" bodyend="15"/>
+        <location file="Engine/coordinates.h" line="39" column="1" bodyfile="Engine/coordinates.cpp" bodystart="12" bodyend="15"/>
       </memberdef>
       <memberdef kind="function" id="class_coordinates_1a32cfc159461df761e9603e92ffab5ea2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_coordinates" kindref="compound">Coordinates</ref> &amp;</type>
@@ -95,10 +118,19 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Surcharge de l&apos;opérateur = d&apos;affectation, pour la classe <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Les autres coordonnées, que l&apos;on va recopier dans l&apos;instance </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Les nouvelles coordonnnées </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/coordinates.h" line="24" column="1" bodyfile="Engine/coordinates.cpp" bodystart="17" bodyend="23"/>
+        <location file="Engine/coordinates.h" line="46" column="1" bodyfile="Engine/coordinates.cpp" bodystart="17" bodyend="23"/>
       </memberdef>
       <memberdef kind="function" id="class_coordinates_1a333d88139e6f92cf7c729278430173ce" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type>bool</type>
@@ -112,10 +144,19 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Surcharge de l&apos;opérateur == de comparaison, pour la classe <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Les autres coordonnées, que l&apos;on va comparer avec l&apos;instance </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>vrai si les deux coordonnées sont identiques (même position) </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/coordinates.h" line="26" column="1" bodyfile="Engine/coordinates.cpp" bodystart="25" bodyend="28"/>
+        <location file="Engine/coordinates.h" line="53" column="1" bodyfile="Engine/coordinates.cpp" bodystart="25" bodyend="28"/>
       </memberdef>
       <memberdef kind="function" id="class_coordinates_1a87790bcf7798d62e73df4947e9a38410" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>
@@ -129,10 +170,19 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Imprime dans un flux les informations de l&apos;instance <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flux dans lequel on imprime les informations </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Le flux en entrée sur lequel on a imprimé les informations </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/coordinates.h" line="29" column="1" bodyfile="Engine/coordinates.cpp" bodystart="30" bodyend="34"/>
+        <location file="Engine/coordinates.h" line="61" column="1" bodyfile="Engine/coordinates.cpp" bodystart="30" bodyend="34"/>
       </memberdef>
       <memberdef kind="function" id="class_coordinates_1addd99c33f1c15c4fd21a4e54f5607abf" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>unsigned</type>
@@ -150,7 +200,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/coordinates.h" line="38" column="1" bodyfile="Engine/coordinates.cpp" bodystart="36" bodyend="40"/>
+        <location file="Engine/coordinates.h" line="77" column="1" bodyfile="Engine/coordinates.cpp" bodystart="36" bodyend="40"/>
       </memberdef>
       <memberdef kind="function" id="class_coordinates_1acdfe893588fc29d44ea654e18424acbd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -168,7 +218,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/coordinates.h" line="43" column="1" bodyfile="Engine/coordinates.cpp" bodystart="42" bodyend="47"/>
+        <location file="Engine/coordinates.h" line="82" column="1" bodyfile="Engine/coordinates.cpp" bodystart="42" bodyend="47"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="friend">
@@ -188,17 +238,34 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Surcharge de l&apos;opérateur &lt;&lt; de sortie sur flux <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flux dans lequel on imprime les informations </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coord</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Coordonnées que l&apos;on souhaite imprimer </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Le flux en entrée sur lequel on a imprimé les informations des coordonnées passées en entrée </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/coordinates.h" line="30" column="1" bodyfile="Engine/coordinates.h" bodystart="30" bodyend="31"/>
+        <location file="Engine/coordinates.h" line="69" column="1" bodyfile="Engine/coordinates.h" bodystart="69" bodyend="70"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Normalement inutile, permet de ne pas utilise -lm lors compilation </para>    </briefdescription>
+    </briefdescription>
     <detaileddescription>
-<para>Représentation et opérations simple sur des coordonnées dans un plan. </para>    </detaileddescription>
-    <location file="Engine/coordinates.h" line="13" column="1" bodyfile="Engine/coordinates.h" bodystart="12" bodyend="45"/>
+<para><simplesect kind="see"><para>Normalement inutile, permet de ne pas utilise -lm lors compilation Représentation et opérations simple sur des coordonnées dans un plan. </para></simplesect>
+</para>    </detaileddescription>
+    <location file="Engine/coordinates.h" line="13" column="1" bodyfile="Engine/coordinates.h" bodystart="12" bodyend="84"/>
     <listofallmembers>
       <member refid="class_coordinates_1a4d1e2bdd28dfd0a047e4b1f9fcb04a31" prot="public" virt="non-virtual"><scope>Coordinates</scope><name>col</name></member>
       <member refid="class_coordinates_1a94259eaa33fbd1aa8da205266a407bc7" prot="public" virt="non-virtual"><scope>Coordinates</scope><name>Coordinates</name></member>

@@ -149,6 +149,19 @@ Field \-
 .SH "Detailed Description"
 .PP 
 Classe représentant la surface -le terrain- et contenant les opérations que l'on effectue sur celui-ci\&. L'état d'une instance de cette classe à la fin de l'algorithme représente une solution trouvée après la recherche\&. On peut donc avoir plusieurs \fBField\fP lors d'une exécution\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Field::Field (unsigned width, unsigned height)"
+Constructeur de la classe 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIwidth\fP Largeur à définir de la surface 
+.br
+\fIheight\fP Hauteur à définir de la surface 
+.RE
+.PP
+
 .SH "Member Function Documentation"
 .PP 
 .SS "void Field::add_in_out (const \fBCoordinates\fP & coord)\fC [inline]\fP"
@@ -269,6 +282,13 @@ Définit les parcelles dans le voisinage d'une route comme étant exploitables
 .RE
 .PP
 
+.PP
+\fBSee also:\fP
+.RS 4
+je vérifie que chaque route a un voisin (en cherchant tous ses voisins, 
+.RE
+.PP
+
 .SS "void Field::deleteUselessRoad ()"
 TODO 
 .SS "std::vector<std::vector<State> >::const_iterator Field::end () const\fC [inline]\fP"
@@ -331,8 +351,35 @@ une référence, non constante, sur la première coordonnée de la matrice
 === Recherche de solutions ===/ 
 .SS ""
 
+.SS "unsigned Field::get_height () const\fC [inline]\fP"
+Accesseur sur le nombre de lignes -la hauteur- de la surface 
+.PP
+\fBReturns:\fP
+.RS 4
+La hauteur de la surface 
+.RE
+.PP
+
+.SS "unsigned Field::get_width () const\fC [inline]\fP"
+Accesseur sur le nombre de colonnes -la largeur- de la surface 
+.PP
+\fBReturns:\fP
+.RS 4
+La largeur de la surface 
+.RE
+.PP
+
+.SS "unsigned Field::getNbParcels () const\fC [inline]\fP"
+Donne le nombre de parcelles de la surface 
+.PP
+\fBReturns:\fP
+.RS 4
+Le nombre de parcelles, nombre de ligne facteur nombre de colonnes, un entier non signé 
+.RE
+.PP
+
 .SS "std::list< \fBCoordinates\fP > * Field::getNeighbourRoads (const \fBCoordinates\fP & coord) const"
-Recherche des portions de routes qui sont collées à la parcelle courante 
+Recherche des portions de routes qui sont concomitantes à la parcelle courante 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -345,17 +392,33 @@ une liste de routes adjacentes à la parcelle
 .RE
 .PP
 
+.PP
+\fBSee also:\fP
+.RS 4
+améliorer les listes, utiliser pointeurs ou non ? 
+.RE
+.PP
+
 .SS "std::list< \fBCoordinates\fP > * Field::getServingRoads (const \fBCoordinates\fP & coord, unsigned servingDistance) const"
 Recherche des portions de routes qui peuvent désservir la parcelle 
 .PP
 \fBParameters:\fP
 .RS 4
-\fIcoord\fP Coordonnées de la parcelle desservir 
+\fIcoord\fP Coordonnées de la parcelle à desservir 
+.br
+\fIservingDistance\fP Distance maximale à laquelle un route peut desservir une parcelle 
 .RE
 .PP
 \fBReturns:\fP
 .RS 4
 une liste de routes distance inférieure ou égale à la distance de desserte 
+.RE
+.PP
+
+.PP
+\fBSee also:\fP
+.RS 4
+on vérifie serve_dist² parcelles, alors qu'on pourrait en vérifier ?? (moins) 
 .RE
 .PP
 
@@ -388,11 +451,30 @@ L'état de la parcelle à la position des coordonnées, un State
 .PP
 
 .SS "void Field::resizeWithDimensions ()"
-
+Redéfinit la taille du vecteur de vecteur d'états selon le nombre de lignes et de colonnes contenues dans la classe\&. On utilise la fonction resize()\&. Attention, les données contenues dans le vecteur peuvent être modifiées
+.PP
 .SS ""
 .PP
 Setters 
 .SS ""
+
+.SS "void Field::set_height (unsigned height)\fC [inline]\fP"
+Mutateur sur le nombre de lignes -la hauteur- de la surface 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIheight\fP La nouvelle hauteur de la surface 
+.RE
+.PP
+
+.SS "void Field::set_width (unsigned width)\fC [inline]\fP"
+Mutateur sur le nombre de colonnes -la largeur- de la surface 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIwidth\fP La nouvelle largeur de la surface 
+.RE
+.PP
 
 .SS "void Field::show_ins_and_outs () const"
 Impression sur la sortie standard des entrées et sorties de la surface

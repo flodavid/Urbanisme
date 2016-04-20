@@ -132,10 +132,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><xrefsect id="test_1_test000007"><xreftitle>Test</xreftitle><xrefdescription><para>de la méthode nextCoordinates() sur des coordonnées &quot;valides&quot; Doit retourner vrai et modifier la coordonnée en entrée </para></xrefdescription></xrefsect></para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Tests/test_next_coordinates.h" line="46" column="1" bodyfile="Engine/Tests/test_next_coordinates.cpp" bodystart="34" bodyend="49"/>
+        <location file="Engine/Tests/test_next_coordinates.h" line="50" column="1" bodyfile="Engine/Tests/test_next_coordinates.cpp" bodystart="34" bodyend="49"/>
       </memberdef>
       <memberdef kind="function" id="class_next_coordinates_test_fixture_1a97704e03f63ed1753d5fb98732314ae0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -145,39 +145,39 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><xrefsect id="test_1_test000008"><xreftitle>Test</xreftitle><xrefdescription><para>de la méthode nextCoordinates() sur des coordonnées non &quot;valides&quot; Doit retourner faux et ne pas modifier la coordonnée en entrée </para></xrefdescription></xrefsect></para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Tests/test_next_coordinates.h" line="47" column="1" bodyfile="Engine/Tests/test_next_coordinates.cpp" bodystart="51" bodyend="69"/>
+        <location file="Engine/Tests/test_next_coordinates.h" line="55" column="1" bodyfile="Engine/Tests/test_next_coordinates.cpp" bodystart="51" bodyend="69"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para>Tests sur la méthode nextCoordinates() de la classe <ref refid="class_field" kindref="compound">Field</ref> <xrefsect id="test_1_test000003"><xreftitle>Test</xreftitle><xrefdescription></xrefdescription></xrefsect></para>    </detaileddescription>
+<para>Tests sur la méthode nextCoordinates() de la classe <ref refid="class_field" kindref="compound">Field</ref> <xrefsect id="test_1_test000006"><xreftitle>Test</xreftitle><xrefdescription></xrefdescription></xrefsect></para>    </detaileddescription>
     <inheritancegraph>
-      <node id="21">
+      <node id="17">
         <label>TestFixture</label>
       </node>
-      <node id="20">
+      <node id="16">
         <label>NextCoordinatesTestFixture</label>
         <link refid="class_next_coordinates_test_fixture"/>
-        <childnode refid="21" relation="public-inheritance">
+        <childnode refid="17" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="23">
+      <node id="19">
         <label>TestFixture</label>
       </node>
-      <node id="22">
+      <node id="18">
         <label>NextCoordinatesTestFixture</label>
         <link refid="class_next_coordinates_test_fixture"/>
-        <childnode refid="23" relation="public-inheritance">
+        <childnode refid="19" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Engine/Tests/test_next_coordinates.h" line="21" column="1" bodyfile="Engine/Tests/test_next_coordinates.h" bodystart="21" bodyend="49"/>
+    <location file="Engine/Tests/test_next_coordinates.h" line="21" column="1" bodyfile="Engine/Tests/test_next_coordinates.h" bodystart="21" bodyend="57"/>
     <listofallmembers>
       <member refid="class_next_coordinates_test_fixture_1a0b8069de331b3576f554538543928e6f" prot="private" virt="non-virtual"><scope>NextCoordinatesTestFixture</scope><name>coord_in</name></member>
       <member refid="class_next_coordinates_test_fixture_1ac86e868647da3ea887bdeca5a71bd1e4" prot="private" virt="non-virtual"><scope>NextCoordinatesTestFixture</scope><name>coord_last_col</name></member>

@@ -43,7 +43,15 @@ public:
      */
     void tearDown();
 
+    /**
+     * @test de la méthode nextCoordinates() sur des coordonnées "valides"
+     * Doit retourner vrai et modifier la coordonnée en entrée
+     */
     void test_validsCoords();
+    /**
+     * @test de la méthode nextCoordinates() sur des coordonnées non "valides"
+     * Doit retourner faux et ne pas modifier la coordonnée en entrée
+     */
     void test_invalidsCoords();
  
 };

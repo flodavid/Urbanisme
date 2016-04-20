@@ -2,6 +2,10 @@
 
 using namespace std;
 
+/**
+ * Crée la suite de tests de la partie résolution de l'application
+ * @return Une TestSuite, contenant les tests à effectuer sur la résolution
+ */
 CppUnit::TestSuite *make_suite() {    
     CppUnit::TestSuite *suite = new CppUnit::TestSuite("Operations");
     cout << "==============================================" << endl;
@@ -21,7 +25,10 @@ CppUnit::TestSuite *make_suite() {
     return suite;
 }
 
-
+/**
+ * Exécute des tests sur la partie résolution de l'application
+ * @return l'état de retour de la fonction
+ */
 int main() {
     
     CppUnit::TextUi::TestRunner runner;

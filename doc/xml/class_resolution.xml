@@ -4,6 +4,50 @@
     <compoundname>Resolution</compoundname>
     <includes refid="_resolution_8h" local="no">Resolution.h</includes>
       <sectiondef kind="user-defined">
+      <memberdef kind="function" id="class_resolution_1abd8e338344e55a33ff6731feca59182f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Resolution::set_params</definition>
+        <argsstring>(const Parameters &amp;_params)</argsstring>
+        <name>set_params</name>
+        <param>
+          <type>const <ref refid="class_parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <declname>_params</declname>
+        </param>
+        <briefdescription>
+<para>set_params </para>        </briefdescription>
+        <detaileddescription>
+<para><heading level="6"></heading>
+</para><para>Getters <heading level="6"></heading>
+</para><para><heading level="6"></heading>
+</para><para>Setters <heading level="6"></heading>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Resolution.h" line="46" column="1" bodyfile="Resolution.cpp" bodystart="29" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="class_resolution_1ab5173a2312a8bb303bfc90f3844fb4e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Resolution::increment_road_distance</definition>
+        <argsstring>(const Coordinates &amp;coord, unsigned value) __attribute__((deprecated))</argsstring>
+        <name>increment_road_distance</name>
+        <param>
+          <type>const <ref refid="class_coordinates" kindref="compound">Coordinates</ref> &amp;</type>
+          <declname>coord</declname>
+        </param>
+        <param>
+          <type>unsigned</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>set_road_distance </para>        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="deprecated_1_deprecated000001"><xreftitle>Deprecated</xreftitle><xrefdescription></xrefdescription></xrefsect></para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Resolution.h" line="51" column="1" bodyfile="Resolution.cpp" bodystart="34" bodyend="37"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="user-defined">
       <memberdef kind="function" id="class_resolution_1acb691fc917fc10e4b1d331ad676aedd2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>unsigned</type>
         <definition>unsigned Resolution::calcRoadDistance</definition>
@@ -43,7 +87,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Resolution.h" line="64" column="1" bodyfile="Resolution.cpp" bodystart="57" bodyend="109"/>
+        <location file="Resolution.h" line="69" column="1" bodyfile="Resolution.cpp" bodystart="58" bodyend="110"/>
       </memberdef>
       <memberdef kind="function" id="class_resolution_1aa5337c8a330c885a1ce59402d3dec1c7" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>unsigned</type>
@@ -68,7 +112,7 @@
 <para>Calcule la distance entre deux points, en passant de route en route On suppose ques les coordonées courantes sont des routes </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Resolution.h" line="71" column="1" bodyfile="Resolution.cpp" bodystart="110" bodyend="165"/>
+        <location file="Resolution.h" line="76" column="1" bodyfile="Resolution.cpp" bodystart="111" bodyend="166"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="user-defined">
@@ -86,7 +130,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Resolution.h" line="79" column="1" bodyfile="Resolution.cpp" bodystart="174" bodyend="204"/>
+        <location file="Resolution.h" line="84" column="1" bodyfile="Resolution.cpp" bodystart="175" bodyend="205"/>
       </memberdef>
       <memberdef kind="function" id="class_resolution_1a1f5c3f17b49886ca79e09103beebebe8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -123,7 +167,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Resolution.h" line="87" column="1" bodyfile="Resolution.cpp" bodystart="206" bodyend="213"/>
+        <location file="Resolution.h" line="92" column="1" bodyfile="Resolution.cpp" bodystart="207" bodyend="214"/>
       </memberdef>
       <memberdef kind="function" id="class_resolution_1aeba706393d4c5d6849e7ed20a36da491" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -137,7 +181,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Resolution.h" line="92" column="1" bodyfile="Resolution.cpp" bodystart="215" bodyend="234"/>
+        <location file="Resolution.h" line="97" column="1" bodyfile="Resolution.cpp" bodystart="216" bodyend="235"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="user-defined">
@@ -149,12 +193,12 @@
         <briefdescription>
 <para>createExample </para>        </briefdescription>
         <detaileddescription>
-<para><xrefsect id="test_1_test000004"><xreftitle>Test</xreftitle><xrefdescription></xrefdescription></xrefsect></para><para><heading level="6"></heading>
+<para><xrefsect id="test_1_test000009"><xreftitle>Test</xreftitle><xrefdescription></xrefdescription></xrefsect></para><para><heading level="6"></heading>
 </para><para>Autres méthodes utiles <heading level="6"></heading>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Resolution.h" line="99" column="1" bodyfile="Resolution.cpp" bodystart="242" bodyend="365"/>
+        <location file="Resolution.h" line="104" column="1" bodyfile="Resolution.cpp" bodystart="243" bodyend="366"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
@@ -229,10 +273,25 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Constructeur de la casse résolution <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Surface sur laquelle on travaille </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_params</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Paramètres du problème </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Resolution.h" line="32" column="1" bodyfile="Resolution.cpp" bodystart="9" bodyend="12"/>
+        <location file="Resolution.h" line="37" column="1" bodyfile="Resolution.cpp" bodystart="9" bodyend="12"/>
       </memberdef>
       <memberdef kind="function" id="class_resolution_1a2507efd085fed95ede3c378c2f97e8d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -245,49 +304,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Resolution.h" line="33" column="1" bodyfile="Resolution.cpp" bodystart="14" bodyend="16"/>
-      </memberdef>
-      <memberdef kind="function" id="class_resolution_1abd8e338344e55a33ff6731feca59182f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void Resolution::set_params</definition>
-        <argsstring>(const Parameters &amp;_params)</argsstring>
-        <name>set_params</name>
-        <param>
-          <type>const <ref refid="class_parameters" kindref="compound">Parameters</ref> &amp;</type>
-          <declname>_params</declname>
-        </param>
-        <briefdescription>
-<para>set_params </para>        </briefdescription>
-        <detaileddescription>
-<para><heading level="6"></heading>
-</para><para>Getters <heading level="6"></heading>
-</para><para><heading level="6"></heading>
-</para><para>Setters <heading level="6"></heading>
-</para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="Resolution.h" line="41" column="1" bodyfile="Resolution.cpp" bodystart="28" bodyend="31"/>
-      </memberdef>
-      <memberdef kind="function" id="class_resolution_1ab5173a2312a8bb303bfc90f3844fb4e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void Resolution::increment_road_distance</definition>
-        <argsstring>(const Coordinates &amp;coord, unsigned value) __attribute__((deprecated))</argsstring>
-        <name>increment_road_distance</name>
-        <param>
-          <type>const <ref refid="class_coordinates" kindref="compound">Coordinates</ref> &amp;</type>
-          <declname>coord</declname>
-        </param>
-        <param>
-          <type>unsigned</type>
-          <declname>value</declname>
-        </param>
-        <briefdescription>
-<para>set_road_distance </para>        </briefdescription>
-        <detaileddescription>
-<para><xrefsect id="deprecated_1_deprecated000001"><xreftitle>Deprecated</xreftitle><xrefdescription></xrefdescription></xrefsect></para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="Resolution.h" line="46" column="1" bodyfile="Resolution.cpp" bodystart="33" bodyend="36"/>
+        <location file="Resolution.h" line="38" column="1" bodyfile="Resolution.cpp" bodystart="14" bodyend="16"/>
       </memberdef>
       <memberdef kind="function" id="class_resolution_1a422f19851732418ba28a30473a79903a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -300,7 +317,7 @@
 <para>Initialise la matrice de voisinage avec les routes avec la distance Manhattan TODO </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Resolution.h" line="53" column="1"/>
+        <location file="Resolution.h" line="58" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -309,7 +326,7 @@
 <para>Classe chargée de travailler sur les données en entrée du problème pour trouver des solution réalisables, opitmisant les objectifs suivants :<orderedlist>
 <listitem><para>Maximimiser les nombres de parcelles exploitables</para></listitem><listitem><para>Minimiser la moyenne, la plus grande ou la somme des ratios entre distance des cellules par les routes et distance directe (distance Manhattan ou Euclidienne)</para></listitem></orderedlist>
 </para><para>On pourra éventuellement avoir plusieurs instances de <ref refid="class_field" kindref="compound">Field</ref> dans une <ref refid="class_resolution" kindref="compound">Resolution</ref>. </para>    </detaileddescription>
-    <location file="Resolution.h" line="19" column="1" bodyfile="Resolution.h" bodystart="18" bodyend="101"/>
+    <location file="Resolution.h" line="19" column="1" bodyfile="Resolution.h" bodystart="18" bodyend="106"/>
     <listofallmembers>
       <member refid="class_resolution_1acb691fc917fc10e4b1d331ad676aedd2" prot="public" virt="non-virtual"><scope>Resolution</scope><name>calcRoadDistance</name></member>
       <member refid="class_resolution_1a28545da49beb685cda5935cb9fb9cf8d" prot="public" virt="non-virtual"><scope>Resolution</scope><name>createExample</name></member>

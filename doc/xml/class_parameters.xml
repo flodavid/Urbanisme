@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
   <compounddef id="class_parameters" kind="class" language="C++" prot="public">
     <compoundname>Parameters</compoundname>
+    <includes refid="_parameters_8h" local="no">Parameters.h</includes>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="class_parameters_1a73725b9b14fae35dfff720a1a409c192" prot="private" static="no" mutable="no">
         <type>unsigned</type>
@@ -14,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Parameters.h" line="6" column="1" bodyfile="Engine/Parameters.h" bodystart="6" bodyend="-1"/>
+        <location file="Engine/Parameters.h" line="9" column="1" bodyfile="Engine/Parameters.h" bodystart="9" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_parameters_1a43692b0318c306b6617df4d882a457f4" prot="private" static="no" mutable="no">
         <type>unsigned</type>
@@ -27,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Parameters.h" line="7" column="1" bodyfile="Engine/Parameters.h" bodystart="7" bodyend="-1"/>
+        <location file="Engine/Parameters.h" line="10" column="1" bodyfile="Engine/Parameters.h" bodystart="10" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -47,10 +48,25 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Constructeur de la classe paramètres <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>_road_width</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Largeur des routes </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_serve_distance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Distance de desserte des routes </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Parameters.h" line="10" column="1" bodyfile="Engine/Parameters.cpp" bodystart="5" bodyend="8"/>
+        <location file="Engine/Parameters.h" line="18" column="1" bodyfile="Engine/Parameters.cpp" bodystart="5" bodyend="8"/>
       </memberdef>
       <memberdef kind="function" id="class_parameters_1a640a1a349975a8cb023696f25e563a5c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -63,7 +79,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Parameters.h" line="11" column="1" bodyfile="Engine/Parameters.cpp" bodystart="10" bodyend="12"/>
+        <location file="Engine/Parameters.h" line="19" column="1" bodyfile="Engine/Parameters.cpp" bodystart="10" bodyend="12"/>
       </memberdef>
       <memberdef kind="function" id="class_parameters_1a24b24b6f75e38b557409f1608d855f25" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>unsigned</type>
@@ -73,10 +89,11 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Accesseur sur la largeur de la route <simplesect kind="return"><para>La largeur de la route, unsigned int </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Parameters.h" line="13" column="1" bodyfile="Engine/Parameters.h" bodystart="13" bodyend="14"/>
+        <location file="Engine/Parameters.h" line="25" column="1" bodyfile="Engine/Parameters.h" bodystart="25" bodyend="26"/>
       </memberdef>
       <memberdef kind="function" id="class_parameters_1ac5da3d531558c09300be6c66830ea070" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>unsigned</type>
@@ -86,10 +103,11 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Accesseur sur la distance à laquelle les parcelles sont desservies <simplesect kind="return"><para>La distance de desserte, unsigned int </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Parameters.h" line="15" column="1" bodyfile="Engine/Parameters.h" bodystart="15" bodyend="16"/>
+        <location file="Engine/Parameters.h" line="31" column="1" bodyfile="Engine/Parameters.h" bodystart="31" bodyend="32"/>
       </memberdef>
       <memberdef kind="function" id="class_parameters_1af1fcf48ceb559f001e82911040ba5a81" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -103,10 +121,18 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Mutateur sur la largeur de la route <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>width</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>La nouvelle largeur de la route, unsigned int </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Parameters.h" line="18" column="1" bodyfile="Engine/Parameters.h" bodystart="18" bodyend="19"/>
+        <location file="Engine/Parameters.h" line="38" column="1" bodyfile="Engine/Parameters.h" bodystart="38" bodyend="39"/>
       </memberdef>
       <memberdef kind="function" id="class_parameters_1a34640826d215df735015b9261112f289" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -120,17 +146,25 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Mutateur sur la distance à laquelle les parcelles sont desservies <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>distance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>La nouvelle distance de desserte, unsigned int </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Parameters.h" line="20" column="1" bodyfile="Engine/Parameters.h" bodystart="20" bodyend="21"/>
+        <location file="Engine/Parameters.h" line="44" column="1" bodyfile="Engine/Parameters.h" bodystart="44" bodyend="45"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-    </detaileddescription>
-    <location file="Engine/Parameters.h" line="4" column="1" bodyfile="Engine/Parameters.h" bodystart="3" bodyend="23"/>
+<para>Représente les paramètres du problèmes </para>    </detaileddescription>
+    <location file="Engine/Parameters.h" line="7" column="1" bodyfile="Engine/Parameters.h" bodystart="6" bodyend="47"/>
     <listofallmembers>
       <member refid="class_parameters_1a24b24b6f75e38b557409f1608d855f25" prot="public" virt="non-virtual"><scope>Parameters</scope><name>get_road_width</name></member>
       <member refid="class_parameters_1ac5da3d531558c09300be6c66830ea070" prot="public" virt="non-virtual"><scope>Parameters</scope><name>get_serve_distance</name></member>

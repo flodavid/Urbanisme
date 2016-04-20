@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vector',['vector',['../class_field.html#aff23182d4181acc76ba1fee91946d8e0',1,'Field']]]
+  ['operator_3c_3c',['operator&lt;&lt;',['../class_coordinates.html#a268a38d2e3e1406f2fd52bf82e467110',1,'Coordinates']]]
 ];

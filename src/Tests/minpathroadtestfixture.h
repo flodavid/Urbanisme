@@ -42,10 +42,26 @@ public:
      */
     void tearDown();
 
+    /**
+     * @test de la méthode calcRoadDistance() entre des parcelles "reliées" par des routes
+     * La méthode doit alors retourner une valeur supérieure à 0
+     */
     void test_validsPath();
+    /**
+     * @test de la méthode calcRoadDistance() entre une parcelle et elle-même
+     * La méthode doit alors retourner 0
+     */
     void test_sameParcel();
+    /**
+     * @test de la méthode calcRoadDistance() entre des parcelles non "reliées" par des routes
+     * La méthode doit alors retourner l'infini
+     */
     void test_invalidsPath();
     
+    /**
+     * @test d'un find() sur un vecteur de coordonnée, utilisé dans recCalcRoadDistance,
+     * lors de l'ajout d'un voisin d'une route
+     */
     void test_findVisisted();
 };
 

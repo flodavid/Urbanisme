@@ -50,6 +50,42 @@ Tests sur la méthode calcRoadDistance() de la classe \fBResolution\fP
 
 .PP
 Opérations avant les tests\&. Initialisation 
+.SS "void MinPathRoadTestFixture::test_findVisisted ()"
+
+.PP
+\fBTest\fP
+.RS 4
+d'un find() sur un vecteur de coordonnée, utilisé dans recCalcRoadDistance, lors de l'ajout d'un voisin d'une route 
+.RE
+.PP
+
+.SS "void MinPathRoadTestFixture::test_invalidsPath ()"
+
+.PP
+\fBTest\fP
+.RS 4
+de la méthode calcRoadDistance() entre des parcelles non 'reliées' par des routes La méthode doit alors retourner l'infini 
+.RE
+.PP
+
+.SS "void MinPathRoadTestFixture::test_sameParcel ()"
+
+.PP
+\fBTest\fP
+.RS 4
+de la méthode calcRoadDistance() entre une parcelle et elle-même La méthode doit alors retourner 0 
+.RE
+.PP
+
+.SS "void MinPathRoadTestFixture::test_validsPath ()"
+
+.PP
+\fBTest\fP
+.RS 4
+de la méthode calcRoadDistance() entre des parcelles 'reliées' par des routes La méthode doit alors retourner une valeur supérieure à 0 
+.RE
+.PP
+
 
 .SH "Author"
 .PP 

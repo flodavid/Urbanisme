@@ -95,17 +95,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aee5874369769e870df7eb56fc0e28668"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee5874369769e870df7eb56fc0e28668"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Resolution</b> (const <a class="el" href="class_field.html">Field</a> &amp;_field, const <a class="el" href="class_parameters.html">Parameters</a> &amp;_params)</td></tr>
+<tr class="memitem:aee5874369769e870df7eb56fc0e28668"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#aee5874369769e870df7eb56fc0e28668">Resolution</a> (const <a class="el" href="class_field.html">Field</a> &amp;_field, const <a class="el" href="class_parameters.html">Parameters</a> &amp;_params)</td></tr>
 <tr class="separator:aee5874369769e870df7eb56fc0e28668"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a422f19851732418ba28a30473a79903a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#a422f19851732418ba28a30473a79903a">initNeighbourhoodManhattan</a> ()</td></tr>
+<tr class="separator:a422f19851732418ba28a30473a79903a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:abd8e338344e55a33ff6731feca59182f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#abd8e338344e55a33ff6731feca59182f">set_params</a> (const <a class="el" href="class_parameters.html">Parameters</a> &amp;_params)</td></tr>
 <tr class="memdesc:abd8e338344e55a33ff6731feca59182f"><td class="mdescLeft">&#160;</td><td class="mdescRight">set_params  <a href="#abd8e338344e55a33ff6731feca59182f">More...</a><br /></td></tr>
 <tr class="separator:abd8e338344e55a33ff6731feca59182f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5173a2312a8bb303bfc90f3844fb4e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#ab5173a2312a8bb303bfc90f3844fb4e3">increment_road_distance</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord, unsigned value) __attribute__((deprecated))</td></tr>
 <tr class="memdesc:ab5173a2312a8bb303bfc90f3844fb4e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">set_road_distance  <a href="#ab5173a2312a8bb303bfc90f3844fb4e3">More...</a><br /></td></tr>
 <tr class="separator:ab5173a2312a8bb303bfc90f3844fb4e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a422f19851732418ba28a30473a79903a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#a422f19851732418ba28a30473a79903a">initNeighbourhoodManhattan</a> ()</td></tr>
-<tr class="separator:a422f19851732418ba28a30473a79903a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a1509c394e3e18cfef17144d3a2cf9e0d"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#a1509c394e3e18cfef17144d3a2cf9e0d">evaluateTotalUsable</a> () const </td></tr>
 <tr class="separator:a1509c394e3e18cfef17144d3a2cf9e0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -126,7 +126,41 @@ Public Member Functions</h2></td></tr>
 <li>Minimiser la moyenne, la plus grande ou la somme des ratios entre distance des cellules par les routes et distance directe (distance Manhattan ou Euclidienne)</li>
 </ol>
 <p>On pourra éventuellement avoir plusieurs instances de <a class="el" href="class_field.html">Field</a> dans une <a class="el" href="class_resolution.html">Resolution</a>. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="aee5874369769e870df7eb56fc0e28668"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Resolution::Resolution </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_field.html">Field</a> &amp;&#160;</td>
+          <td class="paramname"><em>_field</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_parameters.html">Parameters</a> &amp;&#160;</td>
+          <td class="paramname"><em>_params</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Constructeur de la casse résolution </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_field</td><td>Surface sur laquelle on travaille </td></tr>
+    <tr><td class="paramname">_params</td><td>Paramètres du problème </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="acb691fc917fc10e4b1d331ad676aedd2"></a>
 <div class="memitem">
 <div class="memproto">
@@ -179,7 +213,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>createExample </p>
-<dl class="test"><dt><b><a class="el" href="test.html#_test000004">Test:</a></b></dt><dd></dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000009">Test:</a></b></dt><dd></dd></dl>
 <h6></h6>
 <p>Autres méthodes utiles </p><h6></h6>
 
