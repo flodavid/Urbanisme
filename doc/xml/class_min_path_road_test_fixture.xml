@@ -3,6 +3,7 @@
   <compounddef id="class_min_path_road_test_fixture" kind="class" language="C++" prot="public">
     <compoundname>MinPathRoadTestFixture</compoundname>
     <basecompoundref prot="public" virt="non-virtual">TestFixture</basecompoundref>
+    <includes refid="minpathroadtestfixture_8h" local="no">minpathroadtestfixture.h</includes>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="class_min_path_road_test_fixture_1a1adab448a0836db12998d138889bc445" prot="private" static="no" mutable="no">
         <type><ref refid="class_resolution" kindref="compound">Resolution</ref> *</type>
@@ -15,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Tests/minpathroadtestfixture.h" line="21" column="1" bodyfile="Tests/minpathroadtestfixture.h" bodystart="21" bodyend="-1"/>
+        <location file="Tests/minpathroadtestfixture.h" line="24" column="1" bodyfile="Tests/minpathroadtestfixture.h" bodystart="24" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_min_path_road_test_fixture_1abcc9e48bd0d1cd7cb30be04d8d36f7db" prot="private" static="no" mutable="no">
         <type><ref refid="class_coordinates" kindref="compound">Coordinates</ref> *</type>
@@ -28,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Tests/minpathroadtestfixture.h" line="23" column="1" bodyfile="Tests/minpathroadtestfixture.h" bodystart="23" bodyend="-1"/>
+        <location file="Tests/minpathroadtestfixture.h" line="26" column="1" bodyfile="Tests/minpathroadtestfixture.h" bodystart="26" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_min_path_road_test_fixture_1a7a9ca2dac9228134154f1ee6f51cd5fe" prot="private" static="no" mutable="no">
         <type><ref refid="class_coordinates" kindref="compound">Coordinates</ref> *</type>
@@ -41,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Tests/minpathroadtestfixture.h" line="24" column="1" bodyfile="Tests/minpathroadtestfixture.h" bodystart="24" bodyend="-1"/>
+        <location file="Tests/minpathroadtestfixture.h" line="27" column="1" bodyfile="Tests/minpathroadtestfixture.h" bodystart="27" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_min_path_road_test_fixture_1a3eb9fdc5b7b200b21a7df07e0eeccd34" prot="private" static="no" mutable="no">
         <type><ref refid="class_coordinates" kindref="compound">Coordinates</ref> *</type>
@@ -54,7 +55,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Tests/minpathroadtestfixture.h" line="26" column="1" bodyfile="Tests/minpathroadtestfixture.h" bodystart="26" bodyend="-1"/>
+        <location file="Tests/minpathroadtestfixture.h" line="29" column="1" bodyfile="Tests/minpathroadtestfixture.h" bodystart="29" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_min_path_road_test_fixture_1a71310d8b1b8b2770805d6801ea5dfe64" prot="private" static="no" mutable="no">
         <type><ref refid="class_coordinates" kindref="compound">Coordinates</ref> *</type>
@@ -67,7 +68,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Tests/minpathroadtestfixture.h" line="27" column="1" bodyfile="Tests/minpathroadtestfixture.h" bodystart="27" bodyend="-1"/>
+        <location file="Tests/minpathroadtestfixture.h" line="30" column="1" bodyfile="Tests/minpathroadtestfixture.h" bodystart="30" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_min_path_road_test_fixture_1a9d55437d063dfafef06b37ec30e57865" prot="private" static="no" mutable="no">
         <type>unsigned</type>
@@ -80,7 +81,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Tests/minpathroadtestfixture.h" line="30" column="1" bodyfile="Tests/minpathroadtestfixture.h" bodystart="30" bodyend="-1"/>
+        <location file="Tests/minpathroadtestfixture.h" line="33" column="1" bodyfile="Tests/minpathroadtestfixture.h" bodystart="33" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -90,12 +91,12 @@
         <argsstring>()</argsstring>
         <name>setUp</name>
         <briefdescription>
-        </briefdescription>
+<para>Opérations avant les tests. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
 <para>Initialisation </para>        </inbodydescription>
-        <location file="Tests/minpathroadtestfixture.h" line="33" column="1" bodyfile="Tests/minpathroadtestfixture.cpp" bodystart="8" bodyend="136"/>
+        <location file="Tests/minpathroadtestfixture.h" line="39" column="1" bodyfile="Tests/minpathroadtestfixture.cpp" bodystart="8" bodyend="136"/>
       </memberdef>
       <memberdef kind="function" id="class_min_path_road_test_fixture_1a8a98348749e6e748ad486dfa4086e166" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -103,12 +104,12 @@
         <argsstring>()</argsstring>
         <name>tearDown</name>
         <briefdescription>
-        </briefdescription>
+<para>Opérations après les tests. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Tests/minpathroadtestfixture.h" line="34" column="1" bodyfile="Tests/minpathroadtestfixture.cpp" bodystart="138" bodyend="146"/>
+        <location file="Tests/minpathroadtestfixture.h" line="43" column="1" bodyfile="Tests/minpathroadtestfixture.cpp" bodystart="138" bodyend="146"/>
       </memberdef>
       <memberdef kind="function" id="class_min_path_road_test_fixture_1ae0448460a924c47237cde215f4175886" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -121,7 +122,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Tests/minpathroadtestfixture.h" line="36" column="1" bodyfile="Tests/minpathroadtestfixture.cpp" bodystart="148" bodyend="161"/>
+        <location file="Tests/minpathroadtestfixture.h" line="45" column="1" bodyfile="Tests/minpathroadtestfixture.cpp" bodystart="148" bodyend="161"/>
       </memberdef>
       <memberdef kind="function" id="class_min_path_road_test_fixture_1a3e351654a409fea66809330d8a709a28" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -134,7 +135,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Tests/minpathroadtestfixture.h" line="37" column="1" bodyfile="Tests/minpathroadtestfixture.cpp" bodystart="163" bodyend="168"/>
+        <location file="Tests/minpathroadtestfixture.h" line="46" column="1" bodyfile="Tests/minpathroadtestfixture.cpp" bodystart="163" bodyend="168"/>
       </memberdef>
       <memberdef kind="function" id="class_min_path_road_test_fixture_1ad242362a0b16418a96613e9fac79e41c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -147,7 +148,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Tests/minpathroadtestfixture.h" line="38" column="1" bodyfile="Tests/minpathroadtestfixture.cpp" bodystart="170" bodyend="180"/>
+        <location file="Tests/minpathroadtestfixture.h" line="47" column="1" bodyfile="Tests/minpathroadtestfixture.cpp" bodystart="170" bodyend="180"/>
       </memberdef>
       <memberdef kind="function" id="class_min_path_road_test_fixture_1a2b35c21c61183aa973b0c5fe7f1af69c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -160,13 +161,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Tests/minpathroadtestfixture.h" line="40" column="1" bodyfile="Tests/minpathroadtestfixture.cpp" bodystart="183" bodyend="189"/>
+        <location file="Tests/minpathroadtestfixture.h" line="49" column="1" bodyfile="Tests/minpathroadtestfixture.cpp" bodystart="183" bodyend="189"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-    </detaileddescription>
+<para>Tests sur la méthode calcRoadDistance() de la classe <ref refid="class_resolution" kindref="compound">Resolution</ref> <xrefsect id="test_1_test000005"><xreftitle>Test</xreftitle><xrefdescription></xrefdescription></xrefsect></para>    </detaileddescription>
     <inheritancegraph>
       <node id="12">
         <label>MinPathRoadTestFixture</label>
@@ -189,7 +190,7 @@
         <label>CppUnit::TestFixture</label>
       </node>
     </collaborationgraph>
-    <location file="Tests/minpathroadtestfixture.h" line="19" column="1" bodyfile="Tests/minpathroadtestfixture.h" bodystart="18" bodyend="41"/>
+    <location file="Tests/minpathroadtestfixture.h" line="22" column="1" bodyfile="Tests/minpathroadtestfixture.h" bodystart="21" bodyend="50"/>
     <listofallmembers>
       <member refid="class_min_path_road_test_fixture_1abcc9e48bd0d1cd7cb30be04d8d36f7db" prot="private" virt="non-virtual"><scope>MinPathRoadTestFixture</scope><name>coord1</name></member>
       <member refid="class_min_path_road_test_fixture_1a7a9ca2dac9228134154f1ee6f51cd5fe" prot="private" virt="non-virtual"><scope>MinPathRoadTestFixture</scope><name>coord2</name></member>

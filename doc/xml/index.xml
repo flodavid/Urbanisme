@@ -145,12 +145,10 @@
   <compound refid="coordinates_8cpp" kind="file"><name>coordinates.cpp</name>
   </compound>
   <compound refid="coordinates_8h" kind="file"><name>coordinates.h</name>
-    <member refid="coordinates_8h_1a5ee5ff1d36013c0c89323bb6cf59674b" kind="define"><name>COORDINATES_H</name></member>
   </compound>
   <compound refid="_field_8cpp" kind="file"><name>Field.cpp</name>
   </compound>
   <compound refid="_field_8h" kind="file"><name>Field.h</name>
-    <member refid="_field_8h_1ab713cc8c65f445eedab26be097e145d8" kind="define"><name>FIELD_H</name></member>
     <member refid="_field_8h_1a5d74787dedbc4e11c1ab15bf487e61f8" kind="enum"><name>State</name></member>
     <member refid="_field_8h_1a5d74787dedbc4e11c1ab15bf487e61f8af879ae0b2c6d15a017ef2819e64fb4de" kind="enumvalue"><name>is_undefined</name></member>
     <member refid="_field_8h_1a5d74787dedbc4e11c1ab15bf487e61f8ae6b4dbad2531a7a25576e29a1170afb9" kind="enumvalue"><name>is_road</name></member>

@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
   <compounddef id="class_field" kind="class" language="C++" prot="public">
     <compoundname>Field</compoundname>
+    <includes refid="_field_8h" local="no">Field.h</includes>
       <sectiondef kind="user-defined">
       <memberdef kind="function" id="class_field_1a6baa2ec69d89a224f2cf96af8eac9250" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -16,7 +17,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="38" column="1" bodyfile="Engine/Field.cpp" bodystart="21" bodyend="28"/>
+        <location file="Engine/Field.h" line="42" column="1" bodyfile="Engine/Field.cpp" bodystart="21" bodyend="28"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="user-defined">
@@ -28,12 +29,12 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para><heading level="6"></heading>
+<para>Impression sur la sortie standard des entrées et sorties de la surface</para><para><heading level="6"></heading>
 </para><para>Affichage <heading level="6"></heading>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="87" column="1" bodyfile="Engine/Field.cpp" bodystart="37" bodyend="43"/>
+        <location file="Engine/Field.h" line="128" column="1" bodyfile="Engine/Field.cpp" bodystart="37" bodyend="43"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1ac8967b315219b2f8bc7728028e08c348" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -43,10 +44,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Impression sur la sortie standard de tous les états des parcelles de la surface </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="89" column="1" bodyfile="Engine/Field.cpp" bodystart="45" bodyend="55"/>
+        <location file="Engine/Field.h" line="132" column="1" bodyfile="Engine/Field.cpp" bodystart="45" bodyend="55"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="user-defined">
@@ -87,7 +88,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="98" column="1" bodyfile="Engine/Field.cpp" bodystart="63" bodyend="67"/>
+        <location file="Engine/Field.h" line="141" column="1" bodyfile="Engine/Field.cpp" bodystart="63" bodyend="67"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1a922548c81c4017574936f3820d9654c9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -113,7 +114,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="104" column="1" bodyfile="Engine/Field.cpp" bodystart="70" bodyend="73"/>
+        <location file="Engine/Field.h" line="147" column="1" bodyfile="Engine/Field.cpp" bodystart="70" bodyend="73"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1a1be958fe3bee4fca95b1cd10e85283a8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -139,7 +140,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="113" column="1" bodyfile="Engine/Field.cpp" bodystart="75" bodyend="112"/>
+        <location file="Engine/Field.h" line="156" column="1" bodyfile="Engine/Field.cpp" bodystart="75" bodyend="112"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="user-defined">
@@ -151,12 +152,12 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>=== Recherche de solutions ===</para><para><heading level="6"></heading>
+<para>=== Recherche de solutions === Doit générer une solution réalisable aléatoire</para><para><heading level="6"></heading>
 </para><para>=== Recherche de solutions ===/ <heading level="6"></heading>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="163" column="1" bodyfile="Engine/Field.cpp" bodystart="287" bodyend="295"/>
+        <location file="Engine/Field.h" line="209" column="1" bodyfile="Engine/Field.cpp" bodystart="287" bodyend="295"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="user-defined">
@@ -185,7 +186,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="121" column="1" bodyfile="Engine/Field.cpp" bodystart="120" bodyend="140"/>
+        <location file="Engine/Field.h" line="164" column="1" bodyfile="Engine/Field.cpp" bodystart="120" bodyend="140"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1ab7f0de6f1ee4d0a45b8d4946783d8738" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::list&lt; <ref refid="class_coordinates" kindref="compound">Coordinates</ref> &gt; *</type>
@@ -211,7 +212,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="138" column="1" bodyfile="Engine/Field.cpp" bodystart="150" bodyend="199"/>
+        <location file="Engine/Field.h" line="181" column="1" bodyfile="Engine/Field.cpp" bodystart="150" bodyend="199"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1ad38e9b89a990280215681e53798ccc70" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::list&lt; <ref refid="class_coordinates" kindref="compound">Coordinates</ref> &gt; *</type>
@@ -241,7 +242,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="144" column="1" bodyfile="Engine/Field.cpp" bodystart="201" bodyend="228"/>
+        <location file="Engine/Field.h" line="187" column="1" bodyfile="Engine/Field.cpp" bodystart="201" bodyend="228"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1a32d5e1cef872d4bc1b0c5edc8e1693bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -266,7 +267,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="159" column="1" bodyfile="Engine/Field.cpp" bodystart="256" bodyend="279"/>
+        <location file="Engine/Field.h" line="202" column="1" bodyfile="Engine/Field.cpp" bodystart="256" bodyend="279"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1acf140549c6ee19c9a4b813f60acdb7fa" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -307,7 +308,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="130" column="1" bodyfile="Engine/Field.cpp" bodystart="142" bodyend="148"/>
+        <location file="Engine/Field.h" line="173" column="1" bodyfile="Engine/Field.cpp" bodystart="142" bodyend="148"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1a1fce4188b56f3b4d595adc700c188e4b" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -337,7 +338,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="152" column="1" bodyfile="Engine/Field.cpp" bodystart="230" bodyend="254"/>
+        <location file="Engine/Field.h" line="195" column="1" bodyfile="Engine/Field.cpp" bodystart="230" bodyend="254"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
@@ -352,7 +353,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="16" column="1" bodyfile="Engine/Field.h" bodystart="16" bodyend="-1"/>
+        <location file="Engine/Field.h" line="20" column="1" bodyfile="Engine/Field.h" bodystart="20" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_field_1a007005989d2db13063f25c3d5156e017" prot="private" static="no" mutable="no">
         <type>unsigned</type>
@@ -365,7 +366,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="16" column="1" bodyfile="Engine/Field.h" bodystart="16" bodyend="-1"/>
+        <location file="Engine/Field.h" line="20" column="1" bodyfile="Engine/Field.h" bodystart="20" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_field_1a83c910de1f26c582c601b8065df8eb7f" prot="private" static="no" mutable="no">
         <type>std::list&lt; <ref refid="class_coordinates" kindref="compound">Coordinates</ref> &gt;</type>
@@ -378,7 +379,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="17" column="1" bodyfile="Engine/Field.h" bodystart="17" bodyend="-1"/>
+        <location file="Engine/Field.h" line="21" column="1" bodyfile="Engine/Field.h" bodystart="21" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_field_1a565770271ebc869961705df2ff8ffd68" prot="private" static="no" mutable="no">
         <type>std::vector&lt; std::vector&lt; State &gt; &gt;</type>
@@ -391,7 +392,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="19" column="1" bodyfile="Engine/Field.h" bodystart="19" bodyend="-1"/>
+        <location file="Engine/Field.h" line="23" column="1" bodyfile="Engine/Field.h" bodystart="23" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -414,7 +415,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="22" column="1" bodyfile="Engine/Field.cpp" bodystart="6" bodyend="10"/>
+        <location file="Engine/Field.h" line="26" column="1" bodyfile="Engine/Field.cpp" bodystart="6" bodyend="10"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1a45d6e6d09b8f8e46de62b40119d62c60" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -427,7 +428,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="23" column="1" bodyfile="Engine/Field.cpp" bodystart="12" bodyend="14"/>
+        <location file="Engine/Field.h" line="27" column="1" bodyfile="Engine/Field.cpp" bodystart="12" bodyend="14"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1ae12b592877dcb38b0bb8cbc8270b3cf9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>unsigned</type>
@@ -440,7 +441,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="26" column="1" bodyfile="Engine/Field.h" bodystart="26" bodyend="26"/>
+        <location file="Engine/Field.h" line="30" column="1" bodyfile="Engine/Field.h" bodystart="30" bodyend="30"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1a85cbce7b8cf8fc7d33bc9c5d7637fd0f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>unsigned</type>
@@ -453,7 +454,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="27" column="1" bodyfile="Engine/Field.h" bodystart="27" bodyend="27"/>
+        <location file="Engine/Field.h" line="31" column="1" bodyfile="Engine/Field.h" bodystart="31" bodyend="31"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1a43e0689560cee653e8eece3778cae287" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>unsigned</type>
@@ -466,7 +467,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="29" column="1" bodyfile="Engine/Field.h" bodystart="29" bodyend="29"/>
+        <location file="Engine/Field.h" line="33" column="1" bodyfile="Engine/Field.h" bodystart="33" bodyend="33"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1ac3c26822851b29438f6f9f0a6b505e3b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -483,7 +484,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="32" column="1" bodyfile="Engine/Field.h" bodystart="32" bodyend="33"/>
+        <location file="Engine/Field.h" line="36" column="1" bodyfile="Engine/Field.h" bodystart="36" bodyend="37"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1a820a5f4fcae3cd53264b4ec87748fe3b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -500,7 +501,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="34" column="1" bodyfile="Engine/Field.h" bodystart="34" bodyend="35"/>
+        <location file="Engine/Field.h" line="38" column="1" bodyfile="Engine/Field.h" bodystart="38" bodyend="39"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1a646c0e7d9c66c86b776b349eb9e08449" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -525,7 +526,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="44" column="1" bodyfile="Engine/Field.h" bodystart="44" bodyend="45"/>
+        <location file="Engine/Field.h" line="48" column="1" bodyfile="Engine/Field.h" bodystart="48" bodyend="49"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1a9d9b3de65984659c77ee86918362f4f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -561,7 +562,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="51" column="1" bodyfile="Engine/Field.h" bodystart="51" bodyend="52"/>
+        <location file="Engine/Field.h" line="55" column="1" bodyfile="Engine/Field.h" bodystart="55" bodyend="56"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1a5db3ca54219102e50ff4d9e0b9753d0b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -597,7 +598,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="59" column="1" bodyfile="Engine/Field.h" bodystart="59" bodyend="60"/>
+        <location file="Engine/Field.h" line="63" column="1" bodyfile="Engine/Field.h" bodystart="63" bodyend="64"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1a6dda638994b360483e67514a9ede9f15" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>State</type>
@@ -611,10 +612,19 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>=== Operators === </para>        </detaileddescription>
+<para>=== Operators === Retourne la parcelle de la surface aux coordonnées passées en paramètre <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Coordonnées de la parcelle </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>L&apos;état de la parcelle à la position des coordonnées, un State </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="64" column="1" bodyfile="Engine/Field.h" bodystart="64" bodyend="64"/>
+        <location file="Engine/Field.h" line="73" column="1" bodyfile="Engine/Field.h" bodystart="73" bodyend="73"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1a9a7a478e7f5d978e181b7fca88ddad3c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>State</type>
@@ -628,10 +638,19 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Opérateur [] avec des coordonnées sur la surface, retourne la parcelle de la surface aux coordonnées passées en paramètre <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Coordonnées de la parcelle </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>L&apos;état de la parcelle à la position des coordonnées, un State </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="65" column="1" bodyfile="Engine/Field.h" bodystart="65" bodyend="65"/>
+        <location file="Engine/Field.h" line="80" column="1" bodyfile="Engine/Field.h" bodystart="80" bodyend="80"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1a0b3e16dd4a4591025f0804e28c055ed4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::vector&lt; std::vector&lt; State &gt; &gt;::const_iterator</type>
@@ -639,12 +658,14 @@
         <argsstring>() const </argsstring>
         <name>begin</name>
         <briefdescription>
-        </briefdescription>
+<para>begin </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><simplesect kind="return"><para>un itérateur constant sur la première parcelle du <ref refid="class_field" kindref="compound">Field</ref> </para></simplesect>
+<simplesect kind="see"><para></para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="67" column="1" bodyfile="Engine/Field.h" bodystart="67" bodyend="67"/>
+        <location file="Engine/Field.h" line="87" column="1" bodyfile="Engine/Field.h" bodystart="87" bodyend="87"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1a83fc4c16a08cb4f8821baa02a93919f6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::vector&lt; std::vector&lt; State &gt; &gt;::const_iterator</type>
@@ -652,12 +673,14 @@
         <argsstring>() const </argsstring>
         <name>end</name>
         <briefdescription>
-        </briefdescription>
+<para>end </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><simplesect kind="return"><para>un itérateur constant sur la dernière parcelle du <ref refid="class_field" kindref="compound">Field</ref> </para></simplesect>
+<simplesect kind="see"><para></para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="68" column="1" bodyfile="Engine/Field.h" bodystart="68" bodyend="68"/>
+        <location file="Engine/Field.h" line="93" column="1" bodyfile="Engine/Field.h" bodystart="93" bodyend="93"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1a26b4af177a6fc1f44c1eb6d134d93e8b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::vector&lt; std::vector&lt; State &gt; &gt;::iterator</type>
@@ -665,12 +688,14 @@
         <argsstring>()</argsstring>
         <name>begin</name>
         <briefdescription>
-        </briefdescription>
+<para>begin </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><simplesect kind="return"><para>un itérateur sur la première parcelle du <ref refid="class_field" kindref="compound">Field</ref> </para></simplesect>
+<simplesect kind="see"><para></para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="70" column="1" bodyfile="Engine/Field.h" bodystart="70" bodyend="70"/>
+        <location file="Engine/Field.h" line="99" column="1" bodyfile="Engine/Field.h" bodystart="99" bodyend="99"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1a7c2df079326a7a28ab5e664acce0e80a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::vector&lt; std::vector&lt; State &gt; &gt;::iterator</type>
@@ -678,12 +703,14 @@
         <argsstring>()</argsstring>
         <name>end</name>
         <briefdescription>
-        </briefdescription>
+<para>end </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><simplesect kind="return"><para>un itérateur sur la dernière parcelle du <ref refid="class_field" kindref="compound">Field</ref> </para></simplesect>
+<simplesect kind="see"><para></para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="71" column="1" bodyfile="Engine/Field.h" bodystart="71" bodyend="71"/>
+        <location file="Engine/Field.h" line="105" column="1" bodyfile="Engine/Field.h" bodystart="105" bodyend="105"/>
       </memberdef>
       <memberdef kind="function" id="class_field_1a7ef9953a89e48972a0b6ba2652707911" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -696,7 +723,7 @@
 <para>TODO </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="168" column="1"/>
+        <location file="Engine/Field.h" line="214" column="1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="friend">
@@ -706,12 +733,13 @@
         <argsstring>()</argsstring>
         <name>std::vector</name>
         <briefdescription>
-        </briefdescription>
+<para>std::vector&lt;State&gt;::const_iterator::operator ++ </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><simplesect kind="return"><para>Un itérateur constant sur la surface </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="75" column="1"/>
+        <location file="Engine/Field.h" line="113" column="1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-static-func">
@@ -727,14 +755,14 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Field.h" line="82" column="1" bodyfile="Engine/Field.h" bodystart="82" bodyend="83"/>
+        <location file="Engine/Field.h" line="120" column="1" bodyfile="Engine/Field.h" bodystart="120" bodyend="121"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-    </detaileddescription>
-    <location file="Engine/Field.h" line="13" column="1" bodyfile="Engine/Field.h" bodystart="12" bodyend="169"/>
+<para>Classe représentant la surface -le terrain- et contenant les opérations que l&apos;on effectue sur celui-ci. L&apos;état d&apos;une instance de cette classe à la fin de l&apos;algorithme représente une solution trouvée après la recherche. On peut donc avoir plusieurs <ref refid="class_field" kindref="compound">Field</ref> lors d&apos;une exécution. </para>    </detaileddescription>
+    <location file="Engine/Field.h" line="17" column="1" bodyfile="Engine/Field.h" bodystart="16" bodyend="215"/>
     <listofallmembers>
       <member refid="class_field_1a646c0e7d9c66c86b776b349eb9e08449" prot="public" virt="non-virtual"><scope>Field</scope><name>add_in_out</name></member>
       <member refid="class_field_1a9d9b3de65984659c77ee86918362f4f8" prot="public" virt="non-virtual"><scope>Field</scope><name>add_in_out</name></member>

@@ -1,4 +1,3 @@
-#pragma once
 #ifndef COORDINATES_H
 #define COORDINATES_H
 
@@ -7,6 +6,9 @@
 #include <cmath>
 #include <algorithm> /// @SEE Normalement inutile, permet de ne pas utilise -lm lors compilation
 
+/**
+ * Représentation et opérations simple sur des coordonnées dans un plan.
+ */
 class Coordinates
 {
 

@@ -21,9 +21,9 @@ add_executable(sim-city stdafx.cpp ${sim-city_SRCS} ${HEADERS})
 
 install(TARGETS sim-city RUNTIME DESTINATION bin)
 
-if (UNIX)
+#if (UNIX)
     add_subdirectory(Tests)
-endif (UNIX)
+#endif (UNIX)
 
 # UNUSED
 

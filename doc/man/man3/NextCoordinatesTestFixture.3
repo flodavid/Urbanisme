@@ -1,4 +1,4 @@
-.TH "NextCoordinatesTestFixture" 3 "Tue Apr 19 2016" "Urbanisme" \" -*- nroff -*-
+.TH "NextCoordinatesTestFixture" 3 "Wed Apr 20 2016" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -7,6 +7,8 @@ NextCoordinatesTestFixture \-
 .br
 .PP
 .PP
+\fC#include <test_next_coordinates\&.h>\fP
+.PP
 Inherits TestFixture\&.
 .SS "Public Member Functions"
 
@@ -14,9 +16,11 @@ Inherits TestFixture\&.
 .ti -1c
 .RI "void \fBsetUp\fP ()"
 .br
+.RI "\fIOpérations avant les tests\&. \fP"
 .ti -1c
 .RI "void \fBtearDown\fP ()"
 .br
+.RI "\fIOpérations après les tests\&. \fP"
 .ti -1c
 .RI "void \fBtest_validsCoords\fP ()"
 .br
@@ -24,6 +28,16 @@ Inherits TestFixture\&.
 .RI "void \fBtest_invalidsCoords\fP ()"
 .br
 .in -1c
+.SH "Detailed Description"
+.PP 
+Tests sur la méthode nextCoordinates() de la classe \fBField\fP 
+.PP
+\fBTest\fP
+.RS 4
+
+.RE
+.PP
+
 
 .SH "Author"
 .PP 

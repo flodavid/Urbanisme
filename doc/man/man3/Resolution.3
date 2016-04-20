@@ -1,4 +1,4 @@
-.TH "Resolution" 3 "Tue Apr 19 2016" "Urbanisme" \" -*- nroff -*-
+.TH "Resolution" 3 "Wed Apr 20 2016" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -6,6 +6,8 @@ Resolution \-
 .SH SYNOPSIS
 .br
 .PP
+.PP
+\fC#include <Resolution\&.h>\fP
 .SS "Public Member Functions"
 
 .in +1c
@@ -58,6 +60,16 @@ Resolution \-
 .RI "unsigned \fBcalcRoadDistance\fP (const \fBCoordinates\fP &coord1, const \fBCoordinates\fP &coord2) const "
 .br
 .in -1c
+.SH "Detailed Description"
+.PP 
+Classe chargée de travailler sur les données en entrée du problème pour trouver des solution réalisables, opitmisant les objectifs suivants :
+.IP "1." 4
+Maximimiser les nombres de parcelles exploitables
+.IP "2." 4
+Minimiser la moyenne, la plus grande ou la somme des ratios entre distance des cellules par les routes et distance directe (distance Manhattan ou Euclidienne)
+.PP
+.PP
+On pourra éventuellement avoir plusieurs instances de \fBField\fP dans une \fBResolution\fP\&. 
 .SH "Member Function Documentation"
 .PP 
 .SS "unsigned Resolution::calcRoadDistance (const \fBCoordinates\fP & coord1, const \fBCoordinates\fP & coord2) const"

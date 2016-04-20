@@ -14,6 +14,10 @@
 #include "../coordinates.h"
 #include "../Field.h"
 
+/**
+ * Tests sur la méthode nextCoordinates() de la classe Field
+ * @test
+ */
 class NextCoordinatesTestFixture : public CppUnit::TestFixture {
  private:
     Field* resol;
@@ -30,7 +34,13 @@ class NextCoordinatesTestFixture : public CppUnit::TestFixture {
     Coordinates* expected_next_last_col;
 
 public:
+    /**
+     * @brief Opérations avant les tests
+     */
     void setUp();
+    /**
+     * @brief Opérations après les tests
+     */
     void tearDown();
 
     void test_validsCoords();

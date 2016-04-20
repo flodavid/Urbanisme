@@ -1,4 +1,4 @@
-.TH "Field" 3 "Tue Apr 19 2016" "Urbanisme" \" -*- nroff -*-
+.TH "Field" 3 "Wed Apr 20 2016" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -6,6 +6,8 @@ Field \-
 .SH SYNOPSIS
 .br
 .PP
+.PP
+\fC#include <Field\&.h>\fP
 .SS "Public Member Functions"
 
 .in +1c
@@ -45,15 +47,19 @@ Field \-
 .ti -1c
 .RI "std::vector< std::vector< State > >::const_iterator \fBbegin\fP () const "
 .br
+.RI "\fIbegin \fP"
 .ti -1c
 .RI "std::vector< std::vector< State > >::const_iterator \fBend\fP () const "
 .br
+.RI "\fIend \fP"
 .ti -1c
 .RI "std::vector< std::vector< State > >::iterator \fBbegin\fP ()"
 .br
+.RI "\fIbegin \fP"
 .ti -1c
 .RI "std::vector< std::vector< State > >::iterator \fBend\fP ()"
 .br
+.RI "\fIend \fP"
 .ti -1c
 .RI "void \fBdeleteUselessRoad\fP ()"
 .br
@@ -124,6 +130,7 @@ Field \-
 .ti -1c
 .RI "std::vector< State >::const_iterator & \fBstd::vector\fP ()"
 .br
+.RI "\fIstd::vector<State>::const_iterator::operator ++ \fP"
 .in -1c
 .in +1c
 .ti -1c
@@ -139,6 +146,9 @@ Field \-
 .RI "void \fBdefineUsables\fP (unsigned servingDistance)"
 .br
 .in -1c
+.SH "Detailed Description"
+.PP 
+Classe représentant la surface -le terrain- et contenant les opérations que l'on effectue sur celui-ci\&. L'état d'une instance de cette classe à la fin de l'algorithme représente une solution trouvée après la recherche\&. On peut donc avoir plusieurs \fBField\fP lors d'une exécution\&. 
 .SH "Member Function Documentation"
 .PP 
 .SS "void Field::add_in_out (const \fBCoordinates\fP & coord)\fC [inline]\fP"
@@ -173,7 +183,49 @@ Ajoute une route à partir de coordonnées
 .PP
 
 .SS "State Field::at (const \fBCoordinates\fP & pos) const\fC [inline]\fP"
-=== Operators === 
+=== Operators === Retourne la parcelle de la surface aux coordonnées passées en paramètre 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpos\fP Coordonnées de la parcelle 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+L'état de la parcelle à la position des coordonnées, un State 
+.RE
+.PP
+
+.SS "std::vector<std::vector<State> >::const_iterator Field::begin () const\fC [inline]\fP"
+
+.PP
+begin 
+.PP
+\fBReturns:\fP
+.RS 4
+un itérateur constant sur la première parcelle du \fBField\fP 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+.RE
+.PP
+
+.SS "std::vector<std::vector<State> >::iterator Field::begin ()\fC [inline]\fP"
+
+.PP
+begin 
+.PP
+\fBReturns:\fP
+.RS 4
+un itérateur sur la première parcelle du \fBField\fP 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+.RE
+.PP
+
 .SS "bool Field::contains (int x, int y) const"
 === Fonctions sur les coordonnées === Effectue un test d'appartenance des coordonnées à la matrice 
 .PP
@@ -219,6 +271,36 @@ Définit les parcelles dans le voisinage d'une route comme étant exploitables
 
 .SS "void Field::deleteUselessRoad ()"
 TODO 
+.SS "std::vector<std::vector<State> >::const_iterator Field::end () const\fC [inline]\fP"
+
+.PP
+end 
+.PP
+\fBReturns:\fP
+.RS 4
+un itérateur constant sur la dernière parcelle du \fBField\fP 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+.RE
+.PP
+
+.SS "std::vector<std::vector<State> >::iterator Field::end ()\fC [inline]\fP"
+
+.PP
+end 
+.PP
+\fBReturns:\fP
+.RS 4
+un itérateur sur la dernière parcelle du \fBField\fP 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+.RE
+.PP
+
 .SS "static \fBCoordinates\fP& Field::first ()\fC [inline]\fP, \fC [static]\fP"
 Retourne la première coordonée de la matrice, elle peut ensuite être modifée pour servir d'itérateur à l'aide de \fBnextCoordinates()\fP 
 .PP
@@ -242,7 +324,7 @@ une référence, non constante, sur la première coordonnée de la matrice
 .SS ""
 
 .SS "void Field::generateRandomSolution ()"
-=== Recherche de solutions ===
+=== Recherche de solutions === Doit générer une solution réalisable aléatoire
 .PP
 .SS ""
 .PP
@@ -291,6 +373,20 @@ vrai si il y a une coordonnées, faux si on est à la fin ou en dehors de la sur
 .RE
 .PP
 
+.SS "State Field::operator[] (const \fBCoordinates\fP & pos) const\fC [inline]\fP"
+Opérateur [] avec des coordonnées sur la surface, retourne la parcelle de la surface aux coordonnées passées en paramètre 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpos\fP Coordonnées de la parcelle 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+L'état de la parcelle à la position des coordonnées, un State 
+.RE
+.PP
+
 .SS "void Field::resizeWithDimensions ()"
 
 .SS ""
@@ -299,11 +395,27 @@ Setters
 .SS ""
 
 .SS "void Field::show_ins_and_outs () const"
-
+Impression sur la sortie standard des entrées et sorties de la surface
+.PP
 .SS ""
 .PP
 Affichage 
 .SS ""
+
+.SS "void Field::show_states () const"
+Impression sur la sortie standard de tous les états des parcelles de la surface 
+.SH "Friends And Related Function Documentation"
+.PP 
+.SS "std::vector<State>::const_iterator& std::vector ()\fC [friend]\fP"
+
+.PP
+std::vector<State>::const_iterator::operator ++ 
+.PP
+\fBReturns:\fP
+.RS 4
+Un itérateur constant sur la surface 
+.RE
+.PP
 
 
 .SH "Author"

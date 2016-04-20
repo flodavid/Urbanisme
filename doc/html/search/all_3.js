@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['euclideandistance',['euclideanDistance',['../class_coordinates.html#acdfe893588fc29d44ea654e18424acbd',1,'Coordinates']]],
-  ['evaluateratio',['evaluateRatio',['../class_resolution.html#aeba706393d4c5d6849e7ed20a36da491',1,'Resolution']]],
-  ['evaluatetotalusable',['evaluateTotalUsable',['../class_resolution.html#a1509c394e3e18cfef17144d3a2cf9e0d',1,'Resolution']]]
+  ['defineusables',['defineUsables',['../class_field.html#a32d5e1cef872d4bc1b0c5edc8e1693bd',1,'Field']]],
+  ['deleteuselessroad',['deleteUselessRoad',['../class_field.html#a7ef9953a89e48972a0b6ba2652707911',1,'Field']]],
+  ['deprecated_20list',['Deprecated List',['../deprecated.html',1,'']]]
 ];

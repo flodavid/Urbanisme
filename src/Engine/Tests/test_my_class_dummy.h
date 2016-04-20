@@ -13,7 +13,11 @@
 
 #include "my_class.h"
 
-
+/**
+ * @brief Classe 'coquille' : ne pas utiliser
+ * Tests sur les méthodes de la classe Dummy
+ * @test
+ */
 class MyClassTestFixture : public CppUnit::TestFixture {
  private:
 

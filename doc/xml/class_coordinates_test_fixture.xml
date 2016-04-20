@@ -3,6 +3,7 @@
   <compounddef id="class_coordinates_test_fixture" kind="class" language="C++" prot="public">
     <compoundname>CoordinatesTestFixture</compoundname>
     <basecompoundref prot="public" virt="non-virtual">TestFixture</basecompoundref>
+    <includes refid="test__coordinates_8h" local="no">test_coordinates.h</includes>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="class_coordinates_test_fixture_1ae5cabd8757492bb52d167435950d5e7e" prot="private" static="no" mutable="no">
         <type><ref refid="class_coordinates" kindref="compound">Coordinates</ref> *</type>
@@ -15,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Tests/test_coordinates.h" line="18" column="1" bodyfile="Engine/Tests/test_coordinates.h" bodystart="18" bodyend="-1"/>
+        <location file="Engine/Tests/test_coordinates.h" line="21" column="1" bodyfile="Engine/Tests/test_coordinates.h" bodystart="21" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_coordinates_test_fixture_1a6537e091c84d4e6ad272fd8d640eeba8" prot="private" static="no" mutable="no">
         <type><ref refid="class_coordinates" kindref="compound">Coordinates</ref> *</type>
@@ -28,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Tests/test_coordinates.h" line="19" column="1" bodyfile="Engine/Tests/test_coordinates.h" bodystart="19" bodyend="-1"/>
+        <location file="Engine/Tests/test_coordinates.h" line="22" column="1" bodyfile="Engine/Tests/test_coordinates.h" bodystart="22" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_coordinates_test_fixture_1ad28e5b12614e238b5dfa0ffa12d7ca39" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -41,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Tests/test_coordinates.h" line="22" column="1" bodyfile="Engine/Tests/test_coordinates.h" bodystart="22" bodyend="-1"/>
+        <location file="Engine/Tests/test_coordinates.h" line="25" column="1" bodyfile="Engine/Tests/test_coordinates.h" bodystart="25" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_coordinates_test_fixture_1af9de28b420bda3c2d43124e5ebf1b50f" prot="private" static="no" mutable="no">
         <type>float</type>
@@ -54,7 +55,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Tests/test_coordinates.h" line="24" column="1" bodyfile="Engine/Tests/test_coordinates.h" bodystart="24" bodyend="-1"/>
+        <location file="Engine/Tests/test_coordinates.h" line="27" column="1" bodyfile="Engine/Tests/test_coordinates.h" bodystart="27" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -64,12 +65,12 @@
         <argsstring>()</argsstring>
         <name>setUp</name>
         <briefdescription>
-        </briefdescription>
+<para>Opérations avant les tests. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Tests/test_coordinates.h" line="27" column="1" bodyfile="Engine/Tests/test_coordinates.cpp" bodystart="5" bodyend="14"/>
+        <location file="Engine/Tests/test_coordinates.h" line="33" column="1" bodyfile="Engine/Tests/test_coordinates.cpp" bodystart="5" bodyend="14"/>
       </memberdef>
       <memberdef kind="function" id="class_coordinates_test_fixture_1ae71f932ef88a90c4c4fbfd8329dd3e38" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -77,12 +78,12 @@
         <argsstring>()</argsstring>
         <name>tearDown</name>
         <briefdescription>
-        </briefdescription>
+<para>Opérations après les tests. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Tests/test_coordinates.h" line="28" column="1" bodyfile="Engine/Tests/test_coordinates.cpp" bodystart="16" bodyend="18"/>
+        <location file="Engine/Tests/test_coordinates.h" line="37" column="1" bodyfile="Engine/Tests/test_coordinates.cpp" bodystart="16" bodyend="18"/>
       </memberdef>
       <memberdef kind="function" id="class_coordinates_test_fixture_1a4377358e70e7b69f1539a9f89cda3c61" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -95,7 +96,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Tests/test_coordinates.h" line="30" column="1" bodyfile="Engine/Tests/test_coordinates.cpp" bodystart="20" bodyend="24"/>
+        <location file="Engine/Tests/test_coordinates.h" line="39" column="1" bodyfile="Engine/Tests/test_coordinates.cpp" bodystart="20" bodyend="24"/>
       </memberdef>
       <memberdef kind="function" id="class_coordinates_test_fixture_1a631679568eccbfb84a4f88151943a047" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -108,13 +109,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Tests/test_coordinates.h" line="31" column="1" bodyfile="Engine/Tests/test_coordinates.cpp" bodystart="26" bodyend="30"/>
+        <location file="Engine/Tests/test_coordinates.h" line="40" column="1" bodyfile="Engine/Tests/test_coordinates.cpp" bodystart="26" bodyend="30"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-    </detaileddescription>
+<para>Tests sur les méthodes de la classe <ref refid="class_coordinates" kindref="compound">Coordinates</ref> </para>    </detaileddescription>
     <inheritancegraph>
       <node id="3">
         <label>TestFixture</label>
@@ -137,7 +138,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Engine/Tests/test_coordinates.h" line="16" column="1" bodyfile="Engine/Tests/test_coordinates.h" bodystart="16" bodyend="33"/>
+    <location file="Engine/Tests/test_coordinates.h" line="19" column="1" bodyfile="Engine/Tests/test_coordinates.h" bodystart="19" bodyend="42"/>
     <listofallmembers>
       <member refid="class_coordinates_test_fixture_1ae5cabd8757492bb52d167435950d5e7e" prot="private" virt="non-virtual"><scope>CoordinatesTestFixture</scope><name>coord1</name></member>
       <member refid="class_coordinates_test_fixture_1a6537e091c84d4e6ad272fd8d640eeba8" prot="private" virt="non-virtual"><scope>CoordinatesTestFixture</scope><name>coord2</name></member>

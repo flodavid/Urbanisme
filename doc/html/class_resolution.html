@@ -90,6 +90,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Resolution Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_resolution_8h_source.html">Resolution.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -118,7 +120,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acb691fc917fc10e4b1d331ad676aedd2"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#acb691fc917fc10e4b1d331ad676aedd2">calcRoadDistance</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord1, const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord2) const </td></tr>
 <tr class="separator:acb691fc917fc10e4b1d331ad676aedd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Classe chargée de travailler sur les données en entrée du problème pour trouver des solution réalisables, opitmisant les objectifs suivants :</p><ol type="1">
+<li>Maximimiser les nombres de parcelles exploitables</li>
+<li>Minimiser la moyenne, la plus grande ou la somme des ratios entre distance des cellules par les routes et distance directe (distance Manhattan ou Euclidienne)</li>
+</ol>
+<p>On pourra éventuellement avoir plusieurs instances de <a class="el" href="class_field.html">Field</a> dans une <a class="el" href="class_resolution.html">Resolution</a>. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="acb691fc917fc10e4b1d331ad676aedd2"></a>
 <div class="memitem">
 <div class="memproto">
@@ -171,7 +179,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>createExample </p>
-<dl class="test"><dt><b><a class="el" href="test.html#_test000001">Test:</a></b></dt><dd></dd></dl>
+<dl class="test"><dt><b><a class="el" href="test.html#_test000004">Test:</a></b></dt><dd></dd></dl>
 <h6></h6>
 <p>Autres méthodes utiles </p><h6></h6>
 

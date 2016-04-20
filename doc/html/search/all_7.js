@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['manhattandistance',['manhattanDistance',['../class_coordinates.html#addd99c33f1c15c4fd21a4e54f5607abf',1,'Coordinates']]],
-  ['manhattanratiobetween2parcels',['manhattanRatioBetween2Parcels',['../class_resolution.html#a1f5c3f17b49886ca79e09103beebebe8',1,'Resolution']]],
-  ['minpathroadtestfixture',['MinPathRoadTestFixture',['../class_min_path_road_test_fixture.html',1,'']]],
-  ['myclasstestfixture',['MyClassTestFixture',['../class_my_class_test_fixture.html',1,'']]]
+  ['increment_5froad_5fdistance',['increment_road_distance',['../class_resolution.html#ab5173a2312a8bb303bfc90f3844fb4e3',1,'Resolution']]],
+  ['initneighbourhoodmanhattan',['initNeighbourhoodManhattan',['../class_resolution.html#a422f19851732418ba28a30473a79903a',1,'Resolution']]]
 ];

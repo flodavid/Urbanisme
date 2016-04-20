@@ -1,6 +1,4 @@
 #pragma once
-#ifndef FIELD_H
-#define FIELD_H
 
 #include <list>
 #include <vector>
@@ -9,6 +7,12 @@
 
 enum State{is_undefined= -1, is_road, is_usable, is_unusable};
 
+/**
+ * Classe représentant la surface -le terrain- et contenant les opérations que l'on
+ * effectue sur celui-ci. L'état d'une instance de cette classe à la fin de l'algorithme
+ * représente une solution trouvée après la recherche.
+ * On peut donc avoir plusieurs Field lors d'une exécution.
+ */
 class Field
 {
 
@@ -61,17 +65,51 @@ public:
 
 /**=== Operators ===**/
 public:
+    /**
+     * Retourne la parcelle de la surface aux coordonnées passées en paramètre
+     * @param pos Coordonnées de la parcelle
+     * @return L'état de la parcelle à la position des coordonnées, un State
+     */
     inline State at(const Coordinates& pos) const { return parcels[pos.row][pos.col]; }
+    /**
+     * Opérateur [] avec des coordonnées sur la surface,
+     * retourne la parcelle de la surface aux coordonnées passées en paramètre
+     * @param pos Coordonnées de la parcelle
+     * @return L'état de la parcelle à la position des coordonnées, un State
+     */
     State operator[](const Coordinates& pos) const { return parcels[pos.row][pos.col]; }
 
+    /**
+     * @brief begin
+     * @return un itérateur constant sur la première parcelle du Field
+     * @see
+     */
     std::vector<std::vector<State>>::const_iterator begin() const { return parcels.cbegin(); }
+    /**
+     * @brief end
+     * @return un itérateur constant sur la dernière parcelle du Field
+     * @see
+     */
     std::vector<std::vector<State>>::const_iterator end() const { return parcels.cend(); }
-
+    /**
+     * @brief begin
+     * @return un itérateur sur la première parcelle du Field
+     * @see
+     */
     std::vector<std::vector<State>>::iterator begin() { return parcels.begin(); }
+    /**
+     * @brief end
+     * @return un itérateur sur la dernière parcelle du Field
+     * @see
+     */
     std::vector<std::vector<State>>::iterator end() { return parcels.end(); }
 
 //    friend std::vector<std::vector<State>>::const_iterator begin(const Field& f) { return f.begin(); }
 //    friend std::vector<std::vector<State>>::const_iterator end(const Field& f) { return f.end(); }
+    /**
+     * @brief std::vector<State>::const_iterator::operator ++
+     * @return Un itérateur constant sur la surface
+     */
     friend std::vector<State>::const_iterator& std::vector<State>::const_iterator::operator++();
 
     /**
@@ -84,8 +122,13 @@ public:
 
 public:
 /* Affichage */
+    /**
+     * Impression sur la sortie standard des entrées et sorties de la surface
+     */
     void show_ins_and_outs() const;
-
+    /**
+     * Impression sur la sortie standard de tous les états des parcelles de la surface
+     */
     void show_states() const;
 
 /**=== Fonctions sur les coordonnées ===**/
@@ -160,6 +203,9 @@ public:
 
 //@}
 /**=== Recherche de solutions	===**/
+    /**
+     * Doit générer une solution réalisable aléatoire
+     */
     void generateRandomSolution();
     
     /**
@@ -167,5 +213,3 @@ public:
      */
     void deleteUselessRoad();
 };
-
-#endif //FIELD_H

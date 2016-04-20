@@ -6,6 +6,15 @@
 #include "Engine/Parameters.h"
 #include "Engine/coordinates.h"
 
+/**
+ * Classe chargée de travailler sur les données en entrée du problème pour trouver des
+ * solution réalisables, opitmisant les objectifs suivants :
+ * 1. Maximimiser les nombres de parcelles exploitables
+ * 2. Minimiser la moyenne, la plus grande ou la somme des ratios entre distance
+ * des cellules par les routes et distance directe (distance Manhattan ou Euclidienne)
+ * 
+ * On pourra éventuellement avoir plusieurs instances de Field dans une Resolution.
+ */
 class Resolution
 {
 private:

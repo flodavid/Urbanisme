@@ -1,4 +1,4 @@
-.TH "CoordinatesTestFixture" 3 "Tue Apr 19 2016" "Urbanisme" \" -*- nroff -*-
+.TH "CoordinatesTestFixture" 3 "Wed Apr 20 2016" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -7,6 +7,8 @@ CoordinatesTestFixture \-
 .br
 .PP
 .PP
+\fC#include <test_coordinates\&.h>\fP
+.PP
 Inherits TestFixture\&.
 .SS "Public Member Functions"
 
@@ -14,9 +16,11 @@ Inherits TestFixture\&.
 .ti -1c
 .RI "void \fBsetUp\fP ()"
 .br
+.RI "\fIOpérations avant les tests\&. \fP"
 .ti -1c
 .RI "void \fBtearDown\fP ()"
 .br
+.RI "\fIOpérations après les tests\&. \fP"
 .ti -1c
 .RI "void \fBtest_calcManhattan\fP ()"
 .br
@@ -24,6 +28,9 @@ Inherits TestFixture\&.
 .RI "void \fBtest_calcEuclidean\fP ()"
 .br
 .in -1c
+.SH "Detailed Description"
+.PP 
+Tests sur les méthodes de la classe \fBCoordinates\fP 
 
 .SH "Author"
 .PP 

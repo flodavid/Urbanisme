@@ -14,7 +14,10 @@
 #include "../Resolution.h"
 #include "../Engine/coordinates.h"
 
-
+/**
+ * Tests sur la méthode calcRoadDistance() de la classe Resolution
+ * @test
+ */
 class MinPathRoadTestFixture : public CppUnit::TestFixture
 {
 private:
@@ -30,7 +33,13 @@ private:
     unsigned expected_dist;
     
 public:
+    /**
+     * @brief Opérations avant les tests
+     */
     void setUp();
+    /**
+     * @brief Opérations après les tests
+     */
     void tearDown();
 
     void test_validsPath();

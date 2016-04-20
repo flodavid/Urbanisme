@@ -3,6 +3,7 @@
   <compounddef id="class_my_class_test_fixture" kind="class" language="C++" prot="public">
     <compoundname>MyClassTestFixture</compoundname>
     <basecompoundref prot="public" virt="non-virtual">TestFixture</basecompoundref>
+    <includes refid="test__my__class__dummy_8h" local="no">test_my_class_dummy.h</includes>
       <sectiondef kind="public-func">
       <memberdef kind="function" id="class_my_class_test_fixture_1a4ab97c685fb4a7f192e3adbb47b17f54" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -15,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Tests/test_my_class_dummy.h" line="21" column="1" bodyfile="Engine/Tests/test_my_class_dummy.cpp" bodystart="3" bodyend="5"/>
+        <location file="Engine/Tests/test_my_class_dummy.h" line="25" column="1" bodyfile="Engine/Tests/test_my_class_dummy.cpp" bodystart="3" bodyend="5"/>
       </memberdef>
       <memberdef kind="function" id="class_my_class_test_fixture_1a956310478695bd922a29335d10abec9e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -28,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Tests/test_my_class_dummy.h" line="22" column="1" bodyfile="Engine/Tests/test_my_class_dummy.cpp" bodystart="7" bodyend="9"/>
+        <location file="Engine/Tests/test_my_class_dummy.h" line="26" column="1" bodyfile="Engine/Tests/test_my_class_dummy.cpp" bodystart="7" bodyend="9"/>
       </memberdef>
       <memberdef kind="function" id="class_my_class_test_fixture_1a65aaff5c7b7bad22137823a8a99f8c5c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -41,13 +42,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="Engine/Tests/test_my_class_dummy.h" line="24" column="1" bodyfile="Engine/Tests/test_my_class_dummy.cpp" bodystart="11" bodyend="18"/>
+        <location file="Engine/Tests/test_my_class_dummy.h" line="28" column="1" bodyfile="Engine/Tests/test_my_class_dummy.cpp" bodystart="11" bodyend="18"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Classe &apos;coquille&apos; : ne pas utiliser Tests sur les méthodes de la classe Dummy. </para>    </briefdescription>
     <detaileddescription>
-    </detaileddescription>
+<para><xrefsect id="test_1_test000002"><xreftitle>Test</xreftitle><xrefdescription></xrefdescription></xrefsect></para>    </detaileddescription>
     <inheritancegraph>
       <node id="17">
         <label>TestFixture</label>
@@ -70,7 +71,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="Engine/Tests/test_my_class_dummy.h" line="17" column="1" bodyfile="Engine/Tests/test_my_class_dummy.h" bodystart="17" bodyend="26"/>
+    <location file="Engine/Tests/test_my_class_dummy.h" line="21" column="1" bodyfile="Engine/Tests/test_my_class_dummy.h" bodystart="21" bodyend="30"/>
     <listofallmembers>
       <member refid="class_my_class_test_fixture_1a4ab97c685fb4a7f192e3adbb47b17f54" prot="public" virt="non-virtual"><scope>MyClassTestFixture</scope><name>setUp</name></member>
       <member refid="class_my_class_test_fixture_1a956310478695bd922a29335d10abec9e" prot="public" virt="non-virtual"><scope>MyClassTestFixture</scope><name>tearDown</name></member>

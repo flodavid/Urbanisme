@@ -118,7 +118,7 @@
 <codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>cout<sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
 <codeline lineno="43"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Field::show_states()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_field_1ac8967b315219b2f8bc7728028e08c348" kindref="member">Field::show_states</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="46"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_coordinates" kindref="compound">Coordinates</ref><sp/>coord=<sp/><ref refid="class_field_1aed3a78975e6a28b6f32be7c7f1a9e983" kindref="member">Field::first</ref>();</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/>{</highlight></codeline>

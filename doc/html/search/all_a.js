@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['resizewithdimensions',['resizeWithDimensions',['../class_field.html#a6baa2ec69d89a224f2cf96af8eac9250',1,'Field']]],
-  ['resolution',['Resolution',['../class_resolution.html',1,'']]]
+  ['operator_5b_5d',['operator[]',['../class_field.html#a9a7a478e7f5d978e181b7fca88ddad3c',1,'Field']]]
 ];

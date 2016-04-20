@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['resizewithdimensions',['resizeWithDimensions',['../class_field.html#a6baa2ec69d89a224f2cf96af8eac9250',1,'Field']]]
+  ['nextcoordinates',['nextCoordinates',['../class_field.html#a1be958fe3bee4fca95b1cd10e85283a8',1,'Field']]]
 ];
