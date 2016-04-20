@@ -172,11 +172,11 @@ public:
      * Surcharge de l'opérateur << de sortie sur flux
      * @param out Flux dans lequel on imprime les informations
      * @param Field Surface que l'on souhaite imprimer
-     * @return  Le flux en entrée sur lequel on a imprimé les informations des
-     * coordonnées passées en entrée
+     * @return  Le flux en entrée sur lequel on a imprimé les informations de la
+     * surface passée en entrée
      */
-    friend std::ostream& operator<<(std::ostream& out, const Field& coord)
-        { return coord.print(out); }
+    friend std::ostream& operator<<(std::ostream& out, const Field& field)
+    { return field.print(out); }
 
     /**=== Fonctions sur les coordonnées ===**/
     /**
