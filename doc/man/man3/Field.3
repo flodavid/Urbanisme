@@ -61,6 +61,9 @@ Field \-
 .br
 .RI "\fIend \fP"
 .ti -1c
+.RI "std::ostream & \fBprint\fP (std::ostream &out) const "
+.br
+.ti -1c
 .RI "void \fBdeleteUselessRoad\fP ()"
 .br
 .in -1c
@@ -131,6 +134,9 @@ Field \-
 .RI "std::vector< State >::const_iterator & \fBstd::vector\fP ()"
 .br
 .RI "\fIstd::vector<State>::const_iterator::operator ++ \fP"
+.ti -1c
+.RI "std::ostream & \fBoperator<<\fP (std::ostream &out, const \fBField\fP &field)"
+.br
 .in -1c
 .in +1c
 .ti -1c
@@ -450,6 +456,20 @@ L'état de la parcelle à la position des coordonnées, un State
 .RE
 .PP
 
+.SS "std::ostream& Field::print (std::ostream & out) const"
+Imprime dans un flux les informations de l'instance 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIout\fP Flux dans lequel on imprime les informations 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Le flux en entrée sur lequel on a imprimé les informations 
+.RE
+.PP
+
 .SS "void Field::resizeWithDimensions ()"
 Redéfinit la taille du vecteur de vecteur d'états selon le nombre de lignes et de colonnes contenues dans la classe\&. On utilise la fonction resize()\&. Attention, les données contenues dans le vecteur peuvent être modifiées
 .PP
@@ -488,6 +508,22 @@ Affichage
 Impression sur la sortie standard de tous les états des parcelles de la surface 
 .SH "Friends And Related Function Documentation"
 .PP 
+.SS "std::ostream& operator<< (std::ostream & out, const \fBField\fP & field)\fC [friend]\fP"
+Surcharge de l'opérateur << de sortie sur flux 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIout\fP Flux dans lequel on imprime les informations 
+.br
+\fIfield\fP Surface que l'on souhaite imprimer 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Le flux en entrée sur lequel on a imprimé les informations de la surface passée en entrée 
+.RE
+.PP
+
 .SS "std::vector<State>::const_iterator& std::vector ()\fC [friend]\fP"
 
 .PP

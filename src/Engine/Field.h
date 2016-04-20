@@ -171,7 +171,7 @@ public:
     /**
      * Surcharge de l'opérateur << de sortie sur flux
      * @param out Flux dans lequel on imprime les informations
-     * @param Field Surface que l'on souhaite imprimer
+     * @param field Surface que l'on souhaite imprimer
      * @return  Le flux en entrée sur lequel on a imprimé les informations de la
      * surface passée en entrée
      */
