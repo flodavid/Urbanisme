@@ -222,9 +222,11 @@ float Resolution::evaluateRatio() const
         if (field[coord1] == is_usable) {
         // On calcule et additionne le ratio pour aller vers chacun des successeurs
             Coordinates coord2(coord1);
+	    // On commence à la coordonnée suivante de celle courante
             while(field.nextCoordinates(&coord2)){
                 if (field[coord2] == is_usable) {
-                    total_ratio += manhattanRatioBetween2Parcels(coord1, coord2);
+		    float ratio_c1_goto_c2= manhattanRatioBetween2Parcels(coord1, coord2);
+		    total_ratio += 2.0 * ratio_c1_goto_c2; // @see on pourrait faire un décalage de bit
                 }
             }
         }
