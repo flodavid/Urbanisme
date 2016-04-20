@@ -1,0 +1,205 @@
+.TH "Resolution" 3 "Wed Apr 20 2016" "Urbanisme" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Resolution \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Resolution\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBResolution\fP (const \fBField\fP &_field, const \fBParameters\fP &_params)"
+.br
+.ti -1c
+.RI "void \fBinitNeighbourhoodManhattan\fP ()"
+.br
+.in -1c
+.PP
+.RI "\fB\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "void \fBset_params\fP (const \fBParameters\fP &_params)"
+.br
+.RI "\fIset_params \fP"
+.ti -1c
+.RI "void \fBincrement_road_distance\fP (const \fBCoordinates\fP &coord, unsigned value) __attribute__((deprecated))"
+.br
+.RI "\fIset_road_distance \fP"
+.in -1c
+.in -1c
+.PP
+.RI "\fB\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "unsigned \fBevaluateTotalUsable\fP () const "
+.br
+.ti -1c
+.RI "float \fBmanhattanRatioBetween2Parcels\fP (const \fBCoordinates\fP &p1, const \fBCoordinates\fP &p2) const "
+.br
+.ti -1c
+.RI "float \fBevaluateRatio\fP () const "
+.br
+.in -1c
+.in -1c
+.PP
+.RI "\fB\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "void \fBcreateExample\fP () __attribute__((test))"
+.br
+.RI "\fIcreateExample \fP"
+.in -1c
+.in -1c
+.in +1c
+.ti -1c
+.RI "unsigned \fBcalcRoadDistance\fP (const \fBCoordinates\fP &coord1, const \fBCoordinates\fP &coord2) const "
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Classe chargée de travailler sur les données en entrée du problème pour trouver des solution réalisables, opitmisant les objectifs suivants :
+.IP "1." 4
+Maximimiser les nombres de parcelles exploitables
+.IP "2." 4
+Minimiser la moyenne, la plus grande ou la somme des ratios entre distance des cellules par les routes et distance directe (distance Manhattan ou Euclidienne)
+.PP
+.PP
+On pourra éventuellement avoir plusieurs instances de \fBField\fP dans une \fBResolution\fP\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Resolution::Resolution (const \fBField\fP & _field, const \fBParameters\fP & _params)"
+Constructeur de la casse résolution 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_field\fP Surface sur laquelle on travaille 
+.br
+\fI_params\fP Paramètres du problème 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "unsigned Resolution::calcRoadDistance (const \fBCoordinates\fP & coord1, const \fBCoordinates\fP & coord2) const"
+Calcule la distance par les routes entre deux cellules, en respectant les paramètres 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcoord1\fP Coordonnée 'de départ' 
+.br
+\fIcoord2\fP Coordonnée 'd'arrivée' 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+la valeur, entier non signé, de distance la plus courte, entre les deux coordonnées, en passant par les routes
+.RE
+.PP
+.SS ""
+.PP
+Calculs de données 
+.SS ""
+.PP
+.SS ""
+.PP
+Fonctions auxiliaires 
+.SS ""
+
+.SS "void Resolution::createExample ()"
+
+.PP
+createExample 
+.PP
+\fBTest\fP
+.RS 4
+
+.RE
+.PP
+.PP
+.SS ""
+.PP
+Autres méthodes utiles 
+.SS ""
+
+.SS "float Resolution::evaluateRatio () const"
+Evalue le ratio de toutes les solutions 
+.PP
+\fBReturns:\fP
+.RS 4
+l'évaluation en flottant 
+.RE
+.PP
+
+.SS "unsigned int Resolution::evaluateTotalUsable () const"
+Compte le nombre total de parcelles exploitables sur la surface 
+.PP
+\fBReturns:\fP
+.RS 4
+nombre de parcelles exploitables
+.RE
+.PP
+.SS ""
+.PP
+Evaluations 
+.SS ""
+
+.SS "void Resolution::increment_road_distance (const \fBCoordinates\fP & coord, unsigned value)"
+
+.PP
+set_road_distance 
+.PP
+\fBDeprecated\fP
+.RS 4
+
+.RE
+.PP
+
+.SS "void Resolution::initNeighbourhoodManhattan ()"
+Initialise la matrice de voisinage avec les routes avec la distance Manhattan TODO 
+.SS "float Resolution::manhattanRatioBetween2Parcels (const \fBCoordinates\fP & p1, const \fBCoordinates\fP & p2) const"
+Calcule le ratio entre distance par la route et distance Manhattan entre deux positions 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp1\fP premières coordonnées 
+.br
+\fIp2\fP secondes coordonnées 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+le ratio, sous forme de flottant 
+.RE
+.PP
+
+.SS "void Resolution::set_params (const \fBParameters\fP & _params)"
+
+.PP
+set_params 
+.SS ""
+.PP
+Getters 
+.SS ""
+.PP
+.SS ""
+.PP
+Setters 
+.SS ""
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Urbanisme from the source code\&.

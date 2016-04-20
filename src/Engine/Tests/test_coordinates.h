@@ -13,6 +13,9 @@
 
 #include "../coordinates.h"
 
+/**
+ * Tests sur les méthodes de la classe Coordinates
+ */
 class CoordinatesTestFixture : public CppUnit::TestFixture {
  private:
     Coordinates* coord1;
@@ -24,11 +27,23 @@ class CoordinatesTestFixture : public CppUnit::TestFixture {
     float expected_euclid;
 
  public:
-  void setUp();
-  void tearDown();
+    /**
+     * @brief Opérations avant les tests
+     */
+    void setUp();
+    /**
+     * @brief Opérations après les tests
+     */
+    void tearDown();
 
-  void test_calcManhattan();
-  void test_calcEuclidean();
+    /**
+     * @test le calcul de la distance Manhattan entre deux coordonnées
+     */
+    void test_calcManhattan();
+    /**
+     * @test le calcul de la distance Euclidienne entre deux coordonnées
+     */
+    void test_calcEuclidean();
  
 };
 

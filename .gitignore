@@ -2,6 +2,10 @@
 # Kdev files
 .kdev4/
 
+#documentation Doxygen
+doc/xml/
+doc/html/
+
 # ??
 src/*.kate-swp
 

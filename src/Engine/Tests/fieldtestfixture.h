@@ -13,6 +13,10 @@
 #include "../coordinates.h"
 #include "../Field.h"
 
+/**
+ * Tests sur la méthode contains de la classe Field
+ * @test
+ */
 class FieldTestFixture : public CppUnit::TestFixture {
 private:
     Field* field;
@@ -26,11 +30,25 @@ private:
     Coordinates* coord_out;
 
 public:
-  void setUp();
-  void tearDown();
+    /**
+     * @brief Opérations avant les tests
+     */
+    void setUp();
+    /**
+     * @brief Opérations après les tests
+     */
+    void tearDown();
 
-  void test_containsValids();
-  void test_containsInvalids();
+    /**
+     * @test de la méthode contains() sur des coordonnées dans la surface
+     * Contains doit retourner vrai
+     */
+    void test_containsValids();
+    /**
+     * @test de la méthode contains() sur des coordonnées hors de la surface
+     * Contains doit retourner faux
+     */
+    void test_containsInvalids();
 };
 
 #endif // FIELDTESTFIXTURE_H

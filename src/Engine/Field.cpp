@@ -3,8 +3,8 @@
 
 using namespace std;
 
-Field::Field(unsigned width, unsigned height/*, std::list<Coordinates>& inputs_and_ouputs*/) :
-    nb_cols(width), nb_rows(height)/*, ins_outs(inputs_and_ouputs)*/
+Field::Field ( unsigned width, unsigned height/*, std::list<Coordinates>& inputs_and_ouputs*/ ) :
+    nb_cols ( width ), nb_rows ( height ) /*, ins_outs(inputs_and_ouputs)*/
 {
     resizeWithDimensions();
 }
@@ -16,49 +16,60 @@ Field::~Field()
 ///#######################
 ///      Setters
 ///#######################
+//@{
 
 void Field::resizeWithDimensions()
 {
-    parcels.resize(nb_cols);
+    parcels.resize ( nb_cols );
 
-    for (vector<State>& parcel_row : parcels){
-        parcel_row.resize(nb_cols, is_undefined);
+    for ( vector<State>& parcel_row : parcels ) {
+        parcel_row.resize ( nb_cols, is_undefined );
     }
 }
 
+//@}
 ///###################
 ///      Affichage
 ///###################
+//@{
+
 
 void Field::show_ins_and_outs() const
 {
-    for (const Coordinates& in_or_out : ins_outs) {
-    cout << in_or_out << " ; ";
+    for ( const Coordinates& in_or_out : ins_outs ) {
+        cout << in_or_out << " ; ";
     }
     cout << endl;
 }
 
-void Field::show_states() const {
+void Field::show_states() const
+{
     Coordinates coord= Field::first();
     do {
-        if ((coord.col) == 0) cout << endl<< coord<< "= "<< at(coord);
-        else cout<<  "; "<< coord<< "= "<< at(coord);
-    } while(nextCoordinates(&coord));
+        if ( ( coord.col ) == 0 ) {
+            cout << endl<< coord<< "= "<< at ( coord );
+        } else {
+            cout<<  "; "<< coord<< "= "<< at ( coord );
+        }
+    } while ( nextCoordinates ( &coord ) );
 }
 
+//@}
 ///########################################
 ///=== Fonctions sur les coordonnées ===///
 ///########################################
-bool Field::contains(int x, int y) const
+//@{
+
+bool Field::contains ( int x, int y ) const
 {
-    return ( x >= 0 &&  ((unsigned)x) < nb_cols )     // abscisse correcte
-        && ( y >= 0  &&  ((unsigned)y) < nb_rows );    // ordonnée correcte
+    return ( x >= 0 && ( ( unsigned ) x ) < nb_cols ) // abscisse correcte
+           && ( y >= 0  && ( ( unsigned ) y ) < nb_rows ); // ordonnée correcte
 }
 
 
-bool Field::contains(const Coordinates& coord) const
+bool Field::contains ( const Coordinates& coord ) const
 {
-    return contains(coord.col, coord.row);
+    return contains ( coord.col, coord.row );
 }
 
 bool Field::nextCoordinates ( Coordinates* coord ) const
@@ -66,9 +77,9 @@ bool Field::nextCoordinates ( Coordinates* coord ) const
     // On vérifie que la coordonnée actuelle est dans la surface
     //  (vérification sur les colonnes puis sur les lignes)
     if ( ( coord->col < -1 || coord->col >= ( int ) ( get_width() ) ) ||
-            ( coord->row < 0 || coord->row >= ( int ) (get_height() ) ) ) {
+            ( coord->row < 0 || coord->row >= ( int ) ( get_height() ) ) ) {
 #if DEBUG_PARCOURS_COORDS
-        cout << "Coordonnées "<< (*coord)<< " en dehors de la surface" <<endl;
+        cout << "Coordonnées "<< ( *coord ) << " en dehors de la surface" <<endl;
 #endif
         return false;
     } else {
@@ -100,29 +111,39 @@ bool Field::nextCoordinates ( Coordinates* coord ) const
     }
 }
 
+//@}
 ///#############################
 ///===  Méthodes générales	===/
 ///#############################
-void Field::generateInsAndOuts(unsigned nb)
+
+void Field::generateInsAndOuts ( unsigned nb )
 {
     bool on_top_or_down;
-    for (unsigned num_in_out = 0; num_in_out < nb; ++num_in_out) {
-        on_top_or_down = (bool) (rand() % 2);
+    for ( unsigned num_in_out = 0; num_in_out < nb; ++num_in_out ) {
+        on_top_or_down = ( bool ) ( rand() % 2 );
         int row, col;
 
         // On choisit une case en haut ou en bas, avec une colonne aléatoire
-        if (on_top_or_down) {
-            row = (rand() % 2) * nb_rows;
+        if ( on_top_or_down ) {
+            row = ( rand() % 2 ) * nb_rows;
             col = rand() % nb_cols;
         }
         // Même opération en inversant lignes et colonnes
         else {
             row = rand() % nb_rows;
-            col = (rand() % 2) * nb_cols;
+            col = ( rand() % 2 ) * nb_cols;
         }
 
-        ins_outs.push_back(Coordinates(col, row));
+        ins_outs.push_back ( Coordinates ( col, row ) );
     }
+}
+
+bool Field::isRoadAndNeighbourOf (const Coordinates& neighbour, const Coordinates& coord, unsigned servingDistance ) const
+{
+    return contains ( neighbour )
+           && ! ( neighbour == coord )
+           && coord.manhattanDistance ( neighbour ) <= servingDistance // TODO changer, ne pas utiliser manhattanDistance,  peu performant ?
+           && at ( neighbour ) == is_road;
 }
 
 std::list<Coordinates>* Field::getNeighbourRoads ( const Coordinates& coord ) const
@@ -138,28 +159,28 @@ std::list<Coordinates>* Field::getNeighbourRoads ( const Coordinates& coord ) co
     Coordinates& south= * ( new Coordinates ( coord.col, coord.row +1 ) );
 // On vérifie que chaque voisin n'est pas en dehors de la matrice
 
-    if ( contains ( west ) && at(west) == is_road ) {
+    if ( contains ( west ) && at ( west ) == is_road ) {
         // Ajout dans les routes voisines de la parcelle
         neighbour_roads->push_back ( west );
 #if DEBUG_ROADS_DIST
         cout << "\tparcelle "<< west<< endl;
 #endif
     }
-    if ( contains ( east ) && at(east) == is_road ) {
+    if ( contains ( east ) && at ( east ) == is_road ) {
         // Ajout dans les routes voisines de la parcelle
         neighbour_roads->push_back ( east );
 #if DEBUG_ROADS_DIST
         cout << "\tparcelle "<< east<< endl;
 #endif
     }
-    if ( contains ( north ) && at(north) == is_road ) {
+    if ( contains ( north ) && at ( north ) == is_road ) {
         // Ajout dans les routes voisines de la parcelle
         neighbour_roads->push_back ( north );
 #if DEBUG_ROADS_DIST
         cout << "\tparcelle "<< north<< endl;
 #endif
     }
-    if ( contains ( south ) && at(south) == is_road ) {
+    if ( contains ( south ) && at ( south ) == is_road ) {
         // Ajout dans les routes voisines de la parcelle
         neighbour_roads->push_back ( south );
 #if DEBUG_ROADS_DIST
@@ -167,36 +188,33 @@ std::list<Coordinates>* Field::getNeighbourRoads ( const Coordinates& coord ) co
 #endif
     }
 
-    // @SEE améliorer les listes, utiliser pointeurs ou non ?
+    /// @see améliorer les listes, utiliser pointeurs ou non ?
     delete &north;
     delete &south;
     delete &west;
     delete &east;
 
-
     return neighbour_roads;
 }
 
-std::list<Coordinates>* Field::getServingRoads (const Coordinates& coord , unsigned servingDistance) const
+std::list<Coordinates>* Field::getServingRoads ( const Coordinates& coord , unsigned servingDistance ) const
 {
     list<Coordinates>* serving_roads= new list<Coordinates>;
 
-    int serve_dist= (int)servingDistance; // il est plus simple de convertir en entier
+    int serve_dist= ( int ) servingDistance; // il est plus simple de convertir en entier
 
     // On vérifie si les routes entre (x +dist;y +dist) et (x -dist;y -dist)
-    // @SEE on vérifie serve_dist² parcelles,  alors qu'on pourrait en vérifier ?? (moins)
+    /// @see on vérifie serve_dist² parcelles,  alors qu'on pourrait en vérifier ?? (moins)
     for ( int i= coord.row + serve_dist; i >= coord.row -serve_dist; --i ) {
         for ( int j= coord.col + serve_dist; j >= coord.col -serve_dist; --j ) {
 
             // On vérifie que la parcelle n'est pas en dehors de la matrice et qu'elle n'est pas la coordonnée courante
             Coordinates neighbour ( j,  i );
-            if ( contains ( neighbour ) && ! ( neighbour == coord )
-                    && coord.manhattanDistance ( neighbour ) <= 2 // TODO changer, ne pas utiliser manhattanDistance,  peu performant ?
-                    && at(neighbour) == is_road ) {
+            if ( isRoadAndNeighbourOf ( neighbour, coord, servingDistance ) ) {
                 // Ajout dans les routes voisines de la parcelle
                 Coordinates& road_coord= * ( new Coordinates ( j, i ) );
-                serving_roads->push_back ( road_coord );
-        delete &road_coord; // @SEE utilisation pointeur ou non
+                serving_roads->push_back ( road_coord );    //  copie faire :'(
+                delete &road_coord; // @SEE utilisation pointeur ou non
 #if DEBUG_ROADS_DIST
                 cout << "parcelle en "<< j<< " ; "<< i<< " est une route voisine de la parcelle en "
                      << coord.col<< " ; "<< coord.row<< endl;
@@ -208,27 +226,71 @@ std::list<Coordinates>* Field::getServingRoads (const Coordinates& coord , unsig
     return serving_roads;
 }
 
-void Field::defineUsables(unsigned int servingDistance)
+bool Field::hasServingRoad ( const Coordinates& coord , unsigned servingDistance ) const
 {
-    // @SEE je vérifie que chaque route a un voisin (en cherchant tous ses voisins,
-    //  alors qu'on pourrait s'arrêter au premier), l'inverse est possible : 
+    int serve_dist= ( int ) servingDistance; // il est plus simple de convertir en entier
+
+    // On vérifie si les routes entre (x +dist;y +dist) et (x -dist;y -dist)
+    /// @see on vérifie serve_dist² parcelles,  alors qu'on pourrait en vérifier ?? (moins)
+    for ( int i= coord.row + serve_dist; i >= coord.row -serve_dist; --i ) {
+        for ( int j= coord.col + serve_dist; j >= coord.col -serve_dist; --j ) {
+
+            // On vérifie que la parcelle n'est pas en dehors de la matrice et qu'elle n'est pas la coordonnée courante
+            Coordinates neighbour ( j,  i );
+            if ( isRoadAndNeighbourOf ( neighbour,  coord,  serve_dist ) ) {
+#if DEBUG_ROADS_DIST
+                cout << "parcelle en "<< j<< " ; "<< i<< " est une route voisine de la parcelle en "
+                     << coord.col<< " ; "<< coord.row<< endl;
+#endif
+                // SORT DE LA DOUBLE BOUCLE, on a trouvé un voisin
+                return true;                                
+            }
+        }
+    }
+
+    // Si on arrive à ce point, c'est que l'on n'a pas trouvé de voisin
+    return false;
+}
+
+void Field::defineUsables ( unsigned int servingDistance )
+{
+    /// @see je vérifie que chaque route a un voisin (en cherchant tous ses voisins,
+    //  alors qu'on pourrait s'arrêter au premier), l'inverse est possible :
     //  définir toutes les voisins de chaque route comme étant exploitable
     Coordinates& coord= first();
     do {
 #if DEBUG
-        if ((coord.col) == 0) cout << endl<< coord;
-        else cout<<  "; "<< coord;
+        if ( ( coord.col ) == 0 ) {
+            cout << endl<< coord;
+        } else {
+            cout<<  "; "<< coord;
+        }
 #endif
-        if (at(coord) == is_undefined) {
-            list<Coordinates>* road_neighbours = getServingRoads(coord, servingDistance);
-            if (road_neighbours->size() > 0 ) {
+        if ( at ( coord ) == is_undefined ) {
+            if ( hasServingRoad(coord, servingDistance) ) {
                 parcels[coord.row][coord.col] = is_usable;
             } else {
                 parcels[coord.row][coord.col] = is_unusable;
             }
-
-            delete road_neighbours;
         }
-    } while(nextCoordinates(&coord));
+    } while ( nextCoordinates ( &coord ) );
     delete &coord;
 }
+
+
+//@}
+///#################################
+///===  Recherche de solutions	===/
+///#################################
+//@{
+void Field::generateRandomSolution()
+{
+    Coordinates& coord= first();
+//     int road_percent = 20;
+    
+    do {
+//         maybePlaceRoad(coord, road_percent);
+    } while ( nextCoordinates ( &coord ) );
+}
+    
+//@}

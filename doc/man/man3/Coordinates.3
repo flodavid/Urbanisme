@@ -1,0 +1,174 @@
+.TH "Coordinates" 3 "Wed Apr 20 2016" "Urbanisme" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Coordinates \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <coordinates\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCoordinates\fP (int _x, int _y)"
+.br
+.ti -1c
+.RI "\fBCoordinates\fP (const \fBCoordinates\fP &other)"
+.br
+.ti -1c
+.RI "\fBCoordinates\fP & \fBoperator=\fP (const \fBCoordinates\fP &other)"
+.br
+.ti -1c
+.RI "virtual bool \fBoperator==\fP (const \fBCoordinates\fP &other) const "
+.br
+.ti -1c
+.RI "std::ostream & \fBprint\fP (std::ostream &out) const "
+.br
+.ti -1c
+.RI "unsigned \fBmanhattanDistance\fP (const \fBCoordinates\fP &other) const "
+.br
+.ti -1c
+.RI "float \fBeuclideanDistance\fP (const \fBCoordinates\fP &other) const "
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBcol\fP"
+.br
+.ti -1c
+.RI "int \fBrow\fP"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "std::ostream & \fBoperator<<\fP (std::ostream &out, const \fBCoordinates\fP &coord)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+\fBSee also:\fP
+.RS 4
+Normalement inutile, permet de ne pas utilise -lm lors compilation Représentation et opérations simple sur des coordonnées dans un plan\&. 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Coordinates::Coordinates (int _x, int _y)"
+Constructeur de la classe \fBCoordinates\fP, crée les coordonnées à partir de la position sur les axes 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_x\fP Abscisse des coordonnées, axe horizontal 
+.br
+\fI_y\fP Ordonnée des coordonnées, axe vertical 
+.RE
+.PP
+
+.SS "Coordinates::Coordinates (const \fBCoordinates\fP & other)"
+Constructeur par recopie de la classe \fBCoordinates\fP, crée les coordonnées à partir d'autres coordonnées 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIother\fP Les autres coordonnées, que l'on va recopier pour créer la nouvelle instance 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "float Coordinates::euclideanDistance (const \fBCoordinates\fP & other) const"
+Calcul de la distance euclidienne entre deux points 
+.PP
+\fBReturns:\fP
+.RS 4
+distance euclidienne : flottant non signé 
+.RE
+.PP
+
+.SS "unsigned Coordinates::manhattanDistance (const \fBCoordinates\fP & other) const"
+Calcul de la distance Manhattan entre deux points 
+.PP
+\fBReturns:\fP
+.RS 4
+distance manhattan : entier non signé 
+.RE
+.PP
+
+.SS "\fBCoordinates\fP & Coordinates::operator= (const \fBCoordinates\fP & other)"
+Surcharge de l'opérateur = d'affectation, pour la classe 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIother\fP Les autres coordonnées, que l'on va recopier dans l'instance 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Les nouvelles coordonnnées 
+.RE
+.PP
+
+.SS "bool Coordinates::operator== (const \fBCoordinates\fP & other) const\fC [virtual]\fP"
+Surcharge de l'opérateur == de comparaison, pour la classe 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIother\fP Les autres coordonnées, que l'on va comparer avec l'instance 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+vrai si les deux coordonnées sont identiques (même position) 
+.RE
+.PP
+
+.SS "std::ostream & Coordinates::print (std::ostream & out) const"
+Imprime dans un flux les informations de l'instance 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIout\fP Flux dans lequel on imprime les informations 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Le flux en entrée sur lequel on a imprimé les informations 
+.RE
+.PP
+
+.SH "Friends And Related Function Documentation"
+.PP 
+.SS "std::ostream& operator<< (std::ostream & out, const \fBCoordinates\fP & coord)\fC [friend]\fP"
+Surcharge de l'opérateur << de sortie sur flux 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIout\fP Flux dans lequel on imprime les informations 
+.br
+\fIcoord\fP Coordonnées que l'on souhaite imprimer 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Le flux en entrée sur lequel on a imprimé les informations des coordonnées passées en entrée 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "int Coordinates::col"
+Colonne, abscisse des coordonnées 
+.SS "int Coordinates::row"
+Ligne, ordonnée des coordonnées 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Urbanisme from the source code\&.

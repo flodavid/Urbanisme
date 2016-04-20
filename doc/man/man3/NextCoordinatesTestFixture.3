@@ -1,0 +1,64 @@
+.TH "NextCoordinatesTestFixture" 3 "Wed Apr 20 2016" "Urbanisme" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+NextCoordinatesTestFixture \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <test_next_coordinates\&.h>\fP
+.PP
+Inherits TestFixture\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBsetUp\fP ()"
+.br
+.RI "\fIOpérations avant les tests\&. \fP"
+.ti -1c
+.RI "void \fBtearDown\fP ()"
+.br
+.RI "\fIOpérations après les tests\&. \fP"
+.ti -1c
+.RI "void \fBtest_validsCoords\fP ()"
+.br
+.ti -1c
+.RI "void \fBtest_invalidsCoords\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Tests sur la méthode nextCoordinates() de la classe \fBField\fP 
+.PP
+\fBTest\fP
+.RS 4
+
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void NextCoordinatesTestFixture::test_invalidsCoords ()"
+
+.PP
+\fBTest\fP
+.RS 4
+de la méthode nextCoordinates() sur des coordonnées non 'valides' Doit retourner faux et ne pas modifier la coordonnée en entrée 
+.RE
+.PP
+
+.SS "void NextCoordinatesTestFixture::test_validsCoords ()"
+
+.PP
+\fBTest\fP
+.RS 4
+de la méthode nextCoordinates() sur des coordonnées 'valides' Doit retourner vrai et modifier la coordonnée en entrée 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Urbanisme from the source code\&.

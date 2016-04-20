@@ -1,0 +1,64 @@
+.TH "FieldTestFixture" 3 "Wed Apr 20 2016" "Urbanisme" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+FieldTestFixture \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <fieldtestfixture\&.h>\fP
+.PP
+Inherits TestFixture\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBsetUp\fP ()"
+.br
+.RI "\fIOpérations avant les tests\&. \fP"
+.ti -1c
+.RI "void \fBtearDown\fP ()"
+.br
+.RI "\fIOpérations après les tests\&. \fP"
+.ti -1c
+.RI "void \fBtest_containsValids\fP ()"
+.br
+.ti -1c
+.RI "void \fBtest_containsInvalids\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Tests sur la méthode contains de la classe \fBField\fP 
+.PP
+\fBTest\fP
+.RS 4
+
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void FieldTestFixture::test_containsInvalids ()"
+
+.PP
+\fBTest\fP
+.RS 4
+de la méthode contains() sur des coordonnées hors de la surface Contains doit retourner faux 
+.RE
+.PP
+
+.SS "void FieldTestFixture::test_containsValids ()"
+
+.PP
+\fBTest\fP
+.RS 4
+de la méthode contains() sur des coordonnées dans la surface Contains doit retourner vrai 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Urbanisme from the source code\&.
