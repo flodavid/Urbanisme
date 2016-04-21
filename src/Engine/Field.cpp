@@ -277,7 +277,6 @@ void Field::defineUsables ( unsigned int servingDistance )
     delete &coord;
 }
 
-
 //@}
 ///#################################
 ///===  Recherche de solutions	===/

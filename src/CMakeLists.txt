@@ -11,7 +11,7 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 add_subdirectory(Engine) # must set ${Engine_SRCS}
 # add_subdirectory(Display) # must set ${Display_SRCS}
 
-add_definitions(-Wall -std=c++11)
+add_definitions(-Wall -std=c++11 -pthread -lpthread )
 
 set(sim-city_SRCS ${Engine_SRCS} ${Display_SRCS} Resolution.cpp Sim-City.cpp)
 
@@ -21,9 +21,9 @@ add_executable(sim-city stdafx.cpp ${sim-city_SRCS} ${HEADERS})
 
 install(TARGETS sim-city RUNTIME DESTINATION bin)
 
-#if (UNIX)
+if (UNIX)
     add_subdirectory(Tests)
-#endif (UNIX)
+endif (UNIX)
 
 # UNUSED
 

@@ -19,6 +19,7 @@ class Resolution
 {
 private:
     // Données sur lesquelles on travaille
+public: // TODO temporaire, TODELETE
     Field field;
     Parameters params;
 
@@ -95,6 +96,11 @@ public:
      * @return l'évaluation en flottant
      */
     float evaluateRatio() const;
+    /**
+     * Evalue le ratio de toutes les solutions avec des threads
+     * @return l'évaluation en flottant
+     */
+    float threadsEvaluateRatio() const;
 
     /* Autres méthodes utiles */
     /**
@@ -102,5 +108,11 @@ public:
       * @test
       */
      void createExample() __attribute__ ( ( test ) );
+     
+     /* Threads */
 
 };
+
+void TParcelRatios(const Coordinates* coord, float* ratio, const Resolution* res);
+/* Threads */
+//      void *TParcelRatios(void *threadid);

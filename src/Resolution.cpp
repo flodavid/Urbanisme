@@ -2,6 +2,8 @@
 #include "Resolution.h"
 
 #include <cassert>
+// ##include <pthread.h>
+#include <thread>
 #include <map>
 
 using namespace std;
@@ -236,7 +238,119 @@ float Resolution::evaluateRatio() const
     return total_ratio;
 }
 
+
+typedef struct s_coordAndRatio {
+    float ratio;
+    Coordinates coord;
+    const Resolution* res;
+}CoordAndRatio;
+
+// float Resolution::threadsvaluateRatio() const
+// {
+//     float total_ratio= 0.0;
+//     
+//     
+//     // Initialisation des threads
+//     int rc;
+//     int i;
+//     vector<pthread_t*> threads;
+//     pthread_attr_t attr;
+//     void *status;
+//     
+//     // Initialise et définit le thread "joinable"
+//     pthread_attr_init(&attr);
+//     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
+//     
+//     // Calculs des distances
+//     Coordinates coord1= Field::first();
+//     do {
+// 	if (field[coord1] == is_usable) {
+// 	    // On calcule et additionne le ratio pour aller vers chacun des successeurs
+// 	    CoordAndRatio* coord_and_ratio= (CoordAndRatio*)malloc(sizeof(CoordAndRatio));
+// 	    coord_and_ratio->coord= coord1;
+// 	    coord_and_ratio->res= this;
+// 	    
+// 	    cout << "main() : creating thread, " << i << endl;
+// 	    pthread_t* my_thread = new pthread_t;
+// 	    threads.push_back(my_thread);
+// 	    rc = pthread_create(my_thread, NULL,
+// 				TParcelRatios, (void *)coord_and_ratio);
+// 	    if (rc){
+// 		cout << "Error:unable to create thread," << rc << endl;
+// 		exit(-1);
+// 	    }
+// 	}
+// 	pthread_exit(NULL);
+// 	
+//     } while(field.nextCoordinates(&coord1));
+//     
+//     return total_ratio;
+// }
+
+
+float Resolution::threadsEvaluateRatio() const
+{
+    // Initialisation des threads
+    vector<pair<thread*, float*>> threads;
+    
+    // Calculs des distances
+    Coordinates coord1= Field::first();
+    do {
+	if (field[coord1] == is_usable) {
+	    // On calcule et additionne le ratio pour aller vers chacun des successeurs	    
+	    float ratio;
+	    thread* my_thread = new thread(TParcelRatios, &coord1, &ratio, this);
+	    threads.push_back(make_pair(my_thread, &ratio));
+	}
+	    
+    } while(field.nextCoordinates(&coord1));
+ 
+    
+    float total_ratio= 0.0;
+    for(pair<thread*, float*> thread_result : threads){
+	thread_result.first->join();
+	total_ratio += (*thread_result.second);
+    }
+	
+    return total_ratio;
+}
+
+
 //@}
+/// #########################
+/// 	Threads
+/// #########################
+//@{
+
+void TParcelRatios(const Coordinates* coord, float* ratio, const Resolution* res)
+{    
+    Coordinates coord2(*coord);
+    // On commence à la coordonnée suivante de celle courante
+    while(res->field.nextCoordinates(&coord2)){
+	if (res->field[coord2] == is_usable) {
+	    float ratio_c1_goto_c2= res->manhattanRatioBetween2Parcels(*coord, coord2);
+	    (*ratio) += 2.0 * ratio_c1_goto_c2; // @see on pourrait faire un décalage de bit
+	}
+    }
+}
+
+// void* TParcelRatios(void* data)
+// {
+//     CoordAndRatio* values= (CoordAndRatio*) data;
+//     values->ratio= 0;
+//     
+//     Coordinates coord2(values->coord);
+//     // On commence à la coordonnée suivante de celle courante
+//     while(values->res->field.nextCoordinates(&coord2)){
+// 	if (values->res->field[coord2] == is_usable) {
+// 	    float ratio_c1_goto_c2= values->res->manhattanRatioBetween2Parcels(values->coord, coord2);
+// 	    values->ratio += 2.0 * ratio_c1_goto_c2; // @see on pourrait faire un décalage de bit
+// 	}
+//     }
+// }
+
+//@}
+
 /// #########################
 /// Autres méthodes utiles
 /// #########################

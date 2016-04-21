@@ -11,6 +11,10 @@
 
 using namespace std;
 
+/**
+ * Création du terrain de l'exemple, exécution de l'évaluation, affichage du résultat,
+ * affichage tu temps pris par de l'évaluation
+ */
 int main()
 {
     Field myField(5, 5);
@@ -27,14 +31,14 @@ int main()
     time_t evaluation_startTime;
     evaluation_startTime = time(NULL);
 
-   float total_ratio= myResolution.evaluateRatio();
-   cout << "Ratio total : "<< total_ratio<< endl;
-
+//    float total_ratio= myResolution.evaluateRatio();
+    float total_ratio= myResolution.threadsEvaluateRatio();
     time_t stopTime;
     stopTime = time(NULL);
     time_t elapsedTime = stopTime - evaluation_startTime;
-
-    printf("The number elapsed seconds is %ld\n",elapsedTime);
+    
+    cout << "Ratio total : "<< total_ratio<< endl;
+    printf("Le nombre de secondes écoulées pour l'évaluation est %ld\n",elapsedTime);
 
     srand(time(NULL));
 //    myField.generateInsAndOuts(2);
