@@ -27,7 +27,7 @@ Resolution::~Resolution()
 ///      Setters
 /// #########################
 //@{
-    
+
 void Resolution::set_params ( const Parameters& _params )
 {
     params= _params;
@@ -72,17 +72,16 @@ unsigned Resolution::calcRoadDistance ( const Coordinates &coord1, const Coordin
     Coordinates min_dist_neighbour_c2 ( 0,0 );
 #endif
 
-    cout << "Premier point : "<< coord1<< endl;
     list<Coordinates>* serving_roads_c1 = field.getServingRoads ( coord1, params.get_serve_distance() );
 
-    cout << endl<< "Deuxième point : "<< coord2<< endl;
+//    cout << "\tRatio entre : "<< coord1<< " et "<< coord2<< endl;
     list<Coordinates>* serving_roads_c2 = field.getServingRoads ( coord2, params.get_serve_distance() );
     for ( Coordinates road_c1 : *serving_roads_c1 ) {
         for ( Coordinates road_c2 : *serving_roads_c2 ) {
-	    list<Coordinates>* empty_visited =new list<Coordinates>;
+        list<Coordinates>* empty_visited =new list<Coordinates>;
             unsigned int dist = recCalcRoadDistance ( road_c1, road_c2, empty_visited);
-	    delete empty_visited;
-	    
+        delete empty_visited;
+
             if ( dist < min_dist ) {
                 min_dist= dist +1;
 #if DEBUG_ROADS_DIST
@@ -92,7 +91,7 @@ unsigned Resolution::calcRoadDistance ( const Coordinates &coord1, const Coordin
             }
         }
     }
-    
+
     delete serving_roads_c1;
     delete serving_roads_c2;
 
@@ -146,7 +145,7 @@ unsigned Resolution::recCalcRoadDistance ( const Coordinates& coord1, const Coor
 #endif
             }
         }
-        
+
         delete neighbour_roads;
 
 #if DEBUG_ROADS_DIST
@@ -218,18 +217,19 @@ float Resolution::manhattanRatioBetween2Parcels ( const Coordinates& p1, const C
 float Resolution::evaluateRatio() const
 {
     float total_ratio= 0.0;
-    
+
     // Calculs des distances
     Coordinates coord1= Field::first();
     do {
         if (field[coord1] == is_usable) {
-        // On calcule et additionne le ratio pour aller vers chacun des successeurs
+            cout << "Premier point : "<< coord1<< endl;
+            // On calcule et additionne le ratio pour aller vers chacun des successeurs
             Coordinates coord2(coord1);
-	    // On commence à la coordonnée suivante de celle courante
+            // On commence à la coordonnée suivante de celle courante
             while(field.nextCoordinates(&coord2)){
                 if (field[coord2] == is_usable) {
-		    float ratio_c1_goto_c2= manhattanRatioBetween2Parcels(coord1, coord2);
-		    total_ratio += 2.0 * ratio_c1_goto_c2; // @see on pourrait faire un décalage de bit
+                    float ratio_c1_goto_c2= manhattanRatioBetween2Parcels(coord1, coord2);
+                    total_ratio += 2.0 * ratio_c1_goto_c2; // @see on pourrait faire un décalage de bit
                 }
             }
         }
@@ -238,80 +238,30 @@ float Resolution::evaluateRatio() const
     return total_ratio;
 }
 
-
-typedef struct s_coordAndRatio {
-    float ratio;
-    Coordinates coord;
-    const Resolution* res;
-}CoordAndRatio;
-
-// float Resolution::threadsvaluateRatio() const
-// {
-//     float total_ratio= 0.0;
-//     
-//     
-//     // Initialisation des threads
-//     int rc;
-//     int i;
-//     vector<pthread_t*> threads;
-//     pthread_attr_t attr;
-//     void *status;
-//     
-//     // Initialise et définit le thread "joinable"
-//     pthread_attr_init(&attr);
-//     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
-//     
-//     // Calculs des distances
-//     Coordinates coord1= Field::first();
-//     do {
-// 	if (field[coord1] == is_usable) {
-// 	    // On calcule et additionne le ratio pour aller vers chacun des successeurs
-// 	    CoordAndRatio* coord_and_ratio= (CoordAndRatio*)malloc(sizeof(CoordAndRatio));
-// 	    coord_and_ratio->coord= coord1;
-// 	    coord_and_ratio->res= this;
-// 	    
-// 	    cout << "main() : creating thread, " << i << endl;
-// 	    pthread_t* my_thread = new pthread_t;
-// 	    threads.push_back(my_thread);
-// 	    rc = pthread_create(my_thread, NULL,
-// 				TParcelRatios, (void *)coord_and_ratio);
-// 	    if (rc){
-// 		cout << "Error:unable to create thread," << rc << endl;
-// 		exit(-1);
-// 	    }
-// 	}
-// 	pthread_exit(NULL);
-// 	
-//     } while(field.nextCoordinates(&coord1));
-//     
-//     return total_ratio;
-// }
-
-
 float Resolution::threadsEvaluateRatio() const
 {
     // Initialisation des threads
     vector<pair<thread*, float*>> threads;
-    
+
     // Calculs des distances
     Coordinates coord1= Field::first();
     do {
-	if (field[coord1] == is_usable) {
-	    // On calcule et additionne le ratio pour aller vers chacun des successeurs	    
-	    float ratio;
-	    thread* my_thread = new thread(TParcelRatios, &coord1, &ratio, this);
-	    threads.push_back(make_pair(my_thread, &ratio));
-	}
-	    
+        if (field[coord1] == is_usable) {
+            // On calcule et additionne le ratio pour aller vers chacun des successeurs
+            float* ratio= new float;
+            thread* my_thread = new thread(TParcelRatios, coord1, ratio, this);
+            threads.push_back(make_pair(my_thread, ratio));
+        }
     } while(field.nextCoordinates(&coord1));
- 
-    
+
+
     float total_ratio= 0.0;
     for(pair<thread*, float*> thread_result : threads){
-	thread_result.first->join();
-	total_ratio += (*thread_result.second);
+        thread_result.first->join();
+        total_ratio += (*thread_result.second);
+        cout << "On ajoute "<< (*thread_result.second)<< ", le ratio total est "<< total_ratio<< endl;
     }
-	
+
     return total_ratio;
 }
 
@@ -322,39 +272,27 @@ float Resolution::threadsEvaluateRatio() const
 /// #########################
 //@{
 
-void TParcelRatios(const Coordinates* coord, float* ratio, const Resolution* res)
-{    
-    Coordinates coord2(*coord);
+void TParcelRatios(Coordinates coord, float* ratio, const Resolution* res)
+{
+    (*ratio)= 0.0;
+    cout << "Le ratio de "<< coord<< " au début est "<< (*ratio)<< endl;
+    Coordinates coord2(coord);
     // On commence à la coordonnée suivante de celle courante
     while(res->field.nextCoordinates(&coord2)){
-	if (res->field[coord2] == is_usable) {
-	    float ratio_c1_goto_c2= res->manhattanRatioBetween2Parcels(*coord, coord2);
-	    (*ratio) += 2.0 * ratio_c1_goto_c2; // @see on pourrait faire un décalage de bit
-	}
+        if (res->field[coord2] == is_usable) {
+            float ratio_c1_goto_c2= res->manhattanRatioBetween2Parcels(coord, coord2);
+            (*ratio) += 2.0 * ratio_c1_goto_c2; // @see on pourrait faire un décalage de bit
+        }
     }
+    cout << "Le ratio de "<< coord<< " à la fin est "<< (*ratio)<< endl;
 }
-
-// void* TParcelRatios(void* data)
-// {
-//     CoordAndRatio* values= (CoordAndRatio*) data;
-//     values->ratio= 0;
-//     
-//     Coordinates coord2(values->coord);
-//     // On commence à la coordonnée suivante de celle courante
-//     while(values->res->field.nextCoordinates(&coord2)){
-// 	if (values->res->field[coord2] == is_usable) {
-// 	    float ratio_c1_goto_c2= values->res->manhattanRatioBetween2Parcels(values->coord, coord2);
-// 	    values->ratio += 2.0 * ratio_c1_goto_c2; // @see on pourrait faire un décalage de bit
-// 	}
-//     }
-// }
 
 //@}
 
 /// #########################
 /// Autres méthodes utiles
 /// #########################
-//@{
+///@{
 
 void Resolution::createExample()
 {
@@ -366,108 +304,108 @@ void Resolution::createExample()
 
     example.add_in_out(9, 0);
     // Colonne Milieu
-	example.add_road(9, 1);
-	example.add_road(9, 2);
-	example.add_road(9, 3);
-	example.add_road(9, 4);
-	example.add_road(9, 5);
-	example.add_road(9, 6);
-	example.add_road(9, 7);
-	example.add_road(9, 8);
-	example.add_road(9, 9);
-	example.add_road(9, 10);
-	example.add_road(9, 11);
-	example.add_road(9, 12);
-	example.add_road(9, 13);
-	example.add_road(9, 14);
-	example.add_road(9, 15);
-	example.add_road(9, 16);
-	example.add_road(9, 17);
-	example.add_road(9, 18);
+    example.add_road(9, 1);
+    example.add_road(9, 2);
+    example.add_road(9, 3);
+    example.add_road(9, 4);
+    example.add_road(9, 5);
+    example.add_road(9, 6);
+    example.add_road(9, 7);
+    example.add_road(9, 8);
+    example.add_road(9, 9);
+    example.add_road(9, 10);
+    example.add_road(9, 11);
+    example.add_road(9, 12);
+    example.add_road(9, 13);
+    example.add_road(9, 14);
+    example.add_road(9, 15);
+    example.add_road(9, 16);
+    example.add_road(9, 17);
+    example.add_road(9, 18);
     // Première Ligne
-	example.add_road(0, 2);
-	example.add_road(1, 2);
-	example.add_road(2, 2);
-	example.add_road(3, 2);
-	example.add_road(4, 2);
-	example.add_road(5, 2);
-	example.add_road(6, 2);
-	example.add_road(7, 2);
-	example.add_road(8, 2);
-	// example.add_road(9, 2); déjà fait dans colonne milieu
-	example.add_road(10, 2);
-	example.add_road(11, 2);
-	example.add_road(12, 2);
-	example.add_road(13, 2);
-	example.add_road(14, 2);
-	example.add_road(15, 2);
-	example.add_road(16, 2);
-	example.add_road(17, 2);
-	example.add_road(18, 2);
-	example.add_road(19, 2);
+    example.add_road(0, 2);
+    example.add_road(1, 2);
+    example.add_road(2, 2);
+    example.add_road(3, 2);
+    example.add_road(4, 2);
+    example.add_road(5, 2);
+    example.add_road(6, 2);
+    example.add_road(7, 2);
+    example.add_road(8, 2);
+    // example.add_road(9, 2); déjà fait dans colonne milieu
+    example.add_road(10, 2);
+    example.add_road(11, 2);
+    example.add_road(12, 2);
+    example.add_road(13, 2);
+    example.add_road(14, 2);
+    example.add_road(15, 2);
+    example.add_road(16, 2);
+    example.add_road(17, 2);
+    example.add_road(18, 2);
+    example.add_road(19, 2);
     // Deuxième Ligne
-	example.add_road(0, 7);
-	example.add_road(1, 7);
-	example.add_road(2, 7);
-	example.add_road(3, 7);
-	example.add_road(4, 7);
-	example.add_road(5, 7);
-	example.add_road(6, 7);
-	example.add_road(7, 7);
-	example.add_road(8, 7);
-	// example.add_road(9, 7); déjà fait dans colonne milieu
-	example.add_road(10, 7);
-	example.add_road(11, 7);
-	example.add_road(12, 7);
-	example.add_road(13, 7);
-	example.add_road(14, 7);
-	example.add_road(15, 7);
-	example.add_road(16, 7);
-	example.add_road(17, 7);
-	example.add_road(18, 7);
-	example.add_road(19, 7);
+    example.add_road(0, 7);
+    example.add_road(1, 7);
+    example.add_road(2, 7);
+    example.add_road(3, 7);
+    example.add_road(4, 7);
+    example.add_road(5, 7);
+    example.add_road(6, 7);
+    example.add_road(7, 7);
+    example.add_road(8, 7);
+    // example.add_road(9, 7); déjà fait dans colonne milieu
+    example.add_road(10, 7);
+    example.add_road(11, 7);
+    example.add_road(12, 7);
+    example.add_road(13, 7);
+    example.add_road(14, 7);
+    example.add_road(15, 7);
+    example.add_road(16, 7);
+    example.add_road(17, 7);
+    example.add_road(18, 7);
+    example.add_road(19, 7);
     // Troisième Ligne
-	example.add_road(0, 12);
-	example.add_road(1, 12);
-	example.add_road(2, 12);
-	example.add_road(3, 12);
-	example.add_road(4, 12);
-	example.add_road(5, 12);
-	example.add_road(6, 12);
-	example.add_road(7, 12);
-	example.add_road(8, 12);
-	// example.add_road(9, 12); déjà fait dans colonne milieu
-	example.add_road(10, 12);
-	example.add_road(11, 12);
-	example.add_road(12, 12);
-	example.add_road(13, 12);
-	example.add_road(14, 12);
-	example.add_road(15, 12);
-	example.add_road(16, 12);
-	example.add_road(17, 12);
-	example.add_road(18, 12);
-	example.add_road(19, 12);
+    example.add_road(0, 12);
+    example.add_road(1, 12);
+    example.add_road(2, 12);
+    example.add_road(3, 12);
+    example.add_road(4, 12);
+    example.add_road(5, 12);
+    example.add_road(6, 12);
+    example.add_road(7, 12);
+    example.add_road(8, 12);
+    // example.add_road(9, 12); déjà fait dans colonne milieu
+    example.add_road(10, 12);
+    example.add_road(11, 12);
+    example.add_road(12, 12);
+    example.add_road(13, 12);
+    example.add_road(14, 12);
+    example.add_road(15, 12);
+    example.add_road(16, 12);
+    example.add_road(17, 12);
+    example.add_road(18, 12);
+    example.add_road(19, 12);
     // Quatrième Ligne
-	example.add_road(0, 17);
-	example.add_road(1, 17);
-	example.add_road(2, 17);
-	example.add_road(3, 17);
-	example.add_road(4, 17);
-	example.add_road(5, 17);
-	example.add_road(6, 17);
-	example.add_road(7, 17);
-	example.add_road(8, 17);
-	// example.add_road(9, 17); déjà fait dans colonne milieu
-	example.add_road(10, 17);
-	example.add_road(11, 17);
-	example.add_road(12, 17);
-	example.add_road(13, 17);
-	example.add_road(14, 17);
-	example.add_road(15, 17);
-	example.add_road(16, 17);
-	example.add_road(17, 17);
-	example.add_road(18, 17);
-	example.add_road(19, 17);
+    example.add_road(0, 17);
+    example.add_road(1, 17);
+    example.add_road(2, 17);
+    example.add_road(3, 17);
+    example.add_road(4, 17);
+    example.add_road(5, 17);
+    example.add_road(6, 17);
+    example.add_road(7, 17);
+    example.add_road(8, 17);
+    // example.add_road(9, 17); déjà fait dans colonne milieu
+    example.add_road(10, 17);
+    example.add_road(11, 17);
+    example.add_road(12, 17);
+    example.add_road(13, 17);
+    example.add_road(14, 17);
+    example.add_road(15, 17);
+    example.add_road(16, 17);
+    example.add_road(17, 17);
+    example.add_road(18, 17);
+    example.add_road(19, 17);
 
     example.add_in_out(9, 19);
 
@@ -481,4 +419,4 @@ void Resolution::createExample()
     field.defineUsables(params.get_serve_distance());
 }
 
-//@}
+///@}

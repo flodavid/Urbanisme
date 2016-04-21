@@ -105,14 +105,14 @@ public:
     /* Autres méthodes utiles */
     /**
       * @brief createExample
-      * @test
+      * @test Utile seulement pour les tests
       */
-     void createExample() __attribute__ ( ( test ) );
+     void createExample();
      
      /* Threads */
 
 };
 
-void TParcelRatios(const Coordinates* coord, float* ratio, const Resolution* res);
+void TParcelRatios(Coordinates coord, float* ratio, const Resolution* res);
 /* Threads */
 //      void *TParcelRatios(void *threadid);
