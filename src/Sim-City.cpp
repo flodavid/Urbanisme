@@ -31,8 +31,8 @@ int main()
     time_t evaluation_startTime;
     evaluation_startTime = time(NULL);
 
-//    float total_ratio= myResolution.evaluateRatio();
-    float total_ratio= myResolution.threadsEvaluateRatio();
+    float total_ratio= myResolution.evaluateRatio();
+//     float total_ratio= myResolution.threadsEvaluateRatio();
     time_t stopTime;
     stopTime = time(NULL);
     time_t elapsedTime = stopTime - evaluation_startTime;
@@ -43,8 +43,6 @@ int main()
     srand(time(NULL));
 //    myField.generateInsAndOuts(2);
 //    myField.show_ins_and_outs();
-
-
 
 /**	Fin tests	**/
 

@@ -24,7 +24,7 @@ public: // TODO temporaire, TODELETE
     Parameters params;
 
     // Données calculées
-    std::vector<std::vector<unsigned>> road_distances;
+    std::vector<std::vector<std::vector<std::vector<unsigned>>>> road_distances;
 
     // FLAGS
     bool road_distances_are_initiated= false;
@@ -45,13 +45,14 @@ public:
      * @brief set_params
      */
     void set_params ( const Parameters& _params );
-    /**
-     * @brief set_road_distance
-     * @deprecated
-     */
-    void increment_road_distance ( const Coordinates& coord, unsigned value ) __attribute__ ( ( deprecated ) );
-
+    
     /* Calculs de données */
+    
+    /**
+     * Initialise la matrice de voisinage avec les routes avec la distance Manhattan
+     * TODO
+     */
+    void initCoordNeighbourhoodManhattan(const Coordinates& coord);
     /**
      * Initialise la matrice de voisinage avec les routes avec la distance Manhattan
      * TODO
@@ -74,7 +75,7 @@ private:
      * Calcule la distance entre deux points, en passant de route en route
      * On suppose ques les coordonées courantes sont des routes
      */
-    unsigned recCalcRoadDistance ( const Coordinates& coord1, const Coordinates& coord2, std::list<Coordinates> *visited ) const;
+    unsigned recCalcRoadDistance ( const Coordinates& coord1, const Coordinates& coord2, std::list<Coordinates> *visited, unsigned dist_max ) const;
 
 public:
     /* Evaluations */
