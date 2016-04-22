@@ -49,10 +49,8 @@ void Resolution::initCoordNeighbourhoodManhattan(const Coordinates &coord)
         while (field.nextCoordinates(&coord2)) {
             // On calcule la distance que si elle n'a pas déjà été calculée
             if (field[coord2] == is_usable) {
-                if (getManhattanRatio(coord, coord2) == 0.0) {
-                    road_distances[coord.row][coord.col][coord2.row][coord2.col] = getManhattanRatio(coord, coord2);
-                } else {
-                    road_distances[coord.row][coord.col][coord2.row][coord2.col] = manhattanRatioBetween2Parcels(coord, coord2);
+		if (getRoadDistance(coord, coord2) == 0) {
+                    road_distances[coord.row][coord.col][coord2.row][coord2.col] = calcRoadDistance(coord, coord2);
                 }
             }
         }
@@ -171,20 +169,19 @@ unsigned Resolution::recCalcRoadDistance(const Coordinates &coord1, const Coordi
 		    
 		    // On applique la recursivité avec la coordonnée envisagée courante
 		    unsigned dist;
-		    float current_ratio = getManhattanRatio(coord1, coord2);
-		    if (current_ratio != 0.0) {
-			dist = getManhattanRatio(coord1, coord2);
+		    float current_ratio = getRoadDistance(coord1, coord2);
+		    if (current_ratio != 0) {
+			dist = current_ratio;
 		    } else {
-			road_distances[coord1.row][coord1.col][coord2.row][coord2.col] = manhattanRatioBetween2Parcels(coord1, coord2);
 			visited->push_back(coord1);
-			dist = recCalcRoadDistance(new_coord,  coord2, visited, dist_max);
+			dist= recCalcRoadDistance(new_coord,  coord2, visited, min_dist);
 			visited->pop_back();
+			road_distances[coord1.row][coord1.col][coord2.row][coord2.col] = dist;
 		    }
 		    
 		    // On compare le résultat obtenu avec le minimum courant
 		    if (dist < min_dist) {
-			min_dist = dist + 1;
-			//                     min_dist_neighbour= new_coord;
+			min_dist = dist;
 		    }
 		} else {
 		    #if DEBUG_ROADS_DIST
@@ -198,7 +195,7 @@ unsigned Resolution::recCalcRoadDistance(const Coordinates &coord1, const Coordi
 	    #if DEBUG_ROADS_DIST
 	    cout << "Pour aller de " << coord1 << " à " << coord2 << ", il y a un trajet de longueur " << min_dist << endl;
 	    #endif
-	    return min_dist;
+	    return min_dist +1;
 	}
     }
 }
@@ -242,9 +239,9 @@ unsigned int Resolution::evaluateTotalUsable() const
     return nb_usables;
 }
 
-float Resolution::manhattanRatioBetween2Parcels(const Coordinates &p1, const Coordinates &p2)
+float Resolution::manhattanRatioBetween2Parcels(const Coordinates &p1, const Coordinates &p2) const
 {
-    unsigned road_distance = calcRoadDistance(p1, p2);
+    unsigned road_distance = getRoadDistance(p1, p2);
     unsigned manhattan_distance = p1.manhattanDistance(p2);
     float ratio = road_distance / (float) manhattan_distance;
 
@@ -265,7 +262,7 @@ float Resolution::evaluateRatio() const
             // On commence à la coordonnée suivante de celle courante
             while (field.nextCoordinates(&coord2)) {
                 if (field[coord2] == is_usable) {
-                    float ratio_c1_goto_c2 = getManhattanRatio(coord1, coord2);
+		    float ratio_c1_goto_c2 = manhattanRatioBetween2Parcels(coord1, coord2);
                     total_ratio += 2.0 * ratio_c1_goto_c2; // @see on pourrait faire un décalage de bit
                 }
             }
@@ -314,7 +311,6 @@ float Resolution::threadsEvaluateRatio() const
     return total_ratio;
 }
 
-
 //@}
 /// #########################
 /// 	Threads
@@ -329,7 +325,7 @@ void TParcelRatios(Coordinates coord, float *ratio, const Resolution *res)
     // On commence à la coordonnée suivante de celle courante
     while (res->field.nextCoordinates(&coord2)) {
         if (res->field[coord2] == is_usable) {
-            float ratio_c1_goto_c2 = res->getManhattanRatio(coord, coord2);
+            float ratio_c1_goto_c2 = res->manhattanRatioBetween2Parcels(coord, coord2);
             (*ratio) += 2.0 * ratio_c1_goto_c2; // @see on pourrait faire un décalage de bit
         }
     }

@@ -24,7 +24,7 @@ public: // TODO temporaire, TODELETE
     Parameters params;
 
     // Données calculées
-    std::vector<std::vector<std::vector<std::vector<float>>>> road_distances;
+    std::vector<std::vector<std::vector<std::vector<unsigned>>>> road_distances;
 
     // FLAGS
     bool road_distances_are_initiated= false;
@@ -39,7 +39,7 @@ public:
     ~Resolution();
 
     /* Getters */
-    float getManhattanRatio(const Coordinates& coord1, const Coordinates& coord2) const
+    unsigned getRoadDistance(const Coordinates& coord1, const Coordinates& coord2) const
     { return road_distances[coord1.row][coord1.col][coord2.row][coord2.col]; }
 
     /*** Setters */
@@ -93,7 +93,7 @@ public:
          * @param p2 secondes coordonnées
      * @return le ratio, sous forme de flottant
      */
-    float manhattanRatioBetween2Parcels ( const Coordinates &p1, const Coordinates &p2 );
+    float manhattanRatioBetween2Parcels ( const Coordinates& p1, const Coordinates& p2 ) const;
     /**
      * Evalue le ratio de toutes les solutions
      * @return l'évaluation en flottant

@@ -25,18 +25,25 @@ int main()
 /**		Tests		**/
     myResolution.createExample();
 
-    myResolution.initNeighbourhoodManhattan();
+    time_t startTime;
+    time_t stopTime;
+    time_t elapsedTime;
+    
     unsigned nb_usables= myResolution.evaluateTotalUsable();
     clog << "Nombre total de parcelles exploitables au début : "<< nb_usables<< endl;
-
-    time_t evaluation_startTime;
-    evaluation_startTime = time(NULL);
+    
+    startTime = time(NULL);
+    myResolution.initNeighbourhoodManhattan();
+    stopTime = time(NULL);
+    elapsedTime = stopTime - startTime;
+    printf("Le nombre de secondes écoulées pour l'initialisation est %ld\n",elapsedTime);
+    
+    startTime = time(NULL);
 
     float total_ratio= myResolution.evaluateRatio();
 //     float total_ratio= myResolution.threadsEvaluateRatio();
-    time_t stopTime;
     stopTime = time(NULL);
-    time_t elapsedTime = stopTime - evaluation_startTime;
+    elapsedTime = stopTime - startTime;
     
     cout << "Ratio total : "<< total_ratio<< endl;
     printf("Le nombre de secondes écoulées pour l'évaluation est %ld\n",elapsedTime);
