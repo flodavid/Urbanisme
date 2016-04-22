@@ -25,6 +25,7 @@ int main()
 /**		Tests		**/
     myResolution.createExample();
 
+    myResolution.initNeighbourhoodManhattan();
     unsigned nb_usables= myResolution.evaluateTotalUsable();
     clog << "Nombre total de parcelles exploitables au début : "<< nb_usables<< endl;
 
