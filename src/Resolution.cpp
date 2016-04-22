@@ -254,13 +254,25 @@ float Resolution::threadsEvaluateRatio() const
         }
     } while(field.nextCoordinates(&coord1));
 
-
     float total_ratio= 0.0;
     for(pair<thread*, float*> thread_result : threads){
         thread_result.first->join();
         total_ratio += (*thread_result.second);
+#if DEBUG_EVALUATION
         cout << "On ajoute "<< (*thread_result.second)<< ", le ratio total est "<< total_ratio<< endl;
+#endif
+        delete thread_result.second;
     }
+
+//    for(vector<pair<thread*, float*>>::iterator it(threads.end()); it != threads.begin(); ++it ){
+//        pair<thread*, float*>  thread_result;
+//        thread_result.first->join();
+//        total_ratio += (*thread_result.second);
+//#if DEBUG_EVALUATION
+//        cout << "On ajoute "<< (*thread_result.second)<< ", le ratio total est "<< total_ratio<< endl;
+//#endif
+//        delete thread_result.second;
+//    }
 
     return total_ratio;
 }
@@ -292,7 +304,7 @@ void TParcelRatios(Coordinates coord, float* ratio, const Resolution* res)
 /// #########################
 /// Autres méthodes utiles
 /// #########################
-///@{
+//@{
 
 void Resolution::createExample()
 {
@@ -419,4 +431,4 @@ void Resolution::createExample()
     field.defineUsables(params.get_serve_distance());
 }
 
-///@}
+//@}

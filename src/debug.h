@@ -4,7 +4,7 @@
 #define DEBUG_ALL	0
 
 // Generic debug
-#define DEBUG                   1
+#define DEBUG                   0
 
 // Resolution
 #define DEBUG_EVALUATION        1

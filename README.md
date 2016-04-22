@@ -57,24 +57,36 @@ les "points chauds", qui on un rapport élevé distance "directe"/distance_Manha
 #### Algorithme/Objectifs
 - Comment trouver les routes à X parcelles de distance d'une parcelle donnée ?
     - Actuellement, une recherche dans un de 2*X parcelles de coté est effectuée, 
-    on garde les routes qui sont à moins de 2 de distance.
+    on garde les routes qui sont à moins de 2 de distance. OK : Parcourir les routes
     - Faudrait-il stocker les routes voisines d'une parcelle dans un vecteur de listes
-     de paires d'une coordonnée et d'une distance ? ou juste une coordonnée ?
-- Les E/S sont-elles bien des routes ?
-- Pour II.6, faire une moyenne ? un maximum ? garder total à coté ?
-    - Noté : moyenne 80 %
-    - Utiliser également distance euclidienne ?
-    - Distance par les routes : compte la distance entre la parcelle et la première route ?
+     de paires d'une coordonnée et d'une distance ? ou juste une coordonnée ? OK : plutôt oui
+- Les E/S sont-elles bien des routes ? OK : Oui
+- Pour II.6, faire une moyenne ? un maximum ? garder total à coté ? OK : Moyenne pour l'instant
+    - Noté : moyenne 80 % (OK : Moyenne quadratique)
+    - Utiliser également distance euclidienne ? OK : plus tard
+    - Distance par les routes : compte la distance entre la parcelle et la première route ? OK : faire optimisation : 
+        - [ ] Prendre les routes les plus proches d'abord
+        - [ ] 
 - Transformer en graphe (voir Code 2. et 4. )
 - Collection solutions, comment démarrer ? aléatoire ? voisinage ? Comment relier les E/S ?
 
 #### Code/Technique :
 - Dans listes (`list<Coordinates>*`) utiliser pointeurs ? si oui, comment utiliser,
-ou remplacer, `find(begin, end, val)` ?
-- Utiliser boost-graph ?
-- Largeur routes ??
+ou remplacer, `find(begin, end, val)` ? => Non demandé
+- Utiliser boost-graph ? Bof
+- Largeur routes ?? Non 
 - Faire une listes de routes ? Pour définir exploitable, je vérifie que chaque route
 a un voisin (en cherchant tous ses voisins, alors qu'on pourrait s'arrêter au premier),
 l'inverse est possible : définir toutes les voisins de chaque route comme étant exploitable
 - servingDistance est unsigned, comment l'utiliser dans les boucles avec des Coordinates
-qui ont des entiers ? je crée une variable locale  
+qui ont des entiers ? je crée une variable locale
+
+
+#### Profiler :
++ Gprof (gnu profiler)
++ Kcachegrind
+
+#### Autres :
++ Seulement 2 entrées/sorties : 3 Cas pour relier : ligne droite, ligne avec 2 coudes, Equerre (ligne avec 1 coude (ou 2n +1 ?))
++ Recherche locale : incrémentale
+
