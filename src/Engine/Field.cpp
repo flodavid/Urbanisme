@@ -138,12 +138,18 @@ void Field::generateInsAndOuts ( unsigned nb )
     }
 }
 
-bool Field::isRoadAndNeighbourOf (const Coordinates& neighbour, const Coordinates& coord, unsigned servingDistance ) const
+
+bool Field::isRoad(const Coordinates& neighbour) const
 {
     return contains ( neighbour )
-           && ! ( neighbour == coord )
-           && coord.manhattanDistance ( neighbour ) <= servingDistance // TODO changer, ne pas utiliser manhattanDistance,  peu performant ?
            && at ( neighbour ) == is_road;
+}
+
+bool Field::isRoadAndNeighbourOf (const Coordinates& neighbour, const Coordinates& coord, unsigned servingDistance ) const
+{
+    return isRoad(neighbour)
+           && coord.manhattanDistance ( neighbour ) <= servingDistance // TODO changer, ne pas utiliser manhattanDistance,  peu performant ?
+           && ! ( neighbour == coord );
 }
 
 std::list<Coordinates>* Field::getNeighbourRoads ( const Coordinates& coord ) const
@@ -204,13 +210,15 @@ std::list<Coordinates>* Field::getServingRoads ( const Coordinates& coord , unsi
     int serve_dist= ( int ) servingDistance; // il est plus simple de convertir en entier
 
     // On vérifie si les routes entre (x +dist;y +dist) et (x -dist;y -dist)
-    /// @see on vérifie serve_dist² parcelles,  alors qu'on pourrait en vérifier ?? (moins)
+    /// On vérifie ((2.serve_dist)+1)² parcelles,  alors qu'on pourrait en vérifier moins
     for ( int i= coord.row + serve_dist; i >= coord.row -serve_dist; --i ) {
         for ( int j= coord.col + serve_dist; j >= coord.col -serve_dist; --j ) {
 
             // On vérifie que la parcelle n'est pas en dehors de la matrice et qu'elle n'est pas la coordonnée courante
             Coordinates neighbour ( j,  i );
-            if ( isRoadAndNeighbourOf ( neighbour, coord, servingDistance ) ) {
+            if ( isRoad(neighbour)
+                 && coord.manhattanDistance(neighbour) == servingDistance )
+            {
                 // Ajout dans les routes voisines de la parcelle
                 Coordinates& road_coord= * ( new Coordinates ( j, i ) );
                 serving_roads->push_back ( road_coord );    //  copie faire :'(
@@ -231,7 +239,7 @@ bool Field::hasServingRoad ( const Coordinates& coord , unsigned servingDistance
     int serve_dist= ( int ) servingDistance; // il est plus simple de convertir en entier
 
     // On vérifie si les routes entre (x +dist;y +dist) et (x -dist;y -dist)
-    /// @see on vérifie serve_dist² parcelles,  alors qu'on pourrait en vérifier ?? (moins)
+    /// On vérifie ((2.serve_dist)+1)² parcelles,  alors qu'on pourrait en vérifier moins
     for ( int i= coord.row + serve_dist; i >= coord.row -serve_dist; --i ) {
         for ( int j= coord.col + serve_dist; j >= coord.col -serve_dist; --j ) {
 

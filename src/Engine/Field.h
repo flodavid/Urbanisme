@@ -212,6 +212,12 @@ public:
 
 private:
     /**
+     * Vérifie qu'une position est valide et a une route
+        * @param neighbour Coordonnées de la parcelle
+     * @return vrai si la parcelle est une route
+     */
+    bool isRoad(const Coordinates& neighbour) const;
+    /**
      * Vérifie que deux parcelles sont voisines, supposant une distance de voisinage
         * @param neighbour Coordonnées de la parcelle qui peut être voisine de l'autre
         * @param coord Coordonnées de la seconde parcelle
