@@ -41,6 +41,8 @@ void Resolution::set_params(const Parameters &_params)
 
 unsigned Resolution::calcRoadDistance(const Coordinates &coord1, const Coordinates &coord2)
 {
+    cout << "### Calcul de la distance entre "<< coord1<< " et "<< coord2<< endl
+         << "=============================================="<< endl;
     if (coord1 == coord2) {
 #if DEBUG_ROADS_DIST
         clog << "les cases de départ et d'arrivée sont identiques" << endl;
@@ -71,7 +73,7 @@ unsigned Resolution::calcRoadDistance(const Coordinates &coord1, const Coordinat
 
     if (min_dist != UNSIGNED_INFINITY) {
 #if DEBUG_ROADS_DIST
-        cout << "Les plus court chemin de " << coord1 << " à " << coord2
+        cout << "\tLe plus court chemin de " << coord1 << " à " << coord2
              << " est de longueur " << min_dist << endl;
 #endif
     } else {
@@ -79,6 +81,9 @@ unsigned Resolution::calcRoadDistance(const Coordinates &coord1, const Coordinat
                 "(au moins une des 2 parcelle n'a pas de route à proximité (distance < "
              << params.get_serve_distance() << "))" << endl;
     }
+
+    cout << "### Distance entre "<< coord1<< " et "<< coord2<< " : "<< min_dist<< endl
+         << endl;
 
     return min_dist;
 }
@@ -92,6 +97,9 @@ unsigned Resolution::recCalcRoadDistance(const Coordinates &coord1, const Coordi
     assert(field[coord1] == is_road);
 
     if (coord1 == coord2) {
+#if DEBUG_ROADS_DIST
+        cout << "Je suis arrivé à " << coord2<< endl;
+#endif
         return 0;
     } else {
         if (visited->size() >= dist_max) {
@@ -101,10 +109,10 @@ unsigned Resolution::recCalcRoadDistance(const Coordinates &coord1, const Coordi
             //         Coordinates& min_dist_neighbour;
 
             list<Coordinates> *neighbour_roads = field.getNeighbourRoads(coord1);
-            for (Coordinates new_coord : *neighbour_roads) {
 #if DEBUG_ROADS_DIST
-                cout << "Taille de la liste des visitées : " << visited->size() << endl;
+                cout << "***Taille de la liste des visitées : " << visited->size() << endl;
 #endif
+            for (Coordinates new_coord : *neighbour_roads) {
                 //  recherche de cet élément dans la liste des visités
                 if (find(visited->begin(), visited->end(), new_coord) == visited->end()) {
 
@@ -113,21 +121,32 @@ unsigned Resolution::recCalcRoadDistance(const Coordinates &coord1, const Coordi
                     float current_ratio = getRoadDistance(coord1, coord2);
                     if (current_ratio != 0) {
                         dist = current_ratio;
+#if DEBUG_ROADS_DIST
+                        cout << "\tIl y a déjà une valeur pour ce trajet : "<< current_ratio<< endl;
+#endif
                     } else {
                         visited->push_back(coord1);
                         dist= recCalcRoadDistance(new_coord,  coord2, visited, min_dist);
                         visited->pop_back();
-                        road_distances[coord1.row][coord1.col][coord2.row][coord2.col] = dist;
+                        if (dist != UNSIGNED_INFINITY) {
+                            road_distances[new_coord.row][new_coord.col][coord2.row][coord2.col] = dist;
+#if DEBUG_ROADS_DIST
+                            cout<< "  Je stocke ";
+#endif
+                        }
+#if DEBUG_ROADS_DIST
+                        cout << "\tLa valeur calculée pour le trajet "<< new_coord<< "->"<< coord2<< "est : "<< dist<< endl;
+#endif
                     }
 
-                    ++dist; // distance + déplacement de la case courant à son voisin
+                    dist; // distance + déplacement de la case courant à son voisin
                     // On compare le résultat obtenu avec le minimum courant
                     if (dist < min_dist) {
                         min_dist= dist;
                     }
                 } else {
 #if DEBUG_ROADS_DIST
-                    cout << "La parcelle a déjà été visitée" << endl;
+                    cout << "La parcelle "<<new_coord<< " a déjà été visitée" << endl;
 #endif
                 }
             }
@@ -138,7 +157,12 @@ unsigned Resolution::recCalcRoadDistance(const Coordinates &coord1, const Coordi
             cout << "Pour aller de " << coord1 << " à " << coord2
                  << ", il y a un trajet de longueur " << min_dist << endl;
 #endif
-            return min_dist +1;
+            if (min_dist != UNSIGNED_INFINITY) {
+                // On incrément min_dist, car on se déplace vers le voisin
+                return min_dist +1;
+            } else {
+                return UNSIGNED_INFINITY;
+            }
         }
     }
 }
@@ -206,25 +230,13 @@ void Resolution::initNeighbourhoodManhattan()
 unsigned int Resolution::evaluateTotalUsable() const
 {
     unsigned nb_usables = 0;
-#if DEBUG_EVALUATION
-    int x = 0, y = 0;
-#endif
     for (vector<State> row_parcel_state : field) {
         for (State parcel_state : row_parcel_state) {
-#if DEBUG_EVALUATION
-            cout << "state(" << x << "," << y << ")= " << parcel_state << "; ";
-            if (x == 0) cout << endl;
-            ++x;
-#endif
             assert(parcel_state >= -1 &&  parcel_state <= is_unusable);
             if (parcel_state == is_usable) {
                 ++nb_usables;
             }
         }
-#if DEBUG_EVALUATION
-        ++y;
-        x = 0;
-#endif
     }
 
 #if DEBUG_EVALUATION
@@ -241,9 +253,11 @@ float Resolution::manhattanRatioBetween2Parcels(const Coordinates &p1, const Coo
     unsigned manhattan_distance = p1.manhattanDistance(p2);
     float ratio = ((float)road_distance) / ((float) manhattan_distance);
 
+#if DEBUG_EVALUATION
     cout << "\tDistance route "<< p1<< "->"<< p2<< " = "<< road_distance<< endl;
     cout << "\tDistance directe "<< p1<< "->"<< p2<< " = "<< manhattan_distance<< endl;
     cout << "\t\tRatio : "<< ratio<< endl;
+#endif
 
     return ratio;
 }
@@ -273,7 +287,8 @@ float Resolution::evaluateRatio(unsigned nbUsables) const
     cout << "Ratio total : "<< total_ratio<< ", nb ratios : "<< nb_ratio<< endl;
     
     float average =  total_ratio / ((float) nb_ratio);
-    
+
+    cout << field<< endl;
     return average;
 }
 

@@ -42,16 +42,18 @@ void Field::show_ins_and_outs() const
     cout << endl;
 }
 
-void Field::show_states() const
+std::ostream& Field::print(std::ostream& out) const
 {
     Coordinates coord= Field::first();
     do {
         if ( ( coord.col ) == 0 ) {
-            cout << endl<< coord<< "= "<< at ( coord );
+            out << endl<< coord<< "= "<< at ( coord );
         } else {
-            cout<<  "; "<< coord<< "= "<< at ( coord );
+            out<<  "; "<< coord<< "= "<< at ( coord );
         }
     } while ( nextCoordinates ( &coord ) );
+
+    return out;
 }
 
 //@}

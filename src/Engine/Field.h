@@ -73,26 +73,25 @@ public:
     void resizeWithDimensions();
 public:
     /**
-    * Ajoute une entrée/sortie à partir de coordonnées
-    * @param coord Coordonnées de l'E/S
-    */
-    void add_in_out(const Coordinates& coord)
-    { ins_outs.push_back(coord); }
-    /**
-    * Ajoute une entrée/sortie à partir de coordonnées
-    * @param col Colonne de l'E/S
-    * @param row Ligne de l'E/S
-    */
-    void add_in_out(unsigned col, unsigned row)
-    { ins_outs.push_back(Coordinates(col, row)); }
-
-    /**
     * Ajoute une route à partir de coordonnées
     * @param col Colonne de la route
     * @param row Ligne de la route
     */
     void add_road(unsigned col, unsigned row)
     { parcels[row][col]= is_road; }
+    /**
+    * Ajoute une entrée/sortie à partir de coordonnées
+    * @param coord Coordonnées de l'E/S
+    */
+    void add_in_out(const Coordinates& coord)
+    { ins_outs.push_back(coord); add_road(coord.col, coord.row); }
+    /**
+    * Ajoute une entrée/sortie à partir de coordonnées
+    * @param col Colonne de l'E/S
+    * @param row Ligne de l'E/S
+    */
+    void add_in_out(unsigned col, unsigned row)
+    { ins_outs.push_back(Coordinates(col, row)); add_road(col, row); }
 
     /**=== Operators ===**/
 public:
@@ -157,10 +156,6 @@ public:
      * Impression sur la sortie standard des entrées et sorties de la surface
      */
     void show_ins_and_outs() const;
-    /**
-     * Impression sur la sortie standard de tous les états des parcelles de la surface
-     */
-    void show_states() const;
 
     /**
      * Imprime dans un flux les informations de l'instance

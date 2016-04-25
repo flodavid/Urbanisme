@@ -30,7 +30,7 @@ int main()
     time_t elapsedTime;
     
     unsigned nb_usables= myResolution.evaluateTotalUsable();
-    clog << "Nombre total de parcelles exploitables au début : "<< nb_usables<< endl;
+    cout << "Nombre total de parcelles exploitables au début : "<< nb_usables<< endl;
     
     startTime = time(NULL);
     myResolution.initNeighbourhoodManhattan();
