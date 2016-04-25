@@ -13,7 +13,7 @@ add_subdirectory(Engine) # must set ${Engine_SRCS}
 
 add_definitions(-Wall -std=c++11 -pthread -lpthread )
 
-set(sim-city_SRCS ${Engine_SRCS} ${Display_SRCS} Resolution.cpp Sim-City.cpp)
+set(sim-city_SRCS ${Engine_SRCS} ${Display_SRCS} Resolution.cpp Resolution_others.cpp Sim-City.cpp)
 
 set(HEADERS debug.h)
 

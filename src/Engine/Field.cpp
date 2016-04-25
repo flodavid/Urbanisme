@@ -63,7 +63,7 @@ void Field::show_states() const
 bool Field::contains ( int x, int y ) const
 {
     return ( x >= 0 && ( ( unsigned ) x ) < nb_cols ) // abscisse correcte
-           && ( y >= 0  && ( ( unsigned ) y ) < nb_rows ); // ordonnée correcte
+            && ( y >= 0  && ( ( unsigned ) y ) < nb_rows ); // ordonnée correcte
 }
 
 
@@ -77,7 +77,7 @@ bool Field::nextCoordinates ( Coordinates* coord ) const
     // On vérifie que la coordonnée actuelle est dans la surface
     //  (vérification sur les colonnes puis sur les lignes)
     if ( ( coord->col < -1 || coord->col >= ( int ) ( get_width() ) ) ||
-            ( coord->row < 0 || coord->row >= ( int ) ( get_height() ) ) ) {
+         ( coord->row < 0 || coord->row >= ( int ) ( get_height() ) ) ) {
 #if DEBUG_PARCOURS_COORDS
         cout << "Coordonnées "<< ( *coord ) << " en dehors de la surface" <<endl;
 #endif
@@ -139,17 +139,16 @@ void Field::generateInsAndOuts ( unsigned nb )
 }
 
 
-bool Field::isRoad(const Coordinates& neighbour) const
+bool Field::isRoad ( const Coordinates& neighbour ) const
 {
     return contains ( neighbour )
-           && at ( neighbour ) == is_road;
+            && at ( neighbour ) == is_road;
 }
 
-bool Field::isRoadAndNeighbourOf (const Coordinates& neighbour, const Coordinates& coord, unsigned servingDistance ) const
+bool Field::isRoadAndNeighbourOf ( const Coordinates& neighbour, const Coordinates& coord, unsigned servingDistance ) const
 {
-    return isRoad(neighbour)
-           && coord.manhattanDistance ( neighbour ) <= servingDistance // TODO changer, ne pas utiliser manhattanDistance,  peu performant ?
-           && ! ( neighbour == coord );
+    return (isRoad( neighbour ) && coord.manhattanDistance(neighbour) <= servingDistance && !(neighbour == coord));
+            // TODO changer, ne pas utiliser manhattanDistance,  peu performant ?
 }
 
 std::list<Coordinates>* Field::getNeighbourRoads ( const Coordinates& coord ) const
@@ -163,7 +162,7 @@ std::list<Coordinates>* Field::getNeighbourRoads ( const Coordinates& coord ) co
     Coordinates& east= * ( new Coordinates ( coord.col +1, coord.row ) );
     Coordinates& north= * ( new Coordinates ( coord.col, coord.row -1 ) );
     Coordinates& south= * ( new Coordinates ( coord.col, coord.row +1 ) );
-// On vérifie que chaque voisin n'est pas en dehors de la matrice
+    // On vérifie que chaque voisin n'est pas en dehors de la matrice
 
     if ( contains ( west ) && at ( west ) == is_road ) {
         // Ajout dans les routes voisines de la parcelle
@@ -206,30 +205,37 @@ std::list<Coordinates>* Field::getNeighbourRoads ( const Coordinates& coord ) co
 std::list<Coordinates>* Field::getServingRoads ( const Coordinates& coord , unsigned servingDistance ) const
 {
     list<Coordinates>* serving_roads= new list<Coordinates>;
+    // on ne récupère pas les routes qui desservent d'autres routes,
+    // seulement celles qui desservent des parcelles ou sont colléesz
 
-    int serve_dist= ( int ) servingDistance; // il est plus simple de convertir en entier
+    int serve_dist= (int)servingDistance;
+    if(at(coord) == is_road) serve_dist= 1;
 
-    // On vérifie si les routes entre (x +dist;y +dist) et (x -dist;y -dist)
-    /// On vérifie ((2.serve_dist)+1)² parcelles,  alors qu'on pourrait en vérifier moins
-    for ( int i= coord.row + serve_dist; i >= coord.row -serve_dist; --i ) {
-        for ( int j= coord.col + serve_dist; j >= coord.col -serve_dist; --j ) {
+    bool neighbour_found =  false ;
+    for ( int s_dist= 1; s_dist <= ( int ) serve_dist && !neighbour_found; ++s_dist ) {
 
-            // On vérifie que la parcelle n'est pas en dehors de la matrice et qu'elle n'est pas la coordonnée courante
-            Coordinates neighbour ( j,  i );
-            if ( isRoad(neighbour)
-                 && coord.manhattanDistance(neighbour) == servingDistance )
-            {
-                // Ajout dans les routes voisines de la parcelle
-                Coordinates& road_coord= * ( new Coordinates ( j, i ) );
-                serving_roads->push_back ( road_coord );    //  copie faire :'(
-                delete &road_coord; // @SEE utilisation pointeur ou non
+        // On vérifie si les routes entre (x +dist;y +dist) et (x -dist;y -dist)
+        /// On vérifie ((2.serve_dist)+1)² parcelles,  alors qu'on pourrait en vérifier moins
+        for ( int i= coord.row + s_dist; i >= coord.row -s_dist; --i ) {
+            for ( int j= coord.col + s_dist; j >= coord.col -s_dist; --j ) {
+
+                // On vérifie que la parcelle n'est pas en dehors de la matrice et qu'elle n'est pas la coordonnée courante
+                Coordinates neighbour ( j,  i );
+                if ( isRoad ( neighbour )
+                     && coord.manhattanDistance ( neighbour ) == servingDistance ) {
+                    // Ajout dans les routes voisines de la parcelle
+                    Coordinates& road_coord= * ( new Coordinates ( j, i ) );
+                    serving_roads->push_back ( road_coord ); // @see copie faite :'(
+                    delete &road_coord; // @SEE utilisation pointeur ou non
+                    neighbour_found = true;
 #if DEBUG_ROADS_DIST
-                cout << "parcelle en "<< j<< " ; "<< i<< " est une route voisine de la parcelle en "
-                     << coord.col<< " ; "<< coord.row<< endl;
+                    cout << "parcelle en "<< j<< " ; "<< i<< " est une route voisine de la parcelle en "
+                         << coord.col<< " ; "<< coord.row<< endl;
 #endif
-            }
-        }
-    }
+                }
+            }// fin_for
+        }// fin_for
+    }// fin_for distance
 
     return serving_roads;
 }
@@ -251,7 +257,7 @@ bool Field::hasServingRoad ( const Coordinates& coord , unsigned servingDistance
                      << coord.col<< " ; "<< coord.row<< endl;
 #endif
                 // SORT DE LA DOUBLE BOUCLE, on a trouvé un voisin
-                return true;                                
+                return true;
             }
         }
     }
@@ -275,7 +281,7 @@ void Field::defineUsables ( unsigned int servingDistance )
         }
 #endif
         if ( at ( coord ) == is_undefined ) {
-            if ( hasServingRoad(coord, servingDistance) ) {
+            if ( hasServingRoad ( coord, servingDistance ) ) {
                 parcels[coord.row][coord.col] = is_usable;
             } else {
                 parcels[coord.row][coord.col] = is_unusable;
@@ -293,11 +299,11 @@ void Field::defineUsables ( unsigned int servingDistance )
 void Field::generateRandomSolution()
 {
     Coordinates& coord= first();
-//     int road_percent = 20;
-    
+    //     int road_percent = 20;
+
     do {
-//         maybePlaceRoad(coord, road_percent);
+        //         maybePlaceRoad(coord, road_percent);
     } while ( nextCoordinates ( &coord ) );
 }
-    
+
 //@}

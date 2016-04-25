@@ -26,7 +26,7 @@ et d'une classe représentant les paramètres du problème
 3. [x] Fonction d'évaluation complète du nombre de parcelles exploitables d'une solution
 4. [x] Calcul de la distance "directe" entre deux points, Manhattant et Euclidienne,
 avec tests correspondants
-5. [x] Calcul de la distance par les routes entre deux points
+5. [ ] Calcul de la distance par les routes entre deux points
 6. [ ] Fonction d'évaluation complète du ratio entre les distances "directes" et les distances
 par les routes
 
