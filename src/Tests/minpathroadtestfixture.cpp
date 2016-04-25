@@ -147,7 +147,10 @@ void MinPathRoadTestFixture::tearDown()
 
 void MinPathRoadTestFixture::test_validsPath()
 {
-    unsigned dist= resol->calcRoadDistance(*coord1, *coord2);
+    if (!resol->road_distances_are_initiated){
+	resol->initNeighbourhoodManhattan();
+    }
+    unsigned dist= resol->getRoadDistance(*coord1, *coord2);
     // Si on test la distance entre la première et la 2e est égale à celle attendue
     cout << "Valeur infinity : "<< UNSIGNED_INFINITY <<" OMFG !"<< endl
 	<<endl;
@@ -162,14 +165,20 @@ void MinPathRoadTestFixture::test_validsPath()
 
 void MinPathRoadTestFixture::test_sameParcel()
 {
-    unsigned dist= resol->calcRoadDistance(*coord1, *coord1);
+    if (!resol->road_distances_are_initiated){
+	resol->initNeighbourhoodManhattan();
+    }
+    unsigned dist= resol->getRoadDistance(*coord1, *coord1);
     // Si on test la distance entre une case et elle-même, on doit obtenir 0
     CPPUNIT_ASSERT_EQUAL(dist, (unsigned)0);
 }
 
 void MinPathRoadTestFixture::test_invalidsPath()
 {
-    unsigned dist_out= resol->calcRoadDistance(*coord1, *coord_out);
+    if (!resol->road_distances_are_initiated){
+	resol->initNeighbourhoodManhattan();
+    }
+    unsigned dist_out= resol->getRoadDistance(*coord1, *coord_out);
     // Si une des deux cases est en dehors, on doit obtenir l'infini
     CPPUNIT_ASSERT_EQUAL(UNSIGNED_INFINITY, dist_out);
    

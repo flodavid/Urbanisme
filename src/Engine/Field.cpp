@@ -220,7 +220,7 @@ std::list<Coordinates>* Field::getServingRoads ( const Coordinates& coord , unsi
             for ( int j= coord.col + s_dist; j >= coord.col -s_dist; --j ) {
 
                 // On vérifie que la parcelle n'est pas en dehors de la matrice et qu'elle n'est pas la coordonnée courante
-                Coordinates neighbour ( j,  i );
+                Coordinates neighbour( j,  i );
                 if ( isRoad ( neighbour )
                      && coord.manhattanDistance ( neighbour ) == servingDistance ) {
                     // Ajout dans les routes voisines de la parcelle

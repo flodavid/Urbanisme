@@ -2,6 +2,7 @@
 
 #include <list>
 
+#include "stdafx.h"
 #include "Engine/Field.h"
 #include "Engine/Parameters.h"
 #include "Engine/coordinates.h"
@@ -39,8 +40,9 @@ public:
     ~Resolution();
 
     /* Getters */
-    unsigned getRoadDistance(const Coordinates& coord1, const Coordinates& coord2) const
-    { return road_distances[coord1.row][coord1.col][coord2.row][coord2.col]; }
+    inline unsigned getRoadDistance(const Coordinates& coord1, const Coordinates& coord2) const
+    { if (!field.contains(coord1) || !field.contains(coord2)) return UNSIGNED_INFINITY;
+	return road_distances[coord1.row][coord1.col][coord2.row][coord2.col]; }
 
     /*** Setters */
     /**
