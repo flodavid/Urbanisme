@@ -206,13 +206,13 @@ std::list<Coordinates>* Field::getServingRoads ( const Coordinates& coord , unsi
 {
     list<Coordinates>* serving_roads= new list<Coordinates>;
     // on ne récupère pas les routes qui desservent d'autres routes,
-    // seulement celles qui desservent des parcelles ou sont colléesz
+    // seulement celles qui desservent des parcelles ou sont collées
 
     int serve_dist= (int)servingDistance;
     if(at(coord) == is_road) serve_dist= 1;
 
-    bool neighbour_found =  false ;
-    for ( int s_dist= 1; s_dist <= ( int ) serve_dist && !neighbour_found; ++s_dist ) {
+    bool neighbour_found =  false;
+    for ( int s_dist= 1; s_dist <= (int) serve_dist && !neighbour_found; ++s_dist ) {
 
         // On vérifie si les routes entre (x +dist;y +dist) et (x -dist;y -dist)
         /// On vérifie ((2.serve_dist)+1)² parcelles,  alors qu'on pourrait en vérifier moins

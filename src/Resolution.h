@@ -24,7 +24,7 @@ public: // TODO temporaire, TODELETE
     Parameters params;
 
     // Données calculées
-    std::vector<std::vector<std::vector<std::vector<unsigned>>>> road_distances;
+    std::vector< std::vector< std::vector< std::vector< unsigned > > > > road_distances;
 
     // FLAGS
     bool road_distances_are_initiated= false;
@@ -70,14 +70,14 @@ public:
      * @return la valeur, entier non signé, de distance la plus courte,
      *   entre les deux coordonnées, en passant par les routes
      */
-    unsigned calcRoadDistance ( const Coordinates& coord1, const Coordinates& coord2 );
+    unsigned calcRoadDistance (const Coordinates& coord1, const Coordinates& coord2 );
 
 private:
     /**
      * Calcule la distance entre deux points, en passant de route en route
      * On suppose ques les coordonées courantes sont des routes
      */
-    unsigned recCalcRoadDistance ( const Coordinates& coord1, const Coordinates& coord2, std::list<Coordinates> *visited, unsigned dist_max );
+    unsigned recCalcRoadDistance (const Coordinates& coord1, const Coordinates& coord2, std::list<Coordinates> *visited, unsigned dist_max );
 
 public:
     /* Evaluations */
@@ -96,9 +96,9 @@ public:
     float manhattanRatioBetween2Parcels ( const Coordinates& p1, const Coordinates& p2 ) const;
     /**
      * Evalue le ratio de toutes les solutions
-     * @return l'évaluation en flottant
+     * @return la moyenne des ratios
      */
-    float evaluateRatio() const;
+    float evaluateRatio(unsigned nbUsables) const;
     /**
      * Evalue le ratio de toutes les solutions avec des threads
      * @return l'évaluation en flottant

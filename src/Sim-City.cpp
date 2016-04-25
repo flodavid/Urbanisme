@@ -40,12 +40,12 @@ int main()
     
     startTime = time(NULL);
 
-    float total_ratio= myResolution.evaluateRatio();
+    float avg_ratio= myResolution.evaluateRatio(nb_usables);
 //     float total_ratio= myResolution.threadsEvaluateRatio();
     stopTime = time(NULL);
     elapsedTime = stopTime - startTime;
     
-    cout << "Ratio total : "<< total_ratio<< endl;
+    cout << "Moyenne des ratios : "<< avg_ratio<< endl;
     printf("Le nombre de secondes écoulées pour l'évaluation est %ld\n",elapsedTime);
 
     srand(time(NULL));

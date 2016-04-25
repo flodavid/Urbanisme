@@ -50,23 +50,23 @@ unsigned Resolution::calcRoadDistance(const Coordinates &coord1, const Coordinat
 
     unsigned min_dist = UNSIGNED_INFINITY;
 
-        list<Coordinates> *serving_roads_c1 = field.getServingRoads(coord1, params.get_serve_distance());
-        list<Coordinates> *serving_roads_c2 = field.getServingRoads(coord2, params.get_serve_distance());
+    list<Coordinates> *serving_roads_c1 = field.getServingRoads(coord1, params.get_serve_distance());
+    list<Coordinates> *serving_roads_c2 = field.getServingRoads(coord2, params.get_serve_distance());
 
-        for (Coordinates road_c1 : *serving_roads_c1) {
-            for (Coordinates road_c2 : *serving_roads_c2) {
-                list<Coordinates> *empty_visited = new list<Coordinates>;
-                unsigned int dist = recCalcRoadDistance(road_c1, road_c2, empty_visited, UNSIGNED_INFINITY);
-                delete empty_visited;
+    for (Coordinates road_c1 : *serving_roads_c1) {
+        for (Coordinates road_c2 : *serving_roads_c2) {
+            list<Coordinates> *empty_visited = new list<Coordinates>;
+            unsigned int dist = recCalcRoadDistance(road_c1, road_c2, empty_visited, UNSIGNED_INFINITY);
+            delete empty_visited;
 
-                // On a trouvé un chemin, meilleur que le précédent si il en existait un
-                if (dist < min_dist) {
-                    min_dist= dist;
-                }
+            // On a trouvé un chemin, meilleur que le précédent si il en existait un
+            if (dist < min_dist) {
+                min_dist= dist;
             }
         }
-        delete serving_roads_c1;
-        delete serving_roads_c2;
+    }
+    delete serving_roads_c1;
+    delete serving_roads_c2;
 
 
     if (min_dist != UNSIGNED_INFINITY) {
@@ -84,7 +84,7 @@ unsigned Resolution::calcRoadDistance(const Coordinates &coord1, const Coordinat
 }
 
 unsigned Resolution::recCalcRoadDistance(const Coordinates &coord1, const Coordinates &coord2,
-                                         list< Coordinates > *visited, unsigned int dist_max)
+                                            list< Coordinates > *visited, unsigned int dist_max)
 {
 #if DEBUG_ROADS_DIST
     cout << "Calcul de la distance entre " << coord1 << " et " << coord2 << endl;
@@ -143,7 +143,6 @@ unsigned Resolution::recCalcRoadDistance(const Coordinates &coord1, const Coordi
     }
 }
 
-
 void Resolution::initCoordNeighbourhoodManhattan(const Coordinates &coord)
 {
     if (field[coord] == is_usable) {
@@ -193,6 +192,8 @@ void Resolution::initNeighbourhoodManhattan()
     do {
         initCoordNeighbourhoodManhattan(coord1);
     } while (field.nextCoordinates(&coord1));
+    
+    road_distances_are_initiated =  true;
 }
 
 
@@ -238,14 +239,19 @@ float Resolution::manhattanRatioBetween2Parcels(const Coordinates &p1, const Coo
 {
     unsigned road_distance = getRoadDistance(p1, p2);
     unsigned manhattan_distance = p1.manhattanDistance(p2);
-    float ratio = road_distance / (float) manhattan_distance;
+    float ratio = ((float)road_distance) / ((float) manhattan_distance);
+
+    cout << "\tDistance route "<< p1<< "->"<< p2<< " = "<< road_distance<< endl;
+    cout << "\tDistance directe "<< p1<< "->"<< p2<< " = "<< manhattan_distance<< endl;
+    cout << "\t\tRatio : "<< ratio<< endl;
 
     return ratio;
 }
 
-float Resolution::evaluateRatio() const
+float Resolution::evaluateRatio(unsigned nbUsables) const
 {
     float total_ratio = 0.0;
+    unsigned nb_ratio = 0;
 
     // Calculs des distances
     Coordinates coord1 = Field::first();
@@ -259,12 +265,16 @@ float Resolution::evaluateRatio() const
                 if (field[coord2] == is_usable) {
                     float ratio_c1_goto_c2 = manhattanRatioBetween2Parcels(coord1, coord2);
                     total_ratio += 2.0 * ratio_c1_goto_c2; // @see on pourrait faire un décalage de bit
+                    nb_ratio+= 2;
                 }
             }
         }
     } while (field.nextCoordinates(&coord1));
-
-    return total_ratio;
+    cout << "Ratio total : "<< total_ratio<< ", nb ratios : "<< nb_ratio<< endl;
+    
+    float average =  total_ratio / ((float) nb_ratio);
+    
+    return average;
 }
 
 float Resolution::threadsEvaluateRatio() const
