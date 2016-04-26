@@ -4,10 +4,9 @@ TER visant à l'optimisation du placement de routes sur une surface, en maximisa
 les zones exploitables et leur accessibilité.
 
 
-            Compilation Travis                   |
------------------------------------------------- | 
- [![Build Status](https://travis-ci.org/flodavid/Urbanisme.svg?branch=master)](https://travis-ci.org/flodavid/Urbanisme) |
- 
+            Compilation Travis                   |                      License                 |
+------------------------------------------------ | -------------------------------------------- |
+[![Build Status](https://travis-ci.org/flodavid/Urbanisme.svg?branch=master)](https://travis-ci.org/flodavid/Urbanisme) | [![GPLv3 License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/flodavid/Urbanisme/blob/master/COPYING.txt)
  
 ![SIM-CITY](http://eaassets-a.akamaihd.net/prod.simcity.com/sites/all/themes/prod-build/img/logo-simcity.png)
 
@@ -90,3 +89,5 @@ qui ont des entiers ? je crée une variable locale
 + Seulement 2 entrées/sorties : 3 Cas pour relier : ligne droite, ligne avec 2 coudes, Equerre (ligne avec 1 coude (ou 2n +1 ?))
 + Recherche locale : incrémentale
 
+
+_Urbanisme_ is free software, licensed under the [GPLv3](https://www.gnu.org/licenses/gpl.html).
