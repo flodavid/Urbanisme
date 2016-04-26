@@ -29,6 +29,10 @@ CppUnit::TestSuite *make_suite() {
 			    &FieldTestFixture::test_containsValids) );
 	suite->addTest( new CppUnit::TestCaller<FieldTestFixture>("test_containsInvalids",
 			    &FieldTestFixture::test_containsInvalids) );
+	
+	
+	suite->addTest( new CppUnit::TestCaller<FieldTestFixture>("test_servingValids",
+			    &FieldTestFixture::test_servingValids) );
 
 	return suite;
 }

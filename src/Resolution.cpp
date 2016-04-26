@@ -139,7 +139,7 @@ unsigned Resolution::recCalcRoadDistance(const Coordinates &coord1, const Coordi
 #endif
                     }
 
-                    dist; // distance + déplacement de la case courant à son voisin
+//                     dist; // distance + déplacement de la case courant à son voisin
                     // On compare le résultat obtenu avec le minimum courant
                     if (dist < min_dist) {
                         min_dist= dist;

@@ -14,7 +14,7 @@
 #include "../Field.h"
 
 /**
- * Tests sur la méthode contains de la classe Field
+ * Tests sur la classe Field
  * @test
  */
 class FieldTestFixture : public CppUnit::TestFixture {
@@ -49,6 +49,11 @@ public:
      * Contains doit retourner faux
      */
     void test_containsInvalids();
+    
+    /**
+     * @test de la méthode getServingRoads() sur des coordonnées dans la surface
+     */
+    void test_servingValids();
 };
 
 #endif // FIELDTESTFIXTURE_H
