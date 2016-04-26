@@ -85,7 +85,7 @@ unsigned Resolution::calcRoadDistance(const Coordinates &coord1, const Coordinat
     cout << "### Distance entre "<< coord1<< " et "<< coord2<< " : "<< min_dist<< endl
          << endl;
 
-    return min_dist;
+    return min_dist+1;
 }
 
 unsigned Resolution::recCalcRoadDistance(const Coordinates &coord1, const Coordinates &coord2,
@@ -126,14 +126,15 @@ unsigned Resolution::recCalcRoadDistance(const Coordinates &coord1, const Coordi
 #endif
                     } else {
                         visited->push_back(coord1);
+//                        dist= calcRoadDistance(new_coord,  coord2);
                         dist= recCalcRoadDistance(new_coord,  coord2, visited, min_dist);
                         visited->pop_back();
-                        if (dist != UNSIGNED_INFINITY) {
-                            road_distances[new_coord.row][new_coord.col][coord2.row][coord2.col] = dist;
-#if DEBUG_ROADS_DIST
-                            cout<< "  Je stocke ";
-#endif
-                        }
+                         if (dist != UNSIGNED_INFINITY) {
+                             road_distances[new_coord.row][new_coord.col][coord2.row][coord2.col] = dist;
+ #if DEBUG_ROADS_DIST
+                             cout<< "  Je stocke ";
+ #endif
+                         }
 #if DEBUG_ROADS_DIST
                         cout << "\tLa valeur calculée pour le trajet "<< new_coord<< "->"<< coord2<< "est : "<< dist<< endl;
 #endif
@@ -161,9 +162,30 @@ unsigned Resolution::recCalcRoadDistance(const Coordinates &coord1, const Coordi
                 // On incrément min_dist, car on se déplace vers le voisin
                 return min_dist +1;
             } else {
+		cerr << "Il n'y a pas de chemin pour aller de "<< coord1<< " à "<< coord2<< endl;
                 return UNSIGNED_INFINITY;
             }
         }
+    }
+}
+
+void Resolution::initSizeNeighbourhood()
+{
+    // Initialisation, selon la taille, de toutes les cellules à 0
+    road_distances.resize(field.get_height());
+    // Initialisation de première colonne
+    for (unsigned x1 = 0; x1 < field.get_height(); ++x1) {
+	road_distances[x1].resize(field.get_width());
+	
+	// Initialisation de la deuxieme ligne
+	for (unsigned y1 = 0; y1 < field.get_width(); ++y1) {
+	    road_distances[x1][y1].resize(field.get_height());
+	    
+	    // Initialisation de la deuxième colonne, à 0
+	    for (unsigned x2 = 0; x2 < field.get_height(); ++x2) {
+		road_distances[x1][y1][x2].resize(field.get_width(), 0.0);
+	    }
+	}
     }
 }
 
@@ -176,46 +198,32 @@ void Resolution::initCoordNeighbourhoodManhattan(const Coordinates &coord)
         // On commence à la coordonnée suivante de celle courante
         while (field.nextCoordinates(&coord2)) {
             // On calcule la distance que si elle n'a pas déjà été calculée
-            if (field[coord2] == is_usable) {
+//             if (field[coord2] == is_usable) {
+            if (road_distances[coord.row][coord.col][coord2.row][coord2.col] == 0) {
                 road_distances[coord.row][coord.col][coord2.row][coord2.col] =
                         calcRoadDistance(coord, coord2);
             }
-            if (field[coord] == is_road && field[coord2] == is_road) {
-                list<Coordinates> *empty_visited = new list<Coordinates>;
-                road_distances[coord.row][coord.col][coord2.row][coord2.col] =
-                        recCalcRoadDistance(coord, coord2, empty_visited, UNSIGNED_INFINITY);
-                delete empty_visited;
-            }
+//             }
+//             if (field[coord] == is_road && field[coord2] == is_road) {
+//                 list<Coordinates> *empty_visited = new list<Coordinates>;
+//                 road_distances[coord.row][coord.col][coord2.row][coord2.col] =
+//                         recCalcRoadDistance(coord, coord2, empty_visited, UNSIGNED_INFINITY);
+//                 delete empty_visited;
+//             }
         }
     }
 }
 
 void Resolution::initNeighbourhoodManhattan()
 {
-    Coordinates coord1 = Field::first();
-
-    // Initialisation, selon la taille, de toutes les cellules à 0
-    road_distances.resize(field.get_height());
-    // Initialisation de première colonne
-    for (unsigned x1 = 0; x1 < field.get_height(); ++x1) {
-        road_distances[x1].resize(field.get_width());
-
-        // Initialisation de la deuxieme ligne
-        for (unsigned y1 = 0; y1 < field.get_width(); ++y1) {
-            road_distances[x1][y1].resize(field.get_height());
-
-            // Initialisation de la deuxième colonne, à 0
-            for (unsigned x2 = 0; x2 < field.get_height(); ++x2) {
-                road_distances[x1][y1][x2].resize(field.get_width(), 0.0);
-            }
-        }
-    }
-
+    initSizeNeighbourhood();
+    
     // Calculs des ratios de distances
-    coord1 = Field::first();
+    Coordinates& coord1 = Field::first();
     do {
         initCoordNeighbourhoodManhattan(coord1);
     } while (field.nextCoordinates(&coord1));
+    delete &coord1;
     
     road_distances_are_initiated =  true;
 }
@@ -268,7 +276,7 @@ float Resolution::evaluateRatio(unsigned nbUsables) const
     unsigned nb_ratio = 0;
 
     // Calculs des distances
-    Coordinates coord1 = Field::first();
+    Coordinates& coord1 = Field::first();
     do {
         if (field[coord1] == is_usable) {
             cout << "Premier point : " << coord1 << endl;
@@ -284,6 +292,8 @@ float Resolution::evaluateRatio(unsigned nbUsables) const
             }
         }
     } while (field.nextCoordinates(&coord1));
+    delete &coord1;
+    
     cout << "Ratio total : "<< total_ratio<< ", nb ratios : "<< nb_ratio<< endl;
     
     float average =  total_ratio / ((float) nb_ratio);

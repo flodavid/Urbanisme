@@ -15,7 +15,7 @@ void FieldTestFixture::setUp()
     coord_out= new Coordinates(-1, 12);
 
     // Affichage
-    cout << "Coordinates of test for contains : " << (*coord_in)
+    cout << "Coordinates of test for field : " << (*coord_in)
     << " and "<< (*coord_border_bot)
     << " and "<< (*coord_border_top)
     << " and "<< (*coord_border_left)

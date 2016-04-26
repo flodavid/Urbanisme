@@ -44,7 +44,7 @@ void Field::show_ins_and_outs() const
 
 std::ostream &Field::print(std::ostream &out) const
 {
-    Coordinates coord = Field::first();
+    Coordinates& coord = Field::first();
     do {
         if ((coord.col) == 0) {
             out << endl << coord << "= " << at(coord);
@@ -52,6 +52,7 @@ std::ostream &Field::print(std::ostream &out) const
             out <<  "; " << coord << "= " << at(coord);
         }
     } while (nextCoordinates(&coord));
+    delete &coord;
 
     return out;
 }

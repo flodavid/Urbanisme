@@ -51,15 +51,16 @@ public:
     void set_params ( const Parameters& _params );
     
     /* Calculs de données */
-    
     /**
-     * Initialise la matrice de voisinage avec les routes avec la distance Manhattan
-     * TODO
+     * Initialise la matrice de voisinage selon la taille de la surface
+     */
+    void initSizeNeighbourhood();
+    /**
+     * Définit la matrice de voisinage avec les routes avec la distance Manhattan
      */
     void initCoordNeighbourhoodManhattan(const Coordinates& coord);
     /**
-     * Initialise la matrice de voisinage avec les routes avec la distance Manhattan
-     * TODO
+     * Définit la matrice de voisinage avec les routes avec la distance Manhattan
      */
     void initNeighbourhoodManhattan();
 
