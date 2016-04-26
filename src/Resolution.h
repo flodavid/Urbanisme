@@ -73,14 +73,17 @@ public:
      * @return la valeur, entier non signé, de distance la plus courte,
      *   entre les deux coordonnées, en passant par les routes
      */
-    unsigned calcRoadDistance (const Coordinates& coord1, const Coordinates& coord2 );
+    unsigned parcelsRoadDistance (const Coordinates& coord1, const Coordinates& coord2 );
 
 private:
+    unsigned int lengthBy ( const Coordinates& testCoord, const Coordinates& dest, std::list<Coordinates>* visited, unsigned int minDist );
+
+    unsigned int testPathBy ( const Coordinates& testCoord, const Coordinates& dest, std::list<Coordinates>* visited, unsigned int minDist );
     /**
      * Calcule la distance entre deux points, en passant de route en route
      * On suppose ques les coordonées courantes sont des routes
      */
-    unsigned recCalcRoadDistance (const Coordinates& coord1, const Coordinates& coord2, std::list<Coordinates> *visited, unsigned dist_max );
+    unsigned calcRoadDistance (const Coordinates& coord1, const Coordinates& coord2, std::list<Coordinates> *visited, unsigned dist_max );
 
 public:
     /* Evaluations */

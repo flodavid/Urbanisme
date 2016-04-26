@@ -9,7 +9,7 @@
 // Resolution
 #define DEBUG_EVALUATION        0
 #define DEBUG_PARCOURS_COORDS	0
-#define DEBUG_ROADS_DIST        1
+#define DEBUG_ROADS_DIST        0
 
 /* define all debug if DEBUG_ALL defined to 1 */
 #if DEBUG_ALL

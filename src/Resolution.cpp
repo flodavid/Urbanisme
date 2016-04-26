@@ -39,7 +39,7 @@ void Resolution::set_params(const Parameters &_params)
 /// #########################
 //@{
 
-unsigned Resolution::calcRoadDistance(const Coordinates &coord1, const Coordinates &coord2)
+unsigned Resolution::parcelsRoadDistance(const Coordinates &coord1, const Coordinates &coord2)
 {
     cout << "### Calcul de la distance entre "<< coord1<< " et "<< coord2<< endl
          << "=============================================="<< endl;
@@ -55,46 +55,99 @@ unsigned Resolution::calcRoadDistance(const Coordinates &coord1, const Coordinat
     list<Coordinates> *serving_roads_c1 = field.getServingRoads(coord1, params.get_serve_distance());
     list<Coordinates> *serving_roads_c2 = field.getServingRoads(coord2, params.get_serve_distance());
 
-    for (Coordinates road_c1 : *serving_roads_c1) {
-        for (Coordinates road_c2 : *serving_roads_c2) {
-            list<Coordinates> *empty_visited = new list<Coordinates>;
-            unsigned int dist = recCalcRoadDistance(road_c1, road_c2, empty_visited, UNSIGNED_INFINITY);
-            delete empty_visited;
+    // Pour chaque route qui dessert chaque parcelle, on calcule le plus court chemin
+    // On garde le plus court de ces chemins
+    for (const Coordinates& road_c1 : (*serving_roads_c1)) {
+        for (const Coordinates& road_c2 : (*serving_roads_c2)) {
+            list<Coordinates> empty_visited;
+            unsigned int dist = calcRoadDistance(road_c1, road_c2, &empty_visited, UNSIGNED_INFINITY);
 
-            // On a trouvé un chemin, meilleur que le précédent si il en existait un
+            // Si on a trouvé un chemin meilleur que le précédent, si il en existait un,
+            // on stocke sa longueur
             if (dist < min_dist) {
                 min_dist= dist;
             }
         }
     }
+
     delete serving_roads_c1;
     delete serving_roads_c2;
 
-
-    if (min_dist != UNSIGNED_INFINITY) {
-#if DEBUG_ROADS_DIST
-        cout << "\tLe plus court chemin de " << coord1 << " à " << coord2
-             << " est de longueur " << min_dist << endl;
-#endif
-    } else {
-        cerr << "Impossible de relier les deux parcelle par les routes"
+    // On devrait trouver un chemin entre les deux parcelles
+    if (min_dist == UNSIGNED_INFINITY) {
+        cerr << "Impossible de relier"<< coord1<< " et "<< coord2<< " par les routes"
                 "(au moins une des 2 parcelle n'a pas de route à proximité (distance < "
              << params.get_serve_distance() << "))" << endl;
     }
-
-    cout << "### Distance entre "<< coord1<< " et "<< coord2<< " : "<< min_dist<< endl
-         << endl;
+#if DEBUG_ROADS_DIST
+    else {
+        cout << "### Distance entre "<< coord1<< " et "<< coord2<< " : "<< min_dist<< endl
+             << endl;
+    }
+#endif
 
     return min_dist+1;
 }
 
-unsigned Resolution::recCalcRoadDistance(const Coordinates &coord1, const Coordinates &coord2,
+
+unsigned int Resolution::lengthBy(const Coordinates& testCoord, const Coordinates& dest, list<Coordinates> *visited, unsigned int minDist)
+{
+    // On applique la recursivité avec la coordonnée envisagée courante
+    unsigned dist;
+    float current_ratio = getRoadDistance(testCoord, dest);
+    if (current_ratio != 0) {
+        dist = current_ratio;
+#if DEBUG_ROADS_DIST
+        cout << "\tIl y a déjà une valeur pour ce trajet : "<< current_ratio<< endl;
+#endif
+    } else {
+        visited->push_back(testCoord);
+        dist= calcRoadDistance(testCoord,  dest, visited, minDist);
+        visited->pop_back();
+            if (dist != UNSIGNED_INFINITY) {
+                road_distances[testCoord.row][testCoord.col][dest.row][dest.col] = dist;
+#if DEBUG_ROADS_DIST
+                cout<< "  Je stocke ";
+#endif
+            }
+#if DEBUG_ROADS_DIST
+        cout << "\tLa valeur calculée pour le trajet "<< new_coord<< "->"<< coord2<< "est : "<< dist<< endl;
+#endif
+    }
+
+    return dist;
+}
+
+unsigned int Resolution::testPathBy(const Coordinates& testCoord, const Coordinates& dest, list<Coordinates> *visited, unsigned minDist)
+{
+    // Recherche de cet élément dans la liste des visités, si il ne s'y trouve pas,
+    // c'est qu'on n'est pas déjà passé par lui
+    if (find(visited->begin(), visited->end(), testCoord) == visited->end()) {
+        unsigned dist= lengthBy(testCoord, dest, visited, minDist);
+
+        // On compare le résultat obtenu avec le minimum courant,
+        // on met à jour si nécessaire
+        if (dist < minDist) {
+            minDist= dist;
+        }
+    } else {
+    #if DEBUG_ROADS_DIST
+        cout << "La parcelle "<<new_coord<< " a déjà été visitée" << endl;
+    #endif
+    }
+    
+    return minDist;
+}
+
+
+unsigned Resolution::calcRoadDistance(const Coordinates &coord1, const Coordinates &coord2,
                                             list< Coordinates > *visited, unsigned int dist_max)
 {
+    assert(field[coord1] == is_road && field[coord2] == is_road);
+
 #if DEBUG_ROADS_DIST
     cout << "Calcul de la distance entre " << coord1 << " et " << coord2 << endl;
 #endif
-    assert(field[coord1] == is_road);
 
     if (coord1 == coord2) {
 #if DEBUG_ROADS_DIST
@@ -102,54 +155,18 @@ unsigned Resolution::recCalcRoadDistance(const Coordinates &coord1, const Coordi
 #endif
         return 0;
     } else {
-        if (visited->size() >= dist_max) {
-            return UNSIGNED_INFINITY;
-        } else {
-            unsigned min_dist = UNSIGNED_INFINITY;
-            //         Coordinates& min_dist_neighbour;
-
-            list<Coordinates> *neighbour_roads = field.getNeighbourRoads(coord1);
 #if DEBUG_ROADS_DIST
                 cout << "***Taille de la liste des visitées : " << visited->size() << endl;
 #endif
-            for (Coordinates new_coord : *neighbour_roads) {
-                //  recherche de cet élément dans la liste des visités
-                if (find(visited->begin(), visited->end(), new_coord) == visited->end()) {
+         if (visited->size() >= dist_max) {
+             clog<< "ON EST SORTI PLUS TOT"<< endl<< endl;
+             return UNSIGNED_INFINITY;
+         } else {
+            unsigned min_dist = UNSIGNED_INFINITY;
 
-                    // On applique la recursivité avec la coordonnée envisagée courante
-                    unsigned dist;
-                    float current_ratio = getRoadDistance(coord1, coord2);
-                    if (current_ratio != 0) {
-                        dist = current_ratio;
-#if DEBUG_ROADS_DIST
-                        cout << "\tIl y a déjà une valeur pour ce trajet : "<< current_ratio<< endl;
-#endif
-                    } else {
-                        visited->push_back(coord1);
-//                        dist= calcRoadDistance(new_coord,  coord2);
-                        dist= recCalcRoadDistance(new_coord,  coord2, visited, min_dist);
-                        visited->pop_back();
-                         if (dist != UNSIGNED_INFINITY) {
-                             road_distances[new_coord.row][new_coord.col][coord2.row][coord2.col] = dist;
- #if DEBUG_ROADS_DIST
-                             cout<< "  Je stocke ";
- #endif
-                         }
-#if DEBUG_ROADS_DIST
-                        cout << "\tLa valeur calculée pour le trajet "<< new_coord<< "->"<< coord2<< "est : "<< dist<< endl;
-#endif
-                    }
-
-//                     dist; // distance + déplacement de la case courant à son voisin
-                    // On compare le résultat obtenu avec le minimum courant
-                    if (dist < min_dist) {
-                        min_dist= dist;
-                    }
-                } else {
-#if DEBUG_ROADS_DIST
-                    cout << "La parcelle "<<new_coord<< " a déjà été visitée" << endl;
-#endif
-                }
+            list<Coordinates> *neighbour_roads = field.getNeighbourRoads(coord1);
+            for (const Coordinates& new_coord : (*neighbour_roads)) {
+                min_dist = testPathBy(new_coord, coord2, visited,  min_dist);
             }
 
             delete neighbour_roads;
@@ -162,10 +179,12 @@ unsigned Resolution::recCalcRoadDistance(const Coordinates &coord1, const Coordi
                 // On incrément min_dist, car on se déplace vers le voisin
                 return min_dist +1;
             } else {
-		cerr << "Il n'y a pas de chemin pour aller de "<< coord1<< " à "<< coord2<< endl;
+#if DEBUG_ROADS_DIST
+                cout << "\tPas de chemin pour aller de "<< coord1<< " à "<< coord2<< endl;
+#endif
                 return UNSIGNED_INFINITY;
             }
-        }
+         }// fin_else(visited->size >= dist_max)
     }
 }
 
@@ -175,17 +194,17 @@ void Resolution::initSizeNeighbourhood()
     road_distances.resize(field.get_height());
     // Initialisation de première colonne
     for (unsigned x1 = 0; x1 < field.get_height(); ++x1) {
-	road_distances[x1].resize(field.get_width());
-	
-	// Initialisation de la deuxieme ligne
-	for (unsigned y1 = 0; y1 < field.get_width(); ++y1) {
-	    road_distances[x1][y1].resize(field.get_height());
-	    
-	    // Initialisation de la deuxième colonne, à 0
-	    for (unsigned x2 = 0; x2 < field.get_height(); ++x2) {
-		road_distances[x1][y1][x2].resize(field.get_width(), 0.0);
-	    }
-	}
+    road_distances[x1].resize(field.get_width());
+
+    // Initialisation de la deuxieme ligne
+    for (unsigned y1 = 0; y1 < field.get_width(); ++y1) {
+        road_distances[x1][y1].resize(field.get_height());
+
+        // Initialisation de la deuxième colonne, à 0
+        for (unsigned x2 = 0; x2 < field.get_height(); ++x2) {
+        road_distances[x1][y1][x2].resize(field.get_width(), 0.0);
+        }
+    }
     }
 }
 
@@ -201,7 +220,7 @@ void Resolution::initCoordNeighbourhoodManhattan(const Coordinates &coord)
 //             if (field[coord2] == is_usable) {
             if (road_distances[coord.row][coord.col][coord2.row][coord2.col] == 0) {
                 road_distances[coord.row][coord.col][coord2.row][coord2.col] =
-                        calcRoadDistance(coord, coord2);
+                        parcelsRoadDistance(coord, coord2);
             }
 //             }
 //             if (field[coord] == is_road && field[coord2] == is_road) {
@@ -217,14 +236,14 @@ void Resolution::initCoordNeighbourhoodManhattan(const Coordinates &coord)
 void Resolution::initNeighbourhoodManhattan()
 {
     initSizeNeighbourhood();
-    
+
     // Calculs des ratios de distances
     Coordinates& coord1 = Field::first();
     do {
         initCoordNeighbourhoodManhattan(coord1);
     } while (field.nextCoordinates(&coord1));
     delete &coord1;
-    
+
     road_distances_are_initiated =  true;
 }
 
@@ -293,9 +312,9 @@ float Resolution::evaluateRatio(unsigned nbUsables) const
         }
     } while (field.nextCoordinates(&coord1));
     delete &coord1;
-    
+
     cout << "Ratio total : "<< total_ratio<< ", nb ratios : "<< nb_ratio<< endl;
-    
+
     float average =  total_ratio / ((float) nb_ratio);
 
     cout << field<< endl;

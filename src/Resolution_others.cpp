@@ -6,6 +6,8 @@
 /// #########################
 //@{
 
+///*
+// Grand
 void Resolution::createExample()
 {
     // Surface de l'exemple :
@@ -130,6 +132,61 @@ void Resolution::createExample()
     // Définition des états des parcelles
     field.defineUsables(params.get_serve_distance());
 }
+// */
+/*
+// Petit
+void Resolution::createExample()
+{
+    // Surface de l'exemple :
+    Field &example = field;
+    example.set_width(10);
+    example.set_height(10);
+    example.resizeWithDimensions();
+
+    example.add_in_out(9, 0);
+    // Colonne Milieu
+    example.add_road(9, 1);
+    example.add_road(9, 2);
+    example.add_road(9, 3);
+    example.add_road(9, 4);
+    example.add_road(9, 5);
+    example.add_road(9, 6);
+    example.add_road(9, 7);
+    example.add_road(9, 8);
+    example.add_road(9, 9);
+    // Première Ligne
+    example.add_road(0, 2);
+    example.add_road(1, 2);
+    example.add_road(2, 2);
+    example.add_road(3, 2);
+    example.add_road(4, 2);
+    example.add_road(5, 2);
+    example.add_road(6, 2);
+    example.add_road(7, 2);
+    example.add_road(8, 2);
+    // example.add_road(9, 2); déjà fait dans colonne milieu
+    // Deuxième Ligne
+    example.add_road(0, 7);
+    example.add_road(1, 7);
+    example.add_road(2, 7);
+    example.add_road(3, 7);
+    example.add_road(4, 7);
+    example.add_road(5, 7);
+    example.add_road(6, 7);
+    example.add_road(7, 7);
+    example.add_road(8, 7);
+    // example.add_road(9, 7); déjà fait dans colonne milieu
+
+    evaluateTotalUsable();
+
+    // Paramètres
+    params.set_road_width(1);
+    params.set_serve_distance(2);
+
+    // Définition des états des parcelles
+    field.defineUsables(params.get_serve_distance());
+}
+// */
 
 //@}
 

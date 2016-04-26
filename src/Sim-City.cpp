@@ -27,7 +27,6 @@ int main()
 
     time_t startTime;
     time_t stopTime;
-    time_t elapsedTime;
     
     unsigned nb_usables= myResolution.evaluateTotalUsable();
     cout << "Nombre total de parcelles exploitables au début : "<< nb_usables<< endl;
@@ -35,22 +34,20 @@ int main()
     startTime = time(NULL);
     myResolution.initNeighbourhoodManhattan();
     stopTime = time(NULL);
-    elapsedTime = stopTime - startTime;
-    printf("Le nombre de secondes écoulées pour l'initialisation est %ld\n",elapsedTime);
+    time_t elapsedTimeInit = stopTime - startTime;
     
     startTime = time(NULL);
 
     float avg_ratio= myResolution.evaluateRatio(nb_usables);
 //     float total_ratio= myResolution.threadsEvaluateRatio();
     stopTime = time(NULL);
-    elapsedTime = stopTime - startTime;
-    
+    time_t elapsedTimeEval = stopTime - startTime;
+
+    printf("Le nombre de secondes écoulées pour l'initialisation est %ld\n",elapsedTimeInit);
     cout << "Moyenne des ratios : "<< avg_ratio<< endl;
-    printf("Le nombre de secondes écoulées pour l'évaluation est %ld\n",elapsedTime);
+    printf("Le nombre de secondes écoulées pour l'évaluation est %ld\n", elapsedTimeEval);
 
     srand(time(NULL));
-//    myField.generateInsAndOuts(2);
-//    myField.show_ins_and_outs();
 
 /**	Fin tests	**/
 
