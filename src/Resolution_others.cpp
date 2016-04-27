@@ -6,7 +6,7 @@
 /// #########################
 //@{
 
-/*
+///*
 // Grand
 void Resolution::createExample()
 {
@@ -188,7 +188,7 @@ void Resolution::createExample()
 }
 // */
 
-///*
+/*
 // Tout Petit
 void Resolution::createExample()
 {

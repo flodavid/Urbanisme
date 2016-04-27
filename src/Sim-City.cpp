@@ -3,9 +3,12 @@
 #include <iostream>
 #include <ctime>
 
+#include <QApplication>
+
 #include "stdafx.h"
 #include "Engine/Field.h"
 #include "Engine/Parameters.h"
+#include "Display/fieldview.hpp"
 #include "Resolution.h"
 
 using namespace std;
@@ -36,15 +39,20 @@ using namespace std;
  * Création du terrain de l'exemple, exécution de l'évaluation, affichage du résultat,
  * affichage tu temps pris par de l'évaluation
  */
-int main()
+int main(int argc, char* argv[])
 {
+    QApplication app(argc, argv);
+
     Field myField(5, 5);
     Parameters myParameters(1, 2);
 
     Resolution myResolution(myField, myParameters);
+    FieldWidget* myFieldWidget= new FieldWidget(&(myResolution.field));
 
 /**		Tests		**/
     myResolution.createExample();
+    myFieldWidget->redraw();
+    myFieldWidget->show();
 
     time_t startTime;
     time_t stopTime;
@@ -74,6 +82,6 @@ int main()
 
     cout << "FIN" << endl;
 
-    return 0;
+    return app.exec();
 }
 

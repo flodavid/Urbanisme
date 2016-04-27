@@ -30,7 +30,7 @@ enum Colors{Black, Gray, Red, White, Green0, Green1};
  * Foret du moteur.
  * @author Ugo et Florian
  */
-class FireWidget : public QWidget {
+class FieldWidget : public QWidget {
 //    Q_OBJECT
 private:
     const Field* field;
@@ -62,42 +62,8 @@ public:
      * @param float _proba : probabilité qu'une cellule deviennent un arbre
      * @param float _coef : coefficient de combustion de l'incendie
      */
-    FireWidget(const Field *_field);
-    virtual ~FireWidget();
-
-    /* Initialisations */
-    /**
-     * Fonction de création d'une foret ALEATOIRE lors de la (ré)initialisation,
-     * aléatoirement
-     * @author Florian et Ugo
-     * @param all identiques au constructeur de Foret aléatoire
-     */
-    void initialise(int largeur, int hauteur, float proba = 0.60, float coef_brulure=1.0, std::time_t graine=std::time(0));
-
-    /**
-     * Fonction de création d'une foret,
-     * à partir d'un fichier de sauvegarde OUVERT
-     * @author Florian et Ugo
-     *
-     * @param largeur de la nouvelle forêt
-     * @param hauteur de la nouvelle forêt
-     * @param file fichier binaire, ouvert, contenant la sauvegarde de la forêt (essences-arbres),
-     * dont les tailles ont déjà été lues lors de la (ré)initialisation
-     * @return vrai si le fichier est ouvert
-     */
-    bool tryInitialise(int largeur, int hauteur, std::ifstream* file);
-
-    /**
-     * Fonction de création d'une foret ALEATOIRE lors de la (ré)initialisation,
-     * à partir d'une image
-     * @author Florian et Ugo
-     *
-     * @param largeur de la nouvelle forêt
-     * @param hauteur de la nouvelle forêt
-     * @param imageForet image d'une foret, pour l'instant une image converie du jpg au tif
-     * @return vrai si l'image est chargée
-     */
-    bool tryInitialise(int largeur, int hauteur, QImage* imageForet, float coef_brulure);
+    FieldWidget(const Field *_field);
+    virtual ~FieldWidget();
 
 private:
     LoadWindow* createProgressWindow() const;
@@ -112,46 +78,11 @@ private:
 public slots:
 public:
     void razRubber() 	{ rubber= NULL; }
-    /* Gestion Foret */
-    /**
-     * Méthodes de destruction de la forêt pour gérer
-     * la ré-initialisation de la matrice
-     * @author Florian
-     */
-    void delForest();
-    /**
-     * Crée une nouvelle image de fond vierge
-     * @author Florian
-     */
-    void delPicture();
 
     /* Getters */
-    int getTailleCell() const { return tailleCell; };
+    int getTailleCell() const { return tailleCell; }
 
     /* Gestion Sauvegardes */
-    /**
-     * Fonction à commenter par son auteur :p
-     * @author Florian
-     * @param imageForet image de la forêt à charger
-     * @param coef_brulure coefficient de brulure de la nouvelle forêt
-     * @param others taille de l'image/forêt
-     */
-    void loadFromPicture(int largeurImage, int hauteurImage, QImage* imageForet, float coef_brulure);
-
-    /**
-     * Sauvegarde la foret dans un fichier de sauvegarde
-     * @author Florian
-     * @param filePath chemin du nouveau fichier de sauvegarde
-     * @return vrai si la sauvegarde réussie
-     */
-    bool trySaveForest(std::string& filePath) const;
-    /**
-     * Sauvegarde la graine aléatoire et les caractéristiques de la forêt dans un fichier de sauvegarde
-     * @author Florian
-     * @param filePath chemin du nouveau fichier de sauvegarde
-     */
-    bool trySaveSeed(std::string& filePath) const;
-
     /**
      * Sauvegarde la forêt sous forme d'image
      * @author Florian
@@ -202,26 +133,20 @@ protected:
 
 public slots:
     /**
-     * Passe de l'etat t à t+1 la foret
-     * @author Florian
-     * @return vrai si la foret a ete modifiée
-     */
-    bool next();
-    /**
      * Execute l'action choisie sur une zone, suite à releaseMouseEvent.
      * 0 correspond à une coupure, 1 à un retardateur
      * @author Ugo
      */
     void actionReceived(int x);
 
-signals:
-    /**
-     * Récupere l'action sélectionnée dans les menus
-     *
-     * @author Ugo
-     * TODO Ugo comment
-     */
-    void releaseSignal(); // Vers firescreen
+//signals:
+//    /**
+//     * Récupere l'action sélectionnée dans les menus
+//     *
+//     * @author Ugo
+//     * TODO Ugo comment
+//     */
+//    void releaseSignal(); // Vers firescreen
 
 };
 

@@ -260,7 +260,7 @@ unsigned int Resolution::evaluateTotalUsable() const
     unsigned nb_usables = 0;
     for (vector<State> row_parcel_state : field) {
         for (State parcel_state : row_parcel_state) {
-            assert(parcel_state >= -1 &&  parcel_state <= is_unusable);
+            assert(parcel_state >= -1 &&  parcel_state < max_state);
             if (parcel_state == is_usable) {
                 ++nb_usables;
             }

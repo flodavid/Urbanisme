@@ -6,7 +6,7 @@ using namespace std;
 // ##################################
 /*** Constructeur et destructeur ***/
 // #################################
-FireWidget::FireWidget(const Field* _field): QWidget()
+FieldWidget::FieldWidget(const Field* _field): QWidget()
 {	
 	buffer = new QImage;
 	color = new QColor(Qt::white);
@@ -18,7 +18,7 @@ FireWidget::FireWidget(const Field* _field): QWidget()
     setMinimumSize(field->get_width(), field->get_height());
 }
 
-FireWidget::~FireWidget()
+FieldWidget::~FieldWidget()
 {
     delete(field);
 	delete(buffer);
@@ -32,7 +32,7 @@ FireWidget::~FireWidget()
 /*** 	Initialisations 	***/
 // ########################
 
-LoadWindow* FireWidget::createProgressWindow() const
+LoadWindow* FieldWidget::createProgressWindow() const
 {
     LoadWindow* progressWindow= new LoadWindow();
 	return progressWindow;
@@ -44,7 +44,7 @@ LoadWindow* FireWidget::createProgressWindow() const
 //######################
 
 // TODO setColor : sauvegarder l'indice précédent pour éviter de redéfinir la mm couleur ?
-void FireWidget::setColor(Colors colorIndice)
+void FieldWidget::setColor(Colors colorIndice)
 {
     switch(colorIndice){
 // 	    case Green0:
@@ -68,7 +68,7 @@ void FireWidget::setColor(Colors colorIndice)
 // #################################
 /*** 	Gestion des sauvegardes 	***/
 // #################################
-bool FireWidget::trySaveImage(QString filename) const
+bool FieldWidget::trySaveImage(QString filename) const
 {
 	if ( !buffer->isNull() ){
 		// TEST verifier que la taille est correcte
@@ -87,25 +87,31 @@ bool FireWidget::trySaveImage(QString filename) const
 // ########################
 /***		Affichages	***/
 // ########################
-void FireWidget::drawCell(int colonne, int ligne)
+void FieldWidget::drawCell(int colonne, int ligne)
 {
-	bufferPainter->fillRect(colonne, ligne, 1, 1, *(color));
+    QPen pe;
+    pe.setWidth(4);
+    pe.setBrush(QColor(0,0,0));
+    bufferPainter->setPen(pe);
+    bufferPainter->setBrush(*color);
+    bufferPainter->fillRect(colonne, ligne, 1, 1, *(color));
 	#if DEBUG_TMATRICE
 	cout <<"draw cell ; ";
 	#endif
 }
 
-void FireWidget::drawList( list< Coordinates* > * list_coordinates){
+void FieldWidget::drawList( list< Coordinates* > * list_coordinates){
 
-    for( list< Coordinates* >::const_iterator j( list_coordinates->begin() ); j != list_coordinates->end(); ++j){
-//        drawCell(*j-);
-
+    for( const Coordinates* coord : *list_coordinates){
+        drawCell(coord->col, coord->row);
 	}
     list_coordinates->clear();
 }
 
-void FireWidget::drawField()
+void FieldWidget::drawField()
 {
+    if (buffer->isNull())
+        cerr<< "Impossible de dessiner, image vide"<< endl;
     bufferPainter->begin(buffer);
 
     Coordinates& coord= Field::first();
@@ -113,17 +119,20 @@ void FireWidget::drawField()
         // On ne passe pas la hauteur de la grille mais le nombre de colonne*taille de colonne pour
         // éviter la petite zone en bas de grille
         State state= field->at(coord);
-        if( state == 0){
+        if( state == is_usable){
             setColor(White);
+            cout << "Dessin d'une parcelle"<< endl;
             drawCell(coord.col, coord.row);
         }
         // Cas d'une route
-        else if(state == 1){
+        else if(state == is_road){
             setColor(Gray);
+            cout << "Dessin d'une route"<< endl;
             drawCell(coord.col, coord.row);
         }
-        else if (state == -1){
+        else if (state == is_undefined){
             setColor(Black);
+            cout << "Dessin d'une case non définie"<< endl;
             drawCell(coord.col, coord.row);
         }
     } while (field->nextCoordinates(&coord));
@@ -132,7 +141,7 @@ void FireWidget::drawField()
     bufferPainter->end();
 }
 
-void FireWidget::drawChanged()
+void FieldWidget::drawChanged()
 {
 	bufferPainter->begin(buffer);
 	
@@ -147,7 +156,7 @@ void FireWidget::drawChanged()
 int num_redraw= 0;
 #endif
 
-void FireWidget::redraw()
+void FieldWidget::redraw()
 {
 	#if PERF_REDRAW
 	++num_redraw;
@@ -159,7 +168,7 @@ void FireWidget::redraw()
 	}
     buffer = new QImage(field->get_width(), field->get_height(), QImage::Format_ARGB32);
 
-//	drawForest();
+    drawField();
 	drawChanged();
 	update();	// TODO apparemment non utile, update fait resize
 }
@@ -167,7 +176,7 @@ void FireWidget::redraw()
 // ###################
 /*** 		Events 	***/
 // ##################
-void FireWidget::paintEvent(QPaintEvent* event)
+void FieldWidget::paintEvent(QPaintEvent* event)
 {
     QWidget::paintEvent(event);
 	QPainter paint(this);
@@ -179,7 +188,7 @@ void FireWidget::paintEvent(QPaintEvent* event)
  * 
  * @author
  */
-void FireWidget::resizeEvent(QResizeEvent* event)
+void FieldWidget::resizeEvent(QResizeEvent* event)
 {
 	#if PERF_RESIZE
 	cout << "test resizeEvent firewidget"<< endl;
@@ -206,7 +215,7 @@ void FireWidget::resizeEvent(QResizeEvent* event)
 	redraw();
 }
 
-void FireWidget::mousePressEvent(QMouseEvent* event)
+void FieldWidget::mousePressEvent(QMouseEvent* event)
 {
 //	int colonne= event->x()/tailleCell;
 //	int ligne= event->y()/tailleCell;
@@ -230,7 +239,7 @@ void FireWidget::mousePressEvent(QMouseEvent* event)
 	update();
 }
 
-void FireWidget::initRubber(QMouseEvent* event){
+void FieldWidget::initRubber(QMouseEvent* event){
 	origin = event->pos();
 	
 	if(!rubber)
@@ -241,7 +250,7 @@ void FireWidget::initRubber(QMouseEvent* event){
 }
 
 
-void FireWidget::mouseMoveEvent(QMouseEvent* event)
+void FieldWidget::mouseMoveEvent(QMouseEvent* event)
 {
 //	int colonne= event->x()/tailleCell;
 //	int ligne= event->y()/tailleCell;
@@ -260,7 +269,7 @@ void FireWidget::mouseMoveEvent(QMouseEvent* event)
 	update();
 }
 
-void FireWidget::mouseReleaseEvent(QMouseEvent* event)
+void FieldWidget::mouseReleaseEvent(QMouseEvent* event)
 {
     QWidget::mouseReleaseEvent(event);
 	if(rubber){
@@ -334,7 +343,7 @@ void FireWidget::mouseReleaseEvent(QMouseEvent* event)
 // }
 
 
-void FireWidget::actionReceived(int x)
+void FieldWidget::actionReceived(int x)
 {
 	// Transformation des QPoints depart et arrivée en coordonnée cellulaire
 	int xDep = depart.x() / tailleCell;
