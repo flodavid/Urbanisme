@@ -8,5 +8,6 @@ var searchData=
   ['get_5fwidth',['get_width',['../class_field.html#ae12b592877dcb38b0bb8cbc8270b3cf9',1,'Field']]],
   ['getnbparcels',['getNbParcels',['../class_field.html#a43e0689560cee653e8eece3778cae287',1,'Field']]],
   ['getneighbourroads',['getNeighbourRoads',['../class_field.html#ab7f0de6f1ee4d0a45b8d4946783d8738',1,'Field']]],
+  ['getroaddistance',['getRoadDistance',['../class_resolution.html#a33dc637eadfe34d6c7f431afc7aeb7b7',1,'Resolution']]],
   ['getservingroads',['getServingRoads',['../class_field.html#ad38e9b89a990280215681e53798ccc70',1,'Field']]]
 ];

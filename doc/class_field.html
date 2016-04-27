@@ -109,12 +109,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac3c26822851b29438f6f9f0a6b505e3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a820a5f4fcae3cd53264b4ec87748fe3b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a820a5f4fcae3cd53264b4ec87748fe3b">set_height</a> (unsigned height)</td></tr>
 <tr class="separator:a820a5f4fcae3cd53264b4ec87748fe3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5db3ca54219102e50ff4d9e0b9753d0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a5db3ca54219102e50ff4d9e0b9753d0b">add_road</a> (unsigned col, unsigned row)</td></tr>
+<tr class="separator:a5db3ca54219102e50ff4d9e0b9753d0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a646c0e7d9c66c86b776b349eb9e08449"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a646c0e7d9c66c86b776b349eb9e08449">add_in_out</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord)</td></tr>
 <tr class="separator:a646c0e7d9c66c86b776b349eb9e08449"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d9b3de65984659c77ee86918362f4f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a9d9b3de65984659c77ee86918362f4f8">add_in_out</a> (unsigned col, unsigned row)</td></tr>
 <tr class="separator:a9d9b3de65984659c77ee86918362f4f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5db3ca54219102e50ff4d9e0b9753d0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a5db3ca54219102e50ff4d9e0b9753d0b">add_road</a> (unsigned col, unsigned row)</td></tr>
-<tr class="separator:a5db3ca54219102e50ff4d9e0b9753d0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6dda638994b360483e67514a9ede9f15"><td class="memItemLeft" align="right" valign="top">State&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a6dda638994b360483e67514a9ede9f15">at</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;pos) const </td></tr>
 <tr class="separator:a6dda638994b360483e67514a9ede9f15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a7a478e7f5d978e181b7fca88ddad3c"><td class="memItemLeft" align="right" valign="top">State&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a9a7a478e7f5d978e181b7fca88ddad3c">operator[]</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;pos) const </td></tr>
@@ -139,8 +139,8 @@ Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a400b4301fd5d8286827a1032fcd74ec1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a400b4301fd5d8286827a1032fcd74ec1">show_ins_and_outs</a> () const </td></tr>
 <tr class="separator:a400b4301fd5d8286827a1032fcd74ec1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8967b315219b2f8bc7728028e08c348"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#ac8967b315219b2f8bc7728028e08c348">show_states</a> () const </td></tr>
-<tr class="separator:ac8967b315219b2f8bc7728028e08c348"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dc2905217fd105fc69de1447659b21c"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a8dc2905217fd105fc69de1447659b21c">print</a> (std::ostream &amp;out) const </td></tr>
+<tr class="separator:a8dc2905217fd105fc69de1447659b21c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a076fac595112044eb8acd3321a1077af"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a076fac595112044eb8acd3321a1077af">contains</a> (int x, int y) const </td></tr>
 <tr class="separator:a076fac595112044eb8acd3321a1077af"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -162,6 +162,8 @@ Friends</h2></td></tr>
 <tr class="memitem:aff23182d4181acc76ba1fee91946d8e0"><td class="memItemLeft" align="right" valign="top">std::vector&lt; State &gt;::const_iterator &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#aff23182d4181acc76ba1fee91946d8e0">std::vector</a> ()</td></tr>
 <tr class="memdesc:aff23182d4181acc76ba1fee91946d8e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">std::vector&lt;State&gt;::const_iterator::operator ++  <a href="#aff23182d4181acc76ba1fee91946d8e0">More...</a><br /></td></tr>
 <tr class="separator:aff23182d4181acc76ba1fee91946d8e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d81539cdafc2d35aab13c5192053932"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a8d81539cdafc2d35aab13c5192053932">operator&lt;&lt;</a> (std::ostream &amp;out, const <a class="el" href="class_field.html">Field</a> &amp;field)</td></tr>
+<tr class="separator:a8d81539cdafc2d35aab13c5192053932"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3e49fecc6c0c5eed1d07b761f35b8ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#ab3e49fecc6c0c5eed1d07b761f35b8ba">generateInsAndOuts</a> (unsigned nb)</td></tr>
 <tr class="separator:ab3e49fecc6c0c5eed1d07b761f35b8ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7f0de6f1ee4d0a45b8d4946783d8738"><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="class_coordinates.html">Coordinates</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#ab7f0de6f1ee4d0a45b8d4946783d8738">getNeighbourRoads</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord) const </td></tr>
@@ -750,7 +752,7 @@ Friends</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>une liste de routes distance inférieure ou égale à la distance de desserte </dd></dl>
-<dl class="section see"><dt>See also</dt><dd>on vérifie serve_dist² parcelles, alors qu'on pourrait en vérifier ?? (moins) </dd></dl>
+<p>On vérifie ((2.serve_dist)+1)² parcelles, alors qu'on pourrait en vérifier moins </p>
 
 </div>
 </div>
@@ -805,6 +807,29 @@ Friends</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>L'état de la parcelle à la position des coordonnées, un State </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8dc2905217fd105fc69de1447659b21c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; Field::print </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Imprime dans un flux les informations de l'instance </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td>Flux dans lequel on imprime les informations </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Le flux en entrée sur lequel on a imprimé les informations </dd></dl>
 
 </div>
 </div>
@@ -904,23 +929,49 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac8967b315219b2f8bc7728028e08c348"></a>
+<h2 class="groupheader">Friends And Related Function Documentation</h2>
+<a class="anchor" id="a8d81539cdafc2d35aab13c5192053932"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Field::show_states </td>
+          <td class="memname">std::ostream&amp; operator&lt;&lt; </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_field.html">Field</a> &amp;&#160;</td>
+          <td class="paramname"><em>field</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Impression sur la sortie standard de tous les états des parcelles de la surface </p>
+<p>Surcharge de l'opérateur &lt;&lt; de sortie sur flux </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td>Flux dans lequel on imprime les informations </td></tr>
+    <tr><td class="paramname">field</td><td>Surface que l'on souhaite imprimer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Le flux en entrée sur lequel on a imprimé les informations de la surface passée en entrée </dd></dl>
 
 </div>
 </div>
-<h2 class="groupheader">Friends And Related Function Documentation</h2>
 <a class="anchor" id="aff23182d4181acc76ba1fee91946d8e0"></a>
 <div class="memitem">
 <div class="memproto">

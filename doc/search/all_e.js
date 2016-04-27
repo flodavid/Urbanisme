@@ -10,6 +10,8 @@ var searchData=
   ['test_5finvalidscoords',['test_invalidsCoords',['../class_next_coordinates_test_fixture.html#a97704e03f63ed1753d5fb98732314ae0',1,'NextCoordinatesTestFixture']]],
   ['test_5finvalidspath',['test_invalidsPath',['../class_min_path_road_test_fixture.html#ad242362a0b16418a96613e9fac79e41c',1,'MinPathRoadTestFixture']]],
   ['test_5fsameparcel',['test_sameParcel',['../class_min_path_road_test_fixture.html#a3e351654a409fea66809330d8a709a28',1,'MinPathRoadTestFixture']]],
+  ['test_5fservingvalids',['test_servingValids',['../class_field_test_fixture.html#a332e8d4319e77f9322d4936a8a001909',1,'FieldTestFixture']]],
   ['test_5fvalidscoords',['test_validsCoords',['../class_next_coordinates_test_fixture.html#a3c7bcb20dfb66817af9e6162554d28ea',1,'NextCoordinatesTestFixture']]],
-  ['test_5fvalidspath',['test_validsPath',['../class_min_path_road_test_fixture.html#ae0448460a924c47237cde215f4175886',1,'MinPathRoadTestFixture']]]
+  ['test_5fvalidspath',['test_validsPath',['../class_min_path_road_test_fixture.html#ae0448460a924c47237cde215f4175886',1,'MinPathRoadTestFixture']]],
+  ['threadsevaluateratio',['threadsEvaluateRatio',['../class_resolution.html#a1f6ad39394d14d36efa9de0583501a76',1,'Resolution']]]
 ];

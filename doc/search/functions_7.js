@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['increment_5froad_5fdistance',['increment_road_distance',['../class_resolution.html#ab5173a2312a8bb303bfc90f3844fb4e3',1,'Resolution']]],
-  ['initneighbourhoodmanhattan',['initNeighbourhoodManhattan',['../class_resolution.html#a422f19851732418ba28a30473a79903a',1,'Resolution']]]
+  ['initcoordneighbourhoodmanhattan',['initCoordNeighbourhoodManhattan',['../class_resolution.html#a3f2b96d7149002ab33a96b257215e058',1,'Resolution']]],
+  ['initneighbourhoodmanhattan',['initNeighbourhoodManhattan',['../class_resolution.html#a422f19851732418ba28a30473a79903a',1,'Resolution']]],
+  ['initsizeneighbourhood',['initSizeNeighbourhood',['../class_resolution.html#a7e05f1569cf19f273cdb59e90e0d5f1e',1,'Resolution']]]
 ];

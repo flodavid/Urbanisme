@@ -123,6 +123,8 @@ Public Attributes</h2></td></tr>
 Friends</h2></td></tr>
 <tr class="memitem:a268a38d2e3e1406f2fd52bf82e467110"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coordinates.html#a268a38d2e3e1406f2fd52bf82e467110">operator&lt;&lt;</a> (std::ostream &amp;out, const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord)</td></tr>
 <tr class="separator:a268a38d2e3e1406f2fd52bf82e467110"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c5ce164000348c2365085a1adafcada"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coordinates.html#a4c5ce164000348c2365085a1adafcada">operator&lt;&lt;</a> (std::ostream &amp;out, const std::list&lt; <a class="el" href="class_coordinates.html">Coordinates</a> &gt; &amp;coords)</td></tr>
+<tr class="separator:a4c5ce164000348c2365085a1adafcada"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section see"><dt>See also</dt><dd>Normalement inutile, permet de ne pas utilise -lm lors compilation Représentation et opérations simple sur des coordonnées dans un plan. </dd></dl>
@@ -330,6 +332,48 @@ Friends</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">out</td><td>Flux dans lequel on imprime les informations </td></tr>
     <tr><td class="paramname">coord</td><td>Coordonnées que l'on souhaite imprimer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Le flux en entrée sur lequel on a imprimé les informations des coordonnées passées en entrée </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4c5ce164000348c2365085a1adafcada"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream&amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::list&lt; <a class="el" href="class_coordinates.html">Coordinates</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>coords</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Surcharge de l'opérateur &lt;&lt; de sortie sur flux </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td>Flux dans lequel on imprime les informations </td></tr>
+    <tr><td class="paramname">coords</td><td>Liste de coordonnées que l'on souhaite imprimer </td></tr>
   </table>
   </dd>
 </dl>
