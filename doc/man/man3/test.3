@@ -1,4 +1,4 @@
-.TH "test" 3 "Wed Apr 20 2016" "Urbanisme" \" -*- nroff -*-
+.TH "test" 3 "Wed Apr 27 2016" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -13,6 +13,8 @@ le calcul de la distance Manhattan entre deux coordonnées
 de la méthode contains() sur des coordonnées hors de la surface Contains doit retourner faux  
 .IP "\fBMember \fBFieldTestFixture::test_containsValids\fP ()\fP" 1c
 de la méthode contains() sur des coordonnées dans la surface Contains doit retourner vrai  
+.IP "\fBMember \fBFieldTestFixture::test_servingValids\fP ()\fP" 1c
+de la méthode getServingRoads() sur des coordonnées dans la surface  
 .IP "\fBClass \fBMinPathRoadTestFixture\fP \fP" 1c
 .IP "\fBMember \fBMinPathRoadTestFixture::test_findVisisted\fP ()\fP" 1c
 d'un find() sur un vecteur de coordonnée, utilisé dans recCalcRoadDistance, lors de l'ajout d'un voisin d'une route  
@@ -27,6 +29,7 @@ de la méthode calcRoadDistance() entre des parcelles 'reliées' par des routes 
 de la méthode nextCoordinates() sur des coordonnées non 'valides' Doit retourner faux et ne pas modifier la coordonnée en entrée  
 .IP "\fBMember \fBNextCoordinatesTestFixture::test_validsCoords\fP ()\fP" 1c
 de la méthode nextCoordinates() sur des coordonnées 'valides' Doit retourner vrai et modifier la coordonnée en entrée  
-.IP "\fBMember \fBResolution::createExample\fP () __attribute__((test))\fP" 1c
+.IP "\fBMember \fBResolution::createExample\fP ()\fP" 1c
+Utile seulement pour les tests 
 .PP
 

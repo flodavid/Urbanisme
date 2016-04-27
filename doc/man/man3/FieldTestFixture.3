@@ -1,4 +1,4 @@
-.TH "FieldTestFixture" 3 "Wed Apr 20 2016" "Urbanisme" \" -*- nroff -*-
+.TH "FieldTestFixture" 3 "Wed Apr 27 2016" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -27,10 +27,13 @@ Inherits TestFixture\&.
 .ti -1c
 .RI "void \fBtest_containsInvalids\fP ()"
 .br
+.ti -1c
+.RI "void \fBtest_servingValids\fP ()"
+.br
 .in -1c
 .SH "Detailed Description"
 .PP 
-Tests sur la méthode contains de la classe \fBField\fP 
+Tests sur la classe \fBField\fP 
 .PP
 \fBTest\fP
 .RS 4
@@ -55,6 +58,15 @@ de la méthode contains() sur des coordonnées hors de la surface Contains doit 
 \fBTest\fP
 .RS 4
 de la méthode contains() sur des coordonnées dans la surface Contains doit retourner vrai 
+.RE
+.PP
+
+.SS "void FieldTestFixture::test_servingValids ()"
+
+.PP
+\fBTest\fP
+.RS 4
+de la méthode getServingRoads() sur des coordonnées dans la surface 
 .RE
 .PP
 

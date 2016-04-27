@@ -1,4 +1,4 @@
-.TH "Resolution" 3 "Wed Apr 20 2016" "Urbanisme" \" -*- nroff -*-
+.TH "Resolution" 3 "Wed Apr 27 2016" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -15,7 +15,7 @@ Resolution \-
 .RI "\fBResolution\fP (const \fBField\fP &_field, const \fBParameters\fP &_params)"
 .br
 .ti -1c
-.RI "void \fBinitNeighbourhoodManhattan\fP ()"
+.RI "unsigned \fBgetRoadDistance\fP (const \fBCoordinates\fP &coord1, const \fBCoordinates\fP &coord2) const "
 .br
 .in -1c
 .PP
@@ -27,11 +27,6 @@ Resolution \-
 .ti -1c
 .RI "void \fBset_params\fP (const \fBParameters\fP &_params)"
 .br
-.RI "\fIset_params \fP"
-.ti -1c
-.RI "void \fBincrement_road_distance\fP (const \fBCoordinates\fP &coord, unsigned value) __attribute__((deprecated))"
-.br
-.RI "\fIset_road_distance \fP"
 .in -1c
 .in -1c
 .PP
@@ -47,7 +42,10 @@ Resolution \-
 .RI "float \fBmanhattanRatioBetween2Parcels\fP (const \fBCoordinates\fP &p1, const \fBCoordinates\fP &p2) const "
 .br
 .ti -1c
-.RI "float \fBevaluateRatio\fP () const "
+.RI "float \fBevaluateRatio\fP (unsigned nbUsables) const "
+.br
+.ti -1c
+.RI "float \fBthreadsEvaluateRatio\fP () const "
 .br
 .in -1c
 .in -1c
@@ -58,14 +56,23 @@ Resolution \-
 .in +1c
 .in +1c
 .ti -1c
-.RI "void \fBcreateExample\fP () __attribute__((test))"
+.RI "void \fBcreateExample\fP ()"
 .br
 .RI "\fIcreateExample \fP"
 .in -1c
 .in -1c
 .in +1c
 .ti -1c
-.RI "unsigned \fBcalcRoadDistance\fP (const \fBCoordinates\fP &coord1, const \fBCoordinates\fP &coord2) const "
+.RI "void \fBinitSizeNeighbourhood\fP ()"
+.br
+.ti -1c
+.RI "void \fBinitCoordNeighbourhoodManhattan\fP (const \fBCoordinates\fP &coord)"
+.br
+.ti -1c
+.RI "void \fBinitNeighbourhoodManhattan\fP ()"
+.br
+.ti -1c
+.RI "unsigned \fBparcelsRoadDistance\fP (const \fBCoordinates\fP &coord1, const \fBCoordinates\fP &coord2)"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -93,31 +100,6 @@ Constructeur de la casse résolution
 
 .SH "Member Function Documentation"
 .PP 
-.SS "unsigned Resolution::calcRoadDistance (const \fBCoordinates\fP & coord1, const \fBCoordinates\fP & coord2) const"
-Calcule la distance par les routes entre deux cellules, en respectant les paramètres 
-.PP
-\fBParameters:\fP
-.RS 4
-\fIcoord1\fP Coordonnée 'de départ' 
-.br
-\fIcoord2\fP Coordonnée 'd'arrivée' 
-.RE
-.PP
-\fBReturns:\fP
-.RS 4
-la valeur, entier non signé, de distance la plus courte, entre les deux coordonnées, en passant par les routes
-.RE
-.PP
-.SS ""
-.PP
-Calculs de données 
-.SS ""
-.PP
-.SS ""
-.PP
-Fonctions auxiliaires 
-.SS ""
-
 .SS "void Resolution::createExample ()"
 
 .PP
@@ -125,7 +107,7 @@ createExample
 .PP
 \fBTest\fP
 .RS 4
-
+Utile seulement pour les tests 
 .RE
 .PP
 .PP
@@ -133,13 +115,17 @@ createExample
 .PP
 Autres méthodes utiles 
 .SS ""
+.PP
+.IP "\(bu" 2
 
-.SS "float Resolution::evaluateRatio () const"
+.PP
+
+.SS "float Resolution::evaluateRatio (unsigned nbUsables) const"
 Evalue le ratio de toutes les solutions 
 .PP
 \fBReturns:\fP
 .RS 4
-l'évaluation en flottant 
+la moyenne des ratios 
 .RE
 .PP
 
@@ -156,19 +142,28 @@ nombre de parcelles exploitables
 Evaluations 
 .SS ""
 
-.SS "void Resolution::increment_road_distance (const \fBCoordinates\fP & coord, unsigned value)"
-
+.SS "unsigned Resolution::getRoadDistance (const \fBCoordinates\fP & coord1, const \fBCoordinates\fP & coord2) const\fC [inline]\fP"
+Donne la distance par les routes stockée 
 .PP
-set_road_distance 
-.PP
-\fBDeprecated\fP
+\fBParameters:\fP
 .RS 4
-
+\fIcoord1\fP Première coordonnée 
+.br
+\fIcoord2\fP Seconde coordonnée 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+La distance par le route, un entier non signé 
 .RE
 .PP
 
+.SS "void Resolution::initCoordNeighbourhoodManhattan (const \fBCoordinates\fP & coord)"
+Définit la matrice de voisinage avec les routes avec la distance Manhattan 
 .SS "void Resolution::initNeighbourhoodManhattan ()"
-Initialise la matrice de voisinage avec les routes avec la distance Manhattan TODO 
+Définit la matrice de voisinage avec les routes avec la distance Manhattan 
+.SS "void Resolution::initSizeNeighbourhood ()"
+Initialise la matrice de voisinage selon la taille de la surface 
 .SS "float Resolution::manhattanRatioBetween2Parcels (const \fBCoordinates\fP & p1, const \fBCoordinates\fP & p2) const"
 Calcule le ratio entre distance par la route et distance Manhattan entre deux positions 
 .PP
@@ -185,10 +180,25 @@ le ratio, sous forme de flottant
 .RE
 .PP
 
-.SS "void Resolution::set_params (const \fBParameters\fP & _params)"
-
+.SS "unsigned Resolution::parcelsRoadDistance (const \fBCoordinates\fP & coord1, const \fBCoordinates\fP & coord2)"
+Calcule la distance par les routes entre deux cellules quelconques, en testant toutes les routs qui desservent la cellue et en respectant les paramètres 
 .PP
-set_params 
+\fBParameters:\fP
+.RS 4
+\fIcoord1\fP Coordonnée 'de départ' 
+.br
+\fIcoord2\fP Coordonnée 'd'arrivée' 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+la valeur, entier non signé, de distance la plus courte, entre les deux coordonnées, en passant par les routes 
+.RE
+.PP
+
+.SS "void Resolution::set_params (const \fBParameters\fP & _params)"
+Mutateur sur les paramètres du problème
+.PP
 .SS ""
 .PP
 Getters 
@@ -198,6 +208,15 @@ Getters
 .PP
 Setters 
 .SS ""
+
+.SS "float Resolution::threadsEvaluateRatio () const"
+Evalue le ratio de toutes les solutions avec des threads 
+.PP
+\fBReturns:\fP
+.RS 4
+l'évaluation en flottant 
+.RE
+.PP
 
 
 .SH "Author"

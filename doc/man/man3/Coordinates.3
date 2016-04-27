@@ -1,4 +1,4 @@
-.TH "Coordinates" 3 "Wed Apr 20 2016" "Urbanisme" \" -*- nroff -*-
+.TH "Coordinates" 3 "Wed Apr 27 2016" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -48,6 +48,9 @@ Coordinates \-
 .in +1c
 .ti -1c
 .RI "std::ostream & \fBoperator<<\fP (std::ostream &out, const \fBCoordinates\fP &coord)"
+.br
+.ti -1c
+.RI "std::ostream & \fBoperator<<\fP (std::ostream &out, const std::list< \fBCoordinates\fP > &coords)"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -154,6 +157,22 @@ Surcharge de l'opérateur << de sortie sur flux
 \fIout\fP Flux dans lequel on imprime les informations 
 .br
 \fIcoord\fP Coordonnées que l'on souhaite imprimer 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Le flux en entrée sur lequel on a imprimé les informations des coordonnées passées en entrée 
+.RE
+.PP
+
+.SS "std::ostream& operator<< (std::ostream & out, const std::list< \fBCoordinates\fP > & coords)\fC [friend]\fP"
+Surcharge de l'opérateur << de sortie sur flux 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIout\fP Flux dans lequel on imprime les informations 
+.br
+\fIcoords\fP Liste de coordonnées que l'on souhaite imprimer 
 .RE
 .PP
 \fBReturns:\fP
