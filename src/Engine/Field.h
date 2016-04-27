@@ -5,7 +5,7 @@
 
 #include "coordinates.h"
 
-enum State{is_undefined= -1, is_road, is_usable, is_unusable};
+enum State{is_undefined= -1, is_usable, is_unusable, is_road, is_in_out};
 
 /**
  * Classe représentant la surface -le terrain- et contenant les opérations que l'on
