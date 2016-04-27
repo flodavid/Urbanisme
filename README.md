@@ -25,8 +25,8 @@ et d'une classe représentant les paramètres du problème
 3. [x] Fonction d'évaluation complète du nombre de parcelles exploitables d'une solution
 4. [x] Calcul de la distance "directe" entre deux points, Manhattant et Euclidienne,
 avec tests correspondants
-5. [ ] Calcul de la distance par les routes entre deux points
-6. [ ] Fonction d'évaluation complète du ratio entre les distances "directes" et les distances
+5. [x] Calcul de la distance par les routes entre deux points
+6. [x] Fonction d'évaluation complète du ratio entre les distances "directes" et les distances
 par les routes
 
 ### III. Ajouts futurs
@@ -68,8 +68,7 @@ pour se déplacer
     - Noté : moyenne 80 % (OK : Moyenne quadratique)
     - Utiliser également distance euclidienne ? OK : plus tard
     - Distance par les routes : compte la distance entre la parcelle et la première route ? OK : faire optimisation : 
-        - [ ] Prendre les routes les plus proches d'abord
-        - [ ] 
+        - [x] Prendre les routes les plus proches d'abord
 - Transformer en graphe (voir Code 2. et 4. )
 - Collection solutions, comment démarrer ? aléatoire ? voisinage ? Comment relier les E/S ?
 
