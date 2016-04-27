@@ -7,7 +7,7 @@
 #define DEBUG                   0
 
 // Resolution
-#define DEBUG_EVALUATION        0
+#define DEBUG_EVALUATION        1
 #define DEBUG_PARCOURS_COORDS	0
 #define DEBUG_ROADS_DIST        0
 

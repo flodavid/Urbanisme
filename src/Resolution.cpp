@@ -41,9 +41,11 @@ void Resolution::set_params(const Parameters &_params)
 
 unsigned Resolution::parcelsRoadDistance(const Coordinates &coord1, const Coordinates &coord2)
 {
+#if DEBUG_ROADS_DIST
     cout << "### Calcul de la distance entre "<< coord1<< " et "<< coord2<< endl
          << "=============================================="<< endl;
-    if (coord1 == coord2) {
+#endif
+        if (coord1 == coord2) {
 #if DEBUG_ROADS_DIST
         clog << "les cases de départ et d'arrivée sont identiques" << endl;
 #endif
@@ -79,9 +81,9 @@ unsigned Resolution::parcelsRoadDistance(const Coordinates &coord1, const Coordi
                 "(au moins une des 2 parcelle n'a pas de route à proximité (distance < "
              << params.get_serve_distance() << "))" << endl;
     }
-#if DEBUG_ROADS_DIST
+#if DEBUG_EVALUATION || DEBUG_ROADS_DIST
     else {
-        cout << "### Distance entre "<< coord1<< " et "<< coord2<< " : "<< min_dist<< endl
+        cout << "### Distance entre "<< coord1<< " et "<< coord2<< " : "<< min_dist +1<< endl
              << endl;
     }
 #endif
@@ -111,7 +113,7 @@ unsigned int Resolution::lengthBy(const Coordinates& testCoord, const Coordinate
 #endif
             }
 #if DEBUG_ROADS_DIST
-        cout << "\tLa valeur calculée pour le trajet "<< new_coord<< "->"<< coord2<< "est : "<< dist<< endl;
+        cout << "\tLa valeur calculée pour le trajet "<< testCoord<< "->"<< dest<< "est : "<< dist<< endl;
 #endif
     }
 
@@ -132,7 +134,7 @@ unsigned int Resolution::testPathBy(const Coordinates& testCoord, const Coordina
         }
     } else {
     #if DEBUG_ROADS_DIST
-        cout << "La parcelle "<<new_coord<< " a déjà été visitée" << endl;
+        cout << "La parcelle "<< testCoord<< " a déjà été visitée" << endl;
     #endif
     }
     
