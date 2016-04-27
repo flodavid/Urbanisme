@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cassert>
 #include <cmath>
+#include <list>
 #include <algorithm> /// @see Normalement inutile, permet de ne pas utilise -lm lors compilation
 
 /**
@@ -70,17 +71,32 @@ public:
 	    { return coord.print(out); }
 	
     // Calculs
-	/**
-	 * Calcul de la distance Manhattan entre deux points
-	 * @return distance manhattan : entier non signé
-	 */
-	unsigned manhattanDistance(const Coordinates& other) const;
-	/**
-	 * Calcul de la distance euclidienne entre deux points
-	 * @return distance euclidienne : flottant non signé
-	 */
-	float euclideanDistance(const Coordinates& other) const;
-	
+    /**
+	* Calcul de la distance Manhattan entre deux points
+	* @return distance manhattan : entier non signé
+	*/
+    unsigned manhattanDistance(const Coordinates& other) const;
+    /**
+	* Calcul de la distance euclidienne entre deux points
+	* @return distance euclidienne : flottant non signé
+	*/
+    float euclideanDistance(const Coordinates& other) const;
+    
+    
+    /**
+	* Surcharge de l'opérateur << de sortie sur flux
+	* @param out Flux dans lequel on imprime les informations
+	* @param coords Liste de coordonnées que l'on souhaite imprimer
+	* @return  Le flux en entrée sur lequel on a imprimé les informations des
+	* coordonnées passées en entrée
+	*/
+    friend std::ostream& operator<<( std::ostream &out, const std::list< Coordinates > &coords )
+    {
+	for (const Coordinates& coord : coords) {
+	    out << coord<< "; ";
+	}
+	return out;
+    }
 };
 
 #endif // COORDINATES_H

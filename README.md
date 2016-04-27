@@ -25,7 +25,7 @@ et d'une classe représentant les paramètres du problème
 3. [x] Fonction d'évaluation complète du nombre de parcelles exploitables d'une solution
 4. [x] Calcul de la distance "directe" entre deux points, Manhattant et Euclidienne,
 avec tests correspondants
-5. [x] Calcul de la distance par les routes entre deux points
+5. [ ] Calcul de la distance par les routes entre deux points
 6. [ ] Fonction d'évaluation complète du ratio entre les distances "directes" et les distances
 par les routes
 
@@ -52,8 +52,12 @@ les "points chauds", qui on un rapport élevé distance "directe"/distance_Manha
 + [ ] Ajouter des types et contraintes de placement des parcelles
 
 
-### Questions :
-#### Algorithme/Objectifs
+## Détails :
++ On suppose que l'on est obligé de prendre la route la plus proche de la parcelle
+pour se déplacer
+
+## Questions :
+### Algorithme/Objectifs
 - Comment trouver les routes à X parcelles de distance d'une parcelle donnée ?
     - Actuellement, une recherche dans un de 2*X parcelles de coté est effectuée, 
     on garde les routes qui sont à moins de 2 de distance. OK : Parcourir les routes
@@ -69,7 +73,7 @@ les "points chauds", qui on un rapport élevé distance "directe"/distance_Manha
 - Transformer en graphe (voir Code 2. et 4. )
 - Collection solutions, comment démarrer ? aléatoire ? voisinage ? Comment relier les E/S ?
 
-#### Code/Technique :
+### Code/Technique :
 - Dans listes (`list<Coordinates>*`) utiliser pointeurs ? si oui, comment utiliser,
 ou remplacer, `find(begin, end, val)` ? => Non demandé
 - Utiliser boost-graph ? Bof
@@ -81,7 +85,7 @@ l'inverse est possible : définir toutes les voisins de chaque route comme étan
 qui ont des entiers ? je crée une variable locale
 
 
-#### Profiler :
+## Profiler :
 + Gprof (gnu profiler)
 + Kcachegrind
 

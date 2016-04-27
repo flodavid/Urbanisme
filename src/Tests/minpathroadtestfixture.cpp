@@ -133,6 +133,12 @@ void MinPathRoadTestFixture::setUp()
     // Affichage
     cout << "Coordinates of test : " << (*coord1)
     << " and "<< (*coord2) << endl;
+    
+    // Définition des états des parcelles
+//    resol->field.defineUsables(resol->params.get_serve_distance());
+//    if (!resol->road_distances_are_initiated){
+//        resol->initNeighbourhoodManhattan();
+//    }
 }
 
 void MinPathRoadTestFixture::tearDown()
@@ -147,29 +153,44 @@ void MinPathRoadTestFixture::tearDown()
 
 void MinPathRoadTestFixture::test_validsPath()
 {
-    unsigned dist= resol->calcRoadDistance(*coord1, *coord2);
+    resol->field.defineUsables(resol->params.get_serve_distance());
+    if (!resol->road_distances_are_initiated){
+        resol->initNeighbourhoodManhattan();
+    }
+
+    cout << "Routes desservant "<< (*coord1)<< " : "<< *(resol->field.getServingRoads(*coord1, resol->params.get_serve_distance()));
+    cout << "Routes desservant "<< (*coord2)<< " : "<< *(resol->field.getServingRoads(*coord2, resol->params.get_serve_distance()));
+    
+    unsigned dist= resol->getRoadDistance(*coord1, *coord2);
     // Si on test la distance entre la première et la 2e est égale à celle attendue
     cout << "Valeur infinity : "<< UNSIGNED_INFINITY <<" OMFG !"<< endl
 	<<endl;
-    
-//     unsigned nb_serving_c1= resol->getServingRoads(*coord1)->size();
-//     unsigned nb_serving_c2= resol->getServingRoads(*coord2)->size();
-//     cout << "coord1 a "<< nb_serving_c1<< " routes qui la desservent";
-//     cout << " ; coord2 a "<< nb_serving_c2<< " routes qui la desservent"<< endl;
-    
+	
     CPPUNIT_ASSERT_EQUAL(expected_dist, dist);
+
+    
+    Coordinates coord3(12, 6);
+    Coordinates coord4(6, 18);
+    unsigned expected_dist_local= 16;
+    
+    unsigned dist2= resol->getRoadDistance(coord3, coord4);
+    // Si on test la distance entre la première et la 2e est égale à celle attendue
+    cout << "Valeur infinity : "<< UNSIGNED_INFINITY <<" OMFG !"<< endl
+    <<endl;
+    
+    CPPUNIT_ASSERT_EQUAL(expected_dist_local, dist2);
 }
 
 void MinPathRoadTestFixture::test_sameParcel()
 {
-    unsigned dist= resol->calcRoadDistance(*coord1, *coord1);
+    unsigned dist= resol->getRoadDistance(*coord1, *coord1);
     // Si on test la distance entre une case et elle-même, on doit obtenir 0
     CPPUNIT_ASSERT_EQUAL(dist, (unsigned)0);
 }
 
 void MinPathRoadTestFixture::test_invalidsPath()
 {
-    unsigned dist_out= resol->calcRoadDistance(*coord1, *coord_out);
+    unsigned dist_out= resol->getRoadDistance(*coord1, *coord_out);
     // Si une des deux cases est en dehors, on doit obtenir l'infini
     CPPUNIT_ASSERT_EQUAL(UNSIGNED_INFINITY, dist_out);
    

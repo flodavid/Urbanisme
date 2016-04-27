@@ -2,6 +2,7 @@
 
 #include <list>
 
+#include "stdafx.h"
 #include "Engine/Field.h"
 #include "Engine/Parameters.h"
 #include "Engine/coordinates.h"
@@ -24,7 +25,7 @@ public: // TODO temporaire, TODELETE
     Parameters params;
 
     // Données calculées
-    std::vector<std::vector<unsigned>> road_distances;
+    std::vector< std::vector< std::vector< std::vector< unsigned > > > > road_distances;
 
     // FLAGS
     bool road_distances_are_initiated= false;
@@ -39,22 +40,27 @@ public:
     ~Resolution();
 
     /* Getters */
+    inline unsigned getRoadDistance(const Coordinates& coord1, const Coordinates& coord2) const
+    { if (!field.contains(coord1) || !field.contains(coord2)) return UNSIGNED_INFINITY;
+	return road_distances[coord1.row][coord1.col][coord2.row][coord2.col]; }
 
     /*** Setters */
     /**
      * @brief set_params
      */
     void set_params ( const Parameters& _params );
-    /**
-     * @brief set_road_distance
-     * @deprecated
-     */
-    void increment_road_distance ( const Coordinates& coord, unsigned value ) __attribute__ ( ( deprecated ) );
-
+    
     /* Calculs de données */
     /**
-     * Initialise la matrice de voisinage avec les routes avec la distance Manhattan
-     * TODO
+     * Initialise la matrice de voisinage selon la taille de la surface
+     */
+    void initSizeNeighbourhood();
+    /**
+     * Définit la matrice de voisinage avec les routes avec la distance Manhattan
+     */
+    void initCoordNeighbourhoodManhattan(const Coordinates& coord);
+    /**
+     * Définit la matrice de voisinage avec les routes avec la distance Manhattan
      */
     void initNeighbourhoodManhattan();
 
@@ -67,14 +73,17 @@ public:
      * @return la valeur, entier non signé, de distance la plus courte,
      *   entre les deux coordonnées, en passant par les routes
      */
-    unsigned calcRoadDistance ( const Coordinates& coord1, const Coordinates& coord2 ) const;
+    unsigned parcelsRoadDistance (const Coordinates& coord1, const Coordinates& coord2 );
 
 private:
+    unsigned int lengthBy ( const Coordinates& testCoord, const Coordinates& dest, std::list<Coordinates>* visited, unsigned int minDist );
+
+    unsigned int testPathBy ( const Coordinates& testCoord, const Coordinates& dest, std::list<Coordinates>* visited, unsigned int minDist );
     /**
      * Calcule la distance entre deux points, en passant de route en route
      * On suppose ques les coordonées courantes sont des routes
      */
-    unsigned recCalcRoadDistance ( const Coordinates& coord1, const Coordinates& coord2, std::list<Coordinates> *visited ) const;
+    unsigned calcRoadDistance (const Coordinates& coord1, const Coordinates& coord2, std::list<Coordinates> *visited, unsigned dist_max );
 
 public:
     /* Evaluations */
@@ -93,9 +102,9 @@ public:
     float manhattanRatioBetween2Parcels ( const Coordinates& p1, const Coordinates& p2 ) const;
     /**
      * Evalue le ratio de toutes les solutions
-     * @return l'évaluation en flottant
+     * @return la moyenne des ratios
      */
-    float evaluateRatio() const;
+    float evaluateRatio(unsigned nbUsables) const;
     /**
      * Evalue le ratio de toutes les solutions avec des threads
      * @return l'évaluation en flottant
