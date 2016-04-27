@@ -39,59 +39,6 @@ void Resolution::set_params(const Parameters &_params)
 /// #########################
 //@{
 
-unsigned Resolution::parcelsRoadDistance(const Coordinates &coord1, const Coordinates &coord2)
-{
-#if DEBUG_ROADS_DIST
-    cout << "### Calcul de la distance entre "<< coord1<< " et "<< coord2<< endl
-         << "=============================================="<< endl;
-#endif
-        if (coord1 == coord2) {
-#if DEBUG_ROADS_DIST
-        clog << "les cases de départ et d'arrivée sont identiques" << endl;
-#endif
-        return 0;
-    }
-
-    unsigned min_dist = UNSIGNED_INFINITY;
-
-    list<Coordinates> *serving_roads_c1 = field.getServingRoads(coord1, params.get_serve_distance());
-    list<Coordinates> *serving_roads_c2 = field.getServingRoads(coord2, params.get_serve_distance());
-
-    // Pour chaque route qui dessert chaque parcelle, on calcule le plus court chemin
-    // On garde le plus court de ces chemins
-    for (const Coordinates& road_c1 : (*serving_roads_c1)) {
-        for (const Coordinates& road_c2 : (*serving_roads_c2)) {
-            list<Coordinates> empty_visited;
-            unsigned int dist = calcRoadDistance(road_c1, road_c2, &empty_visited, UNSIGNED_INFINITY);
-
-            // Si on a trouvé un chemin meilleur que le précédent, si il en existait un,
-            // on stocke sa longueur
-            if (dist < min_dist) {
-                min_dist= dist;
-            }
-        }
-    }
-
-    delete serving_roads_c1;
-    delete serving_roads_c2;
-
-    // On devrait trouver un chemin entre les deux parcelles
-    if (min_dist == UNSIGNED_INFINITY) {
-        cerr << "Impossible de relier"<< coord1<< " et "<< coord2<< " par les routes"
-                "(au moins une des 2 parcelle n'a pas de route à proximité (distance < "
-             << params.get_serve_distance() << "))" << endl;
-    }
-#if DEBUG_EVALUATION || DEBUG_ROADS_DIST
-    else {
-        cout << "### Distance entre "<< coord1<< " et "<< coord2<< " : "<< min_dist +1<< endl
-             << endl;
-    }
-#endif
-
-    return min_dist+1;
-}
-
-
 unsigned int Resolution::lengthBy(const Coordinates& testCoord, const Coordinates& dest, list<Coordinates> *visited, unsigned int minDist)
 {
     // On applique la recursivité avec la coordonnée envisagée courante
@@ -188,6 +135,58 @@ unsigned Resolution::calcRoadDistance(const Coordinates &coord1, const Coordinat
             }
          }// fin_else(visited->size >= dist_max)
     }
+}
+
+unsigned Resolution::parcelsRoadDistance(const Coordinates &coord1, const Coordinates &coord2)
+{
+#if DEBUG_ROADS_DIST
+    cout << "### Calcul de la distance entre "<< coord1<< " et "<< coord2<< endl
+         << "=============================================="<< endl;
+#endif
+        if (coord1 == coord2) {
+#if DEBUG_ROADS_DIST
+        clog << "les cases de départ et d'arrivée sont identiques" << endl;
+#endif
+        return 0;
+    }
+
+    unsigned min_dist = UNSIGNED_INFINITY;
+
+    list<Coordinates> *serving_roads_c1 = field.getServingRoads(coord1, params.get_serve_distance());
+    list<Coordinates> *serving_roads_c2 = field.getServingRoads(coord2, params.get_serve_distance());
+
+    // Pour chaque route qui dessert chaque parcelle, on calcule le plus court chemin
+    // On garde le plus court de ces chemins
+    for (const Coordinates& road_c1 : (*serving_roads_c1)) {
+        for (const Coordinates& road_c2 : (*serving_roads_c2)) {
+            list<Coordinates> empty_visited;
+            unsigned int dist = calcRoadDistance(road_c1, road_c2, &empty_visited, UNSIGNED_INFINITY);
+
+            // Si on a trouvé un chemin meilleur que le précédent, si il en existait un,
+            // on stocke sa longueur
+            if (dist < min_dist) {
+                min_dist= dist;
+            }
+        }
+    }
+
+    delete serving_roads_c1;
+    delete serving_roads_c2;
+
+    // On devrait trouver un chemin entre les deux parcelles
+    if (min_dist == UNSIGNED_INFINITY) {
+        cerr << "Impossible de relier"<< coord1<< " et "<< coord2<< " par les routes"
+                "(au moins une des 2 parcelle n'a pas de route à proximité (distance < "
+             << params.get_serve_distance() << "))" << endl;
+    }
+#if DEBUG_EVALUATION || DEBUG_ROADS_DIST
+    else {
+        cout << "### Distance entre "<< coord1<< " et "<< coord2<< " : "<< min_dist +1<< endl
+             << endl;
+    }
+#endif
+
+    return min_dist+1;
 }
 
 void Resolution::initSizeNeighbourhood()

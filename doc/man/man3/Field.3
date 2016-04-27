@@ -1,4 +1,4 @@
-.TH "Field" 3 "Wed Apr 20 2016" "Urbanisme" \" -*- nroff -*-
+.TH "Field" 3 "Wed Apr 27 2016" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -30,13 +30,13 @@ Field \-
 .RI "void \fBset_height\fP (unsigned height)"
 .br
 .ti -1c
+.RI "void \fBadd_road\fP (unsigned col, unsigned row)"
+.br
+.ti -1c
 .RI "void \fBadd_in_out\fP (const \fBCoordinates\fP &coord)"
 .br
 .ti -1c
 .RI "void \fBadd_in_out\fP (unsigned col, unsigned row)"
-.br
-.ti -1c
-.RI "void \fBadd_road\fP (unsigned col, unsigned row)"
 .br
 .ti -1c
 .RI "State \fBat\fP (const \fBCoordinates\fP &pos) const "
@@ -60,9 +60,6 @@ Field \-
 .RI "std::vector< std::vector< State > >::iterator \fBend\fP ()"
 .br
 .RI "\fIend \fP"
-.ti -1c
-.RI "std::ostream & \fBprint\fP (std::ostream &out) const "
-.br
 .ti -1c
 .RI "void \fBdeleteUselessRoad\fP ()"
 .br
@@ -88,7 +85,7 @@ Field \-
 .RI "void \fBshow_ins_and_outs\fP () const "
 .br
 .ti -1c
-.RI "void \fBshow_states\fP () const "
+.RI "std::ostream & \fBprint\fP (std::ostream &out) const "
 .br
 .in -1c
 .in -1c
@@ -420,14 +417,7 @@ Recherche des portions de routes qui peuvent désservir la parcelle
 une liste de routes distance inférieure ou égale à la distance de desserte 
 .RE
 .PP
-
-.PP
-\fBSee also:\fP
-.RS 4
-on vérifie serve_dist² parcelles, alors qu'on pourrait en vérifier ?? (moins) 
-.RE
-.PP
-
+On vérifie ((2\&.serve_dist)+1)² parcelles, alors qu'on pourrait en vérifier moins 
 .SS "bool Field::nextCoordinates (\fBCoordinates\fP * coord) const"
 Modifie la coordonnée en entrée pour obtenir celle qu'elle précède Agit comme une itération sur l'ensemble des coordonnées de la surface 
 .PP
@@ -456,7 +446,7 @@ L'état de la parcelle à la position des coordonnées, un State
 .RE
 .PP
 
-.SS "std::ostream& Field::print (std::ostream & out) const"
+.SS "std::ostream & Field::print (std::ostream & out) const"
 Imprime dans un flux les informations de l'instance 
 .PP
 \fBParameters:\fP
@@ -504,8 +494,6 @@ Impression sur la sortie standard des entrées et sorties de la surface
 Affichage 
 .SS ""
 
-.SS "void Field::show_states () const"
-Impression sur la sortie standard de tous les états des parcelles de la surface 
 .SH "Friends And Related Function Documentation"
 .PP 
 .SS "std::ostream& operator<< (std::ostream & out, const \fBField\fP & field)\fC [friend]\fP"
