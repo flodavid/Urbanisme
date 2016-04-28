@@ -5,7 +5,7 @@
 
 #include "coordinates.h"
 
-enum State{is_undefined= -1, is_road, is_usable, is_unusable};
+enum State{is_undefined= -1, is_usable, is_unusable, is_road, is_in_out, max_state};
 
 /**
  * Classe représentant la surface -le terrain- et contenant les opérations que l'on
@@ -91,7 +91,7 @@ public:
     * @param row Ligne de l'E/S
     */
     void add_in_out(unsigned col, unsigned row)
-    { ins_outs.push_back(Coordinates(col, row)); add_road(col, row); }
+    { ins_outs.push_back(Coordinates(col, row)); parcels[row][col]= is_in_out; }
 
     /**=== Operators ===**/
 public:
@@ -107,32 +107,32 @@ public:
      * @param pos Coordonnées de la parcelle
      * @return L'état de la parcelle à la position des coordonnées, un State
      */
-    State operator[](const Coordinates& pos) const { return parcels[pos.row][pos.col]; }
+    inline State operator[](const Coordinates& pos) const { return parcels[pos.row][pos.col]; }
 
     /**
      * @brief begin
      * @return un itérateur constant sur la première parcelle du Field
      * @see
      */
-    std::vector<std::vector<State>>::const_iterator begin() const { return parcels.cbegin(); }
+    inline std::vector<std::vector<State>>::const_iterator begin() const { return parcels.cbegin(); }
     /**
      * @brief end
      * @return un itérateur constant sur la dernière parcelle du Field
      * @see
      */
-    std::vector<std::vector<State>>::const_iterator end() const { return parcels.cend(); }
+    inline std::vector<std::vector<State>>::const_iterator end() const { return parcels.cend(); }
     /**
      * @brief begin
      * @return un itérateur sur la première parcelle du Field
      * @see
      */
-    std::vector<std::vector<State>>::iterator begin() { return parcels.begin(); }
+    inline std::vector<std::vector<State>>::iterator begin() { return parcels.begin(); }
     /**
      * @brief end
      * @return un itérateur sur la dernière parcelle du Field
      * @see
      */
-    std::vector<std::vector<State>>::iterator end() { return parcels.end(); }
+    inline std::vector<std::vector<State>>::iterator end() { return parcels.end(); }
 
     //    friend std::vector<std::vector<State>>::const_iterator begin(const Field& f) { return f.begin(); }
     //    friend std::vector<std::vector<State>>::const_iterator end(const Field& f) { return f.end(); }
@@ -211,7 +211,7 @@ private:
         * @param neighbour Coordonnées de la parcelle
      * @return vrai si la parcelle est une route
      */
-    bool isRoad(const Coordinates& neighbour) const;
+    inline bool isRoad(const Coordinates& neighbour) const;
     /**
      * Vérifie que deux parcelles sont voisines, supposant une distance de voisinage
         * @param neighbour Coordonnées de la parcelle qui peut être voisine de l'autre
