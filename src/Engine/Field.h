@@ -91,7 +91,7 @@ public:
     * @param row Ligne de l'E/S
     */
     void add_in_out(unsigned col, unsigned row)
-    { ins_outs.push_back(Coordinates(col, row)); add_road(col, row); }
+    { ins_outs.push_back(Coordinates(col, row)); parcels[row][col]= is_in_out; }
 
     /**=== Operators ===**/
 public:

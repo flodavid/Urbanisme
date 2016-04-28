@@ -1,7 +1,7 @@
 #ifndef FIREWIDGET_H
 #define FIREWIDGET_H
 
-#include <QWidget>
+#include <QtWidgets/QWidget>
 #include <QtWidgets/QRubberBand>
 #include <QtWidgets/QProgressBar>
 #include <QtGui/QImage>

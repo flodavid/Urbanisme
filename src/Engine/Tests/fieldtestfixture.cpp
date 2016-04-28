@@ -57,7 +57,7 @@ void FieldTestFixture::test_containsInvalids()
 // void FieldTestFixture::test_parcelsStatus(){
 //     cout << "vérification que ("<< j<< ","<< i<< ") est une route";
 //     if (field.contains(j, i) && (j != coord.col || i != coord.row))
-// 	cout << " : "<< (field[Coordinates(j, i)] == is_road);
+// 	cout << " : "<< (field[Coordinates(j, i)] >= is_road);
 //     cout << endl;
 // }
 

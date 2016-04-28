@@ -92,7 +92,7 @@ unsigned int Resolution::testPathBy(const Coordinates& testCoord, const Coordina
 unsigned Resolution::calcRoadDistance(const Coordinates &coord1, const Coordinates &coord2,
                                             list< Coordinates > *visited, unsigned int dist_max)
 {
-    assert(field[coord1] == is_road && field[coord2] == is_road);
+    assert(field[coord1] >= is_road && field[coord2] >= is_road);
 
 #if DEBUG_ROADS_DIST
     cout << "Calcul de la distance entre " << coord1 << " et " << coord2 << endl;
@@ -224,7 +224,7 @@ void Resolution::initCoordNeighbourhoodManhattan(const Coordinates &coord)
                         parcelsRoadDistance(coord, coord2);
             }
 //             }
-//             if (field[coord] == is_road && field[coord2] == is_road) {
+//             if (field[coord] >= is_road && field[coord2] >= is_road) {
 //                 list<Coordinates> *empty_visited = new list<Coordinates>;
 //                 road_distances[coord.row][coord.col][coord2.row][coord2.col] =
 //                         recCalcRoadDistance(coord, coord2, empty_visited, UNSIGNED_INFINITY);

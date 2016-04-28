@@ -145,7 +145,7 @@ void Field::generateInsAndOuts(unsigned nb)
 bool Field::isRoad(const Coordinates &neighbour) const
 {
     return contains(neighbour)
-           && at(neighbour) == is_road;
+           && at(neighbour) >= is_road; // route ou entrée/sortie
 }
 
 bool Field::isRoadAndNeighbourOf(const Coordinates &neighbour, const Coordinates &coord, unsigned servingDistance) const
@@ -167,28 +167,28 @@ std::list<Coordinates> *Field::getNeighbourRoads(const Coordinates &coord) const
     Coordinates &south = * (new Coordinates(coord.col, coord.row + 1));
     // On vérifie que chaque voisin n'est pas en dehors de la matrice
 
-    if (contains(west) && at(west) == is_road) {
+    if (contains(west) && at(west) >= is_road) {
         // Ajout dans les routes voisines de la parcelle
         neighbour_roads->push_back(west);
 #if DEBUG_ROADS_DIST
         cout << "\tparcelle " << west << endl;
 #endif
     }
-    if (contains(east) && at(east) == is_road) {
+    if (contains(east) && at(east) >= is_road) {
         // Ajout dans les routes voisines de la parcelle
         neighbour_roads->push_back(east);
 #if DEBUG_ROADS_DIST
         cout << "\tparcelle " << east << endl;
 #endif
     }
-    if (contains(north) && at(north) == is_road) {
+    if (contains(north) && at(north) >= is_road) {
         // Ajout dans les routes voisines de la parcelle
         neighbour_roads->push_back(north);
 #if DEBUG_ROADS_DIST
         cout << "\tparcelle " << north << endl;
 #endif
     }
-    if (contains(south) && at(south) == is_road) {
+    if (contains(south) && at(south) >= is_road) {
         // Ajout dans les routes voisines de la parcelle
         neighbour_roads->push_back(south);
 #if DEBUG_ROADS_DIST
@@ -212,7 +212,7 @@ std::list<Coordinates> *Field::getServingRoads(const Coordinates &coord , unsign
     // seulement celles qui desservent des parcelles ou sont collées
 
     int serve_dist = (int)servingDistance;
-    if (at(coord) == is_road) {
+    if (at(coord) >= is_road) {
         serve_dist = 1;
     }
 
