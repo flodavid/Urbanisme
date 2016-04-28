@@ -9,6 +9,11 @@ Field::Field(unsigned width, unsigned height/*, std::list<Coordinates>& inputs_a
     resizeWithDimensions();
 }
 
+Field::Field(const Field& other) :
+    nb_cols(other.nb_cols), nb_rows(other.nb_rows), ins_outs(other.ins_outs), parcels(other.parcels)
+{
+}
+
 Field::~Field()
 {
 }

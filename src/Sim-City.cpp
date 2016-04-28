@@ -9,7 +9,7 @@
 #include "Engine/Field.h"
 #include "Engine/Parameters.h"
 #include "Display/fieldview.hpp"
-#include "Resolution.h"
+#include "evaluation.h"
 
 using namespace std;
 
@@ -44,30 +44,30 @@ int main(int argc, char* argv[])
     QScopedPointer<QApplication> app(new QApplication(argc, argv));
 
     Field myField(5, 5);
-    Parameters myParameters(1, 2);
+    Parameters myParameters(2, 1);
 
-    Resolution myResolution(myField, myParameters);
-    FieldWidget* myFieldWidget= new FieldWidget(&(myResolution.field));
+    Evaluation myEvaluation(myField, myParameters);
+    FieldWidget* myFieldWidget= new FieldWidget(&(myEvaluation.field));
 
 /**		Tests		**/
-    myResolution.createExample();
+    myEvaluation.createExample();
     myFieldWidget->redraw();
     myFieldWidget->show();
 
     time_t startTime;
     time_t stopTime;
     
-    unsigned nb_usables= myResolution.evaluateTotalUsable();
+    unsigned nb_usables= myEvaluation.evaluateTotalUsable();
     cout << "Nombre total de parcelles exploitables au début : "<< nb_usables<< endl;
     
     startTime = time(NULL);
-    myResolution.initNeighbourhoodManhattan();
+    myEvaluation.initNeighbourhoodManhattan();
     stopTime = time(NULL);
     time_t elapsedTimeInit = stopTime - startTime;
     
     startTime = time(NULL);
 
-    float avg_ratio= myResolution.evaluateRatio(nb_usables);
+    float avg_ratio= myEvaluation.evaluateRatio(nb_usables);
 //     float total_ratio= myResolution.threadsEvaluateRatio();
     stopTime = time(NULL);
     time_t elapsedTimeEval = stopTime - startTime;

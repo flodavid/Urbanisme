@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.11)
 
 find_package(Qt5Widgets)
 find_package(Qt5Core)

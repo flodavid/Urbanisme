@@ -1,5 +1,5 @@
 project(sim-city)
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.11)
 
 find_package(Qt5Widgets)
 find_package(Qt5Core)
@@ -11,7 +11,7 @@ find_package(Qt5Gui)
 
 # FILES
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
-include_directories(${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR})
+#include_directories(${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR})
 
 add_subdirectory(Engine) # must set ${Engine_SRCS}
 add_subdirectory(Display) # must set ${Display_SRCS}
@@ -19,7 +19,7 @@ add_subdirectory(Display) # must set ${Display_SRCS}
 # Use the compile definitions defined in the Qt 5 Widgets module
 add_definitions(-Wall -std=c++11 -pthread -lpthread ${Qt5Widgets_DEFINITIONS})
 
-set(sim-city_SRCS ${Engine_SRCS} ${Display_SRCS} Resolution.cpp Resolution_others.cpp Sim-City.cpp)
+set(sim-city_SRCS ${Engine_SRCS} ${Display_SRCS} resolution.cpp localsearch.cpp evaluation.cpp evaluation_others.cpp Sim-City.cpp)
 
 set(HEADERS debug.h)
 

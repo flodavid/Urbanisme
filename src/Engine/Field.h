@@ -29,6 +29,7 @@ public:
      * @param height Hauteur à définir de la surface
      */
     Field(unsigned width, unsigned height/*, std::list< Coordinates >& inputs_and_ouputs = *(new std::list<Coordinates>()) */);
+    Field(const Field& other);
     ~Field();
 
     /*=== Getters ===*/

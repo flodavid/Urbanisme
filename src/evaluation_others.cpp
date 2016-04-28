@@ -1,5 +1,5 @@
 ﻿#include "stdafx.h"
-#include "Resolution.h"
+#include "evaluation.h"
 
 /// #########################
 /// Autres méthodes utiles
@@ -8,7 +8,7 @@
 
 ///*
 // Grand
-void Resolution::createExample()
+void Evaluation::createExample()
 {
     // Surface de l'exemple :
     Field &example = field;

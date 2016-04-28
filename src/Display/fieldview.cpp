@@ -346,36 +346,36 @@ void FieldWidget::mouseReleaseEvent(QMouseEvent* event)
 // }
 
 
-void FieldWidget::actionReceived(int x)
-{
-	// Transformation des QPoints depart et arrivée en coordonnée cellulaire
-	int xDep = depart.x() / tailleCell;
-	int yDep = depart.y() / tailleCell;
+//void FieldWidget::actionReceived(int x)
+//{
+//	// Transformation des QPoints depart et arrivée en coordonnée cellulaire
+//	int xDep = depart.x() / tailleCell;
+//	int yDep = depart.y() / tailleCell;
 	
-    unsigned xArr = arrivee.x() / tailleCell;
+//    unsigned xArr = arrivee.x() / tailleCell;
 	
-    if (xArr > field->get_width()) xArr= field->get_width();
+//    if (xArr > field->get_width()) xArr= field->get_width();
 	
-    unsigned yArr = arrivee.y() / tailleCell;
+//    unsigned yArr = arrivee.y() / tailleCell;
 	
-    if (yArr> field->get_height())	yArr= field->get_height();
+//    if (yArr> field->get_height())	yArr= field->get_height();
 
 	
-	#if DEBUG_RETARD
-	cout << "Coordonnée en cellule du départ : " << xDep << ";" << yDep << endl;
-	cout << "Coordonnée en cellule de l'arrivée : " << xArr << ";" << yArr << endl;
-	#endif
+//	#if DEBUG_RETARD
+//	cout << "Coordonnée en cellule du départ : " << xDep << ";" << yDep << endl;
+//	cout << "Coordonnée en cellule de l'arrivée : " << xArr << ";" << yArr << endl;
+//	#endif
 	
-	// Appel à une fonction de forêt qui parcours la zone et effectue l'action
+//	// Appel à une fonction de forêt qui parcours la zone et effectue l'action
 	
 	
-//	if(x == CUT){
-//		forest->cut(xDep, yDep, xArr, yArr);
-//	}else if( x == DELAY){
-//		forest->delay(xDep, yDep, xArr,yArr);
-//	}else cerr<< "mauvais index d'action clic droit"<< endl;
+////	if(x == CUT){
+////		forest->cut(xDep, yDep, xArr, yArr);
+////	}else if( x == DELAY){
+////		forest->delay(xDep, yDep, xArr,yArr);
+////	}else cerr<< "mauvais index d'action clic droit"<< endl;
 	
-	drawChanged();
-	update();
-}
+//	drawChanged();
+//	update();
+//}
 

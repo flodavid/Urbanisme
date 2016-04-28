@@ -15,7 +15,7 @@ public:
      * @param _road_width Largeur des routes
      * @param _serve_distance Distance de desserte des routes
      */
-    Parameters(unsigned _road_width, unsigned _serve_distance);
+    Parameters(unsigned _serve_distance, unsigned _road_width);
     ~Parameters();
 
     /**
