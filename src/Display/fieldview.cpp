@@ -47,14 +47,14 @@ LoadWindow* FieldWidget::createProgressWindow() const
 void FieldWidget::setColor(Colors colorIndice)
 {
     switch(colorIndice){
-// 	    case Green0:
-// 		    this->color->setRgb(01,100,00);
-// 		    break;
-// 	    case Green1:
-// 		    this->color->setRgb(34,139,34	);
-// 		    break;
+    case Green0:
+        this->color->setRgb(00,100,00);
+        break;
+    case Black:
+        this->color->setRgb(00,00,00);
+        break;
 	case Gray:
-	    this->color->setRgb(45,45,45);
+        this->color->setRgb(65,65,65);
 	    break;
 	case Red:
 	    this->color->setRgb(255,0,0);
@@ -121,13 +121,16 @@ void FieldWidget::drawField()
         State state= field->at(coord);
         if( state == is_usable){
             setColor(White);
-            cout << "Dessin d'une parcelle"<< endl;
             drawCell(coord.col, coord.row);
         }
         // Cas d'une route
         else if(state == is_road){
             setColor(Gray);
-            cout << "Dessin d'une route"<< endl;
+            drawCell(coord.col, coord.row);
+        }
+        // Cas d'une route
+        else if(state == is_in_out){
+            setColor(Red);
             drawCell(coord.col, coord.row);
         }
         else if (state == is_undefined){
