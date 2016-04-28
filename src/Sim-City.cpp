@@ -41,7 +41,7 @@ using namespace std;
  */
 int main(int argc, char* argv[])
 {
-    QApplication app(argc, argv);
+    QScopedPointer<QApplication> app(new QApplication(argc, argv));
 
     Field myField(5, 5);
     Parameters myParameters(1, 2);
@@ -82,6 +82,6 @@ int main(int argc, char* argv[])
 
     cout << "FIN" << endl;
 
-    return app.exec();
+    return app->exec();
 }
 

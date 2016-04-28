@@ -171,7 +171,7 @@ void MinPathRoadTestFixture::test_validsPath()
     
     Coordinates coord3(12, 6);
     Coordinates coord4(6, 18);
-    unsigned expected_dist_local= 16;
+    unsigned expected_dist_local= 17;
     
     unsigned dist2= resol->getRoadDistance(coord3, coord4);
     // Si on test la distance entre la première et la 2e est égale à celle attendue

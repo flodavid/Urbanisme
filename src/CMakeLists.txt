@@ -5,20 +5,19 @@ find_package(Qt5Widgets)
 find_package(Qt5Core)
 find_package(Qt5Gui)
 
-# Use the compile definitions defined in the Qt 5 Widgets module
-add_definitions(-Wall ${Qt5Widgets_DEFINITIONS})
-
 # Compilers
 #set (CMAKE_C_COMPILER D:/Apps/Qt/Tools/mingw492_32/bin/gcc.exe)
 #set (CMAKE_CXX_COMPILER D:/Apps/Qt/Tools/mingw492_32/bin/g++.exe)
 
 # FILES
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
+include_directories(${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR})
 
 add_subdirectory(Engine) # must set ${Engine_SRCS}
 add_subdirectory(Display) # must set ${Display_SRCS}
 
-add_definitions(-Wall -std=c++11 -pthread -lpthread )
+# Use the compile definitions defined in the Qt 5 Widgets module
+add_definitions(-Wall -std=c++11 -pthread -lpthread ${Qt5Widgets_DEFINITIONS})
 
 set(sim-city_SRCS ${Engine_SRCS} ${Display_SRCS} Resolution.cpp Resolution_others.cpp Sim-City.cpp)
 
@@ -27,10 +26,9 @@ set(HEADERS debug.h)
 #Version normale
 add_executable(sim-city stdafx.cpp ${sim-city_SRCS} ${HEADERS})
 target_link_libraries(sim-city ${Qt5Widgets_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES})
-set_target_properties(sim-city PROPERTIES LINK_FLAGS_DEBUG "-static")
 
 ##Version statique
-#set(mylib ${Qt5Widgets_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES})
+set(mylib ${Qt5Widgets_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES})
 
 
 install(TARGETS sim-city RUNTIME DESTINATION bin)
@@ -38,6 +36,8 @@ install(TARGETS sim-city RUNTIME DESTINATION bin)
 if (UNIX)
     add_subdirectory(Tests)
 endif (UNIX)
+
+
 
 # UNUSED
 

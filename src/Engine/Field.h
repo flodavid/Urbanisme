@@ -107,32 +107,32 @@ public:
      * @param pos Coordonnées de la parcelle
      * @return L'état de la parcelle à la position des coordonnées, un State
      */
-    State operator[](const Coordinates& pos) const { return parcels[pos.row][pos.col]; }
+    inline State operator[](const Coordinates& pos) const { return parcels[pos.row][pos.col]; }
 
     /**
      * @brief begin
      * @return un itérateur constant sur la première parcelle du Field
      * @see
      */
-    std::vector<std::vector<State>>::const_iterator begin() const { return parcels.cbegin(); }
+    inline std::vector<std::vector<State>>::const_iterator begin() const { return parcels.cbegin(); }
     /**
      * @brief end
      * @return un itérateur constant sur la dernière parcelle du Field
      * @see
      */
-    std::vector<std::vector<State>>::const_iterator end() const { return parcels.cend(); }
+    inline std::vector<std::vector<State>>::const_iterator end() const { return parcels.cend(); }
     /**
      * @brief begin
      * @return un itérateur sur la première parcelle du Field
      * @see
      */
-    std::vector<std::vector<State>>::iterator begin() { return parcels.begin(); }
+    inline std::vector<std::vector<State>>::iterator begin() { return parcels.begin(); }
     /**
      * @brief end
      * @return un itérateur sur la dernière parcelle du Field
      * @see
      */
-    std::vector<std::vector<State>>::iterator end() { return parcels.end(); }
+    inline std::vector<std::vector<State>>::iterator end() { return parcels.end(); }
 
     //    friend std::vector<std::vector<State>>::const_iterator begin(const Field& f) { return f.begin(); }
     //    friend std::vector<std::vector<State>>::const_iterator end(const Field& f) { return f.end(); }
@@ -211,7 +211,7 @@ private:
         * @param neighbour Coordonnées de la parcelle
      * @return vrai si la parcelle est une route
      */
-    bool isRoad(const Coordinates& neighbour) const;
+    inline bool isRoad(const Coordinates& neighbour) const;
     /**
      * Vérifie que deux parcelles sont voisines, supposant une distance de voisinage
         * @param neighbour Coordonnées de la parcelle qui peut être voisine de l'autre
