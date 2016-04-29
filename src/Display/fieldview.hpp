@@ -20,7 +20,7 @@
 #include "../Engine/Field.h"
 #include "loadwindow.h"
 
-enum Colors{Black, Gray, Red, White, Green0, Green1};
+enum Colors{Black, Gray, Red, White, LightBlue};
 
 
 /**

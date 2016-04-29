@@ -6,8 +6,8 @@
 class Parameters
 {
 private:
-    unsigned road_width;
     unsigned serve_distance;
+    unsigned road_width;
 
 public:
     /**

@@ -7,6 +7,7 @@
 
 /**
  * @brief The LocalSearch class
+ * TODO ajouter les entrées et sorties
  */
 class LocalSearch
 {
@@ -41,6 +42,23 @@ public:
      */
     LocalSearch(const LocalSearch& other);
 
+    /**
+     * Relie les entrées et sorties entre elles, de manière directe
+     */
+    void initSolution();
+
+private:
+    void vertical_roads(Coordinates& in_out_1, Coordinates& in_out_2);
+    void horizontal_roads(Coordinates& in_out_1, Coordinates& in_out_2);
+
 };
+
+/**
+ * Rapproche la valeur de coordinate1 d'une unité de coordinate2
+ * @param coordinate1
+ * @param coordinate2
+ * @return coordinate1 incrémenté ou décrémenté de 1
+ */
+int oneStep(int coordinate1, int coordinate2);
 
 #endif // LOCALSEARCH_H

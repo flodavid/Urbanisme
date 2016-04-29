@@ -43,7 +43,9 @@ public:
      * @return La hauteur de la surface
      */
     inline unsigned get_height() const	{ return nb_rows; }
-
+    
+    inline std::list<Coordinates> & get_insOuts() { return ins_outs; }
+ 
     /**
      * Donne le nombre de parcelles de la surface
      * @return Le nombre de parcelles, nombre de ligne facteur nombre de colonnes,
@@ -79,7 +81,14 @@ public:
     * @param row Ligne de la route
     */
     void add_road(unsigned col, unsigned row)
-    { parcels[row][col]= is_road; }
+    { parcels[row][col]= is_road; }    /**
+    * Ajoute une route à partir de coordonnées
+    * @param col Colonne de la route
+    * @param row Ligne de la route
+    */
+    void add_road(const Coordinates& coords)
+    { parcels[coords.row][coords.col]= is_road; }
+
     /**
     * Ajoute une entrée/sortie à partir de coordonnées
     * @param coord Coordonnées de l'E/S

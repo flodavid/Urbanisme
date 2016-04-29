@@ -10,10 +10,12 @@
 #include "Engine/Parameters.h"
 #include "Display/fieldview.hpp"
 #include "evaluation.h"
+#include "localsearch.h"
 
 using namespace std;
 
-/*! \mainpage Page principale de la documentation du projet "Urbanisme" 
+/*! \mainpage Page principale de la documentation du projet "Urbanisme"
+ * Github : https://github.com/flodavid/Urbanisme
  * \section intro_sec Introduction 
  * Ce projet à pour but d'optimiser le placement de routes sur une surface, en maximisant les zones exploitables (desservies par une route) et leur accessibilité.
  * On a donc un paramètre de distance de desserte défini au début de l'exécution.
@@ -43,14 +45,32 @@ int main(int argc, char* argv[])
 {
     QScopedPointer<QApplication> app(new QApplication(argc, argv));
 
-    Field myField(5, 5);
+    Field myField(20, 20);
+//    Angle
+//        myField.add_in_out(0,4);
+//        myField.add_in_out(5,19);
+// Mm colonne
+        myField.add_in_out(0,4);
+        myField.add_in_out(0,19);
+//En face
+//        myField.add_in_out(0,4);
+//        myField.add_in_out(19,8);
+
     Parameters myParameters(2, 1);
 
-    Evaluation myEvaluation(myField, myParameters);
-    FieldWidget* myFieldWidget= new FieldWidget(&(myEvaluation.field));
+    LocalSearch myLocalSearch(&myField, &myParameters);
 
 /**		Tests		**/
-    myEvaluation.createExample();
+    Evaluation myEvaluation(myField, myParameters);
+//    myEvaluation.createExample();
+
+    myLocalSearch.initSolution();
+    cout << "Surface avec routes : "<< endl<< myField<< endl;
+
+
+    myField.defineUsables(myParameters.get_serve_distance());
+
+    FieldWidget* myFieldWidget= new FieldWidget(&(myField));
     myFieldWidget->redraw();
     myFieldWidget->show();
 

@@ -47,8 +47,8 @@ LoadWindow* FieldWidget::createProgressWindow() const
 void FieldWidget::setColor(Colors colorIndice)
 {
     switch(colorIndice){
-    case Green0:
-        this->color->setRgb(00,100,00);
+    case LightBlue:
+        this->color->setRgb(150,190,220);
         break;
     case Black:
         this->color->setRgb(00,00,00);
@@ -116,11 +116,16 @@ void FieldWidget::drawField()
 
     Coordinates& coord= Field::first();
     do {
-        // On ne passe pas la hauteur de la grille mais le nombre de colonne*taille de colonne pour
-        // éviter la petite zone en bas de grille
         State state= field->at(coord);
+
+        // Cas d'une parcelle exploitable
         if( state == is_usable){
             setColor(White);
+            drawCell(coord.col, coord.row);
+        }
+        // Cas d'une parcelle non exploitable
+        if( state == is_unusable){
+            setColor(LightBlue);
             drawCell(coord.col, coord.row);
         }
         // Cas d'une route
@@ -128,7 +133,7 @@ void FieldWidget::drawField()
             setColor(Gray);
             drawCell(coord.col, coord.row);
         }
-        // Cas d'une route
+        // Cas d'une entrée/sortie
         else if(state == is_in_out){
             setColor(Red);
             drawCell(coord.col, coord.row);
