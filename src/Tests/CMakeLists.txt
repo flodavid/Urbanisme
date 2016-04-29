@@ -11,7 +11,7 @@ link_directories(/usr/local/lib/)
 #add_definitions(-L/usr/local/lib)
 # add_library( -L/usr/local/lib)
 
-set(OTHERS_SOURCES  ../Engine/coordinates.cpp ../Engine/Field.cpp ../Engine/Parameters.cpp ../Resolution.cpp)
+set(OTHERS_SOURCES  ../Engine/coordinates.cpp ../Engine/Field.cpp ../Engine/Parameters.cpp ../resolution.cpp)
 set(MIN_PATH_SOURCES minpathroadtestfixture.cpp)
 
 # Executable
