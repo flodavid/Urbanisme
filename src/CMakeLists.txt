@@ -5,10 +5,18 @@ if (WIN32)
 cmake_minimum_required(VERSION 2.8.11)
 endif(WIN32)
 
+### Qt ###
+# Find includes in corresponding build directories
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+# Instruct CMake to run moc automatically when needed.
+set(CMAKE_AUTOMOC ON)
 
+# Find the Qt libraries
 find_package(Qt5Widgets)
 find_package(Qt5Core)
 find_package(Qt5Gui)
+
+### Others ###
 
 # Compilers
 #set (CMAKE_C_COMPILER D:/Apps/Qt/Tools/mingw492_32/bin/gcc.exe)
@@ -30,6 +38,9 @@ set(HEADERS debug.h)
 
 #Version normale
 add_executable(sim-city stdafx.cpp ${sim-city_SRCS} ${HEADERS})
+
+# Use the Widgets module from Qt 5.
+target_link_libraries(sim-city Qt5::Widgets)
 
 if (WIN32)
     target_link_libraries(sim-city ${Qt5Widgets_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES})
