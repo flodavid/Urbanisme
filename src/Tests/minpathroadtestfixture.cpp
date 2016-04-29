@@ -115,7 +115,7 @@ void MinPathRoadTestFixture::setUp()
 	example.add_road(19, 17);
     example.add_in_out(9, 19);
     
-    resol= new Resolution(example, Parameters(1, 2));
+    eval= new Evaluation(example, Parameters(1, 2));
     
 /// Initialisation
     // Coordonnées valides
@@ -135,15 +135,15 @@ void MinPathRoadTestFixture::setUp()
     << " and "<< (*coord2) << endl;
     
     // Définition des états des parcelles
-//    resol->field.defineUsables(resol->params.get_serve_distance());
-//    if (!resol->road_distances_are_initiated){
-//        resol->initNeighbourhoodManhattan();
+//    eval->field.defineUsables(eval->params.get_serve_distance());
+//    if (!eval->road_distances_are_initiated){
+//        eval->initNeighbourhoodManhattan();
 //    }
 }
 
 void MinPathRoadTestFixture::tearDown()
 {
-    delete resol;
+    delete eval;
     
     delete coord1;
     delete coord2;
@@ -153,15 +153,15 @@ void MinPathRoadTestFixture::tearDown()
 
 void MinPathRoadTestFixture::test_validsPath()
 {
-    resol->field.defineUsables(resol->params.get_serve_distance());
-    if (!resol->road_distances_are_initiated){
-        resol->initNeighbourhoodManhattan();
+    eval->field.defineUsables(eval->params.get_serve_distance());
+    if (!eval->road_distances_are_initiated){
+        eval->initNeighbourhoodManhattan();
     }
 
-    cout << "Routes desservant "<< (*coord1)<< " : "<< *(resol->field.getServingRoads(*coord1, resol->params.get_serve_distance()));
-    cout << "Routes desservant "<< (*coord2)<< " : "<< *(resol->field.getServingRoads(*coord2, resol->params.get_serve_distance()));
+    cout << "Routes desservant "<< (*coord1)<< " : "<< *(eval->field.getServingRoads(*coord1, eval->params.get_serve_distance()));
+    cout << "Routes desservant "<< (*coord2)<< " : "<< *(eval->field.getServingRoads(*coord2, eval->params.get_serve_distance()));
     
-    unsigned dist= resol->getRoadDistance(*coord1, *coord2);
+    unsigned dist= eval->getRoadDistance(*coord1, *coord2);
     // Si on test la distance entre la première et la 2e est égale à celle attendue
     cout << "Valeur infinity : "<< UNSIGNED_INFINITY <<" OMFG !"<< endl
 	<<endl;
@@ -173,7 +173,7 @@ void MinPathRoadTestFixture::test_validsPath()
     Coordinates coord4(6, 18);
     unsigned expected_dist_local= 17;
     
-    unsigned dist2= resol->getRoadDistance(coord3, coord4);
+    unsigned dist2= eval->getRoadDistance(coord3, coord4);
     // Si on test la distance entre la première et la 2e est égale à celle attendue
     cout << "Valeur infinity : "<< UNSIGNED_INFINITY <<" OMFG !"<< endl
     <<endl;
@@ -183,19 +183,19 @@ void MinPathRoadTestFixture::test_validsPath()
 
 void MinPathRoadTestFixture::test_sameParcel()
 {
-    unsigned dist= resol->getRoadDistance(*coord1, *coord1);
+    unsigned dist= eval->getRoadDistance(*coord1, *coord1);
     // Si on test la distance entre une case et elle-même, on doit obtenir 0
     CPPUNIT_ASSERT_EQUAL(dist, (unsigned)0);
 }
 
 void MinPathRoadTestFixture::test_invalidsPath()
 {
-    unsigned dist_out= resol->getRoadDistance(*coord1, *coord_out);
+    unsigned dist_out= eval->getRoadDistance(*coord1, *coord_out);
     // Si une des deux cases est en dehors, on doit obtenir l'infini
     CPPUNIT_ASSERT_EQUAL(UNSIGNED_INFINITY, dist_out);
    
     // TODO initialiser la coordonnée de parcelle non exploitable pour effectuer le test
-//     unsigned dist_out= resol->calcRoadDistance(*coord1, *coord_unusable);
+//     unsigned dist_out= eval->calcRoadDistance(*coord1, *coord_unusable);
 //     // Si une des deux cases est en dehors, on doit obtenir l'infini
 //     CPPUNIT_ASSERT(dist_unusable == UNSIGNED_INFINITY);
 }

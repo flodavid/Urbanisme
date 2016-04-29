@@ -11,17 +11,17 @@
 #include "cppunit/XmlOutputter.h"
 #include "cppunit/ui/text/TestRunner.h"
 
-#include "../Resolution.h"
+#include "../evaluation.h"
 #include "../Engine/coordinates.h"
 
 /**
- * Tests sur la méthode calcRoadDistance() de la classe Resolution
+ * Tests sur la méthode calcRoadDistance() de la classe Evaluation
  * @test
  */
 class MinPathRoadTestFixture : public CppUnit::TestFixture
 {
 private:
-    Resolution* resol;
+    Evaluation* eval;
     
     Coordinates* coord1;
     Coordinates* coord2;
