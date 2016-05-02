@@ -233,18 +233,24 @@ private:
 
 public:
     /**
+     * Recherche des parcelles qui sont concomitantes à la route @see forcément une route ?
+        * @param coord Coordonnées de la parcelle
+     * @return une liste de routes adjacentes à la parcelle
+     */
+    std::list<Coordinates> *getNeighbourParcels( const Coordinates& coord ) const;
+    /**
      * Recherche des portions de routes qui sont concomitantes à la parcelle courante
         * @param coord Coordonnées de la parcelle
      * @return une liste de routes adjacentes à la parcelle
      */
-    std::list<Coordinates> *getNeighbourRoads ( const Coordinates& coord ) const;
+    std::list<Coordinates> *getNeighbourRoads( const Coordinates& coord ) const;
     /**
      * Recherche des portions de routes qui peuvent désservir la parcelle
          * @param coord Coordonnées de la parcelle à desservir
          * @param servingDistance Distance maximale à laquelle un route peut desservir une parcelle
      * @return une liste de routes distance inférieure ou égale à la distance de desserte
      */
-    std::list<Coordinates> *getServingRoads ( const Coordinates& coord, unsigned servingDistance ) const;
+    std::list<Coordinates> *getServingRoads( const Coordinates& coord, unsigned servingDistance ) const;
 
 private:
     /**

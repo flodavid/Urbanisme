@@ -42,6 +42,7 @@ public:
      */
     LocalSearch(const LocalSearch& other);
 
+    /*  Recherche locale */
     /**
      * Relie les entrées et sorties entre elles, de manière directe
      */
@@ -50,6 +51,9 @@ public:
 private:
     void vertical_roads(Coordinates& in_out_1, Coordinates& in_out_2);
     void horizontal_roads(Coordinates& in_out_1, Coordinates& in_out_2);
+
+public:
+    void addRoad();
 
 };
 

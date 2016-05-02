@@ -46,3 +46,10 @@ float Coordinates::euclideanDistance(const Coordinates& other) const
     return sqrt( pow((col - other.col), 2)  + pow((row - other.row), 2));
 }
 
+bool Coordinates::operator <(const Coordinates& other) const
+{
+    if (row < other.row) return true;
+    else if (other.row == row) return col < other.col;
+    else return false;
+}
+

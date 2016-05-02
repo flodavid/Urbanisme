@@ -125,10 +125,6 @@ void Evaluation::createExample()
 
     evaluateTotalUsable();
 
-    // Paramètres
-    params.set_road_width(1);
-    params.set_serve_distance(2);
-
     // Définition des états des parcelles
     field.defineUsables(params.get_serve_distance());
 }
@@ -179,10 +175,6 @@ void Resolution::createExample()
 
     evaluateTotalUsable();
 
-    // Paramètres
-    params.set_road_width(1);
-    params.set_serve_distance(2);
-
     // Définition des états des parcelles
     field.defineUsables(params.get_serve_distance());
 }
@@ -204,10 +196,6 @@ void Resolution::createExample()
     example.add_road(2, 2);
 
     evaluateTotalUsable();
-
-    // Paramètres
-    params.set_road_width(1);
-    params.set_serve_distance(2);
 
     // Définition des états des parcelles
     field.defineUsables(params.get_serve_distance());

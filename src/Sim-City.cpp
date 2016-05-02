@@ -47,11 +47,11 @@ int main(int argc, char* argv[])
 
     Field myField(20, 20);
 //    Angle
-//        myField.add_in_out(0,4);
-//        myField.add_in_out(5,19);
-// Mm colonne
         myField.add_in_out(0,4);
-        myField.add_in_out(0,19);
+        myField.add_in_out(11,19);
+// Mm colonne
+//        myField.add_in_out(0,4);
+//        myField.add_in_out(0,19);
 //En face
 //        myField.add_in_out(0,4);
 //        myField.add_in_out(19,8);
@@ -71,6 +71,7 @@ int main(int argc, char* argv[])
     myField.defineUsables(myParameters.get_serve_distance());
 
     FieldWidget* myFieldWidget= new FieldWidget(&(myField));
+//    FieldWidget* myFieldWidget= new FieldWidget(&(myEvaluation.field));
     myFieldWidget->redraw();
     myFieldWidget->show();
 

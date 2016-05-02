@@ -159,6 +159,52 @@ bool Field::isRoadAndNeighbourOf(const Coordinates &neighbour, const Coordinates
     // TODO changer, ne pas utiliser manhattanDistance,  peu performant ?
 }
 
+
+std::list<Coordinates> *Field::getNeighbourParcels(const Coordinates &coord) const
+{
+#if DEBUG_ROADS_DIST
+    cout << "Recherche des voisins de la parcelle en " << coord.col << " ; " << coord.row << endl;
+#endif
+    list<Coordinates> *neighbour_parcels = new list<Coordinates>;
+
+    Coordinates west(coord.col - 1, coord.row);
+    Coordinates east(coord.col + 1, coord.row);
+    Coordinates north(coord.col, coord.row - 1);
+    Coordinates south(coord.col, coord.row + 1);
+    // On vérifie que chaque voisin n'est pas en dehors de la matrice
+
+    if (contains(west) && at(west) >= is_unusable) {
+        // Ajout dans les routes voisines de la parcelle
+        neighbour_parcels->push_back(west);
+#if DEBUG_ROADS_DIST
+        cout << "\tparcelle " << west << endl;
+#endif
+    }
+    if (contains(east) && at(east) >= is_unusable) {
+        // Ajout dans les routes voisines de la parcelle
+        neighbour_parcels->push_back(east);
+#if DEBUG_ROADS_DIST
+        cout << "\tparcelle " << east << endl;
+#endif
+    }
+    if (contains(north) && at(north) >= is_unusable) {
+        // Ajout dans les routes voisines de la parcelle
+        neighbour_parcels->push_back(north);
+#if DEBUG_ROADS_DIST
+        cout << "\tparcelle " << north << endl;
+#endif
+    }
+    if (contains(south) && at(south) >= is_unusable) {
+        // Ajout dans les routes voisines de la parcelle
+        neighbour_parcels->push_back(south);
+#if DEBUG_ROADS_DIST
+        cout << "\tparcelle " << south << endl;
+#endif
+    }
+
+    return neighbour_parcels;
+}
+
 std::list<Coordinates> *Field::getNeighbourRoads(const Coordinates &coord) const
 {
 #if DEBUG_ROADS_DIST
@@ -166,10 +212,10 @@ std::list<Coordinates> *Field::getNeighbourRoads(const Coordinates &coord) const
 #endif
     list<Coordinates> *neighbour_roads = new list<Coordinates>;
 
-    Coordinates &west = * (new Coordinates(coord.col - 1, coord.row));
-    Coordinates &east = * (new Coordinates(coord.col + 1, coord.row));
-    Coordinates &north = * (new Coordinates(coord.col, coord.row - 1));
-    Coordinates &south = * (new Coordinates(coord.col, coord.row + 1));
+    Coordinates west(coord.col - 1, coord.row);
+    Coordinates east(coord.col + 1, coord.row);
+    Coordinates north(coord.col, coord.row - 1);
+    Coordinates south(coord.col, coord.row + 1);
     // On vérifie que chaque voisin n'est pas en dehors de la matrice
 
     if (contains(west) && at(west) >= is_road) {
@@ -200,12 +246,6 @@ std::list<Coordinates> *Field::getNeighbourRoads(const Coordinates &coord) const
         cout << "\tparcelle " << south << endl;
 #endif
     }
-
-    /// @see améliorer les listes, utiliser pointeurs ou non ?
-    delete &north;
-    delete &south;
-    delete &west;
-    delete &east;
 
     return neighbour_roads;
 }

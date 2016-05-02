@@ -92,11 +92,19 @@ public:
 	*/
     friend std::ostream& operator<<( std::ostream &out, const std::list< Coordinates > &coords )
     {
-	for (const Coordinates& coord : coords) {
-	    out << coord<< "; ";
-	}
-	return out;
+        for (const Coordinates& coord : coords) {
+            out << coord<< "; ";
+        }
+        return out;
     }
+
+    /**
+     * Méthode utile seulement pour placer les vecteur dans un conteneur map
+     * @param other Autres coordonnées
+     * @return vrai si la ligne de la seconde coordonnée est supérieur à la ligne de l'instance,
+     * ou la colonne les coordonnées sont sur la "même ligne". Faux sinon
+     */
+    virtual bool operator<(const Coordinates& other) const;
 };
 
 #endif // COORDINATES_H
