@@ -1,0 +1,79 @@
+.TH "LoadWindow" 3 "Mon May 2 2016" "Urbanisme" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LoadWindow \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <loadwindow\&.h>\fP
+.PP
+Inherits \fBLoadProgress\fP, and QWidget\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBLoadWindow\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBsetProgress\fP (int pourcentage)"
+.br
+.ti -1c
+.RI "virtual void \fBcloseProgress\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Permet d'afficher une fenêtre avec une barre de progression pour les chargements Utilise la classe abstraite \fBLoadProgress\fP 
+.PP
+\fBAuthor:\fP
+.RS 4
+Florian 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "LoadWindow::LoadWindow ()"
+Crée une fenêtre contenant un titre et une barre de progression, puis la montre 
+.PP
+\fBAuthor:\fP
+.RS 4
+Florian 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void LoadWindow::closeProgress ()\fC [virtual]\fP"
+Ferme la fenetre de progression 
+.PP
+\fBAuthor:\fP
+.RS 4
+Florian 
+.RE
+.PP
+
+.PP
+Implements \fBLoadProgress\fP\&.
+.SS "void LoadWindow::setProgress (int pourcentage)\fC [virtual]\fP"
+Met à jour la valeur de progression 
+.PP
+\fBAuthor:\fP
+.RS 4
+Florian 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpourcentage\fP nouveau pourcentage de progression, 
+.RE
+.PP
+
+.PP
+Implements \fBLoadProgress\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Urbanisme from the source code\&.

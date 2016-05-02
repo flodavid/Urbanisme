@@ -2,6 +2,10 @@
 #include "Field.h"
 
 using namespace std;
+///################################
+/// Constructeurs et destructeurs
+///################################
+//@{
 
 Field::Field(unsigned width, unsigned height/*, std::list<Coordinates>& inputs_and_ouputs*/) :
     nb_cols(width), nb_rows(height)       /*, ins_outs(inputs_and_ouputs)*/
@@ -18,6 +22,7 @@ Field::~Field()
 {
 }
 
+//@}
 ///#######################
 ///      Setters
 ///#######################
@@ -33,11 +38,10 @@ void Field::resizeWithDimensions()
 }
 
 //@}
-///###################
+///#####################
 ///      Affichage
-///###################
+///#####################
 //@{
-
 
 void Field::show_ins_and_outs() const
 {
@@ -74,11 +78,11 @@ bool Field::contains(int x, int y) const
            && (y >= 0  && ((unsigned) y) < nb_rows);       // ordonnée correcte
 }
 
-
 bool Field::contains(const Coordinates &coord) const
 {
     return contains(coord.col, coord.row);
 }
+
 
 bool Field::nextCoordinates(Coordinates *coord) const
 {
@@ -123,6 +127,7 @@ bool Field::nextCoordinates(Coordinates *coord) const
 ///#############################
 ///===  Méthodes générales	===/
 ///#############################
+//@{
 
 void Field::generateInsAndOuts(unsigned nb)
 {
@@ -316,11 +321,9 @@ bool Field::hasServingRoad(const Coordinates &coord , unsigned servingDistance) 
     return false;
 }
 
+
 void Field::defineUsables(unsigned int servingDistance)
 {
-    /// @see je vérifie que chaque route a un voisin (en cherchant tous ses voisins,
-    //  alors qu'on pourrait s'arrêter au premier), l'inverse est possible :
-    //  définir toutes les voisins de chaque route comme étant exploitable
     Coordinates &coord = first();
     do {
 #if DEBUG

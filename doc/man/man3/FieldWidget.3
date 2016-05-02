@@ -1,0 +1,125 @@
+.TH "FieldWidget" 3 "Mon May 2 2016" "Urbanisme" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+FieldWidget \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <fieldview\&.hpp>\fP
+.PP
+Inherits QWidget\&.
+.SS "Public Slots"
+
+.in +1c
+.ti -1c
+.RI "void \fBrazRubber\fP ()"
+.br
+.ti -1c
+.RI "void \fBactionReceived\fP (int x)"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.PP
+.RI "\fB\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "\fBFieldWidget\fP (const \fBField\fP *_field)"
+.br
+.in -1c
+.in -1c
+.in +1c
+.ti -1c
+.RI "void \fBdrawField\fP ()"
+.br
+.ti -1c
+.RI "void \fBdrawChanged\fP ()"
+.br
+.ti -1c
+.RI "void \fBredraw\fP ()"
+.br
+.in -1c
+.in +1c
+.ti -1c
+.RI "void \fBmousePressEvent\fP (QMouseEvent *event)"
+.br
+.ti -1c
+.RI "void \fBmouseMoveEvent\fP (QMouseEvent *event)"
+.br
+.ti -1c
+.RI "void \fBmouseReleaseEvent\fP (QMouseEvent *event)"
+.br
+.ti -1c
+.RI "void \fBresizeEvent\fP (QResizeEvent *event)"
+.br
+.ti -1c
+.RI "void \fBpaintEvent\fP (QPaintEvent *event)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Widget d'affichage de l'automate cellulaire\&. Ce composant permet de suivre graphiquement l'évolution de l'automate\&. Il utilise un système de buffering et s'appuie sur la classe Foret du moteur\&. 
+.PP
+\fBAuthor:\fP
+.RS 4
+Ugo et Florian 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "FieldWidget::FieldWidget (const \fBField\fP * _field)"
+Constructeur à partir d'une surface déjà crée\&. Initialise les différents pointeurs et fixe la taille minimale du widget 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_field\fP Surface associée au widget, c'est elle qui est affichée
+.RE
+.PP
+.SS ""
+.PP
+Constructeurs et destructeurs 
+.SS ""
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void FieldWidget::actionReceived (int x)\fC [slot]\fP"
+Execute l'action choisie sur une zone, suite à releaseMouseEvent\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP Identifiant de l'action reçue 
+.RE
+.PP
+
+.SS "void FieldWidget::drawChanged ()"
+Redessine les cellules qui ont changés d'état seulement 
+.SS "void FieldWidget::drawField ()"
+Dessine toutes les cellules dans le buffer 
+.SS "void FieldWidget::paintEvent (QPaintEvent * event)\fC [protected]\fP"
+
+.SS ""
+.PP
+Events 
+.SS ""
+
+.SS "void FieldWidget::razRubber ()\fC [inline]\fP, \fC [slot]\fP"
+Réinitialise le rubber 
+.SS "void FieldWidget::redraw ()"
+Vide le buffer et rafraichit l'affichage 
+.PP
+\fBAuthor:\fP
+.RS 4
+Florian et Ugo 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Urbanisme from the source code\&.

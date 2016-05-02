@@ -7,6 +7,11 @@
 #include "Engine/Parameters.h"
 #include "evaluation.h"
 
+/**
+ * @brief The Resolution class
+ * Elle contient l'intégralité des données du problème et est chargée de lancer les algos,
+ * de stocker les solutions et de construire le front pareto résultant.
+ */
 class Resolution
 {
 private:
@@ -18,18 +23,19 @@ private:
 public:
     /**
      * Constructeur d'une résolution à partir de tous les paramètres du problème
-     * @param nbCols
-     * @param nbRows
-     * @param serveDistance
-     * @param roadsWidth
+     * @param nbCols Largeur de la surface
+     * @param nbRows Hauteur de la surface
+     * @param serveDistance Distance de desserte des parcelles par les routes
+     * @param roadsWidth Largeur des routes
      */
     Resolution(unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth);
     /**
      * Constructeur d'une résolution à partir de tous les paramètres du problème, avec une liste d'entrées et sorties
-     * @param nbCols
-     * @param nbRows
-     * @param serveDistance
-     * @param roadsWidth
+     * @param nbCols Largeur de la surface
+     * @param nbRows Hauteur de la surface
+     * @param serveDistance Distance de desserte des parcelles par les routes
+     * @param roadsWidth Largeur des routes
+     * @param ins_outs Liste d'entrées/sorties de la surface
      */
     Resolution(unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth, std::list<Coordinates>& ins_outs);
 };

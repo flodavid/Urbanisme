@@ -329,64 +329,65 @@ float Evaluation::evaluateRatio(unsigned nbUsables)
     return average;
 }
 
-float Evaluation::threadsEvaluateRatio() const
-{
-    // Initialisation des threads
-    vector<pair<thread *, float *>> threads;
-
-    // Calculs des distances
-    Coordinates coord1 = Field::first();
-    do {
-        if (field[coord1] == is_usable) {
-            // On calcule et additionne le ratio pour aller vers chacun des successeurs
-            float *ratio = new float;
-            thread *my_thread = new thread(TParcelRatios, coord1, ratio, this);
-            threads.push_back(make_pair(my_thread, ratio));
-        }
-    } while (field.nextCoordinates(&coord1));
-
-    float total_ratio = 0.0;
-    for (pair<thread *, float *> thread_result : threads) {
-        thread_result.first->join();
-        total_ratio += (*thread_result.second);
-#if DEBUG_EVALUATION
-        cout << "On ajoute " << (*thread_result.second) << ", le ratio total est " << total_ratio << endl;
-#endif
-        delete thread_result.second;
-    }
-
-    //    for(vector<pair<thread*, float*>>::iterator it(threads.end()); it != threads.begin(); --it ){
-    //        pair<thread*, float*>  thread_result;
-    //        thread_result.first->join();
-    //        total_ratio += (*thread_result.second);
-    //#if DEBUG_EVALUATION
-    //        cout << "On ajoute "<< (*thread_result.second)<< ", le ratio total est "<< total_ratio<< endl;
-    //#endif
-    //        delete thread_result.second;
-    //    }
-
-    return total_ratio;
-}
-
 //@}
 /// #########################
 /// 	Threads
 /// #########################
 //@{
 
-void TParcelRatios(Coordinates coord, float *ratio, const Evaluation *res)
-{
-    (*ratio) = 0.0;
-    cout << "Le ratio de " << coord << " au début est " << (*ratio) << endl;
-    Coordinates coord2(coord);
-    // On commence à la coordonnée suivante de celle courante
-    while (res->field.nextCoordinates(&coord2)) {
-        if (res->field[coord2] == is_usable) {
-            float ratio_c1_goto_c2 = res->manhattanRatioBetween2Parcels(coord, coord2);
-            (*ratio) += 2.0 * ratio_c1_goto_c2; // @see on pourrait faire un décalage de bit
-        }
-    }
-    cout << "Le ratio de " << coord << " à la fin est " << (*ratio) << endl;
-}
+//float Evaluation::threadsEvaluateRatio() const
+//{
+//    // Initialisation des threads
+//    vector<pair<thread *, float *>> threads;
+
+//    // Calculs des distances
+//    Coordinates coord1 = Field::first();
+//    do {
+//        if (field[coord1] == is_usable) {
+//            // On calcule et additionne le ratio pour aller vers chacun des successeurs
+//            float *ratio = new float;
+//            thread *my_thread = new thread(TParcelRatios, coord1, ratio, this);
+//            threads.push_back(make_pair(my_thread, ratio));
+//        }
+//    } while (field.nextCoordinates(&coord1));
+
+//    float total_ratio = 0.0;
+//    for (pair<thread *, float *> thread_result : threads) {
+//        thread_result.first->join();
+//        total_ratio += (*thread_result.second);
+//#if DEBUG_EVALUATION
+//        cout << "On ajoute " << (*thread_result.second) << ", le ratio total est " << total_ratio << endl;
+//#endif
+//        delete thread_result.second;
+//    }
+
+//    //    for(vector<pair<thread*, float*>>::iterator it(threads.end()); it != threads.begin(); --it ){
+//    //        pair<thread*, float*>  thread_result;
+//    //        thread_result.first->join();
+//    //        total_ratio += (*thread_result.second);
+//    //#if DEBUG_EVALUATION
+//    //        cout << "On ajoute "<< (*thread_result.second)<< ", le ratio total est "<< total_ratio<< endl;
+//    //#endif
+//    //        delete thread_result.second;
+//    //    }
+
+//    return total_ratio;
+//}
+
+// TODO A voir le multi-threading
+//void TParcelRatios(Coordinates coord, float *ratio, const Evaluation *res)
+//{
+//    (*ratio) = 0.0;
+//    cout << "Le ratio de " << coord << " au début est " << (*ratio) << endl;
+//    Coordinates coord2(coord);
+//    // On commence à la coordonnée suivante de celle courante
+//    while (res->field.nextCoordinates(&coord2)) {
+//        if (res->field[coord2] == is_usable) {
+//            float ratio_c1_goto_c2 = res->manhattanRatioBetween2Parcels(coord, coord2);
+//            (*ratio) += 2.0 * ratio_c1_goto_c2; // @see on pourrait faire un décalage de bit
+//        }
+//    }
+//    cout << "Le ratio de " << coord << " à la fin est " << (*ratio) << endl;
+//}
 
 //@}

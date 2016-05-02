@@ -1,0 +1,94 @@
+.TH "LocalSearch" 3 "Mon May 2 2016" "Urbanisme" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LocalSearch \- The \fBLocalSearch\fP class TODO ajouter les entrées et sorties\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <localsearch\&.h>\fP
+.SS "Public Member Functions"
+
+.PP
+.RI "\fB\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "\fBLocalSearch\fP (\fBField\fP *_field, const \fBParameters\fP *_params)"
+.br
+.ti -1c
+.RI "\fBLocalSearch\fP (unsigned int nbCols, unsigned int nbRows, const \fBParameters\fP *_params)"
+.br
+.ti -1c
+.RI "\fBLocalSearch\fP (const \fBLocalSearch\fP &other)"
+.br
+.in -1c
+.in -1c
+.in +1c
+.ti -1c
+.RI "void \fBinitSolution\fP ()"
+.br
+.ti -1c
+.RI "void \fBaddRoad\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The \fBLocalSearch\fP class TODO ajouter les entrées et sorties\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "LocalSearch::LocalSearch (\fBField\fP * _field, const \fBParameters\fP * _params)"
+Constructeur d'une recherche locale à partir d'une surface existante et des paramètres des routes\&. La surface sera modifiée 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_field\fP Surface déjà instanciée 
+.br
+\fI_params\fP Paramètres des routes
+.RE
+.PP
+.SS ""
+.PP
+Constructeurs 
+.SS ""
+
+.SS "LocalSearch::LocalSearch (unsigned int nbCols, unsigned int nbRows, const \fBParameters\fP * _params)"
+Constructeur d'une recherche locale à partir de la taille de la surface et des paramètres des routes Une surface est crée 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInbCols\fP Largeur de la surface 
+.br
+\fInbRows\fP Hauteur de la surface 
+.br
+\fI_params\fP Paramètres des routes 
+.RE
+.PP
+
+.SS "LocalSearch::LocalSearch (const \fBLocalSearch\fP & other)"
+Constructeur d'une recherche locale par recopie La surface de l'autre instance est recopiée 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIother\fP Instance à recopier 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void LocalSearch::initSolution ()"
+Relie les entrées et sorties entre elles, de manière directe
+.PP
+.SS ""
+.PP
+Recherche locale 
+.SS ""
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Urbanisme from the source code\&.

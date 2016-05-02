@@ -1,0 +1,216 @@
+.TH "Evaluation" 3 "Mon May 2 2016" "Urbanisme" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Evaluation \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <evaluation\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBEvaluation\fP (const \fBField\fP &_field, const \fBParameters\fP &_params)"
+.br
+.ti -1c
+.RI "float \fBget_nbUsables\fP () const "
+.br
+.ti -1c
+.RI "float \fBget_avgAccess\fP () const "
+.br
+.ti -1c
+.RI "unsigned \fBgetRoadDistance\fP (const \fBCoordinates\fP &coord1, const \fBCoordinates\fP &coord2) const "
+.br
+.ti -1c
+.RI "float \fBthreadsEvaluateRatio\fP () const "
+.br
+.in -1c
+.PP
+.RI "\fB\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "void \fBset_params\fP (const \fBParameters\fP &_params)"
+.br
+.in -1c
+.in -1c
+.PP
+.RI "\fB\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "unsigned \fBevaluateTotalUsable\fP ()"
+.br
+.ti -1c
+.RI "float \fBmanhattanRatioBetween2Parcels\fP (const \fBCoordinates\fP &p1, const \fBCoordinates\fP &p2) const "
+.br
+.ti -1c
+.RI "float \fBevaluateRatio\fP (unsigned nbUsables)"
+.br
+.in -1c
+.in -1c
+.in +1c
+.ti -1c
+.RI "void \fBinitSizeNeighbourhood\fP ()"
+.br
+.ti -1c
+.RI "void \fBinitCoordNeighbourhoodManhattan\fP (const \fBCoordinates\fP &coord)"
+.br
+.ti -1c
+.RI "void \fBinitNeighbourhoodManhattan\fP ()"
+.br
+.ti -1c
+.RI "unsigned \fBparcelsRoadDistance\fP (const \fBCoordinates\fP &coord1, const \fBCoordinates\fP &coord2)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Classe chargée de travailler sur les données en entrée du problème pour trouver des solution réalisables, opitmisant les objectifs suivants :
+.IP "1." 4
+Maximimiser les nombres de parcelles exploitables
+.IP "2." 4
+Minimiser la moyenne, la plus grande ou la somme des ratios entre distance des cellules par les routes et distance directe (distance Manhattan ou Euclidienne)
+.PP
+.PP
+On pourra éventuellement avoir plusieurs instances de \fBField\fP dans une \fBResolution\fP\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Evaluation::Evaluation (const \fBField\fP & _field, const \fBParameters\fP & _params)"
+Constructeur de la casse résolution 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI_field\fP Surface sur laquelle on travaille 
+.br
+\fI_params\fP Paramètres du problème 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "float Evaluation::evaluateRatio (unsigned nbUsables)"
+Evalue le ratio de toutes les solutions 
+.PP
+\fBReturns:\fP
+.RS 4
+la moyenne des ratios 
+.RE
+.PP
+
+.SS "unsigned int Evaluation::evaluateTotalUsable ()"
+Compte le nombre total de parcelles exploitables sur la surface 
+.PP
+\fBReturns:\fP
+.RS 4
+nombre de parcelles exploitables
+.RE
+.PP
+.SS ""
+.PP
+Evaluations 
+.SS ""
+
+.SS "float Evaluation::get_avgAccess () const\fC [inline]\fP"
+Accesseur sur l'attribut de moyenne de ratio, entre la distance directe et la distance par les routes 
+.PP
+\fBReturns:\fP
+.RS 4
+avgAccess, un flotant 
+.RE
+.PP
+
+.SS "float Evaluation::get_nbUsables () const\fC [inline]\fP"
+Accesseur sur l'attribut de nombre de parcelle exploitables 
+.PP
+\fBReturns:\fP
+.RS 4
+nbUsables, un entier non signé 
+.RE
+.PP
+
+.SS "unsigned Evaluation::getRoadDistance (const \fBCoordinates\fP & coord1, const \fBCoordinates\fP & coord2) const\fC [inline]\fP"
+Donne la distance par les routes stockée 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcoord1\fP Première coordonnée 
+.br
+\fIcoord2\fP Seconde coordonnée 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+La distance par le route, un entier non signé 
+.RE
+.PP
+
+.SS "void Evaluation::initCoordNeighbourhoodManhattan (const \fBCoordinates\fP & coord)"
+Définit la matrice de voisinage avec les routes avec la distance Manhattan 
+.SS "void Evaluation::initNeighbourhoodManhattan ()"
+Définit la matrice de voisinage avec les routes avec la distance Manhattan 
+.SS "void Evaluation::initSizeNeighbourhood ()"
+Initialise la matrice de voisinage selon la taille de la surface 
+.SS "float Evaluation::manhattanRatioBetween2Parcels (const \fBCoordinates\fP & p1, const \fBCoordinates\fP & p2) const"
+Calcule le ratio entre distance par la route et distance Manhattan entre deux positions 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp1\fP premières coordonnées 
+.br
+\fIp2\fP secondes coordonnées 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+le ratio, sous forme de flottant 
+.RE
+.PP
+
+.SS "unsigned Evaluation::parcelsRoadDistance (const \fBCoordinates\fP & coord1, const \fBCoordinates\fP & coord2)"
+Calcule la distance par les routes entre deux cellules quelconques, en testant toutes les routs qui desservent la cellue et en respectant les paramètres 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcoord1\fP Coordonnée 'de départ' 
+.br
+\fIcoord2\fP Coordonnée 'd'arrivée' 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+la valeur, entier non signé, de distance la plus courte, entre les deux coordonnées, en passant par les routes 
+.RE
+.PP
+
+.SS "void Evaluation::set_params (const \fBParameters\fP & _params)"
+Mutateur sur les paramètres du problème
+.PP
+.SS ""
+.PP
+Getters 
+.SS ""
+.PP
+.SS ""
+.PP
+Setters 
+.SS ""
+
+.SS "float Evaluation::threadsEvaluateRatio () const"
+Evalue le ratio de toutes les solutions avec des threads 
+.PP
+\fBReturns:\fP
+.RS 4
+l'évaluation en flottant 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Urbanisme from the source code\&.

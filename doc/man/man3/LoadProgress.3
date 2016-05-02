@@ -1,0 +1,46 @@
+.TH "LoadProgress" 3 "Mon May 2 2016" "Urbanisme" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LoadProgress \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <loadprogress\&.h>\fP
+.PP
+Inherited by \fBLoadWindow\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBsetProgress\fP (int pourcentage)=0"
+.br
+.ti -1c
+.RI "virtual void \fBcloseProgress\fP ()=0"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Classe abstraite, pour suivre l'évolution des chargements (en %) 
+.PP
+\fBAuthor:\fP
+.RS 4
+Florian 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual void LoadProgress::closeProgress ()\fC [pure virtual]\fP"
+Doit fermer ou terminer la progression 
+.PP
+Implemented in \fBLoadWindow\fP\&.
+.SS "virtual void LoadProgress::setProgress (int pourcentage)\fC [pure virtual]\fP"
+Doit mettre à jour de la valeur de la progression 
+.PP
+Implemented in \fBLoadWindow\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Urbanisme from the source code\&.

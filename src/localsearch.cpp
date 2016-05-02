@@ -16,7 +16,7 @@ LocalSearch::LocalSearch(Field* _field, const Parameters* _params):
 
 }
 
-LocalSearch::LocalSearch(unsigned nbCols, unsigned nbRows, const Parameters* _params):
+LocalSearch::LocalSearch(unsigned int nbCols, unsigned int nbRows, const Parameters* _params):
     params(*_params)
 {
     field= new Field(nbCols, nbRows);
@@ -25,7 +25,6 @@ LocalSearch::LocalSearch(unsigned nbCols, unsigned nbRows, const Parameters* _pa
 LocalSearch::LocalSearch(const LocalSearch& other):
     field(other.field), params(other.params ), eval(other.eval) // TODO Attention, il n'y a pas de constructeur par recopie de eval
 {
-//     field= &eval->field;// TODO voir si on fait comme ça
 }
 
 //@}

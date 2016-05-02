@@ -1,4 +1,4 @@
-.TH "Coordinates" 3 "Wed Apr 27 2016" "Urbanisme" \" -*- nroff -*-
+.TH "Coordinates" 3 "Mon May 2 2016" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -31,6 +31,9 @@ Coordinates \-
 .br
 .ti -1c
 .RI "float \fBeuclideanDistance\fP (const \fBCoordinates\fP &other) const "
+.br
+.ti -1c
+.RI "virtual bool \fBoperator<\fP (const \fBCoordinates\fP &other) const "
 .br
 .in -1c
 .SS "Public Attributes"
@@ -102,6 +105,20 @@ Calcul de la distance Manhattan entre deux points
 \fBReturns:\fP
 .RS 4
 distance manhattan : entier non signé 
+.RE
+.PP
+
+.SS "bool Coordinates::operator< (const \fBCoordinates\fP & other) const\fC [virtual]\fP"
+Méthode utile seulement pour placer les vecteur dans un conteneur map 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIother\fP Autres coordonnées 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+vrai si la ligne de la seconde coordonnée est supérieur à la ligne de l'instance, ou la colonne les coordonnées sont sur la 'même ligne'\&. Faux sinon 
 .RE
 .PP
 

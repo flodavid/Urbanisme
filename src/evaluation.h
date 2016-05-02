@@ -20,7 +20,7 @@ class Evaluation
 {
 private:
     // Données sur lesquelles on travaille
-public: // TODO temporaire pour tests, TODELETE
+//public: // TODO temporaire pour tests, TODELETE
     const Field& field;
     Parameters params;
 

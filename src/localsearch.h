@@ -23,7 +23,7 @@ public:
      * des paramètres des routes.
      * La surface sera modifiée
      * @param _field Surface déjà instanciée
-     * @param params Paramètres des routes
+     * @param _params Paramètres des routes
      */
     LocalSearch( Field* _field, const Parameters* _params );
     /**
@@ -32,9 +32,9 @@ public:
      * Une surface est crée
      * @param nbCols Largeur de la surface
      * @param nbRows Hauteur de la surface
-     * @param params Paramètres des routes
+     * @param _params Paramètres des routes
      */
-    LocalSearch ( unsigned int nbCols, unsigned int nbRows, const Parameters* _params );
+    LocalSearch( unsigned int nbCols, unsigned int nbRows, const Parameters* _params );
     /**
      * Constructeur d'une recherche locale par recopie
      * La surface de l'autre instance est recopiée

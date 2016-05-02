@@ -1,49 +1,38 @@
 #include "fieldview.hpp"
-#include <QtWidgets/QVBoxLayout> // fenetre chargement
 
 using namespace std;
 
-// ##################################
-/*** Constructeur et destructeur ***/
-// #################################
-FieldWidget::FieldWidget(const Field* _field): QWidget()
+/// ####################################
+///     Constructeurs et destructeurs
+/// ####################################
+//@{
+
+FieldWidget::FieldWidget(const Field* _field):
+    QWidget(), field(_field)
 {	
 	buffer = new QImage;
 	color = new QColor(Qt::white);
 	bufferPainter= new QPainter;
-	
-	rubber = NULL;
-    field = _field;
+    rubber = NULL;
 
     setMinimumSize(field->get_width(), field->get_height());
 }
 
 FieldWidget::~FieldWidget()
 {
-    delete(field);
-	delete(buffer);
-	delete(color);
-    delete(bufferPainter);
+    delete field;
+    delete buffer;
+    delete color;
+    delete bufferPainter;
 	
 	delete rubber;
 }
 
-// ########################
-/*** 	Initialisations 	***/
-// ########################
+//@}
+///###################
+///		Setters
+///###################
 
-LoadWindow* FieldWidget::createProgressWindow() const
-{
-    LoadWindow* progressWindow= new LoadWindow();
-	return progressWindow;
-}
-
-
-//######################
-/*** 		Setters 		***/
-//######################
-
-// TODO setColor : sauvegarder l'indice précédent pour éviter de redéfinir la mm couleur ?
 void FieldWidget::setColor(Colors colorIndice)
 {
     switch(colorIndice){
@@ -53,40 +42,23 @@ void FieldWidget::setColor(Colors colorIndice)
     case Black:
         this->color->setRgb(00,00,00);
         break;
-	case Gray:
+    case Gray:
         this->color->setRgb(65,65,65);
-	    break;
-	case Red:
-	    this->color->setRgb(255,0,0);
+        break;
+    case Red:
+        this->color->setRgb(255,0,0);
         break;
     case White :
-	default :
-	    this->color->setRgb(255, 255, 255);
+    default :
+        this->color->setRgb(255, 255, 255);
     }
 }
 
-// #################################
-/*** 	Gestion des sauvegardes 	***/
-// #################################
-bool FieldWidget::trySaveImage(QString filename) const
-{
-	if ( !buffer->isNull() ){
-		// TEST verifier que la taille est correcte
-        QImage tmp= buffer->scaled(tailleCell*field->get_width(), tailleCell*field->get_height());
-		tmp.save(filename);
-		return true;
-	}
-	else{
-		#if DEBUG_SAVE
-		cout << "Impossible de sauvegarder l'image, de forêt ouverte !"<< endl;
-		#endif
-		return false;
-	}
-}
+/// ####################
+///		Affichages
+/// ####################
+//@{
 
-// ########################
-/***		Affichages	***/
-// ########################
 void FieldWidget::drawCell(int colonne, int ligne)
 {
     QPen pe;
@@ -95,16 +67,16 @@ void FieldWidget::drawCell(int colonne, int ligne)
     bufferPainter->setPen(pe);
     bufferPainter->setBrush(*color);
     bufferPainter->fillRect(colonne, ligne, 1, 1, *(color));
-	#if DEBUG_TMATRICE
-	cout <<"draw cell ; ";
-	#endif
+    #if DEBUG_TMATRICE
+    cout <<"draw cell ; ";
+    #endif
 }
 
 void FieldWidget::drawList( list< Coordinates* > * list_coordinates){
 
     for( const Coordinates* coord : *list_coordinates){
         drawCell(coord->col, coord->row);
-	}
+    }
     list_coordinates->clear();
 }
 
@@ -151,12 +123,12 @@ void FieldWidget::drawField()
 
 void FieldWidget::drawChanged()
 {
-	bufferPainter->begin(buffer);
-	
-	setColor(Red);
+    bufferPainter->begin(buffer);
+
+    setColor(Red);
 //	drawList(forest->getBurned());
 //	forest->clearBurned();
-	bufferPainter->end();
+    bufferPainter->end();
 }
 
 // Test perf
@@ -166,24 +138,57 @@ int num_redraw= 0;
 
 void FieldWidget::redraw()
 {
-	#if PERF_REDRAW
-	++num_redraw;
-	cout << "test redraw firewidget"<< num_redraw<< endl;
-	#endif
-	
-	if (!buffer->isNull()){
-		delete(buffer);
-	}
+    #if PERF_REDRAW
+    ++num_redraw;
+    cout << "test redraw firewidget"<< num_redraw<< endl;
+    #endif
+
+    if (!buffer->isNull()){
+        delete(buffer);
+    }
     buffer = new QImage(field->get_width(), field->get_height(), QImage::Format_ARGB32);
 
     drawField();
-	drawChanged();
-	update();	// TODO apparemment non utile, update fait resize
+    drawChanged();
+    update();	// TODO apparemment non utile, update fait resize
 }
 
-// ###################
-/*** 		Events 	***/
-// ##################
+//@}
+/// ########################
+/// 	Initialisations
+/// ########################
+
+LoadWindow* FieldWidget::createProgressWindow() const
+{
+    LoadWindow* progressWindow= new LoadWindow();
+	return progressWindow;
+}
+
+/// #################################
+/// 	Gestion des sauvegardes
+/// #################################
+
+bool FieldWidget::trySaveImage(QString filename) const
+{
+	if ( !buffer->isNull() ){
+		// TEST verifier que la taille est correcte
+        QImage tmp= buffer->scaled(tailleCell*field->get_width(), tailleCell*field->get_height());
+		tmp.save(filename);
+		return true;
+	}
+	else{
+		#if DEBUG_SAVE
+		cout << "Impossible de sauvegarder l'image, de forêt ouverte !"<< endl;
+		#endif
+		return false;
+	}
+}
+
+/// ##################
+/// 	Events
+/// ##################
+//@{
+
 void FieldWidget::paintEvent(QPaintEvent* event)
 {
     QWidget::paintEvent(event);
@@ -192,10 +197,6 @@ void FieldWidget::paintEvent(QPaintEvent* event)
 	paint.drawImage(0, 0, *buffer);
 }
 
-/**
- * 
- * @author
- */
 void FieldWidget::resizeEvent(QResizeEvent* event)
 {
 	#if PERF_RESIZE
@@ -225,8 +226,6 @@ void FieldWidget::resizeEvent(QResizeEvent* event)
 
 void FieldWidget::mousePressEvent(QMouseEvent* event)
 {
-//	int colonne= event->x()/tailleCell;
-//	int ligne= event->y()/tailleCell;
 	
 	if (event->button()==Qt::LeftButton)
     {}
@@ -256,7 +255,6 @@ void FieldWidget::initRubber(QMouseEvent* event){
 	rubber->setGeometry(QRect(origin, QSize(0,0)));
 	rubber->show();
 }
-
 
 void FieldWidget::mouseMoveEvent(QMouseEvent* event)
 {
@@ -320,36 +318,11 @@ void FieldWidget::mouseReleaseEvent(QMouseEvent* event)
 	
 }
 
-
-// #################
-/***	 	Slots	 	***/
-// #################
-
-/**
- * reinitialise la foret
- * @author Florian et un petit peu Ugo :p
- * @deprecated
- */
-// void FireWidget::reset(int _larg, int _haut, float proba, float coef)
-// {
-// // 	Foret* OldForet= forest;
-// // 	forest = new Foret(*OldForet, probaMatriceReset);
-// // 	delete(OldForet);
-// // IMPROVEIT quelle est la meilleure facon de RAZ une foret?
-// // 	buffer->fill(1);
-// 
-// 	forest->clean();	// suppression de l'ancienne foret
-// 	forest->setValues(_larg,_haut, coef); // changement des valeurs de taille et de brulure
-// 	forest->randomMatrix(proba);	// création de la nouvelle foret IMPROVEIT faire un randomMatrix dans setValues ?
-// 
-// 	setMinimumSize(_larg, _haut);
-// 	
-// 	drawPicture();
-// 	drawForest();
-// 	drawChanged();
-// //  update();
-// }
-
+//@}
+/// ############
+///    Slots
+/// ############
+//@{
 
 //void FieldWidget::actionReceived(int x)
 //{
@@ -374,13 +347,12 @@ void FieldWidget::mouseReleaseEvent(QMouseEvent* event)
 //	// Appel à une fonction de forêt qui parcours la zone et effectue l'action
 	
 	
-////	if(x == CUT){
-////		forest->cut(xDep, yDep, xArr, yArr);
-////	}else if( x == DELAY){
-////		forest->delay(xDep, yDep, xArr,yArr);
-////	}else cerr<< "mauvais index d'action clic droit"<< endl;
+//	if(x == CUT){
+//	}else if( x == DELAY){
+//	}else cerr<< "mauvais index d'action clic droit"<< endl;
 	
 //	drawChanged();
 //	update();
 //}
 
+//@}

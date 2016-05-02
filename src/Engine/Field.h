@@ -29,6 +29,10 @@ public:
      * @param height Hauteur à définir de la surface
      */
     Field(unsigned width, unsigned height/*, std::list< Coordinates >& inputs_and_ouputs = *(new std::list<Coordinates>()) */);
+    /**
+     * Constructeur par recopie de la classe Field
+     * @param other Instance à recopier
+     */
     Field(const Field& other);
     ~Field();
 
@@ -44,6 +48,10 @@ public:
      */
     inline unsigned get_height() const	{ return nb_rows; }
     
+    /**
+     * Accesseur sur la liste des entrées et sorties
+     * @return
+     */
     inline std::list<Coordinates> & get_insOuts() { return ins_outs; }
  
     /**
@@ -83,18 +91,17 @@ public:
     void add_road(unsigned col, unsigned row)
     { parcels[row][col]= is_road; }    /**
     * Ajoute une route à partir de coordonnées
-    * @param col Colonne de la route
-    * @param row Ligne de la route
+    * @param coords Coordonnées de la future route
     */
     void add_road(const Coordinates& coords)
     { parcels[coords.row][coords.col]= is_road; }
 
     /**
     * Ajoute une entrée/sortie à partir de coordonnées
-    * @param coord Coordonnées de l'E/S
+    * @param coords Coordonnées de l'E/S
     */
-    void add_in_out(const Coordinates& coord)
-    { ins_outs.push_back(coord); add_road(coord.col, coord.row); }
+    void add_in_out(const Coordinates& coords)
+    { ins_outs.push_back(coords); add_road(coords.col, coords.row); }
     /**
     * Ajoute une entrée/sortie à partir de coordonnées
     * @param col Colonne de l'E/S
@@ -161,7 +168,7 @@ public:
     { return *(new Coordinates(0,0)); }
 
 public:
-    /*=== Affichage ===*/ //@{
+    /*=== Affichage ===*/
     /**
      * Impression sur la sortie standard des entrées et sorties de la surface
      */
@@ -182,8 +189,8 @@ public:
      */
     friend std::ostream& operator<<(std::ostream& out, const Field& field)
     { return field.print(out); }
-    //@}
-    /**=== Fonctions sur les coordonnées ===**///@{
+
+    /**=== Fonctions sur les coordonnées ===**/
     /**
     * Effectue un test d'appartenance des coordonnées à la matrice
     * @param x abscisse de la coordonnée
@@ -206,9 +213,8 @@ public:
      * faux si on est à la fin ou en dehors de la surface
      */
     bool nextCoordinates ( Coordinates* coord ) const;
-    
-    //@} 
-    /**=== Méthodes générales	===**/ //@{
+
+    /**=== Méthodes générales	===**/
 
     /** Crée aléatoirement des entrées et sorties
      * @param nb nombre d'entrées et sorties à générer
@@ -267,8 +273,6 @@ public:
         * @param servingDistance Distance maximale du voisinage
      */
     void defineUsables(unsigned servingDistance);
-
-    //@}
     
     /*=== Autres méthodes utiles ===*/
     /**

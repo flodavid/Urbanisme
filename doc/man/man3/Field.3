@@ -1,4 +1,4 @@
-.TH "Field" 3 "Wed Apr 27 2016" "Urbanisme" \" -*- nroff -*-
+.TH "Field" 3 "Mon May 2 2016" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -12,13 +12,13 @@ Field \-
 
 .in +1c
 .ti -1c
-.RI "\fBField\fP (unsigned width, unsigned height)"
-.br
-.ti -1c
 .RI "unsigned \fBget_width\fP () const "
 .br
 .ti -1c
 .RI "unsigned \fBget_height\fP () const "
+.br
+.ti -1c
+.RI "std::list< \fBCoordinates\fP > & \fBget_insOuts\fP ()"
 .br
 .ti -1c
 .RI "unsigned \fBgetNbParcels\fP () const "
@@ -33,7 +33,10 @@ Field \-
 .RI "void \fBadd_road\fP (unsigned col, unsigned row)"
 .br
 .ti -1c
-.RI "void \fBadd_in_out\fP (const \fBCoordinates\fP &coord)"
+.RI "void \fBadd_road\fP (const \fBCoordinates\fP &coords)"
+.br
+.ti -1c
+.RI "void \fBadd_in_out\fP (const \fBCoordinates\fP &coords)"
 .br
 .ti -1c
 .RI "void \fBadd_in_out\fP (unsigned col, unsigned row)"
@@ -60,9 +63,20 @@ Field \-
 .RI "std::vector< std::vector< State > >::iterator \fBend\fP ()"
 .br
 .RI "\fIend \fP"
-.ti -1c
-.RI "void \fBdeleteUselessRoad\fP ()"
+.in -1c
+.PP
+.RI "\fB\fP"
 .br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "\fBField\fP (unsigned width, unsigned height)"
+.br
+.ti -1c
+.RI "\fBField\fP (const \fBField\fP &other)"
+.br
+.in -1c
 .in -1c
 .PP
 .RI "\fB\fP"
@@ -113,8 +127,9 @@ Field \-
 .in +1c
 .in +1c
 .ti -1c
-.RI "void \fBgenerateRandomSolution\fP ()"
+.RI "void \fBcreateExample\fP (unsigned servingDistance)"
 .br
+.RI "\fIcreateExample \fP"
 .in -1c
 .in -1c
 .SS "Static Public Member Functions"
@@ -140,6 +155,9 @@ Field \-
 .RI "void \fBgenerateInsAndOuts\fP (unsigned nb)"
 .br
 .ti -1c
+.RI "std::list< \fBCoordinates\fP > * \fBgetNeighbourParcels\fP (const \fBCoordinates\fP &coord) const "
+.br
+.ti -1c
 .RI "std::list< \fBCoordinates\fP > * \fBgetNeighbourRoads\fP (const \fBCoordinates\fP &coord) const "
 .br
 .ti -1c
@@ -161,18 +179,31 @@ Constructeur de la classe
 .RS 4
 \fIwidth\fP Largeur à définir de la surface 
 .br
-\fIheight\fP Hauteur à définir de la surface 
+\fIheight\fP Hauteur à définir de la surface
+.RE
+.PP
+.SS ""
+.PP
+Constructeurs et destructeurs 
+.SS ""
+
+.SS "Field::Field (const \fBField\fP & other)"
+Constructeur par recopie de la classe \fBField\fP 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIother\fP Instance à recopier 
 .RE
 .PP
 
 .SH "Member Function Documentation"
 .PP 
-.SS "void Field::add_in_out (const \fBCoordinates\fP & coord)\fC [inline]\fP"
+.SS "void Field::add_in_out (const \fBCoordinates\fP & coords)\fC [inline]\fP"
 Ajoute une entrée/sortie à partir de coordonnées 
 .PP
 \fBParameters:\fP
 .RS 4
-\fIcoord\fP Coordonnées de l'E/S 
+\fIcoords\fP Coordonnées de l'E/S 
 .RE
 .PP
 
@@ -195,6 +226,15 @@ Ajoute une route à partir de coordonnées
 \fIcol\fP Colonne de la route 
 .br
 \fIrow\fP Ligne de la route 
+.RE
+.PP
+
+.SS "void Field::add_road (const \fBCoordinates\fP & coords)\fC [inline]\fP"
+Ajoute une route à partir de coordonnées 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcoords\fP Coordonnées de la future route 
 .RE
 .PP
 
@@ -276,6 +316,22 @@ true si la coordonnée appartient à la matrice
 .RE
 .PP
 
+.SS "void Field::createExample (unsigned servingDistance)"
+
+.PP
+createExample 
+.PP
+\fBTest\fP
+.RS 4
+Utile seulement pour les tests 
+.RE
+.PP
+.PP
+.SS ""
+.PP
+Autres méthodes utiles 
+.SS ""
+
 .SS "void Field::defineUsables (unsigned servingDistance)"
 Définit les parcelles dans le voisinage d'une route comme étant exploitables 
 .PP
@@ -285,15 +341,6 @@ Définit les parcelles dans le voisinage d'une route comme étant exploitables
 .RE
 .PP
 
-.PP
-\fBSee also:\fP
-.RS 4
-je vérifie que chaque route a un voisin (en cherchant tous ses voisins, 
-.RE
-.PP
-
-.SS "void Field::deleteUselessRoad ()"
-TODO 
 .SS "std::vector<std::vector<State> >::const_iterator Field::end () const\fC [inline]\fP"
 
 .PP
@@ -346,20 +393,21 @@ une référence, non constante, sur la première coordonnée de la matrice
 === Méthodes générales ===/ 
 .SS ""
 
-.SS "void Field::generateRandomSolution ()"
-=== Recherche de solutions === Doit générer une solution réalisable aléatoire
-.PP
-.SS ""
-.PP
-=== Recherche de solutions ===/ 
-.SS ""
-
 .SS "unsigned Field::get_height () const\fC [inline]\fP"
 Accesseur sur le nombre de lignes -la hauteur- de la surface 
 .PP
 \fBReturns:\fP
 .RS 4
 La hauteur de la surface 
+.RE
+.PP
+
+.SS "std::list<\fBCoordinates\fP>& Field::get_insOuts ()\fC [inline]\fP"
+Accesseur sur la liste des entrées et sorties 
+.PP
+\fBReturns:\fP
+.RS 4
+
 .RE
 .PP
 
@@ -381,8 +429,13 @@ Le nombre de parcelles, nombre de ligne facteur nombre de colonnes, un entier no
 .RE
 .PP
 
-.SS "std::list< \fBCoordinates\fP > * Field::getNeighbourRoads (const \fBCoordinates\fP & coord) const"
-Recherche des portions de routes qui sont concomitantes à la parcelle courante 
+.SS "std::list< \fBCoordinates\fP > * Field::getNeighbourParcels (const \fBCoordinates\fP & coord) const"
+Recherche des parcelles qui sont concomitantes à la route 
+.PP
+\fBSee also:\fP
+.RS 4
+forcément une route ? 
+.RE
 .PP
 \fBParameters:\fP
 .RS 4
@@ -395,10 +448,17 @@ une liste de routes adjacentes à la parcelle
 .RE
 .PP
 
+.SS "std::list< \fBCoordinates\fP > * Field::getNeighbourRoads (const \fBCoordinates\fP & coord) const"
+Recherche des portions de routes qui sont concomitantes à la parcelle courante 
 .PP
-\fBSee also:\fP
+\fBParameters:\fP
 .RS 4
-améliorer les listes, utiliser pointeurs ou non ? 
+\fIcoord\fP Coordonnées de la parcelle 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+une liste de routes adjacentes à la parcelle 
 .RE
 .PP
 
