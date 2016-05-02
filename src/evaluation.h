@@ -21,7 +21,7 @@ class Evaluation
 private:
     // Données sur lesquelles on travaille
 public: // TODO temporaire pour tests, TODELETE
-    Field field;
+    const Field& field;
     Parameters params;
 
     // Données calculées
@@ -152,13 +152,6 @@ public:
      * @return l'évaluation en flottant
      */
     float threadsEvaluateRatio() const;
-
-    /* Autres méthodes utiles */
-    /**
-      * @brief createExample
-      * @test Utile seulement pour les tests
-      */
-     void createExample();
      
      /* Threads */
 

@@ -6,7 +6,7 @@ include_directories( ${CMAKE_CURRENT_BINARY_DIR})
 
 set(CURRENT_DIR Engine)
 
-set(Engine_SRCS ${CURRENT_DIR}/coordinates.cpp ${CURRENT_DIR}/Field.cpp ${CURRENT_DIR}/Parameters.cpp ${CURRENT_DIR}/loadprogress.cpp )
+set(Engine_SRCS ${CURRENT_DIR}/coordinates.cpp ${CURRENT_DIR}/Field.cpp ${CURRENT_DIR}/Field_others.cpp  ${CURRENT_DIR}/Parameters.cpp ${CURRENT_DIR}/loadprogress.cpp )
 
 set(Engine_SRCS ${Engine_SRCS} PARENT_SCOPE)
 

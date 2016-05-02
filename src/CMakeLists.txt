@@ -32,7 +32,7 @@ add_subdirectory(Display) # must set ${Display_SRCS}
 # Use the compile definitions defined in the Qt 5 Widgets module
 add_definitions(-Wall -std=c++11 -pthread -lpthread ${Qt5Widgets_DEFINITIONS})
 
-set(sim-city_SRCS ${Engine_SRCS} ${Display_SRCS} resolution.cpp localsearch.cpp evaluation.cpp evaluation_others.cpp Sim-City.cpp)
+set(sim-city_SRCS ${Engine_SRCS} ${Display_SRCS} resolution.cpp localsearch.cpp evaluation.cpp Sim-City.cpp)
 
 set(HEADERS debug.h)
 

@@ -23,9 +23,9 @@ LocalSearch::LocalSearch(unsigned nbCols, unsigned nbRows, const Parameters* _pa
 }
 
 LocalSearch::LocalSearch(const LocalSearch& other):
-    params(other.params ), eval(other.eval) // TODO Attention, il n'y a pas de constructeur par recopie de eval
+    field(other.field), params(other.params ), eval(other.eval) // TODO Attention, il n'y a pas de constructeur par recopie de eval
 {
-    field= &eval->field;// TODO voir si on fait comme ça
+//     field= &eval->field;// TODO voir si on fait comme ça
 }
 
 //@}
@@ -45,7 +45,7 @@ void LocalSearch::initSolution()
 
     cout << "E/S 1 : "<< in_out_1<< "; E/S 2 : "<< in_out_2<< endl;
 
-    if (in_out_1.col == 0 || in_out_1.col == (int)field->get_width()-1) {
+    if (in_out_1.col == 0 || in_out_1.col == (int)field->get_width() -1) {
         if (in_out_1.col != in_out_2.col) {
             horizontal_roads(in_out_1, in_out_2);
             field->add_road(in_out_1);
@@ -58,7 +58,10 @@ void LocalSearch::initSolution()
         }
         horizontal_roads(in_out_1, in_out_2);
     }
-
+    
+    
+    // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
+    field->defineUsables(params.get_serve_distance());
 }
 
 void LocalSearch::vertical_roads(Coordinates &in_out_1, Coordinates &in_out_2)

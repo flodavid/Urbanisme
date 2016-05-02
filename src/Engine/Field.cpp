@@ -342,18 +342,3 @@ void Field::defineUsables(unsigned int servingDistance)
 }
 
 //@}
-///#################################
-///===  Recherche de solutions	===/
-///#################################
-//@{
-void Field::generateRandomSolution()
-{
-    Coordinates &coord = first();
-    //     int road_percent = 20;
-
-    do {
-        //         maybePlaceRoad(coord, road_percent);
-    } while (nextCoordinates(&coord));
-}
-
-//@}

@@ -161,7 +161,7 @@ public:
     { return *(new Coordinates(0,0)); }
 
 public:
-    /* Affichage */
+    /*=== Affichage ===*/ //@{
     /**
      * Impression sur la sortie standard des entrées et sorties de la surface
      */
@@ -182,8 +182,8 @@ public:
      */
     friend std::ostream& operator<<(std::ostream& out, const Field& field)
     { return field.print(out); }
-
-    /**=== Fonctions sur les coordonnées ===**/
+    //@}
+    /**=== Fonctions sur les coordonnées ===**///@{
     /**
     * Effectue un test d'appartenance des coordonnées à la matrice
     * @param x abscisse de la coordonnée
@@ -206,9 +206,9 @@ public:
      * faux si on est à la fin ou en dehors de la surface
      */
     bool nextCoordinates ( Coordinates* coord ) const;
-
-    /**=== Méthodes générales	===**/
-    //@{
+    
+    //@} 
+    /**=== Méthodes générales	===**/ //@{
 
     /** Crée aléatoirement des entrées et sorties
      * @param nb nombre d'entrées et sorties à générer
@@ -269,14 +269,11 @@ public:
     void defineUsables(unsigned servingDistance);
 
     //@}
-    /**=== Recherche de solutions	===**/
-    /**
-     * Doit générer une solution réalisable aléatoire
-     */
-    void generateRandomSolution();
     
+    /*=== Autres méthodes utiles ===*/
     /**
-     * TODO
+     * @brief createExample
+     * @test Utile seulement pour les tests
      */
-    void deleteUselessRoad();
+    void createExample(unsigned servingDistance);
 };

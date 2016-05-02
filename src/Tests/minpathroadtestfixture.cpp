@@ -115,6 +115,8 @@ void MinPathRoadTestFixture::setUp()
 	example.add_road(19, 17);
     example.add_in_out(9, 19);
     
+    example.defineUsables(eval->params.get_serve_distance());
+    
     eval= new Evaluation(example, Parameters(1, 2));
     
 /// Initialisation
@@ -153,7 +155,6 @@ void MinPathRoadTestFixture::tearDown()
 
 void MinPathRoadTestFixture::test_validsPath()
 {
-    eval->field.defineUsables(eval->params.get_serve_distance());
     if (!eval->road_distances_are_initiated){
         eval->initNeighbourhoodManhattan();
     }

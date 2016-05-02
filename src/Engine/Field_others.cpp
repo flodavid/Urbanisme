@@ -6,12 +6,11 @@
 /// #########################
 //@{
 
-///*
-// Grand
-void Evaluation::createExample()
+// /*
+void Field::createExample(unsigned int servingDistance)
 {
     // Surface de l'exemple :
-    Field &example = field;
+    Field &example = *this;
     example.set_width(20);
     example.set_height(20);
     example.resizeWithDimensions();
@@ -122,19 +121,18 @@ void Evaluation::createExample()
     example.add_road(19, 17);
 
     example.add_in_out(9, 19);
-
-    evaluateTotalUsable();
-
-    // Définition des états des parcelles
-    field.defineUsables(params.get_serve_distance());
+    
+    // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
+    defineUsables(servingDistance);
 }
 // */
+
 /*
 // Petit
-void Resolution::createExample()
+void Field::createExample(unsigned int servingDistance)
 {
     // Surface de l'exemple :
-    Field &example = field;
+    Field &example = *this;
     example.set_width(10);
     example.set_height(10);
     example.resizeWithDimensions();
@@ -172,20 +170,18 @@ void Resolution::createExample()
     example.add_road(7, 7);
     example.add_road(8, 7);
     // example.add_road(9, 7); déjà fait dans colonne milieu
-
-    evaluateTotalUsable();
-
-    // Définition des états des parcelles
-    field.defineUsables(params.get_serve_distance());
+    
+    // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
+    defineUsables(servingDistance);
 }
 // */
 
 /*
 // Tout Petit
-void Resolution::createExample()
+void Field::createExample(unsigned int servingDistance)
 {
     // Surface de l'exemple :
-    Field &example = field;
+    Field &example = *this;
     example.set_width(3);
     example.set_height(3);
     example.resizeWithDimensions();
@@ -194,11 +190,9 @@ void Resolution::createExample()
     example.add_road(0, 2);
     example.add_road(1, 2);
     example.add_road(2, 2);
-
-    evaluateTotalUsable();
-
-    // Définition des états des parcelles
-    field.defineUsables(params.get_serve_distance());
+    
+    // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
+    defineUsables(servingDistance);
 }
 // */
 

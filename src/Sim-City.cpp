@@ -44,64 +44,64 @@ using namespace std;
 int main(int argc, char* argv[])
 {
     QScopedPointer<QApplication> app(new QApplication(argc, argv));
-
-    Field myField(20, 20);
-//    Angle
-        myField.add_in_out(0,4);
-        myField.add_in_out(11,19);
-// Mm colonne
-//        myField.add_in_out(0,4);
-//        myField.add_in_out(0,19);
-//En face
-//        myField.add_in_out(0,4);
-//        myField.add_in_out(19,8);
-
+    
+    // Paramètres du problèmes
     Parameters myParameters(2, 1);
 
+    Field myField(20, 20);
+//@{
+//     // Solution de l'exemple :
+// 	myField.createExample(myParameters.get_serve_distance());
+//@}
+    
+//@{
+    // Angle
+        myField.add_in_out(19,4);
+        myField.add_in_out(11,19);
+    // Mm colonne
+//        myField.add_in_out(0,4);
+//        myField.add_in_out(0,19);
+    // En face
+//        myField.add_in_out(0,4);
+//        myField.add_in_out(19,8);
+//@}
+
+    // Solution avec recherche locale
     LocalSearch myLocalSearch(&myField, &myParameters);
-
-/**		Tests		**/
-    Evaluation myEvaluation(myField, myParameters);
-//    myEvaluation.createExample();
-
     myLocalSearch.initSolution();
-    cout << "Surface avec routes : "<< endl<< myField<< endl;
 
-
+    Evaluation myEvaluation(myField, myParameters);
+    
     myField.defineUsables(myParameters.get_serve_distance());
 
-    FieldWidget* myFieldWidget= new FieldWidget(&(myField));
-//    FieldWidget* myFieldWidget= new FieldWidget(&(myEvaluation.field));
-    myFieldWidget->redraw();
-    myFieldWidget->show();
-
-    time_t startTime;
-    time_t stopTime;
-    
+    // Parcelles utilisables
     unsigned nb_usables= myEvaluation.evaluateTotalUsable();
     cout << "Nombre total de parcelles exploitables au début : "<< nb_usables<< endl;
+
+    // Fenêtre
+    FieldWidget* myFieldWidget= new FieldWidget(&(myField));
+    myFieldWidget->redraw();
+    myFieldWidget->show();
     
-    startTime = time(NULL);
+// === LANCEMENT DES ALGOS D'EVALUATION ET DE RECHERCHE LOCALE === //
+    time_t startTime, stopTime; startTime = time(NULL);
+    
+    // Evaluation
     myEvaluation.initNeighbourhoodManhattan();
-    stopTime = time(NULL);
-    time_t elapsedTimeInit = stopTime - startTime;
     
-    startTime = time(NULL);
+    stopTime = time(NULL); time_t elapsedTimeInit = stopTime - startTime; startTime = time(NULL);
 
+    // Calcul de la moyenne des ratios
     float avg_ratio= myEvaluation.evaluateRatio(nb_usables);
-//     float total_ratio= myResolution.threadsEvaluateRatio();
-    stopTime = time(NULL);
-    time_t elapsedTimeEval = stopTime - startTime;
 
-    printf("Le nombre de secondes écoulées pour l'initialisation est %ld\n",elapsedTimeInit);
-    cout << "Moyenne des ratios : "<< avg_ratio<< endl;
-    printf("Le nombre de secondes écoulées pour l'évaluation est %ld\n", elapsedTimeEval);
+    stopTime = time(NULL); time_t elapsedTimeEval = stopTime - startTime;
 
-    srand(time(NULL));
-
-/**	Fin tests	**/
-
-    cout << "FIN" << endl;
+    
+    // AFFICHAGE DES RESULTATS
+    printf("\nLe nombre de secondes écoulées pour l'initialisation est %ld\n",elapsedTimeInit);
+    
+    printf("\nLe nombre de secondes écoulées pour l'évaluation est %ld\n", elapsedTimeEval);
+    cout << "=> Moyenne des ratios : "<< avg_ratio<< endl;
 
     return app->exec();
 }
