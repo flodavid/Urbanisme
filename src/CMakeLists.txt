@@ -1,9 +1,9 @@
 project(sim-city)
 
-cmake_minimum_required(VERSION 2.6)
-if (WIN32)
+#cmake_minimum_required(VERSION 2.6)
+#if (WIN32)
 cmake_minimum_required(VERSION 2.8.11)
-endif(WIN32)
+#endif(WIN32)
 
 ### Qt ###
 # Find includes in corresponding build directories
@@ -42,9 +42,9 @@ add_executable(sim-city stdafx.cpp ${sim-city_SRCS} ${HEADERS})
 # Use the Widgets module from Qt 5.
 target_link_libraries(sim-city Qt5::Widgets)
 
-if (WIN32)
-    target_link_libraries(sim-city ${Qt5Widgets_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES})
-endif(WIN32)
+#if (WIN32)
+target_link_libraries(sim-city ${Qt5Widgets_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES})
+#endif(WIN32)
 
 ##Version statique
 set(mylib ${Qt5Widgets_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES})
