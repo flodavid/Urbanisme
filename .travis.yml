@@ -1,10 +1,20 @@
 language: cpp
 
+addons:
+ apt:
+   sources:
+   # gcc/g++ repository
+   - ubuntu-toolchain-r-test
+   packages:
+   - g++-4.8
+   #cmake
+   - cmake
+
 before_install:
   # Qt repository   
   - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
   # g++ repository
-  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+  #- sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   - sudo apt-get update -qq
 
 install:
@@ -12,8 +22,8 @@ install:
   - sudo apt-get install qtbase5-dev qtdeclarative5-dev
   - sudo apt-get install qt5-default qttools5-dev-tools
   # g++ install
-  - if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.8; fi
-  - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
+  #- if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.8; fi
+  #- if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
   # CPP Unit install
   - sudo apt-get install libcppunit-dev
 
