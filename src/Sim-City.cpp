@@ -14,6 +14,33 @@
 
 using namespace std;
 
+void evaluateBothObjectives(Evaluation& myEvaluation)
+{
+
+    unsigned nb_usables= myEvaluation.evaluateTotalUsable();
+    cout << "Nombre total de parcelles exploitables au début : "<< nb_usables<< endl;
+
+    // === LANCEMENT DES ALGOS D'EVALUATION ET DE RECHERCHE LOCALE === //
+    time_t startTime, stopTime; startTime = time(NULL);
+
+    // Evaluation
+    myEvaluation.initNeighbourhoodManhattan();
+
+    stopTime = time(NULL); time_t elapsedTimeInit = stopTime - startTime; startTime = time(NULL);
+
+    // Calcul de la moyenne des ratios
+    float avg_ratio= myEvaluation.evaluateRatio(nb_usables);
+
+    stopTime = time(NULL); time_t elapsedTimeEval = stopTime - startTime;
+
+
+    // AFFICHAGE DES RESULTATS
+    printf("\nLe nombre de secondes écoulées pour l'initialisation est %ld\n",elapsedTimeInit);
+
+    printf("\nLe nombre de secondes écoulées pour l'évaluation est %ld\n", elapsedTimeEval);
+    cout << "=> Moyenne des ratios : "<< avg_ratio<< endl<< endl;
+}
+
 /*! \mainpage Page principale de la documentation du projet "Urbanisme"
  * Github : https://github.com/flodavid/Urbanisme
  * \section intro_sec Introduction 
@@ -56,52 +83,45 @@ int main(int argc, char* argv[])
     
 //@{
     // Angle
-        myField.add_in_out(19,4);
-        myField.add_in_out(11,19);
+//        myField.add_in_out(19,4);
+//        myField.add_in_out(11,19);
     // Mm colonne
 //        myField.add_in_out(0,4);
 //        myField.add_in_out(0,19);
     // En face
 //        myField.add_in_out(0,4);
 //        myField.add_in_out(19,8);
+    // E/S exemple
+        myField.add_in_out(9,19);
+        myField.add_in_out(9,0);
 //@}
 
     // Solution avec recherche locale
     LocalSearch myLocalSearch(&myField, &myParameters);
     myLocalSearch.initSolution();
 
-    Evaluation myEvaluation(myField, myParameters);
-    
-    myField.defineUsables(myParameters.get_serve_distance());
-
     // Parcelles utilisables
-    unsigned nb_usables= myEvaluation.evaluateTotalUsable();
-    cout << "Nombre total de parcelles exploitables au début : "<< nb_usables<< endl;
+    Evaluation myEvaluation(myField, myParameters);
+    cout << endl<< "===== Evaluation avant recherche locale ====="<< endl;
+    evaluateBothObjectives(myEvaluation);
+
+    /** Tests **/
+    for (unsigned road_num= 1; road_num < 65; ++road_num) {
+        cout << endl<< "=== Ajout de la route "<< road_num<< endl; myLocalSearch.addRoad();
+    }
+
+    /** Fin tests **/
+
+    myField.updateUsables(myParameters.get_serve_distance());
+//    myField.defineUsables(myParameters.get_serve_distance());
 
     // Fenêtre
     FieldWidget* myFieldWidget= new FieldWidget(&(myField));
     myFieldWidget->redraw();
     myFieldWidget->show();
-    
-// === LANCEMENT DES ALGOS D'EVALUATION ET DE RECHERCHE LOCALE === //
-    time_t startTime, stopTime; startTime = time(NULL);
-    
-    // Evaluation
-    myEvaluation.initNeighbourhoodManhattan();
-    
-    stopTime = time(NULL); time_t elapsedTimeInit = stopTime - startTime; startTime = time(NULL);
 
-    // Calcul de la moyenne des ratios
-    float avg_ratio= myEvaluation.evaluateRatio(nb_usables);
-
-    stopTime = time(NULL); time_t elapsedTimeEval = stopTime - startTime;
-
-    
-    // AFFICHAGE DES RESULTATS
-    printf("\nLe nombre de secondes écoulées pour l'initialisation est %ld\n",elapsedTimeInit);
-    
-    printf("\nLe nombre de secondes écoulées pour l'évaluation est %ld\n", elapsedTimeEval);
-    cout << "=> Moyenne des ratios : "<< avg_ratio<< endl;
+    cout << endl<< "===== Evaluation après recherche locale ====="<< endl;
+    evaluateBothObjectives(myEvaluation);
 
     return app->exec();
 }

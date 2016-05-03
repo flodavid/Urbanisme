@@ -58,7 +58,6 @@ void LocalSearch::initSolution()
         horizontal_roads(in_out_1, in_out_2);
     }
     
-    
     // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
     field->defineUsables(params.get_serve_distance());
 }
@@ -83,24 +82,43 @@ void LocalSearch::horizontal_roads(Coordinates &in_out_1, Coordinates &in_out_2)
 
 void LocalSearch::addRoad()
 {
-    map<Coordinates, int> neighbour_occur;
-    map<Coordinates, int>::iterator it;
+    Coordinates coord_min(-1,-1);
 
     Coordinates& coord= Field::first();
 
+    int gain_max= -20;
+
     do {
-        if (field->at(coord) == is_road) {
-            for (Coordinates& neighbour : *(field->getNeighbourParcels(coord)) ){
-                it= neighbour_occur.find(neighbour);
-                if (it == neighbour_occur.end()) {
-                    neighbour_occur[neighbour] = 0;
-                }
-                ++(neighbour_occur[neighbour]);
+        if (field->getNeighbourRoads(coord)->size() > 0) {
+            cout << "\t Test de "<< coord;
+
+            unsigned nb_roads_neighbours= field->getServingRoads(coord, params.get_serve_distance())->size();
+            unsigned nb_parcels_neighbours= field->getNeighbourUnusableParcels(coord, params.get_serve_distance())->size();
+
+            cout << " NB R : "<< nb_roads_neighbours<<" ; Nb P : "<< nb_parcels_neighbours;
+
+            /// TODO est-ce utile de soustraire le nombre de voisin, mettre un coef, ... ?
+            int ratio=  (nb_parcels_neighbours) /*- (nb_roads_neighbours)*/;
+
+            if (ratio > gain_max){
+                cout <<endl<< coord << " a "<< nb_roads_neighbours<< " routes desservant"
+                     " et "<< nb_parcels_neighbours<< " parcelles voisines"<< endl;
+                gain_max=  ratio;
+                coord_min= coord;
             }
+            cout << endl;
         }
     } while(field->nextCoordinates(&coord));
-
     delete &coord;
+
+    if ( !(coord_min == Coordinates(-1,-1))) {
+        cout << "La première parcelle avec le plus de parcelles voisines et le moins de routes voisines est "
+             << coord_min<< " avec un ratio "<< gain_max<< endl;
+        field->add_road(coord_min);
+    } else  cerr << "Aucune route viable"<< endl;
+
+    // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
+    field->updateUsables(params.get_serve_distance());
 }
 
 //@}

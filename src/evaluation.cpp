@@ -214,24 +214,18 @@ void Evaluation::initSizeNeighbourhood()
 void Evaluation::initCoordNeighbourhoodManhattan(const Coordinates &coord)
 {
     if (field[coord] == is_usable) {
+#if DEBUG_EVALUATION_LIGHT
         cout << "Premier point : " << coord << endl;
+#endif
         // On calcule et additionne le ratio pour aller vers chacun des successeurs
         Coordinates coord2(coord);
         // On commence à la coordonnée suivante de celle courante
         while (field.nextCoordinates(&coord2)) {
             // On calcule la distance que si elle n'a pas déjà été calculée
-//             if (field[coord2] == is_usable) {
-            if (road_distances[coord.row][coord.col][coord2.row][coord2.col] == 0) {
+            if (field[coord2] != is_unusable && road_distances[coord.row][coord.col][coord2.row][coord2.col] == 0) {
                 road_distances[coord.row][coord.col][coord2.row][coord2.col] =
                         parcelsRoadDistance(coord, coord2);
             }
-//             }
-//             if (field[coord] >= is_road && field[coord2] >= is_road) {
-//                 list<Coordinates> *empty_visited = new list<Coordinates>;
-//                 road_distances[coord.row][coord.col][coord2.row][coord2.col] =
-//                         recCalcRoadDistance(coord, coord2, empty_visited, UNSIGNED_INFINITY);
-//                 delete empty_visited;
-//             }
         }
     }
 }
@@ -304,7 +298,9 @@ float Evaluation::evaluateRatio(unsigned nbUsables)
     Coordinates& coord1 = Field::first();
     do {
         if (field[coord1] == is_usable) {
+#if DEBUG_EVALUATION_LIGHT
             cout << "Premier point : " << coord1 << endl;
+#endif
             // On calcule et additionne le ratio pour aller vers chacun des successeurs
             Coordinates coord2(coord1);
             // On commence à la coordonnée suivante de celle courante

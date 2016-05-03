@@ -158,57 +158,63 @@ bool Field::isRoad(const Coordinates &neighbour) const
            && at(neighbour) >= is_road; // route ou entrée/sortie
 }
 
+bool Field::isUnusableParcel(const Coordinates &neighbour) const
+{
+    return contains(neighbour)
+           && at(neighbour) == is_unusable;
+}
+
+
 bool Field::isRoadAndNeighbourOf(const Coordinates &neighbour, const Coordinates &coord, unsigned servingDistance) const
 {
     return (isRoad(neighbour) && coord.manhattanDistance(neighbour) <= servingDistance && !(neighbour == coord));
     // TODO changer, ne pas utiliser manhattanDistance,  peu performant ?
 }
 
+//std::list<Coordinates> *Field::getNeighbourParcels(const Coordinates &coord) const
+//{
+//#if DEBUG_ROADS_DIST
+//    cout << "Recherche des voisins de la parcelle en " << coord.col << " ; " << coord.row << endl;
+//#endif
+//    list<Coordinates> *neighbour_parcels = new list<Coordinates>;
 
-std::list<Coordinates> *Field::getNeighbourParcels(const Coordinates &coord) const
-{
-#if DEBUG_ROADS_DIST
-    cout << "Recherche des voisins de la parcelle en " << coord.col << " ; " << coord.row << endl;
-#endif
-    list<Coordinates> *neighbour_parcels = new list<Coordinates>;
+//    Coordinates west(coord.col - 1, coord.row);
+//    Coordinates east(coord.col + 1, coord.row);
+//    Coordinates north(coord.col, coord.row - 1);
+//    Coordinates south(coord.col, coord.row + 1);
+//    // On vérifie que chaque voisin n'est pas en dehors de la matrice
 
-    Coordinates west(coord.col - 1, coord.row);
-    Coordinates east(coord.col + 1, coord.row);
-    Coordinates north(coord.col, coord.row - 1);
-    Coordinates south(coord.col, coord.row + 1);
-    // On vérifie que chaque voisin n'est pas en dehors de la matrice
+//    if (contains(west) && at(west) == is_usable) {
+//        // Ajout dans les routes voisines de la parcelle
+//        neighbour_parcels->push_back(west);
+//#if DEBUG_ROADS_DIST
+//        cout << "\tparcelle " << west << endl;
+//#endif
+//    }
+//    if (contains(east) && at(east) == is_usable) {
+//        // Ajout dans les routes voisines de la parcelle
+//        neighbour_parcels->push_back(east);
+//#if DEBUG_ROADS_DIST
+//        cout << "\tparcelle " << east << endl;
+//#endif
+//    }
+//    if (contains(north) && at(north) == is_usable) {
+//        // Ajout dans les routes voisines de la parcelle
+//        neighbour_parcels->push_back(north);
+//#if DEBUG_ROADS_DIST
+//        cout << "\tparcelle " << north << endl;
+//#endif
+//    }
+//    if (contains(south) && at(south) == is_usable) {
+//        // Ajout dans les routes voisines de la parcelle
+//        neighbour_parcels->push_back(south);
+//#if DEBUG_ROADS_DIST
+//        cout << "\tparcelle " << south << endl;
+//#endif
+//    }
 
-    if (contains(west) && at(west) >= is_unusable) {
-        // Ajout dans les routes voisines de la parcelle
-        neighbour_parcels->push_back(west);
-#if DEBUG_ROADS_DIST
-        cout << "\tparcelle " << west << endl;
-#endif
-    }
-    if (contains(east) && at(east) >= is_unusable) {
-        // Ajout dans les routes voisines de la parcelle
-        neighbour_parcels->push_back(east);
-#if DEBUG_ROADS_DIST
-        cout << "\tparcelle " << east << endl;
-#endif
-    }
-    if (contains(north) && at(north) >= is_unusable) {
-        // Ajout dans les routes voisines de la parcelle
-        neighbour_parcels->push_back(north);
-#if DEBUG_ROADS_DIST
-        cout << "\tparcelle " << north << endl;
-#endif
-    }
-    if (contains(south) && at(south) >= is_unusable) {
-        // Ajout dans les routes voisines de la parcelle
-        neighbour_parcels->push_back(south);
-#if DEBUG_ROADS_DIST
-        cout << "\tparcelle " << south << endl;
-#endif
-    }
-
-    return neighbour_parcels;
-}
+//    return neighbour_parcels;
+//}
 
 std::list<Coordinates> *Field::getNeighbourRoads(const Coordinates &coord) const
 {
@@ -295,6 +301,31 @@ std::list<Coordinates> *Field::getServingRoads(const Coordinates &coord , unsign
     return serving_roads;
 }
 
+std::list<Coordinates> *Field::getNeighbourUnusableParcels(const Coordinates &coord, unsigned servingDistance) const
+{
+    list<Coordinates> *serving_roads = new list<Coordinates>;
+
+    int serve_dist = (int)servingDistance;
+
+    // On vérifie si les routes entre (x +dist;y +dist) et (x -dist;y -dist)
+    /// On vérifie ((2.serve_dist)+1)² parcelles,  alors qu'on pourrait en vérifier moins
+    for (int i = coord.row + serve_dist; i >= coord.row - serve_dist; --i) {
+        for (int j = coord.col + serve_dist; j >= coord.col - serve_dist; --j) {
+            // On vérifie que la parcelle n'est pas en dehors de la matrice et qu'elle n'est pas la coordonnée courante
+            Coordinates neighbour(j,  i);
+            if (isUnusableParcel(neighbour) && !(neighbour == coord)
+                    && coord.manhattanDistance(neighbour) <= servingDistance) {
+                // Ajout dans les routes voisines de la parcelle
+                Coordinates road_coord(j, i);
+                serving_roads->push_back(road_coord);    /// @see copie faite :'(
+            }
+        }// fin_for
+    }// fin_for
+
+    return serving_roads;
+}
+
+
 bool Field::hasServingRoad(const Coordinates &coord , unsigned servingDistance) const
 {
     int serve_dist = (int) servingDistance;  // il est plus simple de convertir en entier
@@ -334,6 +365,28 @@ void Field::defineUsables(unsigned int servingDistance)
         }
 #endif
         if (at(coord) == is_undefined) {
+            if (hasServingRoad(coord, servingDistance)) {
+                parcels[coord.row][coord.col] = is_usable;
+            } else {
+                parcels[coord.row][coord.col] = is_unusable;
+            }
+        }
+    } while (nextCoordinates(&coord));
+    delete &coord;
+}
+
+void Field::updateUsables(unsigned int servingDistance)
+{
+    Coordinates &coord = first();
+    do {
+#if DEBUG
+        if ((coord.col) == 0) {
+            cout << endl << coord;
+        } else {
+            cout <<  "; " << coord;
+        }
+#endif
+        if (at(coord) < is_road) {
             if (hasServingRoad(coord, servingDistance)) {
                 parcels[coord.row][coord.col] = is_usable;
             } else {

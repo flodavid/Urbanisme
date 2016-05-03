@@ -224,10 +224,16 @@ public:
 private:
     /**
      * Vérifie qu'une position est valide et a une route
-        * @param neighbour Coordonnées de la parcelle
-     * @return vrai si la parcelle est une route
+        * @param neighbour Coordonnées de la cellule
+     * @return vrai si la cellule est une route
      */
     inline bool isRoad(const Coordinates& neighbour) const;
+    /**
+     * Vérifie qu'une position est valide et a une parcelle non exploitable
+        * @param neighbour Coordonnées de la parcelle
+     * @return vrai si la parcelle n'est pas exploitable
+     */
+    inline bool isUnusableParcel(const Coordinates &neighbour) const;
     /**
      * Vérifie que deux parcelles sont voisines, supposant une distance de voisinage
         * @param neighbour Coordonnées de la parcelle qui peut être voisine de l'autre
@@ -239,11 +245,17 @@ private:
 
 public:
     /**
-     * Recherche des parcelles qui sont concomitantes à la route @see forcément une route ?
+     * Recherche des parcelles qui sont concomitantes à la cellule
         * @param coord Coordonnées de la parcelle
-     * @return une liste de routes adjacentes à la parcelle
+     * @return une liste de parcelle adjacentes à la cellule
      */
     std::list<Coordinates> *getNeighbourParcels( const Coordinates& coord ) const;
+    /**
+     * Recherche des parcelles qui serait desservies grâce au passage de la parcelle en route
+        * @param coord Coordonnées de la parcelle
+     * @return une liste de routes qui deviendraient utilisables sur la parcelle devenait une route
+     */
+    std::list<Coordinates> *getNeighbourUnusableParcels( const Coordinates& coord, unsigned servingDistance ) const;
     /**
      * Recherche des portions de routes qui sont concomitantes à la parcelle courante
         * @param coord Coordonnées de la parcelle
@@ -258,7 +270,7 @@ public:
      */
     std::list<Coordinates> *getServingRoads( const Coordinates& coord, unsigned servingDistance ) const;
 
-private:
+//private:
     /**
     * Vérifie que la parcelle a un voisin
         * @param coord Coordonnées de la parcelle à desservir
@@ -273,6 +285,11 @@ public:
         * @param servingDistance Distance maximale du voisinage
      */
     void defineUsables(unsigned servingDistance);
+    /**
+     * Met à jour les parcelles dans le voisinage d'une route comme étant exploitables
+        * @param servingDistance Distance maximale du voisinage
+     */
+    void updateUsables(unsigned servingDistance);
     
     /*=== Autres méthodes utiles ===*/
     /**
