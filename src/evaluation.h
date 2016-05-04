@@ -20,7 +20,6 @@ class Evaluation
 {
 private:
     // Données sur lesquelles on travaille
-//public: // TODO temporaire pour tests, TODELETE
     const Field& field;
     Parameters params;
 
@@ -28,7 +27,8 @@ private:
     std::vector< std::vector< std::vector< std::vector< unsigned > > > > road_distances;
     unsigned nbUsables;
     float avgAccess;
-
+    
+public:
     // FLAGS
     bool road_distances_are_initiated= false;
 

@@ -22,6 +22,7 @@ class MinPathRoadTestFixture : public CppUnit::TestFixture
 {
 private:
     Evaluation* eval;
+    Field* example;
     
     Coordinates* coord1;
     Coordinates* coord2;

@@ -11,13 +11,18 @@ link_directories(/usr/local/lib/)
 #add_definitions(-L/usr/local/lib)
 # add_library( -L/usr/local/lib)
 
-set(OTHERS_SOURCES  ../Engine/coordinates.cpp ../Engine/Field.cpp ../Engine/Parameters.cpp ../evaluation.cpp)
-set(MIN_PATH_SOURCES minpathroadtestfixture.cpp)
+set(ENGINE_DIR ../Engine)
+set(TEST_ENGINE_DIR ${ENGINE_DIR}/Tests)
 
-# Executable
-add_executable(tests_operations ${OTHERS_SOURCES} ${MIN_PATH_SOURCES} all_tests.cpp)
+set(ENGINE_SOURCES ${ENGINE_DIR}/coordinates.cpp ${ENGINE_DIR}/Field.cpp ${ENGINE_DIR}/Field_others.cpp  ${ENGINE_DIR}/Parameters.cpp)
+set(EVAL_SOURCES  ../evaluation.cpp)
+set(TEST_ENGINE_SOURCES ${TEST_ENGINE_DIR}/test_next_coordinates.cpp ${TEST_ENGINE_DIR}/test_coordinates.cpp ${TEST_ENGINE_DIR}/fieldtestfixture.cpp)
+set(TEST_EVAL_SOURCES minpathroadtestfixture.cpp)
 
-install(TARGETS tests_operations RUNTIME DESTINATION bin)
+# Executable evaluation
+add_executable(tests ${ENGINE_SOURCES} ${EVAL_SOURCES} ${TEST_ENGINE_SOURCES} ${TEST_EVAL_SOURCES} all_tests.cpp)
+
+install(TARGETS tests RUNTIME DESTINATION bin)
 
 # Tests
-target_link_libraries(tests_operations cppunit)
+target_link_libraries(tests cppunit)

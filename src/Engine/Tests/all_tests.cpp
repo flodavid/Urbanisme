@@ -8,7 +8,7 @@ using namespace std;
  * Crée la suite de tests du "moteur" de l'application
  * @return Une TestSuite, contenant les tests à effectuer sur le "moteur"
  */
-CppUnit::TestSuite *make_suite() {    
+CppUnit::TestSuite *make_suite_engine() {    
 	CppUnit::TestSuite *suite = new CppUnit::TestSuite("Coordinates");
 	cout << "==============================================" << endl;
 	cout << "TEST " << suite->getName() << " (" << __FILE__ << ")" << endl;
@@ -45,7 +45,7 @@ int main() {
     
 	CppUnit::TextUi::TestRunner runner;
 
-	runner.addTest(make_suite());
+	runner.addTest(make_suite_engine());
 	runner.setOutputter(new CppUnit::CompilerOutputter(&runner.result(), cout));
 	runner.run();
     return EXIT_SUCCESS;

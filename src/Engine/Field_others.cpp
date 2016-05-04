@@ -1,4 +1,4 @@
-﻿#include "../stdafx.h"
+#include "../stdafx.h"
 #include "Field.h"
 
 /// #########################
@@ -7,7 +7,7 @@
 //@{
 
 // /*
-void Field::createExample(unsigned int servingDistance)
+void Field::createExample()
 {
     // Surface de l'exemple :
     Field &example = *this;
@@ -121,15 +121,12 @@ void Field::createExample(unsigned int servingDistance)
     example.add_road(19, 17);
 
     example.add_in_out(9, 19);
-    
-    // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
-    defineUsables(servingDistance);
 }
 // */
 
 /*
 // Petit
-void Field::createExample(unsigned int servingDistance)
+void Field::createExample()
 {
     // Surface de l'exemple :
     Field &example = *this;
@@ -178,7 +175,7 @@ void Field::createExample(unsigned int servingDistance)
 
 /*
 // Tout Petit
-void Field::createExample(unsigned int servingDistance)
+void Field::createExample()
 {
     // Surface de l'exemple :
     Field &example = *this;

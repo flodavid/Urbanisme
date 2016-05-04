@@ -179,6 +179,7 @@ unsigned Evaluation::parcelsRoadDistance(const Coordinates &coord1, const Coordi
         cerr << "Impossible de relier"<< coord1<< " et "<< coord2<< " par les routes"
                 "(au moins une des 2 parcelle n'a pas de route à proximité (distance < "
              << params.get_serve_distance() << "))" << endl;
+	return UNSIGNED_INFINITY;
     }
 #if DEBUG_EVALUATION || DEBUG_ROADS_DIST
     else {

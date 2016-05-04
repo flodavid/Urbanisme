@@ -57,9 +57,6 @@ void LocalSearch::initSolution()
         }
         horizontal_roads(in_out_1, in_out_2);
     }
-    
-    // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
-    field->defineUsables(params.get_serve_distance());
 }
 
 void LocalSearch::vertical_roads(Coordinates &in_out_1, Coordinates &in_out_2)

@@ -296,5 +296,5 @@ public:
      * @brief createExample
      * @test Utile seulement pour les tests
      */
-    void createExample(unsigned servingDistance);
+    void createExample();
 };

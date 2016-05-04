@@ -14,7 +14,7 @@ link_directories(/usr/local/lib/)
 #add_definitions(-L/usr/local/lib)
 # add_library( -L/usr/local/lib)
 
-set(OTHERS_SOURCES  ../coordinates.cpp ../Field.cpp)
+set(OTHERS_SOURCES  ../coordinates.cpp ../Field.cpp ../Field_others.cpp)
 
 # Executable
 add_executable(tests_engine ${OTHERS_SOURCES} test_next_coordinates.cpp test_coordinates.cpp fieldtestfixture.cpp all_tests.cpp)

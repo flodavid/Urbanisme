@@ -94,11 +94,14 @@ int main(int argc, char* argv[])
     // E/S exemple
 //        myField.add_in_out(9,19);
 //        myField.add_in_out(9,0);
-//@}
 
     // Solution avec recherche locale
     LocalSearch myLocalSearch(&myField, &myParameters);
     myLocalSearch.initSolution();
+//@}
+    
+    // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
+    myField.defineUsables(myParameters.get_serve_distance());
 
     // Parcelles utilisables
     Evaluation myEvaluation(myField, myParameters);
