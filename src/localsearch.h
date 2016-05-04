@@ -26,15 +26,15 @@ public:
      * @param _params Paramètres des routes
      */
     LocalSearch( Field* _field, const Parameters* _params );
-    /**
-     * Constructeur d'une recherche locale à partir de la taille de la surface et
-     * des paramètres des routes
-     * Une surface est crée
-     * @param nbCols Largeur de la surface
-     * @param nbRows Hauteur de la surface
-     * @param _params Paramètres des routes
-     */
-    LocalSearch( unsigned int nbCols, unsigned int nbRows, const Parameters* _params );
+//     /**
+//      * Constructeur d'une recherche locale à partir de la taille de la surface et
+//      * des paramètres des routes
+//      * Une surface est crée
+//      * @param nbCols Largeur de la surface
+//      * @param nbRows Hauteur de la surface
+//      * @param _params Paramètres des routes
+//      */
+//     LocalSearch( unsigned int nbCols, unsigned int nbRows, const Parameters* _params );
     /**
      * Constructeur d'une recherche locale par recopie
      * La surface de l'autre instance est recopiée
@@ -59,8 +59,8 @@ public:
 
 /**
  * Rapproche la valeur de coordinate1 d'une unité de coordinate2
- * @param coordinate1
- * @param coordinate2
+ * @param coordinate1 Coordonnée de départ
+ * @param coordinate2 Coordonnée vers laquelle on tend
  * @return coordinate1 incrémenté ou décrémenté de 1
  */
 int oneStep(int coordinate1, int coordinate2);

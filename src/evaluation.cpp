@@ -89,8 +89,7 @@ unsigned int Evaluation::testPathBy(const Coordinates& testCoord, const Coordina
 }
 
 
-unsigned Evaluation::calcRoadDistance(const Coordinates &coord1, const Coordinates &coord2,
-                                            list< Coordinates > *visited, unsigned int dist_max)
+unsigned Evaluation::calcRoadDistance(const Coordinates &coord1, const Coordinates &coord2, list< Coordinates > *visited, unsigned int dist_max)
 {
     assert(field[coord1] >= is_road && field[coord2] >= is_road);
 
@@ -289,7 +288,7 @@ float Evaluation::manhattanRatioBetween2Parcels(const Coordinates &p1, const Coo
     return ratio;
 }
 
-float Evaluation::evaluateRatio(unsigned nbUsables)
+float Evaluation::evaluateRatio()
 {
     float total_ratio = 0.0;
     unsigned nb_ratio = 0;
@@ -370,7 +369,7 @@ float Evaluation::evaluateRatio(unsigned nbUsables)
 //    return total_ratio;
 //}
 
-// TODO A voir le multi-threading
+/// @see voir le multi-threading
 //void TParcelRatios(Coordinates coord, float *ratio, const Evaluation *res)
 //{
 //    (*ratio) = 0.0;

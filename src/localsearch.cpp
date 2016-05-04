@@ -16,11 +16,11 @@ LocalSearch::LocalSearch(Field* _field, const Parameters* _params):
 
 }
 
-LocalSearch::LocalSearch(unsigned int nbCols, unsigned int nbRows, const Parameters* _params):
-    params(*_params)
-{
-    field= new Field(nbCols, nbRows);
-}
+//LocalSearch::LocalSearch(unsigned int nbCols, unsigned int nbRows, const Parameters* _params):
+//    params(*_params)
+//{
+//    field= new Field(nbCols, nbRows);
+//}
 
 LocalSearch::LocalSearch(const LocalSearch& other):
     field(other.field), params(other.params ), eval(other.eval) // TODO Attention, il n'y a pas de constructeur par recopie de eval
@@ -100,7 +100,7 @@ void LocalSearch::addRoad()
             /// TODO est-ce utile de soustraire le nombre de voisin, mettre un coef, ... ?
             int ratio=  (nb_parcels_neighbours) /*- (nb_roads_neighbours)*/;
 
-            if (ratio > gain_max){
+            if (ratio > gain_max) {
                 cout <<endl<< coord << " a "<< nb_roads_neighbours<< " routes desservant"
                      " et "<< nb_parcels_neighbours<< " parcelles voisines"<< endl;
                 gain_max=  ratio;

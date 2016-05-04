@@ -29,7 +29,7 @@ void evaluateBothObjectives(Evaluation& myEvaluation)
     stopTime = time(NULL); time_t elapsedTimeInit = stopTime - startTime; startTime = time(NULL);
 
     // Calcul de la moyenne des ratios
-    float avg_ratio= myEvaluation.evaluateRatio(nb_usables);
+    float avg_ratio= myEvaluation.evaluateRatio();
 
     stopTime = time(NULL); time_t elapsedTimeEval = stopTime - startTime;
 
@@ -78,13 +78,13 @@ int main(int argc, char* argv[])
     Field myField(20, 20);
 //@{
 //     // Solution de l'exemple :
-// 	myField.createExample(myParameters.get_serve_distance());
+//    myField.createExample(myParameters.get_serve_distance());
 //@}
     
 //@{
     // Angle
-//        myField.add_in_out(19,4);
-//        myField.add_in_out(11,19);
+        myField.add_in_out(19,4);
+        myField.add_in_out(11,19);
     // Mm colonne
 //        myField.add_in_out(0,4);
 //        myField.add_in_out(0,19);
@@ -92,8 +92,8 @@ int main(int argc, char* argv[])
 //        myField.add_in_out(0,4);
 //        myField.add_in_out(19,8);
     // E/S exemple
-        myField.add_in_out(9,19);
-        myField.add_in_out(9,0);
+//        myField.add_in_out(9,19);
+//        myField.add_in_out(9,0);
 //@}
 
     // Solution avec recherche locale
@@ -106,14 +106,14 @@ int main(int argc, char* argv[])
     evaluateBothObjectives(myEvaluation);
 
     /** Tests **/
-    for (unsigned road_num= 1; road_num < 65; ++road_num) {
-        cout << endl<< "=== Ajout de la route "<< road_num<< endl; myLocalSearch.addRoad();
+    for (unsigned road_num= 1; road_num < 83; ++road_num) {
+        cout << endl<< "=== Ajout de la route "<< road_num<< endl;
+        myLocalSearch.addRoad();
     }
 
     /** Fin tests **/
 
     myField.updateUsables(myParameters.get_serve_distance());
-//    myField.defineUsables(myParameters.get_serve_distance());
 
     // Fenêtre
     FieldWidget* myFieldWidget= new FieldWidget(&(myField));

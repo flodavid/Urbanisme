@@ -150,7 +150,6 @@ void FieldWidget::redraw()
 
     drawField();
     drawChanged();
-    update();	// TODO apparemment non utile, update fait resize
 }
 
 //@}

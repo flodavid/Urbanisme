@@ -146,7 +146,7 @@ public:
      * Evalue le ratio de toutes les solutions
      * @return la moyenne des ratios
      */
-    float evaluateRatio(unsigned nbUsables);
+    float evaluateRatio();
     /**
      * Evalue le ratio de toutes les solutions avec des threads
      * @return l'évaluation en flottant

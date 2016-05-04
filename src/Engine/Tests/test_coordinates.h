@@ -1,6 +1,6 @@
 // g++ -o test_my_class_full.exe test_my_class_full.cpp -I/usr/local/include -L/usr/local/lib -lcppunit
-#ifndef TEST_COORDINATES_H_
-#define TEST_COORDINATES_H_
+#ifndef TESTFIXTURE_COORDINATES_H_
+#define TESTFIXTURE_COORDINATES_H_
 
 #include "cppunit/TestCase.h"
 #include "cppunit/TestFixture.h"
@@ -48,5 +48,5 @@ class CoordinatesTestFixture : public CppUnit::TestFixture {
 };
 
 
-#endif /* TEST_COORDINATES_H_ */
+#endif // TESTFIXTURE_COORDINATES_H_
 
