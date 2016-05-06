@@ -41,6 +41,20 @@ void evaluateBothObjectives(Evaluation& myEvaluation)
     cout << "=> Moyenne des ratios : "<< avg_ratio<< endl<< endl;
 }
 
+FieldWidget* initWindow(const Field* myField){
+    FieldWidget* field_widget= new FieldWidget(myField);
+    field_widget->redraw();
+    field_widget->show();
+
+    return field_widget;
+}
+
+void oneRoad(LocalSearch& myLocalSearch, FieldWidget* myFieldWidget){
+    myLocalSearch.addRoad();
+    myFieldWidget->redraw();
+}
+
+
 /*! \mainpage Page principale de la documentation du projet "Urbanisme"
  * Github : https://github.com/flodavid/Urbanisme
  * \section intro_sec Introduction 
@@ -68,6 +82,8 @@ void evaluateBothObjectives(Evaluation& myEvaluation)
  * Création du terrain de l'exemple, exécution de l'évaluation, affichage du résultat,
  * affichage tu temps pris par de l'évaluation
  */
+#include <chrono>
+#include <unistd.h>
 int main(int argc, char* argv[])
 {
     QScopedPointer<QApplication> app(new QApplication(argc, argv));
@@ -83,12 +99,12 @@ int main(int argc, char* argv[])
     
 //@{
     // Angle
-        myField.add_in_out(19,4);
         myField.add_in_out(11,19);
+        myField.add_in_out(19,4);
     // Mm colonne
 //        myField.add_in_out(0,4);
 //        myField.add_in_out(0,19);
-    // En face
+    // En face : coude
 //        myField.add_in_out(0,4);
 //        myField.add_in_out(19,8);
     // E/S exemple
@@ -108,20 +124,21 @@ int main(int argc, char* argv[])
     cout << endl<< "===== Evaluation avant recherche locale ====="<< endl;
     evaluateBothObjectives(myEvaluation);
 
+    // Fenêtre
+    FieldWidget* myFieldWidget= initWindow(&myField);
+
     /** Tests **/
     for (unsigned road_num= 1; road_num < 83; ++road_num) {
         cout << endl<< "=== Ajout de la route "<< road_num<< endl;
-        myLocalSearch.addRoad();
+        oneRoad(myLocalSearch, myFieldWidget);
+//        sleep(1);
+    //        std::this_thread::sleep_for (std::chrono::seconds(1));
     }
 
     /** Fin tests **/
 
     myField.updateUsables(myParameters.get_serve_distance());
 
-    // Fenêtre
-    FieldWidget* myFieldWidget= new FieldWidget(&(myField));
-    myFieldWidget->redraw();
-    myFieldWidget->show();
 
     cout << endl<< "===== Evaluation après recherche locale ====="<< endl;
     evaluateBothObjectives(myEvaluation);

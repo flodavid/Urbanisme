@@ -25,7 +25,6 @@ enum Colors{Black, Gray, Red, White, LightBlue};
  * permet de suivre graphiquement l'évolution de l'automate.
  * Il utilise un système de buffering et s'appuie sur la classe
  * Foret du moteur.
- * @author Ugo et Florian
  */
 class FieldWidget : public QWidget {
 //    Q_OBJECT
@@ -92,7 +91,6 @@ public:
     void drawChanged();
     /**
      * Vide le buffer et rafraichit l'affichage
-     * @author Florian et Ugo
      */
     void redraw();
 
@@ -116,7 +114,6 @@ public slots:
     void razRubber() 	{ delete rubber; rubber= NULL; }
 
 protected:
-    // TODO comments
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
@@ -133,9 +130,6 @@ public slots:
 //signals:
 //    /**
 //     * Récupere l'action sélectionnée dans les menus
-//     *
-//     * @author Ugo
-//     * TODO Ugo comment
 //     */
 //    void releaseSignal(); // Vers firescreen
 

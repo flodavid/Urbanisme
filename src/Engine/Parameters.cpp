@@ -7,6 +7,10 @@ Parameters::Parameters(unsigned _serve_distance, unsigned _road_width):
 {
 }
 
+Parameters::Parameters(const Parameters& other):
+    serve_distance(other.serve_distance), road_width(other.road_width)
+{}
+
 Parameters::~Parameters()
 {
 }

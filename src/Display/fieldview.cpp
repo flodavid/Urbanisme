@@ -1,5 +1,7 @@
 #include "fieldview.hpp"
 
+#include <sstream>
+
 using namespace std;
 
 /// ####################################
@@ -62,8 +64,8 @@ void FieldWidget::setColor(Colors colorIndice)
 void FieldWidget::drawCell(int colonne, int ligne)
 {
     QPen pe;
-    pe.setWidth(4);
-    pe.setBrush(QColor(0,0,0));
+//    pe.setWidth(4);
+//    pe.setBrush(QColor(0,0,0));
     bufferPainter->setPen(pe);
     bufferPainter->setBrush(*color);
     bufferPainter->fillRect(colonne, ligne, 1, 1, *(color));
@@ -150,6 +152,7 @@ void FieldWidget::redraw()
 
     drawField();
     drawChanged();
+    update();
 }
 
 //@}
@@ -191,9 +194,26 @@ bool FieldWidget::trySaveImage(QString filename) const
 void FieldWidget::paintEvent(QPaintEvent* event)
 {
     QWidget::paintEvent(event);
-	QPainter paint(this);
-	paint.scale(tailleCell, tailleCell);
-	paint.drawImage(0, 0, *buffer);
+    QPainter paint(this);
+
+    paint.scale(tailleCell, tailleCell);
+    paint.drawImage(1, 1, *buffer);
+    paint.scale(1.0/((float)tailleCell), 1.0/((float)tailleCell));
+    for (unsigned x= 1; x <= field->get_width(); ++x) {
+        float posX= x*tailleCell;
+        paint.drawLine(posX, 0, posX, (field->get_height() +1)*tailleCell);
+        ostringstream convert;
+        convert<< (x-1);
+        paint.drawText(QRect(posX +2, 2, tailleCell, tailleCell), QString::fromStdString(convert.str()));
+    }
+
+    for (unsigned y= 1; y <= field->get_height(); ++y) {
+        float posY= y*tailleCell;
+        paint.drawLine(0, posY, (field->get_width() +1) *tailleCell, posY);
+        ostringstream convert;
+        convert<< (y-1);
+        paint.drawText(QRect(2,posY +2, tailleCell, tailleCell), QString::fromStdString(convert.str()));
+    }
 }
 
 void FieldWidget::resizeEvent(QResizeEvent* event)
@@ -202,12 +222,9 @@ void FieldWidget::resizeEvent(QResizeEvent* event)
 	cout << "test resizeEvent firewidget"<< endl;
 	#endif
 	
-    int nbCol= field->get_width();
-    int nbRow= field->get_height();
+    int nbCol= field->get_width() +1;
+    int nbRow= field->get_height()+1;
 	tailleCell = min (event->size().width() / (float)nbCol , event->size().height() / (float)nbRow);
-	
-	// TODO voir comment modifier la taille de de FireWidget sans repasser par resizeEvent, vraiment utile (ajouté pour rubberband, le modifier pour s'adapter?)
-// 	resize(tailleCell * nbCol, tailleCell*nbRow); // Fait lagger
 	
 	#if DEBUG_CURRENT
 // 	cout << "test apres resize dans resizeEvent (ligne 488 firewidget)"<< endl;

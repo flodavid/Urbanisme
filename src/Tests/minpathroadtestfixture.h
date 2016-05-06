@@ -28,7 +28,7 @@ private:
     Coordinates* coord2;
     
     Coordinates* coord_out;
-    Coordinates* coord_unusable; // TODO aucun test ne vérifie le chemin avec une coordonnée de parcelle non exploitable
+    Coordinates* coord_unusable;
     
     // Results expected
     unsigned expected_dist;

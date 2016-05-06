@@ -23,7 +23,7 @@ LocalSearch::LocalSearch(Field* _field, const Parameters* _params):
 //}
 
 LocalSearch::LocalSearch(const LocalSearch& other):
-    field(other.field), params(other.params ), eval(other.eval) // TODO Attention, il n'y a pas de constructeur par recopie de eval
+    field(other.field), params(other.params ), eval(other.eval)
 {
 }
 

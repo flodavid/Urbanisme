@@ -168,7 +168,7 @@ bool Field::isUnusableParcel(const Coordinates &neighbour) const
 bool Field::isRoadAndNeighbourOf(const Coordinates &neighbour, const Coordinates &coord, unsigned servingDistance) const
 {
     return (isRoad(neighbour) && coord.manhattanDistance(neighbour) <= servingDistance && !(neighbour == coord));
-    // TODO changer, ne pas utiliser manhattanDistance,  peu performant ?
+    /// @see changer, ne pas utiliser manhattanDistance,  peu performant ?
 }
 
 //std::list<Coordinates> *Field::getNeighbourParcels(const Coordinates &coord) const
@@ -263,7 +263,7 @@ std::list<Coordinates> *Field::getNeighbourRoads(const Coordinates &coord) const
 
 std::list<Coordinates> *Field::getServingRoads(const Coordinates &coord , unsigned servingDistance) const
 {
-    list<Coordinates> *serving_roads = new list<Coordinates>;
+    list<Coordinates> *unusable_neighbours = new list<Coordinates>;
     // on ne récupère pas les routes qui desservent d'autres routes,
     // seulement celles qui desservent des parcelles ou sont collées
 
@@ -285,9 +285,7 @@ std::list<Coordinates> *Field::getServingRoads(const Coordinates &coord , unsign
                 if (isRoad(neighbour)
                         && coord.manhattanDistance(neighbour) == (unsigned)s_dist) {
                     // Ajout dans les routes voisines de la parcelle
-                    Coordinates &road_coord = * (new Coordinates(j, i));
-                    serving_roads->push_back(road_coord);    // @see copie faite :'(
-                    delete &road_coord; // @SEE utilisation pointeur ou non
+                    unusable_neighbours->push_back(Coordinates(j, i));    // @see copie faite :'(
                     neighbour_found = true;
 #if DEBUG_ROADS_DIST
                     cout << "parcelle en " << j << " ; " << i << " est une route voisine de la parcelle en "
@@ -298,12 +296,12 @@ std::list<Coordinates> *Field::getServingRoads(const Coordinates &coord , unsign
         }// fin_for
     }// fin_for distance
 
-    return serving_roads;
+    return unusable_neighbours;
 }
 
 std::list<Coordinates> *Field::getNeighbourUnusableParcels(const Coordinates &coord, unsigned servingDistance) const
 {
-    list<Coordinates> *serving_roads = new list<Coordinates>;
+    list<Coordinates> *unusable_neighbours = new list<Coordinates>;
 
     int serve_dist = (int)servingDistance;
 
@@ -316,13 +314,12 @@ std::list<Coordinates> *Field::getNeighbourUnusableParcels(const Coordinates &co
             if (isUnusableParcel(neighbour) && !(neighbour == coord)
                     && coord.manhattanDistance(neighbour) <= servingDistance) {
                 // Ajout dans les routes voisines de la parcelle
-                Coordinates road_coord(j, i);
-                serving_roads->push_back(road_coord);    /// @see copie faite :'(
+                unusable_neighbours->push_back(Coordinates(j, i));    /// @see copie faite :'(
             }
         }// fin_for
     }// fin_for
 
-    return serving_roads;
+    return unusable_neighbours;
 }
 
 
