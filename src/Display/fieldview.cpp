@@ -17,7 +17,7 @@ FieldWidget::FieldWidget(const Field* _field):
 	bufferPainter= new QPainter;
     rubber = NULL;
 
-    setMinimumSize(field->get_width(), field->get_height());
+    setMinimumSize(field->get_width()*4, field->get_height()*4);
 }
 
 FieldWidget::~FieldWidget()
@@ -204,7 +204,7 @@ void FieldWidget::paintEvent(QPaintEvent* event)
         paint.drawLine(posX, 0, posX, (field->get_height() +1)*tailleCell);
         ostringstream convert;
         convert<< (x-1);
-        paint.drawText(QRect(posX +2, 2, tailleCell, tailleCell), QString::fromStdString(convert.str()));
+        paint.drawText(QRect(posX +3, 2, tailleCell, tailleCell), QString::fromStdString(convert.str()));
     }
 
     for (unsigned y= 1; y <= field->get_height(); ++y) {

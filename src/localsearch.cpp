@@ -47,13 +47,17 @@ void LocalSearch::initSolution()
     if (in_out_1.col == 0 || in_out_1.col == (int)field->get_width() -1) {
         if (in_out_1.col != in_out_2.col) {
             horizontal_roads(in_out_1, in_out_2);
-            field->add_road(in_out_1);
+            if (in_out_1.row != in_out_2.row) {
+                field->add_road(in_out_1);
+            }
         }
         vertical_roads(in_out_1, in_out_2);
     } else {
         if (in_out_1.row != in_out_2.row) {
             vertical_roads(in_out_1, in_out_2);
-            field->add_road(in_out_1);
+            if (in_out_1.col != in_out_2.col) {
+                field->add_road(in_out_1);
+            }
         }
         horizontal_roads(in_out_1, in_out_2);
     }
@@ -94,8 +98,8 @@ void LocalSearch::addRoad()
 
             cout << " NB R : "<< nb_roads_neighbours<<" ; Nb P : "<< nb_parcels_neighbours;
 
-            /// TODO est-ce utile de soustraire le nombre de voisin, mettre un coef, ... ?
-            int ratio=  (nb_parcels_neighbours) /*- (nb_roads_neighbours)*/;
+            /// TODO est-ce utile de soustraire le nombre de voisin, mettre un coef, ... ? OUI, ça a une utilité, pour éviter de coller 2 routes
+            int ratio=  (nb_parcels_neighbours) - (nb_roads_neighbours/2);
 
             if (ratio > gain_max) {
                 cout <<endl<< coord << " a "<< nb_roads_neighbours<< " routes desservant"
