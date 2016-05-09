@@ -53,7 +53,9 @@ private:
     void horizontal_roads(Coordinates& in_out_1, Coordinates& in_out_2);
 
 public:
-    void addRoad();
+    bool addRoadUsable();
+
+    bool addRoadsAccess(unsigned nbToAdd);
 
 };
 

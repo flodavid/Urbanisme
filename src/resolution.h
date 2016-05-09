@@ -21,6 +21,7 @@ private:
     std::vector<Evaluation*> pareto_evals;
 
 public:
+    /* Constructeurs */
     /**
      * Constructeur d'une résolution à partir de tous les paramètres du problème
      * @param nbCols Largeur de la surface
@@ -38,6 +39,21 @@ public:
      * @param ins_outs Liste d'entrées/sorties de la surface
      */
     Resolution(unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth, std::list<Coordinates>& ins_outs);
+
+    /**
+     * Construit l'instance en recopiant une surface et des paramètres existants
+     * @param field
+     * @param _params
+     */
+    Resolution(const Field& field, const Parameters& _params);
+
+    /* Evaluations */
+    /**
+     * Evalue les deux objectifs
+     * TODO mettre à jour le front pareto
+     * @param myEvaluation
+     */
+    void evaluateBothObjectives(Evaluation& myEvaluation);
 };
 
 #endif // RESOLUTION_H

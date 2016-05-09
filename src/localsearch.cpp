@@ -81,13 +81,13 @@ void LocalSearch::horizontal_roads(Coordinates &in_out_1, Coordinates &in_out_2)
     }
 }
 
-void LocalSearch::addRoad()
+bool LocalSearch::addRoadUsable()
 {
     Coordinates coord_min(-1,-1);
 
     Coordinates& coord= Field::first();
 
-    int gain_max= -20;
+    int gain_max= 0;
 
     do {
         if (field->getNeighbourRoads(coord)->size() > 0) {
@@ -116,10 +116,27 @@ void LocalSearch::addRoad()
         cout << "La première parcelle avec le plus de parcelles voisines et le moins de routes voisines est "
              << coord_min<< " avec un ratio "<< gain_max<< endl;
         field->add_road(coord_min);
-    } else  cerr << "Aucune route viable"<< endl;
 
-    // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
-    field->updateUsables(params.get_serve_distance());
+        // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
+        field->updateUsables(params.get_serve_distance());
+
+        return true;
+    } else {
+        cerr << "Aucune route viable"<< endl;
+        return false;
+    }
+}
+
+bool LocalSearch::addRoadsAccess(unsigned nbToAdd)
+{
+    Coordinates coord_min(-1,-1);
+
+    Coordinates& coord= Field::first();
+
+    float gain_max= 0.0;
+
+
+
 }
 
 //@}
