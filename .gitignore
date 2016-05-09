@@ -4,6 +4,8 @@
 
 #doc
 doc/man/
+doc/html/
+doc/xml/
 
 # ??
 src/*.kate-swp
