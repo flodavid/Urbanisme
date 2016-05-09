@@ -23,12 +23,13 @@ Resolution::Resolution(const Field &field, const Parameters &_params):
 
 }
 
-void Resolution::evaluateBothObjectives(Evaluation& myEvaluation)
+void Resolution::evaluateBothObjectives(Evaluation& myEvaluation) const
 {
     unsigned nb_usables= myEvaluation.evaluateTotalUsable();
     cout << "Nombre total de parcelles exploitables au début : "<< nb_usables<< endl;
 
     // === LANCEMENT DES ALGOS D'EVALUATION ET DE RECHERCHE LOCALE === //
+    cout << "Evaluation..."<< endl;
     time_t startTime, stopTime; startTime = time(NULL);
 
     // Evaluation
@@ -41,10 +42,31 @@ void Resolution::evaluateBothObjectives(Evaluation& myEvaluation)
 
     stopTime = time(NULL); time_t elapsedTimeEval = stopTime - startTime;
 
-
+    cout << endl;
     // AFFICHAGE DES RESULTATS
     printf("\nLe nombre de secondes écoulées pour l'initialisation est %ld\n",elapsedTimeInit);
 
     printf("\nLe nombre de secondes écoulées pour l'évaluation est %ld\n", elapsedTimeEval);
     cout << "=> Moyenne des ratios : "<< avg_ratio<< endl<< endl;
+}
+
+
+bool Resolution::oneRoadUsableObjective(const LocalSearch& localSearch){
+    if (localSearch.addRoadUsable()){
+        return true;
+    }
+    else {
+        return false;
+    }
+//        sleep(1);
+//        std::this_thread::sleep_for (std::chrono::seconds(1));
+}
+
+void Resolution::localSearchUsableObjective(const LocalSearch& localSearch)
+{
+    unsigned road_num= 1;
+    while(oneRoadUsableObjective(localSearch)) {
+        cout << endl<< "=== Ajout de la route "<< road_num<< endl;
+        ++ road_num;
+    }
 }

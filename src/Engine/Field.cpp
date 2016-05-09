@@ -158,6 +158,13 @@ bool Field::isRoad(const Coordinates &neighbour) const
            && at(neighbour) >= is_road; // route ou entrée/sortie
 }
 
+bool Field::isParcel(const Coordinates &neighbour) const
+{
+    return contains(neighbour)
+           && ( at(neighbour) == is_usable || at(neighbour) == is_unusable);
+}
+
+
 bool Field::isUnusableParcel(const Coordinates &neighbour) const
 {
     return contains(neighbour)
@@ -168,53 +175,7 @@ bool Field::isUnusableParcel(const Coordinates &neighbour) const
 bool Field::isRoadAndNeighbourOf(const Coordinates &neighbour, const Coordinates &coord, unsigned servingDistance) const
 {
     return (isRoad(neighbour) && coord.manhattanDistance(neighbour) <= servingDistance && !(neighbour == coord));
-    /// @see changer, ne pas utiliser manhattanDistance,  peu performant ?
 }
-
-//std::list<Coordinates> *Field::getNeighbourParcels(const Coordinates &coord) const
-//{
-//#if DEBUG_ROADS_DIST
-//    cout << "Recherche des voisins de la parcelle en " << coord.col << " ; " << coord.row << endl;
-//#endif
-//    list<Coordinates> *neighbour_parcels = new list<Coordinates>;
-
-//    Coordinates west(coord.col - 1, coord.row);
-//    Coordinates east(coord.col + 1, coord.row);
-//    Coordinates north(coord.col, coord.row - 1);
-//    Coordinates south(coord.col, coord.row + 1);
-//    // On vérifie que chaque voisin n'est pas en dehors de la matrice
-
-//    if (contains(west) && at(west) == is_usable) {
-//        // Ajout dans les routes voisines de la parcelle
-//        neighbour_parcels->push_back(west);
-//#if DEBUG_ROADS_DIST
-//        cout << "\tparcelle " << west << endl;
-//#endif
-//    }
-//    if (contains(east) && at(east) == is_usable) {
-//        // Ajout dans les routes voisines de la parcelle
-//        neighbour_parcels->push_back(east);
-//#if DEBUG_ROADS_DIST
-//        cout << "\tparcelle " << east << endl;
-//#endif
-//    }
-//    if (contains(north) && at(north) == is_usable) {
-//        // Ajout dans les routes voisines de la parcelle
-//        neighbour_parcels->push_back(north);
-//#if DEBUG_ROADS_DIST
-//        cout << "\tparcelle " << north << endl;
-//#endif
-//    }
-//    if (contains(south) && at(south) == is_usable) {
-//        // Ajout dans les routes voisines de la parcelle
-//        neighbour_parcels->push_back(south);
-//#if DEBUG_ROADS_DIST
-//        cout << "\tparcelle " << south << endl;
-//#endif
-//    }
-
-//    return neighbour_parcels;
-//}
 
 std::list<Coordinates> *Field::getNeighbourRoads(const Coordinates &coord) const
 {
@@ -261,22 +222,61 @@ std::list<Coordinates> *Field::getNeighbourRoads(const Coordinates &coord) const
     return neighbour_roads;
 }
 
+std::list<Coordinates> *Field::getClose(const Coordinates &coord, unsigned maxDist, bool (Field::*neighbourVerif)(const Coordinates&) const) const
+{
+    list<Coordinates> *close_cells= new list<Coordinates>;
+
+    int serve_dist = (int)maxDist;
+
+    // On vérifie si les routes entre (x +dist;y +dist) et (x -dist;y -dist)
+    /// On vérifie ((2.serve_dist)+1)² parcelles,  alors qu'on pourrait en vérifier moins
+    for (int i = coord.row + serve_dist; i >= coord.row - serve_dist; --i) {
+        for (int j = coord.col + serve_dist; j >= coord.col - serve_dist; --j) {
+            // On vérifie que la parcelle n'est pas en dehors de la matrice et qu'elle n'est pas la coordonnée courante
+            Coordinates neighbour(j,  i);
+            if ( (this->*neighbourVerif)(neighbour) && !(neighbour == coord)
+                    && coord.manhattanDistance(neighbour) <= maxDist) {
+                // Ajout dans les routes voisines de la parcelle
+                close_cells->push_back(neighbour);    /// @see copie faite :'(
+            }
+        }// fin_for
+    }// fin_for
+
+    return close_cells;
+}
+
+std::list<Coordinates> * Field::getCloseUnusableParcels(const Coordinates &coord, unsigned servingDistance) const
+{
+    bool (Field::*monPointeur)(const Coordinates&) const;   //On déclare un pointeur sur fonction
+    monPointeur = &Field::isUnusableParcel;
+
+    return getClose(coord, servingDistance, monPointeur);
+}
+
+std::list<Coordinates> *Field::getCloseParcels(const Coordinates &coord, unsigned maxDist) const
+{
+    bool (Field::*monPointeur)(const Coordinates&) const;   //On déclare un pointeur sur fonction
+    monPointeur = &Field::isParcel;
+
+    return getClose(coord, maxDist, monPointeur);
+}
+
+
 std::list<Coordinates> *Field::getServingRoads(const Coordinates &coord , unsigned servingDistance) const
 {
-    list<Coordinates> *unusable_neighbours = new list<Coordinates>;
+    list<Coordinates> *serving_neighbours = new list<Coordinates>;
     // on ne récupère pas les routes qui desservent d'autres routes,
     // seulement celles qui desservent des parcelles ou sont collées
 
-    int serve_dist = (int)servingDistance;
     if (at(coord) >= is_road) {
-        serve_dist = 1;
+        servingDistance = 1;
     }
 
     bool neighbour_found =  false;
-    for (int s_dist = 1; s_dist <= (int) serve_dist && !neighbour_found; ++s_dist) {
+    for (int s_dist = 1; s_dist <= (int) servingDistance && !neighbour_found; ++s_dist) {
 
         // On vérifie si les routes entre (x +dist;y +dist) et (x -dist;y -dist)
-        /// On vérifie ((2.serve_dist)+1)² parcelles,  alors qu'on pourrait en vérifier moins
+        /// On vérifie ((2.servingDistance)+1)² parcelles,  alors qu'on pourrait en vérifier moins
         for (int i = coord.row + s_dist; i >= coord.row - s_dist; --i) {
             for (int j = coord.col + s_dist; j >= coord.col - s_dist; --j) {
 
@@ -285,7 +285,7 @@ std::list<Coordinates> *Field::getServingRoads(const Coordinates &coord , unsign
                 if (isRoad(neighbour)
                         && coord.manhattanDistance(neighbour) == (unsigned)s_dist) {
                     // Ajout dans les routes voisines de la parcelle
-                    unusable_neighbours->push_back(Coordinates(j, i));    // @see copie faite :'(
+                    serving_neighbours->push_back(neighbour);    // @see copie faite :'(
                     neighbour_found = true;
 #if DEBUG_ROADS_DIST
                     cout << "parcelle en " << j << " ; " << i << " est une route voisine de la parcelle en "
@@ -296,32 +296,8 @@ std::list<Coordinates> *Field::getServingRoads(const Coordinates &coord , unsign
         }// fin_for
     }// fin_for distance
 
-    return unusable_neighbours;
+    return serving_neighbours;
 }
-
-std::list<Coordinates> *Field::getNeighbourUnusableParcels(const Coordinates &coord, unsigned servingDistance) const
-{
-    list<Coordinates> *unusable_neighbours = new list<Coordinates>;
-
-    int serve_dist = (int)servingDistance;
-
-    // On vérifie si les routes entre (x +dist;y +dist) et (x -dist;y -dist)
-    /// On vérifie ((2.serve_dist)+1)² parcelles,  alors qu'on pourrait en vérifier moins
-    for (int i = coord.row + serve_dist; i >= coord.row - serve_dist; --i) {
-        for (int j = coord.col + serve_dist; j >= coord.col - serve_dist; --j) {
-            // On vérifie que la parcelle n'est pas en dehors de la matrice et qu'elle n'est pas la coordonnée courante
-            Coordinates neighbour(j,  i);
-            if (isUnusableParcel(neighbour) && !(neighbour == coord)
-                    && coord.manhattanDistance(neighbour) <= servingDistance) {
-                // Ajout dans les routes voisines de la parcelle
-                unusable_neighbours->push_back(Coordinates(j, i));    /// @see copie faite :'(
-            }
-        }// fin_for
-    }// fin_for
-
-    return unusable_neighbours;
-}
-
 
 bool Field::hasServingRoad(const Coordinates &coord , unsigned servingDistance) const
 {

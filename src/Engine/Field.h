@@ -151,14 +151,6 @@ public:
      */
     inline std::vector<std::vector<State>>::iterator end() { return parcels.end(); }
 
-    //    friend std::vector<std::vector<State>>::const_iterator begin(const Field& f) { return f.begin(); }
-    //    friend std::vector<std::vector<State>>::const_iterator end(const Field& f) { return f.end(); }
-    /**
-     * @brief std::vector<State>::const_iterator::operator ++
-     * @return Un itérateur constant sur la surface
-     */
-    friend std::vector<State>::const_iterator& std::vector<State>::const_iterator::operator++();
-
     /**
      * Retourne la première coordonée de la matrice, elle peut ensuite
      * être modifée pour servir d'itérateur à l'aide de nextCoordinates()
@@ -229,6 +221,12 @@ private:
      */
     inline bool isRoad(const Coordinates& neighbour) const;
     /**
+     * Vérifie qu'une position est valide et a une parcelle exploitable
+        * @param neighbour Coordonnées de la parcelle
+     * @return vrai si la parcelle est exploitable
+     */
+    inline bool isParcel(const Coordinates &neighbour) const;
+    /**
      * Vérifie qu'une position est valide et a une parcelle non exploitable
         * @param neighbour Coordonnées de la parcelle
      * @return vrai si la parcelle n'est pas exploitable
@@ -244,25 +242,39 @@ private:
     bool isRoadAndNeighbourOf(const Coordinates& neighbour, const Coordinates& coord, unsigned servingDistance) const;
 
 public:
-    /**
-     * Recherche des parcelles qui sont concomitantes à la cellule
-        * @param coord Coordonnées de la parcelle
-     * @return une liste de parcelle adjacentes à la cellule
-     */
-    std::list<Coordinates> *getNeighbourParcels( const Coordinates& coord ) const;
-    /**
-     * Recherche des parcelles qui serait desservies grâce au passage de la parcelle en route
-        * @param coord Coordonnées de la parcelle
-        * @param servingDistance Distance à laquelle les routes rendent les parcelles utilisables
-     * @return une liste de routes qui deviendraient utilisables sur la parcelle devenait une route
-     */
-    std::list<Coordinates> *getNeighbourUnusableParcels( const Coordinates& coord, unsigned servingDistance ) const;
+//    /**
+//     * Recherche des parcelles qui sont concomitantes à la cellule
+//        * @param coord Coordonnées de la parcelle
+//     * @return une liste de parcelle adjacentes à la cellule
+//     */
+//    std::list<Coordinates> *getNeighbourParcels( const Coordinates& coord ) const;
     /**
      * Recherche des portions de routes qui sont concomitantes à la parcelle courante
         * @param coord Coordonnées de la parcelle
      * @return une liste de routes adjacentes à la parcelle
      */
     std::list<Coordinates> *getNeighbourRoads( const Coordinates& coord ) const;
+
+
+// bool
+private:
+    std::list<Coordinates> *getClose(const Coordinates &coord, unsigned maxDist, bool (Field::*neighbourVerif)(const Coordinates &) const) const;
+
+public:
+    /**
+     * Recherche des parcelles qui serait desservies grâce au passage de la parcelle en route
+        * @param coord Coordonnées de la parcelle
+        * @param servingDistance Distance à laquelle les routes rendent les parcelles utilisables
+     * @return une liste de parcelles qui deviendraient utilisables si la parcelle devenait une route
+     */
+    std::list<Coordinates> *getCloseUnusableParcels( const Coordinates& coord, unsigned servingDistance ) const;
+    /**
+     * Recherche des parcelles qui sont proches de la position
+     * @param coord Coordonnées de la position
+     * @param maxDist Distance maximale entre la parcelle et la position
+     * @return une liste de parcelles proche de la position donnée
+     */
+    std::list<Coordinates> *getCloseParcels( const Coordinates& coord, unsigned maxDist ) const;
     /**
      * Recherche des portions de routes qui peuvent désservir la parcelle
          * @param coord Coordonnées de la parcelle à desservir

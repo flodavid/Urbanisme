@@ -22,18 +22,6 @@ FieldWidget* initWindow(const Field* myField){
     return field_widget;
 }
 
-bool oneRoad(LocalSearch& myLocalSearch, FieldWidget* myFieldWidget){
-    if (myLocalSearch.addRoadUsable()){
-        myFieldWidget->redraw();
-        return true;
-    }
-    else {
-        return false;
-    }
-//        sleep(1);
-//        std::this_thread::sleep_for (std::chrono::seconds(1));
-}
-
 /**
  * Création du terrain de l'exemple, exécution de l'évaluation, affichage du résultat,
  * affichage tu temps pris par de l'évaluation
@@ -51,29 +39,29 @@ int main(int argc, char* argv[])
     Field myField(20, 20);
 
     Resolution myResolution(myField, myParameters);
-//@{
-//     // Solution de l'exemple :
-//    myField.createExample();
-//@}
+    //@{
+    //     // Solution de l'exemple :
+    //    myField.createExample();
+    //@}
     
-//@{
+    //@{
     // Angle
-//        myField.add_in_out(11,19);
-//        myField.add_in_out(19,4);
+    //        myField.add_in_out(11,19);
+    //        myField.add_in_out(19,4);
     // Mm colonne
-//        myField.add_in_out(0,4);
-//        myField.add_in_out(0,19);
+    //        myField.add_in_out(0,4);
+    //        myField.add_in_out(0,19);
     // En face : coude
-        myField.add_in_out(19,8);
-        myField.add_in_out(0,4);
+    //        myField.add_in_out(19,8);
+    //        myField.add_in_out(0,4);
     // E/S exemple
-//        myField.add_in_out(9,19);
-//        myField.add_in_out(9,0);
+    myField.add_in_out(9,19);
+    myField.add_in_out(9,0);
 
     // Solution avec recherche locale
     LocalSearch myLocalSearch(&myField, &myParameters);
     myLocalSearch.initSolution();
-//@}
+    //@}
     
     // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
     myField.defineUsables(myParameters.get_serve_distance());
@@ -86,13 +74,10 @@ int main(int argc, char* argv[])
     // Fenêtre
     FieldWidget* myFieldWidget= initWindow(&myField);
 
-    /** @see Tests **/
-    unsigned road_num= 1;
-    while(oneRoad(myLocalSearch, myFieldWidget)) {
-        cout << endl<< "=== Ajout de la route "<< road_num<< endl;
-        oneRoad(myLocalSearch, myFieldWidget);
-        ++ road_num;
-    }
+    /** Tests **/
+    myResolution.localSearchUsableObjective(myLocalSearch);
+
+    myFieldWidget->redraw();
     /** Fin tests **/
 
     cout << endl<< "===== Evaluation après recherche locale ====="<< endl;

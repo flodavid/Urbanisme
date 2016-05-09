@@ -6,6 +6,7 @@
 
 #include "Engine/Parameters.h"
 #include "evaluation.h"
+#include "localsearch.h"
 
 /**
  * @brief La classe effectuant l'ensemble de la résolution et le front Pareto
@@ -53,7 +54,31 @@ public:
      * TODO mettre à jour le front pareto
      * @param myEvaluation
      */
-    void evaluateBothObjectives(Evaluation& myEvaluation);
+    void evaluateBothObjectives(Evaluation& myEvaluation) const;
+
+    /* Recherche locale */
+    /**
+     * Tente d'ajouter une seule route avec la recherche locale,
+     * pour maximiser le nombre de parcelles exploitables
+     * @param myLocalSearch
+     * @return
+     */
+    bool oneRoadUsableObjective(const LocalSearch& localSearch);
+
+    /**
+     * Exécute la recherche locale permettant de maximiser le nombre de parcelles exploitables
+     * @param localSearch Recherche locale effectuant les opérations
+     * @param fieldWidget
+     * @see Utiliser un signal pour mettre à jour l'affichage pendant les recherche ?
+     */
+    void localSearchUsableObjective(const LocalSearch& localSearch);
+    /**
+     * Exécute la recherche locale permettant de maximiser l'accessibilité
+     * @param localSearch Recherche locale effectuant les opérations
+     * @param fieldWidget
+     * @see Utiliser un signal pour mettre à jour l'affichage pendant les recherche ?
+     */
+    void localSearchAccessObjective(const LocalSearch& localSearch);
 };
 
 #endif // RESOLUTION_H

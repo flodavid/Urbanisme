@@ -60,7 +60,7 @@ public:
      * permettant d'obtenir une solution réalisable avec un nombre de parcelles exploitables
      * supérieur ou égal au nombre courant.
      */
-    bool addRoadUsable();
+    bool addRoadUsable() const;
     /**
      * Tente l'ajout d'un chemin (série de routes) avec pour objectif d'améliorer l'accessibilité.
      * @return faux si aucune route n'a pu être ajoutée car il n'y a aucun placement de chemin

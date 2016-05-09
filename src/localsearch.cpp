@@ -81,7 +81,7 @@ void LocalSearch::horizontal_roads(Coordinates &in_out_1, Coordinates &in_out_2)
     }
 }
 
-bool LocalSearch::addRoadUsable()
+bool LocalSearch::addRoadUsable() const
 {
     Coordinates coord_min(-1,-1);
 
@@ -91,12 +91,14 @@ bool LocalSearch::addRoadUsable()
 
     do {
         if (field->getNeighbourRoads(coord)->size() > 0) {
-            cout << "\t Test de "<< coord;
 
             unsigned nb_roads_neighbours= field->getServingRoads(coord, params.get_serve_distance())->size();
-            unsigned nb_parcels_neighbours= field->getNeighbourUnusableParcels(coord, params.get_serve_distance())->size();
+            unsigned nb_parcels_neighbours= field->getCloseUnusableParcels(coord, params.get_serve_distance())->size();
 
+#if DEBUG_ADD_USABLE_ROAD
+            cout << "\t Test de "<< coord;
             cout << " NB R : "<< nb_roads_neighbours<<" ; Nb P : "<< nb_parcels_neighbours;
+#endif
 
             /// TODO est-ce utile de soustraire le nombre de voisin, mettre un coef, ... ? OUI, ça a une utilité, pour éviter de coller 2 routes
             int ratio=  (nb_parcels_neighbours) - (nb_roads_neighbours/2);
@@ -122,7 +124,7 @@ bool LocalSearch::addRoadUsable()
 
         return true;
     } else {
-        cerr << "Aucune route viable"<< endl;
+        cerr << "Aucune route viable pour maximiser le nombre d'exploitables"<< endl;
         return false;
     }
 }
@@ -134,18 +136,31 @@ bool LocalSearch::addRoadsAccess(unsigned nbToAdd)
     Coordinates& coord= Field::first();
 
     float gain_max= 0.0;
+    do {
+        if (field->getNeighbourRoads(coord) > 0) {
+            list<Coordinates>* accessible_roads= field->getCloseParcels(coord, 2* params.get_serve_distance());
 
+            for(const Coordinates& accessible_road : *accessible_roads){
+                // TODO
+            }
+
+            delete accessible_roads;
+        }
+
+    } while(field->nextCoordinates(&coord));
+    delete &coord;
 
     if ( !roads_to_add.empty()) {
-        for (const Coordinates& coord_road : roads_to_add)
-        field->add_road(coord_road);
+        for (const Coordinates& coord_road : roads_to_add) {
+            field->add_road(coord_road);
+        }
 
         // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
         field->updateUsables(params.get_serve_distance());
 
         return true;
     } else {
-        cerr << "Aucune routes viable pour maximiser l'accessibilité"<< endl;
+        cerr << "Aucun chemin viable pour maximiser l'accessibilité"<< endl;
         return false;
     }
 
