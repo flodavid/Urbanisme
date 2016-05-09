@@ -103,6 +103,7 @@ int main(int argc, char* argv[])
 
 /*! \mainpage Page principale de la documentation du projet "Urbanisme"
  * Github : https://github.com/flodavid/Urbanisme
+ * Retour au site de présentation : https://flodavid.github.io/Urbanisme
  * \section intro_sec Introduction
  * Ce projet à pour but d'optimiser le placement de routes sur une surface, en maximisant les zones exploitables (desservies par une route) et leur accessibilité.
  * On a donc un paramètre de distance de desserte défini au début de l'exécution.
@@ -119,8 +120,11 @@ int main(int argc, char* argv[])
  * La classe Resolution est chargée d'effectuer l'évaluation et le stockage des données calculée lors de celle-ci, ainsi que de mettre à jour ces valeurs lors des modifications de la solution.
  *
  * \subsection step3 Etape 3: Définition de méthodes de création d'un voisin d'une solution
- * A faire.
+ * + Une méthode ajoute une seule route, afin de trouver une solution avec un nombre de parcelles exploitables supérieur ou égal
+ * + En cours : Une méthode qui ajoute un nombre définit de routes afin d'obtenir une solution avec une meilleure accessibilité
+ * + A faire : des méthodes qui "perturbent" la solution courantes, pour trouver sortir du minimum local
+ * + A faire : stocker les résultats afin de créer un front Pareto et choisir les meilleurs (seulement ?) voisins
  *
  * \subsection step4 Etape 4: Affichage d'une solution
- * A faire, utilisation de Qt.
+ * Utilisation de Qt.
  */

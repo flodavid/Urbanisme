@@ -30,17 +30,17 @@ avec tests correspondants
 par les routes
 
 ### III. Ajouts futurs
-1. [x] Affichage d'une solution (Qt envisagé)
-2. [ ] Transformer la matrice en un graphe
-3. [ ] Créer une fonction de voisinage sur une solution afin d'effectuer une recherche locale
+1. [x] Affichage d'une solution : Framework Qt
+2. [ ] Créer une fonction de voisinage sur une solution afin d'effectuer une recherche locale : En cours
+3. [ ] Ajouter des fonctions de mise à jour des valeurs et de l'évaluation d'une solution
 4. [ ] Générer des solutions et créer le front Pareto correspondant
-5. [ ] Ajouter des fonctions de mise à jour des valeurs et de l'évaluation d'une solution
-6. [ ] Implémenter des algorithmes de type Dijkstra (boost-graph ?)
 
 ### IV. Améliorations possibles
 + [ ] Stocker les voisinages dans un vecteur de listes (avec couples : valeur-voisin ?)
 + [x] Stocker les valeurs de distance par routes entre chaque parcelle et chaque autre parcelle ?
 Ou entre chaque parcelles et ses suivantes ? J'utilise une matrice à 4 dimensions
++ [ ] Transformer la matrice en un graphe
++ [ ] Implémenter des algorithmes de type Dijkstra (boost-graph ?)
 
 ### V. Fonctionnalitées envisagées
 + [ ] Changer la forme des cellules : hexagonales ...

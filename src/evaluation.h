@@ -30,6 +30,9 @@ private:
     
 public:
     // FLAGS
+    /**
+     * Flag indiquant si la matrice de distance des routes a été calculée
+     */
     bool road_distances_are_initiated= false;
 
 public:

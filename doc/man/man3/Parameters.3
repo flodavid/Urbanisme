@@ -1,4 +1,4 @@
-.TH "Parameters" 3 "Mon May 2 2016" "Urbanisme" \" -*- nroff -*-
+.TH "Parameters" 3 "Mon May 9 2016" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -13,6 +13,9 @@ Parameters \-
 .in +1c
 .ti -1c
 .RI "\fBParameters\fP (unsigned _serve_distance, unsigned _road_width)"
+.br
+.ti -1c
+.RI "\fBParameters\fP (const \fBParameters\fP &other)"
 .br
 .ti -1c
 .RI "unsigned \fBget_road_width\fP () const "
@@ -40,6 +43,15 @@ Constructeur de la classe paramètres
 \fI_road_width\fP Largeur des routes 
 .br
 \fI_serve_distance\fP Distance de desserte des routes 
+.RE
+.PP
+
+.SS "Parameters::Parameters (const \fBParameters\fP & other)"
+Constructeur par recopie de la classe 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIother\fP Instance à recopier afin de créer la nouvelle instance 
 .RE
 .PP
 

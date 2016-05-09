@@ -1,4 +1,4 @@
-.TH "LocalSearch" 3 "Mon May 2 2016" "Urbanisme" \" -*- nroff -*-
+.TH "LocalSearch" 3 "Mon May 9 2016" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -21,9 +21,6 @@ LocalSearch \- The \fBLocalSearch\fP class TODO ajouter les entrées et sorties\
 .RI "\fBLocalSearch\fP (\fBField\fP *_field, const \fBParameters\fP *_params)"
 .br
 .ti -1c
-.RI "\fBLocalSearch\fP (unsigned int nbCols, unsigned int nbRows, const \fBParameters\fP *_params)"
-.br
-.ti -1c
 .RI "\fBLocalSearch\fP (const \fBLocalSearch\fP &other)"
 .br
 .in -1c
@@ -33,7 +30,10 @@ LocalSearch \- The \fBLocalSearch\fP class TODO ajouter les entrées et sorties\
 .RI "void \fBinitSolution\fP ()"
 .br
 .ti -1c
-.RI "void \fBaddRoad\fP ()"
+.RI "bool \fBaddRoadUsable\fP ()"
+.br
+.ti -1c
+.RI "bool \fBaddRoadsAccess\fP (unsigned nbToAdd)"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -56,19 +56,6 @@ Constructeur d'une recherche locale à partir d'une surface existante et des par
 Constructeurs 
 .SS ""
 
-.SS "LocalSearch::LocalSearch (unsigned int nbCols, unsigned int nbRows, const \fBParameters\fP * _params)"
-Constructeur d'une recherche locale à partir de la taille de la surface et des paramètres des routes Une surface est crée 
-.PP
-\fBParameters:\fP
-.RS 4
-\fInbCols\fP Largeur de la surface 
-.br
-\fInbRows\fP Hauteur de la surface 
-.br
-\fI_params\fP Paramètres des routes 
-.RE
-.PP
-
 .SS "LocalSearch::LocalSearch (const \fBLocalSearch\fP & other)"
 Constructeur d'une recherche locale par recopie La surface de l'autre instance est recopiée 
 .PP
@@ -80,6 +67,24 @@ Constructeur d'une recherche locale par recopie La surface de l'autre instance e
 
 .SH "Member Function Documentation"
 .PP 
+.SS "bool LocalSearch::addRoadsAccess (unsigned nbToAdd)"
+Tente l'ajout d'un chemin (série de routes) avec pour objectif d'améliorer l'accessibilité\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+faux si aucune route n'a pu être ajoutée car il n'y a aucun placement de chemin permettant d'obtenir une solution réalisable avec une accessibilité meilleures ou équivalente\&. 
+.RE
+.PP
+
+.SS "bool LocalSearch::addRoadUsable ()"
+Tente l'ajout d'une route avec pour objectif d'augmenter le nombre de parcelles exploitables\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+faux si aucune route n'a pu être ajoutée car il n'y a aucun placement de route permettant d'obtenir une solution réalisable avec un nombre de parcelles exploitables supérieur ou égal au nombre courant\&. 
+.RE
+.PP
+TODO est-ce utile de soustraire le nombre de voisin, mettre un coef, \&.\&.\&. ? OUI, ça a une utilité, pour éviter de coller 2 routes 
 .SS "void LocalSearch::initSolution ()"
 Relie les entrées et sorties entre elles, de manière directe
 .PP

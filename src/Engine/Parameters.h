@@ -16,6 +16,10 @@ public:
      * @param _serve_distance Distance de desserte des routes
      */
     Parameters(unsigned _serve_distance, unsigned _road_width);
+    /**
+     * Constructeur par recopie de la classe
+     * @param other Instance à recopier afin de créer la nouvelle instance
+     */
     Parameters(const Parameters& other);
     ~Parameters();
 

@@ -253,6 +253,7 @@ public:
     /**
      * Recherche des parcelles qui serait desservies grâce au passage de la parcelle en route
         * @param coord Coordonnées de la parcelle
+        * @param servingDistance Distance à laquelle les routes rendent les parcelles utilisables
      * @return une liste de routes qui deviendraient utilisables sur la parcelle devenait une route
      */
     std::list<Coordinates> *getNeighbourUnusableParcels( const Coordinates& coord, unsigned servingDistance ) const;

@@ -1,4 +1,4 @@
-.TH "Field" 3 "Mon May 2 2016" "Urbanisme" \" -*- nroff -*-
+.TH "Field" 3 "Mon May 9 2016" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -63,6 +63,9 @@ Field \-
 .RI "std::vector< std::vector< State > >::iterator \fBend\fP ()"
 .br
 .RI "\fIend \fP"
+.ti -1c
+.RI "std::list< \fBCoordinates\fP > * \fBgetNeighbourParcels\fP (const \fBCoordinates\fP &coord) const "
+.br
 .in -1c
 .PP
 .RI "\fB\fP"
@@ -127,7 +130,7 @@ Field \-
 .in +1c
 .in +1c
 .ti -1c
-.RI "void \fBcreateExample\fP (unsigned servingDistance)"
+.RI "void \fBcreateExample\fP ()"
 .br
 .RI "\fIcreateExample \fP"
 .in -1c
@@ -155,7 +158,7 @@ Field \-
 .RI "void \fBgenerateInsAndOuts\fP (unsigned nb)"
 .br
 .ti -1c
-.RI "std::list< \fBCoordinates\fP > * \fBgetNeighbourParcels\fP (const \fBCoordinates\fP &coord) const "
+.RI "std::list< \fBCoordinates\fP > * \fBgetNeighbourUnusableParcels\fP (const \fBCoordinates\fP &coord, unsigned servingDistance) const "
 .br
 .ti -1c
 .RI "std::list< \fBCoordinates\fP > * \fBgetNeighbourRoads\fP (const \fBCoordinates\fP &coord) const "
@@ -164,7 +167,13 @@ Field \-
 .RI "std::list< \fBCoordinates\fP > * \fBgetServingRoads\fP (const \fBCoordinates\fP &coord, unsigned servingDistance) const "
 .br
 .ti -1c
+.RI "bool \fBhasServingRoad\fP (const \fBCoordinates\fP &coord, unsigned servingDistance) const "
+.br
+.ti -1c
 .RI "void \fBdefineUsables\fP (unsigned servingDistance)"
+.br
+.ti -1c
+.RI "void \fBupdateUsables\fP (unsigned servingDistance)"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -316,7 +325,7 @@ true si la coordonnée appartient à la matrice
 .RE
 .PP
 
-.SS "void Field::createExample (unsigned servingDistance)"
+.SS "void Field::createExample ()"
 
 .PP
 createExample 
@@ -429,13 +438,8 @@ Le nombre de parcelles, nombre de ligne facteur nombre de colonnes, un entier no
 .RE
 .PP
 
-.SS "std::list< \fBCoordinates\fP > * Field::getNeighbourParcels (const \fBCoordinates\fP & coord) const"
-Recherche des parcelles qui sont concomitantes à la route 
-.PP
-\fBSee also:\fP
-.RS 4
-forcément une route ? 
-.RE
+.SS "std::list<\fBCoordinates\fP>* Field::getNeighbourParcels (const \fBCoordinates\fP & coord) const"
+Recherche des parcelles qui sont concomitantes à la cellule 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -444,7 +448,7 @@ forcément une route ?
 .PP
 \fBReturns:\fP
 .RS 4
-une liste de routes adjacentes à la parcelle 
+une liste de parcelle adjacentes à la cellule 
 .RE
 .PP
 
@@ -462,6 +466,29 @@ une liste de routes adjacentes à la parcelle
 .RE
 .PP
 
+.SS "std::list< \fBCoordinates\fP > * Field::getNeighbourUnusableParcels (const \fBCoordinates\fP & coord, unsigned servingDistance) const"
+Recherche des parcelles qui serait desservies grâce au passage de la parcelle en route 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcoord\fP Coordonnées de la parcelle 
+.br
+\fIservingDistance\fP Distance à laquelle les routes rendent les parcelles utilisables 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+une liste de routes qui deviendraient utilisables sur la parcelle devenait une route 
+.RE
+.PP
+On vérifie ((2\&.serve_dist)+1)² parcelles, alors qu'on pourrait en vérifier moins
+.PP
+\fBSee also:\fP
+.RS 4
+copie faite :'( 
+.RE
+.PP
+
 .SS "std::list< \fBCoordinates\fP > * Field::getServingRoads (const \fBCoordinates\fP & coord, unsigned servingDistance) const"
 Recherche des portions de routes qui peuvent désservir la parcelle 
 .PP
@@ -475,6 +502,22 @@ Recherche des portions de routes qui peuvent désservir la parcelle
 \fBReturns:\fP
 .RS 4
 une liste de routes distance inférieure ou égale à la distance de desserte 
+.RE
+.PP
+On vérifie ((2\&.serve_dist)+1)² parcelles, alors qu'on pourrait en vérifier moins 
+.SS "bool Field::hasServingRoad (const \fBCoordinates\fP & coord, unsigned servingDistance) const"
+Vérifie que la parcelle a un voisin 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcoord\fP Coordonnées de la parcelle à desservir 
+.br
+\fIservingDistance\fP Distance de desserte des routes 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+vrai si la parcelle est desservie par au moins une route 
 .RE
 .PP
 On vérifie ((2\&.serve_dist)+1)² parcelles, alors qu'on pourrait en vérifier moins 
@@ -553,6 +596,15 @@ Impression sur la sortie standard des entrées et sorties de la surface
 .PP
 Affichage 
 .SS ""
+
+.SS "void Field::updateUsables (unsigned servingDistance)"
+Met à jour les parcelles dans le voisinage d'une route comme étant exploitables 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIservingDistance\fP Distance maximale du voisinage 
+.RE
+.PP
 
 .SH "Friends And Related Function Documentation"
 .PP 

@@ -129,13 +129,25 @@ bool LocalSearch::addRoadUsable()
 
 bool LocalSearch::addRoadsAccess(unsigned nbToAdd)
 {
-    Coordinates coord_min(-1,-1);
+    list<Coordinates> roads_to_add;
 
     Coordinates& coord= Field::first();
 
     float gain_max= 0.0;
 
 
+    if ( !roads_to_add.empty()) {
+        for (const Coordinates& coord_road : roads_to_add)
+        field->add_road(coord_road);
+
+        // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
+        field->updateUsables(params.get_serve_distance());
+
+        return true;
+    } else {
+        cerr << "Aucune routes viable pour maximiser l'accessibilité"<< endl;
+        return false;
+    }
 
 }
 

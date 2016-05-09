@@ -1,4 +1,4 @@
-.TH "Resolution" 3 "Mon May 2 2016" "Urbanisme" \" -*- nroff -*-
+.TH "Resolution" 3 "Mon May 9 2016" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -17,6 +17,12 @@ Resolution \- The \fBResolution\fP class Elle contient l'intégralité des donn�
 .br
 .ti -1c
 .RI "\fBResolution\fP (unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth, std::list< \fBCoordinates\fP > &ins_outs)"
+.br
+.ti -1c
+.RI "\fBResolution\fP (const \fBField\fP &field, const \fBParameters\fP &_params)"
+.br
+.ti -1c
+.RI "void \fBevaluateBothObjectives\fP (\fBEvaluation\fP &myEvaluation)"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -53,6 +59,28 @@ Constructeur d'une résolution à partir de tous les paramètres du problème, a
 \fIroadsWidth\fP Largeur des routes 
 .br
 \fIins_outs\fP Liste d'entrées/sorties de la surface 
+.RE
+.PP
+
+.SS "Resolution::Resolution (const \fBField\fP & field, const \fBParameters\fP & _params)"
+Construit l'instance en recopiant une surface et des paramètres existants 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIfield\fP 
+.br
+\fI_params\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void Resolution::evaluateBothObjectives (\fBEvaluation\fP & myEvaluation)"
+Evalue les deux objectifs TODO mettre à jour le front pareto 
+.PP
+\fBParameters:\fP
+.RS 4
+\fImyEvaluation\fP 
 .RE
 .PP
 

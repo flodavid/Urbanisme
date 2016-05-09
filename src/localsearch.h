@@ -26,15 +26,16 @@ public:
      * @param _params Paramètres des routes
      */
     LocalSearch( Field* _field, const Parameters* _params );
-//     /**
-//      * Constructeur d'une recherche locale à partir de la taille de la surface et
-//      * des paramètres des routes
-//      * Une surface est crée
-//      * @param nbCols Largeur de la surface
-//      * @param nbRows Hauteur de la surface
-//      * @param _params Paramètres des routes
-//      */
-//     LocalSearch( unsigned int nbCols, unsigned int nbRows, const Parameters* _params );
+////     /**
+////      * Constructeur d'une recherche locale à partir de la taille de la surface et
+////      * des paramètres des routes
+////      * Une surface est crée
+////      * @param nbCols Largeur de la surface
+////      * @param nbRows Hauteur de la surface
+////      * @param _params Paramètres des routes
+////      */
+////     LocalSearch( unsigned int nbCols, unsigned int nbRows, const Parameters* _params );
+
     /**
      * Constructeur d'une recherche locale par recopie
      * La surface de l'autre instance est recopiée
@@ -53,8 +54,18 @@ private:
     void horizontal_roads(Coordinates& in_out_1, Coordinates& in_out_2);
 
 public:
+    /**
+     * Tente l'ajout d'une route avec pour objectif d'augmenter le nombre de parcelles exploitables.
+     * @return faux si aucune route n'a pu être ajoutée car il n'y a aucun placement de route
+     * permettant d'obtenir une solution réalisable avec un nombre de parcelles exploitables
+     * supérieur ou égal au nombre courant.
+     */
     bool addRoadUsable();
-
+    /**
+     * Tente l'ajout d'un chemin (série de routes) avec pour objectif d'améliorer l'accessibilité.
+     * @return faux si aucune route n'a pu être ajoutée car il n'y a aucun placement de chemin
+     * permettant d'obtenir une solution réalisable avec une accessibilité meilleures ou équivalente.
+     */
     bool addRoadsAccess(unsigned nbToAdd);
 
 };

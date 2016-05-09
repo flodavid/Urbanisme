@@ -1,4 +1,4 @@
-.TH "Evaluation" 3 "Mon May 2 2016" "Urbanisme" \" -*- nroff -*-
+.TH "Evaluation" 3 "Mon May 9 2016" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -51,9 +51,16 @@ Evaluation \-
 .RI "float \fBmanhattanRatioBetween2Parcels\fP (const \fBCoordinates\fP &p1, const \fBCoordinates\fP &p2) const "
 .br
 .ti -1c
-.RI "float \fBevaluateRatio\fP (unsigned nbUsables)"
+.RI "float \fBevaluateRatio\fP ()"
 .br
 .in -1c
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "bool \fBroad_distances_are_initiated\fP = false"
+.br
 .in -1c
 .in +1c
 .ti -1c
@@ -94,7 +101,7 @@ Constructeur de la casse résolution
 
 .SH "Member Function Documentation"
 .PP 
-.SS "float Evaluation::evaluateRatio (unsigned nbUsables)"
+.SS "float Evaluation::evaluateRatio ()"
 Evalue le ratio de toutes les solutions 
 .PP
 \fBReturns:\fP
@@ -210,6 +217,10 @@ l'évaluation en flottant
 .RE
 .PP
 
+.SH "Member Data Documentation"
+.PP 
+.SS "bool Evaluation::road_distances_are_initiated = false"
+Flag indiquant si la matrice de distance des routes a été calculée 
 
 .SH "Author"
 .PP 
