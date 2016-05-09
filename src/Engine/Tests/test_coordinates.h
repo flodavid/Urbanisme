@@ -14,7 +14,7 @@
 #include "../coordinates.h"
 
 /**
- * Tests sur les méthodes de la classe Coordinates
+ * @brief Tests sur les méthodes de la classe Coordinates
  */
 class CoordinatesTestFixture : public CppUnit::TestFixture {
  private:

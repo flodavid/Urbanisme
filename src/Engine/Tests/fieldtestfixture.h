@@ -14,7 +14,7 @@
 #include "../Field.h"
 
 /**
- * Tests sur la classe Field
+ * @brief Tests sur la classe Field
  * @test
  */
 class FieldTestFixture : public CppUnit::TestFixture {

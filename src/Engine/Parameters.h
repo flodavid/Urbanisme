@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * Représente les paramètres du problèmes
+ * @brief Représente les paramètres du problèmes
  */
 class Parameters
 {

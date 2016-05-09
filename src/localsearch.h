@@ -6,7 +6,7 @@
 #include "evaluation.h"
 
 /**
- * @brief The LocalSearch class
+ * @brief La classe chargée d'effectuer des recherches locales sur les différentes solutions
  * TODO ajouter les entrées et sorties
  */
 class LocalSearch

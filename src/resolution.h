@@ -8,7 +8,7 @@
 #include "evaluation.h"
 
 /**
- * @brief The Resolution class
+ * @brief La classe effectuant l'ensemble de la résolution et le front Pareto
  * Elle contient l'intégralité des données du problème et est chargée de lancer les algos,
  * de stocker les solutions et de construire le front pareto résultant.
  */

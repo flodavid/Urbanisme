@@ -7,7 +7,7 @@
 #include "../Engine/loadprogress.h"
 
 /**
- * Permet d'afficher une fenêtre avec une barre de progression pour les chargements
+ * @brief Permet d'afficher une fenêtre avec une barre de progression pour les chargements
  * Utilise la classe abstraite LoadProgress
  * @author Florian
  */

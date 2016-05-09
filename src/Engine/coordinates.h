@@ -8,7 +8,7 @@
 #include <algorithm> /// @see Normalement inutile, permet de ne pas utilise -lm lors compilation
 
 /**
- * Représentation et opérations simple sur des coordonnées dans un plan.
+ * @brief Représentation et opérations simple sur des coordonnées dans un plan.
  */
 class Coordinates
 {

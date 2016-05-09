@@ -15,7 +15,7 @@
 #include "../Engine/coordinates.h"
 
 /**
- * Tests sur la méthode calcRoadDistance() de la classe Evaluation
+ * @brief Tests sur la méthode calcRoadDistance() de la classe Evaluation
  * @test
  */
 class MinPathRoadTestFixture : public CppUnit::TestFixture

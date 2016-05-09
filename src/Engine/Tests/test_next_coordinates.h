@@ -15,7 +15,7 @@
 #include "../Field.h"
 
 /**
- * Tests sur la méthode nextCoordinates() de la classe Field
+ * @brief Tests sur la méthode nextCoordinates() de la classe Field
  * @test
  */
 class NextCoordinatesTestFixture : public CppUnit::TestFixture {

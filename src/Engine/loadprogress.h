@@ -2,7 +2,7 @@
 #define LOADPROGRESS_H
 
 /**
- * Classe abstraite, pour suivre l'évolution des chargements (en %)
+ * @brief Classe abstraite, pour suivre l'évolution des chargements (en %)
  * @author Florian
  */
 class LoadProgress

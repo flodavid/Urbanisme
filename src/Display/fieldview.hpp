@@ -21,7 +21,7 @@
 enum Colors{Black, Gray, Red, White, LightBlue};
 
 /**
- * Widget d'affichage de l'automate cellulaire. Ce composant
+ * @brief Widget d'affichage de l'automate cellulaire. Ce composant
  * permet de suivre graphiquement l'évolution de l'automate.
  * Il utilise un système de buffering et s'appuie sur la classe
  * Foret du moteur.
