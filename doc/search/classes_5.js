@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['resolution',['Resolution',['../class_resolution.html',1,'']]]
+  ['nextcoordinatestestfixture',['NextCoordinatesTestFixture',['../class_next_coordinates_test_fixture.html',1,'']]]
 ];

@@ -95,8 +95,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4e06cac4197074e0e9e922cc6306494c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_parameters.html#a4e06cac4197074e0e9e922cc6306494c">Parameters</a> (unsigned _road_width, unsigned _serve_distance)</td></tr>
-<tr class="separator:a4e06cac4197074e0e9e922cc6306494c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae51da94c9ccc0b03f3c40696a875f8bf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_parameters.html#ae51da94c9ccc0b03f3c40696a875f8bf">Parameters</a> (unsigned _serve_distance, unsigned _road_width)</td></tr>
+<tr class="separator:ae51da94c9ccc0b03f3c40696a875f8bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78540d8ac1a8c6bcf9d262caf2f5943c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_parameters.html#a78540d8ac1a8c6bcf9d262caf2f5943c">Parameters</a> (const <a class="el" href="class_parameters.html">Parameters</a> &amp;other)</td></tr>
+<tr class="separator:a78540d8ac1a8c6bcf9d262caf2f5943c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24b24b6f75e38b557409f1608d855f25"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_parameters.html#a24b24b6f75e38b557409f1608d855f25">get_road_width</a> () const </td></tr>
 <tr class="separator:a24b24b6f75e38b557409f1608d855f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5da3d531558c09300be6c66830ea070"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_parameters.html#ac5da3d531558c09300be6c66830ea070">get_serve_distance</a> () const </td></tr>
@@ -109,7 +111,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Représente les paramètres du problèmes </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a4e06cac4197074e0e9e922cc6306494c"></a>
+<a class="anchor" id="ae51da94c9ccc0b03f3c40696a875f8bf"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -117,13 +119,13 @@ Public Member Functions</h2></td></tr>
           <td class="memname">Parameters::Parameters </td>
           <td>(</td>
           <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>_road_width</em>, </td>
+          <td class="paramname"><em>_serve_distance</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>_serve_distance</em>&#160;</td>
+          <td class="paramname"><em>_road_width</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -136,6 +138,28 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">_road_width</td><td>Largeur des routes </td></tr>
     <tr><td class="paramname">_serve_distance</td><td>Distance de desserte des routes </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a78540d8ac1a8c6bcf9d262caf2f5943c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Parameters::Parameters </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_parameters.html">Parameters</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Constructeur par recopie de la classe </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>Instance à recopier afin de créer la nouvelle instance </td></tr>
   </table>
   </dd>
 </dl>

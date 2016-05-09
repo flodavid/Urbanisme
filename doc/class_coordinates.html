@@ -111,6 +111,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:addd99c33f1c15c4fd21a4e54f5607abf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acdfe893588fc29d44ea654e18424acbd"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coordinates.html#acdfe893588fc29d44ea654e18424acbd">euclideanDistance</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;other) const </td></tr>
 <tr class="separator:acdfe893588fc29d44ea654e18424acbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6f63f038a2caa0f9618c74e9190212c"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_coordinates.html#aa6f63f038a2caa0f9618c74e9190212c">operator&lt;</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;other) const </td></tr>
+<tr class="separator:aa6f63f038a2caa0f9618c74e9190212c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -216,6 +218,37 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Calcul de la distance Manhattan entre deux points </p><dl class="section return"><dt>Returns</dt><dd>distance manhattan : entier non signé </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa6f63f038a2caa0f9618c74e9190212c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Coordinates::operator&lt; </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Méthode utile seulement pour placer les vecteur dans un conteneur map </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>Autres coordonnées </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>vrai si la ligne de la seconde coordonnée est supérieur à la ligne de l'instance, ou la colonne les coordonnées sont sur la "même ligne". Faux sinon </dd></dl>
 
 </div>
 </div>

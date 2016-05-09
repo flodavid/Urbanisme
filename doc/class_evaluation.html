@@ -85,6 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_evaluation-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Evaluation Class Reference</div>  </div>
@@ -113,8 +114,13 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a40555125ea20101fd22db85f37ebd91a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a734ff96f3b230807abf0c6f95492c802"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#a734ff96f3b230807abf0c6f95492c802">manhattanRatioBetween2Parcels</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;p1, const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;p2) const </td></tr>
 <tr class="separator:a734ff96f3b230807abf0c6f95492c802"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56da18a75f3a10b530ab305d360596e8"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#a56da18a75f3a10b530ab305d360596e8">evaluateRatio</a> (unsigned nbUsables)</td></tr>
-<tr class="separator:a56da18a75f3a10b530ab305d360596e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32d1a075c6dc582f562dc51366ce7b0c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#a32d1a075c6dc582f562dc51366ce7b0c">evaluateRatio</a> ()</td></tr>
+<tr class="separator:a32d1a075c6dc582f562dc51366ce7b0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a2b9bd48dc36e2b67514a8c0a63ff372a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#a2b9bd48dc36e2b67514a8c0a63ff372a">road_distances_are_initiated</a> = false</td></tr>
+<tr class="separator:a2b9bd48dc36e2b67514a8c0a63ff372a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5888aea58a6be74a29a83613f5f5143"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#aa5888aea58a6be74a29a83613f5f5143">initSizeNeighbourhood</a> ()</td></tr>
 <tr class="separator:aa5888aea58a6be74a29a83613f5f5143"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf30207499f8b70fa41240e3983b4e19"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#adf30207499f8b70fa41240e3983b4e19">initCoordNeighbourhoodManhattan</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord)</td></tr>
@@ -165,15 +171,14 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a56da18a75f3a10b530ab305d360596e8"></a>
+<a class="anchor" id="a32d1a075c6dc582f562dc51366ce7b0c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">float Evaluation::evaluateRatio </td>
           <td>(</td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>nbUsables</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -441,6 +446,20 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Evalue le ratio de toutes les solutions avec des threads </p><dl class="section return"><dt>Returns</dt><dd>l'évaluation en flottant </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a2b9bd48dc36e2b67514a8c0a63ff372a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Evaluation::road_distances_are_initiated = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Flag indiquant si la matrice de distance des routes a été calculée </p>
 
 </div>
 </div>

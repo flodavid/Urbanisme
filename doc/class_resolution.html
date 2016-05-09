@@ -91,47 +91,127 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="_resolution_8h_source.html">Resolution.h</a>&gt;</code></p>
+<p>The <a class="el" href="class_resolution.html" title="The Resolution class Elle contient l&#39;intégralité des données du problème et est chargée de lancer les...">Resolution</a> class Elle contient l'intégralité des données du problème et est chargée de lancer les algos, de stocker les solutions et de construire le front pareto résultant.  
+ <a href="class_resolution.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="resolution_8h_source.html">resolution.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aee5874369769e870df7eb56fc0e28668"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#aee5874369769e870df7eb56fc0e28668">Resolution</a> (const <a class="el" href="class_field.html">Field</a> &amp;_field, const <a class="el" href="class_parameters.html">Parameters</a> &amp;_params)</td></tr>
-<tr class="separator:aee5874369769e870df7eb56fc0e28668"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33dc637eadfe34d6c7f431afc7aeb7b7"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#a33dc637eadfe34d6c7f431afc7aeb7b7">getRoadDistance</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord1, const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord2) const </td></tr>
-<tr class="separator:a33dc637eadfe34d6c7f431afc7aeb7b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:abd8e338344e55a33ff6731feca59182f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#abd8e338344e55a33ff6731feca59182f">set_params</a> (const <a class="el" href="class_parameters.html">Parameters</a> &amp;_params)</td></tr>
-<tr class="separator:abd8e338344e55a33ff6731feca59182f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:a1509c394e3e18cfef17144d3a2cf9e0d"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#a1509c394e3e18cfef17144d3a2cf9e0d">evaluateTotalUsable</a> () const </td></tr>
-<tr class="separator:a1509c394e3e18cfef17144d3a2cf9e0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f5c3f17b49886ca79e09103beebebe8"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#a1f5c3f17b49886ca79e09103beebebe8">manhattanRatioBetween2Parcels</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;p1, const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;p2) const </td></tr>
-<tr class="separator:a1f5c3f17b49886ca79e09103beebebe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad72e4fe7efba8aa6805bf6d3d3dbbe19"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#ad72e4fe7efba8aa6805bf6d3d3dbbe19">evaluateRatio</a> (unsigned nbUsables) const </td></tr>
-<tr class="separator:ad72e4fe7efba8aa6805bf6d3d3dbbe19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f6ad39394d14d36efa9de0583501a76"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#a1f6ad39394d14d36efa9de0583501a76">threadsEvaluateRatio</a> () const </td></tr>
-<tr class="separator:a1f6ad39394d14d36efa9de0583501a76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:a45423e0eb40f117a6c9f337c14c2a0dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#a45423e0eb40f117a6c9f337c14c2a0dc">createExample</a> ()</td></tr>
-<tr class="memdesc:a45423e0eb40f117a6c9f337c14c2a0dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">createExample  <a href="#a45423e0eb40f117a6c9f337c14c2a0dc">More...</a><br /></td></tr>
-<tr class="separator:a45423e0eb40f117a6c9f337c14c2a0dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e05f1569cf19f273cdb59e90e0d5f1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#a7e05f1569cf19f273cdb59e90e0d5f1e">initSizeNeighbourhood</a> ()</td></tr>
-<tr class="separator:a7e05f1569cf19f273cdb59e90e0d5f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f2b96d7149002ab33a96b257215e058"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#a3f2b96d7149002ab33a96b257215e058">initCoordNeighbourhoodManhattan</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord)</td></tr>
-<tr class="separator:a3f2b96d7149002ab33a96b257215e058"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a422f19851732418ba28a30473a79903a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#a422f19851732418ba28a30473a79903a">initNeighbourhoodManhattan</a> ()</td></tr>
-<tr class="separator:a422f19851732418ba28a30473a79903a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a365e5799300713103cc37605b96da408"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#a365e5799300713103cc37605b96da408">parcelsRoadDistance</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord1, const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord2)</td></tr>
-<tr class="separator:a365e5799300713103cc37605b96da408"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af35084a4031a5523a65e72f702d38aaa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#af35084a4031a5523a65e72f702d38aaa">Resolution</a> (unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth)</td></tr>
+<tr class="separator:af35084a4031a5523a65e72f702d38aaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd2f20cd4dcc483f15c6381179e6ec8e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#abd2f20cd4dcc483f15c6381179e6ec8e">Resolution</a> (unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth, std::list&lt; <a class="el" href="class_coordinates.html">Coordinates</a> &gt; &amp;ins_outs)</td></tr>
+<tr class="separator:abd2f20cd4dcc483f15c6381179e6ec8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfe95ef5ef837cbc834f39318c859605"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#acfe95ef5ef837cbc834f39318c859605">Resolution</a> (const <a class="el" href="class_field.html">Field</a> &amp;field, const <a class="el" href="class_parameters.html">Parameters</a> &amp;_params)</td></tr>
+<tr class="separator:acfe95ef5ef837cbc834f39318c859605"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e1c92d52393da8b75de099d2d35ca97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#a2e1c92d52393da8b75de099d2d35ca97">evaluateBothObjectives</a> (<a class="el" href="class_evaluation.html">Evaluation</a> &amp;myEvaluation)</td></tr>
+<tr class="separator:a2e1c92d52393da8b75de099d2d35ca97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Classe chargée de travailler sur les données en entrée du problème pour trouver des solution réalisables, opitmisant les objectifs suivants :</p><ol type="1">
-<li>Maximimiser les nombres de parcelles exploitables</li>
-<li>Minimiser la moyenne, la plus grande ou la somme des ratios entre distance des cellules par les routes et distance directe (distance Manhattan ou Euclidienne)</li>
-</ol>
-<p>On pourra éventuellement avoir plusieurs instances de <a class="el" href="class_field.html">Field</a> dans une <a class="el" href="class_resolution.html">Resolution</a>. </p>
+<div class="textblock"><p>The <a class="el" href="class_resolution.html" title="The Resolution class Elle contient l&#39;intégralité des données du problème et est chargée de lancer les...">Resolution</a> class Elle contient l'intégralité des données du problème et est chargée de lancer les algos, de stocker les solutions et de construire le front pareto résultant. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="aee5874369769e870df7eb56fc0e28668"></a>
+<a class="anchor" id="af35084a4031a5523a65e72f702d38aaa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Resolution::Resolution </td>
+          <td>(</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>nbCols</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>nbRows</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>serveDistance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>roadsWidth</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Constructeur d'une résolution à partir de tous les paramètres du problème </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nbCols</td><td>Largeur de la surface </td></tr>
+    <tr><td class="paramname">nbRows</td><td>Hauteur de la surface </td></tr>
+    <tr><td class="paramname">serveDistance</td><td>Distance de desserte des parcelles par les routes </td></tr>
+    <tr><td class="paramname">roadsWidth</td><td>Largeur des routes </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="abd2f20cd4dcc483f15c6381179e6ec8e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Resolution::Resolution </td>
+          <td>(</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>nbCols</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>nbRows</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>serveDistance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>roadsWidth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::list&lt; <a class="el" href="class_coordinates.html">Coordinates</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>ins_outs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Constructeur d'une résolution à partir de tous les paramètres du problème, avec une liste d'entrées et sorties </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nbCols</td><td>Largeur de la surface </td></tr>
+    <tr><td class="paramname">nbRows</td><td>Hauteur de la surface </td></tr>
+    <tr><td class="paramname">serveDistance</td><td>Distance de desserte des parcelles par les routes </td></tr>
+    <tr><td class="paramname">roadsWidth</td><td>Largeur des routes </td></tr>
+    <tr><td class="paramname">ins_outs</td><td>Liste d'entrées/sorties de la surface </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="acfe95ef5ef837cbc834f39318c859605"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -139,7 +219,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname">Resolution::Resolution </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="class_field.html">Field</a> &amp;&#160;</td>
-          <td class="paramname"><em>_field</em>, </td>
+          <td class="paramname"><em>field</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -154,10 +234,10 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Constructeur de la casse résolution </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Construit l'instance en recopiant une surface et des paramètres existants </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">_field</td><td>Surface sur laquelle on travaille </td></tr>
-    <tr><td class="paramname">_params</td><td>Paramètres du problème </td></tr>
+    <tr><td class="paramname">field</td><td></td></tr>
+    <tr><td class="paramname">_params</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -165,264 +245,31 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a45423e0eb40f117a6c9f337c14c2a0dc"></a>
+<a class="anchor" id="a2e1c92d52393da8b75de099d2d35ca97"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Resolution::createExample </td>
+          <td class="memname">void Resolution::evaluateBothObjectives </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="class_evaluation.html">Evaluation</a> &amp;&#160;</td>
+          <td class="paramname"><em>myEvaluation</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>createExample </p>
-<dl class="test"><dt><b><a class="el" href="test.html#_test000010">Test:</a></b></dt><dd>Utile seulement pour les tests </dd></dl>
-<h6></h6>
-<p>Autres méthodes utiles </p><h6></h6>
-<ul>
-<li></li>
-</ul>
-
-</div>
-</div>
-<a class="anchor" id="ad72e4fe7efba8aa6805bf6d3d3dbbe19"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float Resolution::evaluateRatio </td>
-          <td>(</td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>nbUsables</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Evalue le ratio de toutes les solutions </p><dl class="section return"><dt>Returns</dt><dd>la moyenne des ratios </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a1509c394e3e18cfef17144d3a2cf9e0d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned int Resolution::evaluateTotalUsable </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Compte le nombre total de parcelles exploitables sur la surface </p><dl class="section return"><dt>Returns</dt><dd>nombre de parcelles exploitables</dd></dl>
-<h6></h6>
-<p>Evaluations </p><h6></h6>
-
-</div>
-</div>
-<a class="anchor" id="a33dc637eadfe34d6c7f431afc7aeb7b7"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned Resolution::getRoadDistance </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;&#160;</td>
-          <td class="paramname"><em>coord1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;&#160;</td>
-          <td class="paramname"><em>coord2</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Donne la distance par les routes stockée </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Evalue les deux objectifs TODO mettre à jour le front pareto </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">coord1</td><td>Première coordonnée </td></tr>
-    <tr><td class="paramname">coord2</td><td>Seconde coordonnée </td></tr>
+    <tr><td class="paramname">myEvaluation</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>La distance par le route, un entier non signé </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a3f2b96d7149002ab33a96b257215e058"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Resolution::initCoordNeighbourhoodManhattan </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;&#160;</td>
-          <td class="paramname"><em>coord</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Définit la matrice de voisinage avec les routes avec la distance Manhattan </p>
-
-</div>
-</div>
-<a class="anchor" id="a422f19851732418ba28a30473a79903a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Resolution::initNeighbourhoodManhattan </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Définit la matrice de voisinage avec les routes avec la distance Manhattan </p>
-
-</div>
-</div>
-<a class="anchor" id="a7e05f1569cf19f273cdb59e90e0d5f1e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Resolution::initSizeNeighbourhood </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Initialise la matrice de voisinage selon la taille de la surface </p>
-
-</div>
-</div>
-<a class="anchor" id="a1f5c3f17b49886ca79e09103beebebe8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float Resolution::manhattanRatioBetween2Parcels </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;&#160;</td>
-          <td class="paramname"><em>p1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;&#160;</td>
-          <td class="paramname"><em>p2</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Calcule le ratio entre distance par la route et distance Manhattan entre deux positions </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">p1</td><td>premières coordonnées </td></tr>
-    <tr><td class="paramname">p2</td><td>secondes coordonnées </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>le ratio, sous forme de flottant </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a365e5799300713103cc37605b96da408"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned Resolution::parcelsRoadDistance </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;&#160;</td>
-          <td class="paramname"><em>coord1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;&#160;</td>
-          <td class="paramname"><em>coord2</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Calcule la distance par les routes entre deux cellules quelconques, en testant toutes les routs qui desservent la cellue et en respectant les paramètres </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">coord1</td><td>Coordonnée "de départ" </td></tr>
-    <tr><td class="paramname">coord2</td><td>Coordonnée "d'arrivée" </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>la valeur, entier non signé, de distance la plus courte, entre les deux coordonnées, en passant par les routes </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="abd8e338344e55a33ff6731feca59182f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Resolution::set_params </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_parameters.html">Parameters</a> &amp;&#160;</td>
-          <td class="paramname"><em>_params</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Mutateur sur les paramètres du problème</p>
-<h6></h6>
-<p>Getters </p><h6></h6>
-<h6></h6>
-<p>Setters </p><h6></h6>
-
-</div>
-</div>
-<a class="anchor" id="a1f6ad39394d14d36efa9de0583501a76"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float Resolution::threadsEvaluateRatio </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Evalue le ratio de toutes les solutions avec des threads </p><dl class="section return"><dt>Returns</dt><dd>l'évaluation en flottant </dd></dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="_resolution_8h_source.html">Resolution.h</a></li>
-<li>Resolution.cpp</li>
-<li>Resolution_others.cpp</li>
+<li><a class="el" href="resolution_8h_source.html">resolution.h</a></li>
+<li>resolution.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

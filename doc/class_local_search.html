@@ -100,15 +100,14 @@ Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:abc7cb089f69a68a3106f7893cbaf7ad6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#abc7cb089f69a68a3106f7893cbaf7ad6">LocalSearch</a> (<a class="el" href="class_field.html">Field</a> *_field, const <a class="el" href="class_parameters.html">Parameters</a> *_params)</td></tr>
 <tr class="separator:abc7cb089f69a68a3106f7893cbaf7ad6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7072d5eb80035b1a70487ea5eec6db19"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#a7072d5eb80035b1a70487ea5eec6db19">LocalSearch</a> (unsigned int nbCols, unsigned int nbRows, const <a class="el" href="class_parameters.html">Parameters</a> *_params)</td></tr>
-<tr class="separator:a7072d5eb80035b1a70487ea5eec6db19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2143b37f1133e099cd6a43dfc148326c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#a2143b37f1133e099cd6a43dfc148326c">LocalSearch</a> (const <a class="el" href="class_local_search.html">LocalSearch</a> &amp;other)</td></tr>
 <tr class="separator:a2143b37f1133e099cd6a43dfc148326c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab71af061cfd4ad211167f30b6bf9517e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#ab71af061cfd4ad211167f30b6bf9517e">initSolution</a> ()</td></tr>
 <tr class="separator:ab71af061cfd4ad211167f30b6bf9517e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73df737508995f894bd04b76bd82e679"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73df737508995f894bd04b76bd82e679"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addRoad</b> ()</td></tr>
-<tr class="separator:a73df737508995f894bd04b76bd82e679"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7460eeeb1ecd537dbaf51892a8cc93c9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#a7460eeeb1ecd537dbaf51892a8cc93c9">addRoadUsable</a> ()</td></tr>
+<tr class="separator:a7460eeeb1ecd537dbaf51892a8cc93c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28901ce0cadc4df0c0b800f05fba0387"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#a28901ce0cadc4df0c0b800f05fba0387">addRoadsAccess</a> (unsigned nbToAdd)</td></tr>
+<tr class="separator:a28901ce0cadc4df0c0b800f05fba0387"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="class_local_search.html" title="The LocalSearch class TODO ajouter les entrées et sorties. ">LocalSearch</a> class TODO ajouter les entrées et sorties. </p>
@@ -148,46 +147,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>addRoad</b> ()</td></
 
 </div>
 </div>
-<a class="anchor" id="a7072d5eb80035b1a70487ea5eec6db19"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">LocalSearch::LocalSearch </td>
-          <td>(</td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>nbCols</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>nbRows</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="class_parameters.html">Parameters</a> *&#160;</td>
-          <td class="paramname"><em>_params</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Constructeur d'une recherche locale à partir de la taille de la surface et des paramètres des routes Une surface est crée </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">nbCols</td><td>Largeur de la surface </td></tr>
-    <tr><td class="paramname">nbRows</td><td>Hauteur de la surface </td></tr>
-    <tr><td class="paramname">_params</td><td>Paramètres des routes </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a class="anchor" id="a2143b37f1133e099cd6a43dfc148326c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -211,6 +170,40 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>addRoad</b> ()</td></
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a28901ce0cadc4df0c0b800f05fba0387"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool LocalSearch::addRoadsAccess </td>
+          <td>(</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>nbToAdd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Tente l'ajout d'un chemin (série de routes) avec pour objectif d'améliorer l'accessibilité. </p><dl class="section return"><dt>Returns</dt><dd>faux si aucune route n'a pu être ajoutée car il n'y a aucun placement de chemin permettant d'obtenir une solution réalisable avec une accessibilité meilleures ou équivalente. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7460eeeb1ecd537dbaf51892a8cc93c9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool LocalSearch::addRoadUsable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Tente l'ajout d'une route avec pour objectif d'augmenter le nombre de parcelles exploitables. </p><dl class="section return"><dt>Returns</dt><dd>faux si aucune route n'a pu être ajoutée car il n'y a aucun placement de route permettant d'obtenir une solution réalisable avec un nombre de parcelles exploitables supérieur ou égal au nombre courant. </dd></dl>
+<p>TODO est-ce utile de soustraire le nombre de voisin, mettre un coef, ... ? OUI, ça a une utilité, pour éviter de coller 2 routes </p>
+
+</div>
+</div>
 <a class="anchor" id="ab71af061cfd4ad211167f30b6bf9517e"></a>
 <div class="memitem">
 <div class="memproto">
