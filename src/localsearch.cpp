@@ -170,18 +170,22 @@ list<Path*>* LocalSearch::getPaths(const Coordinates &coord1, const Coordinates 
 
 float LocalSearch::gainPath(Path *path) const
 {
-    eval->initRoadDistances();
-    eval->evaluateRatio();
+    if (! eval->road_distances_are_initiated){
+        eval->initRoadDistances();
+        eval->evaluateRatio();
+    }
     float eval_before= eval->get_avgAccess();
 
-    Field& tmp_field= eval->get_field();
+    Evaluation tmp_eval= *eval;
+
+    Field& tmp_field= tmp_eval.get_field();
     Field save_field= tmp_field;
     for (const Coordinates& coord_road : *path) {
         tmp_field.add_road(coord_road);
     }
-    eval->initRoadDistances();
-    eval->evaluateRatio();
-    float eval_after= eval->get_avgAccess();
+    tmp_eval.initRoadDistances();
+    tmp_eval.evaluateRatio();
+    float eval_after= tmp_eval.get_avgAccess();
 
     // Restauration de la surface
     eval->set_field(&save_field);
@@ -273,9 +277,9 @@ bool LocalSearch::addRoadsAccess(unsigned nbToAdd)
                 list<Path*>* possible_paths= getPaths(coord, accessible_road);
                 clog << "\tNombre de chemins pour aller à "<< accessible_road<< " : "<< possible_paths->size()<< endl;
                 for (Path* path: *possible_paths){
-                    float gain= gainPath(path) / (float)path->size();
+                    float gain= gainPath(path) / (float)(path->size());
 //#if DEBUG_ADD_ACCESS_ROAD
-                    clog << "Gain potentiel "<< gain<< endl;
+                    clog << "Gain potentiel "<< gain<< " (chemin de longueur "<< path->size()<< ")"<< endl;
 //#endif
                     if (gain > gain_max){
 #if DEBUG_ADD_ACCESS_ROAD
