@@ -24,6 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Urbanisme
+   &#160;<span id="projectnumber">0.1</span>
    </div>
   </td>
  </tr>
@@ -92,6 +93,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>Classe chargée de travailler sur les données en entrée du problème pour trouver des solution réalisables, opitmisant les objectifs suivants :  
+ <a href="class_evaluation.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="evaluation_8h_source.html">evaluation.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -131,11 +135,12 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a0a5ee8d089416dcf8b08acbae5d1c6d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Classe chargée de travailler sur les données en entrée du problème pour trouver des solution réalisables, opitmisant les objectifs suivants :</p><ol type="1">
+<div class="textblock"><p>Classe chargée de travailler sur les données en entrée du problème pour trouver des solution réalisables, opitmisant les objectifs suivants : </p>
+<ol type="1">
 <li>Maximimiser les nombres de parcelles exploitables</li>
 <li>Minimiser la moyenne, la plus grande ou la somme des ratios entre distance des cellules par les routes et distance directe (distance Manhattan ou Euclidienne)</li>
 </ol>
-<p>On pourra éventuellement avoir plusieurs instances de <a class="el" href="class_field.html">Field</a> dans une <a class="el" href="class_resolution.html" title="The Resolution class Elle contient l&#39;intégralité des données du problème et est chargée de lancer les...">Resolution</a>. </p>
+<p>On pourra éventuellement avoir plusieurs instances de <a class="el" href="class_field.html" title="Classe représentant la surface -le terrain- et contenant les opérations que l&#39;on effectue sur celui-c...">Field</a> dans une <a class="el" href="class_resolution.html" title="La classe effectuant l&#39;ensemble de la résolution et le front Pareto Elle contient l&#39;intégralité des d...">Resolution</a>. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a32741887b128fc927155d78cb7ff6222"></a>
 <div class="memitem">
