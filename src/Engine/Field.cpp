@@ -88,38 +88,33 @@ bool Field::nextCoordinates(Coordinates *coord) const
 {
     // On vérifie que la coordonnée actuelle est dans la surface
     //  (vérification sur les colonnes puis sur les lignes)
-    if ((coord->col < -1 || coord->col >= (int)(get_width())) ||
-            (coord->row < 0 || coord->row >= (int)(get_height()))) {
+    assert(coord->col >= 0 && coord->row >= 0 );
+    assert( coord->col < (int)(get_width()) && coord->row < (int)(get_height()) );
+
+    // Si on est à la fin de la ligne, on passe à la ligne suivante
+    if ((unsigned)(coord->col) == get_width() -1) {
+        // seulement si on n'est pas à la fin de la surface
+        if ((unsigned)(coord->row) + 1 < get_height()) {
+            coord->col= 0;
+            coord->row+= 1;
 #if DEBUG_PARCOURS_COORDS
-        cout << "Coordonnées " << (*coord) << " en dehors de la surface" << endl;
-#endif
-        return false;
-    } else {
-        // Si on est à la fin de la ligne, on passe à la ligne suivante
-        if ((unsigned)(coord->col) + 1 == get_width()) {
-            // seulement si on n'est pas à la fin de la surface
-            if ((unsigned)(coord->row) + 1 < get_width()) {
-                coord->col = 0;
-                coord->row += 1;
-#if DEBUG_PARCOURS_COORDS
-                cout << "Passage à la ligne suivante" << endl;
-#endif
-                return true;
-            } else {
-                // dernière case de la surface
-#if DEBUG_PARCOURS_COORDS
-                cout << "Dernière case de la matrice" << endl;
-#endif
-                return false;
-            }
-        }// Sinon, on se décale sur la ligne
-        else {
-            coord->col += 1;
-#if DEBUG_PARCOURS_COORDS
-            cout << "Passage à la case suivante (à droite)" << endl;
+            cout << "Passage à la ligne suivante" << endl;
 #endif
             return true;
+        } else {
+            // dernière case de la surface
+#if DEBUG_PARCOURS_COORDS
+            cout << "Dernière case de la matrice" << endl;
+#endif
+            return false;
         }
+    }// Sinon, on se décale sur la ligne
+    else {
+        coord->col += 1;
+#if DEBUG_PARCOURS_COORDS
+        cout << "Passage à la case suivante (à droite)" << endl;
+#endif
+        return true;
     }
 }
 
