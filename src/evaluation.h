@@ -86,7 +86,7 @@ public:
      * Mutateur sur la surface
      * @param _field Nouvelle surface à évaluer
      */
-    void set_field(const Field* _field) { field= *_field; road_distances_are_initiated= false; }
+    void set_field(const Field* _field) { field= *_field;}
     
     /* Calculs de données */
     /**
