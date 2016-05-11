@@ -8,7 +8,7 @@
 
 using namespace std;
 
-Evaluation::Evaluation(const Field &_field, const Parameters &_params) :
+Evaluation::Evaluation(Field &_field, const Parameters &_params) :
     field(_field), params(_params)
 {
 }
@@ -199,19 +199,21 @@ void Evaluation::initSizeNeighbourhood()
     for (unsigned x1 = 0; x1 < field.get_height(); ++x1) {
     road_distances[x1].resize(field.get_width());
 
-    // Initialisation de la deuxieme ligne
-    for (unsigned y1 = 0; y1 < field.get_width(); ++y1) {
-        road_distances[x1][y1].resize(field.get_height());
+        // Initialisation de la deuxieme ligne
+        for (unsigned y1 = 0; y1 < field.get_width(); ++y1) {
+            road_distances[x1][y1].resize(field.get_height());
 
-        // Initialisation de la deuxième colonne, à 0
-        for (unsigned x2 = 0; x2 < field.get_height(); ++x2) {
-        road_distances[x1][y1][x2].resize(field.get_width(), 0.0);
+            // Initialisation de la deuxième colonne, à 0
+            for (unsigned x2 = 0; x2 < field.get_height(); ++x2) {
+                road_distances[x1][y1][x2].resize(field.get_width(), 0.0);
+            }
         }
     }
-    }
+
+    road_distances_are_initiated= true;
 }
 
-void Evaluation::initCoordNeighbourhoodManhattan(const Coordinates &coord)
+void Evaluation::initRoadDistance(const Coordinates &coord)
 {
     if (field[coord] == is_usable) {
 #if DEBUG_EVALUATION_LIGHT
@@ -230,18 +232,16 @@ void Evaluation::initCoordNeighbourhoodManhattan(const Coordinates &coord)
     }
 }
 
-void Evaluation::initNeighbourhoodManhattan()
+void Evaluation::initRoadDistances()
 {
     initSizeNeighbourhood();
 
     // Calculs des ratios de distances
     Coordinates& coord1 = Field::first();
     do {
-        initCoordNeighbourhoodManhattan(coord1);
+        initRoadDistance(coord1);
     } while (field.nextCoordinates(&coord1));
     delete &coord1;
-
-    road_distances_are_initiated =  true;
 }
 
 

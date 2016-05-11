@@ -74,8 +74,12 @@ int main(int argc, char* argv[])
     // Fenêtre
     FieldWidget* myFieldWidget= initWindow(&myField);
 
-    /** Tests **/
     myResolution.localSearchUsableObjective(myLocalSearch);
+    for (unsigned i= 0; i < 1; ++i) {
+        myLocalSearch.addRoadsAccess(2 * myParameters.get_serve_distance());
+    }
+    /** Tests **/
+
 
     myFieldWidget->redraw();
     /** Fin tests **/
@@ -97,7 +101,8 @@ int main(int argc, char* argv[])
  * Le projet nécessite un compilateur C++11 (g++ 4.8 minimum par exemple).
  * Utiliser cmake et make pour compiler.
  * Pour compiler les tests, la librairie CPP Unit doit être correctement installée sur la machine
-
+ *
+ * \section tasks_sec Organisation et déroulement du développement
  * \subsection step1 Etape 1: Modélisation d'une solution
  * Les classes du dossier "Engine" permettent de modéliser une solution et d'effectuer des modifications simples sur celle-ci
 

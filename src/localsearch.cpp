@@ -3,6 +3,8 @@
 #include <list>
 #include <map>
 
+typedef std::list<Coordinates> Path;
+
 using namespace std;
 
 /// #########################
@@ -13,7 +15,7 @@ using namespace std;
 LocalSearch::LocalSearch(Field* _field, const Parameters* _params):
     field(_field), params(*_params)
 {
-
+    eval= new Evaluation(*field, params);
 }
 
 //LocalSearch::LocalSearch(unsigned int nbCols, unsigned int nbRows, const Parameters* _params):
@@ -81,6 +83,75 @@ void LocalSearch::horizontal_roads(Coordinates &in_out_1, Coordinates &in_out_2)
     }
 }
 
+
+list<Path*>* LocalSearch::getPaths(const Coordinates &coord1, const Coordinates &coord2)
+{
+    list<Path*> * paths= new list<Path*>;
+
+    if (coord1 == coord2){
+        clog << "STOP";
+        Path* path= new Path();
+        paths->push_back(path);
+    } else {
+        if (coord1.col != coord2.col){
+            Coordinates coord1_col_modif= coord1;
+            coord1_col_modif.col= oneStep(coord1.col, coord2.col);
+            if ( coord1_col_modif == coord2 || field->at(coord1_col_modif) != is_road) {
+                clog << "-";
+                list<Path*> * paths_col= getPaths(coord1_col_modif, coord2);
+                for (Path* path : *paths_col){
+                    path->push_front(coord1_col_modif);
+                    paths->push_back(path);
+                }
+                delete paths_col;
+//                clog<< ";"<< endl;
+            } else {
+                clog << "+"<< endl;
+            }
+        }
+
+        if (coord1.row != coord2.row){
+            Coordinates coord1_row_modif= coord1;
+            coord1_row_modif.row= oneStep(coord1.row, coord2.row);
+
+            if (coord1_row_modif == coord2 || field->at(coord1_row_modif) != is_road) {
+                clog << "|";
+                list<Path*> * paths_row= getPaths(coord1_row_modif, coord2);
+                for (Path* path : *paths_row){
+                    path->push_front(coord1_row_modif);
+                    paths->push_back(path);
+                }
+                delete paths_row;
+//                clog<< ";"<< endl;
+            } else {
+                clog << "+"<< endl;
+            }
+        }
+    }
+
+    return paths;
+}
+
+float LocalSearch::gainPath(Path *path) const
+{
+    eval->initRoadDistances();
+    eval->evaluateRatio();
+    float eval_before= eval->get_avgAccess();
+
+    Field& tmp_field= eval->get_field();
+    Field save_field= tmp_field;
+    for (const Coordinates& coord_road : *path) {
+        tmp_field.add_road(coord_road);
+    }
+    eval->initRoadDistances();
+    float eval_after= eval->evaluateRatio();
+
+    // Restauration de la surface
+    eval->set_field(&save_field);
+
+    return  eval_before - eval_after;
+}
+
 bool LocalSearch::addRoadUsable() const
 {
     Coordinates coord_min(-1,-1);
@@ -104,19 +175,22 @@ bool LocalSearch::addRoadUsable() const
             int ratio=  (nb_parcels_neighbours) - (nb_roads_neighbours/2);
 
             if (ratio > gain_max) {
-                cout <<endl<< coord << " a "<< nb_roads_neighbours<< " routes desservant"
+#if DEBUG_ADD_USABLE_ROAD
+                cout << endl<< coord << " a "<< nb_roads_neighbours<< " routes desservant"
                      " et "<< nb_parcels_neighbours<< " parcelles voisines"<< endl;
+#endif
                 gain_max=  ratio;
                 coord_min= coord;
             }
-            cout << endl;
         }
     } while(field->nextCoordinates(&coord));
     delete &coord;
 
     if ( !(coord_min == Coordinates(-1,-1))) {
+#if DEBUG_ADD_USABLE_ROAD
         cout << "La première parcelle avec le plus de parcelles voisines et le moins de routes voisines est "
              << coord_min<< " avec un ratio "<< gain_max<< endl;
+#endif
         field->add_road(coord_min);
 
         // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
@@ -124,42 +198,78 @@ bool LocalSearch::addRoadUsable() const
 
         return true;
     } else {
-        cerr << "Aucune route viable pour maximiser le nombre d'exploitables"<< endl;
+        clog << "Plus aucune route viable pour maximiser le nombre d'exploitables"<< endl;
         return false;
     }
 }
 
 bool LocalSearch::addRoadsAccess(unsigned nbToAdd)
 {
-    list<Coordinates> roads_to_add;
+
+//    cout << "Valeur de road_distances_are_initiated : "<< eval->road_distances_are_initiated<< endl;
+    // Evaluation
+    if (!eval->road_distances_are_initiated) {
+        eval->initRoadDistances();
+    }
 
     Coordinates& coord= Field::first();
 
     float gain_max= 0.0;
+    Path* best_path= new Path;
+
     do {
-        if (field->getNeighbourRoads(coord) > 0) {
-            list<Coordinates>* accessible_roads= field->getCloseParcels(coord, 2* params.get_serve_distance());
+        if (field->at(coord) == is_road) {
+            list<Coordinates>* neighbour_roads= field->getNeighbourRoads(coord);
 
-            for(const Coordinates& accessible_road : *accessible_roads){
-                // TODO
+            list<Coordinates>* accessible_roads= field->getCloseRoads(coord, nbToAdd +1);
+            clog << "NOMBRE DE ROUTES ACCESSIBLES "<< coord<<" : "<< accessible_roads->size();
+
+            list<Coordinates> accessible_roads_clean;
+            for(const Coordinates& accessible_road : *accessible_roads) {
+                if ( eval->parcelsRoadDistance(coord, accessible_road) > coord.manhattanDistance(accessible_road)
+                     && find(neighbour_roads->begin(), neighbour_roads->end(), accessible_road) == neighbour_roads->end()) {
+                    accessible_roads_clean.push_back(accessible_road);
+                }
             }
-
             delete accessible_roads;
+            clog << ", APRES NETTOYAGE : "<< accessible_roads_clean.size()<< " : "<< accessible_roads_clean<<endl;
+
+            for(const Coordinates& accessible_road : accessible_roads_clean) {
+                list<Path*>* possible_paths= getPaths(coord, accessible_road);
+                clog << "\tNombre de chemins pour aller à "<< accessible_road<< " : "<< possible_paths->size()<< endl;
+                for (Path* path: *possible_paths){
+                    float gain= gainPath(path);
+                    cout << "Gain potentiel "<< gain<< endl;
+                    if (gain > gain_max){
+                        cout << " !!! Un chemin viable pour maximiser l'accessibilité de "<< gain<< " trouvé"<< endl;
+                        delete best_path;
+                        best_path= path;
+                        gain_max= gain;
+                    }
+                }
+            }
         }
 
     } while(field->nextCoordinates(&coord));
     delete &coord;
 
-    if ( !roads_to_add.empty()) {
-        for (const Coordinates& coord_road : roads_to_add) {
+    if ( !best_path->empty()) {
+        clog << "Chemin viable pour maximiser l'accessibilité de "<< gain_max<< " trouvé"<< endl;
+        for (const Coordinates& coord_road : *best_path) {
+#if DEBUG_ADD_ACCESS_ROAD
+            cout << " Ajout de la route "<< coord_road<< " pour augmenter l'accessibilité"<< endl;
+#endif
             field->add_road(coord_road);
         }
 
         // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
         field->updateUsables(params.get_serve_distance());
 
+        delete best_path;
+
         return true;
     } else {
+        delete best_path;
         cerr << "Aucun chemin viable pour maximiser l'accessibilité"<< endl;
         return false;
     }

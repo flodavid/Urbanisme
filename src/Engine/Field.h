@@ -125,6 +125,16 @@ public:
      * @return L'état de la parcelle à la position des coordonnées, un State
      */
     inline State operator[](const Coordinates& pos) const { return parcels[pos.row][pos.col]; }
+    /**
+     * Opérateur = d'affectation
+     * @param other Instance à recopier
+     */
+    inline void operator=(const Field& other)
+    {
+        assert(nb_cols == other.nb_cols && nb_rows == other.nb_cols);
+        ins_outs= other.ins_outs;
+        parcels= other.parcels;
+    }
 
     /**
      * @brief begin
@@ -272,9 +282,16 @@ public:
      * Recherche des parcelles qui sont proches de la position
      * @param coord Coordonnées de la position
      * @param maxDist Distance maximale entre la parcelle et la position
-     * @return une liste de parcelles proche de la position donnée
+     * @return une liste de parcelles proches de la position donnée
      */
     std::list<Coordinates> *getCloseParcels( const Coordinates& coord, unsigned maxDist ) const;
+    /**
+     * Recherche des routes qui sont proches de la position
+     * @param coord Coordonnées de la position
+     * @param maxDist Distance maximale entre la route et la position
+     * @return une liste de routes proches de la position donnée
+     */
+    std::list<Coordinates> *getCloseRoads( const Coordinates& coord, unsigned maxDist ) const;
     /**
      * Recherche des portions de routes qui peuvent désservir la parcelle
          * @param coord Coordonnées de la parcelle à desservir

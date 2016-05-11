@@ -261,6 +261,13 @@ std::list<Coordinates> *Field::getCloseParcels(const Coordinates &coord, unsigne
     return getClose(coord, maxDist, monPointeur);
 }
 
+std::list<Coordinates> *Field::getCloseRoads(const Coordinates &coord, unsigned maxDist) const
+{
+    bool (Field::*monPointeur)(const Coordinates&) const;   //On déclare un pointeur sur fonction
+    monPointeur = &Field::isRoad;
+
+    return getClose(coord, maxDist, monPointeur);
+}
 
 std::list<Coordinates> *Field::getServingRoads(const Coordinates &coord , unsigned servingDistance) const
 {

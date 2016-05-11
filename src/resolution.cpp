@@ -33,7 +33,10 @@ void Resolution::evaluateBothObjectives(Evaluation& myEvaluation) const
     time_t startTime, stopTime; startTime = time(NULL);
 
     // Evaluation
-    myEvaluation.initNeighbourhoodManhattan();
+    if (!myEvaluation.road_distances_are_initiated) {
+        myEvaluation.initRoadDistances();
+        cout << "Valeur road_distances_are_initiated : "<< myEvaluation.road_distances_are_initiated<< endl;
+    }
 
     stopTime = time(NULL); time_t elapsedTimeInit = stopTime - startTime; startTime = time(NULL);
 
@@ -50,23 +53,13 @@ void Resolution::evaluateBothObjectives(Evaluation& myEvaluation) const
     cout << "=> Moyenne des ratios : "<< avg_ratio<< endl<< endl;
 }
 
-
-bool Resolution::oneRoadUsableObjective(const LocalSearch& localSearch){
-    if (localSearch.addRoadUsable()){
-        return true;
-    }
-    else {
-        return false;
-    }
-//        sleep(1);
-//        std::this_thread::sleep_for (std::chrono::seconds(1));
-}
-
 void Resolution::localSearchUsableObjective(const LocalSearch& localSearch)
 {
     unsigned road_num= 1;
-    while(oneRoadUsableObjective(localSearch)) {
+    while(localSearch.addRoadUsable()) {
+#if DEBUG_ADD_USABLE_ROAD
         cout << endl<< "=== Ajout de la route "<< road_num<< endl;
+#endif
         ++ road_num;
     }
 }

@@ -20,7 +20,7 @@ class Evaluation
 {
 private:
     // Données sur lesquelles on travaille
-    const Field& field;
+    Field& field;
     Parameters params;
 
     // Données calculées
@@ -41,7 +41,7 @@ public:
      * @param _field Surface sur laquelle on travaille
      * @param _params Paramètres du problème
      */
-    Evaluation ( const Field & _field, const Parameters & _params );
+    Evaluation (Field &_field , const Parameters &_params );
     ~Evaluation();
 
     /* Getters */
@@ -59,6 +59,8 @@ public:
     float get_avgAccess() const
     { return avgAccess; }
 
+    Field& get_field() { return field; }
+
     /**
      * Donne la distance par les routes stockée
      * @param coord1 Première coordonnée
@@ -66,14 +68,25 @@ public:
      * @return La distance par le route, un entier non signé
      */
     inline unsigned getRoadDistance(const Coordinates& coord1, const Coordinates& coord2) const
-    { if (!field.contains(coord1) || !field.contains(coord2)) return UNSIGNED_INFINITY;
-      return road_distances[coord1.row][coord1.col][coord2.row][coord2.col]; }
+    {
+        if (!field.contains(coord1) || !field.contains(coord2)) {
+            return UNSIGNED_INFINITY;
+        }
+        assert(road_distances_are_initiated);
+        return road_distances[coord1.row][coord1.col][coord2.row][coord2.col];
+    }
 
     /*** Setters */
     /**
      * Mutateur sur les paramètres du problème
      */
     void set_params ( const Parameters& _params );
+
+    /**
+     * Mutateur sur la surface
+     * @param _field Nouvelle surface à évaluer
+     */
+    void set_field(const Field* _field) { field= *_field; }
     
     /* Calculs de données */
     /**
@@ -81,13 +94,13 @@ public:
      */
     void initSizeNeighbourhood();
     /**
-     * Définit la matrice de voisinage avec les routes avec la distance Manhattan
+     * Calcule la distance entre une parcelle et les parcelles "suivantes"
      */
-    void initCoordNeighbourhoodManhattan(const Coordinates& coord);
+    void initRoadDistance(const Coordinates& coord);
     /**
-     * Définit la matrice de voisinage avec les routes avec la distance Manhattan
+     * Définit la matrice de distance entre chaque parcelle et chaque autre parcelle
      */
-    void initNeighbourhoodManhattan();
+    void initRoadDistances();
 
     /* Fonctions utiles à l'évaluation */
 
