@@ -53,7 +53,7 @@ void MinPathRoadTestFixture::test_validsPath()
     example->defineUsables(params->get_serve_distance());
     
     if (!eval->road_distances_are_initiated){
-        eval->initNeighbourhoodManhattan();
+        eval->initRoadDistances();
     }
 
     cout << "Routes desservant "<< (*coord1)<< " : "<< *(example->getServingRoads(*coord1, params->get_serve_distance()));
