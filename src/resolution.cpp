@@ -35,7 +35,6 @@ void Resolution::evaluateBothObjectives(Evaluation& myEvaluation) const
     // Evaluation
     if (!myEvaluation.road_distances_are_initiated) {
         myEvaluation.initRoadDistances();
-        cout << "Valeur road_distances_are_initiated : "<< myEvaluation.road_distances_are_initiated<< endl;
     }
 
     stopTime = time(NULL); time_t elapsedTimeInit = stopTime - startTime; startTime = time(NULL);

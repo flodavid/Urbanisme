@@ -72,7 +72,7 @@ public:
         if (!field.contains(coord1) || !field.contains(coord2)) {
             return UNSIGNED_INFINITY;
         }
-        assert(road_distances_are_initiated);
+//        assert(road_distances_are_initiated);
         return road_distances[coord1.row][coord1.col][coord2.row][coord2.col];
     }
 
@@ -86,7 +86,7 @@ public:
      * Mutateur sur la surface
      * @param _field Nouvelle surface à évaluer
      */
-    void set_field(const Field* _field) { field= *_field; }
+    void set_field(const Field* _field) { field= *_field; road_distances_are_initiated= false; }
     
     /* Calculs de données */
     /**

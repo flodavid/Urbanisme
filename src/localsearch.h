@@ -44,14 +44,22 @@ public:
     LocalSearch(const LocalSearch& other);
 
     /*  Recherche locale */
+    /* = Initialisation = */
+
+private:
+    // Placement de routes
+    void vertical_roads(Coordinates& InOut1, const Coordinates &InOut2);
+    void horizontal_roads(Coordinates& InOut1, const Coordinates& InOut2);
+
+    // Création de coudes avec les routes
+    void verticalElbows(Coordinates& InOut1, const Coordinates& InOut2);
+    void horizontalElbows(Coordinates& InOut1, const Coordinates& InOut2);
+
+public:
     /**
      * Relie les entrées et sorties entre elles, de manière directe
      */
     void initSolution();
-
-private:
-    void vertical_roads(Coordinates& in_out_1, Coordinates& in_out_2);
-    void horizontal_roads(Coordinates& in_out_1, Coordinates& in_out_2);
 
 public:
     typedef std::list<Coordinates> Path;

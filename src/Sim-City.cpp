@@ -3,6 +3,8 @@
 #include <iostream>
 
 #include <QApplication>
+#include <ctime>
+#include <cstdlib>
 
 #include "stdafx.h"
 #include "Engine/Field.h"
@@ -49,16 +51,17 @@ int main(int argc, char* argv[])
     //        myField.add_in_out(11,19);
     //        myField.add_in_out(19,4);
     // Mm colonne
-    //        myField.add_in_out(0,4);
-    //        myField.add_in_out(0,19);
+//            myField.add_in_out(0,4);
+//            myField.add_in_out(0,19);
     // En face : coude
-    //        myField.add_in_out(19,8);
-    //        myField.add_in_out(0,4);
+            myField.add_in_out(19,8);
+            myField.add_in_out(0,4);
     // E/S exemple
-    myField.add_in_out(9,19);
-    myField.add_in_out(9,0);
+//    myField.add_in_out(9,19);
+//    myField.add_in_out(9,0);
 
     // Solution avec recherche locale
+    srand(time(NULL));
     LocalSearch myLocalSearch(&myField, &myParameters);
     myLocalSearch.initSolution();
     //@}
@@ -69,19 +72,18 @@ int main(int argc, char* argv[])
     // Parcelles utilisables
     Evaluation myEvaluation(myField, myParameters);
     cout << endl<< "===== Evaluation avant recherche locale ====="<< endl;
-    myResolution.evaluateBothObjectives(myEvaluation);
+//    myResolution.evaluateBothObjectives(myEvaluation);
+
+
+//    myResolution.localSearchUsableObjective(myLocalSearch);
+//    for (unsigned i= 0; i < 5; ++i) {
+//        myLocalSearch.addRoadsAccess(2 * myParameters.get_serve_distance());
+//    }
+    /** Tests **/
 
     // Fenêtre
     FieldWidget* myFieldWidget= initWindow(&myField);
-
-    myResolution.localSearchUsableObjective(myLocalSearch);
-    for (unsigned i= 0; i < 1; ++i) {
-        myLocalSearch.addRoadsAccess(2 * myParameters.get_serve_distance());
-    }
-    /** Tests **/
-
-
-    myFieldWidget->redraw();
+//    myFieldWidget->redraw();
     /** Fin tests **/
 
     cout << endl<< "===== Evaluation après recherche locale ====="<< endl;

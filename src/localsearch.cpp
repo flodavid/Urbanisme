@@ -35,6 +35,52 @@ LocalSearch::LocalSearch(const LocalSearch& other):
 /// #########################
 //@{
 
+void LocalSearch::vertical_roads(Coordinates &InOut1, const Coordinates &InOut2)
+{
+    InOut1.row= oneStep(InOut1.row, InOut2.row);
+    if(InOut1.row != InOut2.row) {
+        field->add_road(InOut1);
+        vertical_roads(InOut1, InOut2);
+    }
+}
+
+void LocalSearch::horizontal_roads(Coordinates &InOut1, const Coordinates &InOut2)
+{
+    InOut1.col= oneStep(InOut1.col, InOut2.col);
+    if(InOut1.col != InOut2.col) {
+        field->add_road(InOut1.col, InOut1.row);
+        horizontal_roads(InOut1, InOut2);
+    }
+}
+
+
+void LocalSearch::verticalElbows(Coordinates &InOut1, const Coordinates &InOut2)
+{
+    int elbow_height= rand()%((int)(field->get_height()) -2) +1;
+    cout << "Coude placé à hauteur "<< elbow_height<< endl;
+    Coordinates inter_coord(InOut1);
+    inter_coord.row= elbow_height;
+    vertical_roads(InOut1, inter_coord);
+    field->add_road(InOut1);
+    horizontal_roads(inter_coord, InOut2);
+    field->add_road(inter_coord);
+    vertical_roads(inter_coord, InOut2);
+}
+
+void LocalSearch::horizontalElbows(Coordinates &InOut1, const Coordinates &InOut2)
+{
+    int elbow_width= rand()%((int)(field->get_width()) -2) +1;
+    cout << "Coude placé à largeur "<< elbow_width<< endl;
+    Coordinates inter_coord(InOut1);
+    inter_coord.col= elbow_width;
+    horizontal_roads(InOut1, inter_coord);
+    field->add_road(InOut1);
+    vertical_roads(inter_coord, InOut2);
+    field->add_road(inter_coord);
+    horizontal_roads(inter_coord, InOut2);
+}
+
+
 void LocalSearch::initSolution()
 {
     list<Coordinates>& ins_outs= field->get_insOuts();
@@ -47,49 +93,38 @@ void LocalSearch::initSolution()
     cout << "E/S 1 : "<< in_out_1<< "; E/S 2 : "<< in_out_2<< endl;
 
     if (in_out_1.col == 0 || in_out_1.col == (int)field->get_width() -1) {
-        if (in_out_1.col != in_out_2.col) {
-            horizontal_roads(in_out_1, in_out_2);
-            if (in_out_1.row != in_out_2.row) {
-                field->add_road(in_out_1);
-            }
-        }
-        vertical_roads(in_out_1, in_out_2);
-    } else {
-        if (in_out_1.row != in_out_2.row) {
-            vertical_roads(in_out_1, in_out_2);
+        if (in_out_1.col + in_out_2.col +1 == (int)field->get_width()){
+            horizontalElbows(in_out_1, in_out_2);
+        } else {
             if (in_out_1.col != in_out_2.col) {
-                field->add_road(in_out_1);
+                horizontal_roads(in_out_1, in_out_2);
+                if (in_out_1.row != in_out_2.row) {
+                    field->add_road(in_out_1);
+                }
             }
+            vertical_roads(in_out_1, in_out_2);
         }
-        horizontal_roads(in_out_1, in_out_2);
+    } else {
+        if (in_out_1.row + in_out_2.row +1 == (int)field->get_height()){
+            verticalElbows(in_out_1, in_out_2);
+        } else {
+            if (in_out_1.row != in_out_2.row) {
+                vertical_roads(in_out_1, in_out_2);
+                if (in_out_1.col != in_out_2.col) {
+                    field->add_road(in_out_1);
+                }
+            }
+            horizontal_roads(in_out_1, in_out_2);
+        }
     }
 }
-
-void LocalSearch::vertical_roads(Coordinates &in_out_1, Coordinates &in_out_2)
-{
-    in_out_1.row= oneStep(in_out_1.row, in_out_2.row);
-    if(in_out_1.row != in_out_2.row) {
-        field->add_road(in_out_1);
-        vertical_roads(in_out_1, in_out_2);
-    }
-}
-
-void LocalSearch::horizontal_roads(Coordinates &in_out_1, Coordinates &in_out_2)
-{
-    in_out_1.col= oneStep(in_out_1.col, in_out_2.col);
-    if(in_out_1.col != in_out_2.col) {
-        field->add_road(in_out_1.col, in_out_1.row);
-        horizontal_roads(in_out_1, in_out_2);
-    }
-}
-
 
 list<Path*>* LocalSearch::getPaths(const Coordinates &coord1, const Coordinates &coord2)
 {
     list<Path*> * paths= new list<Path*>;
 
     if (coord1 == coord2){
-        clog << "STOP";
+        clog << "FIND"<< endl;
         Path* path= new Path();
         paths->push_back(path);
     } else {
@@ -99,6 +134,7 @@ list<Path*>* LocalSearch::getPaths(const Coordinates &coord1, const Coordinates 
             if ( coord1_col_modif == coord2 || field->at(coord1_col_modif) != is_road) {
                 clog << "-";
                 list<Path*> * paths_col= getPaths(coord1_col_modif, coord2);
+                clog << "_";
                 for (Path* path : *paths_col){
                     path->push_front(coord1_col_modif);
                     paths->push_back(path);
@@ -144,7 +180,8 @@ float LocalSearch::gainPath(Path *path) const
         tmp_field.add_road(coord_road);
     }
     eval->initRoadDistances();
-    float eval_after= eval->evaluateRatio();
+    eval->evaluateRatio();
+    float eval_after= eval->get_avgAccess();
 
     // Restauration de la surface
     eval->set_field(&save_field);
@@ -205,8 +242,6 @@ bool LocalSearch::addRoadUsable() const
 
 bool LocalSearch::addRoadsAccess(unsigned nbToAdd)
 {
-
-//    cout << "Valeur de road_distances_are_initiated : "<< eval->road_distances_are_initiated<< endl;
     // Evaluation
     if (!eval->road_distances_are_initiated) {
         eval->initRoadDistances();
@@ -238,10 +273,14 @@ bool LocalSearch::addRoadsAccess(unsigned nbToAdd)
                 list<Path*>* possible_paths= getPaths(coord, accessible_road);
                 clog << "\tNombre de chemins pour aller à "<< accessible_road<< " : "<< possible_paths->size()<< endl;
                 for (Path* path: *possible_paths){
-                    float gain= gainPath(path);
-                    cout << "Gain potentiel "<< gain<< endl;
+                    float gain= gainPath(path) / (float)path->size();
+//#if DEBUG_ADD_ACCESS_ROAD
+                    clog << "Gain potentiel "<< gain<< endl;
+//#endif
                     if (gain > gain_max){
-                        cout << " !!! Un chemin viable pour maximiser l'accessibilité de "<< gain<< " trouvé"<< endl;
+#if DEBUG_ADD_ACCESS_ROAD
+                        cout << " !!! Un chemin viable, pour maximiser l'accessibilité de "<< gain<< " par route, trouvé"<< endl;
+#endif
                         delete best_path;
                         best_path= path;
                         gain_max= gain;
@@ -254,7 +293,7 @@ bool LocalSearch::addRoadsAccess(unsigned nbToAdd)
     delete &coord;
 
     if ( !best_path->empty()) {
-        clog << "Chemin viable pour maximiser l'accessibilité de "<< gain_max<< " trouvé"<< endl;
+        clog << "Chemin viable, pour maximiser l'accessibilité de "<< gain_max<< " par route, trouvé"<< endl;
         for (const Coordinates& coord_road : *best_path) {
 #if DEBUG_ADD_ACCESS_ROAD
             cout << " Ajout de la route "<< coord_road<< " pour augmenter l'accessibilité"<< endl;
