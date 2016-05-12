@@ -1,7 +1,6 @@
 #ifndef RESOLUTION_H
 #define RESOLUTION_H
 
-#include <vector>
 #include <list>
 
 #include "Engine/Parameters.h"
@@ -19,7 +18,7 @@ private:
     unsigned nb_cols, nb_rows;
     Parameters params;
 
-    std::vector<Evaluation*> pareto_evals;
+    std::list<const Evaluation*> pareto_evals;
 
 public:
     /* Constructeurs */
@@ -54,17 +53,17 @@ public:
      * TODO mettre à jour le front pareto
      * @param myEvaluation
      */
-    void evaluateBothObjectives(Evaluation& myEvaluation) const;
+    void evaluateBothObjectives(Evaluation& myEvaluation);
+
+    /**
+     * Effectue une propagation à partir de la solution courante :
+     * toutes les solutions précédentes dominées par la solution sont supprimées
+     * @param eval Evaluation courante
+     * @return le nombre de solutions supprimées
+     */
+    int spread(const Evaluation* eval);
 
     /* Recherche locale */
-    /**
-     * Tente d'ajouter une seule route avec la recherche locale,
-     * pour maximiser le nombre de parcelles exploitables
-     * @param myLocalSearch
-     * @return
-     */
-    bool oneRoadUsableObjective(const LocalSearch& localSearch);
-
     /**
      * Exécute la recherche locale permettant de maximiser le nombre de parcelles exploitables
      * @param localSearch Recherche locale effectuant les opérations

@@ -104,6 +104,11 @@ public:
 
     /* Fonctions utiles à l'évaluation */
 
+    bool is_dominated(const Evaluation& other) const
+    {
+        return ( (other.nbUsables > nbUsables) && (other.avgAccess > avgAccess) );
+    }
+
 private:
     /**
      * Calcule la distance entre deux routes, en passant de route en route, stocke

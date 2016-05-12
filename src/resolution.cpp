@@ -4,6 +4,11 @@
 
 using namespace std;
 
+/// #########################
+///      Constructeurs
+/// #########################
+//@{
+
 Resolution::Resolution(unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth):
     nb_cols(nbCols), nb_rows(nbRows), params(serveDistance, roadsWidth)
 {
@@ -23,7 +28,13 @@ Resolution::Resolution(const Field &field, const Parameters &_params):
 
 }
 
-void Resolution::evaluateBothObjectives(Evaluation& myEvaluation) const
+//@}
+/// ############################
+///      Evaluation et Pareto
+/// ############################
+//@{
+
+void Resolution::evaluateBothObjectives(Evaluation& myEvaluation)
 {
     unsigned nb_usables= myEvaluation.evaluateTotalUsable();
     cout << "Nombre total de parcelles exploitables au début : "<< nb_usables<< endl;
@@ -50,7 +61,37 @@ void Resolution::evaluateBothObjectives(Evaluation& myEvaluation) const
 
     printf("\nLe nombre de secondes écoulées pour l'évaluation est %ld\n", elapsedTimeEval);
     cout << "=> Moyenne des ratios : "<< avg_ratio<< endl<< endl;
+
+    if (spread(&myEvaluation) > 0){
+        pareto_evals.push_back(&myEvaluation);
+    }
 }
+
+int Resolution::spread(const Evaluation* eval)
+{
+    int nb_deleted= 0;
+    #if DEBUG_PARETO
+    cout << "Propagation de la solution dominante"<< endl;
+    #endif
+    for (list<const Evaluation*>::iterator it(pareto_evals.end()); it != pareto_evals.begin(); --it)
+    {
+        if( (*it)->is_dominated(*eval) ) {
+            ++nb_deleted;
+            #if DEBUG_PARETO
+            cout << "Suppression de l'élement à la place "<< it._M_node<< " des non dominés"<< endl;
+            #endif
+            pareto_evals.erase(it);
+        }
+    }
+
+    return nb_deleted;
+}
+
+//@}
+/// #########################
+///      Recherches locales
+/// #########################
+//@{
 
 void Resolution::localSearchUsableObjective(const LocalSearch& localSearch)
 {
