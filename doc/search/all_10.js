@@ -1,7 +1,6 @@
 var searchData=
 [
   ['teardown',['tearDown',['../class_field_test_fixture.html#a26c4e39b4d02dba41c50dbee1dd2864d',1,'FieldTestFixture::tearDown()'],['../class_coordinates_test_fixture.html#ae71f932ef88a90c4c4fbfd8329dd3e38',1,'CoordinatesTestFixture::tearDown()'],['../class_next_coordinates_test_fixture.html#aa10a5a59c2b65d3c30e26e4fc5573cb9',1,'NextCoordinatesTestFixture::tearDown()'],['../class_min_path_road_test_fixture.html#a8a98348749e6e748ad486dfa4086e166',1,'MinPathRoadTestFixture::tearDown()']]],
-  ['test_20list',['Test List',['../test.html',1,'']]],
   ['test_5fcalceuclidean',['test_calcEuclidean',['../class_coordinates_test_fixture.html#a631679568eccbfb84a4f88151943a047',1,'CoordinatesTestFixture']]],
   ['test_5fcalcmanhattan',['test_calcManhattan',['../class_coordinates_test_fixture.html#a4377358e70e7b69f1539a9f89cda3c61',1,'CoordinatesTestFixture']]],
   ['test_5fcontainsinvalids',['test_containsInvalids',['../class_field_test_fixture.html#af9005a4804532efcb0c123c35a4fa7a4',1,'FieldTestFixture']]],
