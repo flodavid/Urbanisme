@@ -1,4 +1,4 @@
-.TH "Evaluation" 3 "Mon May 9 2016" "Version 0.1" "Urbanisme" \" -*- nroff -*-
+.TH "Evaluation" 3 "Jeudi 12 Mai 2016" "Version 0.5" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -9,11 +9,11 @@ Evaluation \- Classe chargée de travailler sur les données en entrée du probl
 .PP
 .PP
 \fC#include <evaluation\&.h>\fP
-.SS "Public Member Functions"
+.SS "Fonctions membres publiques"
 
 .in +1c
 .ti -1c
-.RI "\fBEvaluation\fP (const \fBField\fP &_field, const \fBParameters\fP &_params)"
+.RI "\fBEvaluation\fP (\fBField\fP &_field, const \fBParameters\fP &_params)"
 .br
 .ti -1c
 .RI "float \fBget_nbUsables\fP () const "
@@ -22,7 +22,16 @@ Evaluation \- Classe chargée de travailler sur les données en entrée du probl
 .RI "float \fBget_avgAccess\fP () const "
 .br
 .ti -1c
+.RI "\fBField\fP & \fBget_field\fP ()"
+.br
+.ti -1c
 .RI "unsigned \fBgetRoadDistance\fP (const \fBCoordinates\fP &coord1, const \fBCoordinates\fP &coord2) const "
+.br
+.ti -1c
+.RI "void \fBset_field\fP (const \fBField\fP *_field)"
+.br
+.ti -1c
+.RI "bool \fBis_dominated\fP (const \fBEvaluation\fP &other) const "
 .br
 .ti -1c
 .RI "float \fBthreadsEvaluateRatio\fP () const "
@@ -56,7 +65,7 @@ Evaluation \- Classe chargée de travailler sur les données en entrée du probl
 .br
 .in -1c
 .in -1c
-.SS "Public Attributes"
+.SS "Attributs publics"
 
 .in +1c
 .ti -1c
@@ -68,16 +77,16 @@ Evaluation \- Classe chargée de travailler sur les données en entrée du probl
 .RI "void \fBinitSizeNeighbourhood\fP ()"
 .br
 .ti -1c
-.RI "void \fBinitCoordNeighbourhoodManhattan\fP (const \fBCoordinates\fP &coord)"
+.RI "void \fBinitRoadDistance\fP (const \fBCoordinates\fP &coord)"
 .br
 .ti -1c
-.RI "void \fBinitNeighbourhoodManhattan\fP ()"
+.RI "void \fBinitRoadDistances\fP ()"
 .br
 .ti -1c
 .RI "unsigned \fBparcelsRoadDistance\fP (const \fBCoordinates\fP &coord1, const \fBCoordinates\fP &coord2)"
 .br
 .in -1c
-.SH "Detailed Description"
+.SH "Description détaillée"
 .PP 
 Classe chargée de travailler sur les données en entrée du problème pour trouver des solution réalisables, opitmisant les objectifs suivants : 
 
@@ -89,12 +98,12 @@ Minimiser la moyenne, la plus grande ou la somme des ratios entre distance des c
 .PP
 .PP
 On pourra éventuellement avoir plusieurs instances de \fBField\fP dans une \fBResolution\fP\&. 
-.SH "Constructor & Destructor Documentation"
+.SH "Documentation des constructeurs et destructeur"
 .PP 
-.SS "Evaluation::Evaluation (const \fBField\fP & _field, const \fBParameters\fP & _params)"
+.SS "Evaluation::Evaluation (\fBField\fP & _field, const \fBParameters\fP & _params)"
 Constructeur de la casse résolution 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fI_field\fP Surface sur laquelle on travaille 
 .br
@@ -102,12 +111,12 @@ Constructeur de la casse résolution
 .RE
 .PP
 
-.SH "Member Function Documentation"
+.SH "Documentation des fonctions membres"
 .PP 
 .SS "float Evaluation::evaluateRatio ()"
 Evalue le ratio de toutes les solutions 
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 la moyenne des ratios 
 .RE
@@ -116,7 +125,7 @@ la moyenne des ratios
 .SS "unsigned int Evaluation::evaluateTotalUsable ()"
 Compte le nombre total de parcelles exploitables sur la surface 
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 nombre de parcelles exploitables
 .RE
@@ -129,16 +138,25 @@ Evaluations
 .SS "float Evaluation::get_avgAccess () const\fC [inline]\fP"
 Accesseur sur l'attribut de moyenne de ratio, entre la distance directe et la distance par les routes 
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 avgAccess, un flotant 
+.RE
+.PP
+
+.SS "\fBField\fP& Evaluation::get_field ()\fC [inline]\fP"
+Accesseur sur l'attribut field 
+.PP
+\fBRenvoie:\fP
+.RS 4
+field, une référence sur un \fBField\fP 
 .RE
 .PP
 
 .SS "float Evaluation::get_nbUsables () const\fC [inline]\fP"
 Accesseur sur l'attribut de nombre de parcelle exploitables 
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 nbUsables, un entier non signé 
 .RE
@@ -147,36 +165,50 @@ nbUsables, un entier non signé
 .SS "unsigned Evaluation::getRoadDistance (const \fBCoordinates\fP & coord1, const \fBCoordinates\fP & coord2) const\fC [inline]\fP"
 Donne la distance par les routes stockée 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIcoord1\fP Première coordonnée 
 .br
 \fIcoord2\fP Seconde coordonnée 
 .RE
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 La distance par le route, un entier non signé 
 .RE
 .PP
 
-.SS "void Evaluation::initCoordNeighbourhoodManhattan (const \fBCoordinates\fP & coord)"
-Définit la matrice de voisinage avec les routes avec la distance Manhattan 
-.SS "void Evaluation::initNeighbourhoodManhattan ()"
-Définit la matrice de voisinage avec les routes avec la distance Manhattan 
+.SS "void Evaluation::initRoadDistance (const \fBCoordinates\fP & coord)"
+Calcule la distance entre une parcelle et les parcelles 'suivantes' 
+.SS "void Evaluation::initRoadDistances ()"
+Définit la matrice de distance entre chaque parcelle et chaque autre parcelle 
 .SS "void Evaluation::initSizeNeighbourhood ()"
 Initialise la matrice de voisinage selon la taille de la surface 
+.SS "bool Evaluation::is_dominated (const \fBEvaluation\fP & other) const\fC [inline]\fP"
+Vérifie si l'évaluation est dominée par une autre 
+.PP
+\fBParamètres:\fP
+.RS 4
+\fIother\fP Autre instance 
+.RE
+.PP
+\fBRenvoie:\fP
+.RS 4
+vrai si les deux objectifs de l'évaluation sont inférieurs à ceux de l'autre instance 
+.RE
+.PP
+
 .SS "float Evaluation::manhattanRatioBetween2Parcels (const \fBCoordinates\fP & p1, const \fBCoordinates\fP & p2) const"
 Calcule le ratio entre distance par la route et distance Manhattan entre deux positions 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIp1\fP premières coordonnées 
 .br
 \fIp2\fP secondes coordonnées 
 .RE
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 le ratio, sous forme de flottant 
 .RE
@@ -185,16 +217,25 @@ le ratio, sous forme de flottant
 .SS "unsigned Evaluation::parcelsRoadDistance (const \fBCoordinates\fP & coord1, const \fBCoordinates\fP & coord2)"
 Calcule la distance par les routes entre deux cellules quelconques, en testant toutes les routs qui desservent la cellue et en respectant les paramètres 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIcoord1\fP Coordonnée 'de départ' 
 .br
 \fIcoord2\fP Coordonnée 'd'arrivée' 
 .RE
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 la valeur, entier non signé, de distance la plus courte, entre les deux coordonnées, en passant par les routes 
+.RE
+.PP
+
+.SS "void Evaluation::set_field (const \fBField\fP * _field)\fC [inline]\fP"
+Mutateur sur la surface 
+.PP
+\fBParamètres:\fP
+.RS 4
+\fI_field\fP Nouvelle surface à évaluer 
 .RE
 .PP
 
@@ -214,17 +255,17 @@ Setters
 .SS "float Evaluation::threadsEvaluateRatio () const"
 Evalue le ratio de toutes les solutions avec des threads 
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 l'évaluation en flottant 
 .RE
 .PP
 
-.SH "Member Data Documentation"
+.SH "Documentation des données membres"
 .PP 
 .SS "bool Evaluation::road_distances_are_initiated = false"
 Flag indiquant si la matrice de distance des routes a été calculée 
 
-.SH "Author"
+.SH "Auteur"
 .PP 
-Generated automatically by Doxygen for Urbanisme from the source code\&.
+Généré automatiquement par Doxygen pour Urbanisme à partir du code source\&.

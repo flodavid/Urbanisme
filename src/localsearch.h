@@ -19,6 +19,11 @@ private:
 
 public:
     /**
+     * Un chemin est une suite de coordonnées qu'on suppose adjacentes
+     */
+    typedef std::list<Coordinates> Path;
+
+    /**
      * Constructeur d'une recherche locale à partir d'une surface existante et
      * des paramètres des routes.
      * La surface sera modifiée
@@ -62,8 +67,6 @@ public:
     void initSolution();
 
 public:
-    typedef std::list<Coordinates> Path;
-//    typedef Path std::list<Coordinates>;
 
     std::list<Path*>* getPaths(const Coordinates& coord1, const Coordinates& coord2);
 

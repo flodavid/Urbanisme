@@ -67,14 +67,12 @@ public:
     /**
      * Exécute la recherche locale permettant de maximiser le nombre de parcelles exploitables
      * @param localSearch Recherche locale effectuant les opérations
-     * @param fieldWidget
      * @see Utiliser un signal pour mettre à jour l'affichage pendant les recherche ?
      */
     void localSearchUsableObjective(const LocalSearch& localSearch);
     /**
      * Exécute la recherche locale permettant de maximiser l'accessibilité
      * @param localSearch Recherche locale effectuant les opérations
-     * @param fieldWidget
      * @see Utiliser un signal pour mettre à jour l'affichage pendant les recherche ?
      */
     void localSearchAccessObjective(const LocalSearch& localSearch);

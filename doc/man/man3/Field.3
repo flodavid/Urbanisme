@@ -1,4 +1,4 @@
-.TH "Field" 3 "Mon May 9 2016" "Version 0.1" "Urbanisme" \" -*- nroff -*-
+.TH "Field" 3 "Jeudi 12 Mai 2016" "Version 0.5" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -9,7 +9,7 @@ Field \- Classe représentant la surface -le terrain- et contenant les opératio
 .PP
 .PP
 \fC#include <Field\&.h>\fP
-.SS "Public Member Functions"
+.SS "Fonctions membres publiques"
 
 .in +1c
 .ti -1c
@@ -49,6 +49,9 @@ Field \- Classe représentant la surface -le terrain- et contenant les opératio
 .RI "State \fBoperator[]\fP (const \fBCoordinates\fP &pos) const "
 .br
 .ti -1c
+.RI "void \fBoperator=\fP (const \fBField\fP &other)"
+.br
+.ti -1c
 .RI "std::vector< std::vector< State > >::const_iterator \fBbegin\fP () const "
 .br
 .RI "\fIbegin \fP"
@@ -64,9 +67,6 @@ Field \- Classe représentant la surface -le terrain- et contenant les opératio
 .RI "std::vector< std::vector< State > >::iterator \fBend\fP ()"
 .br
 .RI "\fIend \fP"
-.ti -1c
-.RI "std::list< \fBCoordinates\fP > * \fBgetNeighbourParcels\fP (const \fBCoordinates\fP &coord) const "
-.br
 .in -1c
 .PP
 .RI "\fB\fP"
@@ -136,20 +136,16 @@ Field \- Classe représentant la surface -le terrain- et contenant les opératio
 .RI "\fIcreateExample \fP"
 .in -1c
 .in -1c
-.SS "Static Public Member Functions"
+.SS "Fonctions membres publiques statiques"
 
 .in +1c
 .ti -1c
 .RI "static \fBCoordinates\fP & \fBfirst\fP ()"
 .br
 .in -1c
-.SS "Friends"
+.SS "Amis"
 
 .in +1c
-.ti -1c
-.RI "std::vector< State >::const_iterator & \fBstd::vector\fP ()"
-.br
-.RI "\fIstd::vector<State>::const_iterator::operator ++ \fP"
 .ti -1c
 .RI "std::ostream & \fBoperator<<\fP (std::ostream &out, const \fBField\fP &field)"
 .br
@@ -159,10 +155,16 @@ Field \- Classe représentant la surface -le terrain- et contenant les opératio
 .RI "void \fBgenerateInsAndOuts\fP (unsigned nb)"
 .br
 .ti -1c
-.RI "std::list< \fBCoordinates\fP > * \fBgetNeighbourUnusableParcels\fP (const \fBCoordinates\fP &coord, unsigned servingDistance) const "
+.RI "std::list< \fBCoordinates\fP > * \fBgetNeighbourRoads\fP (const \fBCoordinates\fP &coord) const "
 .br
 .ti -1c
-.RI "std::list< \fBCoordinates\fP > * \fBgetNeighbourRoads\fP (const \fBCoordinates\fP &coord) const "
+.RI "std::list< \fBCoordinates\fP > * \fBgetCloseUnusableParcels\fP (const \fBCoordinates\fP &coord, unsigned servingDistance) const "
+.br
+.ti -1c
+.RI "std::list< \fBCoordinates\fP > * \fBgetCloseParcels\fP (const \fBCoordinates\fP &coord, unsigned maxDist) const "
+.br
+.ti -1c
+.RI "std::list< \fBCoordinates\fP > * \fBgetCloseRoads\fP (const \fBCoordinates\fP &coord, unsigned maxDist) const "
 .br
 .ti -1c
 .RI "std::list< \fBCoordinates\fP > * \fBgetServingRoads\fP (const \fBCoordinates\fP &coord, unsigned servingDistance) const "
@@ -177,15 +179,15 @@ Field \- Classe représentant la surface -le terrain- et contenant les opératio
 .RI "void \fBupdateUsables\fP (unsigned servingDistance)"
 .br
 .in -1c
-.SH "Detailed Description"
+.SH "Description détaillée"
 .PP 
 Classe représentant la surface -le terrain- et contenant les opérations que l'on effectue sur celui-ci\&. L'état d'une instance de cette classe à la fin de l'algorithme représente une solution trouvée après la recherche\&. On peut donc avoir plusieurs \fBField\fP lors d'une exécution\&. 
-.SH "Constructor & Destructor Documentation"
+.SH "Documentation des constructeurs et destructeur"
 .PP 
 .SS "Field::Field (unsigned width, unsigned height)"
 Constructeur de la classe 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIwidth\fP Largeur à définir de la surface 
 .br
@@ -200,18 +202,18 @@ Constructeurs et destructeurs
 .SS "Field::Field (const \fBField\fP & other)"
 Constructeur par recopie de la classe \fBField\fP 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIother\fP Instance à recopier 
 .RE
 .PP
 
-.SH "Member Function Documentation"
+.SH "Documentation des fonctions membres"
 .PP 
 .SS "void Field::add_in_out (const \fBCoordinates\fP & coords)\fC [inline]\fP"
 Ajoute une entrée/sortie à partir de coordonnées 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIcoords\fP Coordonnées de l'E/S 
 .RE
@@ -220,7 +222,7 @@ Ajoute une entrée/sortie à partir de coordonnées
 .SS "void Field::add_in_out (unsigned col, unsigned row)\fC [inline]\fP"
 Ajoute une entrée/sortie à partir de coordonnées 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIcol\fP Colonne de l'E/S 
 .br
@@ -231,7 +233,7 @@ Ajoute une entrée/sortie à partir de coordonnées
 .SS "void Field::add_road (unsigned col, unsigned row)\fC [inline]\fP"
 Ajoute une route à partir de coordonnées 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIcol\fP Colonne de la route 
 .br
@@ -242,7 +244,7 @@ Ajoute une route à partir de coordonnées
 .SS "void Field::add_road (const \fBCoordinates\fP & coords)\fC [inline]\fP"
 Ajoute une route à partir de coordonnées 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIcoords\fP Coordonnées de la future route 
 .RE
@@ -251,12 +253,12 @@ Ajoute une route à partir de coordonnées
 .SS "State Field::at (const \fBCoordinates\fP & pos) const\fC [inline]\fP"
 === Operators === Retourne la parcelle de la surface aux coordonnées passées en paramètre 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIpos\fP Coordonnées de la parcelle 
 .RE
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 L'état de la parcelle à la position des coordonnées, un State 
 .RE
@@ -267,12 +269,12 @@ L'état de la parcelle à la position des coordonnées, un State
 .PP
 begin 
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 un itérateur constant sur la première parcelle du \fBField\fP 
 .RE
 .PP
-\fBSee also:\fP
+\fBVoir également:\fP
 .RS 4
 .RE
 .PP
@@ -282,12 +284,12 @@ un itérateur constant sur la première parcelle du \fBField\fP
 .PP
 begin 
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 un itérateur sur la première parcelle du \fBField\fP 
 .RE
 .PP
-\fBSee also:\fP
+\fBVoir également:\fP
 .RS 4
 .RE
 .PP
@@ -295,14 +297,14 @@ un itérateur sur la première parcelle du \fBField\fP
 .SS "bool Field::contains (int x, int y) const"
 === Fonctions sur les coordonnées === Effectue un test d'appartenance des coordonnées à la matrice 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIx\fP abscisse de la coordonnée 
 .br
 \fIy\fP ordonnée de la coordonnée 
 .RE
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 true si la coordonnée appartient à la matrice
 .RE
@@ -315,12 +317,12 @@ true si la coordonnée appartient à la matrice
 .SS "bool Field::contains (const \fBCoordinates\fP & coord) const"
 Effectue un test d'appartenance des coordonnées à la matrice 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIcoord\fP Coordonnées de la position 
 .RE
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 true si la coordonnée appartient à la matrice 
 .RE
@@ -345,7 +347,7 @@ Autres méthodes utiles
 .SS "void Field::defineUsables (unsigned servingDistance)"
 Définit les parcelles dans le voisinage d'une route comme étant exploitables 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIservingDistance\fP Distance maximale du voisinage 
 .RE
@@ -356,12 +358,12 @@ Définit les parcelles dans le voisinage d'une route comme étant exploitables
 .PP
 end 
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 un itérateur constant sur la dernière parcelle du \fBField\fP 
 .RE
 .PP
-\fBSee also:\fP
+\fBVoir également:\fP
 .RS 4
 .RE
 .PP
@@ -371,12 +373,12 @@ un itérateur constant sur la dernière parcelle du \fBField\fP
 .PP
 end 
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 un itérateur sur la dernière parcelle du \fBField\fP 
 .RE
 .PP
-\fBSee also:\fP
+\fBVoir également:\fP
 .RS 4
 .RE
 .PP
@@ -384,7 +386,7 @@ un itérateur sur la dernière parcelle du \fBField\fP
 .SS "static \fBCoordinates\fP& Field::first ()\fC [inline]\fP, \fC [static]\fP"
 Retourne la première coordonée de la matrice, elle peut ensuite être modifée pour servir d'itérateur à l'aide de \fBnextCoordinates()\fP 
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 une référence, non constante, sur la première coordonnée de la matrice 
 .RE
@@ -393,7 +395,7 @@ une référence, non constante, sur la première coordonnée de la matrice
 .SS "void Field::generateInsAndOuts (unsigned nb)"
 === Méthodes générales === Crée aléatoirement des entrées et sorties 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fInb\fP nombre d'entrées et sorties à générer
 .RE
@@ -406,7 +408,7 @@ une référence, non constante, sur la première coordonnée de la matrice
 .SS "unsigned Field::get_height () const\fC [inline]\fP"
 Accesseur sur le nombre de lignes -la hauteur- de la surface 
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 La hauteur de la surface 
 .RE
@@ -415,7 +417,7 @@ La hauteur de la surface
 .SS "std::list<\fBCoordinates\fP>& Field::get_insOuts ()\fC [inline]\fP"
 Accesseur sur la liste des entrées et sorties 
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 
 .RE
@@ -424,99 +426,120 @@ Accesseur sur la liste des entrées et sorties
 .SS "unsigned Field::get_width () const\fC [inline]\fP"
 Accesseur sur le nombre de colonnes -la largeur- de la surface 
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 La largeur de la surface 
 .RE
 .PP
 
-.SS "unsigned Field::getNbParcels () const\fC [inline]\fP"
-Donne le nombre de parcelles de la surface 
+.SS "std::list< \fBCoordinates\fP > * Field::getCloseParcels (const \fBCoordinates\fP & coord, unsigned maxDist) const"
+Recherche des parcelles qui sont proches de la position 
 .PP
-\fBReturns:\fP
+\fBParamètres:\fP
 .RS 4
-Le nombre de parcelles, nombre de ligne facteur nombre de colonnes, un entier non signé 
+\fIcoord\fP Coordonnées de la position 
+.br
+\fImaxDist\fP Distance maximale entre la parcelle et la position 
+.RE
+.PP
+\fBRenvoie:\fP
+.RS 4
+une liste de parcelles proches de la position donnée 
 .RE
 .PP
 
-.SS "std::list<\fBCoordinates\fP>* Field::getNeighbourParcels (const \fBCoordinates\fP & coord) const"
-Recherche des parcelles qui sont concomitantes à la cellule 
+.SS "std::list< \fBCoordinates\fP > * Field::getCloseRoads (const \fBCoordinates\fP & coord, unsigned maxDist) const"
+Recherche des routes qui sont proches de la position 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
-\fIcoord\fP Coordonnées de la parcelle 
+\fIcoord\fP Coordonnées de la position 
+.br
+\fImaxDist\fP Distance maximale entre la route et la position 
 .RE
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
-une liste de parcelle adjacentes à la cellule 
-.RE
-.PP
-
-.SS "std::list< \fBCoordinates\fP > * Field::getNeighbourRoads (const \fBCoordinates\fP & coord) const"
-Recherche des portions de routes qui sont concomitantes à la parcelle courante 
-.PP
-\fBParameters:\fP
-.RS 4
-\fIcoord\fP Coordonnées de la parcelle 
-.RE
-.PP
-\fBReturns:\fP
-.RS 4
-une liste de routes adjacentes à la parcelle 
+une liste de routes proches de la position donnée 
 .RE
 .PP
 
-.SS "std::list< \fBCoordinates\fP > * Field::getNeighbourUnusableParcels (const \fBCoordinates\fP & coord, unsigned servingDistance) const"
+.SS "std::list< \fBCoordinates\fP > * Field::getCloseUnusableParcels (const \fBCoordinates\fP & coord, unsigned servingDistance) const"
 Recherche des parcelles qui serait desservies grâce au passage de la parcelle en route 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIcoord\fP Coordonnées de la parcelle 
 .br
 \fIservingDistance\fP Distance à laquelle les routes rendent les parcelles utilisables 
 .RE
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
-une liste de routes qui deviendraient utilisables sur la parcelle devenait une route 
+une liste de parcelles qui deviendraient utilisables si la parcelle devenait une route 
 .RE
 .PP
-On vérifie ((2\&.serve_dist)+1)² parcelles, alors qu'on pourrait en vérifier moins
+
+.SS "unsigned Field::getNbParcels () const\fC [inline]\fP"
+Donne le nombre de parcelles de la surface 
 .PP
-\fBSee also:\fP
+\fBRenvoie:\fP
 .RS 4
-copie faite :'( 
+Le nombre de parcelles, nombre de ligne facteur nombre de colonnes, un entier non signé 
+.RE
+.PP
+
+.SS "std::list< \fBCoordinates\fP > * Field::getNeighbourRoads (const \fBCoordinates\fP & coord) const"
+Recherche des parcelles qui sont concomitantes à la cellule 
+.PP
+\fBParamètres:\fP
+.RS 4
+\fIcoord\fP Coordonnées de la parcelle 
+.RE
+.PP
+\fBRenvoie:\fP
+.RS 4
+une liste de parcelle adjacentes à la cellule Recherche des portions de routes qui sont concomitantes à la parcelle courante 
+.RE
+.PP
+\fBParamètres:\fP
+.RS 4
+\fIcoord\fP Coordonnées de la parcelle 
+.RE
+.PP
+\fBRenvoie:\fP
+.RS 4
+une liste de routes adjacentes à la parcelle 
 .RE
 .PP
 
 .SS "std::list< \fBCoordinates\fP > * Field::getServingRoads (const \fBCoordinates\fP & coord, unsigned servingDistance) const"
 Recherche des portions de routes qui peuvent désservir la parcelle 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIcoord\fP Coordonnées de la parcelle à desservir 
 .br
 \fIservingDistance\fP Distance maximale à laquelle un route peut desservir une parcelle 
 .RE
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 une liste de routes distance inférieure ou égale à la distance de desserte 
 .RE
 .PP
-On vérifie ((2\&.serve_dist)+1)² parcelles, alors qu'on pourrait en vérifier moins 
+On vérifie ((2\&.servingDistance)+1)² parcelles, alors qu'on pourrait en vérifier moins 
 .SS "bool Field::hasServingRoad (const \fBCoordinates\fP & coord, unsigned servingDistance) const"
 Vérifie que la parcelle a un voisin 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIcoord\fP Coordonnées de la parcelle à desservir 
 .br
 \fIservingDistance\fP Distance de desserte des routes 
 .RE
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 vrai si la parcelle est desservie par au moins une route 
 .RE
@@ -525,26 +548,35 @@ On vérifie ((2\&.serve_dist)+1)² parcelles, alors qu'on pourrait en vérifier 
 .SS "bool Field::nextCoordinates (\fBCoordinates\fP * coord) const"
 Modifie la coordonnée en entrée pour obtenir celle qu'elle précède Agit comme une itération sur l'ensemble des coordonnées de la surface 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIcoord\fP Coordonnée courante, va être modifiée pour devenir sa 'suivante'\&. Elle est non modifiée si il n'y a pas de suivante\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 vrai si il y a une coordonnées, faux si on est à la fin ou en dehors de la surface 
+.RE
+.PP
+
+.SS "void Field::operator= (const \fBField\fP & other)\fC [inline]\fP"
+Opérateur = d'affectation 
+.PP
+\fBParamètres:\fP
+.RS 4
+\fIother\fP Instance à recopier 
 .RE
 .PP
 
 .SS "State Field::operator[] (const \fBCoordinates\fP & pos) const\fC [inline]\fP"
 Opérateur [] avec des coordonnées sur la surface, retourne la parcelle de la surface aux coordonnées passées en paramètre 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIpos\fP Coordonnées de la parcelle 
 .RE
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 L'état de la parcelle à la position des coordonnées, un State 
 .RE
@@ -553,12 +585,12 @@ L'état de la parcelle à la position des coordonnées, un State
 .SS "std::ostream & Field::print (std::ostream & out) const"
 Imprime dans un flux les informations de l'instance 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIout\fP Flux dans lequel on imprime les informations 
 .RE
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 Le flux en entrée sur lequel on a imprimé les informations 
 .RE
@@ -575,7 +607,7 @@ Setters
 .SS "void Field::set_height (unsigned height)\fC [inline]\fP"
 Mutateur sur le nombre de lignes -la hauteur- de la surface 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIheight\fP La nouvelle hauteur de la surface 
 .RE
@@ -584,7 +616,7 @@ Mutateur sur le nombre de lignes -la hauteur- de la surface
 .SS "void Field::set_width (unsigned width)\fC [inline]\fP"
 Mutateur sur le nombre de colonnes -la largeur- de la surface 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIwidth\fP La nouvelle largeur de la surface 
 .RE
@@ -601,42 +633,31 @@ Affichage
 .SS "void Field::updateUsables (unsigned servingDistance)"
 Met à jour les parcelles dans le voisinage d'une route comme étant exploitables 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIservingDistance\fP Distance maximale du voisinage 
 .RE
 .PP
 
-.SH "Friends And Related Function Documentation"
+.SH "Documentation des fonctions amies et associées"
 .PP 
 .SS "std::ostream& operator<< (std::ostream & out, const \fBField\fP & field)\fC [friend]\fP"
 Surcharge de l'opérateur << de sortie sur flux 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIout\fP Flux dans lequel on imprime les informations 
 .br
 \fIfield\fP Surface que l'on souhaite imprimer 
 .RE
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 Le flux en entrée sur lequel on a imprimé les informations de la surface passée en entrée 
 .RE
 .PP
 
-.SS "std::vector<State>::const_iterator& std::vector ()\fC [friend]\fP"
 
-.PP
-std::vector<State>::const_iterator::operator ++ 
-.PP
-\fBReturns:\fP
-.RS 4
-Un itérateur constant sur la surface 
-.RE
-.PP
-
-
-.SH "Author"
+.SH "Auteur"
 .PP 
-Generated automatically by Doxygen for Urbanisme from the source code\&.
+Généré automatiquement par Doxygen pour Urbanisme à partir du code source\&.

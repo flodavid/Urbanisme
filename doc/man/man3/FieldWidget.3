@@ -1,4 +1,4 @@
-.TH "FieldWidget" 3 "Mon May 9 2016" "Version 0.1" "Urbanisme" \" -*- nroff -*-
+.TH "FieldWidget" 3 "Jeudi 12 Mai 2016" "Version 0.5" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -10,8 +10,8 @@ FieldWidget \- Widget d'affichage de l'automate cellulaire\&. Ce composant perme
 .PP
 \fC#include <fieldview\&.hpp>\fP
 .PP
-Inherits QWidget\&.
-.SS "Public Slots"
+Est dérivée de QWidget\&.
+.SS "Connecteurs publics"
 
 .in +1c
 .ti -1c
@@ -21,7 +21,7 @@ Inherits QWidget\&.
 .RI "void \fBactionReceived\fP (int x)"
 .br
 .in -1c
-.SS "Public Member Functions"
+.SS "Fonctions membres publiques"
 
 .PP
 .RI "\fB\fP"
@@ -62,15 +62,15 @@ Inherits QWidget\&.
 .RI "void \fBpaintEvent\fP (QPaintEvent *event)"
 .br
 .in -1c
-.SH "Detailed Description"
+.SH "Description détaillée"
 .PP 
 Widget d'affichage de l'automate cellulaire\&. Ce composant permet de suivre graphiquement l'évolution de l'automate\&. Il utilise un système de buffering et s'appuie sur la classe Foret du moteur\&. 
-.SH "Constructor & Destructor Documentation"
+.SH "Documentation des constructeurs et destructeur"
 .PP 
 .SS "FieldWidget::FieldWidget (const \fBField\fP * _field)"
 Constructeur à partir d'une surface déjà crée\&. Initialise les différents pointeurs et fixe la taille minimale du widget 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fI_field\fP Surface associée au widget, c'est elle qui est affichée
 .RE
@@ -80,12 +80,12 @@ Constructeur à partir d'une surface déjà crée\&. Initialise les différents 
 Constructeurs et destructeurs 
 .SS ""
 
-.SH "Member Function Documentation"
+.SH "Documentation des fonctions membres"
 .PP 
 .SS "void FieldWidget::actionReceived (int x)\fC [slot]\fP"
 Execute l'action choisie sur une zone, suite à releaseMouseEvent\&. 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIx\fP Identifiant de l'action reçue 
 .RE
@@ -107,6 +107,6 @@ Réinitialise le rubber
 .SS "void FieldWidget::redraw ()"
 Vide le buffer et rafraichit l'affichage 
 
-.SH "Author"
+.SH "Auteur"
 .PP 
-Generated automatically by Doxygen for Urbanisme from the source code\&.
+Généré automatiquement par Doxygen pour Urbanisme à partir du code source\&.

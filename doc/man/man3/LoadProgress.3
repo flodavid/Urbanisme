@@ -1,4 +1,4 @@
-.TH "LoadProgress" 3 "Mon May 9 2016" "Version 0.1" "Urbanisme" \" -*- nroff -*-
+.TH "LoadProgress" 3 "Jeudi 12 Mai 2016" "Version 0.5" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -10,8 +10,8 @@ LoadProgress \- Classe abstraite, pour suivre l'évolution des chargements (en %
 .PP
 \fC#include <loadprogress\&.h>\fP
 .PP
-Inherited by \fBLoadWindow\fP\&.
-.SS "Public Member Functions"
+Dérivée par \fBLoadWindow\fP\&.
+.SS "Fonctions membres publiques"
 
 .in +1c
 .ti -1c
@@ -21,29 +21,29 @@ Inherited by \fBLoadWindow\fP\&.
 .RI "virtual void \fBcloseProgress\fP ()=0"
 .br
 .in -1c
-.SH "Detailed Description"
+.SH "Description détaillée"
 .PP 
 Classe abstraite, pour suivre l'évolution des chargements (en %) 
 
 
 .PP
-\fBAuthor:\fP
+\fBAuteur:\fP
 .RS 4
 Florian 
 .RE
 .PP
 
-.SH "Member Function Documentation"
+.SH "Documentation des fonctions membres"
 .PP 
 .SS "virtual void LoadProgress::closeProgress ()\fC [pure virtual]\fP"
 Doit fermer ou terminer la progression 
 .PP
-Implemented in \fBLoadWindow\fP\&.
+Implémenté dans \fBLoadWindow\fP\&.
 .SS "virtual void LoadProgress::setProgress (int pourcentage)\fC [pure virtual]\fP"
 Doit mettre à jour de la valeur de la progression 
 .PP
-Implemented in \fBLoadWindow\fP\&.
+Implémenté dans \fBLoadWindow\fP\&.
 
-.SH "Author"
+.SH "Auteur"
 .PP 
-Generated automatically by Doxygen for Urbanisme from the source code\&.
+Généré automatiquement par Doxygen pour Urbanisme à partir du code source\&.

@@ -1,4 +1,4 @@
-.TH "Resolution" 3 "Mon May 9 2016" "Version 0.1" "Urbanisme" \" -*- nroff -*-
+.TH "Resolution" 3 "Jeudi 12 Mai 2016" "Version 0.5" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -9,8 +9,18 @@ Resolution \- La classe effectuant l'ensemble de la résolution et le front Pare
 .PP
 .PP
 \fC#include <resolution\&.h>\fP
-.SS "Public Member Functions"
+.SS "Fonctions membres publiques"
 
+.in +1c
+.ti -1c
+.RI "void \fBlocalSearchAccessObjective\fP (const \fBLocalSearch\fP &localSearch)"
+.br
+.in -1c
+.PP
+.RI "\fB\fP"
+.br
+
+.in +1c
 .in +1c
 .ti -1c
 .RI "\fBResolution\fP (unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth)"
@@ -21,19 +31,42 @@ Resolution \- La classe effectuant l'ensemble de la résolution et le front Pare
 .ti -1c
 .RI "\fBResolution\fP (const \fBField\fP &field, const \fBParameters\fP &_params)"
 .br
+.in -1c
+.in -1c
+.PP
+.RI "\fB\fP"
+.br
+
+.in +1c
+.in +1c
 .ti -1c
 .RI "void \fBevaluateBothObjectives\fP (\fBEvaluation\fP &myEvaluation)"
 .br
+.ti -1c
+.RI "int \fBspread\fP (const \fBEvaluation\fP *eval)"
+.br
 .in -1c
-.SH "Detailed Description"
+.in -1c
+.PP
+.RI "\fB\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "void \fBlocalSearchUsableObjective\fP (const \fBLocalSearch\fP &localSearch)"
+.br
+.in -1c
+.in -1c
+.SH "Description détaillée"
 .PP 
 La classe effectuant l'ensemble de la résolution et le front Pareto Elle contient l'intégralité des données du problème et est chargée de lancer les algos, de stocker les solutions et de construire le front pareto résultant\&. 
-.SH "Constructor & Destructor Documentation"
+.SH "Documentation des constructeurs et destructeur"
 .PP 
 .SS "Resolution::Resolution (unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth)"
 Constructeur d'une résolution à partir de tous les paramètres du problème 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fInbCols\fP Largeur de la surface 
 .br
@@ -41,14 +74,18 @@ Constructeur d'une résolution à partir de tous les paramètres du problème
 .br
 \fIserveDistance\fP Distance de desserte des parcelles par les routes 
 .br
-\fIroadsWidth\fP Largeur des routes 
+\fIroadsWidth\fP Largeur des routes
 .RE
 .PP
+.SS ""
+.PP
+Constructeurs 
+.SS ""
 
 .SS "Resolution::Resolution (unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth, std::list< \fBCoordinates\fP > & ins_outs)"
 Constructeur d'une résolution à partir de tous les paramètres du problème, avec une liste d'entrées et sorties 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fInbCols\fP Largeur de la surface 
 .br
@@ -65,7 +102,7 @@ Constructeur d'une résolution à partir de tous les paramètres du problème, a
 .SS "Resolution::Resolution (const \fBField\fP & field, const \fBParameters\fP & _params)"
 Construit l'instance en recopiant une surface et des paramètres existants 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIfield\fP 
 .br
@@ -73,18 +110,67 @@ Construit l'instance en recopiant une surface et des paramètres existants
 .RE
 .PP
 
-.SH "Member Function Documentation"
+.SH "Documentation des fonctions membres"
 .PP 
 .SS "void Resolution::evaluateBothObjectives (\fBEvaluation\fP & myEvaluation)"
 Evalue les deux objectifs TODO mettre à jour le front pareto 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fImyEvaluation\fP 
+.SS ""
+.RE
+.PP
+\fBEvaluation\fP et Pareto 
+.SS ""
+
+.SS "void Resolution::localSearchAccessObjective (const \fBLocalSearch\fP & localSearch)"
+Exécute la recherche locale permettant de maximiser l'accessibilité 
+.PP
+\fBParamètres:\fP
+.RS 4
+\fIlocalSearch\fP Recherche locale effectuant les opérations 
+.RE
+.PP
+\fBVoir également:\fP
+.RS 4
+Utiliser un signal pour mettre à jour l'affichage pendant les recherche ? 
+.RE
+.PP
+
+.SS "void Resolution::localSearchUsableObjective (const \fBLocalSearch\fP & localSearch)"
+Exécute la recherche locale permettant de maximiser le nombre de parcelles exploitables 
+.PP
+\fBParamètres:\fP
+.RS 4
+\fIlocalSearch\fP Recherche locale effectuant les opérations 
+.RE
+.PP
+\fBVoir également:\fP
+.RS 4
+Utiliser un signal pour mettre à jour l'affichage pendant les recherche ?
+.RE
+.PP
+.SS ""
+.PP
+Recherches locales 
+.SS ""
+
+.SS "int Resolution::spread (const \fBEvaluation\fP * eval)"
+Effectue une propagation à partir de la solution courante : toutes les solutions précédentes dominées par la solution sont supprimées 
+.PP
+\fBParamètres:\fP
+.RS 4
+\fIeval\fP \fBEvaluation\fP courante 
+.RE
+.PP
+\fBRenvoie:\fP
+.RS 4
+le nombre de solutions supprimées 
 .RE
 .PP
 
 
-.SH "Author"
+.SH "Auteur"
 .PP 
-Generated automatically by Doxygen for Urbanisme from the source code\&.
+Généré automatiquement par Doxygen pour Urbanisme à partir du code source\&.

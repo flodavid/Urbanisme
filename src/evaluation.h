@@ -58,7 +58,10 @@ public:
      */
     float get_avgAccess() const
     { return avgAccess; }
-
+    /**
+     * Accesseur sur l'attribut field
+     * @return field, une référence sur un Field
+     */
     Field& get_field() { return field; }
 
     /**
@@ -104,6 +107,12 @@ public:
 
     /* Fonctions utiles à l'évaluation */
 
+    /**
+     * Vérifie si l'évaluation est dominée par une autre
+     * @param other Autre instance
+     * @return vrai si les deux objectifs de l'évaluation sont inférieurs à ceux
+     * de l'autre instance
+     */
     bool is_dominated(const Evaluation& other) const
     {
         return ( (other.nbUsables > nbUsables) && (other.avgAccess > avgAccess) );

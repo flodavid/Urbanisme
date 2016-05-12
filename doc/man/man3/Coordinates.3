@@ -1,4 +1,4 @@
-.TH "Coordinates" 3 "Mon May 9 2016" "Version 0.1" "Urbanisme" \" -*- nroff -*-
+.TH "Coordinates" 3 "Jeudi 12 Mai 2016" "Version 0.5" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -9,7 +9,7 @@ Coordinates \- Représentation et opérations simple sur des coordonnées dans u
 .PP
 .PP
 \fC#include <coordinates\&.h>\fP
-.SS "Public Member Functions"
+.SS "Fonctions membres publiques"
 
 .in +1c
 .ti -1c
@@ -37,7 +37,7 @@ Coordinates \- Représentation et opérations simple sur des coordonnées dans u
 .RI "virtual bool \fBoperator<\fP (const \fBCoordinates\fP &other) const "
 .br
 .in -1c
-.SS "Public Attributes"
+.SS "Attributs publics"
 
 .in +1c
 .ti -1c
@@ -47,7 +47,7 @@ Coordinates \- Représentation et opérations simple sur des coordonnées dans u
 .RI "int \fBrow\fP"
 .br
 .in -1c
-.SS "Friends"
+.SS "Amis"
 
 .in +1c
 .ti -1c
@@ -57,24 +57,24 @@ Coordinates \- Représentation et opérations simple sur des coordonnées dans u
 .RI "std::ostream & \fBoperator<<\fP (std::ostream &out, const std::list< \fBCoordinates\fP > &coords)"
 .br
 .in -1c
-.SH "Detailed Description"
+.SH "Description détaillée"
 .PP 
 Représentation et opérations simple sur des coordonnées dans un plan\&. 
 
 
 .PP
-\fBSee also:\fP
+\fBVoir également:\fP
 .RS 4
 Normalement inutile, permet de ne pas utilise -lm lors compilation 
 .RE
 .PP
 
-.SH "Constructor & Destructor Documentation"
+.SH "Documentation des constructeurs et destructeur"
 .PP 
 .SS "Coordinates::Coordinates (int _x, int _y)"
 Constructeur de la classe \fBCoordinates\fP, crée les coordonnées à partir de la position sur les axes 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fI_x\fP Abscisse des coordonnées, axe horizontal 
 .br
@@ -85,18 +85,18 @@ Constructeur de la classe \fBCoordinates\fP, crée les coordonnées à partir de
 .SS "Coordinates::Coordinates (const \fBCoordinates\fP & other)"
 Constructeur par recopie de la classe \fBCoordinates\fP, crée les coordonnées à partir d'autres coordonnées 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIother\fP Les autres coordonnées, que l'on va recopier pour créer la nouvelle instance 
 .RE
 .PP
 
-.SH "Member Function Documentation"
+.SH "Documentation des fonctions membres"
 .PP 
 .SS "float Coordinates::euclideanDistance (const \fBCoordinates\fP & other) const"
 Calcul de la distance euclidienne entre deux points 
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 distance euclidienne : flottant non signé 
 .RE
@@ -105,7 +105,7 @@ distance euclidienne : flottant non signé
 .SS "unsigned Coordinates::manhattanDistance (const \fBCoordinates\fP & other) const"
 Calcul de la distance Manhattan entre deux points 
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 distance manhattan : entier non signé 
 .RE
@@ -114,12 +114,12 @@ distance manhattan : entier non signé
 .SS "bool Coordinates::operator< (const \fBCoordinates\fP & other) const\fC [virtual]\fP"
 Méthode utile seulement pour placer les vecteur dans un conteneur map 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIother\fP Autres coordonnées 
 .RE
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 vrai si la ligne de la seconde coordonnée est supérieur à la ligne de l'instance, ou la colonne les coordonnées sont sur la 'même ligne'\&. Faux sinon 
 .RE
@@ -128,12 +128,12 @@ vrai si la ligne de la seconde coordonnée est supérieur à la ligne de l'insta
 .SS "\fBCoordinates\fP & Coordinates::operator= (const \fBCoordinates\fP & other)"
 Surcharge de l'opérateur = d'affectation, pour la classe 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIother\fP Les autres coordonnées, que l'on va recopier dans l'instance 
 .RE
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 Les nouvelles coordonnnées 
 .RE
@@ -142,12 +142,12 @@ Les nouvelles coordonnnées
 .SS "bool Coordinates::operator== (const \fBCoordinates\fP & other) const\fC [virtual]\fP"
 Surcharge de l'opérateur == de comparaison, pour la classe 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIother\fP Les autres coordonnées, que l'on va comparer avec l'instance 
 .RE
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 vrai si les deux coordonnées sont identiques (même position) 
 .RE
@@ -156,30 +156,30 @@ vrai si les deux coordonnées sont identiques (même position)
 .SS "std::ostream & Coordinates::print (std::ostream & out) const"
 Imprime dans un flux les informations de l'instance 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIout\fP Flux dans lequel on imprime les informations 
 .RE
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 Le flux en entrée sur lequel on a imprimé les informations 
 .RE
 .PP
 
-.SH "Friends And Related Function Documentation"
+.SH "Documentation des fonctions amies et associées"
 .PP 
 .SS "std::ostream& operator<< (std::ostream & out, const \fBCoordinates\fP & coord)\fC [friend]\fP"
 Surcharge de l'opérateur << de sortie sur flux 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIout\fP Flux dans lequel on imprime les informations 
 .br
 \fIcoord\fP Coordonnées que l'on souhaite imprimer 
 .RE
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 Le flux en entrée sur lequel on a imprimé les informations des coordonnées passées en entrée 
 .RE
@@ -188,26 +188,26 @@ Le flux en entrée sur lequel on a imprimé les informations des coordonnées pa
 .SS "std::ostream& operator<< (std::ostream & out, const std::list< \fBCoordinates\fP > & coords)\fC [friend]\fP"
 Surcharge de l'opérateur << de sortie sur flux 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIout\fP Flux dans lequel on imprime les informations 
 .br
 \fIcoords\fP Liste de coordonnées que l'on souhaite imprimer 
 .RE
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 Le flux en entrée sur lequel on a imprimé les informations des coordonnées passées en entrée 
 .RE
 .PP
 
-.SH "Member Data Documentation"
+.SH "Documentation des données membres"
 .PP 
 .SS "int Coordinates::col"
 Colonne, abscisse des coordonnées 
 .SS "int Coordinates::row"
 Ligne, ordonnée des coordonnées 
 
-.SH "Author"
+.SH "Auteur"
 .PP 
-Generated automatically by Doxygen for Urbanisme from the source code\&.
+Généré automatiquement par Doxygen pour Urbanisme à partir du code source\&.

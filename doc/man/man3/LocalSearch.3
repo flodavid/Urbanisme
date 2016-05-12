@@ -1,4 +1,4 @@
-.TH "LocalSearch" 3 "Mon May 9 2016" "Version 0.1" "Urbanisme" \" -*- nroff -*-
+.TH "LocalSearch" 3 "Jeudi 12 Mai 2016" "Version 0.5" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -9,7 +9,14 @@ LocalSearch \- La classe chargée d'effectuer des recherches locales sur les dif
 .PP
 .PP
 \fC#include <localsearch\&.h>\fP
-.SS "Public Member Functions"
+.SS "Types publics"
+
+.in +1c
+.ti -1c
+.RI "typedef std::list< \fBCoordinates\fP > \fBPath\fP"
+.br
+.in -1c
+.SS "Fonctions membres publiques"
 
 .PP
 .RI "\fB\fP"
@@ -30,21 +37,31 @@ LocalSearch \- La classe chargée d'effectuer des recherches locales sur les dif
 .RI "void \fBinitSolution\fP ()"
 .br
 .ti -1c
-.RI "bool \fBaddRoadUsable\fP ()"
+.RI "std::list< \fBPath\fP * > * \fBgetPaths\fP (const \fBCoordinates\fP &coord1, const \fBCoordinates\fP &coord2)"
+.br
+.ti -1c
+.RI "float \fBgainPath\fP (\fBPath\fP *path) const "
+.br
+.ti -1c
+.RI "bool \fBaddRoadUsable\fP () const "
 .br
 .ti -1c
 .RI "bool \fBaddRoadsAccess\fP (unsigned nbToAdd)"
 .br
 .in -1c
-.SH "Detailed Description"
+.SH "Description détaillée"
 .PP 
 La classe chargée d'effectuer des recherches locales sur les différentes solutions TODO ajouter les entrées et sorties\&. 
-.SH "Constructor & Destructor Documentation"
+.SH "Documentation des définitions de type membres"
+.PP 
+.SS "typedef std::list<\fBCoordinates\fP> \fBLocalSearch::Path\fP"
+Un chemin est une suite de coordonnées qu'on suppose adjacentes 
+.SH "Documentation des constructeurs et destructeur"
 .PP 
 .SS "LocalSearch::LocalSearch (\fBField\fP * _field, const \fBParameters\fP * _params)"
 Constructeur d'une recherche locale à partir d'une surface existante et des paramètres des routes\&. La surface sera modifiée 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fI_field\fP Surface déjà instanciée 
 .br
@@ -59,41 +76,35 @@ Constructeurs
 .SS "LocalSearch::LocalSearch (const \fBLocalSearch\fP & other)"
 Constructeur d'une recherche locale par recopie La surface de l'autre instance est recopiée 
 .PP
-\fBParameters:\fP
+\fBParamètres:\fP
 .RS 4
 \fIother\fP Instance à recopier 
 .RE
 .PP
 
-.SH "Member Function Documentation"
+.SH "Documentation des fonctions membres"
 .PP 
 .SS "bool LocalSearch::addRoadsAccess (unsigned nbToAdd)"
 Tente l'ajout d'un chemin (série de routes) avec pour objectif d'améliorer l'accessibilité\&. 
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 faux si aucune route n'a pu être ajoutée car il n'y a aucun placement de chemin permettant d'obtenir une solution réalisable avec une accessibilité meilleures ou équivalente\&. 
 .RE
 .PP
 
-.SS "bool LocalSearch::addRoadUsable ()"
+.SS "bool LocalSearch::addRoadUsable () const"
 Tente l'ajout d'une route avec pour objectif d'augmenter le nombre de parcelles exploitables\&. 
 .PP
-\fBReturns:\fP
+\fBRenvoie:\fP
 .RS 4
 faux si aucune route n'a pu être ajoutée car il n'y a aucun placement de route permettant d'obtenir une solution réalisable avec un nombre de parcelles exploitables supérieur ou égal au nombre courant\&. 
 .RE
 .PP
 TODO est-ce utile de soustraire le nombre de voisin, mettre un coef, \&.\&.\&. ? OUI, ça a une utilité, pour éviter de coller 2 routes 
 .SS "void LocalSearch::initSolution ()"
-Relie les entrées et sorties entre elles, de manière directe
-.PP
-.SS ""
-.PP
-Recherche locale 
-.SS ""
+Relie les entrées et sorties entre elles, de manière directe 
 
-
-.SH "Author"
+.SH "Auteur"
 .PP 
-Generated automatically by Doxygen for Urbanisme from the source code\&.
+Généré automatiquement par Doxygen pour Urbanisme à partir du code source\&.
