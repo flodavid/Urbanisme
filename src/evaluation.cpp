@@ -316,7 +316,7 @@ float Evaluation::evaluateRatio()
     delete &coord1;
 
 
-    cout << "Ratio total : "<< total_ratio<< ", nb ratios : "<< nb_ratio<< endl;
+    cout << "Ratio total : "<< total_ratio<< ", nb ratios : "<< nb_ratio<< " = "<< total_ratio / (float)nb_ratio<<endl;
 
     float average =  total_ratio / ((float) nb_ratio);
     // Sauvegarde de la valeur

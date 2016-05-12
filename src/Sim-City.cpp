@@ -24,6 +24,9 @@ FieldWidget* initWindow(const Field* myField){
     return field_widget;
 }
 
+#define WIDTH   20
+#define HEIGHT  20
+
 /**
  * Création du terrain de l'exemple, exécution de l'évaluation, affichage du résultat,
  * affichage tu temps pris par de l'évaluation
@@ -34,15 +37,10 @@ int main(int argc, char* argv[])
 {
     QScopedPointer<QApplication> app(new QApplication(argc, argv));
     
-
     // Paramètres du problèmes
     Parameters myParameters(2, 1);
 
-    Field myField(8, 8);
-    // Angle
-        myField.add_in_out(2,7);
-        myField.add_in_out(7,1);
-
+    Field myField(WIDTH, HEIGHT);
     Resolution myResolution(myField, myParameters);
     //@{
     //     // Solution de l'exemple :
@@ -50,18 +48,22 @@ int main(int argc, char* argv[])
     //@}
     
     //@{
-    // Angle
-//           myField.add_in_out(11,19);
-//           myField.add_in_out(19,4);
+    // Angle 1
+//        myField.add_in_out(2,HEIGHT -1);
+//        myField.add_in_out(WIDTH -1,1);
+
+    // Angle 2
+//           myField.add_in_out(8,HEIGHT -1);
+//           myField.add_in_out(WIDTH -1,4);
     // Mm colonne
 //            myField.add_in_out(0,4);
-//            myField.add_in_out(0,19);
+//            myField.add_in_out(0,HEIGHT -1);
     // En face : coude
-//             myField.add_in_out(19,8);
+//             myField.add_in_out(WIDTH -1,8);
 //             myField.add_in_out(0,4);
     // E/S exemple
-//    myField.add_in_out(9,19);
-//    myField.add_in_out(9,0);
+    myField.add_in_out(WIDTH/2,HEIGHT -1);
+    myField.add_in_out(WIDTH/2,0);
 
     // Solution avec recherche locale
     srand(time(NULL));
@@ -73,24 +75,27 @@ int main(int argc, char* argv[])
     myField.defineUsables(myParameters.get_serve_distance());
 
     // Parcelles utilisables
-    Evaluation myEvaluation(myField, myParameters);
     cout << endl<< "===== Evaluation avant recherche locale ====="<< endl;
-    myResolution.evaluateBothObjectives(myEvaluation);
+    myResolution.evaluateBothObjectives(*(myLocalSearch.get_evaluation()));
 
+    /** Tests **/    
     myResolution.localSearchUsableObjective(myLocalSearch);
 
-    /** Tests **/
-    for (unsigned i= 0; i < 1; ++i) {
+    cout << endl<< "===== Evaluation après nb exploitables ====="<< endl;
+    myResolution.evaluateBothObjectives(*(myLocalSearch.get_evaluation()));
+
+    for (unsigned i= 0; i < 2; ++i) {
        myLocalSearch.addRoadsAccess(2 * myParameters.get_serve_distance());
     }
+
+    cout << endl<< "===== Evaluation après accessibilité ====="<< endl;
+    myResolution.evaluateBothObjectives(*(myLocalSearch.get_evaluation()));
 
     // Fenêtre
     FieldWidget* myFieldWidget= initWindow(&myField);
 //    myFieldWidget->redraw();
     /** Fin tests **/
 
-    cout << endl<< "===== Evaluation après recherche locale ====="<< endl;
-    myResolution.evaluateBothObjectives(myEvaluation);
 
     return app->exec();
 }

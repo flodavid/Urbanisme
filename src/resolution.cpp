@@ -44,9 +44,9 @@ void Resolution::evaluateBothObjectives(Evaluation& myEvaluation)
     time_t startTime, stopTime; startTime = time(NULL);
 
     // Evaluation
-    if (!myEvaluation.road_distances_are_initiated) {
+//    if (!myEvaluation.road_distances_are_initiated) {
         myEvaluation.initRoadDistances();
-    }
+//    }
 
     stopTime = time(NULL); time_t elapsedTimeInit = stopTime - startTime; startTime = time(NULL);
 

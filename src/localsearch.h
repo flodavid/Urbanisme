@@ -48,7 +48,10 @@ public:
      */
     LocalSearch(const LocalSearch& other);
 
-    /*  Recherche locale */
+    /* Getters */
+    Evaluation* get_evaluation() { return eval; }
+
+    /*  Algorithm */
     /* = Initialisation = */
 
 private:
@@ -68,6 +71,7 @@ public:
 
 public:
 
+    /* = Improvments = */
     std::list<Path*>* getPaths(const Coordinates& coord1, const Coordinates& coord2);
 
     float gainPath(Path* path) const;
