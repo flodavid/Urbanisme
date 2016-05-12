@@ -84,7 +84,7 @@ int main(int argc, char* argv[])
     cout << endl<< "===== Evaluation après nb exploitables ====="<< endl;
     myResolution.evaluateBothObjectives(*(myLocalSearch.get_evaluation()));
 
-    for (unsigned i= 0; i < 2; ++i) {
+    for (unsigned i= 0; i < 4; ++i) {
        myLocalSearch.addRoadsAccess(2 * myParameters.get_serve_distance());
     }
 

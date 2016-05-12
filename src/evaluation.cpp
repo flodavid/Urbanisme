@@ -315,8 +315,9 @@ float Evaluation::evaluateRatio()
     } while (field.nextCoordinates(&coord1));
     delete &coord1;
 
-
+#if DEBUG_EVALUATION_LIGHT
     cout << "Ratio total : "<< total_ratio<< ", nb ratios : "<< nb_ratio<< " = "<< total_ratio / (float)nb_ratio<<endl;
+#endif
 
     float average =  total_ratio / ((float) nb_ratio);
     // Sauvegarde de la valeur
