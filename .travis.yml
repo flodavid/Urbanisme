@@ -1,12 +1,14 @@
 language: cpp
 
+os:
+  - linux
+  
 addons:
   apt:
     sources:
       # gcc/g++ repository
       - ubuntu-toolchain-r-test
-      - george-edison55-precise-backports # cmake 3.2.3 / doxygen 1.8.3
-   packages:
+    packages:
       - g++-4.8
       #cmake
       - cmake
@@ -18,12 +20,11 @@ before_install:
   # g++ repository
   #- sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   - sudo apt-get update -qq
-  - sudo apt-get install -qq qt5-qmake qtbase5-dev qtdeclarative5-dev
 
 install:
   # Qt install
-  #- sudo apt-get install qtbase5-dev qtdeclarative5-dev
-  #- sudo apt-get install qt5-default qttools5-dev-tools
+  - sudo apt-get install qtbase5-dev qtdeclarative5-dev
+  - sudo apt-get install qt5-default qttools5-dev-tools
   # g++ install
   #- if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.8; fi
   - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
