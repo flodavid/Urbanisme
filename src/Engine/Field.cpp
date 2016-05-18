@@ -37,6 +37,28 @@ void Field::resizeWithDimensions()
     }
 }
 
+bool Field::tryAdd_in_out(const Coordinates &coords)
+{
+    if (( coords.col == (int)get_width() -1 || coords.row == (int)get_height() -1 )
+            || ( coords.col == 0 || coords.row == 0 )) {
+        ins_outs.push_back(coords);
+        parcels[coords.row][coords.col]= is_in_out;
+
+        return true;
+    } else return false;
+}
+
+void Field::add_undefined(const Coordinates& coords)
+{
+    if (is_in_out == parcels[coords.row][coords.col]){
+        auto list_it= find(ins_outs.begin(), ins_outs.end(), coords);
+        if ( list_it != ins_outs.end()) {
+            ins_outs.erase(list_it);
+        }
+    }
+    parcels[coords.row][coords.col]= is_undefined;
+}
+
 //@}
 ///#####################
 ///      Affichage

@@ -9,23 +9,52 @@ using namespace std;
 /// #########################
 //@{
 
-Resolution::Resolution(unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth):
-    nb_cols(nbCols), nb_rows(nbRows), params(serveDistance, roadsWidth)
-{
-
-}
-
-
 Resolution::Resolution(unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth, std::list<Coordinates>& ins_outs):
-    nb_cols(nbCols), nb_rows(nbRows), params(serveDistance, roadsWidth)
+    nb_cols(nbCols), nb_rows(nbRows), params(serveDistance, roadsWidth), localSearch(nullptr)
 {
     
 }
 
 Resolution::Resolution(const Field &field, const Parameters &_params):
-    nb_cols(field.get_width()), nb_rows(field.get_height()), params(_params)
+    nb_cols(field.get_width()), nb_rows(field.get_height()), params(_params), localSearch(nullptr)
 {
 
+}
+
+//@}
+/// ############################
+///      Resolution
+/// ############################
+//@{
+
+void Resolution::initResolution(Field &field)
+{
+    localSearch= new LocalSearch(&field, &params);
+
+    localSearch->initSolution();
+    // TODO retourner la surface modifiée
+}
+
+void Resolution::launchResolution()
+{
+    // Parcelles utilisables
+    cout << endl<< "===== Evaluation avant recherche locale ====="<< endl;
+    evaluateBothObjectives(*(localSearch->get_evaluation()));
+
+    /** Tests **/
+    localSearchUsableObjective(*localSearch);
+
+    cout << endl<< "===== Evaluation après nb exploitables ====="<< endl;
+    evaluateBothObjectives(*(localSearch->get_evaluation()));
+
+    for (unsigned i= 0; i < 3; ++i) {
+       localSearch->addRoadsAccess(2 * params.get_serve_distance());
+    }
+
+    cout << endl<< "===== Evaluation après accessibilité ====="<< endl;
+    evaluateBothObjectives(*(localSearch->get_evaluation()));
+
+    // TODO retourner la surface modifiée
 }
 
 //@}

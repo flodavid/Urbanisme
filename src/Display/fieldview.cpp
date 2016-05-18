@@ -9,9 +9,9 @@ using namespace std;
 /// ####################################
 //@{
 
-FieldWidget::FieldWidget(const Field* _field):
+FieldWidget::FieldWidget(Field* _field):
     QWidget(), field(_field)
-{	
+{
 	buffer = new QImage;
 	color = new QColor(Qt::white);
 	bufferPainter= new QPainter;
@@ -191,6 +191,51 @@ bool FieldWidget::trySaveImage(QString filename) const
 /// ##################
 //@{
 
+void FieldWidget::clicInOut(const QPoint &pos)
+{
+    unsigned col= pos.x() / tailleCell -1;
+    unsigned row= pos.y() / tailleCell -1;
+    if (field->at(Coordinates(col, row)) != is_in_out) {
+        if (field->tryAdd_in_out(col, row)) field->updateUsables(2);
+    } else {
+        field->add_undefined(col, row);
+        field->updateUsables(2);
+    }
+
+    redraw();
+    update();
+}
+
+void FieldWidget::clicRoad(const QPoint &pos)
+{
+    unsigned col= pos.x() / tailleCell -1;
+    unsigned row= pos.y() / tailleCell -1;
+    if (field->at(Coordinates(col, row)) != is_road) {
+        field->add_road(col, row);
+        field->updateUsables(2);
+    } else {
+        field->add_undefined(col, row);
+        field->updateUsables(2);
+    }
+
+    redraw();
+    update();
+}
+
+void FieldWidget::moveRoad(const QPoint &pos)
+{
+    unsigned col= pos.x() / tailleCell -1;
+    unsigned row= pos.y() / tailleCell -1;
+    if (field->at(Coordinates(col, row)) != is_road) {
+        field->add_road(col, row);
+        field->updateUsables(2);
+    }
+
+    redraw();
+    update();
+}
+
+
 void FieldWidget::paintEvent(QPaintEvent* event)
 {
     QWidget::paintEvent(event);
@@ -244,33 +289,31 @@ void FieldWidget::mousePressEvent(QMouseEvent* event)
 {
 	
 	if (event->button()==Qt::LeftButton)
-    {}
+    {
+        clicRoad(event->pos());
+    }
 	else if (event->button()==Qt::MiddleButton)
-    {}
+    {
+///		initRubber(event);
+    }
 	else if (event->button()==Qt::RightButton)
 	{
-		initRubber(event);
-		
-		#if DEBUG_IMAGE_COLOR
-		QColor* pix= new QColor(pictureForest->pixel(colonne, ligne));
-		cout << "qté vert en "<< colonne<< " ; "<< ligne<<" : "<< pix->green();
-		cout << "\tqté red : " << pix->red() << " ; bleu : "<< pix->blue()<< endl;
-		#endif
+        clicInOut(event->pos());
 	}
 	
 	drawChanged();
 	update();
 }
 
-void FieldWidget::initRubber(QMouseEvent* event){
-	origin = event->pos();
+//void FieldWidget::initRubber(QMouseEvent* event){
+//	origin = event->pos();
 	
-	if(!rubber)
-		rubber = new QRubberBand(QRubberBand::Rectangle, this);
+//	if(!rubber)
+//		rubber = new QRubberBand(QRubberBand::Rectangle, this);
 
-	rubber->setGeometry(QRect(origin, QSize(0,0)));
-	rubber->show();
-}
+//	rubber->setGeometry(QRect(origin, QSize(0,0)));
+//	rubber->show();
+//}
 
 void FieldWidget::mouseMoveEvent(QMouseEvent* event)
 {
@@ -278,13 +321,15 @@ void FieldWidget::mouseMoveEvent(QMouseEvent* event)
 //	int ligne= event->y()/tailleCell;
 	
 	if (event->buttons().testFlag(Qt::LeftButton) )
-    {}
+    {
+        moveRoad(event->pos());
+    }
 	else if (event->buttons().testFlag(Qt::MiddleButton) )
     {}
 	else if (event->buttons().testFlag(Qt::RightButton) ){
-        if(rubber) {
-			rubber->setGeometry(QRect(origin,event->pos()).normalized());
-        }
+//        if(rubber) {
+//			rubber->setGeometry(QRect(origin,event->pos()).normalized());
+//        }
 	}
 	
 	drawChanged();
@@ -340,11 +385,11 @@ void FieldWidget::mouseReleaseEvent(QMouseEvent* event)
 /// ############
 //@{
 
-//void FieldWidget::actionReceived(int x)
+//void FieldWidget::actionReceived(int action_id)
 //{
-//	// Transformation des QPoints depart et arrivée en coordonnée cellulaire
-//	int xDep = depart.x() / tailleCell;
-//	int yDep = depart.y() / tailleCell;
+//    // Transformation des QPoints depart et arrivée en coordonnée cellulaire
+//    int xDep = depart.x() / tailleCell;
+//    int yDep = depart.y() / tailleCell;
 	
 //    unsigned xArr = arrivee.x() / tailleCell;
 	
@@ -355,20 +400,20 @@ void FieldWidget::mouseReleaseEvent(QMouseEvent* event)
 //    if (yArr> field->get_height())	yArr= field->get_height();
 
 	
-//	#if DEBUG_RETARD
-//	cout << "Coordonnée en cellule du départ : " << xDep << ";" << yDep << endl;
-//	cout << "Coordonnée en cellule de l'arrivée : " << xArr << ";" << yArr << endl;
-//	#endif
+//    #if DEBUG_RETARD
+//    cout << "Coordonnées en cellule de départ : " << xDep << ";" << yDep << endl;
+//    cout << "Coordonnées en cellule d'arrivée : " << xArr << ";" << yArr << endl;
+//    #endif
 	
-//	// Appel à une fonction de forêt qui parcours la zone et effectue l'action
+//    // Appel à une fonction de forêt qui parcours la zone et effectue l'action
 	
 	
-//	if(x == CUT){
-//	}else if( x == DELAY){
-//	}else cerr<< "mauvais index d'action clic droit"<< endl;
+////    if(action_id == CUT){
+////    }else if( action_id == DELAY){
+////    }else cerr<< "mauvais index d'action clic droit"<< endl;
 	
-//	drawChanged();
-//	update();
+//    drawChanged();
+//    update();
 //}
 
 //@}

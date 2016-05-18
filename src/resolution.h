@@ -18,18 +18,12 @@ private:
     unsigned nb_cols, nb_rows;
     Parameters params;
 
+    LocalSearch* localSearch;
+
     std::list<const Evaluation*> pareto_evals;
 
 public:
     /* Constructeurs */
-    /**
-     * Constructeur d'une résolution à partir de tous les paramètres du problème
-     * @param nbCols Largeur de la surface
-     * @param nbRows Hauteur de la surface
-     * @param serveDistance Distance de desserte des parcelles par les routes
-     * @param roadsWidth Largeur des routes
-     */
-    Resolution(unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth);
     /**
      * Constructeur d'une résolution à partir de tous les paramètres du problème, avec une liste d'entrées et sorties
      * @param nbCols Largeur de la surface
@@ -46,6 +40,11 @@ public:
      * @param _params
      */
     Resolution(const Field& field, const Parameters& _params);
+
+    /* Résolution */
+    void initResolution(Field& field);
+
+    void launchResolution();
 
     /* Evaluations */
     /**

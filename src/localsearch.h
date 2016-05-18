@@ -63,6 +63,12 @@ private:
     void verticalElbows(Coordinates& InOut1, const Coordinates& InOut2);
     void horizontalElbows(Coordinates& InOut1, const Coordinates& InOut2);
 
+    /**
+     * Ajoute un ensemble de routes, sensées former un chemin
+     * @param path
+     */
+    void add_path(Path* path);
+
 public:
     /**
      * Relie les entrées et sorties entre elles, de manière directe

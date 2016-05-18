@@ -74,6 +74,19 @@ void LocalSearch::horizontalElbows(Coordinates &InOut1, const Coordinates &InOut
     horizontal_roads(inter_coord, InOut2);
 }
 
+void LocalSearch::add_path(Path *path)
+{
+    for (const Coordinates& coord_road : *path) {
+#if LOGS_ADD_ACCESS_ROAD
+        clog << " Ajout de la route "<< coord_road<< " pour augmenter l'accessibilité"<< endl;
+#endif
+        field->add_road(coord_road);
+    }
+
+    // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
+    field->updateUsables(params.get_serve_distance());
+}
+
 
 void LocalSearch::initSolution()
 {
@@ -111,6 +124,8 @@ void LocalSearch::initSolution()
             horizontal_roads(in_out_1, in_out_2);
         }
     }
+
+    field->defineUsables(params.get_serve_distance());
 }
 
 list<Path*>* LocalSearch::getPaths(const Coordinates &coord1, const Coordinates &coord2)
@@ -168,7 +183,7 @@ float LocalSearch::gainPath(Path *path) const
     Evaluation tmp_eval= *eval;
 
     Field& tmp_field= tmp_eval.get_field();
-    Field save_field= tmp_field;
+    Field* save_field= new Field(tmp_field);
     for (const Coordinates& coord_road : *path) {
         tmp_field.add_road(coord_road);
     }
@@ -177,7 +192,7 @@ float LocalSearch::gainPath(Path *path) const
     float eval_after= tmp_eval.get_avgAccess();
 
     // Restauration de la surface
-    eval->set_field(&save_field);
+    eval->set_field(save_field);
 
     return  eval_before - eval_after;
 }
@@ -292,15 +307,7 @@ bool LocalSearch::addRoadsAccess(unsigned nbToAdd)
 #if LOGS_ADD_ACCESS_ROAD
         clog << "Chemin viable, pour maximiser l'accessibilité de "<< gain_max<< " par route, trouvé"<< endl;
 #endif
-        for (const Coordinates& coord_road : *best_path) {
-#if LOGS_ADD_ACCESS_ROAD
-            clog << " Ajout de la route "<< coord_road<< " pour augmenter l'accessibilité"<< endl;
-#endif
-            field->add_road(coord_road);
-        }
-
-        // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
-        field->updateUsables(params.get_serve_distance());
+        add_path(best_path);
 
         delete best_path;
 

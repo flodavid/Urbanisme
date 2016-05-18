@@ -6,7 +6,7 @@
 /// #########################
 //@{
 
-// /*
+ /*
 void Field::createExample()
 {
     // Surface de l'exemple :
@@ -124,7 +124,7 @@ void Field::createExample()
 }
 // */
 
-/*
+///*
 // Petit
 void Field::createExample()
 {
@@ -134,7 +134,8 @@ void Field::createExample()
     example.set_height(10);
     example.resizeWithDimensions();
 
-    example.add_in_out(9, 0);
+    example.tryAdd_in_out(9, 0);
+    example.tryAdd_in_out(9, 9);
     // Colonne Milieu
     example.add_road(9, 1);
     example.add_road(9, 2);
@@ -144,7 +145,7 @@ void Field::createExample()
     example.add_road(9, 6);
     example.add_road(9, 7);
     example.add_road(9, 8);
-    example.add_road(9, 9);
+//    example.add_road(9, 9); E/S
     // Première Ligne
     example.add_road(0, 2);
     example.add_road(1, 2);
@@ -167,9 +168,6 @@ void Field::createExample()
     example.add_road(7, 7);
     example.add_road(8, 7);
     // example.add_road(9, 7); déjà fait dans colonne milieu
-    
-    // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
-    defineUsables(servingDistance);
 }
 // */
 
@@ -183,13 +181,13 @@ void Field::createExample()
     example.set_height(3);
     example.resizeWithDimensions();
 
+    example.add_in_out(0, 2);
+    example.add_in_out(2, 2);
+
     // Première Ligne
-    example.add_road(0, 2);
+//    example.add_road(0, 2);
     example.add_road(1, 2);
-    example.add_road(2, 2);
-    
-    // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
-    defineUsables(servingDistance);
+//    example.add_road(2, 2);
 }
 // */
 

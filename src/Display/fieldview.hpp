@@ -19,6 +19,7 @@
 #include "loadwindow.h"
 
 enum Colors{Black, Gray, Red, White, LightBlue};
+//enum Actions{Black, Gray, Red, White, LightBlue};
 
 /**
  * @brief Widget d'affichage de l'automate cellulaire. Ce composant
@@ -29,14 +30,14 @@ enum Colors{Black, Gray, Red, White, LightBlue};
 class FieldWidget : public QWidget {
 //    Q_OBJECT
 private:
-    const Field* field;
+    Field* field;
 
     QImage* buffer;
     QColor* color;
     QPainter* bufferPainter;
     QRubberBand* rubber;
 
-    QPoint origin;
+//    QPoint origin;
 
     // Points de départ et d'arrivée de la zone de selection (redondance pour origine mais normal pour l'instant)
     QPoint depart;
@@ -56,7 +57,7 @@ public:
      * Initialise les différents pointeurs et fixe la taille minimale du widget
      * @param _field Surface associée au widget, c'est elle qui est affichée
      */
-    FieldWidget(const Field *_field);
+    FieldWidget(Field *_field);
     virtual ~FieldWidget();
 
     /* Setters */
@@ -107,6 +108,13 @@ private:
     bool trySaveImage(QString filename) const;
 
     /* Events */
+private:
+    void clicInOut(const QPoint& pos);
+
+    void clicRoad(const QPoint& pos);
+
+    void moveRoad(const QPoint& pos);
+
 public slots:
     /**
      * Réinitialise le rubber
@@ -127,10 +135,10 @@ public slots:
      */
     void actionReceived(int x);
 
-//signals:
-//    /**
-//     * Récupere l'action sélectionnée dans les menus
-//     */
-//    void releaseSignal(); // Vers firescreen
+signals:
+    /**
+     * Récupere l'action sélectionnée dans les menus
+     */
+    void releaseSignal(); // Vers firescreen
 
 };

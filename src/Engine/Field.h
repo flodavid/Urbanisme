@@ -84,31 +84,45 @@ public:
     void resizeWithDimensions();
 public:
     /**
-    * Ajoute une route à partir de coordonnées
-    * @param col Colonne de la route
-    * @param row Ligne de la route
-    */
-    void add_road(unsigned col, unsigned row)
-    { parcels[row][col]= is_road; }    /**
-    * Ajoute une route à partir de coordonnées
-    * @param coords Coordonnées de la future route
-    */
+     * Ajoute une route à partir de coordonnées
+     * @param coords Coordonnées de la future route
+     */
     void add_road(const Coordinates& coords)
     { parcels[coords.row][coords.col]= is_road; }
 
     /**
-    * Ajoute une entrée/sortie à partir de coordonnées
-    * @param coords Coordonnées de l'E/S
-    */
-    void add_in_out(const Coordinates& coords)
-    { ins_outs.push_back(coords); add_road(coords.col, coords.row); }
+     * Ajoute une route à partir de coordonnées
+     * @param col Colonne de la route
+     * @param row Ligne de la route
+     */
+    void add_road(unsigned col, unsigned row)
+    { parcels[row][col]= is_road; }
     /**
-    * Ajoute une entrée/sortie à partir de coordonnées
-    * @param col Colonne de l'E/S
-    * @param row Ligne de l'E/S
-    */
-    void add_in_out(unsigned col, unsigned row)
-    { ins_outs.push_back(Coordinates(col, row)); parcels[row][col]= is_in_out; }
+     * Ajoute une entrée/sortie à partir de coordonnées
+     * @param coords Coordonnées de l'E/S
+     */
+    bool tryAdd_in_out(const Coordinates& coords);
+    /**
+     * Ajoute une entrée/sortie à partir de coordonnées
+     * @param col Colonne de l'E/S
+     * @param row Ligne de l'E/S
+     */
+    bool tryAdd_in_out(unsigned col, unsigned row)
+    { return tryAdd_in_out(Coordinates(col, row)); }
+
+    /**
+     * Supprime l'état de la parcelle
+     * @param coords
+     */
+    void add_undefined(const Coordinates& coords);
+
+    /**
+     * Supprime l'état de la parcelle
+     * @param col
+     * @param row
+     */
+    void add_undefined(unsigned col, unsigned row)
+    { add_undefined(Coordinates(col, row)); }
 
     /**=== Operators ===**/
 public:

@@ -9,23 +9,26 @@
 #include "stdafx.h"
 #include "Engine/Field.h"
 #include "Engine/Parameters.h"
-#include "Display/fieldview.hpp"
 #include "evaluation.h"
 #include "localsearch.h"
 #include "resolution.h"
 
+#include "Display/fieldview.hpp"
+#include "Display/mainwindow.hpp"
+
 using namespace std;
 
-FieldWidget* initWindow(const Field* myField){
-    FieldWidget* field_widget= new FieldWidget(myField);
-    field_widget->redraw();
-    field_widget->show();
+#define WIDTH   12
+#define HEIGHT  12
 
-    return field_widget;
+MainWindow* initWindow(Parameters& params)
+{
+    MainWindow* field_window= new MainWindow(WIDTH, HEIGHT, params);
+
+    field_window->show();
+
+    return field_window;
 }
-
-#define WIDTH   20
-#define HEIGHT  20
 
 /**
  * Création du terrain de l'exemple, exécution de l'évaluation, affichage du résultat,
@@ -40,14 +43,25 @@ int main(int argc, char* argv[])
     // Paramètres du problèmes
     Parameters myParameters(2, 1);
 
-    Field myField(WIDTH, HEIGHT);
+    // Fenêtre
+    MainWindow* initMainWindow= initWindow(myParameters);
+
+    Field& myField= initMainWindow->get_initialField();
+
+    /** Tests **/
     Resolution myResolution(myField, myParameters);
-    //@{
-    //     // Solution de l'exemple :
-    //    myField.createExample();
-    //@}
-    
-    //@{
+
+    // Solution crée par l'utilisateur
+
+//@{
+//     // Solution de l'exemple :
+//    myField.createExample();
+//    // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
+//    myField.defineUsables(myParameters.get_serve_distance());
+
+//@}
+//@{
+//   // Solutions avec recherche locale
     // Angle 1
 //        myField.add_in_out(2,HEIGHT -1);
 //        myField.add_in_out(WIDTH -1,1);
@@ -62,40 +76,24 @@ int main(int argc, char* argv[])
 //             myField.add_in_out(WIDTH -1,8);
 //             myField.add_in_out(0,4);
     // E/S exemple
-    myField.add_in_out(WIDTH/2,HEIGHT -1);
-    myField.add_in_out(WIDTH/2,0);
+//    myField.add_in_out(WIDTH/2,HEIGHT -1);
+//    myField.add_in_out(WIDTH/2,0);
 
-    // Solution avec recherche locale
-    srand(time(NULL));
-    LocalSearch myLocalSearch(&myField, &myParameters);
-    myLocalSearch.initSolution();
+//    srand(time(NULL));
+//    myResolution.initResolution(myField);
+
     //@}
-    
-    // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
-    myField.defineUsables(myParameters.get_serve_distance());
 
-    // Parcelles utilisables
-    cout << endl<< "===== Evaluation avant recherche locale ====="<< endl;
-    myResolution.evaluateBothObjectives(*(myLocalSearch.get_evaluation()));
-
-    /** Tests **/    
-    myResolution.localSearchUsableObjective(myLocalSearch);
-
-    cout << endl<< "===== Evaluation après nb exploitables ====="<< endl;
-    myResolution.evaluateBothObjectives(*(myLocalSearch.get_evaluation()));
-
-    for (unsigned i= 0; i < 4; ++i) {
-       myLocalSearch.addRoadsAccess(2 * myParameters.get_serve_distance());
-    }
-
-    cout << endl<< "===== Evaluation après accessibilité ====="<< endl;
-    myResolution.evaluateBothObjectives(*(myLocalSearch.get_evaluation()));
+//    myResolution.launchResolution();
 
     // Fenêtre
-    FieldWidget* myFieldWidget= initWindow(&myField);
-//    myFieldWidget->redraw();
-    /** Fin tests **/
+//    FieldWidget* myFieldWidget= initMainWindow->get_fieldWidget();
+//    initMainWindow->hide();
 
+//    myFieldWidget->redraw();
+//    myFieldWidget->show();
+
+    /** Fin tests **/
 
     return app->exec();
 }
