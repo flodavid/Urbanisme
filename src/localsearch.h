@@ -15,7 +15,7 @@ private:
     Field* field;
     const Parameters& params;
 
-    Evaluation* eval;
+    Evaluation eval;
 
 public:
     /**
@@ -48,8 +48,12 @@ public:
      */
     LocalSearch(const LocalSearch& other);
 
+    ~LocalSearch();
+
     /* Getters */
-    Evaluation* get_evaluation() { return eval; }
+    Field& get_field() { return eval.get_field(); }
+
+    Evaluation& get_evaluation() { return eval; }
 
     /*  Algorithm */
     /* = Initialisation = */
@@ -80,7 +84,7 @@ public:
     /* = Improvments = */
     std::list<Path*>* getPaths(const Coordinates& coord1, const Coordinates& coord2);
 
-    float gainPath(Path* path) const;
+    float gainPath(Path* path);
     /**
      * Tente l'ajout d'une route avec pour objectif d'augmenter le nombre de parcelles exploitables.
      * @return faux si aucune route n'a pu être ajoutée car il n'y a aucun placement de route
@@ -94,6 +98,8 @@ public:
      * permettant d'obtenir une solution réalisable avec une accessibilité meilleures ou équivalente.
      */
     bool addRoadsAccess(unsigned nbToAdd);
+
+    static void supprPaths(Path* paths);
 
 };
 

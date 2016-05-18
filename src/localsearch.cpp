@@ -13,14 +13,19 @@ using namespace std;
 //@{
 
 LocalSearch::LocalSearch(Field* _field, const Parameters* _params):
-    field(_field), params(*_params)
+    field(_field), params(*_params), eval(*field, params)
 {
-    eval= new Evaluation(*field, params);
+//    eval= new Evaluation(*field, params);
 }
 
 LocalSearch::LocalSearch(const LocalSearch& other):
     field(other.field), params(other.params ), eval(other.eval)
 {
+}
+
+LocalSearch::~LocalSearch()
+{
+//    delete eval;
 }
 
 //@}
@@ -128,16 +133,16 @@ void LocalSearch::initSolution()
 //    field->defineUsables(params.get_serve_distance());
     field->updateUsables(params.get_serve_distance());
 }
-
+m
 list<Path*>* LocalSearch::getPaths(const Coordinates &coord1, const Coordinates &coord2)
 {
     list<Path*> * paths= new list<Path*>;
 
-    if (coord1 == coord2){
+    if (coord1 == coord2) {
         Path* path= new Path();
         paths->push_back(path);
     } else {
-        if (coord1.col != coord2.col){
+        if (coord1.col != coord2.col) {
             Coordinates coord1_col_modif= coord1;
             coord1_col_modif.col= oneStep(coord1.col, coord2.col);
 
@@ -153,7 +158,7 @@ list<Path*>* LocalSearch::getPaths(const Coordinates &coord1, const Coordinates 
             }
         }
 
-        if (coord1.row != coord2.row){
+        if (coord1.row != coord2.row) {
             Coordinates coord1_row_modif= coord1;
             coord1_row_modif.row= oneStep(coord1.row, coord2.row);
 
@@ -173,18 +178,20 @@ list<Path*>* LocalSearch::getPaths(const Coordinates &coord1, const Coordinates 
     return paths;
 }
 
-float LocalSearch::gainPath(Path *path) const
+float LocalSearch::gainPath(Path *path)
 {
-    if (! eval->road_distances_are_initiated){
-        eval->initRoadDistances();
-        eval->evaluateRatio();
+    if (! eval.road_distances_are_initiated){
+        eval.initRoadDistances();
+        eval.evaluateRatio();
+        cerr << "LES DISTANCES PAR ROUTE DEVRAIENT ETRE INITIALISEES"<< endl<< endl;
     }
-    float eval_before= eval->get_avgAccess();
 
-    Evaluation tmp_eval= *eval;
+    float eval_before= eval.get_avgAccess();
+
+    Evaluation tmp_eval= eval;
 
     Field& tmp_field= tmp_eval.get_field();
-    Field* save_field= new Field(tmp_field);
+    Field save_field= tmp_field;
     for (const Coordinates& coord_road : *path) {
         tmp_field.add_road(coord_road);
     }
@@ -193,7 +200,8 @@ float LocalSearch::gainPath(Path *path) const
     float eval_after= tmp_eval.get_avgAccess();
 
     // Restauration de la surface
-    eval->set_field(save_field);
+//    delete &(eval.get_field());
+    eval.set_field(save_field);
 
     return  eval_before - eval_after;
 }
@@ -207,10 +215,15 @@ bool LocalSearch::addRoadUsable() const
     int gain_max= 0;
 
     do {
-        if (field->getNeighbourRoads(coord)->size() > 0) {
+        list<Coordinates>* neighours= field->getNeighbourRoads(coord);
+        if ( neighours->size()> 0) {
+            list<Coordinates>* serving_roads= field->getServingRoads(coord, params.get_serve_distance());
+            list<Coordinates>* close_unusable_parcels= field->getCloseUnusableParcels(coord, params.get_serve_distance());
+            unsigned nb_roads_neighbours= serving_roads->size();
+            unsigned nb_parcels_neighbours= close_unusable_parcels->size();
 
-            unsigned nb_roads_neighbours= field->getServingRoads(coord, params.get_serve_distance())->size();
-            unsigned nb_parcels_neighbours= field->getCloseUnusableParcels(coord, params.get_serve_distance())->size();
+            delete serving_roads;
+            delete close_unusable_parcels;
 
 #if DEBUG_ADD_USABLE_ROAD
             cout << "\t Test de "<< coord;
@@ -229,6 +242,8 @@ bool LocalSearch::addRoadUsable() const
                 coord_min= coord;
             }
         }
+        delete neighours;
+
     } while(field->nextCoordinates(&coord));
     delete &coord;
 
@@ -252,8 +267,8 @@ bool LocalSearch::addRoadUsable() const
 bool LocalSearch::addRoadsAccess(unsigned nbToAdd)
 {
     // Evaluation
-    if (!eval->road_distances_are_initiated) {
-        eval->initRoadDistances();
+    if (!eval.road_distances_are_initiated) {
+        eval.initRoadDistances();
     }
 
     Coordinates& coord= Field::first();
@@ -263,20 +278,21 @@ bool LocalSearch::addRoadsAccess(unsigned nbToAdd)
 
     do {
         if (field->at(coord) == is_road) {
-            list<Coordinates>* neighbour_roads= field->getNeighbourRoads(coord);
-
             list<Coordinates>* accessible_roads= field->getCloseRoads(coord, nbToAdd +1);
+
 #if DEBUG_ADD_ACCESS_ROAD
             clog << "NOMBRE DE ROUTES ACCESSIBLES "<< coord<<" : "<< accessible_roads->size();
 #endif
 
+            list<Coordinates>* neighbour_roads= field->getNeighbourRoads(coord);
             list<Coordinates> accessible_roads_clean;
             for(const Coordinates& accessible_road : *accessible_roads) {
-                if ( eval->parcelsRoadDistance(coord, accessible_road) > coord.manhattanDistance(accessible_road)
+                if ( eval.parcelsRoadDistance(coord, accessible_road) > coord.manhattanDistance(accessible_road)
                      && find(neighbour_roads->begin(), neighbour_roads->end(), accessible_road) == neighbour_roads->end()) {
                     accessible_roads_clean.push_back(accessible_road);
                 }
             }
+            delete neighbour_roads;
             delete accessible_roads;
 #if DEBUG_ADD_ACCESS_ROAD
             clog << ", APRES NETTOYAGE : "<< accessible_roads_clean.size()<< " : "<< accessible_roads_clean<<endl;
@@ -294,10 +310,14 @@ bool LocalSearch::addRoadsAccess(unsigned nbToAdd)
 #endif
                     if (gain > gain_max){
                         delete best_path;
+
                         best_path= path;
                         gain_max= gain;
+                    } else {
+                        delete path;
                     }
                 }
+                delete possible_paths;
             }
         }
 

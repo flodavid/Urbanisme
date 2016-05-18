@@ -40,6 +40,9 @@ public:
      */
     Resolution(const Field& field, const Parameters& _params);
 
+    ~Resolution();
+
+
     /* Résolution */
     Field &initResolution();
 

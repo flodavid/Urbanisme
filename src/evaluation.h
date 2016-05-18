@@ -89,7 +89,7 @@ public:
      * Mutateur sur la surface
      * @param _field Nouvelle surface à évaluer
      */
-    void set_field(const Field* _field) { field= *_field;}
+    void set_field(const Field& _field) { field= _field; }
     
     /* Calculs de données */
     /**

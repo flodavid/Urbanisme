@@ -13,7 +13,7 @@ Resolution::Resolution(unsigned nbCols, unsigned nbRows, unsigned serveDistance,
     params(serveDistance, roadsWidth),
     localSearch(new Field(nbCols, nbRows), &params)
 {
-    Field& initField= localSearch.get_evaluation()->get_field();
+    Field& initField= localSearch.get_field();
     for (const Coordinates& in_out : ins_outs){
         if ( !initField.tryAdd_in_out(in_out)){
             cerr << "Les coordonnées "<< in_out<< " ne représentent pas une entrée/sortie valide"<< endl;
@@ -27,6 +27,13 @@ Resolution::Resolution(const Field &field, const Parameters &_params):
 
 }
 
+Resolution::~Resolution()
+{
+    for (const Evaluation* eval : pareto_evals) {
+        delete eval;
+    }
+}
+
 //@}
 /// ############################
 ///      Resolution
@@ -37,7 +44,7 @@ Field& Resolution::initResolution()
 {
     localSearch.initSolution();
 
-    return localSearch.get_evaluation()->get_field();
+    return localSearch.get_field();
 }
 
 Field &Resolution::launchResolution()
@@ -52,14 +59,14 @@ Field &Resolution::launchResolution()
     cout << endl<< "===== Evaluation après nb exploitables ====="<< endl;
     evaluateBothObjectives();
 
-    for (unsigned i= 0; i < 3; ++i) {
+    for (unsigned i= 0; i < 2; ++i) {
        localSearch.addRoadsAccess(2 * params.get_serve_distance());
     }
 
     cout << endl<< "===== Evaluation après accessibilité ====="<< endl;
     evaluateBothObjectives();
 
-    return localSearch.get_evaluation()->get_field();
+    return localSearch.get_field();
 }
 
 //@}
@@ -70,7 +77,7 @@ Field &Resolution::launchResolution()
 
 void Resolution::evaluateBothObjectives()
 {
-    Evaluation& myEvaluation= *(localSearch.get_evaluation());
+    Evaluation& myEvaluation(localSearch.get_evaluation());
 
     unsigned nb_usables= myEvaluation.evaluateTotalUsable();
     cout << "Nombre total de parcelles exploitables au début : "<< nb_usables<< endl;

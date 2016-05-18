@@ -68,7 +68,7 @@ void FieldTestFixture::test_servingValids()
     example.set_height(20);
     example.resizeWithDimensions();
     
-    example.add_in_out(9, 0);
+    example.tryAdd_in_out(9, 0);
     // Colonne Milieu
     example.add_road(9, 1);
     example.add_road(9, 2);
@@ -173,7 +173,7 @@ void FieldTestFixture::test_servingValids()
     example.add_road(18, 17);
     example.add_road(19, 17);
     
-    example.add_in_out(9, 19);
+    example.tryAdd_in_out(9, 19);
     
     unsigned serve_dist= 2;
     
