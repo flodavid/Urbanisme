@@ -10,13 +10,19 @@ using namespace std;
 //@{
 
 Resolution::Resolution(unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth, std::list<Coordinates>& ins_outs):
-    nb_cols(nbCols), nb_rows(nbRows), params(serveDistance, roadsWidth), localSearch(nullptr)
+    params(serveDistance, roadsWidth),
+    localSearch(new Field(nbCols, nbRows), &params)
 {
-    
+    Field& initField= localSearch.get_evaluation()->get_field();
+    for (const Coordinates& in_out : ins_outs){
+        if ( !initField.tryAdd_in_out(in_out)){
+            cerr << "Les coordonnées "<< in_out<< " ne représentent pas une entrée/sortie valide"<< endl;
+        }
+    }
 }
 
 Resolution::Resolution(const Field &field, const Parameters &_params):
-    nb_cols(field.get_width()), nb_rows(field.get_height()), params(_params), localSearch(nullptr)
+    params(_params), localSearch(new Field(field), &_params)
 {
 
 }
@@ -27,34 +33,33 @@ Resolution::Resolution(const Field &field, const Parameters &_params):
 /// ############################
 //@{
 
-void Resolution::initResolution(Field &field)
+Field& Resolution::initResolution()
 {
-    localSearch= new LocalSearch(&field, &params);
+    localSearch.initSolution();
 
-    localSearch->initSolution();
-    // TODO retourner la surface modifiée
+    return localSearch.get_evaluation()->get_field();
 }
 
-void Resolution::launchResolution()
+Field &Resolution::launchResolution()
 {
     // Parcelles utilisables
     cout << endl<< "===== Evaluation avant recherche locale ====="<< endl;
-    evaluateBothObjectives(*(localSearch->get_evaluation()));
+    evaluateBothObjectives();
 
     /** Tests **/
-    localSearchUsableObjective(*localSearch);
+    localSearchUsableObjective(localSearch);
 
     cout << endl<< "===== Evaluation après nb exploitables ====="<< endl;
-    evaluateBothObjectives(*(localSearch->get_evaluation()));
+    evaluateBothObjectives();
 
     for (unsigned i= 0; i < 3; ++i) {
-       localSearch->addRoadsAccess(2 * params.get_serve_distance());
+       localSearch.addRoadsAccess(2 * params.get_serve_distance());
     }
 
     cout << endl<< "===== Evaluation après accessibilité ====="<< endl;
-    evaluateBothObjectives(*(localSearch->get_evaluation()));
+    evaluateBothObjectives();
 
-    // TODO retourner la surface modifiée
+    return localSearch.get_evaluation()->get_field();
 }
 
 //@}
@@ -63,8 +68,10 @@ void Resolution::launchResolution()
 /// ############################
 //@{
 
-void Resolution::evaluateBothObjectives(Evaluation& myEvaluation)
+void Resolution::evaluateBothObjectives()
 {
+    Evaluation& myEvaluation= *(localSearch.get_evaluation());
+
     unsigned nb_usables= myEvaluation.evaluateTotalUsable();
     cout << "Nombre total de parcelles exploitables au début : "<< nb_usables<< endl;
 

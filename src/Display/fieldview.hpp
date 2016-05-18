@@ -60,7 +60,14 @@ public:
     FieldWidget(Field *_field);
     virtual ~FieldWidget();
 
+    /* Getters */
+    Field* get_field()
+    { return field; }
+
     /* Setters */
+    void set_field(Field* _field)
+    { field= _field; }
+
 private:
     /**
      * Fonction permettant de fixer la couleur à utiliser pour dessiner un arbre
@@ -124,7 +131,7 @@ public slots:
 protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
-    void mouseReleaseEvent(QMouseEvent *event);
+//    void mouseReleaseEvent(QMouseEvent *event);
     void resizeEvent(QResizeEvent * event);
     void paintEvent(QPaintEvent* event);
 
@@ -133,12 +140,12 @@ public slots:
      * Execute l'action choisie sur une zone, suite à releaseMouseEvent.
      * @param x Identifiant de l'action reçue
      */
-    void actionReceived(int x);
+//    void actionReceived(int x);
 
 signals:
     /**
      * Récupere l'action sélectionnée dans les menus
      */
-    void releaseSignal(); // Vers firescreen
+//    void releaseSignal(); // Vers ...
 
 };

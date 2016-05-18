@@ -24,6 +24,9 @@ private:
     QAction* aboutAction;
 
     QAction* initAction;
+    QAction* evalAction;
+    QAction* resolAction;
+    QAction* resetAction;
 
 public:
     /**
@@ -77,6 +80,21 @@ public slots:
      * @brief launchInit
      */
     void launchInit();
+
+    /**
+     * @brief launchResol
+     */
+    void launchResol();
+
+    /**
+     * @brief launchEval
+     */
+    void launchEval();
+
+    /**
+     * @brief resetField
+     */
+    void resetField();
 };
 
 #endif // MAINWINDOW_H

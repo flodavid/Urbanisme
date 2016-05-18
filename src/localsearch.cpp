@@ -125,7 +125,8 @@ void LocalSearch::initSolution()
         }
     }
 
-    field->defineUsables(params.get_serve_distance());
+//    field->defineUsables(params.get_serve_distance());
+    field->updateUsables(params.get_serve_distance());
 }
 
 list<Path*>* LocalSearch::getPaths(const Coordinates &coord1, const Coordinates &coord2)

@@ -15,10 +15,9 @@
 class Resolution
 {
 private:
-    unsigned nb_cols, nb_rows;
     Parameters params;
 
-    LocalSearch* localSearch;
+    LocalSearch localSearch;
 
     std::list<const Evaluation*> pareto_evals;
 
@@ -42,9 +41,9 @@ public:
     Resolution(const Field& field, const Parameters& _params);
 
     /* Résolution */
-    void initResolution(Field& field);
+    Field &initResolution();
 
-    void launchResolution();
+    Field & launchResolution();
 
     /* Evaluations */
     /**
@@ -52,7 +51,7 @@ public:
      * TODO mettre à jour le front pareto
      * @param myEvaluation
      */
-    void evaluateBothObjectives(Evaluation& myEvaluation);
+    void evaluateBothObjectives();
 
     /**
      * Effectue une propagation à partir de la solution courante :

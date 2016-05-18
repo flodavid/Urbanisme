@@ -336,48 +336,48 @@ void FieldWidget::mouseMoveEvent(QMouseEvent* event)
 	update();
 }
 
-void FieldWidget::mouseReleaseEvent(QMouseEvent* event)
-{
-    QWidget::mouseReleaseEvent(event);
-	if(rubber){
-		rubber->hide();
-		// Sauvegarde des points du rubber pour parcours de la matrice
-		depart.setX(rubber->x());
-		depart.setY(rubber->y());
-		/* Vérification du point d'origine du rubber
-		 * Celui étant toujours le point le plus en haut à gauche, il faut simplement vérifier 
-		 * qu'il n'est pas en dehors du cadre, auquel cas nous ramenons la (les) coordonnée(s) concernée(s)
-		 * à 0.
-		 */
-		arrivee.setX(rubber->width()+depart.x());
-		arrivee.setY(rubber->height()+depart.y());
-		if(depart.x() < 0){
-			depart.setX(0);
-		}
-		if(depart.y() < 0){
-			depart.setY(0);
-		}
+//void FieldWidget::mouseReleaseEvent(QMouseEvent* event)
+//{
+//    QWidget::mouseReleaseEvent(event);
+//	if(rubber){
+//		rubber->hide();
+//		// Sauvegarde des points du rubber pour parcours de la matrice
+//		depart.setX(rubber->x());
+//		depart.setY(rubber->y());
+//		/* Vérification du point d'origine du rubber
+//		 * Celui étant toujours le point le plus en haut à gauche, il faut simplement vérifier
+//		 * qu'il n'est pas en dehors du cadre, auquel cas nous ramenons la (les) coordonnée(s) concernée(s)
+//		 * à 0.
+//		 */
+//		arrivee.setX(rubber->width()+depart.x());
+//		arrivee.setY(rubber->height()+depart.y());
+//		if(depart.x() < 0){
+//			depart.setX(0);
+//		}
+//		if(depart.y() < 0){
+//			depart.setY(0);
+//		}
 		
 		
-		if(arrivee.x() > size().width() ){
-			arrivee.setX(size().width());
-		}
-		if(arrivee.y() > size().height() ){
-			arrivee.setY(size().height());
-		}
+//		if(arrivee.x() > size().width() ){
+//			arrivee.setX(size().width());
+//		}
+//		if(arrivee.y() > size().height() ){
+//			arrivee.setY(size().height());
+//		}
 
-		#if DEBUG_SELECT
-		cout << "Taille du widget : " << this->size().width() << "; " << this->size().height()<< endl;
-		cout << "Coordonnée de l'origine : " << rubber->x() << "; " << rubber->y() << endl;
-		cout << "Coordonnée de départ : " << depart.x()<< ";" << depart.y() << endl;
-		cout << "Coordonnée de l'arrivée : " << arrivee.x()<< ";" << arrivee.y() << endl;
-		cout << "Taille de la zone de selection : " <<	arrivee.x() - depart.x() << ";" << arrivee.y() - depart.y() << endl;
-		#endif
-		// Emission du signal pour récupérer l'action à effectuer par firescreen
-//		emit releaseSignal(); // TODO signaux
-	}
+//		#if DEBUG_SELECT
+//		cout << "Taille du widget : " << this->size().width() << "; " << this->size().height()<< endl;
+//		cout << "Coordonnée de l'origine : " << rubber->x() << "; " << rubber->y() << endl;
+//		cout << "Coordonnée de départ : " << depart.x()<< ";" << depart.y() << endl;
+//		cout << "Coordonnée de l'arrivée : " << arrivee.x()<< ";" << arrivee.y() << endl;
+//		cout << "Taille de la zone de selection : " <<	arrivee.x() - depart.x() << ";" << arrivee.y() - depart.y() << endl;
+//		#endif
+//		// Emission du signal pour récupérer l'action à effectuer par firescreen
+////		emit releaseSignal(); // TODO signaux
+//	}
 	
-}
+//}
 
 //@}
 /// ############

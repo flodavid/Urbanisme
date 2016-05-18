@@ -50,13 +50,18 @@ void MainWindow::initComponents()
     aboutAction= menuBar()->addAction( tr("About") );
 
     initAction= menuBar()->addAction( tr("Initialisation") );
+    evalAction= menuBar()->addAction( tr("Evaluation") );
+    resolAction= menuBar()->addAction( tr("Resolution") );
+    resetAction= menuBar()->addAction( tr("Reset") );
 }
 
 void MainWindow::initEvents()
 {
     connect(aboutAction, &QAction::triggered, this, &MainWindow::popAbout);
-
     connect(initAction, &QAction::triggered, this, &MainWindow::launchInit);
+    connect(evalAction, &QAction::triggered, this, &MainWindow::launchEval);
+    connect(resolAction, &QAction::triggered, this, &MainWindow::launchResol);
+    connect(resetAction, &QAction::triggered, this, &MainWindow::resetField);
 }
 
 void MainWindow::popAbout()
@@ -89,17 +94,42 @@ void MainWindow::popAbout()
 
 void MainWindow::launchInit()
 {
-    Resolution myResolution(initialField, parameters);
+    Resolution myResolution(*(fieldWidget->get_field()), parameters);
 
-    myResolution.initResolution(initialField);
-//    FieldWidget* resultFieldWidget= new FieldWidget();
+    Field& result_field= myResolution.initResolution();
 
-//    this->hide();
+    fieldWidget->set_field(&result_field);
 
     fieldWidget->redraw();
     fieldWidget->show();
+}
 
-//    resultFieldWidget->show();
+void MainWindow::launchResol()
+{
+    Resolution myResolution(*(fieldWidget->get_field()), parameters);
 
-//    myResolution.launchResolution();
+    Field& result_field= myResolution.launchResolution();
+
+    fieldWidget->set_field(&result_field);
+
+    fieldWidget->redraw();
+    fieldWidget->show();
+}
+
+
+void MainWindow::launchEval()
+{
+    Resolution myResolution(*(fieldWidget->get_field()), parameters);
+
+    myResolution.evaluateBothObjectives();
+}
+
+void MainWindow::resetField()
+{
+    delete fieldWidget->get_field();
+
+    fieldWidget->set_field(&initialField);
+
+    fieldWidget->redraw();
+    fieldWidget->show();
 }
