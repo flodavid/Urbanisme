@@ -1,4 +1,4 @@
-.TH "FieldWidget" 3 "Jeudi 12 Mai 2016" "Version 0.5" "Urbanisme" \" -*- nroff -*-
+.TH "FieldWidget" 3 "Jeudi 19 Mai 2016" "Version 1.0" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -17,12 +17,20 @@ Est dérivée de QWidget\&.
 .ti -1c
 .RI "void \fBrazRubber\fP ()"
 .br
-.ti -1c
-.RI "void \fBactionReceived\fP (int x)"
-.br
 .in -1c
 .SS "Fonctions membres publiques"
 
+.in +1c
+.ti -1c
+.RI "\fBField\fP * \fBget_field\fP ()"
+.br
+.ti -1c
+.RI "void \fBset_field\fP (\fBField\fP *_field)"
+.br
+.ti -1c
+.RI "void \fBdrawSelecteds\fP ()"
+.br
+.in -1c
 .PP
 .RI "\fB\fP"
 .br
@@ -30,7 +38,7 @@ Est dérivée de QWidget\&.
 .in +1c
 .in +1c
 .ti -1c
-.RI "\fBFieldWidget\fP (const \fBField\fP *_field)"
+.RI "\fBFieldWidget\fP (\fBField\fP *_field, unsigned _serveDistance)"
 .br
 .in -1c
 .in -1c
@@ -53,9 +61,6 @@ Est dérivée de QWidget\&.
 .RI "void \fBmouseMoveEvent\fP (QMouseEvent *event)"
 .br
 .ti -1c
-.RI "void \fBmouseReleaseEvent\fP (QMouseEvent *event)"
-.br
-.ti -1c
 .RI "void \fBresizeEvent\fP (QResizeEvent *event)"
 .br
 .ti -1c
@@ -67,12 +72,14 @@ Est dérivée de QWidget\&.
 Widget d'affichage de l'automate cellulaire\&. Ce composant permet de suivre graphiquement l'évolution de l'automate\&. Il utilise un système de buffering et s'appuie sur la classe Foret du moteur\&. 
 .SH "Documentation des constructeurs et destructeur"
 .PP 
-.SS "FieldWidget::FieldWidget (const \fBField\fP * _field)"
+.SS "FieldWidget::FieldWidget (\fBField\fP * _field, unsigned _serveDistance)"
 Constructeur à partir d'une surface déjà crée\&. Initialise les différents pointeurs et fixe la taille minimale du widget 
 .PP
 \fBParamètres:\fP
 .RS 4
-\fI_field\fP Surface associée au widget, c'est elle qui est affichée
+\fI_field\fP Surface associée au widget, c'est elle qui est affichée 
+.br
+\fI_serveDistance\fP Distance de desserte des routes
 .RE
 .PP
 .SS ""
@@ -82,30 +89,36 @@ Constructeurs et destructeurs
 
 .SH "Documentation des fonctions membres"
 .PP 
-.SS "void FieldWidget::actionReceived (int x)\fC [slot]\fP"
-Execute l'action choisie sur une zone, suite à releaseMouseEvent\&. 
-.PP
-\fBParamètres:\fP
-.RS 4
-\fIx\fP Identifiant de l'action reçue 
-.RE
-.PP
-
 .SS "void FieldWidget::drawChanged ()"
 Redessine les cellules qui ont changés d'état seulement 
 .SS "void FieldWidget::drawField ()"
 Dessine toutes les cellules dans le buffer 
-.SS "void FieldWidget::paintEvent (QPaintEvent * event)\fC [protected]\fP"
-
-.SS ""
+.SS "void FieldWidget::drawSelecteds ()"
+Dessine les cellules sélectionnées 
+.SS "\fBField\fP* FieldWidget::get_field ()\fC [inline]\fP"
+Accesseur sur la surface affichée 
 .PP
-Events 
-.SS ""
+\fBRenvoie:\fP
+.RS 4
+Un \fBField\fP, modifiable 
+.RE
+.PP
 
+.SS "void FieldWidget::mousePressEvent (QMouseEvent * event)\fC [protected]\fP"
+initRubber(event); 
 .SS "void FieldWidget::razRubber ()\fC [inline]\fP, \fC [slot]\fP"
 Réinitialise le rubber 
 .SS "void FieldWidget::redraw ()"
 Vide le buffer et rafraichit l'affichage 
+.SS "void FieldWidget::set_field (\fBField\fP * _field)\fC [inline]\fP"
+Mutateur sur la surface à afficher 
+.PP
+\fBParamètres:\fP
+.RS 4
+\fI_field\fP Nouvelle surface à afficher 
+.RE
+.PP
+
 
 .SH "Auteur"
 .PP 

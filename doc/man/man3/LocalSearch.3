@@ -1,4 +1,4 @@
-.TH "LocalSearch" 3 "Jeudi 12 Mai 2016" "Version 0.5" "Urbanisme" \" -*- nroff -*-
+.TH "LocalSearch" 3 "Jeudi 19 Mai 2016" "Version 1.0" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -18,6 +18,14 @@ LocalSearch \- La classe chargée d'effectuer des recherches locales sur les dif
 .in -1c
 .SS "Fonctions membres publiques"
 
+.in +1c
+.ti -1c
+.RI "\fBField\fP & \fBget_field\fP ()"
+.br
+.ti -1c
+.RI "\fBEvaluation\fP & \fBget_evaluation\fP ()"
+.br
+.in -1c
 .PP
 .RI "\fB\fP"
 .br
@@ -32,6 +40,11 @@ LocalSearch \- La classe chargée d'effectuer des recherches locales sur les dif
 .br
 .in -1c
 .in -1c
+.PP
+.RI "\fB\fP"
+.br
+
+.in +1c
 .in +1c
 .ti -1c
 .RI "void \fBinitSolution\fP ()"
@@ -40,14 +53,15 @@ LocalSearch \- La classe chargée d'effectuer des recherches locales sur les dif
 .RI "std::list< \fBPath\fP * > * \fBgetPaths\fP (const \fBCoordinates\fP &coord1, const \fBCoordinates\fP &coord2)"
 .br
 .ti -1c
-.RI "float \fBgainPath\fP (\fBPath\fP *path) const "
+.RI "float \fBgainPath\fP (\fBPath\fP *path)"
 .br
 .ti -1c
-.RI "bool \fBaddRoadUsable\fP () const "
+.RI "int \fBaddRoadUsable\fP () const "
 .br
 .ti -1c
-.RI "bool \fBaddRoadsAccess\fP (unsigned nbToAdd)"
+.RI "float \fBaddRoadsAccess\fP (unsigned nbToAdd)"
 .br
+.in -1c
 .in -1c
 .SH "Description détaillée"
 .PP 
@@ -84,7 +98,7 @@ Constructeur d'une recherche locale par recopie La surface de l'autre instance e
 
 .SH "Documentation des fonctions membres"
 .PP 
-.SS "bool LocalSearch::addRoadsAccess (unsigned nbToAdd)"
+.SS "float LocalSearch::addRoadsAccess (unsigned nbToAdd)"
 Tente l'ajout d'un chemin (série de routes) avec pour objectif d'améliorer l'accessibilité\&. 
 .PP
 \fBRenvoie:\fP
@@ -93,7 +107,7 @@ faux si aucune route n'a pu être ajoutée car il n'y a aucun placement de chemi
 .RE
 .PP
 
-.SS "bool LocalSearch::addRoadUsable () const"
+.SS "int LocalSearch::addRoadUsable () const"
 Tente l'ajout d'une route avec pour objectif d'augmenter le nombre de parcelles exploitables\&. 
 .PP
 \fBRenvoie:\fP
@@ -102,8 +116,62 @@ faux si aucune route n'a pu être ajoutée car il n'y a aucun placement de route
 .RE
 .PP
 TODO est-ce utile de soustraire le nombre de voisin, mettre un coef, \&.\&.\&. ? OUI, ça a une utilité, pour éviter de coller 2 routes 
+.SS "float LocalSearch::gainPath (\fBPath\fP * path)"
+Calcule le gain hypotéthique en accessibilité lors de l'ajout d'un chemin donné 
+.PP
+\fBParamètres:\fP
+.RS 4
+\fIpath\fP Chemin testé (liste de routes) 
+.RE
+.PP
+\fBRenvoie:\fP
+.RS 4
+Gain en accessibilité lors de l'ajout du chemin, nul si le chemin et vide 
+.RE
+.PP
+
+.SS "\fBEvaluation\fP& LocalSearch::get_evaluation ()\fC [inline]\fP"
+Accesseur sur l'\fBEvaluation\fP 
+.PP
+\fBRenvoie:\fP
+.RS 4
+Une référence sur l'évaluation, modifiable 
+.RE
+.PP
+
+.SS "\fBField\fP& LocalSearch::get_field ()\fC [inline]\fP"
+Accesseur sur la surface de l'\fBEvaluation\fP 
+.PP
+\fBRenvoie:\fP
+.RS 4
+Une référence sur la surface, modifiable 
+.RE
+.PP
+
+.SS "list< \fBPath\fP * > * LocalSearch::getPaths (const \fBCoordinates\fP & coord1, const \fBCoordinates\fP & coord2)"
+Cherche tous les chemins 'directs' possibles entre deux routes\&. Ces chemins ne doivent pas contenir de routes aller de manière directe d'un point à l'autre, pas de 'détours' pour éviter une route\&. 
+.PP
+\fBParamètres:\fP
+.RS 4
+\fIcoord1\fP Coordonnées de la première route 
+.br
+\fIcoord2\fP Coordonnées de la seconde route 
+.RE
+.PP
+\fBRenvoie:\fP
+.RS 4
+Un pointeur sur une liste de pointeurs sur les différents chemin possibles 
+.RE
+.PP
+
 .SS "void LocalSearch::initSolution ()"
-Relie les entrées et sorties entre elles, de manière directe 
+Relie les entrées et sorties entre elles, de manière directe
+.PP
+.SS ""
+.PP
+Création et améliorations d'une solution 
+.SS ""
+
 
 .SH "Auteur"
 .PP 

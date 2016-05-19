@@ -9,6 +9,10 @@
 
 #include "resolution.h"
 
+/**
+ * @brief Fenêre principale de l'application. Chargée d'afficher la surface, les menus, les
+ * résultats et gérer le lancement des opérations
+ */
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -37,36 +41,50 @@ public:
 
     /**
      * Constructeur avec des valeurs initiales
+     * @param nbCols Largeur de la surface
+     * @param nbRows Hauteur de la surface
+     * @param serveDistance Distance de desserte de la résolution
+     * @param roadsWidth Largeur des routes de la résolution
+     * @param parent Widget parent
      * @param parent
      */
     explicit MainWindow(unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth, QWidget *parent = 0);
 
     /**
      * Constructeur avec des valeurs initiales
-     * @param parent
+     * @param nbCols Largeur de la surface
+     * @param nbRows Hauteur de la surface
+     * @param params Paramètres de résolution
+     * @param parent Widget parent
      */
     explicit MainWindow(unsigned nbCols, unsigned nbRows, const Parameters& params, QWidget *parent = 0);
 
+    /**
+     * Demande les tailles de la surface à traiter à l'utilisateur
+     */
     void askSizes();
 
+    /**
+     * Demande les paramètres du problème avec lesquels effectuer la résolution
+     */
     void askParams();
 
     /**
-     * @brief initComponents
+     * Créer et instancie les composants graphiques
      */
     void initComponents();
 
     /**
-     * @brief initEvents
+     * Créer les connections des signaux et slots de la fenêtre
      */
     void initEvents();
 
     /* Getters */
-    FieldWidget* get_fieldWidget() { return fieldWidget; }
-
+    /**
+     * Accesseur sur la surface initiale
+     * @return initialField, une Surface, modifiable
+     */
     Field& get_initialField() { return initialField; }
-
-    Parameters& get_parameters() { return parameters; }
 
 signals:
 
@@ -77,22 +95,24 @@ public slots:
     void popAbout();
 
     /**
-     * @brief launchInit
+     * Lance le placement des premières routes à partir des deux E/S
      */
     void launchInit();
 
     /**
-     * @brief launchResol
+     * Lance la résolution du problème :
+     * Maximisation du nombre de routes exploitables, puis maximisation de l'accessibilité
      */
     void launchResol();
 
     /**
-     * @brief launchEval
+     * Lance l'évaluation des deux objectifs
+     * TODO afficher les résultats dans la fenêtre plutôt que dans le terminal
      */
     void launchEval();
 
     /**
-     * @brief resetField
+     * Supprime toutes les routes autres que des E/S de la surface
      */
     void resetField();
 };

@@ -1,4 +1,4 @@
-.TH "Field" 3 "Jeudi 12 Mai 2016" "Version 0.5" "Urbanisme" \" -*- nroff -*-
+.TH "Field" 3 "Jeudi 19 Mai 2016" "Version 1.0" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -31,16 +31,16 @@ Field \- Classe représentant la surface -le terrain- et contenant les opératio
 .RI "void \fBset_height\fP (unsigned height)"
 .br
 .ti -1c
-.RI "void \fBadd_road\fP (unsigned col, unsigned row)"
-.br
-.ti -1c
 .RI "void \fBadd_road\fP (const \fBCoordinates\fP &coords)"
 .br
 .ti -1c
-.RI "void \fBadd_in_out\fP (const \fBCoordinates\fP &coords)"
+.RI "void \fBadd_road\fP (unsigned col, unsigned row)"
 .br
 .ti -1c
-.RI "void \fBadd_in_out\fP (unsigned col, unsigned row)"
+.RI "bool \fBtryAdd_in_out\fP (unsigned col, unsigned row)"
+.br
+.ti -1c
+.RI "void \fBadd_undefined\fP (unsigned col, unsigned row)"
 .br
 .ti -1c
 .RI "State \fBat\fP (const \fBCoordinates\fP &pos) const "
@@ -90,6 +90,12 @@ Field \- Classe représentant la surface -le terrain- et contenant les opératio
 .in +1c
 .ti -1c
 .RI "void \fBresizeWithDimensions\fP ()"
+.br
+.ti -1c
+.RI "bool \fBtryAdd_in_out\fP (const \fBCoordinates\fP &coords)"
+.br
+.ti -1c
+.RI "void \fBadd_undefined\fP (const \fBCoordinates\fP &coords)"
 .br
 .in -1c
 .in -1c
@@ -210,23 +216,12 @@ Constructeur par recopie de la classe \fBField\fP
 
 .SH "Documentation des fonctions membres"
 .PP 
-.SS "void Field::add_in_out (const \fBCoordinates\fP & coords)\fC [inline]\fP"
-Ajoute une entrée/sortie à partir de coordonnées 
+.SS "void Field::add_road (const \fBCoordinates\fP & coords)\fC [inline]\fP"
+Ajoute une route à partir de coordonnées 
 .PP
 \fBParamètres:\fP
 .RS 4
-\fIcoords\fP Coordonnées de l'E/S 
-.RE
-.PP
-
-.SS "void Field::add_in_out (unsigned col, unsigned row)\fC [inline]\fP"
-Ajoute une entrée/sortie à partir de coordonnées 
-.PP
-\fBParamètres:\fP
-.RS 4
-\fIcol\fP Colonne de l'E/S 
-.br
-\fIrow\fP Ligne de l'E/S 
+\fIcoords\fP Coordonnées de la future route 
 .RE
 .PP
 
@@ -241,12 +236,23 @@ Ajoute une route à partir de coordonnées
 .RE
 .PP
 
-.SS "void Field::add_road (const \fBCoordinates\fP & coords)\fC [inline]\fP"
-Ajoute une route à partir de coordonnées 
+.SS "void Field::add_undefined (const \fBCoordinates\fP & coords)"
+Supprime l'état de la parcelle 
 .PP
 \fBParamètres:\fP
 .RS 4
-\fIcoords\fP Coordonnées de la future route 
+\fIcoords\fP 
+.RE
+.PP
+
+.SS "void Field::add_undefined (unsigned col, unsigned row)\fC [inline]\fP"
+Supprime l'état de la parcelle 
+.PP
+\fBParamètres:\fP
+.RS 4
+\fIcol\fP 
+.br
+\fIrow\fP 
 .RE
 .PP
 
@@ -343,6 +349,10 @@ Utile seulement pour les tests
 .PP
 Autres méthodes utiles 
 .SS ""
+.PP
+.IP "\(bu" 2
+
+.PP
 
 .SS "void Field::defineUsables (unsigned servingDistance)"
 Définit les parcelles dans le voisinage d'une route comme étant exploitables 
@@ -629,6 +639,26 @@ Impression sur la sortie standard des entrées et sorties de la surface
 .PP
 Affichage 
 .SS ""
+
+.SS "bool Field::tryAdd_in_out (const \fBCoordinates\fP & coords)"
+Ajoute une entrée/sortie à partir de coordonnées 
+.PP
+\fBParamètres:\fP
+.RS 4
+\fIcoords\fP Coordonnées de l'E/S 
+.RE
+.PP
+
+.SS "bool Field::tryAdd_in_out (unsigned col, unsigned row)\fC [inline]\fP"
+Ajoute une entrée/sortie à partir de coordonnées 
+.PP
+\fBParamètres:\fP
+.RS 4
+\fIcol\fP Colonne de l'E/S 
+.br
+\fIrow\fP Ligne de l'E/S 
+.RE
+.PP
 
 .SS "void Field::updateUsables (unsigned servingDistance)"
 Met à jour les parcelles dans le voisinage d'une route comme étant exploitables 

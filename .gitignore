@@ -4,6 +4,7 @@
 #documentation Doxygen
 doc/xml/
 doc/html/
+doc/html/stylesheets/github-light.css
 
 # ??
 src/*.kate-swp

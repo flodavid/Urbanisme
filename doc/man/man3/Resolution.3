@@ -1,4 +1,4 @@
-.TH "Resolution" 3 "Jeudi 12 Mai 2016" "Version 0.5" "Urbanisme" \" -*- nroff -*-
+.TH "Resolution" 3 "Jeudi 19 Mai 2016" "Version 1.0" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -11,20 +11,12 @@ Resolution \- La classe effectuant l'ensemble de la résolution et le front Pare
 \fC#include <resolution\&.h>\fP
 .SS "Fonctions membres publiques"
 
-.in +1c
-.ti -1c
-.RI "void \fBlocalSearchAccessObjective\fP (const \fBLocalSearch\fP &localSearch)"
-.br
-.in -1c
 .PP
 .RI "\fB\fP"
 .br
 
 .in +1c
 .in +1c
-.ti -1c
-.RI "\fBResolution\fP (unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth)"
-.br
 .ti -1c
 .RI "\fBResolution\fP (unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth, std::list< \fBCoordinates\fP > &ins_outs)"
 .br
@@ -40,7 +32,7 @@ Resolution \- La classe effectuant l'ensemble de la résolution et le front Pare
 .in +1c
 .in +1c
 .ti -1c
-.RI "void \fBevaluateBothObjectives\fP (\fBEvaluation\fP &myEvaluation)"
+.RI "void \fBevaluateBothObjectives\fP ()"
 .br
 .ti -1c
 .RI "int \fBspread\fP (const \fBEvaluation\fP *eval)"
@@ -54,7 +46,24 @@ Resolution \- La classe effectuant l'ensemble de la résolution et le front Pare
 .in +1c
 .in +1c
 .ti -1c
-.RI "void \fBlocalSearchUsableObjective\fP (const \fBLocalSearch\fP &localSearch)"
+.RI "void \fBlocalSearchUsableObjective\fP ()"
+.br
+.ti -1c
+.RI "void \fBlocalSearchAccessObjective\fP ()"
+.br
+.in -1c
+.in -1c
+.PP
+.RI "\fB\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "\fBField\fP & \fBinitResolution\fP ()"
+.br
+.ti -1c
+.RI "\fBField\fP & \fBlaunchResolution\fP ()"
 .br
 .in -1c
 .in -1c
@@ -63,25 +72,6 @@ Resolution \- La classe effectuant l'ensemble de la résolution et le front Pare
 La classe effectuant l'ensemble de la résolution et le front Pareto Elle contient l'intégralité des données du problème et est chargée de lancer les algos, de stocker les solutions et de construire le front pareto résultant\&. 
 .SH "Documentation des constructeurs et destructeur"
 .PP 
-.SS "Resolution::Resolution (unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth)"
-Constructeur d'une résolution à partir de tous les paramètres du problème 
-.PP
-\fBParamètres:\fP
-.RS 4
-\fInbCols\fP Largeur de la surface 
-.br
-\fInbRows\fP Hauteur de la surface 
-.br
-\fIserveDistance\fP Distance de desserte des parcelles par les routes 
-.br
-\fIroadsWidth\fP Largeur des routes
-.RE
-.PP
-.SS ""
-.PP
-Constructeurs 
-.SS ""
-
 .SS "Resolution::Resolution (unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth, std::list< \fBCoordinates\fP > & ins_outs)"
 Constructeur d'une résolution à partir de tous les paramètres du problème, avec une liste d'entrées et sorties 
 .PP
@@ -95,9 +85,13 @@ Constructeur d'une résolution à partir de tous les paramètres du problème, a
 .br
 \fIroadsWidth\fP Largeur des routes 
 .br
-\fIins_outs\fP Liste d'entrées/sorties de la surface 
+\fIins_outs\fP Liste d'entrées/sorties de la surface
 .RE
 .PP
+.SS ""
+.PP
+Constructeurs 
+.SS ""
 
 .SS "Resolution::Resolution (const \fBField\fP & field, const \fBParameters\fP & _params)"
 Construit l'instance en recopiant une surface et des paramètres existants 
@@ -112,25 +106,23 @@ Construit l'instance en recopiant une surface et des paramètres existants
 
 .SH "Documentation des fonctions membres"
 .PP 
-.SS "void Resolution::evaluateBothObjectives (\fBEvaluation\fP & myEvaluation)"
-Evalue les deux objectifs TODO mettre à jour le front pareto 
+.SS "void Resolution::evaluateBothObjectives ()"
+Evalue les deux objectifs
 .PP
-\fBParamètres:\fP
-.RS 4
-\fImyEvaluation\fP 
 .SS ""
-.RE
 .PP
 \fBEvaluation\fP et Pareto 
 .SS ""
 
-.SS "void Resolution::localSearchAccessObjective (const \fBLocalSearch\fP & localSearch)"
-Exécute la recherche locale permettant de maximiser l'accessibilité 
+.SS "\fBField\fP & Resolution::initResolution ()"
+
+.SS ""
 .PP
-\fBParamètres:\fP
-.RS 4
-\fIlocalSearch\fP Recherche locale effectuant les opérations 
-.RE
+\fBResolution\fP 
+.SS ""
+
+.SS "void Resolution::localSearchAccessObjective ()"
+Exécute la recherche locale permettant de maximiser l'accessibilité 
 .PP
 \fBVoir également:\fP
 .RS 4
@@ -138,13 +130,8 @@ Utiliser un signal pour mettre à jour l'affichage pendant les recherche ?
 .RE
 .PP
 
-.SS "void Resolution::localSearchUsableObjective (const \fBLocalSearch\fP & localSearch)"
+.SS "void Resolution::localSearchUsableObjective ()"
 Exécute la recherche locale permettant de maximiser le nombre de parcelles exploitables 
-.PP
-\fBParamètres:\fP
-.RS 4
-\fIlocalSearch\fP Recherche locale effectuant les opérations 
-.RE
 .PP
 \fBVoir également:\fP
 .RS 4

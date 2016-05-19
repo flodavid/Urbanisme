@@ -31,7 +31,7 @@ LocalSearch::~LocalSearch()
 //@}
 /// ###########################
 ///     Placement de routes
-/// ###########################s
+/// ###########################
 //@{
 
 /// Lignes droites de routes
@@ -115,7 +115,7 @@ float LocalSearch::paveRoad(Path* path, float gainPath)
     } else {
         delete path;
         clog << "Aucun chemin viable pour maximiser l'accessibilité"<< endl;
-        return -1.0;
+        return 0.0;
     }
 
 }

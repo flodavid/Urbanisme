@@ -1,0 +1,141 @@
+.TH "MainWindow" 3 "Jeudi 19 Mai 2016" "Version 1.0" "Urbanisme" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+MainWindow \- Fenêre principale de l'application\&. Chargée d'afficher la surface, les menus, les résultats et gérer le lancement des opérations\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <mainwindow\&.hpp>\fP
+.PP
+Est dérivée de QMainWindow\&.
+.SS "Connecteurs publics"
+
+.in +1c
+.ti -1c
+.RI "void \fBpopAbout\fP ()"
+.br
+.ti -1c
+.RI "void \fBlaunchInit\fP ()"
+.br
+.ti -1c
+.RI "void \fBlaunchResol\fP ()"
+.br
+.ti -1c
+.RI "void \fBlaunchEval\fP ()"
+.br
+.ti -1c
+.RI "void \fBresetField\fP ()"
+.br
+.in -1c
+.SS "Fonctions membres publiques"
+
+.in +1c
+.ti -1c
+.RI "\fBMainWindow\fP (QWidget *parent=0)"
+.br
+.ti -1c
+.RI "\fBMainWindow\fP (unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth, QWidget *parent=0)"
+.br
+.ti -1c
+.RI "\fBMainWindow\fP (unsigned nbCols, unsigned nbRows, const \fBParameters\fP &params, QWidget *parent=0)"
+.br
+.ti -1c
+.RI "void \fBaskSizes\fP ()"
+.br
+.ti -1c
+.RI "void \fBaskParams\fP ()"
+.br
+.ti -1c
+.RI "void \fBinitComponents\fP ()"
+.br
+.ti -1c
+.RI "void \fBinitEvents\fP ()"
+.br
+.ti -1c
+.RI "\fBField\fP & \fBget_initialField\fP ()"
+.br
+.in -1c
+.SH "Description détaillée"
+.PP 
+Fenêre principale de l'application\&. Chargée d'afficher la surface, les menus, les résultats et gérer le lancement des opérations\&. 
+.SH "Documentation des constructeurs et destructeur"
+.PP 
+.SS "MainWindow::MainWindow (QWidget * parent = \fC0\fP)\fC [explicit]\fP"
+Constructeur par défaut 
+.PP
+\fBParamètres:\fP
+.RS 4
+\fIparent\fP 
+.RE
+.PP
+
+.SS "MainWindow::MainWindow (unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth, QWidget * parent = \fC0\fP)\fC [explicit]\fP"
+Constructeur avec des valeurs initiales 
+.PP
+\fBParamètres:\fP
+.RS 4
+\fInbCols\fP Largeur de la surface 
+.br
+\fInbRows\fP Hauteur de la surface 
+.br
+\fIserveDistance\fP Distance de desserte de la résolution 
+.br
+\fIroadsWidth\fP Largeur des routes de la résolution 
+.br
+\fIparent\fP Widget parent 
+.br
+\fIparent\fP 
+.RE
+.PP
+
+.SS "MainWindow::MainWindow (unsigned nbCols, unsigned nbRows, const \fBParameters\fP & params, QWidget * parent = \fC0\fP)\fC [explicit]\fP"
+Constructeur avec des valeurs initiales 
+.PP
+\fBParamètres:\fP
+.RS 4
+\fInbCols\fP Largeur de la surface 
+.br
+\fInbRows\fP Hauteur de la surface 
+.br
+\fIparams\fP Paramètres de résolution 
+.br
+\fIparent\fP Widget parent 
+.RE
+.PP
+
+.SH "Documentation des fonctions membres"
+.PP 
+.SS "void MainWindow::askParams ()"
+Demande les paramètres du problème avec lesquels effectuer la résolution 
+.SS "void MainWindow::askSizes ()"
+Demande les tailles de la surface à traiter à l'utilisateur 
+.SS "\fBField\fP& MainWindow::get_initialField ()\fC [inline]\fP"
+Accesseur sur la surface initiale 
+.PP
+\fBRenvoie:\fP
+.RS 4
+initialField, une Surface, modifiable 
+.RE
+.PP
+
+.SS "void MainWindow::initComponents ()"
+Créer et instancie les composants graphiques 
+.SS "void MainWindow::initEvents ()"
+Créer les connections des signaux et slots de la fenêtre 
+.SS "void MainWindow::launchEval ()\fC [slot]\fP"
+Lance l'évaluation des deux objectifs TODO afficher les résultats dans la fenêtre plutôt que dans le terminal 
+.SS "void MainWindow::launchInit ()\fC [slot]\fP"
+Lance le placement des premières routes à partir des deux E/S 
+.SS "void MainWindow::launchResol ()\fC [slot]\fP"
+Lance la résolution du problème : Maximisation du nombre de routes exploitables, puis maximisation de l'accessibilité 
+.SS "void MainWindow::popAbout ()\fC [slot]\fP"
+Affiche la fenêtre de présentation 
+.SS "void MainWindow::resetField ()\fC [slot]\fP"
+Supprime toutes les routes autres que des E/S de la surface 
+
+.SH "Auteur"
+.PP 
+Généré automatiquement par Doxygen pour Urbanisme à partir du code source\&.

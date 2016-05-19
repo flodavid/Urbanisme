@@ -1,4 +1,4 @@
-.TH "Evaluation" 3 "Jeudi 12 Mai 2016" "Version 0.5" "Urbanisme" \" -*- nroff -*-
+.TH "Evaluation" 3 "Jeudi 19 Mai 2016" "Version 1.0" "Urbanisme" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -16,7 +16,7 @@ Evaluation \- Classe chargée de travailler sur les données en entrée du probl
 .RI "\fBEvaluation\fP (\fBField\fP &_field, const \fBParameters\fP &_params)"
 .br
 .ti -1c
-.RI "float \fBget_nbUsables\fP () const "
+.RI "unsigned \fBget_nbUsables\fP () const "
 .br
 .ti -1c
 .RI "float \fBget_avgAccess\fP () const "
@@ -28,7 +28,7 @@ Evaluation \- Classe chargée de travailler sur les données en entrée du probl
 .RI "unsigned \fBgetRoadDistance\fP (const \fBCoordinates\fP &coord1, const \fBCoordinates\fP &coord2) const "
 .br
 .ti -1c
-.RI "void \fBset_field\fP (const \fBField\fP *_field)"
+.RI "void \fBset_field\fP (const \fBField\fP &_field)"
 .br
 .ti -1c
 .RI "bool \fBis_dominated\fP (const \fBEvaluation\fP &other) const "
@@ -153,7 +153,7 @@ field, une référence sur un \fBField\fP
 .RE
 .PP
 
-.SS "float Evaluation::get_nbUsables () const\fC [inline]\fP"
+.SS "unsigned Evaluation::get_nbUsables () const\fC [inline]\fP"
 Accesseur sur l'attribut de nombre de parcelle exploitables 
 .PP
 \fBRenvoie:\fP
@@ -215,7 +215,7 @@ le ratio, sous forme de flottant
 .PP
 
 .SS "unsigned Evaluation::parcelsRoadDistance (const \fBCoordinates\fP & coord1, const \fBCoordinates\fP & coord2)"
-Calcule la distance par les routes entre deux cellules quelconques, en testant toutes les routs qui desservent la cellue et en respectant les paramètres 
+Calcule la distance par les routes entre deux cellules quelconques, en testant toutes les routes qui desservent les cellules et en respectant les paramètres 
 .PP
 \fBParamètres:\fP
 .RS 4
@@ -230,7 +230,7 @@ la valeur, entier non signé, de distance la plus courte, entre les deux coordon
 .RE
 .PP
 
-.SS "void Evaluation::set_field (const \fBField\fP * _field)\fC [inline]\fP"
+.SS "void Evaluation::set_field (const \fBField\fP & _field)\fC [inline]\fP"
 Mutateur sur la surface 
 .PP
 \fBParamètres:\fP

@@ -48,8 +48,6 @@ public:
     /* Evaluations */
     /**
      * Evalue les deux objectifs
-     * TODO mettre à jour le front pareto
-     * @param myEvaluation
      */
     void evaluateBothObjectives();
 
@@ -64,13 +62,11 @@ public:
     /* Recherche locale */
     /**
      * Exécute la recherche locale permettant de maximiser le nombre de parcelles exploitables
-     * @param localSearch Recherche locale effectuant les opérations
      * @see Utiliser un signal pour mettre à jour l'affichage pendant les recherche ?
      */
     void localSearchUsableObjective();
     /**
      * Exécute la recherche locale permettant de maximiser l'accessibilité
-     * @param localSearch Recherche locale effectuant les opérations
      * @see Utiliser un signal pour mettre à jour l'affichage pendant les recherche ?
      */
     void localSearchAccessObjective();

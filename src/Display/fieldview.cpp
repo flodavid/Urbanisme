@@ -14,9 +14,9 @@ using namespace std;
 FieldWidget::FieldWidget(Field* _field, unsigned _serveDistance):
     QWidget(), field(_field), serveDistance(_serveDistance)
 {
-	buffer = new QImage;
-	color = new QColor(Qt::white);
-	bufferPainter= new QPainter;
+    buffer = new QImage;
+    color = new QColor(Qt::white);
+    bufferPainter= new QPainter;
     rubber = NULL;
 
     setMinimumSize(field->get_width()*4, field->get_height()*4);
@@ -28,8 +28,8 @@ FieldWidget::~FieldWidget()
     delete buffer;
     delete color;
     delete bufferPainter;
-	
-	delete rubber;
+
+    delete rubber;
 }
 
 //@}
@@ -172,7 +172,7 @@ void FieldWidget::redraw()
 LoadWindow* FieldWidget::createProgressWindow() const
 {
     LoadWindow* progressWindow= new LoadWindow();
-	return progressWindow;
+    return progressWindow;
 }
 
 /// #################################
@@ -181,18 +181,18 @@ LoadWindow* FieldWidget::createProgressWindow() const
 
 bool FieldWidget::trySaveImage(QString filename) const
 {
-	if ( !buffer->isNull() ){
-		// TEST verifier que la taille est correcte
+    if ( !buffer->isNull() ){
+        // TEST verifier que la taille est correcte
         QImage tmp= buffer->scaled(tailleCell*field->get_width(), tailleCell*field->get_height());
-		tmp.save(filename);
-		return true;
-	}
-	else{
-		#if DEBUG_SAVE
-		cout << "Impossible de sauvegarder l'image, de forêt ouverte !"<< endl;
-		#endif
-		return false;
-	}
+        tmp.save(filename);
+        return true;
+    }
+    else{
+        #if DEBUG_SAVE
+        cout << "Impossible de sauvegarder l'image, de forêt ouverte !"<< endl;
+        #endif
+        return false;
+    }
 }
 
 /// ##################
@@ -216,8 +216,10 @@ void FieldWidget::clicInOut(const Coordinates &pos)
 void FieldWidget::clicRoad(const Coordinates &pos)
 {
     if (field->at(pos) != is_road) {
-        field->add_road(pos);
-        field->updateUsables(serveDistance);
+        if (field->at(pos) != is_in_out) {
+            field->add_road(pos);
+            field->updateUsables(serveDistance);
+        }
     } else {
         field->add_undefined(pos);
         field->updateUsables(serveDistance);
@@ -288,26 +290,26 @@ void FieldWidget::paintEvent(QPaintEvent* event)
 
 void FieldWidget::resizeEvent(QResizeEvent* event)
 {
-	#if PERF_RESIZE
-	cout << "test resizeEvent firewidget"<< endl;
-	#endif
-	
+    #if PERF_RESIZE
+    cout << "test resizeEvent firewidget"<< endl;
+    #endif
+
     int nbCol= field->get_width() +1;
     int nbRow= field->get_height()+1;
-	tailleCell = min (event->size().width() / (float)nbCol , event->size().height() / (float)nbRow);
-	
-	#if DEBUG_CURRENT
-// 	cout << "test apres resize dans resizeEvent (ligne 488 firewidget)"<< endl;
-	#endif
-	
-	#if DEBUG_DIMENSION
-	cout << nbCol<< " / "<< nbRow<< endl;
-	cout << "tW: "<< event->size().width()<< " tH: "<< event->size().height()<< endl;
-	cout << "taille Cellule : "<< tailleCell<< endl;
-	cout << endl;
-	#endif
+    tailleCell = min (event->size().width() / (float)nbCol , event->size().height() / (float)nbRow);
 
-	redraw();
+    #if DEBUG_CURRENT
+// 	cout << "test apres resize dans resizeEvent (ligne 488 firewidget)"<< endl;
+    #endif
+
+    #if DEBUG_DIMENSION
+    cout << nbCol<< " / "<< nbRow<< endl;
+    cout << "tW: "<< event->size().width()<< " tH: "<< event->size().height()<< endl;
+    cout << "taille Cellule : "<< tailleCell<< endl;
+    cout << endl;
+    #endif
+
+    redraw();
 }
 
 void FieldWidget::mousePressEvent(QMouseEvent* event)
@@ -355,9 +357,9 @@ void FieldWidget::mouseMoveEvent(QMouseEvent* event)
     //        }
         }
     }
-	
-	drawChanged();
-	update();
+
+    drawChanged();
+    update();
 }
 
 //void FieldWidget::initRubber(QMouseEvent* event){
@@ -391,8 +393,8 @@ void FieldWidget::mouseMoveEvent(QMouseEvent* event)
 //		if(depart.y() < 0){
 //			depart.setY(0);
 //		}
-		
-		
+
+
 //		if(arrivee.x() > size().width() ){
 //			arrivee.setX(size().width());
 //		}
@@ -410,7 +412,7 @@ void FieldWidget::mouseMoveEvent(QMouseEvent* event)
 //		// Emission du signal pour récupérer l'action à effectuer par firescreen
 ////		emit releaseSignal(); // TODO signaux
 //	}
-	
+
 //}
 
 //@}
@@ -424,28 +426,28 @@ void FieldWidget::mouseMoveEvent(QMouseEvent* event)
 //    // Transformation des QPoints depart et arrivée en coordonnée cellulaire
 //    int xDep = depart.x() / tailleCell;
 //    int yDep = depart.y() / tailleCell;
-	
+
 //    unsigned xArr = arrivee.x() / tailleCell;
-	
+
 //    if (xArr > field->get_width()) xArr= field->get_width();
-	
+
 //    unsigned yArr = arrivee.y() / tailleCell;
-	
+
 //    if (yArr> field->get_height())	yArr= field->get_height();
 
-	
+
 //    #if DEBUG_RETARD
 //    cout << "Coordonnées en cellule de départ : " << xDep << ";" << yDep << endl;
 //    cout << "Coordonnées en cellule d'arrivée : " << xArr << ";" << yArr << endl;
 //    #endif
-	
+
 //    // Appel à une fonction de forêt qui parcours la zone et effectue l'action
-	
-	
+
+
 ////    if(action_id == CUT){
 ////    }else if( action_id == DELAY){
 ////    }else cerr<< "mauvais index d'action clic droit"<< endl;
-	
+
 //    drawChanged();
 //    update();
 //}

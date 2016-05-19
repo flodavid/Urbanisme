@@ -1,7 +1,5 @@
 #pragma once
 
-#include "../stdafx.h"
-
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QRubberBand>
 #include <QtWidgets/QProgressBar>
@@ -15,13 +13,14 @@
 
 // Macros
 #include "../debug.h"
+#include "../stdafx.h"
 
 // Classes
 #include "../Engine/Field.h"
 #include "loadwindow.h"
 
 enum Colors{Black, Gray, Red, White, LightBlue, DarkBlue};
-//enum Actions{Black, Gray, Red, White, LightBlue};
+//enum Actions{};
 
 /**
  * @brief Widget d'affichage de l'automate cellulaire. Ce composant
@@ -61,15 +60,24 @@ public:
      * Constructeur à partir d'une surface déjà crée.
      * Initialise les différents pointeurs et fixe la taille minimale du widget
      * @param _field Surface associée au widget, c'est elle qui est affichée
+     * @param _serveDistance Distance de desserte des routes
      */
     FieldWidget(Field *_field, unsigned _serveDistance);
     virtual ~FieldWidget();
 
     /* Getters */
+    /**
+     * Accesseur sur la surface affichée
+     * @return Un Field, modifiable
+     */
     Field* get_field()
     { return field; }
 
     /* Setters */
+    /**
+     * Mutateur sur la surface à afficher
+     * @param _field Nouvelle surface à afficher
+     */
     void set_field(Field* _field)
     { field= _field; }
 
@@ -125,12 +133,29 @@ private:
 
     /* Events */
 private:
+    /**
+     * Tente de placer une E/S selon une position donnée
+     * @param pos Emplacement de l'entrée/sortie
+     */
     void clicInOut(const Coordinates& pos);
-
+    /**
+     * Place une route selon une position donnée, si il n'y a pas d'entrée sortie présente.
+     * Si une route est déjà présente, elle est enlevée
+     * @param pos Emplacement de la route
+     */
     void clicRoad(const Coordinates& pos);
-
+    /**
+     * Tente de placer une route selon une position donnée
+     * @param pos Emplacement de la route
+     */
     void moveRoad(const Coordinates& pos);
-
+    /**
+     * Ajoute la parcelle désignée dans la liste des parcelles sélectionnée ;
+     * Si il y a déjà deux parcelles sélectionnées, elle remplace la plus ancienne.
+     * Si il y deux parcelles après l'ajout de celle-ci, leur distance par les routes est calculée
+     * TODO afficher le résultat de cette distance : signal vers MainWindow ?
+     * @param pos Emplacement de la route
+     */
     void selectParcel(const Coordinates& pos);
 
 public slots:

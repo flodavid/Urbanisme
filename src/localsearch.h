@@ -42,8 +42,15 @@ public:
     ~LocalSearch();
 
     /* Getters */
+    /**
+     * Accesseur sur la surface de l'Evaluation
+     * @return Une référence sur la surface, modifiable
+     */
     Field& get_field() { return eval.get_field(); }
-
+    /**
+     * Accesseur sur l'Evaluation
+     * @return  Une référence sur l'évaluation, modifiable
+     */
     Evaluation& get_evaluation() { return eval; }
 
     /*  Algorithm */
@@ -79,8 +86,20 @@ public:
     void initSolution();
 
     /* = Improvments = */
+    /**
+     * Cherche tous les chemins "directs" possibles entre deux routes.
+     * Ces chemins ne doivent pas contenir de routes aller de manière directe d'un point à l'autre,
+     * pas de "détours" pour éviter une route.
+     * @param coord1 Coordonnées de la première route
+     * @param coord2 Coordonnées de la seconde route
+     * @return Un pointeur sur une liste de pointeurs sur les différents chemin possibles
+     */
     std::list<Path*>* getPaths(const Coordinates& coord1, const Coordinates& coord2);
-
+    /**
+     * Calcule le gain hypotéthique en accessibilité lors de l'ajout d'un chemin donné
+     * @param path Chemin testé (liste de routes)
+     * @return Gain en accessibilité lors de l'ajout du chemin, nul si le chemin et vide
+     */
     float gainPath(Path* path);
     /**
      * Tente l'ajout d'une route avec pour objectif d'augmenter le nombre de parcelles exploitables.
@@ -95,9 +114,6 @@ public:
      * permettant d'obtenir une solution réalisable avec une accessibilité meilleures ou équivalente.
      */
     float addRoadsAccess(unsigned nbToAdd);
-
-    static void supprPaths(Path* paths);
-
 };
 
 /**
