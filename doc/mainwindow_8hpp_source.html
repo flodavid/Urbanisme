@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>Urbanisme:  Fichier source de Display/mainwindow.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo-simcity.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Urbanisme
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">Projet visant à l&#39;optimisation du placement de routes sur une surface. https://flodavid.github.io/Urbanisme</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&#160;associées</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_24817a301ba3256d5cc3ff5fb28dbe0b.html">Display</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">mainwindow.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef MAINWINDOW_H</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define MAINWINDOW_H</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QMainWindow&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;QWidget&gt;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;QtWidgets/QMenuBar&gt;</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;fieldview.hpp&quot;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;resolution.h&quot;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div><div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="class_main_window.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_main_window.html">MainWindow</a> : <span class="keyword">public</span> QMainWindow</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    Q_OBJECT</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="class_field.html">Field</a> initialField;</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_parameters.html">Parameters</a> parameters;</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_field_widget.html">FieldWidget</a>* fieldWidget;</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">//  MENU BAR</span></div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    QWidget* aboutWidget;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    QAction* aboutAction;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    QAction* initAction;</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    QAction* evalAction;</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    QAction* resolAction;</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    QAction* resetAction;</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db">MainWindow</a>(QWidget *parent = 0);</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db">MainWindow</a>(<span class="keywordtype">unsigned</span> nbCols, <span class="keywordtype">unsigned</span> nbRows, <span class="keywordtype">unsigned</span> serveDistance, <span class="keywordtype">unsigned</span> roadsWidth, QWidget *parent = 0);</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db">MainWindow</a>(<span class="keywordtype">unsigned</span> nbCols, <span class="keywordtype">unsigned</span> nbRows, <span class="keyword">const</span> <a class="code" href="class_parameters.html">Parameters</a>&amp; params, QWidget *parent = 0);</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_main_window.html#a8c26ef2a51318acecd13b0bf68b8b9c4">askSizes</a>();</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_main_window.html#a018baa25fd3f8aec31d307fe685bd307">askParams</a>();</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_main_window.html#a10d452c829644fc567cb14f3071d1d14">initComponents</a>();</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_main_window.html#a1450fa613547235fc74c4eb53f639090">initEvents</a>();</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="comment">/* Getters */</span></div><div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="class_main_window.html#a9912d564dad85f5fb8323bcff81c67e9">   87</a></span>&#160;    <a class="code" href="class_field.html">Field</a>&amp; <a class="code" href="class_main_window.html#a9912d564dad85f5fb8323bcff81c67e9">get_initialField</a>() { <span class="keywordflow">return</span> initialField; }</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;signals:</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keyword">public</span> slots:</div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_main_window.html#a28a7f9c15add8cc119cc33be2e0ac3fc">popAbout</a>();</div><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_main_window.html#aa1afeca072feb7a6ff09d61f1f2e9611">launchInit</a>();</div><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div><div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_main_window.html#ab04f36a88474582ae30d3a41248faaf0">launchResol</a>();</div><div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_main_window.html#a567a2b43cd82d087a39d0e8e96bebaa2">launchEval</a>();</div><div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_main_window.html#a29a68fad68d0fbb24e2b7717f9e54cdc">resetField</a>();</div><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;};</div><div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div><div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">#endif // MAINWINDOW_H</span></div><div class="ttc" id="class_main_window_html_a28a7f9c15add8cc119cc33be2e0ac3fc"><div class="ttname"><a href="class_main_window.html#a28a7f9c15add8cc119cc33be2e0ac3fc">MainWindow::popAbout</a></div><div class="ttdeci">void popAbout()</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:70</div></div>
+<div class="ttc" id="class_main_window_html_a567a2b43cd82d087a39d0e8e96bebaa2"><div class="ttname"><a href="class_main_window.html#a567a2b43cd82d087a39d0e8e96bebaa2">MainWindow::launchEval</a></div><div class="ttdeci">void launchEval()</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:123</div></div>
+<div class="ttc" id="class_main_window_html_a018baa25fd3f8aec31d307fe685bd307"><div class="ttname"><a href="class_main_window.html#a018baa25fd3f8aec31d307fe685bd307">MainWindow::askParams</a></div><div class="ttdeci">void askParams()</div></div>
+<div class="ttc" id="class_parameters_html"><div class="ttname"><a href="class_parameters.html">Parameters</a></div><div class="ttdoc">Représente les paramètres du problèmes. </div><div class="ttdef"><b>Definition:</b> Parameters.h:6</div></div>
+<div class="ttc" id="class_main_window_html_a9912d564dad85f5fb8323bcff81c67e9"><div class="ttname"><a href="class_main_window.html#a9912d564dad85f5fb8323bcff81c67e9">MainWindow::get_initialField</a></div><div class="ttdeci">Field &amp; get_initialField()</div><div class="ttdef"><b>Definition:</b> mainwindow.hpp:87</div></div>
+<div class="ttc" id="class_field_html"><div class="ttname"><a href="class_field.html">Field</a></div><div class="ttdoc">Classe représentant la surface -le terrain- et contenant les opérations que l&amp;#39;on effectue sur celui-c...</div><div class="ttdef"><b>Definition:</b> Field.h:16</div></div>
+<div class="ttc" id="class_main_window_html_aa1afeca072feb7a6ff09d61f1f2e9611"><div class="ttname"><a href="class_main_window.html#aa1afeca072feb7a6ff09d61f1f2e9611">MainWindow::launchInit</a></div><div class="ttdeci">void launchInit()</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:98</div></div>
+<div class="ttc" id="class_main_window_html_ab04f36a88474582ae30d3a41248faaf0"><div class="ttname"><a href="class_main_window.html#ab04f36a88474582ae30d3a41248faaf0">MainWindow::launchResol</a></div><div class="ttdeci">void launchResol()</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:110</div></div>
+<div class="ttc" id="class_field_widget_html"><div class="ttname"><a href="class_field_widget.html">FieldWidget</a></div><div class="ttdoc">Widget d&amp;#39;affichage de l&amp;#39;automate cellulaire. Ce composant permet de suivre graphiquement l&amp;#39;évolution ...</div><div class="ttdef"><b>Definition:</b> fieldview.hpp:31</div></div>
+<div class="ttc" id="class_main_window_html_a1450fa613547235fc74c4eb53f639090"><div class="ttname"><a href="class_main_window.html#a1450fa613547235fc74c4eb53f639090">MainWindow::initEvents</a></div><div class="ttdeci">void initEvents()</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:61</div></div>
+<div class="ttc" id="class_main_window_html_a8b244be8b7b7db1b08de2a2acb9409db"><div class="ttname"><a href="class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db">MainWindow::MainWindow</a></div><div class="ttdeci">MainWindow(QWidget *parent=0)</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:9</div></div>
+<div class="ttc" id="class_main_window_html_a8c26ef2a51318acecd13b0bf68b8b9c4"><div class="ttname"><a href="class_main_window.html#a8c26ef2a51318acecd13b0bf68b8b9c4">MainWindow::askSizes</a></div><div class="ttdeci">void askSizes()</div></div>
+<div class="ttc" id="class_main_window_html"><div class="ttname"><a href="class_main_window.html">MainWindow</a></div><div class="ttdoc">Fenêre principale de l&amp;#39;application. Chargée d&amp;#39;afficher la surface, les menus, les résultats et gérer ...</div><div class="ttdef"><b>Definition:</b> mainwindow.hpp:16</div></div>
+<div class="ttc" id="class_main_window_html_a29a68fad68d0fbb24e2b7717f9e54cdc"><div class="ttname"><a href="class_main_window.html#a29a68fad68d0fbb24e2b7717f9e54cdc">MainWindow::resetField</a></div><div class="ttdeci">void resetField()</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:130</div></div>
+<div class="ttc" id="class_main_window_html_a10d452c829644fc567cb14f3071d1d14"><div class="ttname"><a href="class_main_window.html#a10d452c829644fc567cb14f3071d1d14">MainWindow::initComponents</a></div><div class="ttdeci">void initComponents()</div><div class="ttdef"><b>Definition:</b> mainwindow.cpp:44</div></div>
+</div><!-- fragment --></div><!-- contents -->
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Urbanisme développé par <a href="https://github.com/flodavid" class="user-mention">flodavid</a></p>
+        <p><em>Urbanisme</em> est un logiciel libre, licencié sous<a href="https://www.gnu.org/licenses/gpl.html">GPLv3</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

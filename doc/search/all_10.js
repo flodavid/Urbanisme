@@ -12,5 +12,6 @@ var searchData=
   ['test_5fservingvalids',['test_servingValids',['../class_field_test_fixture.html#a332e8d4319e77f9322d4936a8a001909',1,'FieldTestFixture']]],
   ['test_5fvalidscoords',['test_validsCoords',['../class_next_coordinates_test_fixture.html#a3c7bcb20dfb66817af9e6162554d28ea',1,'NextCoordinatesTestFixture']]],
   ['test_5fvalidspath',['test_validsPath',['../class_min_path_road_test_fixture.html#ae0448460a924c47237cde215f4175886',1,'MinPathRoadTestFixture']]],
-  ['threadsevaluateratio',['threadsEvaluateRatio',['../class_evaluation.html#a7c4ae78668fdf07753eb35256c9276a1',1,'Evaluation']]]
+  ['threadsevaluateratio',['threadsEvaluateRatio',['../class_evaluation.html#a7c4ae78668fdf07753eb35256c9276a1',1,'Evaluation']]],
+  ['tryadd_5fin_5fout',['tryAdd_in_out',['../class_field.html#a8853ca2b2d01a90f4f11f99bad6a080e',1,'Field::tryAdd_in_out(const Coordinates &amp;coords)'],['../class_field.html#ae738a33aa86e541944a75c5559cc2289',1,'Field::tryAdd_in_out(unsigned col, unsigned row)']]]
 ];

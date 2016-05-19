@@ -15,7 +15,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="github-light.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-simcity.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Urbanisme
-   &#160;<span id="projectnumber">0.5</span>
+   &#160;<span id="projectnumber">1.0</span>
    </div>
    <div id="projectbrief">Projet visant à l&#39;optimisation du placement de routes sur une surface. https://flodavid.github.io/Urbanisme</div>
   </td>
@@ -89,6 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Types publics</a> &#124;
+<a href="#pub-methods">Fonctions membres publiques</a> &#124;
 <a href="class_local_search-members.html">Liste de tous les membres</a>  </div>
   <div class="headertitle">
 <div class="title">Référence de la classe LocalSearch</div>  </div>
@@ -107,23 +107,26 @@ Types publics</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Fonctions membres publiques</h2></td></tr>
+<tr class="memitem:ae0248527c43a63ccf14f1f9371b652db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#ae0248527c43a63ccf14f1f9371b652db">get_field</a> ()</td></tr>
+<tr class="separator:ae0248527c43a63ccf14f1f9371b652db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f69e7d3ceb5c0b51975c402e7aec018"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_evaluation.html">Evaluation</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#a8f69e7d3ceb5c0b51975c402e7aec018">get_evaluation</a> ()</td></tr>
+<tr class="separator:a8f69e7d3ceb5c0b51975c402e7aec018"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:abc7cb089f69a68a3106f7893cbaf7ad6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#abc7cb089f69a68a3106f7893cbaf7ad6">LocalSearch</a> (<a class="el" href="class_field.html">Field</a> *_field, const <a class="el" href="class_parameters.html">Parameters</a> *_params)</td></tr>
 <tr class="separator:abc7cb089f69a68a3106f7893cbaf7ad6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2143b37f1133e099cd6a43dfc148326c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#a2143b37f1133e099cd6a43dfc148326c">LocalSearch</a> (const <a class="el" href="class_local_search.html">LocalSearch</a> &amp;other)</td></tr>
 <tr class="separator:a2143b37f1133e099cd6a43dfc148326c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:ab71af061cfd4ad211167f30b6bf9517e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#ab71af061cfd4ad211167f30b6bf9517e">initSolution</a> ()</td></tr>
 <tr class="separator:ab71af061cfd4ad211167f30b6bf9517e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5782779844d99c31bc9fe2367797af41"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5782779844d99c31bc9fe2367797af41"></a>
-std::list&lt; <a class="el" href="class_local_search.html#a7b763ee689c3980c1b7519cb1ba47368">Path</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>getPaths</b> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord1, const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord2)</td></tr>
+<tr class="memitem:a5782779844d99c31bc9fe2367797af41"><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="class_local_search.html#a7b763ee689c3980c1b7519cb1ba47368">Path</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#a5782779844d99c31bc9fe2367797af41">getPaths</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord1, const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord2)</td></tr>
 <tr class="separator:a5782779844d99c31bc9fe2367797af41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5171535bb36b47e59c0f964b7795204"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa5171535bb36b47e59c0f964b7795204"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>gainPath</b> (<a class="el" href="class_local_search.html#a7b763ee689c3980c1b7519cb1ba47368">Path</a> *path) const </td></tr>
-<tr class="separator:aa5171535bb36b47e59c0f964b7795204"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a706291146987327d8dcfbf3db0d7597f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#a706291146987327d8dcfbf3db0d7597f">addRoadUsable</a> () const </td></tr>
-<tr class="separator:a706291146987327d8dcfbf3db0d7597f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28901ce0cadc4df0c0b800f05fba0387"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#a28901ce0cadc4df0c0b800f05fba0387">addRoadsAccess</a> (unsigned nbToAdd)</td></tr>
-<tr class="separator:a28901ce0cadc4df0c0b800f05fba0387"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac22a15f66a63fd48f1a94a35021cd4b5"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#ac22a15f66a63fd48f1a94a35021cd4b5">gainPath</a> (<a class="el" href="class_local_search.html#a7b763ee689c3980c1b7519cb1ba47368">Path</a> *path)</td></tr>
+<tr class="separator:ac22a15f66a63fd48f1a94a35021cd4b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07ee1f0773508869c26dc2c97582ae80"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#a07ee1f0773508869c26dc2c97582ae80">addRoadUsable</a> () const </td></tr>
+<tr class="separator:a07ee1f0773508869c26dc2c97582ae80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a04b4ace7fb202ca0dd2e72508cc887"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#a7a04b4ace7fb202ca0dd2e72508cc887">addRoadsAccess</a> (unsigned nbToAdd)</td></tr>
+<tr class="separator:a7a04b4ace7fb202ca0dd2e72508cc887"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>La classe chargée d'effectuer des recherches locales sur les différentes solutions TODO ajouter les entrées et sorties. </p>
@@ -200,12 +203,12 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>gainPath</b> (<a cla
 </div>
 </div>
 <h2 class="groupheader">Documentation des fonctions membres</h2>
-<a class="anchor" id="a28901ce0cadc4df0c0b800f05fba0387"></a>
+<a class="anchor" id="a7a04b4ace7fb202ca0dd2e72508cc887"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool LocalSearch::addRoadsAccess </td>
+          <td class="memname">float LocalSearch::addRoadsAccess </td>
           <td>(</td>
           <td class="paramtype">unsigned&#160;</td>
           <td class="paramname"><em>nbToAdd</em></td><td>)</td>
@@ -217,12 +220,12 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>gainPath</b> (<a cla
 
 </div>
 </div>
-<a class="anchor" id="a706291146987327d8dcfbf3db0d7597f"></a>
+<a class="anchor" id="a07ee1f0773508869c26dc2c97582ae80"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool LocalSearch::addRoadUsable </td>
+          <td class="memname">int LocalSearch::addRoadUsable </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -231,6 +234,111 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>gainPath</b> (<a cla
 </div><div class="memdoc">
 <p>Tente l'ajout d'une route avec pour objectif d'augmenter le nombre de parcelles exploitables. </p><dl class="section return"><dt>Renvoie</dt><dd>faux si aucune route n'a pu être ajoutée car il n'y a aucun placement de route permettant d'obtenir une solution réalisable avec un nombre de parcelles exploitables supérieur ou égal au nombre courant. </dd></dl>
 <p>TODO est-ce utile de soustraire le nombre de voisin, mettre un coef, ... ? OUI, ça a une utilité, pour éviter de coller 2 routes </p>
+
+</div>
+</div>
+<a class="anchor" id="ac22a15f66a63fd48f1a94a35021cd4b5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float LocalSearch::gainPath </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_local_search.html#a7b763ee689c3980c1b7519cb1ba47368">Path</a> *&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Calcule le gain hypotéthique en accessibilité lors de l'ajout d'un chemin donné </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Chemin testé (liste de routes) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Gain en accessibilité lors de l'ajout du chemin, nul si le chemin et vide </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8f69e7d3ceb5c0b51975c402e7aec018"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_evaluation.html">Evaluation</a>&amp; LocalSearch::get_evaluation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Accesseur sur l'<a class="el" href="class_evaluation.html" title="Classe chargée de travailler sur les données en entrée du problème pour trouver des solution réalisab...">Evaluation</a> </p><dl class="section return"><dt>Renvoie</dt><dd>Une référence sur l'évaluation, modifiable </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae0248527c43a63ccf14f1f9371b652db"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_field.html">Field</a>&amp; LocalSearch::get_field </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Accesseur sur la surface de l'<a class="el" href="class_evaluation.html" title="Classe chargée de travailler sur les données en entrée du problème pour trouver des solution réalisab...">Evaluation</a> </p><dl class="section return"><dt>Renvoie</dt><dd>Une référence sur la surface, modifiable </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5782779844d99c31bc9fe2367797af41"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">list&lt; <a class="el" href="class_local_search.html#a7b763ee689c3980c1b7519cb1ba47368">Path</a> * &gt; * LocalSearch::getPaths </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;&#160;</td>
+          <td class="paramname"><em>coord1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;&#160;</td>
+          <td class="paramname"><em>coord2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Cherche tous les chemins "directs" possibles entre deux routes. Ces chemins ne doivent pas contenir de routes aller de manière directe d'un point à l'autre, pas de "détours" pour éviter une route. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coord1</td><td>Coordonnées de la première route </td></tr>
+    <tr><td class="paramname">coord2</td><td>Coordonnées de la seconde route </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Un pointeur sur une liste de pointeurs sur les différents chemin possibles </dd></dl>
 
 </div>
 </div>
@@ -246,7 +354,9 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>gainPath</b> (<a cla
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Relie les entrées et sorties entre elles, de manière directe </p>
+<p>Relie les entrées et sorties entre elles, de manière directe</p>
+<h6></h6>
+<p>Création et améliorations d'une solution </p><h6></h6>
 
 </div>
 </div>

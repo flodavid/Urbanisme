@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['actionreceived',['actionReceived',['../class_field_widget.html#acc16bfaba5f3b9377c8ca981cd0b4907',1,'FieldWidget']]],
-  ['add_5fin_5fout',['add_in_out',['../class_field.html#aad0b17a156f5c2694132f746a937d159',1,'Field::add_in_out(const Coordinates &amp;coords)'],['../class_field.html#a9d9b3de65984659c77ee86918362f4f8',1,'Field::add_in_out(unsigned col, unsigned row)']]],
-  ['add_5froad',['add_road',['../class_field.html#a5db3ca54219102e50ff4d9e0b9753d0b',1,'Field::add_road(unsigned col, unsigned row)'],['../class_field.html#a067901d09e0bdc9752e0d5d22bd90229',1,'Field::add_road(const Coordinates &amp;coords)']]],
-  ['addroadsaccess',['addRoadsAccess',['../class_local_search.html#a28901ce0cadc4df0c0b800f05fba0387',1,'LocalSearch']]],
-  ['addroadusable',['addRoadUsable',['../class_local_search.html#a706291146987327d8dcfbf3db0d7597f',1,'LocalSearch']]],
+  ['add_5froad',['add_road',['../class_field.html#a067901d09e0bdc9752e0d5d22bd90229',1,'Field::add_road(const Coordinates &amp;coords)'],['../class_field.html#a5db3ca54219102e50ff4d9e0b9753d0b',1,'Field::add_road(unsigned col, unsigned row)']]],
+  ['add_5fundefined',['add_undefined',['../class_field.html#abd295fdc29ff4021e2f4245ec0b4c73c',1,'Field::add_undefined(const Coordinates &amp;coords)'],['../class_field.html#abf9cebe09b4c6849d2aa19455c00a6be',1,'Field::add_undefined(unsigned col, unsigned row)']]],
+  ['addroadsaccess',['addRoadsAccess',['../class_local_search.html#a7a04b4ace7fb202ca0dd2e72508cc887',1,'LocalSearch']]],
+  ['addroadusable',['addRoadUsable',['../class_local_search.html#a07ee1f0773508869c26dc2c97582ae80',1,'LocalSearch']]],
+  ['askparams',['askParams',['../class_main_window.html#a018baa25fd3f8aec31d307fe685bd307',1,'MainWindow']]],
+  ['asksizes',['askSizes',['../class_main_window.html#a8c26ef2a51318acecd13b0bf68b8b9c4',1,'MainWindow']]],
   ['at',['at',['../class_field.html#a6dda638994b360483e67514a9ede9f15',1,'Field']]]
 ];

@@ -1,11 +1,14 @@
 var searchData=
 [
+  ['gainpath',['gainPath',['../class_local_search.html#ac22a15f66a63fd48f1a94a35021cd4b5',1,'LocalSearch']]],
   ['generateinsandouts',['generateInsAndOuts',['../class_field.html#ab3e49fecc6c0c5eed1d07b761f35b8ba',1,'Field']]],
   ['get_5favgaccess',['get_avgAccess',['../class_evaluation.html#af96faa0d985feb2ab6f8f2ed4d07df9e',1,'Evaluation']]],
-  ['get_5ffield',['get_field',['../class_evaluation.html#a53050af19d65878d7f926b714184ffcf',1,'Evaluation']]],
+  ['get_5fevaluation',['get_evaluation',['../class_local_search.html#a8f69e7d3ceb5c0b51975c402e7aec018',1,'LocalSearch']]],
+  ['get_5ffield',['get_field',['../class_field_widget.html#af944c1203d9d754d08a845364eed02fa',1,'FieldWidget::get_field()'],['../class_evaluation.html#a53050af19d65878d7f926b714184ffcf',1,'Evaluation::get_field()'],['../class_local_search.html#ae0248527c43a63ccf14f1f9371b652db',1,'LocalSearch::get_field()']]],
   ['get_5fheight',['get_height',['../class_field.html#a85cbce7b8cf8fc7d33bc9c5d7637fd0f',1,'Field']]],
+  ['get_5finitialfield',['get_initialField',['../class_main_window.html#a9912d564dad85f5fb8323bcff81c67e9',1,'MainWindow']]],
   ['get_5finsouts',['get_insOuts',['../class_field.html#a7f69c59753d53c3af621dd8e44ae8b8d',1,'Field']]],
-  ['get_5fnbusables',['get_nbUsables',['../class_evaluation.html#a2428dbd69e3036daa49eadd33b582ed6',1,'Evaluation']]],
+  ['get_5fnbusables',['get_nbUsables',['../class_evaluation.html#a471a5c87afc12623f7f0f1f07e982a7a',1,'Evaluation']]],
   ['get_5froad_5fwidth',['get_road_width',['../class_parameters.html#a24b24b6f75e38b557409f1608d855f25',1,'Parameters']]],
   ['get_5fserve_5fdistance',['get_serve_distance',['../class_parameters.html#ac5da3d531558c09300be6c66830ea070',1,'Parameters']]],
   ['get_5fwidth',['get_width',['../class_field.html#ae12b592877dcb38b0bb8cbc8270b3cf9',1,'Field']]],
@@ -14,6 +17,7 @@ var searchData=
   ['getcloseunusableparcels',['getCloseUnusableParcels',['../class_field.html#a767a0a8595a25865db91dce4beb9be14',1,'Field']]],
   ['getnbparcels',['getNbParcels',['../class_field.html#a43e0689560cee653e8eece3778cae287',1,'Field']]],
   ['getneighbourroads',['getNeighbourRoads',['../class_field.html#ab7f0de6f1ee4d0a45b8d4946783d8738',1,'Field']]],
+  ['getpaths',['getPaths',['../class_local_search.html#a5782779844d99c31bc9fe2367797af41',1,'LocalSearch']]],
   ['getroaddistance',['getRoadDistance',['../class_evaluation.html#a62eb998463522f28042773b503088174',1,'Evaluation']]],
   ['getservingroads',['getServingRoads',['../class_field.html#ad38e9b89a990280215681e53798ccc70',1,'Field']]]
 ];

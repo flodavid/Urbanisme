@@ -2,8 +2,9 @@ var searchData=
 [
   ['razrubber',['razRubber',['../class_field_widget.html#ac5c1bfd6ff3f83066e7ae6210d82faa5',1,'FieldWidget']]],
   ['redraw',['redraw',['../class_field_widget.html#ad7912c05c41cf83cf4e6eff7389525f1',1,'FieldWidget']]],
+  ['resetfield',['resetField',['../class_main_window.html#a29a68fad68d0fbb24e2b7717f9e54cdc',1,'MainWindow']]],
   ['resizewithdimensions',['resizeWithDimensions',['../class_field.html#a6baa2ec69d89a224f2cf96af8eac9250',1,'Field']]],
-  ['resolution',['Resolution',['../class_resolution.html',1,'Resolution'],['../class_resolution.html#af35084a4031a5523a65e72f702d38aaa',1,'Resolution::Resolution(unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth)'],['../class_resolution.html#abd2f20cd4dcc483f15c6381179e6ec8e',1,'Resolution::Resolution(unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth, std::list&lt; Coordinates &gt; &amp;ins_outs)'],['../class_resolution.html#acfe95ef5ef837cbc834f39318c859605',1,'Resolution::Resolution(const Field &amp;field, const Parameters &amp;_params)']]],
+  ['resolution',['Resolution',['../class_resolution.html',1,'Resolution'],['../class_resolution.html#abd2f20cd4dcc483f15c6381179e6ec8e',1,'Resolution::Resolution(unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth, std::list&lt; Coordinates &gt; &amp;ins_outs)'],['../class_resolution.html#acfe95ef5ef837cbc834f39318c859605',1,'Resolution::Resolution(const Field &amp;field, const Parameters &amp;_params)']]],
   ['road_5fdistances_5fare_5finitiated',['road_distances_are_initiated',['../class_evaluation.html#a2b9bd48dc36e2b67514a8c0a63ff372a',1,'Evaluation']]],
   ['row',['row',['../class_coordinates.html#aa3e522bbc0eab18fe35a7b17186df35e',1,'Coordinates']]]
 ];

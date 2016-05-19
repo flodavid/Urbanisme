@@ -15,7 +15,6 @@
   $(document).ready(function() { init_search(); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="github-light.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,7 +25,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-simcity.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Urbanisme
-   &#160;<span id="projectnumber">0.5</span>
+   &#160;<span id="projectnumber">1.0</span>
    </div>
    <div id="projectbrief">Projet visant à l&#39;optimisation du placement de routes sur une surface. https://flodavid.github.io/Urbanisme</div>
   </td>
@@ -116,14 +115,14 @@ Fonctions membres publiques</h2></td></tr>
 <tr class="separator:ac3c26822851b29438f6f9f0a6b505e3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a820a5f4fcae3cd53264b4ec87748fe3b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a820a5f4fcae3cd53264b4ec87748fe3b">set_height</a> (unsigned height)</td></tr>
 <tr class="separator:a820a5f4fcae3cd53264b4ec87748fe3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5db3ca54219102e50ff4d9e0b9753d0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a5db3ca54219102e50ff4d9e0b9753d0b">add_road</a> (unsigned col, unsigned row)</td></tr>
-<tr class="separator:a5db3ca54219102e50ff4d9e0b9753d0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a067901d09e0bdc9752e0d5d22bd90229"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a067901d09e0bdc9752e0d5d22bd90229">add_road</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coords)</td></tr>
 <tr class="separator:a067901d09e0bdc9752e0d5d22bd90229"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad0b17a156f5c2694132f746a937d159"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#aad0b17a156f5c2694132f746a937d159">add_in_out</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coords)</td></tr>
-<tr class="separator:aad0b17a156f5c2694132f746a937d159"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d9b3de65984659c77ee86918362f4f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a9d9b3de65984659c77ee86918362f4f8">add_in_out</a> (unsigned col, unsigned row)</td></tr>
-<tr class="separator:a9d9b3de65984659c77ee86918362f4f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5db3ca54219102e50ff4d9e0b9753d0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a5db3ca54219102e50ff4d9e0b9753d0b">add_road</a> (unsigned col, unsigned row)</td></tr>
+<tr class="separator:a5db3ca54219102e50ff4d9e0b9753d0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae738a33aa86e541944a75c5559cc2289"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#ae738a33aa86e541944a75c5559cc2289">tryAdd_in_out</a> (unsigned col, unsigned row)</td></tr>
+<tr class="separator:ae738a33aa86e541944a75c5559cc2289"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf9cebe09b4c6849d2aa19455c00a6be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#abf9cebe09b4c6849d2aa19455c00a6be">add_undefined</a> (unsigned col, unsigned row)</td></tr>
+<tr class="separator:abf9cebe09b4c6849d2aa19455c00a6be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6dda638994b360483e67514a9ede9f15"><td class="memItemLeft" align="right" valign="top">State&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a6dda638994b360483e67514a9ede9f15">at</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;pos) const </td></tr>
 <tr class="separator:a6dda638994b360483e67514a9ede9f15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a7a478e7f5d978e181b7fca88ddad3c"><td class="memItemLeft" align="right" valign="top">State&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a9a7a478e7f5d978e181b7fca88ddad3c">operator[]</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;pos) const </td></tr>
@@ -150,6 +149,10 @@ Fonctions membres publiques</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a6baa2ec69d89a224f2cf96af8eac9250"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a6baa2ec69d89a224f2cf96af8eac9250">resizeWithDimensions</a> ()</td></tr>
 <tr class="separator:a6baa2ec69d89a224f2cf96af8eac9250"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8853ca2b2d01a90f4f11f99bad6a080e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a8853ca2b2d01a90f4f11f99bad6a080e">tryAdd_in_out</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coords)</td></tr>
+<tr class="separator:a8853ca2b2d01a90f4f11f99bad6a080e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd295fdc29ff4021e2f4245ec0b4c73c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#abd295fdc29ff4021e2f4245ec0b4c73c">add_undefined</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coords)</td></tr>
+<tr class="separator:abd295fdc29ff4021e2f4245ec0b4c73c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a400b4301fd5d8286827a1032fcd74ec1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a400b4301fd5d8286827a1032fcd74ec1">show_ins_and_outs</a> () const </td></tr>
 <tr class="separator:a400b4301fd5d8286827a1032fcd74ec1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -256,7 +259,7 @@ Amis</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Documentation des fonctions membres</h2>
-<a class="anchor" id="aad0b17a156f5c2694132f746a937d159"></a>
+<a class="anchor" id="a067901d09e0bdc9752e0d5d22bd90229"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -264,7 +267,7 @@ Amis</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Field::add_in_out </td>
+          <td class="memname">void Field::add_road </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;&#160;</td>
           <td class="paramname"><em>coords</em></td><td>)</td>
@@ -277,50 +280,9 @@ Amis</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Ajoute une entrée/sortie à partir de coordonnées </p><dl class="params"><dt>Paramètres</dt><dd>
+<p>Ajoute une route à partir de coordonnées </p><dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">coords</td><td>Coordonnées de l'E/S </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a9d9b3de65984659c77ee86918362f4f8"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Field::add_in_out </td>
-          <td>(</td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>col</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>row</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Ajoute une entrée/sortie à partir de coordonnées </p><dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">col</td><td>Colonne de l'E/S </td></tr>
-    <tr><td class="paramname">row</td><td>Ligne de l'E/S </td></tr>
+    <tr><td class="paramname">coords</td><td>Coordonnées de la future route </td></tr>
   </table>
   </dd>
 </dl>
@@ -368,7 +330,29 @@ Amis</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a067901d09e0bdc9752e0d5d22bd90229"></a>
+<a class="anchor" id="abd295fdc29ff4021e2f4245ec0b4c73c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Field::add_undefined </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;&#160;</td>
+          <td class="paramname"><em>coords</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Supprime l'état de la parcelle </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coords</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="abf9cebe09b4c6849d2aa19455c00a6be"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -376,11 +360,21 @@ Amis</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Field::add_road </td>
+          <td class="memname">void Field::add_undefined </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;&#160;</td>
-          <td class="paramname"><em>coords</em></td><td>)</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>col</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>row</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -389,9 +383,10 @@ Amis</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Ajoute une route à partir de coordonnées </p><dl class="params"><dt>Paramètres</dt><dd>
+<p>Supprime l'état de la parcelle </p><dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">coords</td><td>Coordonnées de la future route </td></tr>
+    <tr><td class="paramname">col</td><td></td></tr>
+    <tr><td class="paramname">row</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -559,6 +554,9 @@ Amis</h2></td></tr>
 <dl class="test"><dt><b><a class="el" href="test.html#_test000001">Test:</a></b></dt><dd>Utile seulement pour les tests </dd></dl>
 <h6></h6>
 <p>Autres méthodes utiles </p><h6></h6>
+<ul>
+<li></li>
+</ul>
 
 </div>
 </div>
@@ -1184,6 +1182,69 @@ Amis</h2></td></tr>
 <p>Impression sur la sortie standard des entrées et sorties de la surface</p>
 <h6></h6>
 <p>Affichage </p><h6></h6>
+
+</div>
+</div>
+<a class="anchor" id="a8853ca2b2d01a90f4f11f99bad6a080e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Field::tryAdd_in_out </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;&#160;</td>
+          <td class="paramname"><em>coords</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Ajoute une entrée/sortie à partir de coordonnées </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coords</td><td>Coordonnées de l'E/S </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae738a33aa86e541944a75c5559cc2289"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Field::tryAdd_in_out </td>
+          <td>(</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>col</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>row</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Ajoute une entrée/sortie à partir de coordonnées </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">col</td><td>Colonne de l'E/S </td></tr>
+    <tr><td class="paramname">row</td><td>Ligne de l'E/S </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
