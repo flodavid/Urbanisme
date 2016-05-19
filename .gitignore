@@ -6,6 +6,7 @@
 doc/man/
 doc/html/
 doc/xml/
+doc/html/stylesheets/github-light.css
 
 # ??
 src/*.kate-swp
