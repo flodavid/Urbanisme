@@ -79,9 +79,6 @@ int main(int argc, char* argv[])
 //    myField.add_in_out(WIDTH/2,HEIGHT -1);
 //    myField.add_in_out(WIDTH/2,0);
 
-//    srand(time(NULL));
-//    myResolution.initResolution(myField);
-
     //@}
 
 //    myResolution.launchResolution();

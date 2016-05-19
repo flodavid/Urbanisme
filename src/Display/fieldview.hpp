@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../stdafx.h"
+
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QRubberBand>
 #include <QtWidgets/QProgressBar>
@@ -18,7 +20,7 @@
 #include "../Engine/Field.h"
 #include "loadwindow.h"
 
-enum Colors{Black, Gray, Red, White, LightBlue};
+enum Colors{Black, Gray, Red, White, LightBlue, DarkBlue};
 //enum Actions{Black, Gray, Red, White, LightBlue};
 
 /**
@@ -31,6 +33,7 @@ class FieldWidget : public QWidget {
 //    Q_OBJECT
 private:
     Field* field;
+    unsigned serveDistance;
 
     QImage* buffer;
     QColor* color;
@@ -40,12 +43,14 @@ private:
 //    QPoint origin;
 
     // Points de départ et d'arrivée de la zone de selection (redondance pour origine mais normal pour l'instant)
-    QPoint depart;
-    QPoint arrivee;
+//    QPoint depart;
+//    QPoint arrivee;
 
     qreal tailleCell;
-    long temps;
-    bool running;
+//    long temps;
+//    bool running;
+
+    std::list<Coordinates> selecteds;
 
 private:
     void initRubber(QMouseEvent* event);
@@ -57,7 +62,7 @@ public:
      * Initialise les différents pointeurs et fixe la taille minimale du widget
      * @param _field Surface associée au widget, c'est elle qui est affichée
      */
-    FieldWidget(Field *_field);
+    FieldWidget(Field *_field, unsigned _serveDistance);
     virtual ~FieldWidget();
 
     /* Getters */
@@ -86,7 +91,7 @@ private:
      * Dessine l'ensemble des arbres de la liste passée en paramètre
      * @param list_coordinates liste d'emplacement des coordonnées à dessiner
      */
-    void drawList(std::list< Coordinates* >* list_coordinates);
+    void drawList(const std::list< Coordinates>& list_coordinates);
 
 public:
     /**
@@ -97,6 +102,10 @@ public:
      * Redessine les cellules qui ont changés d'état seulement
      */
     void drawChanged();
+    /**
+     * Dessine les cellules sélectionnées
+     */
+    void drawSelecteds();
     /**
      * Vide le buffer et rafraichit l'affichage
      */
@@ -116,11 +125,13 @@ private:
 
     /* Events */
 private:
-    void clicInOut(const QPoint& pos);
+    void clicInOut(const Coordinates& pos);
 
-    void clicRoad(const QPoint& pos);
+    void clicRoad(const Coordinates& pos);
 
-    void moveRoad(const QPoint& pos);
+    void moveRoad(const Coordinates& pos);
+
+    void selectParcel(const Coordinates& pos);
 
 public slots:
     /**

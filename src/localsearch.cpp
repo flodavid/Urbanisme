@@ -29,10 +29,12 @@ LocalSearch::~LocalSearch()
 }
 
 //@}
-/// #########################
-///      Recherche locale
-/// #########################
+/// ###########################
+///     Placement de routes
+/// ###########################s
 //@{
+
+/// Lignes droites de routes
 
 void LocalSearch::vertical_roads(Coordinates &InOut1, const Coordinates &InOut2)
 {
@@ -52,6 +54,7 @@ void LocalSearch::horizontal_roads(Coordinates &InOut1, const Coordinates &InOut
     }
 }
 
+/// Relie deux E/S sur des bords parallèles, aves deux coudes
 
 void LocalSearch::verticalElbows(Coordinates &InOut1, const Coordinates &InOut2)
 {
@@ -79,6 +82,8 @@ void LocalSearch::horizontalElbows(Coordinates &InOut1, const Coordinates &InOut
     horizontal_roads(inter_coord, InOut2);
 }
 
+/// Création de chemins
+
 void LocalSearch::add_path(Path *path)
 {
     for (const Coordinates& coord_road : *path) {
@@ -92,6 +97,34 @@ void LocalSearch::add_path(Path *path)
     field->updateUsables(params.get_serve_distance());
 }
 
+float LocalSearch::paveRoad(Path* path, float gainPath)
+{
+    if ( !path->empty()) {
+#if LOGS_ADD_ACCESS_ROAD
+        clog << "Chemin viable, pour maximiser l'accessibilité de "<< gain_max
+             << " par route, trouvé"<< endl;
+#endif
+        add_path(path);
+
+        delete path;
+
+        eval.evaluateTotalUsable();
+        eval.evaluateRatio();
+
+        return gainPath;
+    } else {
+        delete path;
+        clog << "Aucun chemin viable pour maximiser l'accessibilité"<< endl;
+        return -1.0;
+    }
+
+}
+
+//@}
+/// ################################################
+///     Création et améliorations d'une solution
+/// ################################################
+//@{
 
 void LocalSearch::initSolution()
 {
@@ -133,7 +166,7 @@ void LocalSearch::initSolution()
 //    field->defineUsables(params.get_serve_distance());
     field->updateUsables(params.get_serve_distance());
 }
-m
+
 list<Path*>* LocalSearch::getPaths(const Coordinates &coord1, const Coordinates &coord2)
 {
     list<Path*> * paths= new list<Path*>;
@@ -206,7 +239,7 @@ float LocalSearch::gainPath(Path *path)
     return  eval_before - eval_after;
 }
 
-bool LocalSearch::addRoadUsable() const
+int LocalSearch::addRoadUsable() const
 {
     Coordinates coord_min(-1,-1);
 
@@ -257,14 +290,14 @@ bool LocalSearch::addRoadUsable() const
         // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
         field->updateUsables(params.get_serve_distance());
 
-        return true;
+        return gain_max;
     } else {
         clog << "Plus aucune route viable pour maximiser le nombre d'exploitables"<< endl;
-        return false;
+        return -1;
     }
 }
 
-bool LocalSearch::addRoadsAccess(unsigned nbToAdd)
+float LocalSearch::addRoadsAccess(unsigned nbToAdd)
 {
     // Evaluation
     if (!eval.road_distances_are_initiated) {
@@ -295,18 +328,21 @@ bool LocalSearch::addRoadsAccess(unsigned nbToAdd)
             delete neighbour_roads;
             delete accessible_roads;
 #if DEBUG_ADD_ACCESS_ROAD
-            clog << ", APRES NETTOYAGE : "<< accessible_roads_clean.size()<< " : "<< accessible_roads_clean<<endl;
+            clog << ", APRES NETTOYAGE : "<< accessible_roads_clean.size()<< " : "
+                 << accessible_roads_clean<<endl;
 #endif
 
             for(const Coordinates& accessible_road : accessible_roads_clean) {
                 list<Path*>* possible_paths= getPaths(coord, accessible_road);
 #if DEBUG_ADD_ACCESS_ROAD
-                clog << "\tNombre de chemins pour aller à "<< accessible_road<< " : "<< possible_paths->size()<< endl;
+                clog << "\tNombre de chemins pour aller à "<< accessible_road<< " : "
+                     << possible_paths->size()<< endl;
 #endif
                 for (Path* path: *possible_paths){
                     float gain= gainPath(path) / (float)(path->size());
 #if DEBUG_ADD_ACCESS_ROAD_LIGHT
-                    clog << "Gain potentiel "<< gain<< " (chemin de longueur "<< path->size()<< ") (max : "<< gain_max<< ")"<< endl;
+                    clog << "Gain potentiel "<< gain<< " (chemin de longueur "<< path->size()
+                         << ") (max : "<< gain_max<< ")"<< endl;
 #endif
                     if (gain > gain_max){
                         delete best_path;
@@ -324,21 +360,7 @@ bool LocalSearch::addRoadsAccess(unsigned nbToAdd)
     } while(field->nextCoordinates(&coord));
     delete &coord;
 
-    if ( !best_path->empty()) {
-#if LOGS_ADD_ACCESS_ROAD
-        clog << "Chemin viable, pour maximiser l'accessibilité de "<< gain_max<< " par route, trouvé"<< endl;
-#endif
-        add_path(best_path);
-
-        delete best_path;
-
-        return true;
-    } else {
-        delete best_path;
-        clog << "Aucun chemin viable pour maximiser l'accessibilité"<< endl;
-        return false;
-    }
-
+    return paveRoad(best_path, gain_max);
 }
 
 //@}

@@ -2,6 +2,8 @@
 
 #include <sstream>
 
+#include "evaluation.h"
+
 using namespace std;
 
 /// ####################################
@@ -9,8 +11,8 @@ using namespace std;
 /// ####################################
 //@{
 
-FieldWidget::FieldWidget(Field* _field):
-    QWidget(), field(_field)
+FieldWidget::FieldWidget(Field* _field, unsigned _serveDistance):
+    QWidget(), field(_field), serveDistance(_serveDistance)
 {
 	buffer = new QImage;
 	color = new QColor(Qt::white);
@@ -40,6 +42,9 @@ void FieldWidget::setColor(Colors colorIndice)
     switch(colorIndice){
     case LightBlue:
         this->color->setRgb(150,190,220);
+        break;
+    case DarkBlue:
+        this->color->setRgb(50,90,160);
         break;
     case Black:
         this->color->setRgb(00,00,00);
@@ -74,12 +79,11 @@ void FieldWidget::drawCell(int colonne, int ligne)
     #endif
 }
 
-void FieldWidget::drawList( list< Coordinates* > * list_coordinates){
+void FieldWidget::drawList(const std::list<Coordinates> &list_coordinates){
 
-    for( const Coordinates* coord : *list_coordinates){
-        drawCell(coord->col, coord->row);
+    for( const Coordinates& coord : list_coordinates){
+        drawCell(coord.col, coord.row);
     }
-    list_coordinates->clear();
 }
 
 void FieldWidget::drawField()
@@ -120,6 +124,10 @@ void FieldWidget::drawField()
     } while (field->nextCoordinates(&coord));
     delete &coord;
 
+    // Dessin des cellules sélectionnées
+    setColor(DarkBlue);
+    drawList(selecteds);
+
     bufferPainter->end();
 }
 
@@ -152,6 +160,7 @@ void FieldWidget::redraw()
 
     drawField();
     drawChanged();
+
     update();
 }
 
@@ -191,44 +200,60 @@ bool FieldWidget::trySaveImage(QString filename) const
 /// ##################
 //@{
 
-void FieldWidget::clicInOut(const QPoint &pos)
+void FieldWidget::clicInOut(const Coordinates &pos)
 {
-    unsigned col= pos.x() / tailleCell -1;
-    unsigned row= pos.y() / tailleCell -1;
-    if (field->at(Coordinates(col, row)) != is_in_out) {
-        if (field->tryAdd_in_out(col, row)) field->updateUsables(2);
+    if (field->at(pos) != is_in_out) {
+        if (field->tryAdd_in_out(pos)) field->updateUsables(serveDistance);
     } else {
-        field->add_undefined(col, row);
-        field->updateUsables(2);
+        field->add_undefined(pos);
+        field->updateUsables(serveDistance);
     }
 
     redraw();
     update();
 }
 
-void FieldWidget::clicRoad(const QPoint &pos)
+void FieldWidget::clicRoad(const Coordinates &pos)
 {
-    unsigned col= pos.x() / tailleCell -1;
-    unsigned row= pos.y() / tailleCell -1;
-    if (field->at(Coordinates(col, row)) != is_road) {
-        field->add_road(col, row);
-        field->updateUsables(2);
+    if (field->at(pos) != is_road) {
+        field->add_road(pos);
+        field->updateUsables(serveDistance);
     } else {
-        field->add_undefined(col, row);
-        field->updateUsables(2);
+        field->add_undefined(pos);
+        field->updateUsables(serveDistance);
     }
 
     redraw();
     update();
 }
 
-void FieldWidget::moveRoad(const QPoint &pos)
+void FieldWidget::moveRoad(const Coordinates &pos)
 {
-    unsigned col= pos.x() / tailleCell -1;
-    unsigned row= pos.y() / tailleCell -1;
-    if (field->at(Coordinates(col, row)) != is_road) {
-        field->add_road(col, row);
-        field->updateUsables(2);
+    if (field->at(pos) != is_road) {
+        field->add_road(pos);
+        field->updateUsables(serveDistance);
+    }
+
+    redraw();
+    update();
+}
+
+void FieldWidget::selectParcel(const Coordinates &pos)
+{
+    list<Coordinates>::iterator it= std::find(selecteds.begin(), selecteds.end(), pos);
+    if (it != selecteds.end()) {
+        selecteds.erase(it);
+    } else if (field->at(pos) == is_usable) {
+        selecteds.push_back(pos);
+        if (selecteds.size() > 2){
+            selecteds.pop_front();
+        }
+        if (selecteds.size() == 2) {
+            Evaluation eval(*field, Parameters(serveDistance, 1)); // TODO voir comment on gère la taille de la route
+            eval.initSizeNeighbourhood();
+            unsigned by_roads_distance= eval.parcelsRoadDistance(selecteds.front(), selecteds.back());
+            cout << "Distance entre "<< selecteds.front() <<" et "<< selecteds.back()<< " : "<< by_roads_distance<< endl;
+        }
     }
 
     redraw();
@@ -287,19 +312,49 @@ void FieldWidget::resizeEvent(QResizeEvent* event)
 
 void FieldWidget::mousePressEvent(QMouseEvent* event)
 {
-	
-	if (event->button()==Qt::LeftButton)
-    {
-        clicRoad(event->pos());
+    unsigned col= event->pos().x() / tailleCell -1;
+    unsigned row= event->pos().y() / tailleCell -1;
+    Coordinates cell_clic(col, row);
+
+    if (field->contains(cell_clic)) {
+        if (event->button()==Qt::LeftButton)
+        {
+            clicRoad(cell_clic);
+        }
+        else if (event->button()==Qt::MiddleButton)
+        {
+            selectParcel(cell_clic);
+    ///		initRubber(event);
+        }
+        else if (event->button()==Qt::RightButton)
+        {
+            clicInOut(cell_clic);
+        }
+
+        drawChanged();
+        update();
     }
-	else if (event->button()==Qt::MiddleButton)
-    {
-///		initRubber(event);
+}
+
+void FieldWidget::mouseMoveEvent(QMouseEvent* event)
+{
+    unsigned col= event->pos().x() / tailleCell -1;
+    unsigned row= event->pos().y() / tailleCell -1;
+    Coordinates cell_mouse(col, row);
+
+    if (field->contains(cell_mouse)) {
+        if (event->buttons().testFlag(Qt::LeftButton) )
+        {
+            moveRoad(cell_mouse);
+        }
+        else if (event->buttons().testFlag(Qt::MiddleButton) )
+        {}
+        else if (event->buttons().testFlag(Qt::RightButton) ){
+    //        if(rubber) {
+    //			rubber->setGeometry(QRect(origin,event->pos()).normalized());
+    //        }
+        }
     }
-	else if (event->button()==Qt::RightButton)
-	{
-        clicInOut(event->pos());
-	}
 	
 	drawChanged();
 	update();
@@ -307,34 +362,13 @@ void FieldWidget::mousePressEvent(QMouseEvent* event)
 
 //void FieldWidget::initRubber(QMouseEvent* event){
 //	origin = event->pos();
-	
+
 //	if(!rubber)
 //		rubber = new QRubberBand(QRubberBand::Rectangle, this);
 
 //	rubber->setGeometry(QRect(origin, QSize(0,0)));
 //	rubber->show();
 //}
-
-void FieldWidget::mouseMoveEvent(QMouseEvent* event)
-{
-//	int colonne= event->x()/tailleCell;
-//	int ligne= event->y()/tailleCell;
-	
-	if (event->buttons().testFlag(Qt::LeftButton) )
-    {
-        moveRoad(event->pos());
-    }
-	else if (event->buttons().testFlag(Qt::MiddleButton) )
-    {}
-	else if (event->buttons().testFlag(Qt::RightButton) ){
-//        if(rubber) {
-//			rubber->setGeometry(QRect(origin,event->pos()).normalized());
-//        }
-	}
-	
-	drawChanged();
-	update();
-}
 
 //void FieldWidget::mouseReleaseEvent(QMouseEvent* event)
 //{

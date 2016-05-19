@@ -21,6 +21,9 @@ private:
 
     std::list<const Evaluation*> pareto_evals;
 
+    // Calulated data
+    unsigned nbCells;
+
 public:
     /* Constructeurs */
     /**
@@ -41,12 +44,6 @@ public:
     Resolution(const Field& field, const Parameters& _params);
 
     ~Resolution();
-
-
-    /* Résolution */
-    Field &initResolution();
-
-    Field & launchResolution();
 
     /* Evaluations */
     /**
@@ -70,13 +67,19 @@ public:
      * @param localSearch Recherche locale effectuant les opérations
      * @see Utiliser un signal pour mettre à jour l'affichage pendant les recherche ?
      */
-    void localSearchUsableObjective(const LocalSearch& localSearch);
+    void localSearchUsableObjective();
     /**
      * Exécute la recherche locale permettant de maximiser l'accessibilité
      * @param localSearch Recherche locale effectuant les opérations
      * @see Utiliser un signal pour mettre à jour l'affichage pendant les recherche ?
      */
-    void localSearchAccessObjective(const LocalSearch& localSearch);
+    void localSearchAccessObjective();
+
+
+    /* Résolution */
+    Field &initResolution();
+
+    Field & launchResolution();
 };
 
 #endif // RESOLUTION_H

@@ -49,7 +49,7 @@ public:
      * Accesseur sur l'attribut de nombre de parcelle exploitables
      * @return nbUsables, un entier non signé
      */
-    float get_nbUsables() const
+    unsigned get_nbUsables() const
     { return nbUsables; }
     /**
      * Accesseur sur l'attribut de moyenne de ratio, entre la distance directe et
@@ -150,7 +150,7 @@ private:
 public:
     /**
      * Calcule la distance par les routes entre deux cellules quelconques, en testant
-     * toutes les routs qui desservent la cellue et en respectant les paramètres
+     * toutes les routes qui desservent les cellules et en respectant les paramètres
         * @param coord1 Coordonnée "de départ"
         * @param coord2 Coordonnée "d'arrivée"
      * @return la valeur, entier non signé, de distance la plus courte,

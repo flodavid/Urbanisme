@@ -31,15 +31,6 @@ public:
      * @param _params Paramètres des routes
      */
     LocalSearch( Field* _field, const Parameters* _params );
-////     /**
-////      * Constructeur d'une recherche locale à partir de la taille de la surface et
-////      * des paramètres des routes
-////      * Une surface est crée
-////      * @param nbCols Largeur de la surface
-////      * @param nbRows Hauteur de la surface
-////      * @param _params Paramètres des routes
-////      */
-////     LocalSearch( unsigned int nbCols, unsigned int nbRows, const Parameters* _params );
 
     /**
      * Constructeur d'une recherche locale par recopie
@@ -58,8 +49,8 @@ public:
     /*  Algorithm */
     /* = Initialisation = */
 
+    /* Placement de routes */
 private:
-    // Placement de routes
     void vertical_roads(Coordinates& InOut1, const Coordinates &InOut2);
     void horizontal_roads(Coordinates& InOut1, const Coordinates& InOut2);
 
@@ -73,13 +64,19 @@ private:
      */
     void add_path(Path* path);
 
+    /**
+     * Transforme les cellules du chemin en routes et recalcule les évaluations
+     * après l'opération
+     * @return Le gain en accessibilité
+     */
+    float paveRoad(Path* path, float gainPath);
+
+    /* Création et améliorations d'une solution */
 public:
     /**
      * Relie les entrées et sorties entre elles, de manière directe
      */
     void initSolution();
-
-public:
 
     /* = Improvments = */
     std::list<Path*>* getPaths(const Coordinates& coord1, const Coordinates& coord2);
@@ -91,13 +88,13 @@ public:
      * permettant d'obtenir une solution réalisable avec un nombre de parcelles exploitables
      * supérieur ou égal au nombre courant.
      */
-    bool addRoadUsable() const;
+    int addRoadUsable() const;
     /**
      * Tente l'ajout d'un chemin (série de routes) avec pour objectif d'améliorer l'accessibilité.
      * @return faux si aucune route n'a pu être ajoutée car il n'y a aucun placement de chemin
      * permettant d'obtenir une solution réalisable avec une accessibilité meilleures ou équivalente.
      */
-    bool addRoadsAccess(unsigned nbToAdd);
+    float addRoadsAccess(unsigned nbToAdd);
 
     static void supprPaths(Path* paths);
 

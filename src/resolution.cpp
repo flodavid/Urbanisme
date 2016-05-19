@@ -10,8 +10,7 @@ using namespace std;
 //@{
 
 Resolution::Resolution(unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth, std::list<Coordinates>& ins_outs):
-    params(serveDistance, roadsWidth),
-    localSearch(new Field(nbCols, nbRows), &params)
+    params(serveDistance, roadsWidth), localSearch(new Field(nbCols, nbRows), &params), nbCells(nbCols * nbRows)
 {
     Field& initField= localSearch.get_field();
     for (const Coordinates& in_out : ins_outs){
@@ -22,7 +21,7 @@ Resolution::Resolution(unsigned nbCols, unsigned nbRows, unsigned serveDistance,
 }
 
 Resolution::Resolution(const Field &field, const Parameters &_params):
-    params(_params), localSearch(new Field(field), &_params)
+    params(_params), localSearch(new Field(field), &_params), nbCells(field.get_width()* field.get_height())
 {
 
 }
@@ -32,41 +31,6 @@ Resolution::~Resolution()
     for (const Evaluation* eval : pareto_evals) {
         delete eval;
     }
-}
-
-//@}
-/// ############################
-///      Resolution
-/// ############################
-//@{
-
-Field& Resolution::initResolution()
-{
-    localSearch.initSolution();
-
-    return localSearch.get_field();
-}
-
-Field &Resolution::launchResolution()
-{
-    // Parcelles utilisables
-    cout << endl<< "===== Evaluation avant recherche locale ====="<< endl;
-    evaluateBothObjectives();
-
-    /** Tests **/
-    localSearchUsableObjective(localSearch);
-
-    cout << endl<< "===== Evaluation après nb exploitables ====="<< endl;
-    evaluateBothObjectives();
-
-    for (unsigned i= 0; i < 2; ++i) {
-       localSearch.addRoadsAccess(2 * params.get_serve_distance());
-    }
-
-    cout << endl<< "===== Evaluation après accessibilité ====="<< endl;
-    evaluateBothObjectives();
-
-    return localSearch.get_field();
 }
 
 //@}
@@ -136,13 +100,71 @@ int Resolution::spread(const Evaluation* eval)
 /// #########################
 //@{
 
-void Resolution::localSearchUsableObjective(const LocalSearch& localSearch)
+void Resolution::localSearchUsableObjective()
 {
     unsigned road_num= 1;
-    while(localSearch.addRoadUsable()) {
+    int gain;
+    do {
+        gain= localSearch.addRoadUsable();
 #if DEBUG_ADD_USABLE_ROAD
         cout << endl<< "=== Ajout de la route "<< road_num<< endl;
 #endif
         ++ road_num;
-    }
+    } while(gain >= 0);
+}
+
+//#define MIN_PERCENT_GAIN 0.5
+void Resolution::localSearchAccessObjective()
+{
+
+    float percent_gain;
+    float percent_unusable;
+    float gain_min;
+    do {
+        float access_before= localSearch.get_evaluation().get_avgAccess();
+//        unsigned usables_before= localSearch.get_evaluation().get_nbUsables();
+
+        float gain_access= localSearch.addRoadsAccess(2 * params.get_serve_distance());
+        percent_gain= (gain_access / access_before) * 100.0;
+        cout << "Gain de "<< percent_gain<< "%"<< endl;
+
+        float percent_usables_after= (localSearch.get_evaluation().get_nbUsables() *100.0) / (float)nbCells;
+        cout << "Exploitables : "<< percent_usables_after<< "%"<< endl;
+        percent_unusable= 100.0 - percent_usables_after;
+        gain_min= (percent_unusable / 30.0);
+        cout << "(Gain min : "<< gain_min<< ")"<< endl;
+    } while ( percent_gain >= gain_min);
+}
+
+//@}
+/// ############################
+///      Resolution
+/// ############################
+//@{
+
+Field& Resolution::initResolution()
+{
+//    srand(time(NULL));
+    localSearch.initSolution();
+
+    return localSearch.get_field();
+}
+
+Field &Resolution::launchResolution()
+{
+    // Parcelles utilisables
+    cout << endl<< "===== Evaluation avant recherche locale ====="<< endl;
+    evaluateBothObjectives();
+
+    localSearchUsableObjective();
+
+    cout << endl<< "===== Evaluation après nb exploitables ====="<< endl;
+    evaluateBothObjectives();
+
+    localSearchAccessObjective();
+
+    cout << endl<< "===== Evaluation après accessibilité ====="<< endl;
+    evaluateBothObjectives();
+
+    return localSearch.get_field();
 }
