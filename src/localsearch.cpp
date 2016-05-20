@@ -15,7 +15,6 @@ using namespace std;
 LocalSearch::LocalSearch(Field* _field, const Parameters* _params):
     field(_field), params(*_params), eval(*field, params)
 {
-//    eval= new Evaluation(*field, params);
 }
 
 LocalSearch::LocalSearch(const LocalSearch& other):
@@ -25,7 +24,6 @@ LocalSearch::LocalSearch(const LocalSearch& other):
 
 LocalSearch::~LocalSearch()
 {
-//    delete eval;
 }
 
 //@}
@@ -126,6 +124,35 @@ float LocalSearch::paveRoad(Path* path, float gainPath)
 /// ################################################
 //@{
 
+void LocalSearch::createRoadsBetween(Coordinates &inOut1, const Coordinates &inOut2)
+{
+    if (inOut1.col == 0 || inOut1.col == (int)field->get_width() -1) {
+        if (inOut1.col + inOut2.col +1 == (int)field->get_width()){
+            horizontalElbows(inOut1, inOut2);
+        } else {
+            if (inOut1.col != inOut2.col) {
+                horizontal_roads(inOut1, inOut2);
+                if (inOut1.row != inOut2.row) {
+                    field->add_road(inOut1);
+                }
+            }
+            vertical_roads(inOut1, inOut2);
+        }
+    } else {
+        if (inOut1.row + inOut2.row +1 == (int)field->get_height()){
+            verticalElbows(inOut1, inOut2);
+        } else {
+            if (inOut1.row != inOut2.row) {
+                vertical_roads(inOut1, inOut2);
+                if (inOut1.col != inOut2.col) {
+                    field->add_road(inOut1);
+                }
+            }
+            horizontal_roads(inOut1, inOut2);
+        }
+    }
+}
+
 void LocalSearch::initSolution()
 {
     list<Coordinates>& ins_outs= field->get_insOuts();
@@ -135,33 +162,9 @@ void LocalSearch::initSolution()
     ins_outs.push_back(in_out_1);
     Coordinates in_out_2= ins_outs.front();
 
-    cout << "E/S 1 : "<< in_out_1<< "; E/S 2 : "<< in_out_2<< endl;
+    createRoadsBetween(in_out_1, in_out_2);
 
-    if (in_out_1.col == 0 || in_out_1.col == (int)field->get_width() -1) {
-        if (in_out_1.col + in_out_2.col +1 == (int)field->get_width()){
-            horizontalElbows(in_out_1, in_out_2);
-        } else {
-            if (in_out_1.col != in_out_2.col) {
-                horizontal_roads(in_out_1, in_out_2);
-                if (in_out_1.row != in_out_2.row) {
-                    field->add_road(in_out_1);
-                }
-            }
-            vertical_roads(in_out_1, in_out_2);
-        }
-    } else {
-        if (in_out_1.row + in_out_2.row +1 == (int)field->get_height()){
-            verticalElbows(in_out_1, in_out_2);
-        } else {
-            if (in_out_1.row != in_out_2.row) {
-                vertical_roads(in_out_1, in_out_2);
-                if (in_out_1.col != in_out_2.col) {
-                    field->add_road(in_out_1);
-                }
-            }
-            horizontal_roads(in_out_1, in_out_2);
-        }
-    }
+    cout << "E/S 1 : "<< in_out_1<< "; E/S 2 : "<< in_out_2<< endl;
 
 //    field->defineUsables(params.get_serve_distance());
     field->updateUsables(params.get_serve_distance());

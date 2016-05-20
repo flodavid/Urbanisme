@@ -134,6 +134,14 @@ private:
     /* Events */
 private:
     /**
+     * Tente d'ajouter une route à une position donnée.
+     * @param pos Position de la nouvelle route
+     * @return faux si il y a déjà une route présente à cette position ;
+     * Si il y a une E/S, aucune route n'est ajoutée, mais on retourne vrai, car ce n'est pas une route
+     */
+    bool tryAddRoadOnParcel(const Coordinates& pos);
+
+    /**
      * Tente de placer une E/S selon une position donnée
      * @param pos Emplacement de l'entrée/sortie
      */

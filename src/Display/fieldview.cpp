@@ -200,6 +200,19 @@ bool FieldWidget::trySaveImage(QString filename) const
 /// ##################
 //@{
 
+bool FieldWidget::tryAddRoadOnParcel(const Coordinates &pos)
+{
+    if (field->at(pos) == is_road) {
+        return false;
+    } else {
+        if (field->at(pos) != is_in_out) {
+            field->add_road(pos);
+            field->updateUsables(serveDistance);
+        }
+        return true;
+    }
+}
+
 void FieldWidget::clicInOut(const Coordinates &pos)
 {
     if (field->at(pos) != is_in_out) {
@@ -215,12 +228,7 @@ void FieldWidget::clicInOut(const Coordinates &pos)
 
 void FieldWidget::clicRoad(const Coordinates &pos)
 {
-    if (field->at(pos) != is_road) {
-        if (field->at(pos) != is_in_out) {
-            field->add_road(pos);
-            field->updateUsables(serveDistance);
-        }
-    } else {
+    if ( !tryAddRoadOnParcel(pos) ) {
         field->add_undefined(pos);
         field->updateUsables(serveDistance);
     }
@@ -231,10 +239,7 @@ void FieldWidget::clicRoad(const Coordinates &pos)
 
 void FieldWidget::moveRoad(const Coordinates &pos)
 {
-    if (field->at(pos) != is_road) {
-        field->add_road(pos);
-        field->updateUsables(serveDistance);
-    }
+    tryAddRoadOnParcel(pos);
 
     redraw();
     update();

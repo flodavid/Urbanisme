@@ -18,10 +18,6 @@ find_package(Qt5Gui)
 
 ### Others ###
 
-# Compilers
-#set (CMAKE_C_COMPILER D:/Apps/Qt/Tools/mingw492_32/bin/gcc.exe)
-#set (CMAKE_CXX_COMPILER D:/Apps/Qt/Tools/mingw492_32/bin/g++.exe)
-
 # FILES
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 #include_directories(${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR})
@@ -40,10 +36,10 @@ set(HEADERS debug.h)
 add_executable(sim-city stdafx.cpp ${sim-city_SRCS} ${HEADERS})
 
 # Use the Widgets module from Qt 5.
-target_link_libraries(sim-city Qt5::Widgets)
+target_link_libraries(sim-city Qt5::Widgets Qt5::Core Qt5::Gui)
 
 #if (WIN32)
-target_link_libraries(sim-city ${Qt5Widgets_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES})
+#target_link_libraries(sim-city ${Qt5Widgets_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES})
 #endif(WIN32)
 
 ##Version statique

@@ -1,6 +1,6 @@
 #pragma once
 
-#define NDEBUG 1 // pour enlever les assert()
+//#define NDEBUG 1 // pour enlever les assert()
 
 // For all debugs ; be careful, many text
 #define DEBUG_ALL               0

@@ -79,6 +79,11 @@ private:
     float paveRoad(Path* path, float gainPath);
 
     /* Création et améliorations d'une solution */
+    /**
+     * Relie deux entrées et sorties entre elles
+     */
+    void createRoadsBetween(Coordinates &inOut1, const Coordinates &inOut2);
+
 public:
     /**
      * Relie les entrées et sorties entre elles, de manière directe

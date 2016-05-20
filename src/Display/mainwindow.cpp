@@ -129,9 +129,11 @@ void MainWindow::launchEval()
 
 void MainWindow::resetField()
 {
-    delete fieldWidget->get_field();
+    if (&initialField != fieldWidget->get_field()) {
+        delete fieldWidget->get_field();
+        fieldWidget->set_field(&initialField);
+    }
 
-    fieldWidget->set_field(&initialField);
 
     fieldWidget->redraw();
     fieldWidget->show();
