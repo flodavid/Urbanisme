@@ -207,7 +207,7 @@ bool FieldWidget::tryAddRoadOnParcel(const Coordinates &pos)
     } else {
         if (field->at(pos) != is_in_out) {
             field->add_road(pos);
-            field->updateUsables(serveDistance);
+            field->resetUsables(serveDistance);
         }
         return true;
     }
@@ -216,10 +216,10 @@ bool FieldWidget::tryAddRoadOnParcel(const Coordinates &pos)
 void FieldWidget::clicInOut(const Coordinates &pos)
 {
     if (field->at(pos) != is_in_out) {
-        if (field->tryAdd_in_out(pos)) field->updateUsables(serveDistance);
+        if (field->tryAdd_in_out(pos)) field->resetUsables(serveDistance);
     } else {
         field->add_undefined(pos);
-        field->updateUsables(serveDistance);
+        field->resetUsables(serveDistance);
     }
 
     redraw();
@@ -230,7 +230,7 @@ void FieldWidget::clicRoad(const Coordinates &pos)
 {
     if ( !tryAddRoadOnParcel(pos) ) {
         field->add_undefined(pos);
-        field->updateUsables(serveDistance);
+        field->resetUsables(serveDistance);
     }
 
     redraw();

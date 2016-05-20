@@ -32,7 +32,7 @@ MainWindow::MainWindow(unsigned nbCols, unsigned nbRows, const Parameters &param
     : QMainWindow(parent), initialField(nbCols, nbRows), parameters(params)
 {
     fieldWidget= new FieldWidget(&initialField, params.get_serve_distance());
-    initialField.defineUsables(params.get_serve_distance());
+    initialField.setUsables(params.get_serve_distance());
 
     aboutWidget= nullptr;
 
@@ -40,7 +40,7 @@ MainWindow::MainWindow(unsigned nbCols, unsigned nbRows, const Parameters &param
     initEvents();
 }
 
-#define INITIAL_SCALE 45
+#define INITIAL_SCALE 32
 void MainWindow::initComponents()
 {
     resize(initialField.get_width() * INITIAL_SCALE , initialField.get_height() * INITIAL_SCALE +20);

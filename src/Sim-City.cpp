@@ -9,8 +9,6 @@
 #include "stdafx.h"
 #include "Engine/Field.h"
 #include "Engine/Parameters.h"
-#include "evaluation.h"
-#include "localsearch.h"
 #include "resolution.h"
 
 #include "Display/fieldview.hpp"
@@ -29,17 +27,14 @@ MainWindow* initWindow(Parameters& params)
 
     return field_window;
 }
-
 /**
  * Création du terrain de l'exemple, exécution de l'évaluation, affichage du résultat,
  * affichage tu temps pris par de l'évaluation
  */
-#include <chrono>
-#include <unistd.h>
 int main(int argc, char* argv[])
 {
     QScopedPointer<QApplication> app(new QApplication(argc, argv));
-    
+
     // Paramètres du problèmes
     Parameters myParameters(2, 1);
 
@@ -49,18 +44,11 @@ int main(int argc, char* argv[])
     Field& myField= initMainWindow->get_initialField();
 
     /** Tests **/
-    Resolution myResolution(myField, myParameters);
-
-    // Solution crée par l'utilisateur
-
-//@{
 //     // Solution de l'exemple :
 //    myField.createExample();
 //    // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
 //    myField.defineUsables(myParameters.get_serve_distance());
 
-//@}
-//@{
 //   // Solutions avec recherche locale
     // Angle 1
 //        myField.add_in_out(2,HEIGHT -1);
@@ -79,16 +67,11 @@ int main(int argc, char* argv[])
 //    myField.add_in_out(WIDTH/2,HEIGHT -1);
 //    myField.add_in_out(WIDTH/2,0);
 
-    //@}
 
+//    Resolution myResolution(myField, myParameters);
 //    myResolution.launchResolution();
 
-    // Fenêtre
-//    FieldWidget* myFieldWidget= initMainWindow->get_fieldWidget();
-//    initMainWindow->hide();
-
-//    myFieldWidget->redraw();
-//    myFieldWidget->show();
+    initMainWindow->repaint();
 
     /** Fin tests **/
 

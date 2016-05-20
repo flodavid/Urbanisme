@@ -113,7 +113,7 @@ void Resolution::localSearchUsableObjective()
     } while(gain >= 0);
 }
 
-//#define MIN_PERCENT_GAIN 0.5
+#define MIN_PERCENT_GAIN 5.0
 void Resolution::localSearchAccessObjective()
 {
 
@@ -131,7 +131,7 @@ void Resolution::localSearchAccessObjective()
         float percent_usables_after= (localSearch.get_evaluation().get_nbUsables() *100.0) / (float)nbCells;
         cout << "Exploitables : "<< percent_usables_after<< "%"<< endl;
         percent_unusable= 100.0 - percent_usables_after;
-        gain_min= (percent_unusable / 30.0);
+        gain_min= MIN_PERCENT_GAIN * (percent_unusable / 30.0);
         cout << "(Gain min : "<< gain_min<< ")"<< endl;
     } while ( percent_gain >= gain_min);
 }

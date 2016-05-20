@@ -84,7 +84,7 @@ unsigned int Evaluation::testPathBy(const Coordinates& testCoord, const Coordina
         cout << "La parcelle "<< testCoord<< " a déjà été visitée" << endl;
     #endif
     }
-    
+
     return minDist;
 }
 
@@ -179,7 +179,7 @@ unsigned Evaluation::parcelsRoadDistance(const Coordinates &coord1, const Coordi
         cerr << "Impossible de relier"<< coord1<< " et "<< coord2<< " par les routes"
                 "(au moins une des 2 parcelle n'a pas de route à proximité (distance < "
              << params.get_serve_distance() << "))" << endl;
-	return UNSIGNED_INFINITY;
+    return UNSIGNED_INFINITY;
     }
 #if DEBUG_EVALUATION || DEBUG_ROADS_DIST
     else {
@@ -307,8 +307,8 @@ float Evaluation::evaluateRatio()
             while (field.nextCoordinates(&coord2)) {
                 if (field[coord2] == is_usable) {
                     float ratio_c1_goto_c2 = manhattanRatioBetween2Parcels(coord1, coord2);
-                    total_ratio += 2.0 * ratio_c1_goto_c2; // @see on pourrait faire un décalage de bit
-                    nb_ratio+= 2;
+                    total_ratio += ratio_c1_goto_c2; // @see on pourrait faire un décalage de bit
+                    ++nb_ratio;
                 }
             }
         }

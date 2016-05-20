@@ -47,13 +47,13 @@ public:
      * @return La hauteur de la surface
      */
     inline unsigned get_height() const	{ return nb_rows; }
-    
+
     /**
      * Accesseur sur la liste des entrées et sorties
      * @return
      */
     inline std::list<Coordinates> & get_insOuts() { return ins_outs; }
- 
+
     /**
      * Donne le nombre de parcelles de la surface
      * @return Le nombre de parcelles, nombre de ligne facteur nombre de colonnes,
@@ -97,6 +97,18 @@ public:
      */
     void add_road(unsigned col, unsigned row)
     { parcels[row][col]= is_road; }
+
+    /**
+     * Ajoute une liste de routes
+     * @param roads Liste de coordonnées des routes à ajouter
+     */
+    void addRoads(std::list<Coordinates>* roads, unsigned serveDistance);
+    /**
+     * Retire une liste de routes
+     * @param roads Liste de coordonnées des routes à retirer
+     */
+    void removeRoads(std::list<Coordinates>* roads, unsigned serveDistance);
+
     /**
      * Ajoute une entrée/sortie à partir de coordonnées
      * @param coords Coordonnées de l'E/S
@@ -328,13 +340,18 @@ public:
      * Définit les parcelles dans le voisinage d'une route comme étant exploitables
         * @param servingDistance Distance maximale du voisinage
      */
-    void defineUsables(unsigned servingDistance);
+    void setUsables(unsigned servingDistance);
+    /**
+     * Met à jour les parcelles dans le voisinage d'une route comme étant exploitables
+        * @param servingDistance Distance maximale du voisinage
+     */
+    void resetUsables(unsigned servingDistance);
     /**
      * Met à jour les parcelles dans le voisinage d'une route comme étant exploitables
         * @param servingDistance Distance maximale du voisinage
      */
     void updateUsables(unsigned servingDistance);
-    
+
     /*=== Autres méthodes utiles ===*/
     /**
      * @brief createExample

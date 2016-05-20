@@ -37,6 +37,35 @@ void Field::resizeWithDimensions()
     }
 }
 
+void Field::addRoads(std::list<Coordinates> *roads, unsigned serveDistance)
+{
+    for (const Coordinates& coord_road : *roads) {
+#if LOGS_ADD_ACCESS_ROAD
+        clog << " Ajout de la route "<< coord_road<< " pour augmenter l'accessibilité"<< endl;
+#endif
+        add_road(coord_road);
+    }
+
+    // On redéfinit les parcelles qui sont utilisables et celles qui ne le sont pas
+    /// @see on pourrait améliorer, en mettant à jour seulement les parcelles proches des routes ajoutées
+    resetUsables(serveDistance);
+
+
+}
+
+void Field::removeRoads(std::list<Coordinates> *roads, unsigned serveDistance)
+{
+    for (const Coordinates& coord_road : *roads) {
+//#if LOGS_ADD_ACCESS_ROAD
+        clog << "Suppression de la route "<< coord_road<<" (id: "<< at(coord_road)<< ")"<< endl;
+//#endif
+        add_undefined(coord_road);
+    }
+
+    // Mise à jour des cases affectées par la suppression des routes
+    updateUsables(serveDistance);
+}
+
 bool Field::tryAdd_in_out(const Coordinates &coords)
 {
     if (( coords.col == (int)get_width() -1 || coords.row == (int)get_height() -1 )
@@ -350,9 +379,9 @@ bool Field::hasServingRoad(const Coordinates &coord , unsigned servingDistance) 
 }
 
 
-void Field::defineUsables(unsigned int servingDistance)
+void Field::setUsables(unsigned int servingDistance)
 {
-    Coordinates &coord = first();
+    Coordinates &coords = first();
     do {
 #if DEBUG
         if ((coord.col) == 0) {
@@ -361,37 +390,58 @@ void Field::defineUsables(unsigned int servingDistance)
             cout <<  "; " << coord;
         }
 #endif
-        if (at(coord) == is_undefined) {
-            if (hasServingRoad(coord, servingDistance)) {
-                parcels[coord.row][coord.col] = is_usable;
+        if (at(coords) == is_undefined) {
+            if (hasServingRoad(coords, servingDistance)) {
+                parcels[coords.row][coords.col] = is_usable;
             } else {
-                parcels[coord.row][coord.col] = is_unusable;
+                parcels[coords.row][coords.col] = is_unusable;
             }
         }
-    } while (nextCoordinates(&coord));
-    delete &coord;
+    } while (nextCoordinates(&coords));
+    delete &coords;
+}
+
+void Field::resetUsables(unsigned int servingDistance)
+{
+    Coordinates &coords = first();
+    do {
+#if DEBUG
+        if ((coord.col) == 0) {
+            cout << endl << coord;
+        } else {
+            cout <<  "; " << coord;
+        }
+#endif
+        if (at(coords) < is_road) {
+            if (hasServingRoad(coords, servingDistance)) {
+                parcels[coords.row][coords.col] = is_usable;
+            } else {
+                parcels[coords.row][coords.col] = is_unusable;
+            }
+        }
+    } while (nextCoordinates(&coords));
+    delete &coords;
 }
 
 void Field::updateUsables(unsigned int servingDistance)
 {
-    Coordinates &coord = first();
+    Coordinates &coords = first();
     do {
-#if DEBUG
-        if ((coord.col) == 0) {
-            cout << endl << coord;
-        } else {
-            cout <<  "; " << coord;
-        }
-#endif
-        if (at(coord) < is_road) {
-            if (hasServingRoad(coord, servingDistance)) {
-                parcels[coord.row][coord.col] = is_usable;
-            } else {
-                parcels[coord.row][coord.col] = is_unusable;
+        if (at(coords) == is_undefined) {
+            list<Coordinates>* parcels_to_update= getCloseParcels(coords, servingDistance);
+            parcels_to_update->push_back(coords);
+
+            for (const Coordinates& coords_parcel : *parcels_to_update) {
+                if (hasServingRoad(coords_parcel, servingDistance)) {
+                    parcels[coords_parcel.row][coords_parcel.col] = is_usable;
+                } else {
+                    parcels[coords_parcel.row][coords_parcel.col] = is_unusable;
+                }
             }
+            delete parcels_to_update;
         }
-    } while (nextCoordinates(&coord));
-    delete &coord;
+    } while (nextCoordinates(&coords));
+    delete &coords;
 }
 
 //@}

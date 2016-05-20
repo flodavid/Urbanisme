@@ -82,38 +82,31 @@ void LocalSearch::horizontalElbows(Coordinates &InOut1, const Coordinates &InOut
 
 /// Création de chemins
 
-void LocalSearch::add_path(Path *path)
+void LocalSearch::addPath(Path *path)
 {
-    for (const Coordinates& coord_road : *path) {
-#if LOGS_ADD_ACCESS_ROAD
-        clog << " Ajout de la route "<< coord_road<< " pour augmenter l'accessibilité"<< endl;
-#endif
-        field->add_road(coord_road);
-    }
-
-    // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
-    field->updateUsables(params.get_serve_distance());
+    field->addRoads(path, params.get_serve_distance());
 }
 
-float LocalSearch::paveRoad(Path* path, float gainPath)
+bool LocalSearch::tryPaveRoad(Path* path)
 {
     if ( !path->empty()) {
 #if LOGS_ADD_ACCESS_ROAD
         clog << "Chemin viable, pour maximiser l'accessibilité de "<< gain_max
              << " par route, trouvé"<< endl;
 #endif
-        add_path(path);
-
+        addPath(path);
         delete path;
 
+        // Mise à jour des valeurs d'évaluation des objectifs
         eval.evaluateTotalUsable();
         eval.evaluateRatio();
 
-        return gainPath;
+        return true;
     } else {
         delete path;
         clog << "Aucun chemin viable pour maximiser l'accessibilité"<< endl;
-        return 0.0;
+
+        return false;
     }
 
 }
@@ -167,7 +160,7 @@ void LocalSearch::initSolution()
     cout << "E/S 1 : "<< in_out_1<< "; E/S 2 : "<< in_out_2<< endl;
 
 //    field->defineUsables(params.get_serve_distance());
-    field->updateUsables(params.get_serve_distance());
+    field->resetUsables(params.get_serve_distance());
 }
 
 list<Path*>* LocalSearch::getPaths(const Coordinates &coord1, const Coordinates &coord2)
@@ -182,7 +175,7 @@ list<Path*>* LocalSearch::getPaths(const Coordinates &coord1, const Coordinates 
             Coordinates coord1_col_modif= coord1;
             coord1_col_modif.col= oneStep(coord1.col, coord2.col);
 
-            if ( field->at(coord1_col_modif) != is_road) {
+            if ( field->at(coord1_col_modif) < is_road) {
                 list<Path*> * paths_col= getPaths(coord1_col_modif, coord2);
                 for (Path* path : *paths_col){
                     path->push_front(coord1_col_modif);
@@ -198,7 +191,7 @@ list<Path*>* LocalSearch::getPaths(const Coordinates &coord1, const Coordinates 
             Coordinates coord1_row_modif= coord1;
             coord1_row_modif.row= oneStep(coord1.row, coord2.row);
 
-            if ( field->at(coord1_row_modif) != is_road) {
+            if ( field->at(coord1_row_modif) < is_road) {
                 list<Path*> * paths_row= getPaths(coord1_row_modif, coord2);
                 for (Path* path : *paths_row){
                     path->push_front(coord1_row_modif);
@@ -212,34 +205,6 @@ list<Path*>* LocalSearch::getPaths(const Coordinates &coord1, const Coordinates 
     }
 
     return paths;
-}
-
-float LocalSearch::gainPath(Path *path)
-{
-    if (! eval.road_distances_are_initiated){
-        eval.initRoadDistances();
-        eval.evaluateRatio();
-        cerr << "LES DISTANCES PAR ROUTE DEVRAIENT ETRE INITIALISEES"<< endl<< endl;
-    }
-
-    float eval_before= eval.get_avgAccess();
-
-    Evaluation tmp_eval= eval;
-
-    Field& tmp_field= tmp_eval.get_field();
-    Field save_field= tmp_field;
-    for (const Coordinates& coord_road : *path) {
-        tmp_field.add_road(coord_road);
-    }
-    tmp_eval.initRoadDistances();
-    tmp_eval.evaluateRatio();
-    float eval_after= tmp_eval.get_avgAccess();
-
-    // Restauration de la surface
-//    delete &(eval.get_field());
-    eval.set_field(save_field);
-
-    return  eval_before - eval_after;
 }
 
 int LocalSearch::addRoadUsable() const
@@ -283,7 +248,7 @@ int LocalSearch::addRoadUsable() const
     } while(field->nextCoordinates(&coord));
     delete &coord;
 
-    if ( !(coord_min == Coordinates(-1,-1))) {
+    if ( !(coord_min == Coordinates(-1,-1)) ) {
 #if DEBUG_ADD_USABLE_ROAD
         cout << "La première parcelle avec le plus de parcelles voisines et le moins de routes voisines est "
              << coord_min<< " avec un ratio "<< gain_max<< endl;
@@ -291,13 +256,50 @@ int LocalSearch::addRoadUsable() const
         field->add_road(coord_min);
 
         // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
-        field->updateUsables(params.get_serve_distance());
+        field->resetUsables(params.get_serve_distance());
 
         return gain_max;
     } else {
         clog << "Plus aucune route viable pour maximiser le nombre d'exploitables"<< endl;
         return -1;
     }
+}
+
+float LocalSearch::gainPath(Path *path)
+{
+    Evaluation tmp_eval= eval;
+    Field& tmp_field= tmp_eval.get_field();
+//    Field save_field= tmp_field;
+
+    if (! eval.road_distances_are_initiated){
+        tmp_field.resetUsables(params.get_serve_distance());
+        eval.initRoadDistances();
+        eval.evaluateRatio();
+        cerr << "LES DISTANCES PAR ROUTE DEVRAIENT ETRE INITIALISEES"<< endl<< endl;
+    }
+
+    float eval_before= eval.get_avgAccess();
+
+//    eval.initRoadDistances();
+//    float eval_before_test= eval.evaluateRatio();
+
+//    assert(eval_before == eval_before_test && "Moyenne des ratios doit être déjà calculée et à jour");
+
+
+    // Ajout des routes puis évaluation
+    tmp_field.addRoads(path, params.get_serve_distance());
+    tmp_eval.initRoadDistances();
+    float eval_after= tmp_eval.evaluateRatio();
+
+    tmp_field.removeRoads(path, params.get_serve_distance());
+
+    float eval_after_test= tmp_eval.get_avgAccess();
+    assert(eval_after == eval_after_test && "La valeur retournée par evaluateRatio() doit être identique à get_avgAccess()");
+
+    // Restauration de la surface
+//    eval.set_field(save_field);
+
+    return eval_before - eval_after;
 }
 
 float LocalSearch::addRoadsAccess(unsigned nbToAdd)
@@ -363,7 +365,8 @@ float LocalSearch::addRoadsAccess(unsigned nbToAdd)
     } while(field->nextCoordinates(&coord));
     delete &coord;
 
-    return paveRoad(best_path, gain_max);
+    tryPaveRoad(best_path);
+    return gain_max;
 }
 
 //@}

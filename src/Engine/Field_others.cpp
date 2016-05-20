@@ -6,7 +6,7 @@
 /// #########################
 //@{
 
- /*
+///*
 void Field::createExample()
 {
     // Surface de l'exemple :
@@ -15,7 +15,7 @@ void Field::createExample()
     example.set_height(20);
     example.resizeWithDimensions();
 
-    example.add_in_out(9, 0);
+    example.tryAdd_in_out(9, 0);
     // Colonne Milieu
     example.add_road(9, 1);
     example.add_road(9, 2);
@@ -120,11 +120,11 @@ void Field::createExample()
     example.add_road(18, 17);
     example.add_road(19, 17);
 
-    example.add_in_out(9, 19);
+    example.tryAdd_in_out(9, 19);
 }
 // */
 
-///*
+/*
 // Petit
 void Field::createExample()
 {
@@ -134,8 +134,8 @@ void Field::createExample()
     example.set_height(10);
     example.resizeWithDimensions();
 
-    example.tryAdd_in_out(9, 0);
-    example.tryAdd_in_out(9, 9);
+    example.trytryAdd_in_out(9, 0);
+    example.trytryAdd_in_out(9, 9);
     // Colonne Milieu
     example.add_road(9, 1);
     example.add_road(9, 2);
@@ -181,8 +181,8 @@ void Field::createExample()
     example.set_height(3);
     example.resizeWithDimensions();
 
-    example.add_in_out(0, 2);
-    example.add_in_out(2, 2);
+    example.tryAdd_in_out(0, 2);
+    example.tryAdd_in_out(2, 2);
 
     // Première Ligne
 //    example.add_road(0, 2);

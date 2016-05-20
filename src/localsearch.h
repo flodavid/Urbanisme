@@ -53,8 +53,6 @@ public:
      */
     Evaluation& get_evaluation() { return eval; }
 
-    /*  Algorithm */
-    /* = Initialisation = */
 
     /* Placement de routes */
 private:
@@ -67,16 +65,20 @@ private:
 
     /**
      * Ajoute un ensemble de routes, sensées former un chemin
+     * Une mise à jour des parcelles exploitables est effectuée
      * @param path
      */
-    void add_path(Path* path);
+    void addPath(Path* path);
 
     /**
      * Transforme les cellules du chemin en routes et recalcule les évaluations
      * après l'opération
      * @return Le gain en accessibilité
      */
-    float paveRoad(Path* path, float gainPath);
+    bool tryPaveRoad(Path* path);
+
+    /*  Algorithm */
+    /* = Initialisation = */
 
     /* Création et améliorations d'une solution */
     /**
