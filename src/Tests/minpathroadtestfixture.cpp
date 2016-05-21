@@ -1,7 +1,7 @@
 #include "minpathroadtestfixture.h"
 #include "../stdafx.h"
 
-#include "../Engine/Field.h"
+#include "../Engine/field.h"
 
 using namespace std;
 
@@ -50,7 +50,7 @@ void MinPathRoadTestFixture::test_validsPath()
     Parameters* params= new Parameters(2, 1);
     eval= new Evaluation(*example, *params);
     // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
-    example->defineUsables(params->get_serve_distance());
+    example->setUsables(params->get_serve_distance());
     
     if (!eval->road_distances_are_initiated){
         eval->initRoadDistances();
@@ -84,7 +84,7 @@ void MinPathRoadTestFixture::test_sameParcel()
     Parameters* params= new Parameters(2, 1);
     eval= new Evaluation(*example, *params);
     // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
-    example->defineUsables(params->get_serve_distance());
+    example->setUsables(params->get_serve_distance());
     
     unsigned dist= eval->parcelsRoadDistance(*coord1, *coord1);
     // Si on test la distance entre une case et elle-même, on doit obtenir 0
@@ -97,7 +97,7 @@ void MinPathRoadTestFixture::test_invalidsPath()
     Parameters* params= new Parameters(1, 1);
     eval= new Evaluation(*example, *params);
     // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
-    example->defineUsables(params->get_serve_distance());
+    example->setUsables(params->get_serve_distance());
     
     unsigned dist_out= eval->getRoadDistance(*coord1, *coord_out);
     // Si une des deux cases est en dehors, on doit obtenir l'infini

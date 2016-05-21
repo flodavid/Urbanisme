@@ -10,8 +10,8 @@
 #include "cppunit/XmlOutputter.h"
 #include "cppunit/ui/text/TestRunner.h"
 
-#include "../coordinates.h"
-#include "../Field.h"
+#include "../Coordinates.h"
+#include "../field.h"
 
 /**
  * @brief Tests sur la classe Field

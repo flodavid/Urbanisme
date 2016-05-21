@@ -14,7 +14,7 @@ link_directories(/usr/local/lib/)
 set(ENGINE_DIR ../Engine)
 set(TEST_ENGINE_DIR ${ENGINE_DIR}/Tests)
 
-set(ENGINE_SOURCES ${ENGINE_DIR}/coordinates.cpp ${ENGINE_DIR}/Field.cpp ${ENGINE_DIR}/Field_others.cpp  ${ENGINE_DIR}/Parameters.cpp)
+set(ENGINE_SOURCES ${ENGINE_DIR}/Coordinates.cpp ${ENGINE_DIR}/field.cpp ${ENGINE_DIR}/field_others.cpp  ${ENGINE_DIR}/parameters.cpp)
 set(EVAL_SOURCES  ../evaluation.cpp)
 set(TEST_ENGINE_SOURCES ${TEST_ENGINE_DIR}/test_next_coordinates.cpp ${TEST_ENGINE_DIR}/test_coordinates.cpp ${TEST_ENGINE_DIR}/fieldtestfixture.cpp)
 set(TEST_EVAL_SOURCES minpathroadtestfixture.cpp)

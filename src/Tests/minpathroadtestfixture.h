@@ -11,8 +11,8 @@
 #include "cppunit/XmlOutputter.h"
 #include "cppunit/ui/text/TestRunner.h"
 
+#include "../Engine/Coordinates.h"
 #include "../evaluation.h"
-#include "../Engine/coordinates.h"
 
 /**
  * @brief Tests sur la méthode calcRoadDistance() de la classe Evaluation

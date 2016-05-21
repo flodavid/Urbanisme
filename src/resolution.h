@@ -3,7 +3,7 @@
 
 #include <list>
 
-#include "Engine/Parameters.h"
+#include "Engine/parameters.h"
 #include "evaluation.h"
 #include "localsearch.h"
 

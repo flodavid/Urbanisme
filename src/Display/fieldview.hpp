@@ -16,7 +16,7 @@
 #include "../stdafx.h"
 
 // Classes
-#include "../Engine/Field.h"
+#include "../Engine/field.h"
 #include "loadwindow.h"
 
 enum Colors{Black, Gray, Red, White, LightBlue, DarkBlue};

@@ -3,9 +3,9 @@
 #include <list>
 
 #include "stdafx.h"
-#include "Engine/Field.h"
-#include "Engine/Parameters.h"
-#include "Engine/coordinates.h"
+#include "Engine/field.h"
+#include "Engine/parameters.h"
+#include "Engine/Coordinates.h"
 
 /**
  * @brief Classe chargée de travailler sur les données en entrée du problème pour trouver des

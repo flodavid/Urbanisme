@@ -1,5 +1,5 @@
 #include "../stdafx.h"
-#include "Parameters.h"
+#include "parameters.h"
 
 
 Parameters::Parameters(unsigned _serve_distance, unsigned _road_width):
