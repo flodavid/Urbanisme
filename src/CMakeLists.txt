@@ -1,13 +1,12 @@
 project(sim-city)
 
-#cmake_minimum_required(VERSION 2.6)
-#if (WIN32)
 cmake_minimum_required(VERSION 2.8.11)
-#endif(WIN32)
+
+### Definitions ###
+# Use the compile definitions defined in the Qt 5 Widgets module
+add_definitions(-Wall -std=c++11 -pthread -lpthread ${Qt5Widgets_DEFINITIONS})
 
 ### Qt ###
-# Find includes in corresponding build directories
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Instruct CMake to run moc automatically when needed.
 set(CMAKE_AUTOMOC ON)
 
@@ -16,43 +15,38 @@ find_package(Qt5Widgets)
 find_package(Qt5Core)
 find_package(Qt5Gui)
 
-### Others ###
+#include_directories(${QT_INCLUDES})
 
-# FILES
-include_directories(${CMAKE_CURRENT_BINARY_DIR})
-#include_directories(${QT_INCLUDES} ${CMAKE_CURRENT_BINARY_DIR})
+### FILES ###
+# Find includes in corresponding build directories
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 add_subdirectory(Engine) # must set ${Engine_SRCS}
 add_subdirectory(Display) # must set ${Display_SRCS}
 
-# Use the compile definitions defined in the Qt 5 Widgets module
-add_definitions(-Wall -std=c++11 -pthread -lpthread ${Qt5Widgets_DEFINITIONS})
-
 set(sim-city_SRCS ${Engine_SRCS} ${Display_SRCS} resolution.cpp localsearch.cpp evaluation.cpp Sim-City.cpp)
 
+# Pour que les headers soient présents dans Qt Creator
 set(HEADERS debug.h)
 
-#Version normale
+# Tests
+if (UNIX)
+# Si on veut pouvoir tester seulement "Engine"
+    #add_subdirectory(Engine/Tests)
+    add_subdirectory(Tests)
+endif (UNIX)
+
+### Compilation ###
 add_executable(sim-city stdafx.cpp ${sim-city_SRCS} ${HEADERS})
 
 # Use the Widgets module from Qt 5.
 target_link_libraries(sim-city Qt5::Widgets Qt5::Core Qt5::Gui)
-
-#if (WIN32)
 #target_link_libraries(sim-city ${Qt5Widgets_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES})
-#endif(WIN32)
-
-##Version statique
-set(mylib ${Qt5Widgets_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES})
-
 
 install(TARGETS sim-city RUNTIME DESTINATION bin)
 
-if (UNIX)
-    add_subdirectory(Tests)
-endif (UNIX)
-
-
+##Version statique
+#set(mylib ${Qt5Widgets_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES})
 
 # UNUSED
 

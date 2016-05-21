@@ -7,8 +7,8 @@
 #include <cstdlib>
 
 #include "stdafx.h"
-#include "Engine/Field.h"
-#include "Engine/Parameters.h"
+#include "Engine/field.h"
+#include "Engine/parameters.h"
 #include "resolution.h"
 
 #include "Display/fieldview.hpp"
@@ -41,9 +41,10 @@ int main(int argc, char* argv[])
     // Fenêtre
     MainWindow* initMainWindow= initWindow(myParameters);
 
-    Field& myField= initMainWindow->get_initialField();
 
     /** Tests **/
+//     Field& myField= initMainWindow->get_initialField();
+
 //     // Solution de l'exemple :
 //    myField.createExample();
 //    // On définit les parcelles qui sont utilisables et celles qui ne le sont pas

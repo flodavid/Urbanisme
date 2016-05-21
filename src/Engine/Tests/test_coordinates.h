@@ -11,7 +11,7 @@
 #include "cppunit/XmlOutputter.h"
 #include "cppunit/ui/text/TestRunner.h"
 
-#include "../coordinates.h"
+#include "../Coordinates.h"
 
 /**
  * @brief Tests sur les méthodes de la classe Coordinates

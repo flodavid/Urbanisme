@@ -1,5 +1,5 @@
 #include "../stdafx.h"
-#include "coordinates.h"
+#include "Coordinates.h"
 
 Coordinates::Coordinates(int _x, int _y)
 	:col(_x), row(_y)

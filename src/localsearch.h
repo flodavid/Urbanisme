@@ -1,8 +1,8 @@
 #ifndef LOCALSEARCH_H
 #define LOCALSEARCH_H
 
-#include "Engine/Field.h"
-#include "Engine/Parameters.h"
+#include "Engine/field.h"
+#include "Engine/parameters.h"
 #include "evaluation.h"
 
 /**

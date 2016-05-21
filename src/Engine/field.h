@@ -3,7 +3,7 @@
 #include <list>
 #include <vector>
 
-#include "coordinates.h"
+#include "Coordinates.h"
 
 enum State{is_undefined= -1, is_usable, is_unusable, is_road, is_in_out, max_state};
 

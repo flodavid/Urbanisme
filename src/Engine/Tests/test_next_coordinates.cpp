@@ -10,23 +10,15 @@ void NextCoordinatesTestFixture::setUp() {
     coord_in= new Coordinates(10,11);		expected_next_in= new Coordinates(11,11); 
     coord_last_col= new Coordinates(19,8);	expected_next_last_col= new Coordinates(0,9);
     
-    // Coordonnées invalides
-    out_1= new Coordinates(20, 7);
-    out_2= new Coordinates(5, -1);
-    
     // Affichage
     cout << "Coordinates of test : " << (*coord_in)
-    << " and "<< (*coord_last_col)
-    << " and "<< (*out_1)
-    << " and "<< (*out_2) << endl;
+    << " and "<< (*coord_last_col) << endl;
 }
 
 void NextCoordinatesTestFixture::tearDown() {
     delete resol;
     delete coord_in;
     delete coord_last_col;
-    delete out_1;
-    delete out_2;
     delete expected_next_in;
     delete expected_next_last_col;
 }
@@ -50,21 +42,15 @@ void NextCoordinatesTestFixture::test_validsCoords()
 
 void NextCoordinatesTestFixture::test_invalidsCoords()
 {
-    Coordinates save_out_1= *out_1;
-    Coordinates save_out_2= *out_2;
+    // Dernières coordonnées
+    Coordinates* last= new Coordinates(19, 19);
+    Coordinates save_last= *last;
     
-//     Première
+//  
     // La méthode doit pas trouver de coord suivante et retourner faux
-    CPPUNIT_ASSERT(! resol->nextCoordinates(out_1));
+    CPPUNIT_ASSERT(! resol->nextCoordinates(last));
     
     // Elle ne doit pas avoir été modifiée
-    CPPUNIT_ASSERT(save_out_1 == (*out_1));
-    
-//     Seconde
-    // La méthode doit pas trouver de coord suivante et retourner faux
-    CPPUNIT_ASSERT(! resol->nextCoordinates(out_2));
-    
-    // Elle ne doit pas avoir été modifiée
-    CPPUNIT_ASSERT(save_out_2 == (*out_2));
+    CPPUNIT_ASSERT(save_last == (*last));
 }
 

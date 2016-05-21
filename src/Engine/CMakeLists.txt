@@ -2,14 +2,8 @@ cmake_minimum_required(VERSION 2.6)
 
 add_definitions(-Wall)
 
-include_directories( ${CMAKE_CURRENT_BINARY_DIR})
-
 set(CURRENT_DIR Engine)
 
-set(Engine_SRCS ${CURRENT_DIR}/coordinates.cpp ${CURRENT_DIR}/Field.cpp ${CURRENT_DIR}/Field_others.cpp  ${CURRENT_DIR}/Parameters.cpp ${CURRENT_DIR}/loadprogress.cpp )
+set(Engine_SRCS ${CURRENT_DIR}/Coordinates.cpp ${CURRENT_DIR}/field.cpp ${CURRENT_DIR}/field_others.cpp  ${CURRENT_DIR}/parameters.cpp ${CURRENT_DIR}/loadprogress.cpp )
 
 set(Engine_SRCS ${Engine_SRCS} PARENT_SCOPE)
-
-if (UNIX)
-    add_subdirectory(Tests)
-endif (UNIX)

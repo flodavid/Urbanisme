@@ -177,7 +177,7 @@ void FieldTestFixture::test_servingValids()
     
     unsigned serve_dist= 2;
     
-    field->defineUsables(serve_dist);
+    field->setUsables(serve_dist);
     
     // route (5,12)
     list<Coordinates> serving_in;

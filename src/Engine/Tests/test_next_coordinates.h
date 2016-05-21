@@ -11,8 +11,8 @@
 #include "cppunit/XmlOutputter.h"
 #include "cppunit/ui/text/TestRunner.h"
 
-#include "../coordinates.h"
-#include "../Field.h"
+#include "../Coordinates.h"
+#include "../field.h"
 
 /**
  * @brief Tests sur la méthode nextCoordinates() de la classe Field
@@ -24,8 +24,6 @@ class NextCoordinatesTestFixture : public CppUnit::TestFixture {
      
     Coordinates* coord_in;
     Coordinates* coord_last_col;
-    Coordinates* out_1;
-    Coordinates* out_2;
     
 // Expected results 
     // Next of coord_in
