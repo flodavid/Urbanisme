@@ -25,9 +25,7 @@ install:
   - sudo apt-get install -qy qt56base
   - source /opt/qt56/bin/qt56-env.sh
 # g++ install
-  #- if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.9; fi
-  #- if [ "$CXX" = "g++" ]; then export CXX="g++-4.9" CC="gcc-4.9"; fi
-  #- sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 50
+  - if [ "$CXX" = "g++" ]; then export CXX="g++-4.9" CC="gcc-4.9"; fi
   # CPP Unit install
   - sudo apt-get install libcppunit-dev
 
@@ -48,6 +46,9 @@ script:
   #- sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa # marche
   # g++ repository
   #- sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y # marche
+  # g++ update : 2 versions
+  #- if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.9; fi
+  #- sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 50
 #after_failure:
   #- sudo apt-get install -qy qt56declarative #marche
   #- sudo apt-get install -qy qt56tools  #marche, inutile ?
