@@ -155,11 +155,13 @@ public:
      * Opérateur = d'affectation
      * @param other Instance à recopier
      */
-    inline void operator=(const Field& other)
+    inline Field& operator=(const Field& other)
     {
         assert(nb_cols == other.nb_cols && nb_rows == other.nb_cols);
         ins_outs= other.ins_outs;
         parcels= other.parcels;
+		
+		return *this;
     }
 
     /**

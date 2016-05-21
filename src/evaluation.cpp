@@ -9,8 +9,9 @@
 using namespace std;
 
 Evaluation::Evaluation(Field &_field, const Parameters &_params) :
-    field(_field), params(_params)
+    field(_field), params(_params), nbUsables(0)
 {
+	evaluateTotalUsable();
 }
 
 Evaluation::~Evaluation()
@@ -269,7 +270,7 @@ unsigned int Evaluation::evaluateTotalUsable()
 #if DEBUG_EVALUATION
     cout << "Total number of usables parcels : " << nb_usables << endl;
 #endif
-    assert(nb_usables >= 0 && nb_usables < field.getNbParcels() && "nombre d'exploitables incohérent");
+    assert(nb_usables < field.getNbParcels() && "nombre d'exploitables incohérent");
 
     return nb_usables;
 }

@@ -177,12 +177,12 @@ bool Field::nextCoordinates(Coordinates *coord) const
 
 void Field::generateInsAndOuts(unsigned nb)
 {
-    bool on_top_or_down;
+
     for (unsigned num_in_out = 0; num_in_out < nb; ++num_in_out) {
-        on_top_or_down = (bool)(rand() % 2);
         int row, col;
 
         // On choisit une case en haut ou en bas, avec une colonne aléatoire
+		bool on_top_or_down= (bool)(rand() % 2);
         if (on_top_or_down) {
             row = (rand() % 2) * nb_rows;
             col = rand() % nb_cols;
