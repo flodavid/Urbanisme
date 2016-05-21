@@ -24,13 +24,14 @@ private:
     FieldWidget* fieldWidget;
 
 //  MENU BAR
-    QWidget* aboutWidget;
     QAction* aboutAction;
-
     QAction* initAction;
     QAction* evalAction;
     QAction* resolAction;
     QAction* resetAction;
+    QAction* flushAction;
+
+    QWidget* aboutWidget;
 
 public:
     /**
@@ -112,9 +113,15 @@ public slots:
     void launchEval();
 
     /**
-     * Supprime toutes les routes autres que des E/S de la surface
+     * Supprime toutes les routes ajoutées par les algorithmes de résolution,
+     * seules celles placées par l'utilisateur restent
      */
     void resetField();
+
+    /**
+     * Supprime toutes les routes de la surface
+     */
+    void emptyField();
 };
 
 #endif // MAINWINDOW_H

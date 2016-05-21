@@ -56,6 +56,7 @@ void MainWindow::initComponents()
     evalAction= menuBar()->addAction( tr("Evaluation") );
     resolAction= menuBar()->addAction( tr("Resolution") );
     resetAction= menuBar()->addAction( tr("Reset") );
+    flushAction= menuBar()->addAction( tr("Flush") );
 }
 
 void MainWindow::initEvents()
@@ -65,6 +66,7 @@ void MainWindow::initEvents()
     connect(evalAction, &QAction::triggered, this, &MainWindow::launchEval);
     connect(resolAction, &QAction::triggered, this, &MainWindow::launchResol);
     connect(resetAction, &QAction::triggered, this, &MainWindow::resetField);
+    connect(flushAction, &QAction::triggered, this, &MainWindow::emptyField);
 }
 
 void MainWindow::popAbout()
@@ -132,9 +134,25 @@ void MainWindow::resetField()
     if (&initialField != fieldWidget->get_field()) {
         delete fieldWidget->get_field();
         fieldWidget->set_field(&initialField);
+
+        std::cout << "Solution trouvée supprimée"<< std::endl;
     }
 
+    fieldWidget->redraw();
+}
+
+void MainWindow::emptyField()
+{
+    if (&initialField != fieldWidget->get_field()) {
+        delete fieldWidget->get_field();
+
+        std::cout << "Solution trouvée supprimée"<< std::endl;
+    }
+
+    initialField= Field(initialField.get_width(), initialField.get_height());
+    initialField.setUsables(parameters.get_serve_distance());
+
+    fieldWidget->set_field(&initialField);
 
     fieldWidget->redraw();
-    fieldWidget->show();
 }
