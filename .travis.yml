@@ -15,11 +15,6 @@ addons:
       - cmake
       - cmake-data
 
-install:
-  - sudo apt-get install qt56base
-script:
-  - source /opt/qt56/bin/qt56-env.sh
-
 before_install:
   # Qt repository   
   - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
@@ -36,16 +31,32 @@ install:
   #- sudo apt-get install -qq qt5-default
   #- sudo apt-get install -qq qttools5-dev-tools
     #test qt
-  - sudo apt-get install qt56base 
-  - sudo apt-get install qt56default
-  - sudo apt-get install qt56base-dev
-  #- sudo apt-get install -qq qt54tools
+  - sudo apt-get install -qy qt56base
+  - sudo apt-get install -qy qt56tools
+  - source /opt/qt56/bin/qt56-env.sh
   # g++ install
-  #- if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.8; fi
-  - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
-  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 50
+  #- if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.9; fi
+  - if [ "$CXX" = "g++" ]; then export CXX="g++-4.9" CC="gcc-4.9"; fi
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 50
   # CPP Unit install
   - sudo apt-get install libcppunit-dev
+
+after_success:
+  - sudo apt-get install -qy qt5base
+  - sudo apt-get install -qy qt5tools
+  # Launch tests
+  - cd Tests/
+  - cmake CMakeLists.txt
+  - make --file Makefile
+
+after_failure:
+  - sudo apt-get install -qy qt56default
+  - sudo apt-get install -qy qt56base-dev
+  - sudo apt-get install -qy qt5base-dev
+  - sudo apt-get install -qy qttools5-dev-tools
+  - sudo apt-get install -qy qt5declarative
+  - sudo apt-get install -qy qt56declarative
+
 
 script:
   - cd src/
