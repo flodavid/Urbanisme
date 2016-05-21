@@ -16,52 +16,47 @@ addons:
       - cmake-data
 
 before_install:
-  # Qt repository   
-  - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
-    #test qt
+  # Alternative Qt repository
   - sudo add-apt-repository ppa:beineri/opt-qt56 -y
-  # g++ repository
-  #- sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   - sudo apt-get update -qy
 
 install:
-  # Qt install
-  #- sudo apt-get install -qq qtdeclarative5-dev
-  #- sudo apt-get install -qq qtbase5-dev 
-  #- sudo apt-get install -qq qt5-default
-  #- sudo apt-get install -qq qttools5-dev-tools
-    #test qt
-  - sudo apt-get install -qy qt56base   #marche
-  #- sudo apt-get install -qy qt56tools  #marche utile ?
+# Qt install
+  - sudo apt-get install -qy qt56base
   - source /opt/qt56/bin/qt56-env.sh
-  # g++ install
+# g++ install
   #- if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.9; fi
-  - if [ "$CXX" = "g++" ]; then export CXX="g++-4.9" CC="gcc-4.9"; fi
-  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 50
+  #- if [ "$CXX" = "g++" ]; then export CXX="g++-4.9" CC="gcc-4.9"; fi
+  #- sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 50
   # CPP Unit install
   - sudo apt-get install libcppunit-dev
 
 after_success:
-  - sudo apt-get install -qy qt5base
-  - sudo apt-get install -qy qt5tools
-  # Launch tests
+# Launch tests
   - cd Tests/
   #- cmake CMakeLists.txt
   #- make --file Makefile
   - ./tests
 
-after_failure:
-  - sudo apt-get install -qy qt56declarative #marche
-  #- sudo apt-get install -qy qt56default   ne marche pas
-  #- sudo apt-get install -qy qt56base-dev  ne marche pas
-  #- sudo apt-get install -qy qt5base-dev   ne marche pas
-  #- sudo apt-get install -qy qttools5-dev-tools  ne marche pas
-  - sudo apt-get install -qy qt5declarative-dev
-  - sudo apt-get install -qy qtdeclarative5-dev
-  - sudo apt-get install -qy qtdeclarative5
-
-
 script:
   - cd src/
   - cmake CMakeLists.txt
   - make --file Makefile -j2
+  
+### Tests ###
+  # Qt repository
+  #- sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa # marche
+  # g++ repository
+  #- sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y # marche
+#after_failure:
+  #- sudo apt-get install -qy qt56declarative #marche
+  #- sudo apt-get install -qy qt56tools  #marche, inutile ?
+  #- sudo apt-get install -qy qt56default   ne marche pas
+  #- sudo apt-get install -qy qt56base-dev  ne marche pas
+  #- sudo apt-get install -qy qt5base-dev   ne marche pas
+  #- sudo apt-get install -qy qttools5-dev-tools  ne marche pas
+  #- sudo apt-get install -qy qt5base   ne marche pas
+  #- sudo apt-get install -qy qt5tools  ne marche pas
+  #- sudo apt-get install -qy qt5declarative-dev
+  #- sudo apt-get install -qy qtdeclarative5-dev
+  #- sudo apt-get install -qy qtdeclarative5
