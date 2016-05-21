@@ -31,8 +31,8 @@ install:
   #- sudo apt-get install -qq qt5-default
   #- sudo apt-get install -qq qttools5-dev-tools
     #test qt
-  - sudo apt-get install -qy qt56base
-  - sudo apt-get install -qy qt56tools
+  - sudo apt-get install -qy qt56base   #marche
+  #- sudo apt-get install -qy qt56tools  #marche utile ?
   - source /opt/qt56/bin/qt56-env.sh
   # g++ install
   #- if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.9; fi
@@ -50,12 +50,14 @@ after_success:
   - make --file Makefile
 
 after_failure:
-  - sudo apt-get install -qy qt56default
-  - sudo apt-get install -qy qt56base-dev
-  - sudo apt-get install -qy qt5base-dev
-  - sudo apt-get install -qy qttools5-dev-tools
-  - sudo apt-get install -qy qt5declarative
-  - sudo apt-get install -qy qt56declarative
+  - sudo apt-get install -qy qt56declarative #marche
+  #- sudo apt-get install -qy qt56default   ne marche pas
+  #- sudo apt-get install -qy qt56base-dev  ne marche pas
+  #- sudo apt-get install -qy qt5base-dev   ne marche pas
+  #- sudo apt-get install -qy qttools5-dev-tools  ne marche pas
+  - sudo apt-get install -qy qt5declarative-dev
+  - sudo apt-get install -qy qtdeclarative5-dev
+  - sudo apt-get install -qy qtdeclarative5
 
 
 script:
