@@ -46,8 +46,9 @@ after_success:
   - sudo apt-get install -qy qt5tools
   # Launch tests
   - cd Tests/
-  - cmake CMakeLists.txt
-  - make --file Makefile
+  #- cmake CMakeLists.txt
+  #- make --file Makefile
+  - ./tests
 
 after_failure:
   - sudo apt-get install -qy qt56declarative #marche
