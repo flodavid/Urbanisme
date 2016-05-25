@@ -15,7 +15,8 @@ private:
     Field* field;
     const Parameters& params;
 
-    Evaluation eval;
+    // Données calculées
+    Evaluation* eval;
 
 public:
     /**
@@ -46,13 +47,15 @@ public:
      * Accesseur sur la surface de l'Evaluation
      * @return Une référence sur la surface, modifiable
      */
-    Field& get_field() { return eval.get_field(); }
+    Field& get_field() { return eval->get_field(); }
     /**
      * Accesseur sur l'Evaluation
-     * @return  Une référence sur l'évaluation, modifiable
+     * @return Une pointeur sur l'évaluation, modifiable
      */
-    Evaluation& get_evaluation() { return eval; }
+    Evaluation* get_evaluation() { return eval; }
 
+    /* Setters */
+    void setField(Field* _field);
 
     /* Placement de routes */
 private:

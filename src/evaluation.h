@@ -13,7 +13,7 @@
  * 1. Maximimiser les nombres de parcelles exploitables
  * 2. Minimiser la moyenne, la plus grande ou la somme des ratios entre distance
  * des cellules par les routes et distance directe (distance Manhattan ou Euclidienne)
- * 
+ *
  * On pourra éventuellement avoir plusieurs instances de Field dans une Resolution.
  */
 class Evaluation
@@ -27,7 +27,7 @@ private:
     std::vector< std::vector< std::vector< std::vector< unsigned > > > > road_distances;
     unsigned nbUsables;
     float avgAccess;
-    
+
 public:
     // FLAGS
     /**
@@ -90,7 +90,7 @@ public:
      * @param _field Nouvelle surface à évaluer
      */
     void set_field(const Field& _field) { field= _field; }
-    
+
     /* Calculs de données */
     /**
      * Initialise la matrice de voisinage selon la taille de la surface
@@ -104,6 +104,11 @@ public:
      * Définit la matrice de distance entre chaque parcelle et chaque autre parcelle
      */
     void initRoadDistances();
+
+    /**
+     * Change de surface et remet à zéro les valeurs
+     */
+    void reset();
 
     /* Fonctions utiles à l'évaluation */
 
@@ -182,7 +187,7 @@ public:
      * @return l'évaluation en flottant
      */
     float threadsEvaluateRatio() const;
-     
+
      /* Threads */
 
 };

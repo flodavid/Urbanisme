@@ -45,11 +45,22 @@ public:
 
     ~Resolution();
 
+    /* Setters */
+    void changeWorkField(Field* _field);
+
     /* Evaluations */
     /**
      * Evalue les deux objectifs
      */
     void evaluateBothObjectives();
+
+    /**
+     * Vérifie si l'évaluation est dominée par l'évaluation d'au moins une
+     * des solutions précédemment calculées
+     * @param eval Evaluation à traiter
+     * @return faux si la solution est dominée par une des solutions présents
+     */
+    bool isNotDominated(const Evaluation &eval);
 
     /**
      * Effectue une propagation à partir de la solution courante :

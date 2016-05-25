@@ -6,6 +6,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QFileDialog>
+#include <QtWidgets/QInputDialog>
 #include <QtGui/QMouseEvent>
 
 /// #########################
@@ -18,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     //    askSizes();
     //    askParams();
 
-    resolution = nullptr;
+    resolution= new Resolution(initialField, parameters);
 
     initComponents();
     initEvents();
@@ -29,7 +30,7 @@ MainWindow::MainWindow(unsigned nbCols, unsigned nbRows, unsigned serveDistance,
 {
     fieldWidget= new FieldWidget(&initialField, serveDistance);
 
-    resolution = nullptr;
+    resolution= new Resolution(initialField, parameters);
 
     initComponents();
     initEvents();
@@ -41,7 +42,7 @@ MainWindow::MainWindow(unsigned nbCols, unsigned nbRows, const Parameters &param
     fieldWidget= new FieldWidget(&initialField, params.get_serve_distance());
     initialField.setUsables(params.get_serve_distance());
 
-    resolution = nullptr;
+    resolution= new Resolution(*(fieldWidget->get_field()), parameters);
 
     initComponents();
     initEvents();
@@ -93,9 +94,14 @@ void MainWindow::initEvents()
 
 //@}
 /// #########################
-///         Events
+///         Others
 /// #########################
 //@{
+
+void MainWindow::updateWorkField()
+{
+    resolution->changeWorkField(fieldWidget->get_field());
+}
 
 //@}
 /// #########################
@@ -133,30 +139,21 @@ void MainWindow::popAbout()
 
 void MainWindow::launchInit()
 {
-    Resolution myResolution(*(fieldWidget->get_field()), parameters);
+    updateWorkField();
 
-    Field& result_field= myResolution.initResolution();
+    Field& result_field= resolution->initResolution();
 
     fieldWidget->set_field(&result_field);
-
     fieldWidget->redraw();
     fieldWidget->show();
 }
 
-#include <QtWidgets/QInputDialog>
 void MainWindow::launchLocalUsable()
 {
-//    if (resolution != nullptr) {
-//        delete resolution;
-//    }
+    updateWorkField();
 
     QInputDialog widget_ask_nbMax/*= new QInputDialog*/(this);
     unsigned maxRoadsToAdd= (unsigned)widget_ask_nbMax.getInt(this, "Maximisation du nombre d'exploitables", "Nombre maximum de routes à ajouter ?\n0 pour aucune limite", 0);
-//    delete widget_ask_nbMax;
-
-    if (resolution == nullptr) {
-        resolution= new Resolution(*(fieldWidget->get_field()), parameters);
-    }
 
     Field& result_field= resolution->localSearchUsableObjective(maxRoadsToAdd);
 
@@ -168,12 +165,7 @@ void MainWindow::launchLocalUsable()
 
 void MainWindow::launchLocalAccess()
 {
-//    if (resolution != nullptr) {
-//        delete resolution;
-//    }
-    if (resolution == nullptr) {
-        resolution= new Resolution(*(fieldWidget->get_field()), parameters);
-    }
+    updateWorkField();
 
     QInputDialog widget_ask_nbMax/*= new QInputDialog*/(this);
     unsigned maxPathsToAdd= (unsigned)widget_ask_nbMax.getInt(this, "Maximisation accessibilité", "Nombre chemins à ajouter ?", 1);
@@ -189,19 +181,15 @@ void MainWindow::launchLocalAccess()
 
 void MainWindow::launchEval()
 {
-    Resolution myResolution(*(fieldWidget->get_field()), parameters);
-
-    myResolution.evaluateBothObjectives();
+    resolution->evaluateBothObjectives();
 }
 
 void MainWindow::resetField()
 {
-    if (&initialField != fieldWidget->get_field()) {
-        delete fieldWidget->get_field();
-        fieldWidget->set_field(&initialField);
+    fieldWidget->set_field(&initialField);
+    updateWorkField();
 
-        std::cout << "Solution trouvée supprimée"<< std::endl;
-    }
+    std::cout << "Solution trouvée supprimée"<< std::endl;
 
     fieldWidget->redraw();
 }
@@ -209,15 +197,18 @@ void MainWindow::resetField()
 void MainWindow::emptyField()
 {
     if (&initialField != fieldWidget->get_field()) {
-        delete fieldWidget->get_field();
+//        delete fieldWidget->get_field();
 
         std::cout << "Solution trouvée supprimée"<< std::endl;
     }
+    delete resolution;
 
+    // Initialisation d'une nouvelle surface vide
     initialField= Field(initialField.get_width(), initialField.get_height());
     initialField.setUsables(parameters.get_serve_distance());
 
     fieldWidget->set_field(&initialField);
+    resolution= new Resolution(initialField, parameters);
 
     fieldWidget->redraw();
 }

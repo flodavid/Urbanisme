@@ -24,6 +24,8 @@ private:
     Parameters parameters;
     Resolution* resolution;
 
+    Evaluation* eval;
+
     FieldWidget* fieldWidget;
 
 //  MENU BAR
@@ -92,8 +94,11 @@ public:
      */
     Field& get_initialField() { return initialField; }
 
-    /* Events */
+    /* Others */
+private:
+    void updateWorkField();
 
+    /* Events */
 signals:
 
 public slots:

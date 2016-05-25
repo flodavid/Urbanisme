@@ -35,6 +35,23 @@ Resolution::~Resolution()
 }
 
 //@}
+/// ##################
+///      Setters
+/// ##################
+//@{
+
+void Resolution::changeWorkField(Field *_field)
+{
+    /// TODO demander à l'utilisateur si il veut sauvegarder les résultats avant d'effacer le champ
+    Field* field_copy= new Field(*_field);
+
+    // Redéfinition des valeurs
+    localSearch.setField(field_copy);
+    pareto_evals.clear();
+    nbCells= field_copy->get_height() * field_copy->get_width();
+}
+
+//@}
 /// ############################
 ///      Evaluation et Pareto
 /// ############################
@@ -42,9 +59,9 @@ Resolution::~Resolution()
 
 void Resolution::evaluateBothObjectives()
 {
-    Evaluation& myEvaluation(localSearch.get_evaluation());
+    Evaluation* myEvaluation(localSearch.get_evaluation());
 
-    unsigned nb_usables= myEvaluation.evaluateTotalUsable();
+    unsigned nb_usables= myEvaluation->evaluateTotalUsable();
     cout << "Nombre total de parcelles exploitables : "<< nb_usables<< endl;
 
     // === LANCEMENT DES ALGOS D'EVALUATION ET DE RECHERCHE LOCALE === //
@@ -53,13 +70,13 @@ void Resolution::evaluateBothObjectives()
 
     // Evaluation
 //    if (!myEvaluation.road_distances_are_initiated) {
-        myEvaluation.initRoadDistances();
+        myEvaluation->initRoadDistances();
 //    }
 
     stopTime = time(NULL); time_t elapsedTimeInit = stopTime - startTime; startTime = time(NULL);
 
     // Calcul de la moyenne des ratios
-    float avg_ratio= myEvaluation.evaluateRatio();
+    float avg_ratio= myEvaluation->evaluateRatio();
 
     stopTime = time(NULL); time_t elapsedTimeEval = stopTime - startTime;
 
@@ -70,9 +87,24 @@ void Resolution::evaluateBothObjectives()
     printf("\nLe nombre de secondes écoulées pour l'évaluation est %ld\n", elapsedTimeEval);
     cout << "=> Moyenne des ratios : "<< avg_ratio<< endl<< endl;
 
-    if (spread(myEvaluation) > 0){
-        pareto_evals.push_back(myEvaluation);
+    if (isNotDominated(*myEvaluation)){
+        spread(*myEvaluation);
+        pareto_evals.push_back(*myEvaluation);
     }
+}
+
+bool Resolution::isNotDominated(const Evaluation &eval)
+{
+    for (list<Evaluation>::iterator it(pareto_evals.end()); it != pareto_evals.begin(); --it)
+    {
+        if( eval.is_dominated(*it) ) {
+            #if DEBUG_PARETO
+            cout << "La solutions est dominée par une des précédentes solutions"<< endl;
+            #endif
+            return false;
+        }
+    }
+    return true;
 }
 
 int Resolution::spread(const Evaluation& eval)
@@ -127,17 +159,17 @@ Field &Resolution::localSearchUsableObjective(unsigned maxRoadsToAdd)
 Field &Resolution::localSearchAccessObjective(unsigned maxPathsToAdd)
 {
     float percent_gain;
-    float gain_min;
+//    float gain_min;
     unsigned num_path= 1;
     do {
-        float access_before= localSearch.get_evaluation().get_avgAccess();
+        float access_before= localSearch.get_evaluation()->get_avgAccess();
 //        unsigned usables_before= localSearch.get_evaluation().get_nbUsables();
 
         float gain_access= localSearch.addRoadsAccess(2 * params.get_serve_distance());
         percent_gain= (gain_access / access_before) * 100.0;
         cout << "Gain de "<< percent_gain<< "%"<< endl;
 
-        float percent_usables_after= (localSearch.get_evaluation().get_nbUsables() *100.0) / (float)nbCells;
+        float percent_usables_after= (localSearch.get_evaluation()->get_nbUsables() *100.0) / (float)nbCells;
         cout << "Exploitables : "<< percent_usables_after<< "%"<< endl;
 
         /// @see tentative d'augmentation de l'accessibilité tant que le gain est suffisament important

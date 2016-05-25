@@ -13,17 +13,33 @@ using namespace std;
 //@{
 
 LocalSearch::LocalSearch(Field* _field, const Parameters* _params):
-    field(_field), params(*_params), eval(*field, params)
+    field(_field), params(*_params)
 {
+    eval= new Evaluation(*field, params);
 }
 
 LocalSearch::LocalSearch(const LocalSearch& other):
     field(other.field), params(other.params ), eval(other.eval)
 {
+    eval= new Evaluation(*(other.eval));
 }
 
 LocalSearch::~LocalSearch()
 {
+}
+
+//@}
+/// ################
+///     Setters
+/// ################
+//@{
+
+void LocalSearch::setField(Field *_field)
+{
+    field= _field;
+
+    delete eval;
+    eval= new Evaluation(*_field, params);
 }
 
 //@}
@@ -94,8 +110,8 @@ bool LocalSearch::tryPaveRoad(Path* path)
         delete path;
 
         // Mise à jour des valeurs d'évaluation des objectifs
-        eval.evaluateTotalUsable();
-        eval.evaluateRatio();
+        eval->evaluateTotalUsable();
+        eval->evaluateRatio();
 
         return true;
     } else {
@@ -263,7 +279,7 @@ int LocalSearch::addRoadUsable() const
 
 float LocalSearch::gainPath(Path *path)
 {
-    Evaluation tmp_eval= eval;
+    Evaluation tmp_eval= *eval;
     Field& tmp_field= tmp_eval.get_field();
     //    Field save_field= tmp_field;
 
@@ -284,8 +300,8 @@ float LocalSearch::gainPath(Path *path)
     //    float eval_before= eval.get_avgAccess();
 
     ///@see voir comment ne pas utiliser initRoadDistances et si c'est utile de recalculer le ratio
-    eval.initRoadDistances();
-    float eval_before= eval.evaluateRatio();
+    eval->initRoadDistances();
+    float eval_before= eval->evaluateRatio();
 
     //    assert(eval_before == eval_before_test && "Moyenne des ratios doit être déjà calculée et à jour");
 
@@ -304,8 +320,8 @@ float LocalSearch::gainPath(Path *path)
 float LocalSearch::addRoadsAccess(unsigned nbToAdd)
 {
     // Evaluation
-    if (!eval.road_distances_are_initiated) {
-        eval.initRoadDistances();
+    if (!eval->road_distances_are_initiated) {
+        eval->initRoadDistances();
     }
 
     Coordinates& coord= Field::first();
@@ -324,7 +340,7 @@ float LocalSearch::addRoadsAccess(unsigned nbToAdd)
             list<Coordinates>* neighbour_roads= field->getNeighbourRoads(coord);
             list<Coordinates> accessible_roads_clean;
             for(const Coordinates& accessible_road : *accessible_roads) {
-                if ( eval.getRoadDistance(coord, accessible_road) > coord.manhattanDistance(accessible_road)
+                if ( eval->getRoadDistance(coord, accessible_road) > coord.manhattanDistance(accessible_road)
                      && find(neighbour_roads->begin(), neighbour_roads->end(), accessible_road) == neighbour_roads->end()) {
                     accessible_roads_clean.push_back(accessible_road);
                 }
