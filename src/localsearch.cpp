@@ -90,10 +90,6 @@ void LocalSearch::addPath(Path *path)
 bool LocalSearch::tryPaveRoad(Path* path)
 {
     if ( !path->empty()) {
-#if LOGS_ADD_ACCESS_ROAD
-        clog << "Chemin viable, pour maximiser l'accessibilité de "<< gain_max
-             << " par route, trouvé"<< endl;
-#endif
         addPath(path);
         delete path;
 
@@ -159,7 +155,7 @@ void LocalSearch::initSolution()
 
     cout << "E/S 1 : "<< in_out_1<< "; E/S 2 : "<< in_out_2<< endl;
 
-//    field->defineUsables(params.get_serve_distance());
+    //    field->defineUsables(params.get_serve_distance());
     field->resetUsables(params.get_serve_distance());
 }
 
@@ -237,7 +233,7 @@ int LocalSearch::addRoadUsable() const
             if (ratio > gain_max) {
 #if DEBUG_ADD_USABLE_ROAD
                 cout << endl<< coord << " a "<< nb_roads_neighbours<< " routes desservant"
-                     " et "<< nb_parcels_neighbours<< " parcelles voisines"<< endl;
+                                                                      " et "<< nb_parcels_neighbours<< " parcelles voisines"<< endl;
 #endif
                 gain_max=  ratio;
                 coord_min= coord;
@@ -269,22 +265,30 @@ float LocalSearch::gainPath(Path *path)
 {
     Evaluation tmp_eval= eval;
     Field& tmp_field= tmp_eval.get_field();
-//    Field save_field= tmp_field;
+    //    Field save_field= tmp_field;
 
-    if (! eval.road_distances_are_initiated){
+    /// Tests
+        unsigned usables= tmp_eval.get_nbUsables();
+
         tmp_field.resetUsables(params.get_serve_distance());
-        eval.initRoadDistances();
-        eval.evaluateRatio();
-        cerr << "LES DISTANCES PAR ROUTE DEVRAIENT ETRE INITIALISEES"<< endl<< endl;
-    }
+        unsigned usables_after_update= tmp_eval.evaluateTotalUsable();
 
-    float eval_before= eval.get_avgAccess();
+        assert(usables == usables_after_update && "Nombre exploitables doit être déjà calculée et à jour");
 
-//    eval.initRoadDistances();
-//    float eval_before_test= eval.evaluateRatio();
+    /// Fin tests
+    //    if (! eval.road_distances_are_initiated){
+    //        eval.initRoadDistances();
+    //        eval.evaluateRatio();
+    //        cerr << "LES DISTANCES PAR ROUTE DEVRAIENT ETRE INITIALISEES"<< endl<< endl;
+    //    }
 
-//    assert(eval_before == eval_before_test && "Moyenne des ratios doit être déjà calculée et à jour");
+    //    float eval_before= eval.get_avgAccess();
 
+
+    eval.initRoadDistances();
+    float eval_before= eval.evaluateRatio();
+
+    //    assert(eval_before == eval_before_test && "Moyenne des ratios doit être déjà calculée et à jour");
 
     // Ajout des routes puis évaluation
     tmp_field.addRoads(path, params.get_serve_distance());
@@ -297,7 +301,7 @@ float LocalSearch::gainPath(Path *path)
     assert(eval_after == eval_after_test && "La valeur retournée par evaluateRatio() doit être identique à get_avgAccess()");
 
     // Restauration de la surface
-//    eval.set_field(save_field);
+    //    eval.set_field(save_field);
 
     return eval_before - eval_after;
 }
@@ -325,7 +329,7 @@ float LocalSearch::addRoadsAccess(unsigned nbToAdd)
             list<Coordinates>* neighbour_roads= field->getNeighbourRoads(coord);
             list<Coordinates> accessible_roads_clean;
             for(const Coordinates& accessible_road : *accessible_roads) {
-                if ( eval.parcelsRoadDistance(coord, accessible_road) > coord.manhattanDistance(accessible_road)
+                if ( eval.getRoadDistance(coord, accessible_road) > coord.manhattanDistance(accessible_road)
                      && find(neighbour_roads->begin(), neighbour_roads->end(), accessible_road) == neighbour_roads->end()) {
                     accessible_roads_clean.push_back(accessible_road);
                 }
@@ -343,7 +347,7 @@ float LocalSearch::addRoadsAccess(unsigned nbToAdd)
                 clog << "\tNombre de chemins pour aller à "<< accessible_road<< " : "
                      << possible_paths->size()<< endl;
 #endif
-                for (Path* path: *possible_paths){
+                for (Path* path: *possible_paths) {
                     float gain= gainPath(path) / (float)(path->size());
 #if DEBUG_ADD_ACCESS_ROAD_LIGHT
                     clog << "Gain potentiel "<< gain<< " (chemin de longueur "<< path->size()
@@ -366,6 +370,12 @@ float LocalSearch::addRoadsAccess(unsigned nbToAdd)
     delete &coord;
 
     tryPaveRoad(best_path);
+#if LOGS_ADD_ACCESS_ROAD
+    if (gain_max > 0.0) {
+        clog << "Chemin viable, pour maximiser l'accessibilité de "<< gain_max
+             << " par route, trouvé"<< endl;
+    }
+#endif
     return gain_max;
 }
 

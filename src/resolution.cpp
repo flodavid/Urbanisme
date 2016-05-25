@@ -1,6 +1,7 @@
 #include "resolution.h"
 
 #include <ctime>
+#include <fstream>
 
 using namespace std;
 
@@ -28,9 +29,9 @@ Resolution::Resolution(const Field &field, const Parameters &_params):
 
 Resolution::~Resolution()
 {
-    for (const Evaluation* eval : pareto_evals) {
-        delete eval;
-    }
+//    for (const Evaluation& eval : pareto_evals) {
+//        delete eval;
+//    }
 }
 
 //@}
@@ -44,7 +45,7 @@ void Resolution::evaluateBothObjectives()
     Evaluation& myEvaluation(localSearch.get_evaluation());
 
     unsigned nb_usables= myEvaluation.evaluateTotalUsable();
-    cout << "Nombre total de parcelles exploitables au début : "<< nb_usables<< endl;
+    cout << "Nombre total de parcelles exploitables : "<< nb_usables<< endl;
 
     // === LANCEMENT DES ALGOS D'EVALUATION ET DE RECHERCHE LOCALE === //
     cout << "Evaluation..."<< endl;
@@ -69,20 +70,20 @@ void Resolution::evaluateBothObjectives()
     printf("\nLe nombre de secondes écoulées pour l'évaluation est %ld\n", elapsedTimeEval);
     cout << "=> Moyenne des ratios : "<< avg_ratio<< endl<< endl;
 
-    if (spread(&myEvaluation) > 0){
-        pareto_evals.push_back(&myEvaluation);
+    if (spread(myEvaluation) > 0){
+        pareto_evals.push_back(myEvaluation);
     }
 }
 
-int Resolution::spread(const Evaluation* eval)
+int Resolution::spread(const Evaluation& eval)
 {
     int nb_deleted= 0;
     #if DEBUG_PARETO
     cout << "Propagation de la solution dominante"<< endl;
     #endif
-    for (list<const Evaluation*>::iterator it(pareto_evals.end()); it != pareto_evals.begin(); --it)
+    for (list<Evaluation>::iterator it(pareto_evals.end()); it != pareto_evals.begin(); --it)
     {
-        if( (*it)->is_dominated(*eval) ) {
+        if( (*it).is_dominated(eval) ) {
             ++nb_deleted;
             #if DEBUG_PARETO
             cout << "Suppression de l'élement à la place "<< it._M_node<< " des non dominés"<< endl;
@@ -100,23 +101,31 @@ int Resolution::spread(const Evaluation* eval)
 /// #########################
 //@{
 
-void Resolution::localSearchUsableObjective()
+Field &Resolution::localSearchUsableObjective(unsigned maxRoadsToAdd)
 {
     unsigned road_num= 1;
     int gain;
+    if (maxRoadsToAdd == 0) {
+        maxRoadsToAdd= UNSIGNED_INFINITY;
+    }
     do {
         gain= localSearch.addRoadUsable();
 #if DEBUG_ADD_USABLE_ROAD
         cout << endl<< "=== Ajout de la route "<< road_num<< endl;
 #endif
         ++ road_num;
-    } while(gain >= 0);
+    } while(gain >= 0 && road_num <= maxRoadsToAdd);
+
+    cout << road_num<< " ajoutées"<< endl;
+    cout << endl<< "===== Evaluation après maximisation du nombre d'exploitables ====="<< endl;
+    evaluateBothObjectives();
+
+    return localSearch.get_field();
 }
 
-#define MIN_PERCENT_GAIN 5.0
-void Resolution::localSearchAccessObjective()
+#define MIN_PERCENT_GAIN 5.0 // TODO supprimer du calcul de gain min pour pouvoir le supprimer
+Field &Resolution::localSearchAccessObjective(unsigned maxPathsToAdd)
 {
-
     float percent_gain;
     float gain_min;
     do {
@@ -129,15 +138,20 @@ void Resolution::localSearchAccessObjective()
 
         float percent_usables_after= (localSearch.get_evaluation().get_nbUsables() *100.0) / (float)nbCells;
         cout << "Exploitables : "<< percent_usables_after<< "%"<< endl;
-		float percent_unusable= 100.0 - percent_usables_after;
+        float percent_unusable= 100.0 - percent_usables_after;
         gain_min= MIN_PERCENT_GAIN * (percent_unusable / 30.0);
         cout << "(Gain min : "<< gain_min<< ")"<< endl;
     } while ( percent_gain >= gain_min);
+
+    cout << endl<< "===== Evaluation après maximisation de l'accessibilité ====="<< endl;
+    evaluateBothObjectives();
+
+    return localSearch.get_field();
 }
 
 //@}
 /// ############################
-///      Resolution
+///         Resolution
 /// ############################
 //@{
 
@@ -149,21 +163,27 @@ Field& Resolution::initResolution()
     return localSearch.get_field();
 }
 
-Field &Resolution::launchResolution()
+//@}
+/// ##########################
+///         Export
+/// ##########################
+//@{
+bool Resolution::trySaveParetoToTxt(string fileName) const
 {
-    // Parcelles utilisables
-    cout << endl<< "===== Evaluation avant recherche locale ====="<< endl;
-    evaluateBothObjectives();
+    clog << "Enregistrement dans le fichier "<< fileName<< endl;
+    ofstream file(fileName);
 
-    localSearchUsableObjective();
-
-    cout << endl<< "===== Evaluation après nb exploitables ====="<< endl;
-    evaluateBothObjectives();
-
-    localSearchAccessObjective();
-
-    cout << endl<< "===== Evaluation après accessibilité ====="<< endl;
-    evaluateBothObjectives();
-
-    return localSearch.get_field();
+    if(!file.is_open()){
+        cerr << "Erreur pendant l'ouverture du fichier d'enregistrement Pareto500" << endl;
+        return false;
+    }else{
+        cout << "Ecriture de "<< pareto_evals.size()<< " dans un fichier lisible par GNUplot"<< endl;
+        for(const Evaluation& eval : pareto_evals){
+            file << eval.get_nbUsables()<< " " << eval.get_avgAccess() << endl;
+        }
+        file.close();
+    }
+    return true;
 }
+
+//@}

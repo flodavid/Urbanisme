@@ -16,8 +16,8 @@
 
 using namespace std;
 
-#define WIDTH   12
-#define HEIGHT  12
+#define WIDTH   20
+#define HEIGHT  20
 
 MainWindow* initWindow(Parameters& params)
 {
@@ -40,7 +40,6 @@ int main(int argc, char* argv[])
 
     // Fenêtre
     MainWindow* initMainWindow= initWindow(myParameters);
-
 
     /** Tests **/
 //     Field& myField= initMainWindow->get_initialField();

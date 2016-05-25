@@ -19,7 +19,7 @@ private:
 
     LocalSearch localSearch;
 
-    std::list<const Evaluation*> pareto_evals;
+    std::list<Evaluation> pareto_evals;
 
     // Calulated data
     unsigned nbCells;
@@ -57,25 +57,28 @@ public:
      * @param eval Evaluation courante
      * @return le nombre de solutions supprimées
      */
-    int spread(const Evaluation* eval);
+    int spread(const Evaluation &eval);
 
     /* Recherche locale */
     /**
      * Exécute la recherche locale permettant de maximiser le nombre de parcelles exploitables
      * @see Utiliser un signal pour mettre à jour l'affichage pendant les recherche ?
      */
-    void localSearchUsableObjective();
+    Field & localSearchUsableObjective(unsigned maxRoadsToAdd = 10);
     /**
      * Exécute la recherche locale permettant de maximiser l'accessibilité
      * @see Utiliser un signal pour mettre à jour l'affichage pendant les recherche ?
      */
-    void localSearchAccessObjective();
-
+    Field & localSearchAccessObjective(unsigned maxPathsToAdd);
 
     /* Résolution */
     Field &initResolution();
 
     Field & launchResolution();
+
+    /* Export */
+
+    bool trySaveParetoToTxt(std::string fileName) const;
 };
 
 #endif // RESOLUTION_H

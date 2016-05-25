@@ -49,16 +49,14 @@ void Field::addRoads(std::list<Coordinates> *roads, unsigned serveDistance)
     // On redéfinit les parcelles qui sont utilisables et celles qui ne le sont pas
     /// @see on pourrait améliorer, en mettant à jour seulement les parcelles proches des routes ajoutées
     resetUsables(serveDistance);
-
-
 }
 
 void Field::removeRoads(std::list<Coordinates> *roads, unsigned serveDistance)
 {
     for (const Coordinates& coord_road : *roads) {
-//#if LOGS_ADD_ACCESS_ROAD
+#if LOGS_ADD_ACCESS_ROAD
         clog << "Suppression de la route "<< coord_road<<" (id: "<< at(coord_road)<< ")"<< endl;
-//#endif
+#endif
         add_undefined(coord_road);
     }
 
@@ -182,7 +180,7 @@ void Field::generateInsAndOuts(unsigned nb)
         int row, col;
 
         // On choisit une case en haut ou en bas, avec une colonne aléatoire
-		bool on_top_or_down= (bool)(rand() % 2);
+        bool on_top_or_down= (bool)(rand() % 2);
         if (on_top_or_down) {
             row = (rand() % 2) * nb_rows;
             col = rand() % nb_cols;
