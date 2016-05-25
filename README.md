@@ -52,7 +52,7 @@ les "points chauds", qui on un rapport élevé distance "directe"/distance_Manha
 ## A faire :
 + [ ] L'utilisateur demande un nombre de routes à ajouter 
     - [x] Pour maximiser le nombre d'utilisables
-    - [ ] Pour augmenter l'accessibilité
+    - [x] Pour augmenter l'accessibilité
     - [ ] Pour améliorer les deux critères (avec une valuation des critères ? avec un alpha et un beta ?)
     - [ ] Avec une planification sur le nombre de routes demandé, plutôt que des algos gloutons
 + [ ] Corriger les bugs 

@@ -150,9 +150,9 @@ void MainWindow::launchLocalUsable()
 //        delete resolution;
 //    }
 
-    QInputDialog* widget_ask_nbMax= new QInputDialog(this);
-
-    unsigned maxRoadsToAdd= (unsigned)widget_ask_nbMax->getInt(this, "Nombre maximum de routes à ajouter ?", "0 pour aucune limite", 0);
+    QInputDialog widget_ask_nbMax/*= new QInputDialog*/(this);
+    unsigned maxRoadsToAdd= (unsigned)widget_ask_nbMax.getInt(this, "Maximisation du nombre d'exploitables", "Nombre maximum de routes à ajouter ?\n0 pour aucune limite", 0);
+//    delete widget_ask_nbMax;
 
     if (resolution == nullptr) {
         resolution= new Resolution(*(fieldWidget->get_field()), parameters);
@@ -166,7 +166,7 @@ void MainWindow::launchLocalUsable()
     fieldWidget->show();
 }
 
-void MainWindow::launchLocalAccess(unsigned maxPathsToAdd)
+void MainWindow::launchLocalAccess()
 {
 //    if (resolution != nullptr) {
 //        delete resolution;
@@ -174,6 +174,10 @@ void MainWindow::launchLocalAccess(unsigned maxPathsToAdd)
     if (resolution == nullptr) {
         resolution= new Resolution(*(fieldWidget->get_field()), parameters);
     }
+
+    QInputDialog widget_ask_nbMax/*= new QInputDialog*/(this);
+    unsigned maxPathsToAdd= (unsigned)widget_ask_nbMax.getInt(this, "Maximisation accessibilité", "Nombre chemins à ajouter ?", 1);
+//    delete widget_ask_nbMax;
 
     Field& result_field= resolution->localSearchAccessObjective(maxPathsToAdd);
 

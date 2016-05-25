@@ -117,7 +117,7 @@ public slots:
      * Ou chercher le maximum, puis choisir tous les chemins proches, selon un delta
      * @see prendre en compte la perte des parcelles engendré par l'ajout de routes ?
      */
-    void launchLocalAccess(unsigned maxPathsToAdd =1);
+    void launchLocalAccess();
     /**
      * Lance l'évaluation des deux objectifs
      * TODO afficher les résultats dans la fenêtre plutôt que dans le terminal

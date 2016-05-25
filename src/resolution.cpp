@@ -123,11 +123,12 @@ Field &Resolution::localSearchUsableObjective(unsigned maxRoadsToAdd)
     return localSearch.get_field();
 }
 
-#define MIN_PERCENT_GAIN 5.0 // TODO supprimer du calcul de gain min pour pouvoir le supprimer
+//#define MIN_PERCENT_GAIN 5.0 // TODO supprimer du calcul de gain min pour pouvoir le supprimer
 Field &Resolution::localSearchAccessObjective(unsigned maxPathsToAdd)
 {
     float percent_gain;
     float gain_min;
+    unsigned num_path= 1;
     do {
         float access_before= localSearch.get_evaluation().get_avgAccess();
 //        unsigned usables_before= localSearch.get_evaluation().get_nbUsables();
@@ -138,10 +139,15 @@ Field &Resolution::localSearchAccessObjective(unsigned maxPathsToAdd)
 
         float percent_usables_after= (localSearch.get_evaluation().get_nbUsables() *100.0) / (float)nbCells;
         cout << "Exploitables : "<< percent_usables_after<< "%"<< endl;
-        float percent_unusable= 100.0 - percent_usables_after;
-        gain_min= MIN_PERCENT_GAIN * (percent_unusable / 30.0);
-        cout << "(Gain min : "<< gain_min<< ")"<< endl;
-    } while ( percent_gain >= gain_min);
+
+        /// @see tentative d'augmentation de l'accessibilité tant que le gain est suffisament important
+        /// rajouter condition dans le while
+//        float percent_unusable= 100.0 - percent_usables_after;
+//        gain_min= MIN_PERCENT_GAIN * (percent_unusable / 30.0);
+//        cout << "(Gain min : "<< gain_min<< ")"<< endl;
+
+        ++num_path;
+    } while ( num_path < maxPathsToAdd);
 
     cout << endl<< "===== Evaluation après maximisation de l'accessibilité ====="<< endl;
     evaluateBothObjectives();

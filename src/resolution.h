@@ -69,7 +69,7 @@ public:
      * Exécute la recherche locale permettant de maximiser l'accessibilité
      * @see Utiliser un signal pour mettre à jour l'affichage pendant les recherche ?
      */
-    Field & localSearchAccessObjective(unsigned maxPathsToAdd);
+    Field & localSearchAccessObjective(unsigned maxPathsToAdd = 1);
 
     /* Résolution */
     Field &initResolution();

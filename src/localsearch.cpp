@@ -281,10 +281,9 @@ float LocalSearch::gainPath(Path *path)
     //        eval.evaluateRatio();
     //        cerr << "LES DISTANCES PAR ROUTE DEVRAIENT ETRE INITIALISEES"<< endl<< endl;
     //    }
-
     //    float eval_before= eval.get_avgAccess();
 
-
+    ///@see voir comment ne pas utiliser initRoadDistances et si c'est utile de recalculer le ratio
     eval.initRoadDistances();
     float eval_before= eval.evaluateRatio();
 
@@ -292,16 +291,12 @@ float LocalSearch::gainPath(Path *path)
 
     // Ajout des routes puis évaluation
     tmp_field.addRoads(path, params.get_serve_distance());
+    ///@see voir comment ne pas utiliser initRoadDistances et si c'est utile de recalculer le ratio
     tmp_eval.initRoadDistances();
     float eval_after= tmp_eval.evaluateRatio();
 
-    tmp_field.removeRoads(path, params.get_serve_distance());
-
-    float eval_after_test= tmp_eval.get_avgAccess();
-    assert(eval_after == eval_after_test && "La valeur retournée par evaluateRatio() doit être identique à get_avgAccess()");
-
     // Restauration de la surface
-    //    eval.set_field(save_field);
+    tmp_field.removeRoads(path, params.get_serve_distance());
 
     return eval_before - eval_after;
 }
@@ -349,7 +344,7 @@ float LocalSearch::addRoadsAccess(unsigned nbToAdd)
 #endif
                 for (Path* path: *possible_paths) {
                     float gain= gainPath(path) / (float)(path->size());
-#if DEBUG_ADD_ACCESS_ROAD_LIGHT
+#if DEBUG_ADD_ACCESS_GAIN
                     clog << "Gain potentiel "<< gain<< " (chemin de longueur "<< path->size()
                          << ") (max : "<< gain_max<< ")"<< endl;
 #endif
