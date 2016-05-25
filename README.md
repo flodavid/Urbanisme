@@ -41,6 +41,7 @@ Ou entre chaque parcelles et ses suivantes ? J'utilise une matrice à 4 dimensio
     + Implémenter des algorithmes de type Dijkstra (boost-graph ?)
 
 ### V. Fonctionnalitées envisagées
++ [ ] Essayer différentes techniques : Vider la matrice au lieu de remplir (pb d'évaluation), algos génétique, ...
 + [ ] Ajouter une largeur pour les routes
 + [ ] Changer la forme des cellules : hexagonales ...
 + [ ] Ajouter des coefficients/couts sur les cellules et routes
@@ -48,22 +49,38 @@ Ou entre chaque parcelles et ses suivantes ? J'utilise une matrice à 4 dimensio
 les "points chauds", qui on un rapport élevé distance "directe"/distance_Manhattan 
 + [ ] Ajouter des types et contraintes de placement des parcelles
 
-## Questions :
-### Algorithme/Objectifs
-- Comment trouver les routes à X parcelles de distance d'une parcelle donnée ?
-    - Actuellement, une recherche dans un de 2*X parcelles de coté est effectuée, 
-    on garde les routes qui sont à moins de 2 de distance.
-    - Faudrait-il stocker les routes voisines d'une parcelle dans un vecteur de listes
-     de paires d'une coordonnée et d'une distance ? ou juste une coordonnée ? OK : plutôt oui
-- Pour ratio entre distance directe et par les routes, faire une moyenne ? un maximum ? garder total à coté ? Moyenne pour l'instant  (OK : Moyenne quadratique)
-- Recherche solution : Quand améliorer l'accessibilité ; pour l'instant à la fin
+## A faire :
++ [ ] L'utilisateur demande un nombre de routes à ajouter 
+    - [x] Pour maximiser le nombre d'utilisables
+    - [ ] Pour augmenter l'accessibilité
+    - [ ] Pour améliorer les deux critères (avec une valuation des critères ? avec un alpha et un beta ?)
+    - [ ] Avec une planification sur le nombre de routes demandé, plutôt que des algos gloutons
++ [ ] Corriger les bugs 
+    + [ ] Des boutons reset et flush (revoir qui reset, ce qui est reset et sauvegardé et comment on le fait)
+    + [ ] Vérifier que l'évaluation est correcte
+    + [ ] Pourquoi ce n'est pas toujours la meilleure route qui est choisie (apparition de "patés")
++ [ ] Front pareto et collection solution
+    - [ ] Ajouter des solutions dans le front Pareto lors de la recherche de meilleures solutions
+    - [ ] Garder les valeurs d'évaluations des solutions dominées pour pouvoir les afficher en plus du front Pareto
++ [ ] Afficher les points chauds : points avec la plus grande moyenne d'accessibilité avec les autres
+    + Couleurs ?
+    + Valeurs de la moyenne avec les autres cellules ?
+    + Ecart avec la moyenne en pourcentage ?
++ [ ] Sauvegarde et chargement d'une solution
 
-### Code/Technique :
+## Algorithme/Objectifs
+- Pour ratio entre distance directe et par les routes, faire une moyenne ? un maximum ? garder total à coté ? Moyenne pour l'instant  (OK : Moyenne quadratique et ratio max possibles)
+
+## Code/Technique :
 - Dans listes (`list<Coordinates>*`) utiliser pointeurs ? si oui, comment utiliser,
 ou remplacer, `find(begin, end, val)` ?
 - Faire une listes de routes ?
+- Comment trouver les routes à X parcelles de distance d'une parcelle donnée ?
+    - Actuellement, une recherche dans un de 2*X parcelles de coté est effectuée, 
+    on garde les routes qui sont à moins de 2 de distance.
+    - Faudrait-il stocker les routes voisines d'une parcelle dans un vecteur de listes de paires d'une coordonnée et d'une distance ? ou juste une coordonnée ? OK : plutôt oui
 
-## Profiler :
+### Profiler :
 + Gprof (gnu profiler)
 + Kcachegrind
 
