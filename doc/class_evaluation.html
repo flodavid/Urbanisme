@@ -26,7 +26,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-simcity.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Urbanisme
-   &#160;<span id="projectnumber">1.0</span>
+   &#160;<span id="projectnumber">1.2</span>
    </div>
    <div id="projectbrief">Projet visant à l&#39;optimisation du placement de routes sur une surface. https://flodavid.github.io/Urbanisme</div>
   </td>
@@ -90,6 +90,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
   <div class="summary">
 <a href="#pub-methods">Fonctions membres publiques</a> &#124;
 <a href="#pub-attribs">Attributs publics</a> &#124;
+<a href="#pro-attribs">Attributs protégés</a> &#124;
 <a href="class_evaluation-members.html">Liste de tous les membres</a>  </div>
   <div class="headertitle">
 <div class="title">Référence de la classe Evaluation</div>  </div>
@@ -100,48 +101,42 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
  <a href="class_evaluation.html#details">Plus de détails...</a></p>
 
 <p><code>#include &lt;<a class="el" href="evaluation_8h_source.html">evaluation.h</a>&gt;</code></p>
+<div class="dynheader">
+Graphe d'héritage de Evaluation:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_evaluation.png" usemap="#Evaluation_map" alt=""/>
+  <map id="Evaluation_map" name="Evaluation_map">
+<area href="class_field_evaluation.html" title="La classe permettant de stocker une surface et de calculer et mettre à jour son évaluation. " alt="FieldEvaluation" shape="rect" coords="0,56,99,80"/>
+</map>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Fonctions membres publiques</h2></td></tr>
-<tr class="memitem:aec8f8818b33c1dc04ab45b2ee97b9cd4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#aec8f8818b33c1dc04ab45b2ee97b9cd4">Evaluation</a> (<a class="el" href="class_field.html">Field</a> &amp;_field, const <a class="el" href="class_parameters.html">Parameters</a> &amp;_params)</td></tr>
-<tr class="separator:aec8f8818b33c1dc04ab45b2ee97b9cd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7b959b9a214ba6bd0ecc65324d9fe12"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#af7b959b9a214ba6bd0ecc65324d9fe12">Evaluation</a> ()</td></tr>
+<tr class="separator:af7b959b9a214ba6bd0ecc65324d9fe12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a471a5c87afc12623f7f0f1f07e982a7a"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#a471a5c87afc12623f7f0f1f07e982a7a">get_nbUsables</a> () const </td></tr>
 <tr class="separator:a471a5c87afc12623f7f0f1f07e982a7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af96faa0d985feb2ab6f8f2ed4d07df9e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#af96faa0d985feb2ab6f8f2ed4d07df9e">get_avgAccess</a> () const </td></tr>
 <tr class="separator:af96faa0d985feb2ab6f8f2ed4d07df9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53050af19d65878d7f926b714184ffcf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#a53050af19d65878d7f926b714184ffcf">get_field</a> ()</td></tr>
-<tr class="separator:a53050af19d65878d7f926b714184ffcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62eb998463522f28042773b503088174"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#a62eb998463522f28042773b503088174">getRoadDistance</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord1, const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord2) const </td></tr>
-<tr class="separator:a62eb998463522f28042773b503088174"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a450347ade8f7d4f002890b13e06b5f99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#a450347ade8f7d4f002890b13e06b5f99">set_field</a> (const <a class="el" href="class_field.html">Field</a> &amp;_field)</td></tr>
-<tr class="separator:a450347ade8f7d4f002890b13e06b5f99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a20f968807cdd220e2bfd216e574d66"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#a6a20f968807cdd220e2bfd216e574d66">is_dominated</a> (const <a class="el" href="class_evaluation.html">Evaluation</a> &amp;other) const </td></tr>
 <tr class="separator:a6a20f968807cdd220e2bfd216e574d66"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c4ae78668fdf07753eb35256c9276a1"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#a7c4ae78668fdf07753eb35256c9276a1">threadsEvaluateRatio</a> () const </td></tr>
-<tr class="separator:a7c4ae78668fdf07753eb35256c9276a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:ad17ec4c77bdd19d32520b7b23edad468"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#ad17ec4c77bdd19d32520b7b23edad468">set_params</a> (const <a class="el" href="class_parameters.html">Parameters</a> &amp;_params)</td></tr>
-<tr class="separator:ad17ec4c77bdd19d32520b7b23edad468"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:a40555125ea20101fd22db85f37ebd91a"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#a40555125ea20101fd22db85f37ebd91a">evaluateTotalUsable</a> ()</td></tr>
-<tr class="separator:a40555125ea20101fd22db85f37ebd91a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a734ff96f3b230807abf0c6f95492c802"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#a734ff96f3b230807abf0c6f95492c802">manhattanRatioBetween2Parcels</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;p1, const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;p2) const </td></tr>
-<tr class="separator:a734ff96f3b230807abf0c6f95492c802"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32d1a075c6dc582f562dc51366ce7b0c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#a32d1a075c6dc582f562dc51366ce7b0c">evaluateRatio</a> ()</td></tr>
-<tr class="separator:a32d1a075c6dc582f562dc51366ce7b0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Attributs publics</h2></td></tr>
 <tr class="memitem:a2b9bd48dc36e2b67514a8c0a63ff372a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#a2b9bd48dc36e2b67514a8c0a63ff372a">road_distances_are_initiated</a> = false</td></tr>
 <tr class="separator:a2b9bd48dc36e2b67514a8c0a63ff372a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5888aea58a6be74a29a83613f5f5143"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#aa5888aea58a6be74a29a83613f5f5143">initSizeNeighbourhood</a> ()</td></tr>
-<tr class="separator:aa5888aea58a6be74a29a83613f5f5143"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a724d9e25d3364ae30b8a69fcdc9ca189"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#a724d9e25d3364ae30b8a69fcdc9ca189">initRoadDistance</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord)</td></tr>
-<tr class="separator:a724d9e25d3364ae30b8a69fcdc9ca189"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b52dd21d37993d1781f6e4a7075129e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#a7b52dd21d37993d1781f6e4a7075129e">initRoadDistances</a> ()</td></tr>
-<tr class="separator:a7b52dd21d37993d1781f6e4a7075129e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a5ee8d089416dcf8b08acbae5d1c6d1"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#a0a5ee8d089416dcf8b08acbae5d1c6d1">parcelsRoadDistance</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord1, const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord2)</td></tr>
-<tr class="separator:a0a5ee8d089416dcf8b08acbae5d1c6d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Attributs protégés</h2></td></tr>
+<tr class="memitem:a6fbb95078dd528757a502850b93a1492"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6fbb95078dd528757a502850b93a1492"></a>
+unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#a6fbb95078dd528757a502850b93a1492">nbUsables</a></td></tr>
+<tr class="memdesc:a6fbb95078dd528757a502850b93a1492"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nombre de parcelles utilisables. <br /></td></tr>
+<tr class="separator:a6fbb95078dd528757a502850b93a1492"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c835ac0ba1658c11db2fb4b40bbac35"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6c835ac0ba1658c11db2fb4b40bbac35"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#a6c835ac0ba1658c11db2fb4b40bbac35">avgAccess</a></td></tr>
+<tr class="memdesc:a6c835ac0ba1658c11db2fb4b40bbac35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moyenne du ratio entre distance directe et distance par les routes, représente l'accessibilité de la surface. <br /></td></tr>
+<tr class="separator:a6c835ac0ba1658c11db2fb4b40bbac35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>Classe chargée de travailler sur les données en entrée du problème pour trouver des solution réalisables, opitmisant les objectifs suivants : </p>
@@ -151,74 +146,23 @@ Attributs publics</h2></td></tr>
 </ol>
 <p>On pourra éventuellement avoir plusieurs instances de <a class="el" href="class_field.html" title="Classe représentant la surface -le terrain- et contenant les opérations que l&#39;on effectue sur celui-c...">Field</a> dans une <a class="el" href="class_resolution.html" title="La classe effectuant l&#39;ensemble de la résolution et le front Pareto Elle contient l&#39;intégralité des d...">Resolution</a>. </p>
 </div><h2 class="groupheader">Documentation des constructeurs et destructeur</h2>
-<a class="anchor" id="aec8f8818b33c1dc04ab45b2ee97b9cd4"></a>
+<a class="anchor" id="af7b959b9a214ba6bd0ecc65324d9fe12"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">Evaluation::Evaluation </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_field.html">Field</a> &amp;&#160;</td>
-          <td class="paramname"><em>_field</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="class_parameters.html">Parameters</a> &amp;&#160;</td>
-          <td class="paramname"><em>_params</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Constructeur de la casse résolution </p><dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">_field</td><td>Surface sur laquelle on travaille </td></tr>
-    <tr><td class="paramname">_params</td><td>Paramètres du problème </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Constructeur de la casse résolution </p>
 
 </div>
 </div>
 <h2 class="groupheader">Documentation des fonctions membres</h2>
-<a class="anchor" id="a32d1a075c6dc582f562dc51366ce7b0c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float Evaluation::evaluateRatio </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Evalue le ratio de toutes les solutions </p><dl class="section return"><dt>Renvoie</dt><dd>la moyenne des ratios </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a40555125ea20101fd22db85f37ebd91a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned int Evaluation::evaluateTotalUsable </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Compte le nombre total de parcelles exploitables sur la surface </p><dl class="section return"><dt>Renvoie</dt><dd>nombre de parcelles exploitables</dd></dl>
-<h6></h6>
-<p>Evaluations </p><h6></h6>
-
-</div>
-</div>
 <a class="anchor" id="af96faa0d985feb2ab6f8f2ed4d07df9e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -243,30 +187,6 @@ Attributs publics</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a53050af19d65878d7f926b714184ffcf"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_field.html">Field</a>&amp; Evaluation::get_field </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Accesseur sur l'attribut field </p><dl class="section return"><dt>Renvoie</dt><dd>field, une référence sur un <a class="el" href="class_field.html" title="Classe représentant la surface -le terrain- et contenant les opérations que l&#39;on effectue sur celui-c...">Field</a> </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="a471a5c87afc12623f7f0f1f07e982a7a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -288,97 +208,6 @@ Attributs publics</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Accesseur sur l'attribut de nombre de parcelle exploitables </p><dl class="section return"><dt>Renvoie</dt><dd>nbUsables, un entier non signé </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a62eb998463522f28042773b503088174"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned Evaluation::getRoadDistance </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;&#160;</td>
-          <td class="paramname"><em>coord1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;&#160;</td>
-          <td class="paramname"><em>coord2</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Donne la distance par les routes stockée </p><dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">coord1</td><td>Première coordonnée </td></tr>
-    <tr><td class="paramname">coord2</td><td>Seconde coordonnée </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Renvoie</dt><dd>La distance par le route, un entier non signé </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a724d9e25d3364ae30b8a69fcdc9ca189"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Evaluation::initRoadDistance </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;&#160;</td>
-          <td class="paramname"><em>coord</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Calcule la distance entre une parcelle et les parcelles "suivantes" </p>
-
-</div>
-</div>
-<a class="anchor" id="a7b52dd21d37993d1781f6e4a7075129e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Evaluation::initRoadDistances </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Définit la matrice de distance entre chaque parcelle et chaque autre parcelle </p>
-
-</div>
-</div>
-<a class="anchor" id="aa5888aea58a6be74a29a83613f5f5143"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Evaluation::initSizeNeighbourhood </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Initialise la matrice de voisinage selon la taille de la surface </p>
 
 </div>
 </div>
@@ -413,141 +242,6 @@ Attributs publics</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a734ff96f3b230807abf0c6f95492c802"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float Evaluation::manhattanRatioBetween2Parcels </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;&#160;</td>
-          <td class="paramname"><em>p1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;&#160;</td>
-          <td class="paramname"><em>p2</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Calcule le ratio entre distance par la route et distance Manhattan entre deux positions </p><dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">p1</td><td>premières coordonnées </td></tr>
-    <tr><td class="paramname">p2</td><td>secondes coordonnées </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Renvoie</dt><dd>le ratio, sous forme de flottant </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a0a5ee8d089416dcf8b08acbae5d1c6d1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned Evaluation::parcelsRoadDistance </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;&#160;</td>
-          <td class="paramname"><em>coord1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;&#160;</td>
-          <td class="paramname"><em>coord2</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Calcule la distance par les routes entre deux cellules quelconques, en testant toutes les routes qui desservent les cellules et en respectant les paramètres </p><dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">coord1</td><td>Coordonnée "de départ" </td></tr>
-    <tr><td class="paramname">coord2</td><td>Coordonnée "d'arrivée" </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Renvoie</dt><dd>la valeur, entier non signé, de distance la plus courte, entre les deux coordonnées, en passant par les routes </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a450347ade8f7d4f002890b13e06b5f99"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Evaluation::set_field </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_field.html">Field</a> &amp;&#160;</td>
-          <td class="paramname"><em>_field</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Mutateur sur la surface </p><dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">_field</td><td>Nouvelle surface à évaluer </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="ad17ec4c77bdd19d32520b7b23edad468"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Evaluation::set_params </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_parameters.html">Parameters</a> &amp;&#160;</td>
-          <td class="paramname"><em>_params</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Mutateur sur les paramètres du problème</p>
-<h6></h6>
-<p>Getters </p><h6></h6>
-<h6></h6>
-<p>Setters </p><h6></h6>
-
-</div>
-</div>
-<a class="anchor" id="a7c4ae78668fdf07753eb35256c9276a1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float Evaluation::threadsEvaluateRatio </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Evalue le ratio de toutes les solutions avec des threads </p><dl class="section return"><dt>Renvoie</dt><dd>l'évaluation en flottant </dd></dl>
-
-</div>
-</div>
 <h2 class="groupheader">Documentation des données membres</h2>
 <a class="anchor" id="a2b9bd48dc36e2b67514a8c0a63ff372a"></a>
 <div class="memitem">
@@ -558,7 +252,7 @@ Attributs publics</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Flag indiquant si la matrice de distance des routes a été calculée </p>
+<dl class="section see"><dt>Voir également</dt><dd>Voir si on rajoute le ratio maximum et la moyenne quadratique Flag indiquant si la matrice de distance des routes a été calculée </dd></dl>
 
 </div>
 </div>

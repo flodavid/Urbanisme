@@ -26,7 +26,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-simcity.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Urbanisme
-   &#160;<span id="projectnumber">1.0</span>
+   &#160;<span id="projectnumber">1.2</span>
    </div>
    <div id="projectbrief">Projet visant à l&#39;optimisation du placement de routes sur une surface. https://flodavid.github.io/Urbanisme</div>
   </td>
@@ -110,14 +110,16 @@ Types publics</h2></td></tr>
 Fonctions membres publiques</h2></td></tr>
 <tr class="memitem:ae0248527c43a63ccf14f1f9371b652db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#ae0248527c43a63ccf14f1f9371b652db">get_field</a> ()</td></tr>
 <tr class="separator:ae0248527c43a63ccf14f1f9371b652db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f69e7d3ceb5c0b51975c402e7aec018"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_evaluation.html">Evaluation</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#a8f69e7d3ceb5c0b51975c402e7aec018">get_evaluation</a> ()</td></tr>
-<tr class="separator:a8f69e7d3ceb5c0b51975c402e7aec018"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a684a0a90a67c4bdb48341b9a6d85fd61"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_field_evaluation.html">FieldEvaluation</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#a684a0a90a67c4bdb48341b9a6d85fd61">get_fieldEvaluation</a> ()</td></tr>
+<tr class="separator:a684a0a90a67c4bdb48341b9a6d85fd61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:abc7cb089f69a68a3106f7893cbaf7ad6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#abc7cb089f69a68a3106f7893cbaf7ad6">LocalSearch</a> (<a class="el" href="class_field.html">Field</a> *_field, const <a class="el" href="class_parameters.html">Parameters</a> *_params)</td></tr>
 <tr class="separator:abc7cb089f69a68a3106f7893cbaf7ad6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2143b37f1133e099cd6a43dfc148326c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#a2143b37f1133e099cd6a43dfc148326c">LocalSearch</a> (const <a class="el" href="class_local_search.html">LocalSearch</a> &amp;other)</td></tr>
 <tr class="separator:a2143b37f1133e099cd6a43dfc148326c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ab595de99739aad8964181d94fb66b853"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#ab595de99739aad8964181d94fb66b853">setField</a> (<a class="el" href="class_field.html">Field</a> *_field)</td></tr>
+<tr class="separator:ab595de99739aad8964181d94fb66b853"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab71af061cfd4ad211167f30b6bf9517e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#ab71af061cfd4ad211167f30b6bf9517e">initSolution</a> ()</td></tr>
 <tr class="separator:ab71af061cfd4ad211167f30b6bf9517e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5782779844d99c31bc9fe2367797af41"><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="class_local_search.html#a7b763ee689c3980c1b7519cb1ba47368">Path</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_local_search.html#a5782779844d99c31bc9fe2367797af41">getPaths</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord1, const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord2)</td></tr>
@@ -258,30 +260,11 @@ Fonctions membres publiques</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Renvoie</dt><dd>Gain en accessibilité lors de l'ajout du chemin, nul si le chemin et vide </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a8f69e7d3ceb5c0b51975c402e7aec018"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_evaluation.html">Evaluation</a>&amp; LocalSearch::get_evaluation </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Accesseur sur l'<a class="el" href="class_evaluation.html" title="Classe chargée de travailler sur les données en entrée du problème pour trouver des solution réalisab...">Evaluation</a> </p><dl class="section return"><dt>Renvoie</dt><dd>Une référence sur l'évaluation, modifiable </dd></dl>
+<p>Tests</p>
+<p>Fin tests</p>
+<dl class="section see"><dt>Voir également</dt><dd>voir comment ne pas utiliser initRoadDistances et si c'est utile de recalculer le ratio</dd>
+<dd>
+voir comment ne pas utiliser initRoadDistances et si c'est utile de recalculer le ratio </dd></dl>
 
 </div>
 </div>
@@ -306,6 +289,30 @@ Fonctions membres publiques</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Accesseur sur la surface de l'<a class="el" href="class_evaluation.html" title="Classe chargée de travailler sur les données en entrée du problème pour trouver des solution réalisab...">Evaluation</a> </p><dl class="section return"><dt>Renvoie</dt><dd>Une référence sur la surface, modifiable </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a684a0a90a67c4bdb48341b9a6d85fd61"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_field_evaluation.html">FieldEvaluation</a>* LocalSearch::get_fieldEvaluation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Accesseur sur l'<a class="el" href="class_evaluation.html" title="Classe chargée de travailler sur les données en entrée du problème pour trouver des solution réalisab...">Evaluation</a> </p><dl class="section return"><dt>Renvoie</dt><dd>Une pointeur sur l'évaluation, modifiable </dd></dl>
 
 </div>
 </div>
@@ -355,9 +362,25 @@ Fonctions membres publiques</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Relie les entrées et sorties entre elles, de manière directe</p>
+<p>Relie les entrées et sorties entre elles, de manière directe </p>
+
+</div>
+</div>
+<a class="anchor" id="ab595de99739aad8964181d94fb66b853"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LocalSearch::setField </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_field.html">Field</a> *&#160;</td>
+          <td class="paramname"><em>_field</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 <h6></h6>
-<p>Création et améliorations d'une solution </p><h6></h6>
+<p>Setters </p><h6></h6>
 
 </div>
 </div>

@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>Urbanisme:  Fichier source de Engine/parameters.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="github-light.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo-simcity.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Urbanisme
+   &#160;<span id="projectnumber">1.2</span>
+   </div>
+   <div id="projectbrief">Projet visant à l&#39;optimisation du placement de routes sur une surface. https://flodavid.github.io/Urbanisme</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&#160;associées</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_0b6ee6e7e9547e675db4add2e5de97da.html">Engine</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">parameters.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="class_parameters.html">    6</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_parameters.html">Parameters</a></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordtype">unsigned</span> serve_distance;</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordtype">unsigned</span> road_width;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="class_parameters.html#ae51da94c9ccc0b03f3c40696a875f8bf">Parameters</a>(<span class="keywordtype">unsigned</span> _serve_distance, <span class="keywordtype">unsigned</span> _road_width);</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="class_parameters.html#ae51da94c9ccc0b03f3c40696a875f8bf">Parameters</a>(<span class="keyword">const</span> <a class="code" href="class_parameters.html">Parameters</a>&amp; other);</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    ~<a class="code" href="class_parameters.html">Parameters</a>();</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div><div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="class_parameters.html#a24b24b6f75e38b557409f1608d855f25">   30</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <a class="code" href="class_parameters.html#a24b24b6f75e38b557409f1608d855f25">get_road_width</a>()<span class="keyword"> const</span></div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">    </span>{ <span class="keywordflow">return</span> road_width; }</div><div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="class_parameters.html#ac5da3d531558c09300be6c66830ea070">   36</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <a class="code" href="class_parameters.html#ac5da3d531558c09300be6c66830ea070">get_serve_distance</a>()<span class="keyword"> const</span></div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">    </span>{ <span class="keywordflow">return</span> serve_distance; }</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div><div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="class_parameters.html#af1fcf48ceb559f001e82911040ba5a81">   43</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_parameters.html#af1fcf48ceb559f001e82911040ba5a81">set_road_width</a>(<span class="keywordtype">unsigned</span> width)</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    { road_width= width; }</div><div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="class_parameters.html#a34640826d215df735015b9261112f289">   49</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_parameters.html#a34640826d215df735015b9261112f289">set_serve_distance</a>(<span class="keywordtype">unsigned</span> distance)</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    { serve_distance= distance; }</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;};</div><div class="ttc" id="class_parameters_html_a24b24b6f75e38b557409f1608d855f25"><div class="ttname"><a href="class_parameters.html#a24b24b6f75e38b557409f1608d855f25">Parameters::get_road_width</a></div><div class="ttdeci">unsigned get_road_width() const </div><div class="ttdef"><b>Definition:</b> parameters.h:30</div></div>
+<div class="ttc" id="class_parameters_html"><div class="ttname"><a href="class_parameters.html">Parameters</a></div><div class="ttdoc">Représente les paramètres du problèmes. </div><div class="ttdef"><b>Definition:</b> parameters.h:6</div></div>
+<div class="ttc" id="class_parameters_html_ac5da3d531558c09300be6c66830ea070"><div class="ttname"><a href="class_parameters.html#ac5da3d531558c09300be6c66830ea070">Parameters::get_serve_distance</a></div><div class="ttdeci">unsigned get_serve_distance() const </div><div class="ttdef"><b>Definition:</b> parameters.h:36</div></div>
+<div class="ttc" id="class_parameters_html_ae51da94c9ccc0b03f3c40696a875f8bf"><div class="ttname"><a href="class_parameters.html#ae51da94c9ccc0b03f3c40696a875f8bf">Parameters::Parameters</a></div><div class="ttdeci">Parameters(unsigned _serve_distance, unsigned _road_width)</div><div class="ttdef"><b>Definition:</b> parameters.cpp:5</div></div>
+<div class="ttc" id="class_parameters_html_af1fcf48ceb559f001e82911040ba5a81"><div class="ttname"><a href="class_parameters.html#af1fcf48ceb559f001e82911040ba5a81">Parameters::set_road_width</a></div><div class="ttdeci">void set_road_width(unsigned width)</div><div class="ttdef"><b>Definition:</b> parameters.h:43</div></div>
+<div class="ttc" id="class_parameters_html_a34640826d215df735015b9261112f289"><div class="ttname"><a href="class_parameters.html#a34640826d215df735015b9261112f289">Parameters::set_serve_distance</a></div><div class="ttdeci">void set_serve_distance(unsigned distance)</div><div class="ttdef"><b>Definition:</b> parameters.h:49</div></div>
+</div><!-- fragment --></div><!-- contents -->
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Urbanisme développé par <a href="https://github.com/flodavid" class="user-mention">flodavid</a></p>
+        <p><em>Urbanisme</em> est un logiciel libre, licencié sous<a href="https://www.gnu.org/licenses/gpl.html">GPLv3</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

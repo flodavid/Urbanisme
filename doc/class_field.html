@@ -26,7 +26,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-simcity.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Urbanisme
-   &#160;<span id="projectnumber">1.0</span>
+   &#160;<span id="projectnumber">1.2</span>
    </div>
    <div id="projectbrief">Projet visant à l&#39;optimisation du placement de routes sur une surface. https://flodavid.github.io/Urbanisme</div>
   </td>
@@ -100,7 +100,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 <p>Classe représentant la surface -le terrain- et contenant les opérations que l'on effectue sur celui-ci. L'état d'une instance de cette classe à la fin de l'algorithme représente une solution trouvée après la recherche. On peut donc avoir plusieurs <a class="el" href="class_field.html" title="Classe représentant la surface -le terrain- et contenant les opérations que l&#39;on effectue sur celui-c...">Field</a> lors d'une exécution.  
  <a href="class_field.html#details">Plus de détails...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_field_8h_source.html">Field.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="field_8h_source.html">field.h</a>&gt;</code></p>
+<div class="dynheader">
+Graphe d'héritage de Field:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_field.png" usemap="#Field_map" alt=""/>
+  <map id="Field_map" name="Field_map">
+<area href="class_field_evaluation.html" title="La classe permettant de stocker une surface et de calculer et mettre à jour son évaluation. " alt="FieldEvaluation" shape="rect" coords="0,56,99,80"/>
+</map>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Fonctions membres publiques</h2></td></tr>
@@ -128,8 +137,8 @@ Fonctions membres publiques</h2></td></tr>
 <tr class="separator:a6dda638994b360483e67514a9ede9f15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a7a478e7f5d978e181b7fca88ddad3c"><td class="memItemLeft" align="right" valign="top">State&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a9a7a478e7f5d978e181b7fca88ddad3c">operator[]</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;pos) const </td></tr>
 <tr class="separator:a9a7a478e7f5d978e181b7fca88ddad3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a029b437dc7ed5af197ee95fb4ca5eafe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a029b437dc7ed5af197ee95fb4ca5eafe">operator=</a> (const <a class="el" href="class_field.html">Field</a> &amp;other)</td></tr>
-<tr class="separator:a029b437dc7ed5af197ee95fb4ca5eafe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf8f55b8fa64727c4fbcd8771c51c763"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#acf8f55b8fa64727c4fbcd8771c51c763">operator=</a> (const <a class="el" href="class_field.html">Field</a> &amp;other)</td></tr>
+<tr class="separator:acf8f55b8fa64727c4fbcd8771c51c763"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b3e16dd4a4591025f0804e28c055ed4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; State &gt; &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a0b3e16dd4a4591025f0804e28c055ed4">begin</a> () const </td></tr>
 <tr class="memdesc:a0b3e16dd4a4591025f0804e28c055ed4"><td class="mdescLeft">&#160;</td><td class="mdescRight">begin  <a href="#a0b3e16dd4a4591025f0804e28c055ed4">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a0b3e16dd4a4591025f0804e28c055ed4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,6 +159,10 @@ Fonctions membres publiques</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a6baa2ec69d89a224f2cf96af8eac9250"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a6baa2ec69d89a224f2cf96af8eac9250">resizeWithDimensions</a> ()</td></tr>
 <tr class="separator:a6baa2ec69d89a224f2cf96af8eac9250"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af67368b3657686388d02abd22a7ffb55"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#af67368b3657686388d02abd22a7ffb55">addRoads</a> (std::list&lt; <a class="el" href="class_coordinates.html">Coordinates</a> &gt; *roads, unsigned serveDistance)</td></tr>
+<tr class="separator:af67368b3657686388d02abd22a7ffb55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ca8e3f2497fa77ef80a624307c1b027"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a2ca8e3f2497fa77ef80a624307c1b027">removeRoads</a> (std::list&lt; <a class="el" href="class_coordinates.html">Coordinates</a> &gt; *roads, unsigned serveDistance)</td></tr>
+<tr class="separator:a2ca8e3f2497fa77ef80a624307c1b027"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8853ca2b2d01a90f4f11f99bad6a080e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a8853ca2b2d01a90f4f11f99bad6a080e">tryAdd_in_out</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coords)</td></tr>
 <tr class="separator:a8853ca2b2d01a90f4f11f99bad6a080e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd295fdc29ff4021e2f4245ec0b4c73c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#abd295fdc29ff4021e2f4245ec0b4c73c">add_undefined</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coords)</td></tr>
@@ -194,8 +207,10 @@ Amis</h2></td></tr>
 <tr class="separator:ad38e9b89a990280215681e53798ccc70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1fce4188b56f3b4d595adc700c188e4b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a1fce4188b56f3b4d595adc700c188e4b">hasServingRoad</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord, unsigned servingDistance) const </td></tr>
 <tr class="separator:a1fce4188b56f3b4d595adc700c188e4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32d5e1cef872d4bc1b0c5edc8e1693bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a32d5e1cef872d4bc1b0c5edc8e1693bd">defineUsables</a> (unsigned servingDistance)</td></tr>
-<tr class="separator:a32d5e1cef872d4bc1b0c5edc8e1693bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a3e635c2097a12d2f05246155bbb0ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a0a3e635c2097a12d2f05246155bbb0ec">setUsables</a> (unsigned servingDistance)</td></tr>
+<tr class="separator:a0a3e635c2097a12d2f05246155bbb0ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a580c863023361fceed35e237a44d30c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a580c863023361fceed35e237a44d30c2">resetUsables</a> (unsigned servingDistance)</td></tr>
+<tr class="separator:a580c863023361fceed35e237a44d30c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a687a4b971e05b8307a3bdf496e6f8acc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field.html#a687a4b971e05b8307a3bdf496e6f8acc">updateUsables</a> (unsigned servingDistance)</td></tr>
 <tr class="separator:a687a4b971e05b8307a3bdf496e6f8acc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -394,6 +409,40 @@ Amis</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="af67368b3657686388d02abd22a7ffb55"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Field::addRoads </td>
+          <td>(</td>
+          <td class="paramtype">std::list&lt; <a class="el" href="class_coordinates.html">Coordinates</a> &gt; *&#160;</td>
+          <td class="paramname"><em>roads</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>serveDistance</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Ajoute une liste de routes </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">roads</td><td>Liste de coordonnées des routes à ajouter </td></tr>
+    <tr><td class="paramname">serveDistance</td><td>Distance de desserte des routes, utile pour mettre à jour les parcelles exploitables </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>Voir également</dt><dd>on pourrait améliorer, en mettant à jour seulement les parcelles proches des routes ajoutées </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a6dda638994b360483e67514a9ede9f15"></a>
 <div class="memitem">
 <div class="memproto">
@@ -558,28 +607,6 @@ Amis</h2></td></tr>
 <ul>
 <li></li>
 </ul>
-
-</div>
-</div>
-<a class="anchor" id="a32d5e1cef872d4bc1b0c5edc8e1693bd"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Field::defineUsables </td>
-          <td>(</td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>servingDistance</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Définit les parcelles dans le voisinage d'une route comme étant exploitables </p><dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">servingDistance</td><td>Distance maximale du voisinage </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -1006,7 +1033,7 @@ Amis</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a029b437dc7ed5af197ee95fb4ca5eafe"></a>
+<a class="anchor" id="acf8f55b8fa64727c4fbcd8771c51c763"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1014,7 +1041,7 @@ Amis</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Field::operator= </td>
+          <td class="memname"><a class="el" href="class_field.html">Field</a>&amp; Field::operator= </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="class_field.html">Field</a> &amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
@@ -1090,6 +1117,61 @@ Amis</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a2ca8e3f2497fa77ef80a624307c1b027"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Field::removeRoads </td>
+          <td>(</td>
+          <td class="paramtype">std::list&lt; <a class="el" href="class_coordinates.html">Coordinates</a> &gt; *&#160;</td>
+          <td class="paramname"><em>roads</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>serveDistance</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Retire une liste de routes </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">roads</td><td>Liste de coordonnées des routes à retirer </td></tr>
+    <tr><td class="paramname">serveDistance</td><td>Distance de desserte des routes, utile pour mettre à jour les parcelles exploitables </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a580c863023361fceed35e237a44d30c2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Field::resetUsables </td>
+          <td>(</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>servingDistance</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Met à jour les parcelles dans le voisinage d'une route comme étant exploitables </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">servingDistance</td><td>Distance maximale du voisinage </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a6baa2ec69d89a224f2cf96af8eac9250"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1162,6 +1244,28 @@ Amis</h2></td></tr>
 <p>Mutateur sur le nombre de colonnes -la largeur- de la surface </p><dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramname">width</td><td>La nouvelle largeur de la surface </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a0a3e635c2097a12d2f05246155bbb0ec"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Field::setUsables </td>
+          <td>(</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>servingDistance</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Définit les parcelles dans le voisinage d'une route comme étant exploitables </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">servingDistance</td><td>Distance maximale du voisinage </td></tr>
   </table>
   </dd>
 </dl>
@@ -1315,9 +1419,9 @@ Amis</h2></td></tr>
 </div>
 </div>
 <hr/>La documentation de cette classe a été générée à partir des fichiers suivants :<ul>
-<li>Engine/<a class="el" href="_field_8h_source.html">Field.h</a></li>
-<li>Engine/Field.cpp</li>
-<li>Engine/Field_others.cpp</li>
+<li>Engine/<a class="el" href="field_8h_source.html">field.h</a></li>
+<li>Engine/field.cpp</li>
+<li>Engine/field_others.cpp</li>
 </ul>
 </div><!-- contents -->
 

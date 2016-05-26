@@ -26,7 +26,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo-simcity.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Urbanisme
-   &#160;<span id="projectnumber">1.0</span>
+   &#160;<span id="projectnumber">1.2</span>
    </div>
    <div id="projectbrief">Projet visant à l&#39;optimisation du placement de routes sur une surface. https://flodavid.github.io/Urbanisme</div>
   </td>
@@ -107,21 +107,26 @@ Fonctions membres publiques</h2></td></tr>
 <tr class="memitem:acfe95ef5ef837cbc834f39318c859605"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#acfe95ef5ef837cbc834f39318c859605">Resolution</a> (const <a class="el" href="class_field.html">Field</a> &amp;field, const <a class="el" href="class_parameters.html">Parameters</a> &amp;_params)</td></tr>
 <tr class="separator:acfe95ef5ef837cbc834f39318c859605"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ad4e3992dd73ab0e0f4bfac13b745df2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#ad4e3992dd73ab0e0f4bfac13b745df2f">changeWorkField</a> (<a class="el" href="class_field.html">Field</a> *_field)</td></tr>
+<tr class="separator:ad4e3992dd73ab0e0f4bfac13b745df2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a0bfaf4498fbeacaaae1e7132c3c0c3f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#a0bfaf4498fbeacaaae1e7132c3c0c3f7">evaluateBothObjectives</a> ()</td></tr>
 <tr class="separator:a0bfaf4498fbeacaaae1e7132c3c0c3f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adebea2c67df3d3b098d414dd78145ec6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#adebea2c67df3d3b098d414dd78145ec6">spread</a> (const <a class="el" href="class_evaluation.html">Evaluation</a> *eval)</td></tr>
-<tr class="separator:adebea2c67df3d3b098d414dd78145ec6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a528fc00fec396fab9ac39b39f5025fa0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#a528fc00fec396fab9ac39b39f5025fa0">isNotDominated</a> (const <a class="el" href="class_evaluation.html">Evaluation</a> &amp;eval)</td></tr>
+<tr class="separator:a528fc00fec396fab9ac39b39f5025fa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac765ce4a69368e66b0a100eff78befef"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#ac765ce4a69368e66b0a100eff78befef">spread</a> (const <a class="el" href="class_evaluation.html">Evaluation</a> &amp;eval)</td></tr>
+<tr class="separator:ac765ce4a69368e66b0a100eff78befef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:a4b36e5af598ec70fd7895c2c1a45e050"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#a4b36e5af598ec70fd7895c2c1a45e050">localSearchUsableObjective</a> ()</td></tr>
-<tr class="separator:a4b36e5af598ec70fd7895c2c1a45e050"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c7e5827206c22806f518e780453bfd8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#a8c7e5827206c22806f518e780453bfd8">localSearchAccessObjective</a> ()</td></tr>
-<tr class="separator:a8c7e5827206c22806f518e780453bfd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6786e4f9ec74f3b3697dea47eac1007"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#ae6786e4f9ec74f3b3697dea47eac1007">localSearchUsableObjective</a> (unsigned maxRoadsToAdd=10)</td></tr>
+<tr class="separator:ae6786e4f9ec74f3b3697dea47eac1007"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3daeeeb91d47752ce8ce851b443e92c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#ae3daeeeb91d47752ce8ce851b443e92c">localSearchAccessObjective</a> (unsigned maxPathsToAdd=1)</td></tr>
+<tr class="separator:ae3daeeeb91d47752ce8ce851b443e92c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:ab410122f23c8c9fee198fe0eb78f096e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#ab410122f23c8c9fee198fe0eb78f096e">initResolution</a> ()</td></tr>
 <tr class="separator:ab410122f23c8c9fee198fe0eb78f096e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d6dd508abd613da4cb8e701a5cf752d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d6dd508abd613da4cb8e701a5cf752d"></a>
-<a class="el" href="class_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>launchResolution</b> ()</td></tr>
-<tr class="separator:a7d6dd508abd613da4cb8e701a5cf752d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ad77db88069fbc035f8f179285b84e66c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#ad77db88069fbc035f8f179285b84e66c">trySaveParetoToTxt</a> (std::string fileName) const </td></tr>
+<tr class="separator:ad77db88069fbc035f8f179285b84e66c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>La classe effectuant l'ensemble de la résolution et le front Pareto Elle contient l'intégralité des données du problème et est chargée de lancer les algos, de stocker les solutions et de construire le front pareto résultant. </p>
@@ -216,6 +221,25 @@ Fonctions membres publiques</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Documentation des fonctions membres</h2>
+<a class="anchor" id="ad4e3992dd73ab0e0f4bfac13b745df2f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Resolution::changeWorkField </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_field.html">Field</a> *&#160;</td>
+          <td class="paramname"><em>_field</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<h6></h6>
+<p>Setters </p><h6></h6>
+<p>TODO demander à l'utilisateur si il veut sauvegarder les résultats avant d'effacer le champ </p>
+
+</div>
+</div>
 <a class="anchor" id="a0bfaf4498fbeacaaae1e7132c3c0c3f7"></a>
 <div class="memitem">
 <div class="memproto">
@@ -246,35 +270,62 @@ Fonctions membres publiques</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Création de la route qui relie deux entrées/sorties </p><dl class="section return"><dt>Renvoie</dt><dd></dd></dl>
 <h6></h6>
 <p><a class="el" href="class_resolution.html" title="La classe effectuant l&#39;ensemble de la résolution et le front Pareto Elle contient l&#39;intégralité des d...">Resolution</a> </p><h6></h6>
 
 </div>
 </div>
-<a class="anchor" id="a8c7e5827206c22806f518e780453bfd8"></a>
+<a class="anchor" id="a528fc00fec396fab9ac39b39f5025fa0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Resolution::localSearchAccessObjective </td>
+          <td class="memname">bool Resolution::isNotDominated </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="class_evaluation.html">Evaluation</a> &amp;&#160;</td>
+          <td class="paramname"><em>eval</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Vérifie si l'évaluation est dominée par l'évaluation d'au moins une des solutions précédemment calculées </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">eval</td><td><a class="el" href="class_evaluation.html" title="Classe chargée de travailler sur les données en entrée du problème pour trouver des solution réalisab...">Evaluation</a> à traiter </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>faux si la solution est dominée par une des solutions présents </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae3daeeeb91d47752ce8ce851b443e92c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_field.html">Field</a> &amp; Resolution::localSearchAccessObjective </td>
+          <td>(</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>maxPathsToAdd</em> = <code>1</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>Exécute la recherche locale permettant de maximiser l'accessibilité </p><dl class="section see"><dt>Voir également</dt><dd>Utiliser un signal pour mettre à jour l'affichage pendant les recherche ? </dd></dl>
+<dl class="section see"><dt>Voir également</dt><dd>tentative d'augmentation de l'accessibilité tant que le gain est suffisament important rajouter condition dans le while </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a4b36e5af598ec70fd7895c2c1a45e050"></a>
+<a class="anchor" id="ae6786e4f9ec74f3b3697dea47eac1007"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Resolution::localSearchUsableObjective </td>
+          <td class="memname"><a class="el" href="class_field.html">Field</a> &amp; Resolution::localSearchUsableObjective </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>maxRoadsToAdd</em> = <code>10</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -285,14 +336,14 @@ Fonctions membres publiques</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="adebea2c67df3d3b098d414dd78145ec6"></a>
+<a class="anchor" id="ac765ce4a69368e66b0a100eff78befef"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">int Resolution::spread </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_evaluation.html">Evaluation</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_evaluation.html">Evaluation</a> &amp;&#160;</td>
           <td class="paramname"><em>eval</em></td><td>)</td>
           <td></td>
         </tr>
@@ -305,6 +356,24 @@ Fonctions membres publiques</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Renvoie</dt><dd>le nombre de solutions supprimées </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad77db88069fbc035f8f179285b84e66c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Resolution::trySaveParetoToTxt </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>fileName</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<h6></h6>
+<p>Export </p><h6></h6>
 
 </div>
 </div>
