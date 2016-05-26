@@ -1,4 +1,4 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
@@ -7,6 +7,7 @@
 
 #include "Engine/field.h"
 #include "Engine/parameters.h"
+#include "fieldevaluation.h"
 #include "resolution.h"
 
 #include "fieldview.hpp"
@@ -24,7 +25,7 @@ private:
     Parameters parameters;
     Resolution* resolution;
 
-    Evaluation* eval;
+    FieldEvaluation* eval;
 
     FieldWidget* fieldWidget;
 

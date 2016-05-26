@@ -5,6 +5,7 @@
 
 #include "Engine/parameters.h"
 #include "evaluation.h"
+#include "fieldevaluation.h"
 #include "localsearch.h"
 
 /**
@@ -19,7 +20,7 @@ private:
 
     LocalSearch localSearch;
 
-    std::list<Evaluation> pareto_evals;
+    std::list<FieldEvaluation> pareto_evals;
 
     // Calulated data
     unsigned nbCells;

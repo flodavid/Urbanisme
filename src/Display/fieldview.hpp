@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QRubberBand>
@@ -16,7 +16,7 @@
 #include "../stdafx.h"
 
 // Classes
-#include "../Engine/field.h"
+#include "fieldevaluation.h"
 #include "loadwindow.h"
 
 enum Colors{Black, Gray, Red, White, LightBlue, DarkBlue};

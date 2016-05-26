@@ -34,7 +34,6 @@ public:
      * @param other Instance à recopier
      */
     Field(const Field& other);
-    ~Field();
 
     /*=== Getters ===*/
     /**
@@ -160,8 +159,8 @@ public:
         assert(nb_cols == other.nb_cols && nb_rows == other.nb_cols);
         ins_outs= other.ins_outs;
         parcels= other.parcels;
-		
-		return *this;
+
+        return *this;
     }
 
     /**

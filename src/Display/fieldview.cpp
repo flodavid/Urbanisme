@@ -256,7 +256,7 @@ void FieldWidget::selectParcel(const Coordinates &pos)
             selecteds.pop_front();
         }
         if (selecteds.size() == 2) {
-            Evaluation eval(*field, Parameters(serveDistance, 1)); // TODO voir comment on gère la taille de la route
+            FieldEvaluation eval(*field, Parameters(serveDistance, 1)); // TODO voir comment on gère la taille de la route
             eval.initSizeNeighbourhood();
             unsigned by_roads_distance= eval.parcelsRoadDistance(selecteds.front(), selecteds.back());
             cout << "Distance entre "<< selecteds.front() <<" et "<< selecteds.back()<< " : "<< by_roads_distance<< endl;

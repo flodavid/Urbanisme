@@ -3,6 +3,8 @@
 #include <ctime>
 #include <fstream>
 
+#include "fieldevaluation.h"
+
 using namespace std;
 
 /// #########################
@@ -59,7 +61,7 @@ void Resolution::changeWorkField(Field *_field)
 
 void Resolution::evaluateBothObjectives()
 {
-    Evaluation* myEvaluation(localSearch.get_evaluation());
+    FieldEvaluation* myEvaluation(localSearch.get_fieldEvaluation());
 
     unsigned nb_usables= myEvaluation->evaluateTotalUsable();
     cout << "Nombre total de parcelles exploitables : "<< nb_usables<< endl;
@@ -95,7 +97,7 @@ void Resolution::evaluateBothObjectives()
 
 bool Resolution::isNotDominated(const Evaluation &eval)
 {
-    for (list<Evaluation>::iterator it(pareto_evals.end()); it != pareto_evals.begin(); --it)
+    for (list<FieldEvaluation>::iterator it(pareto_evals.end()); it != pareto_evals.begin(); --it)
     {
         if( eval.is_dominated(*it) ) {
             #if DEBUG_PARETO
@@ -113,7 +115,7 @@ int Resolution::spread(const Evaluation& eval)
     #if DEBUG_PARETO
     cout << "Propagation de la solution dominante"<< endl;
     #endif
-    for (list<Evaluation>::iterator it(pareto_evals.end()); it != pareto_evals.begin(); --it)
+    for (list<FieldEvaluation>::iterator it(pareto_evals.end()); it != pareto_evals.begin(); --it)
     {
         if( (*it).is_dominated(eval) ) {
             ++nb_deleted;
@@ -162,14 +164,14 @@ Field &Resolution::localSearchAccessObjective(unsigned maxPathsToAdd)
 //    float gain_min;
     unsigned num_path= 1;
     do {
-        float access_before= localSearch.get_evaluation()->get_avgAccess();
+        float access_before= localSearch.get_fieldEvaluation()->get_avgAccess();
 //        unsigned usables_before= localSearch.get_evaluation().get_nbUsables();
 
         float gain_access= localSearch.addRoadsAccess(2 * params.get_serve_distance());
         percent_gain= (gain_access / access_before) * 100.0;
         cout << "Gain de "<< percent_gain<< "%"<< endl;
 
-        float percent_usables_after= (localSearch.get_evaluation()->get_nbUsables() *100.0) / (float)nbCells;
+        float percent_usables_after= (localSearch.get_fieldEvaluation()->get_nbUsables() *100.0) / (float)nbCells;
         cout << "Exploitables : "<< percent_usables_after<< "%"<< endl;
 
         /// @see tentative d'augmentation de l'accessibilité tant que le gain est suffisament important

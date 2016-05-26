@@ -1,14 +1,14 @@
 Urbanisme
 =========
-TER visant à l'optimisation du placement de routes sur une surface, en maximisant
+# TER visant à l'optimisation du placement de routes sur une surface, en maximisant
 les zones exploitables et leur accessibilité.
 
 
             Compilation Travis                   |                  License                     |
 ------------------------------------------------ | -------------------------------------------- |
 [![Build Status](https://travis-ci.org/flodavid/Urbanisme.svg?branch=master)](https://travis-ci.org/flodavid/Urbanisme) | [![GPLv3 License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/flodavid/Urbanisme/blob/master/COPYING.txt)
- 
-![SIM-CITY](http://eaassets-a.akamaihd.net/prod.simcity.com/sites/all/themes/prod-build/img/logo-simcity.png)
+
+[![SIM-CITY](http://eaassets-a.akamaihd.net/prod.simcity.com/sites/all/themes/prod-build/img/logo-simcity.png)](https://flodavid.github.io/Urbanisme)
 
 ## Organisation du travail et du développement
 ---------------
@@ -56,7 +56,7 @@ les "points chauds", qui on un rapport élevé distance "directe"/distance_Manha
     - [ ] Pour améliorer les deux critères (avec une valuation des critères ? avec un alpha et un beta ?)
     - [ ] Avec une planification sur le nombre de routes demandé, plutôt que des algos gloutons
 + [ ] Corriger les bugs 
-    + [ ] Des boutons reset et flush (revoir qui reset, ce qui est reset et sauvegardé et comment on le fait)
+    + [x] Des boutons reset et flush (revoir qui reset, ce qui est reset et sauvegardé et comment on le fait)
     + [ ] Vérifier que l'évaluation est correcte
     + [ ] Pourquoi ce n'est pas toujours la meilleure route qui est choisie (apparition de "patés")
 + [ ] Front pareto et collection solution

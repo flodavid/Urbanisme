@@ -18,10 +18,6 @@ Field::Field(const Field& other) :
 {
 }
 
-Field::~Field()
-{
-}
-
 //@}
 ///#######################
 ///      Setters
