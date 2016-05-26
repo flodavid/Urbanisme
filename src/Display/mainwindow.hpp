@@ -21,15 +21,16 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 private:
+    // Données
     Field initialField;
     Parameters parameters;
     Resolution* resolution;
 
-    FieldEvaluation* eval;
-
+    // Widgets
     FieldWidget* fieldWidget;
 
-//  MENU BAR
+    //  MENU BAR
+    QAction* askAction;
     QAction* aboutAction;
     QAction* initAction;
     QAction* evalAction;
@@ -39,7 +40,9 @@ private:
     QAction* flushAction;
     QAction* exportAction;
 
-    QWidget* aboutWidget;
+    // Fenêtres
+    QWidget* aboutWindow;
+    QWidget* initWindow;
 
 public:
     /**
@@ -69,14 +72,9 @@ public:
     explicit MainWindow(unsigned nbCols, unsigned nbRows, const Parameters& params, QWidget *parent = 0);
 
     /**
-     * Demande les tailles de la surface à traiter à l'utilisateur
+     * Destructeur de la classe MainWindow
      */
-    void askSizes();
-
-    /**
-     * Demande les paramètres du problème avec lesquels effectuer la résolution
-     */
-    void askParams();
+    virtual ~MainWindow();
 
     /**
      * Créer et instancie les composants graphiques
@@ -99,10 +97,16 @@ public:
 private:
     void updateWorkField();
 
-    /* Events */
-signals:
-
+    /* Actions des boutons et de l'interface */
 public slots:
+    /**
+     * Demande les tailles de la surface à traiter à l'utilisateur
+     */
+    void askSizes();
+//    /**
+//     * Demande les paramètres du problème avec lesquels effectuer la résolution
+//     */
+//    void askParams();
     /**
      * Affiche la fenêtre de présentation
      */

@@ -16,13 +16,13 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), initialField(0,0), parameters(0,0), fieldWidget(nullptr)
 {
-    //    askSizes();
     //    askParams();
 
     resolution= new Resolution(initialField, parameters);
 
     initComponents();
     initEvents();
+    askSizes();
 }
 
 MainWindow::MainWindow(unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth, QWidget *parent)
@@ -34,6 +34,7 @@ MainWindow::MainWindow(unsigned nbCols, unsigned nbRows, unsigned serveDistance,
 
     initComponents();
     initEvents();
+    askSizes();
 }
 
 MainWindow::MainWindow(unsigned nbCols, unsigned nbRows, const Parameters &params, QWidget *parent)
@@ -48,10 +49,30 @@ MainWindow::MainWindow(unsigned nbCols, unsigned nbRows, const Parameters &param
     initEvents();
 }
 
+MainWindow::~MainWindow()
+{
+    if (aboutWindow == nullptr) {
+        delete aboutWindow;
+    }
+    delete aboutAction;
+    delete initAction;
+    delete evalAction;
+    delete usableAction;
+    delete accessAction;
+    delete resetAction;
+    delete flushAction;
+    delete exportAction;
+
+    delete resolution;
+
+    delete fieldWidget;
+}
+
 #define INITIAL_SCALE 32
 void MainWindow::initComponents()
 {
-    aboutWidget= nullptr;
+    aboutWindow= nullptr;
+    initWindow= nullptr;
 
     resize(initialField.get_width() * INITIAL_SCALE , initialField.get_height() * INITIAL_SCALE +20);
 
@@ -60,6 +81,7 @@ void MainWindow::initComponents()
     fieldWidget->show();
 
     // Menu bar
+    askAction= menuBar()->addAction( tr("Ask") );
     aboutAction= menuBar()->addAction( tr("About") );
     initAction= menuBar()->addAction( tr("Initialise") );
     evalAction= menuBar()->addAction( tr("Evaluate") );
@@ -75,6 +97,7 @@ void MainWindow::initComponents()
 
 void MainWindow::initEvents()
 {
+    connect(askAction, &QAction::triggered, this, &MainWindow::askSizes);
     connect(aboutAction, &QAction::triggered, this, &MainWindow::popAbout);
     connect(initAction, &QAction::triggered, this, &MainWindow::launchInit);
     connect(evalAction, &QAction::triggered, this, &MainWindow::launchEval);
@@ -104,21 +127,60 @@ void MainWindow::updateWorkField()
 }
 
 //@}
-/// #########################
-///         Slots
-/// #########################
+/// ##############################################
+///     Actions des boutons et de l'interface
+/// ##############################################
 //@{
+
+#include <QDialog>
+#include <QSpinBox>
+void MainWindow::askSizes()
+{
+    if(initWindow != nullptr){
+        delete initWindow;
+    }
+    initWindow = new QDialog(this);
+    initWindow->resize(190, 120);
+    initWindow->setMaximumSize(190, 120);
+
+    QVBoxLayout* VLay= new QVBoxLayout(initWindow);
+    QLabel* width_label= new QLabel("Largeur ?");
+    QSpinBox* width_spin= new QSpinBox(initWindow);
+        width_spin->setValue(14); /// TODO utiliser une variabe
+    QLabel* height_label= new QLabel("Hauteur ?");
+    QSpinBox* height_spin= new QSpinBox(initWindow);
+        height_spin->setValue(14); /// TODO utiliser une variabe
+
+    QPushButton* valid= new QPushButton("OK", initWindow);
+
+    VLay->addWidget(width_label);
+    VLay->addWidget(width_spin);
+    VLay->addWidget(height_label);
+    VLay->addWidget(height_spin);
+    VLay->addWidget(valid);
+
+    width_label->setStyleSheet("QLabel {color : darkred;  }");
+    height_label->setStyleSheet("QLabel {color : darkred;  }");
+    connect(valid, &QPushButton::clicked, initWindow, &QDialog::close );
+
+//    QDialog* dialog= new QInputDialog(this);
+//    dialog->setLabelText("mon texte");
+//    dialog->getInt(this, "Tailles et paramètres", "Largeur", 15);
+//    dialog->getInt(this, "Tailles et paramètres", "Hauteur", 15);
+//    dialog->show();
+    initWindow->show();
+}
 
 void MainWindow::popAbout()
 {
-    if(aboutWidget == nullptr){
-        aboutWidget = new QWidget();
-        QVBoxLayout* VLay= new QVBoxLayout(aboutWidget);
+    if(aboutWindow == nullptr){
+        aboutWindow = new QWidget(/*this*/);
+        QVBoxLayout* VLay= new QVBoxLayout(aboutWindow);
         QLabel* signature= new QLabel("Florian DAVID");
         QLabel* about= new QLabel("Projet première année de master");
         QLabel* contact= new QLabel("Contact : <a href='mailto:f.david5@laposte.net?subject=Application Urbanisme'>f.david5@laposte.net</a>");
         QLabel* depot= new QLabel("Depot: <a href='https://github.com/flodavid/Urbanisme'>github.com/flodavid/Urbanisme</a>");
-        QPushButton* valid= new QPushButton("OK", aboutWidget);
+        QPushButton* valid= new QPushButton("OK", aboutWindow);
         VLay->addWidget(signature);
         VLay->addWidget(about);
         VLay->addWidget(contact);
@@ -132,9 +194,9 @@ void MainWindow::popAbout()
         about->setStyleSheet("QLabel {color : darkblue;  }");
         contact->setStyleSheet("QLabel {color : darkblue;  }");
         depot->setStyleSheet("QLabel {color : darkblue;  }");
-        connect(valid, SIGNAL(clicked()), aboutWidget, SLOT(close()) );
+        connect(valid, SIGNAL(clicked()), aboutWindow, SLOT(close()) );
     }
-    aboutWidget->show();
+    aboutWindow->show();
 }
 
 void MainWindow::launchInit()
