@@ -10,24 +10,6 @@ FieldEvaluation::FieldEvaluation(Field &field, const Parameters &params):
 
 //@}
 /// #########################
-///      Getters
-/// #########################
-//@{
-
-
-//@}
-/// #########################
-///      Setters
-/// #########################
-//@{
-
-void FieldEvaluation::set_params(const Parameters &_params)
-{
-    params = _params;
-}
-
-//@}
-/// #########################
 ///     Calculs de données
 /// #########################
 //@{

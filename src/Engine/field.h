@@ -88,7 +88,6 @@ public:
      */
     void add_road(const Coordinates& coords)
     { parcels[coords.row][coords.col]= is_road; }
-
     /**
      * Ajoute une route à partir de coordonnées
      * @param col Colonne de la route
@@ -100,11 +99,15 @@ public:
     /**
      * Ajoute une liste de routes
      * @param roads Liste de coordonnées des routes à ajouter
+     * @param serveDistance Distance de desserte des routes, utile pour mettre à jour les parcelles
+     * exploitables
      */
     void addRoads(std::list<Coordinates>* roads, unsigned serveDistance);
     /**
      * Retire une liste de routes
      * @param roads Liste de coordonnées des routes à retirer
+     * @param serveDistance Distance de desserte des routes, utile pour mettre à jour les parcelles
+     * exploitables
      */
     void removeRoads(std::list<Coordinates>* roads, unsigned serveDistance);
 

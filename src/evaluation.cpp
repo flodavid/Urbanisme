@@ -17,9 +17,3 @@ Evaluation::Evaluation() :
 Evaluation::~Evaluation()
 {
 }
-
-/// #########################
-///      Getters
-/// #########################
-//@{
-

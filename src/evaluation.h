@@ -20,8 +20,13 @@ class Evaluation
 {
 protected:
     // Données calculées
+    /// @brief Nombre de parcelles utilisables
     unsigned nbUsables;
+    /// @brief Moyenne du ratio entre distance directe et distance par les routes,
+    /// représente l'accessibilité de la surface
     float avgAccess;
+
+    /// @see Voir si on rajoute le ratio maximum et la moyenne quadratique
 
 public:
     // FLAGS

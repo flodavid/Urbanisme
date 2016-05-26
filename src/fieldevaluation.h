@@ -6,24 +6,26 @@
 #include "Engine/field.h"
 #include "evaluation.h"
 
+/**
+ * @brief La classe permettant de stocker une surface et de calculer et mettre à jour son évaluation
+ */
 class FieldEvaluation : public Field, public Evaluation
 {
 private:
-    Parameters params;
+    const Parameters& params;
 
     // Données calculées
     std::vector< std::vector< std::vector< std::vector< unsigned > > > > road_distances;
 
 public:
+    /**
+     * Constructeur à partir d'une surface existante recopiée et de paramètres recopiés
+     * @param field
+     * @param params
+     */
     FieldEvaluation(Field &field, const Parameters& params);
 
     /* Getters */
-//    /**
-//     * Accesseur sur l'attribut field
-//     * @return field, une référence sur un Field
-//     */
-//    Field& get_field() { return ; }
-
     /**
      * Donne la distance par les routes stockée
      * @param coord1 Première coordonnée
@@ -38,12 +40,6 @@ public:
     //        assert(road_distances_are_initiated);
         return road_distances[coord1.row][coord1.col][coord2.row][coord2.col];
     }
-
-    /*** Setters */
-    /**
-     * Mutateur sur les paramètres du problème
-     */
-    void set_params ( const Parameters& _params );
 
     /* Calculs de données */
     /**

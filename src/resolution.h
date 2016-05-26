@@ -84,9 +84,11 @@ public:
     Field & localSearchAccessObjective(unsigned maxPathsToAdd = 1);
 
     /* Résolution */
+    /**
+     * Création de la route qui relie deux entrées/sorties
+     * @return
+     */
     Field &initResolution();
-
-    Field & launchResolution();
 
     /* Export */
 
