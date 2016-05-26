@@ -250,3 +250,4 @@ _Pvt_Extensions
 # FAKE - F# Make
 .fake/
 doc/stylesheets/stylesheet.css
+doc/stylesheets/github-light.css
