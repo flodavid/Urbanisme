@@ -14,36 +14,53 @@
 /// #########################
 //@{
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), initialField(0,0), parameters(0,0), fieldWidget(nullptr)
+    : QMainWindow(parent), initialField(0,0), parameters(0,0)
 {
     //    askParams();
+    const QPoint* size= askSizes();
+    initialField.set_width(size->x());
+    initialField.set_height(size->y());
+    delete size;
+
+    fieldWidget= new FieldWidget(&initialField, parameters.get_serve_distance());
 
     resolution= new Resolution(initialField, parameters);
 
     initComponents();
     initEvents();
-    askSizes();
 }
 
 MainWindow::MainWindow(unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth, QWidget *parent)
     : QMainWindow(parent), initialField(nbCols, nbRows), parameters(serveDistance, roadsWidth)
 {
     fieldWidget= new FieldWidget(&initialField, serveDistance);
+    initialField.setUsables(parameters.get_serve_distance());
 
     resolution= new Resolution(initialField, parameters);
 
     initComponents();
     initEvents();
-    askSizes();
 }
 
 MainWindow::MainWindow(unsigned nbCols, unsigned nbRows, const Parameters &params, QWidget *parent)
     : QMainWindow(parent), initialField(nbCols, nbRows), parameters(params)
 {
     fieldWidget= new FieldWidget(&initialField, params.get_serve_distance());
-    initialField.setUsables(params.get_serve_distance());
+    initialField.setUsables(parameters.get_serve_distance());
 
     resolution= new Resolution(*(fieldWidget->get_field()), parameters);
+
+    initComponents();
+    initEvents();
+}
+
+MainWindow::MainWindow(const Field& field, const Parameters &params, QWidget *parent)
+    : QMainWindow(parent), initialField(field), parameters(params)
+{
+    fieldWidget= new FieldWidget(&initialField, parameters.get_serve_distance());
+    initialField.setUsables(parameters.get_serve_distance());
+
+    resolution= new Resolution(initialField, parameters);
 
     initComponents();
     initEvents();
@@ -134,7 +151,7 @@ void MainWindow::updateWorkField()
 
 #include <QDialog>
 #include <QSpinBox>
-void MainWindow::askSizes()
+const QPoint* MainWindow::askSizes()
 {
     if(initWindow != nullptr){
         delete initWindow;
@@ -168,6 +185,8 @@ void MainWindow::askSizes()
 //    dialog->getInt(this, "Tailles et paramètres", "Largeur", 15);
 //    dialog->getInt(this, "Tailles et paramètres", "Hauteur", 15);
     initWindow->exec();
+
+    return new QPoint(width_spin->value(), height_spin->value());
 }
 
 void MainWindow::popAbout()
@@ -243,6 +262,9 @@ void MainWindow::launchLocalAccess()
 void MainWindow::launchEval()
 {
     resolution->evaluateBothObjectives();
+    if (resolution->get_nb_not_dominated() > (size_t)0) {
+        exportAction->setEnabled(true);
+    }
 }
 
 void MainWindow::resetField()
@@ -280,6 +302,7 @@ void MainWindow::exportPareto()
 
     file_browser->setAcceptMode(QFileDialog::AcceptSave);
     file_browser->setNameFilter(tr("Save") +" (*.pareto.txt)");
+//    file_browser->setDirectory("../");
 
     if(file_browser->exec() == QDialog::Accepted){
         std::string filename = file_browser->selectedFiles()[0].toStdString();

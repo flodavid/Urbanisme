@@ -46,6 +46,9 @@ public:
 
     ~Resolution();
 
+    /* Getters */
+    inline size_t get_nb_not_dominated() const { return pareto_evals.size(); }
+
     /* Setters */
     void changeWorkField(Field* _field);
 

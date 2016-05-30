@@ -67,7 +67,7 @@ public:
      */
     bool is_dominated(const Evaluation& other) const
     {
-        return ( (other.nbUsables > nbUsables) && (other.avgAccess > avgAccess) );
+        return ( other.nbUsables >= nbUsables && other.avgAccess <= avgAccess );
     }
 
 };

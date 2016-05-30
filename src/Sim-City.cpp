@@ -16,17 +16,9 @@
 
 using namespace std;
 
-#define WIDTH   9
-#define HEIGHT  9
+#define WIDTH   10
+#define HEIGHT  20
 
-MainWindow* initWindow(Parameters& params)
-{
-    MainWindow* field_window= new MainWindow(WIDTH, HEIGHT, params);
-
-    field_window->show();
-
-    return field_window;
-}
 /**
  * Création du terrain de l'exemple, exécution de l'évaluation, affichage du résultat,
  * affichage tu temps pris par de l'évaluation
@@ -38,14 +30,12 @@ int main(int argc, char* argv[])
     // Paramètres du problèmes
     Parameters myParameters(2, 1);
 
-    // Fenêtre
-    MainWindow* initMainWindow= initWindow(myParameters);
-
     /** Tests **/
-//     Field& myField= initMainWindow->get_initialField();
+    Field& myField= *(new Field(0,0));
 
 //     // Solution de l'exemple :
-//    myField.createExample();
+    myField.createExample();
+
 //    // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
 //    myField.defineUsables(myParameters.get_serve_distance());
 
@@ -71,9 +61,14 @@ int main(int argc, char* argv[])
 //    Resolution myResolution(myField, myParameters);
 //    myResolution.launchResolution();
 
-    initMainWindow->repaint();
-
+//    mainWindow->repaint();
     /** Fin tests **/
+
+    // Fenêtre
+    MainWindow* mainWindow= new MainWindow(myField, myParameters);
+
+//    MainWindow* mainWindow= new MainWindow(WIDTH, HEIGHT, myParameters);
+    mainWindow->show();
 
     return app->exec();
 }

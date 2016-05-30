@@ -68,7 +68,9 @@ void Resolution::evaluateBothObjectives()
     cout << "Nombre total de parcelles exploitables : "<< nb_usables<< endl;
 
     // === LANCEMENT DES ALGOS D'EVALUATION ET DE RECHERCHE LOCALE === //
-    cout << "Evaluation..."<< endl;
+#if LOGS_PARETO
+    clog << "Evaluation..."<< endl;
+#endif
     time_t startTime, stopTime; startTime = time(NULL);
 
     // Evaluation
@@ -89,43 +91,55 @@ void Resolution::evaluateBothObjectives()
         << " pour l'évaluation : "<< elapsedTimeEval<< endl;
     cout << "=> Moyenne des ratios : "<< avg_ratio<< endl<< endl;
 
-    if (isNotDominated(*myEvaluation)){
+    if (isNotDominated(*myEvaluation)) {
+#if LOGS_PARETO
+        clog << "La solution n'est pas dominée, on la propage et on l'ajoute"<< endl;
+#endif
         spread(*myEvaluation);
         pareto_evals.push_back(*myEvaluation);
+#if LOGS_PARETO
+        clog << "Il reste "<< pareto_evals.size()<< " solution non dominées"<< endl;
+    } else {
+        clog << "La solution est dominée (Il y "<< pareto_evals.size()<< " solution non dominées)"<< endl;
+#endif
     }
 }
 
 bool Resolution::isNotDominated(const Evaluation &eval)
 {
-    for (list<FieldEvaluation>::iterator it(pareto_evals.end()); it != pareto_evals.begin(); --it)
-    {
+//    int x= pareto_evals.size();
+    list<FieldEvaluation>::iterator it(pareto_evals.end());
+    do {
+        --it;
         if( eval.is_dominated(*it) ) {
             #if DEBUG_PARETO
             cout << "La solutions est dominée par une des précédentes solutions"<< endl;
             #endif
             return false;
         }
-    }
+    } while ( it != pareto_evals.begin() );
     return true;
 }
 
 int Resolution::spread(const Evaluation& eval)
 {
     int nb_deleted= 0;
-    #if DEBUG_PARETO
+#if LOGS_PARETO
     cout << "Propagation de la solution dominante"<< endl;
-    #endif
+#endif
     for (list<FieldEvaluation>::iterator it(pareto_evals.end()); it != pareto_evals.begin(); --it)
     {
-        if( (*it).is_dominated(eval) ) {
+        if( it->is_dominated(eval) ) {
             ++nb_deleted;
-            #if DEBUG_PARETO
-            cout << "Suppression de l'élement à la place "<< it._M_node<< " des non dominés"<< endl;
-            #endif
+#if LOGS_PARETO
+            clog << "Suppression de l'élement d'éval ("<< eval.get_nbUsables()<< ";"<< eval.get_avgAccess()<< ") des non dominés"<< endl;
+#endif
             it= pareto_evals.erase(it); /// TODO pourquoi ça peut provoquer un seg fault ?
         }
     }
-
+#if LOGS_PARETO
+    clog << nb_deleted << " supprimés dominés par la solution d'éval ("<< eval.get_nbUsables()<< ";"<< eval.get_avgAccess()<< ")" << endl;
+#endif
     return nb_deleted;
 }
 

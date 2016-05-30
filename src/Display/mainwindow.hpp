@@ -70,6 +70,13 @@ public:
      * @param parent Widget parent
      */
     explicit MainWindow(unsigned nbCols, unsigned nbRows, const Parameters& params, QWidget *parent = 0);
+    /**
+     * Constructeur à partir d'une surface déjà crée
+     * @param field Surface à utiliser
+     * @param params Paramètres de résolution
+     * @param parent Widget parent
+     */
+    explicit MainWindow(const Field& field, const Parameters& params, QWidget *parent = 0);
 
     /**
      * Destructeur de la classe MainWindow
@@ -94,7 +101,7 @@ public:
     Field& get_initialField() { return initialField; }
 
     /* Others */
-private:
+//private:
     void updateWorkField();
 
     /* Actions des boutons et de l'interface */
@@ -102,7 +109,7 @@ public slots:
     /**
      * Demande les tailles de la surface à traiter à l'utilisateur
      */
-    void askSizes();
+    const QPoint* askSizes();
 //    /**
 //     * Demande les paramètres du problème avec lesquels effectuer la résolution
 //     */

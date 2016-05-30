@@ -26,7 +26,7 @@ Field::Field(const Field& other) :
 
 void Field::resizeWithDimensions()
 {
-    parcels.resize(nb_cols);
+    parcels.resize(nb_rows);
 
     for (vector<State> &parcel_row : parcels) {
         parcel_row.resize(nb_cols, is_undefined);

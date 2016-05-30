@@ -63,7 +63,6 @@ unsigned int FieldEvaluation::testPathBy(const Coordinates& testCoord, const Coo
     return minDist;
 }
 
-
 unsigned FieldEvaluation::calcRoadDistance(const Coordinates &coord1, const Coordinates &coord2, list< Coordinates > *visited, unsigned int dist_max)
 {
     assert(at(coord1) >= is_road && at(coord2) >= is_road);
