@@ -156,21 +156,24 @@ void LocalSearch::createRoadsBetween(Coordinates &inOut1, const Coordinates &inO
     }
 }
 
-void LocalSearch::initSolution()
+bool LocalSearch::tryInitSolution()
 {
     list<Coordinates>& ins_outs= fieldeval->get_insOuts();
 
-    Coordinates in_out_1= ins_outs.front();
-    ins_outs.pop_front();
-    ins_outs.push_back(in_out_1);
-    Coordinates in_out_2= ins_outs.front();
+    if (ins_outs.size() >=2) {
+        Coordinates in_out_1= ins_outs.front();
+        ins_outs.pop_front();
+        ins_outs.push_back(in_out_1);
+        Coordinates in_out_2= ins_outs.front();
 
-    createRoadsBetween(in_out_1, in_out_2);
+        cout << "E/S 1 : "<< in_out_1<< "; E/S 2 : "<< in_out_2<< endl;
+        createRoadsBetween(in_out_1, in_out_2);
 
-    cout << "E/S 1 : "<< in_out_1<< "; E/S 2 : "<< in_out_2<< endl;
+        fieldeval->resetUsables(params.get_serve_distance());
 
-    //    field->defineUsables(params.get_serve_distance());
-    fieldeval->resetUsables(params.get_serve_distance());
+        return true;
+    }
+    return false;
 }
 
 list<Path*>* LocalSearch::getPaths(const Coordinates &coord1, const Coordinates &coord2)

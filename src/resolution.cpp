@@ -2,6 +2,7 @@
 
 #include <ctime>
 #include <fstream>
+#include <QtWidgets/QErrorMessage> /// TODO Supprimer de cette classe et faire apparaître la fenêtre ailleurs
 
 #include "fieldevaluation.h"
 
@@ -84,9 +85,8 @@ void Resolution::evaluateBothObjectives()
 
     cout << endl;
     // AFFICHAGE DES RESULTATS
-    printf("\nLe nombre de secondes écoulées pour l'initialisation est %ld\n",elapsedTimeInit);
-
-    printf("\nLe nombre de secondes écoulées pour l'évaluation est %ld\n", elapsedTimeEval);
+    clog << "Le nombre de secondes écoulées est, pour l'initialisation : "<< elapsedTimeInit
+        << " pour l'évaluation : "<< elapsedTimeEval<< endl;
     cout << "=> Moyenne des ratios : "<< avg_ratio<< endl<< endl;
 
     if (isNotDominated(*myEvaluation)){
@@ -122,7 +122,7 @@ int Resolution::spread(const Evaluation& eval)
             #if DEBUG_PARETO
             cout << "Suppression de l'élement à la place "<< it._M_node<< " des non dominés"<< endl;
             #endif
-            pareto_evals.erase(it);
+            it= pareto_evals.erase(it); /// TODO pourquoi ça peut provoquer un seg fault ?
         }
     }
 
@@ -198,7 +198,12 @@ Field &Resolution::localSearchAccessObjective(unsigned maxPathsToAdd)
 Field& Resolution::initResolution()
 {
 //    srand(time(NULL));
-    localSearch.initSolution();
+    if (!localSearch.tryInitSolution()) {
+        /// TODO plus tard : enlever l'affichage de la fenêtre d'erreur de la classe Resolution
+        QErrorMessage* error_window= new QErrorMessage();
+        error_window->setWindowTitle("Erreur d'initialisation");
+        error_window->showMessage( "Impossible d'initialiser une route si il n'y a pas au moins deux entrées/sorties" );
+    }
 
     return localSearch.get_field();
 }

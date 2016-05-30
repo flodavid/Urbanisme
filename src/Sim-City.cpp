@@ -16,8 +16,8 @@
 
 using namespace std;
 
-#define WIDTH   18
-#define HEIGHT  13
+#define WIDTH   9
+#define HEIGHT  9
 
 MainWindow* initWindow(Parameters& params)
 {

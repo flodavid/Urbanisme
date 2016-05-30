@@ -93,7 +93,7 @@ public:
     /**
      * Relie les entrées et sorties entre elles, de manière directe
      */
-    void initSolution();
+    bool tryInitSolution();
 
     /* = Improvments = */
     /**

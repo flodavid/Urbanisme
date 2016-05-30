@@ -167,8 +167,7 @@ void MainWindow::askSizes()
 //    dialog->setLabelText("mon texte");
 //    dialog->getInt(this, "Tailles et paramètres", "Largeur", 15);
 //    dialog->getInt(this, "Tailles et paramètres", "Hauteur", 15);
-//    dialog->show();
-    initWindow->show();
+    initWindow->exec();
 }
 
 void MainWindow::popAbout()

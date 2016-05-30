@@ -42,7 +42,7 @@ private:
 
     // Fenêtres
     QWidget* aboutWindow;
-    QWidget* initWindow;
+    QDialog* initWindow;
 
 public:
     /**

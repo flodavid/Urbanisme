@@ -36,9 +36,6 @@ void Field::resizeWithDimensions()
 void Field::addRoads(std::list<Coordinates> *roads, unsigned serveDistance)
 {
     for (const Coordinates& coord_road : *roads) {
-#if LOGS_ADD_ACCESS_ROAD
-        clog << " Ajout de la route "<< coord_road<< " pour augmenter l'accessibilité"<< endl;
-#endif
         add_road(coord_road);
     }
 
@@ -50,9 +47,6 @@ void Field::addRoads(std::list<Coordinates> *roads, unsigned serveDistance)
 void Field::removeRoads(std::list<Coordinates> *roads, unsigned serveDistance)
 {
     for (const Coordinates& coord_road : *roads) {
-#if LOGS_ADD_ACCESS_ROAD
-        clog << "Suppression de la route "<< coord_road<<" (id: "<< at(coord_road)<< ")"<< endl;
-#endif
         add_undefined(coord_road);
     }
 
