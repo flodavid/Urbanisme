@@ -36,6 +36,7 @@ private:
     QAction* evalAction;
     QAction* usableAction;
     QAction* accessAction;
+    QAction* hotmapAction;
     QAction* resetAction;
     QAction* flushAction;
     QAction* exportAction;
@@ -149,6 +150,10 @@ public slots:
      * Supprime toutes les routes de la surface
      */
     void emptyField();
+    /**
+     * Dessine la surface avec les points chauds de mauvaise accessibilité
+     */
+    void hotmapDraw();
     /**
      * Demande à l'utilisateur l'emplacement et le nom du fichier d'export du front Pareto
      */

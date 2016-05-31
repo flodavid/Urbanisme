@@ -60,13 +60,13 @@ les "points chauds", qui on un rapport élevé distance "directe"/distance_Manha
     + [ ] Vérifier que l'évaluation est correcte
     + [ ] Pourquoi ce n'est pas toujours la meilleure route qui est choisie (apparition de "patés")
 + [ ] Front pareto et collection solution
-    - [ ] Ajouter des solutions dans le front Pareto lors de la recherche de meilleures solutions
-    - [ ] Garder les valeurs d'évaluations des solutions dominées pour pouvoir les afficher en plus du front Pareto
-+ [ ] Afficher les points chauds : points avec la plus grande moyenne d'accessibilité avec les autres
-    + Couleurs ?
+    - [x] Ajouter des solutions dans le front Pareto lors de la recherche de meilleures solutions
+    - [ ] Garder les valeurs d'évaluations des solutions dominées pour pouvoir les afficher en plus du front Pareto ?
++ [x] Afficher les points chauds : points avec la plus grande moyenne d'accessibilité avec les autres
+    + [x] Couleurs selon l'écart avec la moyenne 
     + Valeurs de la moyenne avec les autres cellules ?
-    + Ecart avec la moyenne en pourcentage ?
-+ [ ] Sauvegarde et chargement d'une solution
+    
++ [ ] Sauvegarde et chargement d'une solution ?
 
 ## Algorithme/Objectifs
 - Pour ratio entre distance directe et par les routes, faire une moyenne ? un maximum ? garder total à coté ? Moyenne pour l'instant  (OK : Moyenne quadratique et ratio max possibles)

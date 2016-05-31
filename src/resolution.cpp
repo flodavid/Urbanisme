@@ -17,8 +17,8 @@ Resolution::Resolution(unsigned nbCols, unsigned nbRows, unsigned serveDistance,
     params(serveDistance, roadsWidth), localSearch(new Field(nbCols, nbRows), &params), nbCells(nbCols * nbRows)
 {
     Field& initField= localSearch.get_field();
-    for (const Coordinates& in_out : ins_outs){
-        if ( !initField.tryAdd_in_out(in_out)){
+    for (const Coordinates& in_out : ins_outs) {
+        if ( !initField.tryAdd_in_out(in_out)) {
             cerr << "Les coordonnées "<< in_out<< " ne représentent pas une entrée/sortie valide"<< endl;
         }
     }
@@ -155,7 +155,7 @@ int Resolution::spread(const Evaluation& eval)
 /// #########################
 //@{
 
-Field &Resolution::localSearchUsableObjective(unsigned maxRoadsToAdd)
+FieldEvaluation * Resolution::localSearchUsableObjective(unsigned maxRoadsToAdd)
 {
     unsigned road_num= 1;
     int gain;
@@ -168,26 +168,29 @@ Field &Resolution::localSearchUsableObjective(unsigned maxRoadsToAdd)
         cout << endl<< "=== Ajout de la route "<< road_num<< endl;
 #endif
         ++ road_num;
+        // Evaluation de la surface avant de lancer l'algo
+        evaluateBothObjectives();
     } while(gain >= 0 && road_num <= maxRoadsToAdd);
 
     cout << road_num<< " ajoutées"<< endl;
     cout << endl<< "===== Evaluation après maximisation du nombre d'exploitables ====="<< endl;
     evaluateBothObjectives();
 
-    return localSearch.get_field();
+    return &(localSearch.get_field());
 }
 
 //#define MIN_PERCENT_GAIN 5.0 // TODO supprimer du calcul de gain min pour pouvoir le supprimer
-Field &Resolution::localSearchAccessObjective(unsigned maxPathsToAdd)
+FieldEvaluation *Resolution::localSearchAccessObjective(unsigned maxPathsToAdd)
 {
-    // Evaluation de la surface avant de lancer l'algo
-    evaluateBothObjectives();
 
     float percent_gain;
 //    float gain_min;
     unsigned num_path= 1;
     float gain_access= 0.0;
     do {
+        // Evaluation de la surface avant de lancer l'algo
+        evaluateBothObjectives();
+
         float access_before= localSearch.get_fieldEvaluation()->get_avgAccess();
 //        unsigned usables_before= localSearch.get_evaluation().get_nbUsables();
 
@@ -211,7 +214,7 @@ Field &Resolution::localSearchAccessObjective(unsigned maxPathsToAdd)
     cout << endl<< "===== Evaluation après maximisation de l'accessibilité ====="<< endl;
     evaluateBothObjectives();
 
-    return localSearch.get_field();
+    return &(localSearch.get_field());
 }
 
 //@}
@@ -220,7 +223,7 @@ Field &Resolution::localSearchAccessObjective(unsigned maxPathsToAdd)
 /// ############################
 //@{
 
-Field& Resolution::initResolution()
+FieldEvaluation* Resolution::initResolution()
 {
 //    srand(time(NULL));
     if (!localSearch.tryInitSolution()) {
@@ -230,7 +233,7 @@ Field& Resolution::initResolution()
         error_window->showMessage( "Impossible d'initialiser une route si il n'y a pas au moins deux entrées/sorties" );
     }
 
-    return localSearch.get_field();
+    return &(localSearch.get_field());
 }
 
 //@}

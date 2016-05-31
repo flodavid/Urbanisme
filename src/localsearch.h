@@ -47,7 +47,7 @@ public:
      * Accesseur sur la surface de l'Evaluation
      * @return Une référence sur la surface, modifiable
      */
-    Field& get_field() { return *fieldeval; }
+    FieldEvaluation& get_field() { return *fieldeval; }
     /**
      * Accesseur sur l'Evaluation
      * @return Une pointeur sur l'évaluation, modifiable

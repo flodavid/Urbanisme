@@ -79,19 +79,19 @@ public:
      * Exécute la recherche locale permettant de maximiser le nombre de parcelles exploitables
      * @see Utiliser un signal pour mettre à jour l'affichage pendant les recherche ?
      */
-    Field & localSearchUsableObjective(unsigned maxRoadsToAdd = 10);
+    FieldEvaluation *localSearchUsableObjective(unsigned maxRoadsToAdd = 10);
     /**
      * Exécute la recherche locale permettant de maximiser l'accessibilité
      * @see Utiliser un signal pour mettre à jour l'affichage pendant les recherche ?
      */
-    Field & localSearchAccessObjective(unsigned maxPathsToAdd = 1);
+    FieldEvaluation* localSearchAccessObjective(unsigned maxPathsToAdd = 1);
 
     /* Résolution */
     /**
      * Création de la route qui relie deux entrées/sorties
      * @return
      */
-    Field &initResolution();
+    FieldEvaluation *initResolution();
 
     /* Export */
 

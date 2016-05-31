@@ -98,15 +98,18 @@ void MainWindow::initComponents()
     fieldWidget->show();
 
     // Menu bar
-    askAction= menuBar()->addAction( tr("Ask") );
-    aboutAction= menuBar()->addAction( tr("About") );
+    QMenu* othersMenu= menuBar()->addMenu( tr("Others⇲") );
+    askAction= othersMenu->addAction( tr("Ask") );
+    aboutAction= othersMenu->addAction( tr("About") );
     initAction= menuBar()->addAction( tr("Initialise") );
     evalAction= menuBar()->addAction( tr("Evaluate") );
-    QMenu* menu_resols= menuBar()->addMenu( tr("Resolutions") );
+    QMenu* menu_resols= menuBar()->addMenu( tr("Resolutions⇲") );
     usableAction= menu_resols->addAction( tr("Usable") );
     accessAction= menu_resols->addAction( tr("Access") );
-    resetAction= menuBar()->addAction( tr("Reset") );
-    flushAction= menuBar()->addAction( tr("Flush") );
+    QMenu* actionsMenu= menuBar()->addMenu( tr("Actions⇲") );;
+    resetAction= actionsMenu->addAction( tr("Reset") );
+    flushAction= actionsMenu->addAction( tr("Flush") );
+    hotmapAction= actionsMenu->addAction( tr("Draw Hotmap") );
     exportAction= menuBar()->addAction( tr("Export"));
 
     exportAction->setEnabled(false);
@@ -122,6 +125,7 @@ void MainWindow::initEvents()
     connect(accessAction, &QAction::triggered, this, &MainWindow::launchLocalAccess);
     connect(resetAction, &QAction::triggered, this, &MainWindow::resetField);
     connect(flushAction, &QAction::triggered, this, &MainWindow::emptyField);
+    connect(hotmapAction, &QAction::triggered, this, &MainWindow::hotmapDraw);
     connect(exportAction, &QAction::triggered, this, &MainWindow::exportPareto);
 
     // Gestion du bouton export grisé ou non
@@ -226,9 +230,9 @@ void MainWindow::launchInit()
 {
     updateWorkField();
 
-    Field& result_field= resolution->initResolution();
+    FieldEvaluation* result_field= resolution->initResolution();
 
-    fieldWidget->set_field(&result_field);
+    fieldWidget->update_field(result_field);
     fieldWidget->redraw();
     fieldWidget->show();
 }
@@ -237,12 +241,13 @@ void MainWindow::launchLocalUsable()
 {
     updateWorkField();
 
-    QInputDialog widget_ask_nbMax/*= new QInputDialog*/(this);
-    unsigned maxRoadsToAdd= (unsigned)widget_ask_nbMax.getInt(this, "Maximisation du nombre d'exploitables", "Nombre maximum de routes à ajouter ?\n0 pour aucune limite", 0);
+    QInputDialog* widget_ask_nbMax= new QInputDialog(this);
+    unsigned maxRoadsToAdd= (unsigned)widget_ask_nbMax->getInt(this, "Maximisation du nombre d'exploitables", "Nombre maximum de routes à ajouter ?\n0 pour aucune limite", 0);
+    delete widget_ask_nbMax;
 
-    Field& result_field= resolution->localSearchUsableObjective(maxRoadsToAdd);
+    FieldEvaluation* result_field= resolution->localSearchUsableObjective(maxRoadsToAdd);
 
-    fieldWidget->set_field(&result_field);
+    fieldWidget->update_field(result_field);
 
     fieldWidget->redraw();
     fieldWidget->show();
@@ -252,13 +257,13 @@ void MainWindow::launchLocalAccess()
 {
     updateWorkField();
 
-    QInputDialog widget_ask_nbMax/*= new QInputDialog*/(this);
-    unsigned maxPathsToAdd= (unsigned)widget_ask_nbMax.getInt(this, "Maximisation accessibilité", "Nombre chemins à ajouter ?", 1);
-//    delete widget_ask_nbMax;
+    QInputDialog* widget_ask_nbMax= new QInputDialog(this);
+    unsigned maxPathsToAdd= (unsigned)widget_ask_nbMax->getInt(this, "Maximisation accessibilité", "Nombre chemins à ajouter ?", 1);
+    delete widget_ask_nbMax;
 
-    Field& result_field= resolution->localSearchAccessObjective(maxPathsToAdd);
+    FieldEvaluation* result_field= resolution->localSearchAccessObjective(maxPathsToAdd);
 
-    fieldWidget->set_field(&result_field);
+    fieldWidget->update_field(result_field);
 
     fieldWidget->redraw();
     fieldWidget->show();
@@ -299,6 +304,12 @@ void MainWindow::emptyField()
     resolution= new Resolution(initialField, parameters);
 
     fieldWidget->redraw();
+}
+
+void MainWindow::hotmapDraw()
+{
+    fieldWidget->drawHotmapField();
+    fieldWidget->update();
 }
 
 void MainWindow::exportPareto()

@@ -12,7 +12,7 @@ using namespace std;
 //@{
 
 FieldWidget::FieldWidget(Field* _field, unsigned _serveDistance):
-    QWidget(), field(_field), serveDistance(_serveDistance), modified_ES(false)
+    QWidget(), field(_field), serveDistance(_serveDistance), modified_ES(false), has_evaluation(false)
 {
     buffer = new QImage;
     color = new QColor(Qt::white);
@@ -41,7 +41,7 @@ void FieldWidget::setColor(Colors colorIndice)
 {
     switch(colorIndice){
     case LightBlue:
-        this->color->setRgb(150,190,220);
+        this->color->setRgb(160,200,250);
         break;
     case DarkBlue:
         this->color->setRgb(50,90,160);
@@ -61,6 +61,11 @@ void FieldWidget::setColor(Colors colorIndice)
     }
 }
 
+void FieldWidget::setColor(int r, int g, int b, int a)
+{
+    color->setRgb(r, g, b, a);
+}
+
 void FieldWidget::set_unmodified()
 {
     modified_ES= false;
@@ -74,11 +79,9 @@ void FieldWidget::set_unmodified()
 void FieldWidget::drawCell(int colonne, int ligne)
 {
     QPen pe;
-//    pe.setWidth(4);
-//    pe.setBrush(QColor(0,0,0));
+    pe.setColor(*color);
     bufferPainter->setPen(pe);
-    bufferPainter->setBrush(*color);
-    bufferPainter->fillRect(colonne, ligne, 1, 1, *(color));
+    bufferPainter->drawPoint(colonne, ligne);
     #if DEBUG_TMATRICE
     cout <<"draw cell ; ";
     #endif
@@ -104,6 +107,99 @@ void FieldWidget::drawField()
         // Cas d'une parcelle exploitable
         if( state == is_usable){
             setColor(White);
+            drawCell(coord.col, coord.row);
+        }
+        // Cas d'une parcelle non exploitable
+        if( state == is_unusable){
+            setColor(LightBlue);
+            drawCell(coord.col, coord.row);
+        }
+        // Cas d'une route
+        else if(state == is_road){
+            setColor(Gray);
+            drawCell(coord.col, coord.row);
+        }
+        // Cas d'une entrée/sortie
+        else if(state == is_in_out){
+            setColor(Red);
+            drawCell(coord.col, coord.row);
+        }
+        else if (state == is_undefined){
+            setColor(Black);
+            cout << "Dessin d'une case non définie"<< endl;
+            drawCell(coord.col, coord.row);
+        }
+    } while (field->nextCoordinates(&coord));
+    delete &coord;
+
+    // Dessin des cellules sélectionnées
+    setColor(DarkBlue);
+    drawList(selecteds);
+
+    bufferPainter->end();
+}
+
+void FieldWidget::drawHotmapField()
+{
+    field->resetUsables(serveDistance);
+    if (buffer->isNull())
+        cerr<< "Impossible de dessiner, image vide"<< endl;
+    bufferPainter->begin(buffer);
+
+    Coordinates& coord= Field::first();
+    do {
+        State state= field->at(coord);
+
+        // Cas d'une parcelle exploitable
+        if( state == is_usable){
+            FieldEvaluation* field_eval= (FieldEvaluation *)(field);
+            if (!has_evaluation || field_eval == nullptr) {
+                cerr<< "La surface n'a pas d'évaluation"<< endl;
+                setColor(White);
+            } else {
+                float sum= 0.0;
+                unsigned nb= 0;
+                field_eval->initRoadDistances();
+                float avg_avg_ratio= field_eval->evaluateRatio();
+
+                Coordinates& other= Field::first();
+                do {
+                    if (field_eval->at(other) == is_usable && !(other == coord)) {
+                        float ratio= field_eval->manhattanRatioBetween2Parcels(coord, other);
+                        sum+= ratio;
+                        ++nb;
+                    }
+
+                } while (field_eval->nextCoordinates(&other));
+                delete &other;
+
+                float coord_avg= sum / (float)nb;
+                cout << "\tSomme : "<< sum<< ", nb ratios : "<< nb<< ", moy= "<< coord_avg<< endl;
+
+                unsigned green_quant= 190;
+                float delta_ratio= coord_avg - avg_avg_ratio;
+                unsigned red_quant;
+                unsigned blue_quant= 110;
+                if (delta_ratio < 0) {
+                    if (2 + delta_ratio < 0) {
+                        blue_quant= 170;
+                        red_quant= 0;
+                    } else {
+                        red_quant= 110 * (2 + delta_ratio);
+                    }
+                    green_quant= 255;
+                } else {
+                    red_quant= 400* (delta_ratio);
+                    if (red_quant > 255) {
+                        green_quant-= (red_quant -255);
+                        red_quant= 255;
+                    }
+                }
+                cout << "Ecart avec moyenne : "<< delta_ratio<< " ; "
+                    << "Q. rouge : "<< red_quant<< ", Q. vert : "<< green_quant<< endl;
+                setColor(red_quant, green_quant, blue_quant);
+            }
+
             drawCell(coord.col, coord.row);
         }
         // Cas d'une parcelle non exploitable

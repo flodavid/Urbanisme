@@ -16,7 +16,7 @@
 
 using namespace std;
 
-#define WIDTH   10
+#define WIDTH   20
 #define HEIGHT  20
 
 /**
@@ -31,10 +31,10 @@ int main(int argc, char* argv[])
     Parameters myParameters(2, 1);
 
     /** Tests **/
-    Field& myField= *(new Field(0,0));
+    Field& myField= *(new Field(WIDTH,HEIGHT));
 
 //     // Solution de l'exemple :
-    myField.createExample();
+//    myField.createExample();
 
 //    // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
 //    myField.defineUsables(myParameters.get_serve_distance());

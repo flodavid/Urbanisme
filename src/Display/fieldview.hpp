@@ -53,6 +53,7 @@ private:
 
     // FLAGS
     bool modified_ES;
+    bool has_evaluation;
 
 private:
     void initRubber(QMouseEvent* event);
@@ -83,12 +84,14 @@ public:
     bool get_modified_ES() const { return modified_ES; }
 
     /* Setters */
+    void set_field(Field* _field)
+    { field= _field; has_evaluation= false;}
     /**
      * Mutateur sur la surface à afficher
      * @param _field Nouvelle surface à afficher
      */
-    void set_field(Field* _field)
-    { field= _field; }
+    void update_field(FieldEvaluation* _field)
+    { field= _field;  has_evaluation= true;}
 
     /**
      * Remet la valeur du "flag" modified_ES à faux
@@ -97,10 +100,19 @@ public:
 
 private:
     /**
-     * Fonction permettant de fixer la couleur à utiliser pour dessiner un arbre
+     * Fixe la couleur à utiliser pour dessiner un arbre
      * @param colorIndice Indice de la couleur de la case, parmi ceux de l'enum 'Colors'
      */
     void setColor(Colors colorIndice);
+
+    /**
+     * Fixe la couleur à utiliser pour dessiner un arbre
+     * @param r Quantité de rouge, max 255
+     * @param g Quantité de vert, max 255
+     * @param b Quantité de bleu, max 255
+     * @param a Transparence des couleurs, max 255, par défaut 255 (opaque)
+     */
+    void setColor(int r, int g, int b, int a = 255);
 
     /* Affichage */
 private:
@@ -115,11 +127,15 @@ private:
      */
     void drawList(const std::list< Coordinates>& list_coordinates);
 
-public:
     /**
      * Dessine toutes les cellules dans le buffer
      */
     void drawField();
+public:
+    /**
+     * Dessine la surface avec les "points chaud" de mauvaise accessibilité
+     */
+    void drawHotmapField();
     /**
      * Redessine les cellules qui ont changés d'état seulement
      */
