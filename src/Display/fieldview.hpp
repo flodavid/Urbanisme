@@ -51,6 +51,9 @@ private:
 
     std::list<Coordinates> selecteds;
 
+    // FLAGS
+    bool modified_ES;
+
 private:
     void initRubber(QMouseEvent* event);
 
@@ -73,6 +76,12 @@ public:
     Field* get_field()
     { return field; }
 
+    /**
+     * Accesseurs sur modified_ES
+     * @return modified_ES, un booléen
+     */
+    bool get_modified_ES() const { return modified_ES; }
+
     /* Setters */
     /**
      * Mutateur sur la surface à afficher
@@ -80,6 +89,11 @@ public:
      */
     void set_field(Field* _field)
     { field= _field; }
+
+    /**
+     * Remet la valeur du "flag" modified_ES à faux
+     */
+    void set_unmodified();
 
 private:
     /**

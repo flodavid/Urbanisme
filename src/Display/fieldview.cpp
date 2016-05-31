@@ -12,7 +12,7 @@ using namespace std;
 //@{
 
 FieldWidget::FieldWidget(Field* _field, unsigned _serveDistance):
-    QWidget(), field(_field), serveDistance(_serveDistance)
+    QWidget(), field(_field), serveDistance(_serveDistance), modified_ES(false)
 {
     buffer = new QImage;
     color = new QColor(Qt::white);
@@ -59,6 +59,11 @@ void FieldWidget::setColor(Colors colorIndice)
     default :
         this->color->setRgb(255, 255, 255);
     }
+}
+
+void FieldWidget::set_unmodified()
+{
+    modified_ES= false;
 }
 
 /// ####################
@@ -216,10 +221,14 @@ bool FieldWidget::tryAddRoadOnParcel(const Coordinates &pos)
 void FieldWidget::clicInOut(const Coordinates &pos)
 {
     if (field->at(pos) != is_in_out) {
-        if (field->tryAdd_in_out(pos)) field->resetUsables(serveDistance);
+        if (field->tryAdd_in_out(pos)) {
+            field->resetUsables(serveDistance);
+            modified_ES= true;
+        }
     } else {
         field->add_undefined(pos);
         field->resetUsables(serveDistance);
+        modified_ES= true;
     }
 
     redraw();
@@ -257,7 +266,7 @@ void FieldWidget::selectParcel(const Coordinates &pos)
         }
         if (selecteds.size() == 2) {
             FieldEvaluation eval(*field, Parameters(serveDistance, 1)); // TODO voir comment on gère la taille de la route
-            eval.initSizeNeighbourhood();
+//            eval.initSizeNeighbourhood();
             unsigned by_roads_distance= eval.parcelsRoadDistance(selecteds.front(), selecteds.back());
             cout << "Distance entre "<< selecteds.front() <<" et "<< selecteds.back()<< " : "<< by_roads_distance<< endl;
         }

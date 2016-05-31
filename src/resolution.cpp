@@ -43,15 +43,21 @@ Resolution::~Resolution()
 /// ##################
 //@{
 
-void Resolution::changeWorkField(Field *_field)
+void Resolution::changeWorkField(Field *_field, bool newField)
 {
-    /// TODO demander à l'utilisateur si il veut sauvegarder les résultats avant d'effacer le champ
-    Field* field_copy= new Field(*_field);
+    if (newField) {
+        cout << "LA SURFACE A CHANGEE, je recopie la nouvelle et efface solutions précédemment trouvées"<< endl;
+        /// TODO demander à l'utilisateur si il veut sauvegarder les résultats avant d'effacer le champ
+        /// @see la copie est vraiment utile ? (elle est donnée à localsearch)
+        Field* field_copy= new Field(*_field);
 
-    // Redéfinition des valeurs
-    localSearch.setField(field_copy);
-    pareto_evals.clear();
-    nbCells= field_copy->get_height() * field_copy->get_width();
+        // Redéfinition des valeurs
+        localSearch.setField(field_copy);
+        pareto_evals.clear();
+        nbCells= field_copy->get_height() * field_copy->get_width();
+    } else {
+        cout << "Surface inchangée"<< endl;
+    }
 }
 
 //@}
@@ -174,16 +180,20 @@ Field &Resolution::localSearchUsableObjective(unsigned maxRoadsToAdd)
 //#define MIN_PERCENT_GAIN 5.0 // TODO supprimer du calcul de gain min pour pouvoir le supprimer
 Field &Resolution::localSearchAccessObjective(unsigned maxPathsToAdd)
 {
+    // Evaluation de la surface avant de lancer l'algo
+    evaluateBothObjectives();
+
     float percent_gain;
 //    float gain_min;
     unsigned num_path= 1;
+    float gain_access= 0.0;
     do {
         float access_before= localSearch.get_fieldEvaluation()->get_avgAccess();
 //        unsigned usables_before= localSearch.get_evaluation().get_nbUsables();
 
-        float gain_access= localSearch.addRoadsAccess(2 * params.get_serve_distance());
+        gain_access= localSearch.addRoadsAccess(2 * params.get_serve_distance());
         percent_gain= (gain_access / access_before) * 100.0;
-        cout << "Gain de "<< percent_gain<< "%"<< endl;
+        cout << "Pour chemin "<< num_path<<", Gain de "<< percent_gain<< "%"<< endl;
 
         float percent_usables_after= (localSearch.get_fieldEvaluation()->get_nbUsables() *100.0) / (float)nbCells;
         cout << "Exploitables : "<< percent_usables_after<< "%"<< endl;
@@ -195,7 +205,8 @@ Field &Resolution::localSearchAccessObjective(unsigned maxPathsToAdd)
 //        cout << "(Gain min : "<< gain_min<< ")"<< endl;
 
         ++num_path;
-    } while ( num_path < maxPathsToAdd);
+    } while ( num_path <= maxPathsToAdd && gain_access >= 0.0);
+    if (gain_access < 0.0) cout << "On a arrêté l'ajout de chemins car le gain était négatif"<< endl;
 
     cout << endl<< "===== Evaluation après maximisation de l'accessibilité ====="<< endl;
     evaluateBothObjectives();

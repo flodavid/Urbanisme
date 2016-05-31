@@ -42,6 +42,7 @@ public:
     }
 
     /* Calculs de données */
+private:
     /**
      * Initialise la matrice de voisinage selon la taille de la surface
      */
@@ -50,6 +51,8 @@ public:
      * Calcule la distance entre une parcelle et les parcelles "suivantes"
      */
     void initRoadDistance(const Coordinates& coord);
+
+public:
     /**
      * Définit la matrice de distance entre chaque parcelle et chaque autre parcelle
      */

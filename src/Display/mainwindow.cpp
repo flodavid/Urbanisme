@@ -140,7 +140,12 @@ void MainWindow::initEvents()
 
 void MainWindow::updateWorkField()
 {
-    resolution->changeWorkField(fieldWidget->get_field());
+    if ( fieldWidget->get_modified_ES() /* || sizeModified*/ ) {
+        resolution->changeWorkField(fieldWidget->get_field(), true);
+    } else {
+        resolution->changeWorkField(fieldWidget->get_field(), false);
+    }
+
 }
 
 //@}
