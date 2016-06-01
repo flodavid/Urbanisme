@@ -1,7 +1,7 @@
 #include "resolution.h"
 
 #include <ctime>
-#include <fstream>
+#include <sstream>
 #include <QtWidgets/QErrorMessage> /// TODO Supprimer de cette classe et faire apparaître la fenêtre ailleurs
 
 #include "fieldevaluation.h"
@@ -22,12 +22,13 @@ Resolution::Resolution(unsigned nbCols, unsigned nbRows, unsigned serveDistance,
             cerr << "Les coordonnées "<< in_out<< " ne représentent pas une entrée/sortie valide"<< endl;
         }
     }
+    openNewEvaluationsFile();
 }
 
 Resolution::Resolution(const Field &field, const Parameters &_params):
     params(_params), localSearch(new Field(field), &_params), nbCells(field.get_width()* field.get_height())
 {
-
+    openNewEvaluationsFile();
 }
 
 Resolution::~Resolution()
@@ -55,9 +56,18 @@ void Resolution::changeWorkField(Field *_field, bool newField)
         localSearch.setField(field_copy);
         pareto_evals.clear();
         nbCells= field_copy->get_height() * field_copy->get_width();
+
+        openNewEvaluationsFile();
     } else {
         cout << "Surface inchangée"<< endl;
     }
+}
+
+void Resolution::openNewEvaluationsFile()
+{
+    ostringstream oss;
+    oss<< localSearch.get_field().get_width()<<"_"<< localSearch.get_field().get_height()<<".evaluations.txt";
+    evaluations_file.open(oss.str());
 }
 
 //@}
@@ -65,7 +75,6 @@ void Resolution::changeWorkField(Field *_field, bool newField)
 ///      Evaluation et Pareto
 /// ############################
 //@{
-
 void Resolution::evaluateBothObjectives()
 {
     FieldEvaluation* myEvaluation(localSearch.get_fieldEvaluation());
@@ -107,6 +116,7 @@ void Resolution::evaluateBothObjectives()
         clog << "Il reste "<< pareto_evals.size()<< " solution non dominées"<< endl;
     } else {
         clog << "La solution est dominée (Il y "<< pareto_evals.size()<< " solution non dominées)"<< endl;
+
 #endif
     }
 }
@@ -237,11 +247,12 @@ FieldEvaluation* Resolution::initResolution()
 }
 
 //@}
-/// ##########################
+/// #########################
 ///         Export
-/// ##########################
+/// #########################
 //@{
-bool Resolution::trySaveParetoToTxt(string fileName) const
+
+bool Resolution::trySaveParetoToTxt(string fileName)
 {
     clog << "Enregistrement dans le fichier "<< fileName<< endl;
     ofstream file(fileName);
@@ -255,8 +266,15 @@ bool Resolution::trySaveParetoToTxt(string fileName) const
             file << eval.get_nbUsables()<< " " << eval.get_avgAccess() << endl;
         }
         file.close();
+        evaluations_file.close();
+        openNewEvaluationsFile();
     }
     return true;
+}
+
+void Resolution::writeDominatedEvaluation(const Evaluation &eval)
+{
+    evaluations_file << eval.get_nbUsables()<< " " << eval.get_avgAccess() << endl;
 }
 
 //@}
