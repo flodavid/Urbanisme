@@ -84,11 +84,16 @@ public:
     bool get_modified_ES() const { return modified_ES; }
 
     /* Setters */
+    /**
+     * Change la surface utilisée
+     * @param _field Nouvelle surface affichée
+     */
     void set_field(Field* _field)
     { field= _field; has_evaluation= false;}
     /**
-     * Mutateur sur la surface à afficher
-     * @param _field Nouvelle surface à afficher
+     * Les routes de la surface utilisée sont mise à jour pour l'affichage, mais on suppose que les
+     * entrée et sorties sont identiques
+     * @param _field Surface à afficher mise à jour
      */
     void update_field(FieldEvaluation* _field)
     { field= _field;  has_evaluation= true;}
@@ -104,7 +109,6 @@ private:
      * @param colorIndice Indice de la couleur de la case, parmi ceux de l'enum 'Colors'
      */
     void setColor(Colors colorIndice);
-
     /**
      * Fixe la couleur à utiliser pour dessiner un arbre
      * @param r Quantité de rouge, max 255

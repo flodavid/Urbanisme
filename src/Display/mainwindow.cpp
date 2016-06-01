@@ -1,5 +1,7 @@
 #include "mainwindow.hpp"
 
+#include <ostream>
+
 #include <QtGui/QDesktopServices>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QLabel>
@@ -146,9 +148,11 @@ void MainWindow::updateWorkField()
 {
     if ( fieldWidget->get_modified_ES() /* || sizeModified*/ ) {
         resolution->changeWorkField(fieldWidget->get_field(), true);
-    } else {
-        resolution->changeWorkField(fieldWidget->get_field(), false);
+        fieldWidget->set_unmodified();
     }
+//    else {
+//        resolution->changeWorkField(fieldWidget->get_field(), false);
+//    }
 
 }
 
@@ -318,10 +322,14 @@ void MainWindow::exportPareto()
 
     file_browser->setAcceptMode(QFileDialog::AcceptSave);
     file_browser->setNameFilter(tr("Save") +" (*.pareto.txt)");
-//    file_browser->setDirectory("../");
 
     if(file_browser->exec() == QDialog::Accepted){
         std::string filename = file_browser->selectedFiles()[0].toStdString();
+        if (filename == "") {
+            std::ostringstream oss;
+            oss<< initialField.get_width()<<"_"<< initialField.get_height()<< "_"<< resolution->get_nb_not_dominated()<<"sol"<<".pareto.txt";
+            filename= oss.str();
+        }
         std::cout <<"taille de "<< filename<< " : "<< filename.length() << std::endl;
 
         // Sauvegarde de la foret dans FireWidget qui effectue la procédure de Foret

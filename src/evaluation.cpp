@@ -9,7 +9,7 @@
 using namespace std;
 
 Evaluation::Evaluation() :
-    nbUsables(0)
+    nbUsables(0), avgAccess(0.0)
 {
 
 }

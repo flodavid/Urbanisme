@@ -22,17 +22,20 @@ Resolution::Resolution(unsigned nbCols, unsigned nbRows, unsigned serveDistance,
             cerr << "Les coordonnées "<< in_out<< " ne représentent pas une entrée/sortie valide"<< endl;
         }
     }
-    openNewEvaluationsFile();
 }
 
 Resolution::Resolution(const Field &field, const Parameters &_params):
     params(_params), localSearch(new Field(field), &_params), nbCells(field.get_width()* field.get_height())
 {
-    openNewEvaluationsFile();
 }
 
 Resolution::~Resolution()
 {
+    ofstream& eval_file= *(openEvaluationsFile("_saved"));
+    eval_file << evaluations_stream;
+    eval_file.close();
+    delete &eval_file;
+
 //    for (const Evaluation& eval : pareto_evals) {
 //        delete eval;
 //    }
@@ -57,17 +60,25 @@ void Resolution::changeWorkField(Field *_field, bool newField)
         pareto_evals.clear();
         nbCells= field_copy->get_height() * field_copy->get_width();
 
-        openNewEvaluationsFile();
+        emptyEvaluationsFile();
     } else {
         cout << "Surface inchangée"<< endl;
     }
 }
 
-void Resolution::openNewEvaluationsFile()
+ofstream* Resolution::openEvaluationsFile(string filename_end)
 {
+    ofstream* file= new ofstream;
     ostringstream oss;
-    oss<< localSearch.get_field().get_width()<<"_"<< localSearch.get_field().get_height()<<".evaluations.txt";
-    evaluations_file.open(oss.str());
+    oss<< localSearch.get_field().get_width()<<"_"<< localSearch.get_field().get_height()<< "_"<< pareto_evals.size()<<"sol"<< filename_end<<".evaluations.txt";
+    file->open(oss.str());
+
+    return file;
+}
+
+void Resolution::emptyEvaluationsFile()
+{
+    evaluations_stream.flush();
 }
 
 //@}
@@ -114,10 +125,12 @@ void Resolution::evaluateBothObjectives()
         pareto_evals.push_back(*myEvaluation);
 #if LOGS_PARETO
         clog << "Il reste "<< pareto_evals.size()<< " solution non dominées"<< endl;
-    } else {
-        clog << "La solution est dominée (Il y "<< pareto_evals.size()<< " solution non dominées)"<< endl;
-
 #endif
+    } else {
+#if LOGS_PARETO
+        clog << "La solution est dominée (Il y "<< pareto_evals.size()<< " solution non dominées)"<< endl;
+#endif
+        writeDominatedEvaluation(*myEvaluation);
     }
 }
 
@@ -193,7 +206,6 @@ FieldEvaluation * Resolution::localSearchUsableObjective(unsigned maxRoadsToAdd)
 FieldEvaluation *Resolution::localSearchAccessObjective(unsigned maxPathsToAdd)
 {
 
-    float percent_gain;
 //    float gain_min;
     unsigned num_path= 1;
     float gain_access= 0.0;
@@ -205,7 +217,7 @@ FieldEvaluation *Resolution::localSearchAccessObjective(unsigned maxPathsToAdd)
 //        unsigned usables_before= localSearch.get_evaluation().get_nbUsables();
 
         gain_access= localSearch.addRoadsAccess(2 * params.get_serve_distance());
-        percent_gain= (gain_access / access_before) * 100.0;
+        float percent_gain= (gain_access / access_before) * 100.0;
         cout << "Pour chemin "<< num_path<<", Gain de "<< percent_gain<< "%"<< endl;
 
         float percent_usables_after= (localSearch.get_fieldEvaluation()->get_nbUsables() *100.0) / (float)nbCells;
@@ -266,15 +278,19 @@ bool Resolution::trySaveParetoToTxt(string fileName)
             file << eval.get_nbUsables()<< " " << eval.get_avgAccess() << endl;
         }
         file.close();
-        evaluations_file.close();
-        openNewEvaluationsFile();
+
+        // Ecriture dans un fichier des solutions dominées
+        ofstream& eval_file= *(openEvaluationsFile());
+        eval_file << evaluations_stream.str();
+        eval_file.close();
+        delete &eval_file;
     }
     return true;
 }
 
 void Resolution::writeDominatedEvaluation(const Evaluation &eval)
 {
-    evaluations_file << eval.get_nbUsables()<< " " << eval.get_avgAccess() << endl;
+    evaluations_stream << eval.get_nbUsables()<< " " << eval.get_avgAccess() << endl;
 }
 
 //@}

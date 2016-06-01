@@ -3,6 +3,7 @@
 
 #include <list>
 #include <fstream>
+#include <sstream>
 
 #include "Engine/parameters.h"
 #include "evaluation.h"
@@ -27,7 +28,7 @@ private:
     unsigned nbCells;
 
     // Others attributes
-    std::ofstream evaluations_file;
+    std::ostringstream evaluations_stream;
 
 public:
     /* Constructeurs */
@@ -51,13 +52,24 @@ public:
     ~Resolution();
 
     /* Getters */
+    /**
+     * Compte le nombre de solutions non dominées trouvées jusqu'à présent
+     * @return le nombre de solutions non dominées
+     */
     inline size_t get_nb_not_dominated() const { return pareto_evals.size(); }
 
     /* Setters */
     void changeWorkField(Field* _field, bool newField);
 
 private:
-    void openNewEvaluationsFile();
+    /**
+     * Ouvre le fichier des évaluations dominées, sans enregistrer l'ancien
+     */
+    std::ofstream *openEvaluationsFile(std::string filename_end = "");
+    /**
+     * Vide le buffer d'écriture du fichier d'évaluations
+     */
+    void emptyEvaluationsFile();
 
 public:
     /* Evaluations */
