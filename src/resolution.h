@@ -2,6 +2,7 @@
 #define RESOLUTION_H
 
 #include <list>
+#include <fstream>
 
 #include "Engine/parameters.h"
 #include "evaluation.h"
@@ -24,6 +25,9 @@ private:
 
     // Calulated data
     unsigned nbCells;
+
+    // Others attributes
+    std::ofstream evaluations_file;
 
 public:
     /* Constructeurs */
@@ -52,6 +56,10 @@ public:
     /* Setters */
     void changeWorkField(Field* _field, bool newField);
 
+private:
+    void openNewEvaluationsFile();
+
+public:
     /* Evaluations */
     /**
      * Evalue les deux objectifs
@@ -94,8 +102,16 @@ public:
     FieldEvaluation *initResolution();
 
     /* Export */
-
-    bool trySaveParetoToTxt(std::string fileName) const;
+    /**
+     * Ecrit l'évaluation dans le fichier des évaluations dominées
+     */
+    void writeDominatedEvaluation(const Evaluation& eval);
+    /**
+     * @brief trySaveParetoToTxt
+     * @param fileName
+     * @return
+     */
+    bool trySaveParetoToTxt(std::string fileName);
 };
 
 #endif // RESOLUTION_H
