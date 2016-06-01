@@ -195,15 +195,16 @@ void FieldEvaluation::initRoadDistance(const Coordinates &coord)
 #endif
         // On calcule et additionne le ratio pour aller vers chacun des successeurs
 //        Coordinates coord2(coord);
-        Coordinates& coord2= Field::first();
+        Coordinates coord2(coord);
         // On commence à la coordonnée suivante de celle courante
         while (nextCoordinates(&coord2)) {
             // On calcule la distance que si elle n'a pas déjà été calculée
             if (at(coord2) != is_unusable && road_distances[coord.row][coord.col][coord2.row][coord2.col] == 0) {
-                road_distances[coord.row][coord.col][coord2.row][coord2.col] =
-                        parcelsRoadDistance(coord, coord2);
+                unsigned dist= parcelsRoadDistance(coord, coord2);
+                road_distances[coord.row][coord.col][coord2.row][coord2.col] = dist;
+                road_distances[coord2.row][coord2.col][coord.row][coord.col] = dist;
             }
-        } delete &coord2;
+        }
     }
 }
 
