@@ -1,17 +1,14 @@
 Urbanisme
 =========
-# TER visant à l'optimisation du placement de routes sur une surface, en maximisant
-les zones exploitables et leur accessibilité.
-
+# TER visant à l'optimisation du placement de routes sur une surface, en maximisant les zones exploitables et leur accessibilité.
 
             Compilation Travis                   |                  License                     |
 ------------------------------------------------ | -------------------------------------------- |
 [![Build Status](https://travis-ci.org/flodavid/Urbanisme.svg?branch=master)](https://travis-ci.org/flodavid/Urbanisme) | [![GPLv3 License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/flodavid/Urbanisme/blob/master/COPYING.txt)
 
-[![SIM-CITY](http://eaassets-a.akamaihd.net/prod.simcity.com/sites/all/themes/prod-build/img/logo-simcity.png)](https://flodavid.github.io/Urbanisme)
+[![SIM-CITY](https://github.com/flodavid/Urbanisme/blob/gh-pages/images/SimCity_shadows-logo.png)](https://flodavid.github.io/Urbanisme)
 
 ## Organisation du travail et du développement
----------------
 
 ### I. Etudes préliminaires :
 1. [x] Réflexions sur les applications et enjeux du problème 
@@ -72,13 +69,9 @@ les "points chauds", qui on un rapport élevé distance "directe"/distance_Manha
 - Pour ratio entre distance directe et par les routes, faire une moyenne ? un maximum ? garder total à coté ? Moyenne pour l'instant  (OK : Moyenne quadratique et ratio max possibles)
 
 ## Code/Technique :
+### Questions :
 - Dans listes (`list<Coordinates>*`) utiliser pointeurs ? si oui, comment utiliser,
 ou remplacer, `find(begin, end, val)` ?
-- Faire une listes de routes ?
-- Comment trouver les routes à X parcelles de distance d'une parcelle donnée ?
-    - Actuellement, une recherche dans un de 2*X parcelles de coté est effectuée, 
-    on garde les routes qui sont à moins de 2 de distance.
-    - Faudrait-il stocker les routes voisines d'une parcelle dans un vecteur de listes de paires d'une coordonnée et d'une distance ? ou juste une coordonnée ? OK : plutôt oui
 
 ### Profiler :
 + Gprof (gnu profiler)
@@ -91,5 +84,9 @@ ou remplacer, `find(begin, end, val)` ?
 + Distance par les routes : on passe par les routes les plus proches de la parcelle
 + Largeur routes ?? La largeur des routes n'est prise en compte dans aucun calcul, cela entraine une lenteur importante lors du pathfinding entre parcelles, par les routes, si on utilise une largeur supérieure à 1.
 + Pour définir exploitable, je vérifie si chaque parcelle a une route voisine et l'inverse lors des mises à jour. Définir toutes les voisins de chaque route supprimée ou ajoutée comme étant exploitable.
++ S'est posée la question de comment trouver les routes à X parcelles de distance d'une parcelle donnée ?
+    - Actuellement, une recherche dans un de 2*X parcelles de coté est effectuée, 
+    on garde les routes qui sont à moins de 2 de distance.
+    - Faudrait-il stocker les routes voisines d'une parcelle dans un vecteur de listes de paires d'une coordonnée et d'une distance ? ou juste une coordonnée ? OK : plutôt oui
 
 _Urbanisme_ is free software, licensed under the [GPLv3](https://www.gnu.org/licenses/gpl.html).
