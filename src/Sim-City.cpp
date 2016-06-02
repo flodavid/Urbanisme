@@ -77,7 +77,8 @@ int main(int argc, char* argv[])
  * Github : https://github.com/flodavid/Urbanisme
  * Retour au site de présentation : https://flodavid.github.io/Urbanisme
  * \section intro_sec Introduction
- * Ce projet à pour but d'optimiser le placement de routes sur une surface, en maximisant les zones exploitables (desservies par une route) et leur accessibilité.
+ * Ce projet à pour but d'optimiser le placement de routes sur une surface, en maximisant
+ * les zones exploitables (desservies par une route) et leur accessibilité.
  * On a donc un paramètre de distance de desserte défini au début de l'exécution.
  *
  * \section install_sec Installation
@@ -87,16 +88,20 @@ int main(int argc, char* argv[])
  *
  * \section tasks_sec Organisation et déroulement du développement
  * \subsection step1 Etape 1: Modélisation d'une solution
- * Les classes du dossier "Engine" permettent de modéliser une solution et d'effectuer des modifications simples sur celle-ci
+ * Les classes du dossier "Engine" permettent de modéliser une solution et d'effectuer des
+ * modifications simples sur celle-ci
 
  * \subsection step2 Etape 2 : Evaluation d'une solution
- * La classe Resolution est chargée d'effectuer l'évaluation et le stockage des données calculée lors de celle-ci, ainsi que de mettre à jour ces valeurs lors des modifications de la solution.
+ * La classe Resolution est chargée d'effectuer l'évaluation et le stockage des données calculée
+ * lors de celle-ci, ainsi que de mettre à jour ces valeurs lors des modifications de la solution.
  *
  * \subsection step3 Etape 3: Définition de méthodes de création d'un voisin d'une solution
- * + Une méthode ajoute une seule route, afin de trouver une solution avec un nombre de parcelles exploitables supérieur ou égal
- * + En cours : Une méthode qui ajoute un nombre définit de routes afin d'obtenir une solution avec une meilleure accessibilité
+ * + Une méthode ajoute une seule route, afin de trouver une solution avec un nombre de parcelles
+ * exploitables supérieur ou égal
+ * + Une méthode qui ajoute un nombre maximum de routes à ajouter afin de créer un chemin et
+ * d'obtenir une solution avec une meilleure accessibilité
  * + A faire : des méthodes qui "perturbent" la solution courantes, pour trouver sortir du minimum local
- * + A faire : stocker les résultats afin de créer un front Pareto et choisir les meilleurs (seulement ?) voisins
+ * + Stocke les résultats afin de créer un front Pareto et choisir les meilleurs (seulement ?) voisins
  *
  * \subsection step4 Etape 4: Affichage d'une solution
  * Utilisation de Qt.
