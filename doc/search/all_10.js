@@ -14,5 +14,6 @@ var searchData=
   ['test_5fvalidspath',['test_validsPath',['../class_min_path_road_test_fixture.html#ae0448460a924c47237cde215f4175886',1,'MinPathRoadTestFixture']]],
   ['threadsevaluateratio',['threadsEvaluateRatio',['../class_field_evaluation.html#addde93b5fd0040e63c7d961e8b0d470b',1,'FieldEvaluation']]],
   ['tryadd_5fin_5fout',['tryAdd_in_out',['../class_field.html#a8853ca2b2d01a90f4f11f99bad6a080e',1,'Field::tryAdd_in_out(const Coordinates &amp;coords)'],['../class_field.html#ae738a33aa86e541944a75c5559cc2289',1,'Field::tryAdd_in_out(unsigned col, unsigned row)']]],
-  ['trysaveparetototxt',['trySaveParetoToTxt',['../class_resolution.html#ad77db88069fbc035f8f179285b84e66c',1,'Resolution']]]
+  ['tryinitsolution',['tryInitSolution',['../class_local_search.html#afa816d398099caa1ae2e2fb536ea22dd',1,'LocalSearch']]],
+  ['trysaveparetototxt',['trySaveParetoToTxt',['../class_resolution.html#a0824a857b4ce0107b1a203a0b9f62ee4',1,'Resolution']]]
 ];

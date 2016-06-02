@@ -23,10 +23,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="logo-simcity.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="SimCity-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Urbanisme
-   &#160;<span id="projectnumber">1.2</span>
+   &#160;<span id="projectnumber">1.2.2</span>
    </div>
    <div id="projectbrief">Projet visant à l&#39;optimisation du placement de routes sur une surface. https://flodavid.github.io/Urbanisme</div>
   </td>
@@ -222,10 +222,6 @@ Fonctions membres publiques</h2></td></tr>
 <tr class="separator:af96faa0d985feb2ab6f8f2ed4d07df9e inherit pub_methods_class_evaluation"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a20f968807cdd220e2bfd216e574d66 inherit pub_methods_class_evaluation"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation.html#a6a20f968807cdd220e2bfd216e574d66">is_dominated</a> (const <a class="el" href="class_evaluation.html">Evaluation</a> &amp;other) const </td></tr>
 <tr class="separator:a6a20f968807cdd220e2bfd216e574d66 inherit pub_methods_class_evaluation"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a336c6e1b2f60880453a48f48b4378b1f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field_evaluation.html#a336c6e1b2f60880453a48f48b4378b1f">initSizeNeighbourhood</a> ()</td></tr>
-<tr class="separator:a336c6e1b2f60880453a48f48b4378b1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4e640c1be9882979346a73fe318acb0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field_evaluation.html#ac4e640c1be9882979346a73fe318acb0">initRoadDistance</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord)</td></tr>
-<tr class="separator:ac4e640c1be9882979346a73fe318acb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36198f36b92fc81d1f244dbcc11919b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field_evaluation.html#a36198f36b92fc81d1f244dbcc11919b2">initRoadDistances</a> ()</td></tr>
 <tr class="separator:a36198f36b92fc81d1f244dbcc11919b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae71f2b7a3f3edc57efa97c2cf506f368"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field_evaluation.html#ae71f2b7a3f3edc57efa97c2cf506f368">parcelsRoadDistance</a> (const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord1, const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;coord2)</td></tr>
@@ -362,23 +358,6 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 
 </div>
 </div>
-<a class="anchor" id="ac4e640c1be9882979346a73fe318acb0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FieldEvaluation::initRoadDistance </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_coordinates.html">Coordinates</a> &amp;&#160;</td>
-          <td class="paramname"><em>coord</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Calcule la distance entre une parcelle et les parcelles "suivantes" </p>
-
-</div>
-</div>
 <a class="anchor" id="a36198f36b92fc81d1f244dbcc11919b2"></a>
 <div class="memitem">
 <div class="memproto">
@@ -392,22 +371,6 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
       </table>
 </div><div class="memdoc">
 <p>Définit la matrice de distance entre chaque parcelle et chaque autre parcelle </p>
-
-</div>
-</div>
-<a class="anchor" id="a336c6e1b2f60880453a48f48b4378b1f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FieldEvaluation::initSizeNeighbourhood </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Initialise la matrice de voisinage selon la taille de la surface </p>
 
 </div>
 </div>

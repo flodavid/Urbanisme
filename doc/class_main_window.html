@@ -23,10 +23,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="logo-simcity.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="SimCity-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Urbanisme
-   &#160;<span id="projectnumber">1.2</span>
+   &#160;<span id="projectnumber">1.2.2</span>
    </div>
    <div id="projectbrief">Projet visant à l&#39;optimisation du placement de routes sur une surface. https://flodavid.github.io/Urbanisme</div>
   </td>
@@ -111,6 +111,8 @@ Graphe d'héritage de MainWindow:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
 Connecteurs publics</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a6f38dce534f7fc2deb06bf4f33f4f855"><td class="memItemLeft" align="right" valign="top">const QPoint *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a6f38dce534f7fc2deb06bf4f33f4f855">askSizes</a> ()</td></tr>
+<tr class="separator:a6f38dce534f7fc2deb06bf4f33f4f855"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28a7f9c15add8cc119cc33be2e0ac3fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a28a7f9c15add8cc119cc33be2e0ac3fc">popAbout</a> ()</td></tr>
 <tr class="separator:a28a7f9c15add8cc119cc33be2e0ac3fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1afeca072feb7a6ff09d61f1f2e9611"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#aa1afeca072feb7a6ff09d61f1f2e9611">launchInit</a> ()</td></tr>
@@ -125,15 +127,13 @@ Connecteurs publics</h2></td></tr>
 <tr class="separator:a29a68fad68d0fbb24e2b7717f9e54cdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad69a118613215f16981a554aed13bfaa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#ad69a118613215f16981a554aed13bfaa">emptyField</a> ()</td></tr>
 <tr class="separator:ad69a118613215f16981a554aed13bfaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad603c78a835f45daedfb320ea376f921"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#ad603c78a835f45daedfb320ea376f921">hotmapDraw</a> ()</td></tr>
+<tr class="separator:ad603c78a835f45daedfb320ea376f921"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e69cd34907ccc0574af2bb87a4199c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a1e69cd34907ccc0574af2bb87a4199c7">exportPareto</a> ()</td></tr>
 <tr class="separator:a1e69cd34907ccc0574af2bb87a4199c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Fonctions membres publiques</h2></td></tr>
-<tr class="memitem:a8c26ef2a51318acecd13b0bf68b8b9c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a8c26ef2a51318acecd13b0bf68b8b9c4">askSizes</a> ()</td></tr>
-<tr class="separator:a8c26ef2a51318acecd13b0bf68b8b9c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a018baa25fd3f8aec31d307fe685bd307"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a018baa25fd3f8aec31d307fe685bd307">askParams</a> ()</td></tr>
-<tr class="separator:a018baa25fd3f8aec31d307fe685bd307"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9912d564dad85f5fb8323bcff81c67e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_field.html">Field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a9912d564dad85f5fb8323bcff81c67e9">get_initialField</a> ()</td></tr>
 <tr class="separator:a9912d564dad85f5fb8323bcff81c67e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
@@ -143,10 +143,17 @@ Fonctions membres publiques</h2></td></tr>
 <tr class="separator:a438ad702137dc1ffac337a3091b8c33e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8aa187d9d69ca4826421ee731609fd77"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a8aa187d9d69ca4826421ee731609fd77">MainWindow</a> (unsigned nbCols, unsigned nbRows, const <a class="el" href="class_parameters.html">Parameters</a> &amp;params, QWidget *parent=0)</td></tr>
 <tr class="separator:a8aa187d9d69ca4826421ee731609fd77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac86e8252463a5d8e172b5974c3bcc884"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#ac86e8252463a5d8e172b5974c3bcc884">MainWindow</a> (const <a class="el" href="class_field.html">Field</a> &amp;field, const <a class="el" href="class_parameters.html">Parameters</a> &amp;params, QWidget *parent=0)</td></tr>
+<tr class="separator:ac86e8252463a5d8e172b5974c3bcc884"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae98d00a93bc118200eeef9f9bba1dba7"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7">~MainWindow</a> ()</td></tr>
+<tr class="separator:ae98d00a93bc118200eeef9f9bba1dba7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10d452c829644fc567cb14f3071d1d14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a10d452c829644fc567cb14f3071d1d14">initComponents</a> ()</td></tr>
 <tr class="separator:a10d452c829644fc567cb14f3071d1d14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1450fa613547235fc74c4eb53f639090"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a1450fa613547235fc74c4eb53f639090">initEvents</a> ()</td></tr>
 <tr class="separator:a1450fa613547235fc74c4eb53f639090"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:af24516975a3d651144abba7fdc059086"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#af24516975a3d651144abba7fdc059086">updateWorkField</a> ()</td></tr>
+<tr class="separator:af24516975a3d651144abba7fdc059086"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>Fenêre principale de l'application. Chargée d'afficher la surface, les menus, les résultats et gérer le lancement des opérations. </p>
@@ -301,36 +308,104 @@ Fonctions membres publiques</h2></td></tr>
 
 </div>
 </div>
-<h2 class="groupheader">Documentation des fonctions membres</h2>
-<a class="anchor" id="a018baa25fd3f8aec31d307fe685bd307"></a>
+<a class="anchor" id="ac86e8252463a5d8e172b5974c3bcc884"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void MainWindow::askParams </td>
+          <td class="memname">MainWindow::MainWindow </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="class_field.html">Field</a> &amp;&#160;</td>
+          <td class="paramname"><em>field</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const <a class="el" href="class_parameters.html">Parameters</a> &amp;&#160;</td>
+          <td class="paramname"><em>params</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Demande les paramètres du problème avec lesquels effectuer la résolution </p>
+<p>Constructeur à partir d'une surface déjà crée </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">field</td><td>Surface à utiliser </td></tr>
+    <tr><td class="paramname">params</td><td>Paramètres de résolution </td></tr>
+    <tr><td class="paramname">parent</td><td>Widget parent </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a class="anchor" id="a8c26ef2a51318acecd13b0bf68b8b9c4"></a>
+<a class="anchor" id="ae98d00a93bc118200eeef9f9bba1dba7"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void MainWindow::askSizes </td>
+          <td class="memname">MainWindow::~MainWindow </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Demande les tailles de la surface à traiter à l'utilisateur </p>
+<p>Destructeur de la classe <a class="el" href="class_main_window.html" title="Fenêre principale de l&#39;application. Chargée d&#39;afficher la surface, les menus, les résultats et gérer ...">MainWindow</a> </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions membres</h2>
+<a class="anchor" id="a6f38dce534f7fc2deb06bf4f33f4f855"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QPoint * MainWindow::askSizes </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Demande les tailles de la surface à traiter à l'utilisateur</p>
+<h6></h6>
+<p>Actions des boutons et de l'interface </p><h6></h6>
+<p>TODO utiliser une variabe</p>
+<p>TODO utiliser une variabe </p>
 
 </div>
 </div>
@@ -403,6 +478,30 @@ Fonctions membres publiques</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Accesseur sur la surface initiale </p><dl class="section return"><dt>Renvoie</dt><dd>initialField, une Surface, modifiable </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad603c78a835f45daedfb320ea376f921"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainWindow::hotmapDraw </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Dessine la surface avec les points chauds de mauvaise accessibilité </p>
 
 </div>
 </div>
@@ -556,9 +655,7 @@ prendre en compte la perte des parcelles engendré par l'ajout de routes ? </dd>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Affiche la fenêtre de présentation</p>
-<h6></h6>
-<p>Slots </p><h6></h6>
+<p>Demande les paramètres du problème avec lesquels effectuer la résolution Affiche la fenêtre de présentation </p>
 
 </div>
 </div>
@@ -583,6 +680,23 @@ prendre en compte la perte des parcelles engendré par l'ajout de routes ? </dd>
 </table>
 </div><div class="memdoc">
 <p>Supprime toutes les routes ajoutées par les algorithmes de résolution, seules celles placées par l'utilisateur restent </p>
+
+</div>
+</div>
+<a class="anchor" id="af24516975a3d651144abba7fdc059086"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainWindow::updateWorkField </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<h6></h6>
+<p>Others </p><h6></h6>
 
 </div>
 </div>

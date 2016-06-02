@@ -5,7 +5,6 @@ var searchData=
   ['addroads',['addRoads',['../class_field.html#af67368b3657686388d02abd22a7ffb55',1,'Field']]],
   ['addroadsaccess',['addRoadsAccess',['../class_local_search.html#a7a04b4ace7fb202ca0dd2e72508cc887',1,'LocalSearch']]],
   ['addroadusable',['addRoadUsable',['../class_local_search.html#a07ee1f0773508869c26dc2c97582ae80',1,'LocalSearch']]],
-  ['askparams',['askParams',['../class_main_window.html#a018baa25fd3f8aec31d307fe685bd307',1,'MainWindow']]],
-  ['asksizes',['askSizes',['../class_main_window.html#a8c26ef2a51318acecd13b0bf68b8b9c4',1,'MainWindow']]],
+  ['asksizes',['askSizes',['../class_main_window.html#a6f38dce534f7fc2deb06bf4f33f4f855',1,'MainWindow']]],
   ['at',['at',['../class_field.html#a6dda638994b360483e67514a9ede9f15',1,'Field']]]
 ];

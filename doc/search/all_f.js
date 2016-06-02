@@ -4,6 +4,7 @@ var searchData=
   ['set_5fheight',['set_height',['../class_field.html#a820a5f4fcae3cd53264b4ec87748fe3b',1,'Field']]],
   ['set_5froad_5fwidth',['set_road_width',['../class_parameters.html#af1fcf48ceb559f001e82911040ba5a81',1,'Parameters']]],
   ['set_5fserve_5fdistance',['set_serve_distance',['../class_parameters.html#a34640826d215df735015b9261112f289',1,'Parameters']]],
+  ['set_5funmodified',['set_unmodified',['../class_field_widget.html#a37c13b105811667e2b84343af9a920d9',1,'FieldWidget']]],
   ['set_5fwidth',['set_width',['../class_field.html#ac3c26822851b29438f6f9f0a6b505e3b',1,'Field']]],
   ['setfield',['setField',['../class_local_search.html#ab595de99739aad8964181d94fb66b853',1,'LocalSearch']]],
   ['setprogress',['setProgress',['../class_load_window.html#a37767f43ad3d16ff9d3eb3624a9a888b',1,'LoadWindow::setProgress()'],['../class_load_progress.html#a599588a1f7660282b525cc7f1dfa2348',1,'LoadProgress::setProgress()']]],

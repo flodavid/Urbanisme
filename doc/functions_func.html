@@ -23,10 +23,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="logo-simcity.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="SimCity-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Urbanisme
-   &#160;<span id="projectnumber">1.2</span>
+   &#160;<span id="projectnumber">1.2.2</span>
    </div>
    <div id="projectbrief">Projet visant à l&#39;optimisation du placement de routes sur une surface. https://flodavid.github.io/Urbanisme</div>
   </td>
@@ -99,7 +99,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
       <li><a href="#index_r"><span>r</span></a></li>
       <li><a href="#index_s"><span>s</span></a></li>
       <li><a href="#index_t"><span>t</span></a></li>
-      <li class="current"><a href="#index_u"><span>u</span></a></li>
+      <li><a href="#index_u"><span>u</span></a></li>
+      <li><a href="#index_w"><span>w</span></a></li>
+      <li class="current"><a href="#index_0x7e"><span>~</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -136,11 +138,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 <li>addRoadUsable()
 : <a class="el" href="class_local_search.html#a07ee1f0773508869c26dc2c97582ae80">LocalSearch</a>
 </li>
-<li>askParams()
-: <a class="el" href="class_main_window.html#a018baa25fd3f8aec31d307fe685bd307">MainWindow</a>
-</li>
 <li>askSizes()
-: <a class="el" href="class_main_window.html#a8c26ef2a51318acecd13b0bf68b8b9c4">MainWindow</a>
+: <a class="el" href="class_main_window.html#a6f38dce534f7fc2deb06bf4f33f4f855">MainWindow</a>
 </li>
 <li>at()
 : <a class="el" href="class_field.html#a6dda638994b360483e67514a9ede9f15">Field</a>
@@ -157,7 +156,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 
 <h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
 <li>changeWorkField()
-: <a class="el" href="class_resolution.html#ad4e3992dd73ab0e0f4bfac13b745df2f">Resolution</a>
+: <a class="el" href="class_resolution.html#af358f534c3e4d6eadee889935bb29cd3">Resolution</a>
 </li>
 <li>closeProgress()
 : <a class="el" href="class_load_progress.html#a08a6565708ef1335ae68569c939c4438">LoadProgress</a>
@@ -179,8 +178,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 <li>drawChanged()
 : <a class="el" href="class_field_widget.html#a23131a4a10b651ffc84295e58e3cadff">FieldWidget</a>
 </li>
-<li>drawField()
-: <a class="el" href="class_field_widget.html#a2d2e7c3f5479c07c5dc950328eeb1cde">FieldWidget</a>
+<li>drawHotmapField()
+: <a class="el" href="class_field_widget.html#a158c4605d417b59df620deea8f37fd7d">FieldWidget</a>
 </li>
 <li>drawSelecteds()
 : <a class="el" href="class_field_widget.html#ad236cd24386c6bb45626178c78478d68">FieldWidget</a>
@@ -244,7 +243,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 </li>
 <li>get_field()
 : <a class="el" href="class_field_widget.html#af944c1203d9d754d08a845364eed02fa">FieldWidget</a>
-, <a class="el" href="class_local_search.html#ae0248527c43a63ccf14f1f9371b652db">LocalSearch</a>
+, <a class="el" href="class_local_search.html#a7b7cf20fcffe93215175ff07ca337fe9">LocalSearch</a>
 </li>
 <li>get_fieldEvaluation()
 : <a class="el" href="class_local_search.html#a684a0a90a67c4bdb48341b9a6d85fd61">LocalSearch</a>
@@ -257,6 +256,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 </li>
 <li>get_insOuts()
 : <a class="el" href="class_field.html#a7f69c59753d53c3af621dd8e44ae8b8d">Field</a>
+</li>
+<li>get_modified_ES()
+: <a class="el" href="class_field_widget.html#abe8d1bd9824728e4b9a5f2ddbf3fa1c0">FieldWidget</a>
+</li>
+<li>get_nb_not_dominated()
+: <a class="el" href="class_resolution.html#a5f95147f5a291f5ef8b816455e1d3dfe">Resolution</a>
 </li>
 <li>get_nbUsables()
 : <a class="el" href="class_evaluation.html#a471a5c87afc12623f7f0f1f07e982a7a">Evaluation</a>
@@ -301,6 +306,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 <li>hasServingRoad()
 : <a class="el" href="class_field.html#a1fce4188b56f3b4d595adc700c188e4b">Field</a>
 </li>
+<li>hotmapDraw()
+: <a class="el" href="class_main_window.html#ad603c78a835f45daedfb320ea376f921">MainWindow</a>
+</li>
 </ul>
 
 
@@ -312,19 +320,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 : <a class="el" href="class_main_window.html#a1450fa613547235fc74c4eb53f639090">MainWindow</a>
 </li>
 <li>initResolution()
-: <a class="el" href="class_resolution.html#ab410122f23c8c9fee198fe0eb78f096e">Resolution</a>
-</li>
-<li>initRoadDistance()
-: <a class="el" href="class_field_evaluation.html#ac4e640c1be9882979346a73fe318acb0">FieldEvaluation</a>
+: <a class="el" href="class_resolution.html#a2acc478d08bcf8f84ba7031751c6a42e">Resolution</a>
 </li>
 <li>initRoadDistances()
 : <a class="el" href="class_field_evaluation.html#a36198f36b92fc81d1f244dbcc11919b2">FieldEvaluation</a>
-</li>
-<li>initSizeNeighbourhood()
-: <a class="el" href="class_field_evaluation.html#a336c6e1b2f60880453a48f48b4378b1f">FieldEvaluation</a>
-</li>
-<li>initSolution()
-: <a class="el" href="class_local_search.html#ab71af061cfd4ad211167f30b6bf9517e">LocalSearch</a>
 </li>
 <li>is_dominated()
 : <a class="el" href="class_evaluation.html#a6a20f968807cdd220e2bfd216e574d66">Evaluation</a>
@@ -355,10 +354,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 : <a class="el" href="class_local_search.html#abc7cb089f69a68a3106f7893cbaf7ad6">LocalSearch</a>
 </li>
 <li>localSearchAccessObjective()
-: <a class="el" href="class_resolution.html#ae3daeeeb91d47752ce8ce851b443e92c">Resolution</a>
+: <a class="el" href="class_resolution.html#a3c5667bf98888c06b0f64495ebb24375">Resolution</a>
 </li>
 <li>localSearchUsableObjective()
-: <a class="el" href="class_resolution.html#ae6786e4f9ec74f3b3697dea47eac1007">Resolution</a>
+: <a class="el" href="class_resolution.html#ad15f95dd19e63585b8af250323f5d19b">Resolution</a>
 </li>
 </ul>
 
@@ -461,6 +460,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 <li>set_serve_distance()
 : <a class="el" href="class_parameters.html#a34640826d215df735015b9261112f289">Parameters</a>
 </li>
+<li>set_unmodified()
+: <a class="el" href="class_field_widget.html#a37c13b105811667e2b84343af9a920d9">FieldWidget</a>
+</li>
 <li>set_width()
 : <a class="el" href="class_field.html#ac3c26822851b29438f6f9f0a6b505e3b">Field</a>
 </li>
@@ -533,17 +535,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 : <a class="el" href="class_field_evaluation.html#addde93b5fd0040e63c7d961e8b0d470b">FieldEvaluation</a>
 </li>
 <li>tryAdd_in_out()
-: <a class="el" href="class_field.html#ae738a33aa86e541944a75c5559cc2289">Field</a>
+: <a class="el" href="class_field.html#a8853ca2b2d01a90f4f11f99bad6a080e">Field</a>
+</li>
+<li>tryInitSolution()
+: <a class="el" href="class_local_search.html#afa816d398099caa1ae2e2fb536ea22dd">LocalSearch</a>
 </li>
 <li>trySaveParetoToTxt()
-: <a class="el" href="class_resolution.html#ad77db88069fbc035f8f179285b84e66c">Resolution</a>
+: <a class="el" href="class_resolution.html#a0824a857b4ce0107b1a203a0b9f62ee4">Resolution</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_u"></a>- u -</h3><ul>
+<li>update_field()
+: <a class="el" href="class_field_widget.html#acd9fde31e430c88fe16806358aca2811">FieldWidget</a>
+</li>
 <li>updateUsables()
 : <a class="el" href="class_field.html#a687a4b971e05b8307a3bdf496e6f8acc">Field</a>
+</li>
+<li>updateWorkField()
+: <a class="el" href="class_main_window.html#af24516975a3d651144abba7fdc059086">MainWindow</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_w"></a>- w -</h3><ul>
+<li>writeDominatedEvaluation()
+: <a class="el" href="class_resolution.html#a0c7e987bd992063cae7144b77eb00fc6">Resolution</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_0x7e"></a>- ~ -</h3><ul>
+<li>~MainWindow()
+: <a class="el" href="class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7">MainWindow</a>
 </li>
 </ul>
 </div><!-- contents -->
