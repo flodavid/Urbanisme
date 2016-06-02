@@ -31,9 +31,9 @@ par les routes
 1. [x] Affichage et interaction avec une surface : Framework Qt
 2. [x] Créer une fonction de voisinage sur une solution afin d'effectuer une recherche locale
 3. [x] Ajouter des fonctions de mise à jour des valeurs et de l'évaluation d'une solution
-4. [ ] Générer des solutions et créer le front Pareto correspondant : En cours
+4. [x] Générer des solutions et créer le front Pareto correspondant
 
-### IV. Améliorations possibles
+### IV. Améliorations et optimisations possibles
 + [ ] Stocker les voisinages dans un vecteur de listes (avec couples : valeur-voisin ?)
 + [x] Stocker les valeurs de distance par routes entre chaque parcelle et chaque autre parcelle ?
 Ou entre chaque parcelles et ses suivantes ? J'utilise une matrice à 4 dimensions
@@ -59,9 +59,9 @@ les "points chauds", qui on un rapport élevé distance "directe"/distance_Manha
     + [x] Des boutons reset et flush (revoir qui reset, ce qui est reset et sauvegardé et comment on le fait)
     + [ ] Vérifier que l'évaluation est correcte
     + [ ] Pourquoi ce n'est pas toujours la meilleure route qui est choisie (apparition de "patés")
-+ [ ] Front pareto et collection solution
++ [x] Front pareto et collection solution
     - [x] Ajouter des solutions dans le front Pareto lors de la recherche de meilleures solutions
-    - [ ] Garder les valeurs d'évaluations des solutions dominées pour pouvoir les afficher en plus du front Pareto ?
+    - [x] Garder les valeurs d'évaluations des solutions dominées pour pouvoir les afficher en plus du front Pareto
 + [x] Afficher les points chauds : points avec la plus grande moyenne d'accessibilité avec les autres
     + [x] Couleurs selon l'écart avec la moyenne 
     + Valeurs de la moyenne avec les autres cellules ?

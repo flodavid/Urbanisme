@@ -118,7 +118,7 @@ unsigned FieldEvaluation::parcelsRoadDistance(const Coordinates &coord1, const C
     cout << "### Calcul de la distance entre "<< coord1<< " et "<< coord2<< endl
          << "=============================================="<< endl;
 #endif
-        if (coord1 == coord2) {
+    if (coord1 == coord2) {
 #if DEBUG_ROADS_DIST
         clog << "les cases de départ et d'arrivée sont identiques" << endl;
 #endif
