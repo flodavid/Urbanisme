@@ -313,7 +313,6 @@ void MainWindow::emptyField()
 void MainWindow::hotmapDraw()
 {
     fieldWidget->drawHotmapField();
-    fieldWidget->update();
 }
 
 void MainWindow::exportPareto()

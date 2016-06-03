@@ -247,7 +247,7 @@ FieldEvaluation *Resolution::localSearchAccessObjective(unsigned maxPathsToAdd)
 
 FieldEvaluation* Resolution::initResolution()
 {
-//    srand(time(NULL));
+    srand(time(NULL));
     if (!localSearch.tryInitSolution()) {
         /// TODO plus tard : enlever l'affichage de la fenêtre d'erreur de la classe Resolution
         QErrorMessage* error_window= new QErrorMessage();

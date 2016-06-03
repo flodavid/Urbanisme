@@ -174,29 +174,41 @@ void FieldWidget::drawHotmapField()
                 delete &other;
 
                 float coord_avg= sum / (float)nb;
-                cout << "\tSomme : "<< sum<< ", nb ratios : "<< nb<< ", moy= "<< coord_avg<< endl;
+#if DEBUG_HOTMAP
+                cout << "\tSomme : "<< sum<< ", moy= "<< coord_avg<< endl;
+#endif
 
-                unsigned green_quant= 190;
+                unsigned green_quant= 200;
                 float delta_ratio= coord_avg - avg_avg_ratio;
                 unsigned red_quant;
                 unsigned blue_quant= 110;
                 if (delta_ratio < 0) {
-                    if (2 + delta_ratio < 0) {
+                    if (delta_ratio +2 < 0) {
                         blue_quant= 170;
                         red_quant= 0;
                     } else {
-                        red_quant= 110 * (2 + delta_ratio);
+                        red_quant= 110 * (delta_ratio +2);
                     }
                     green_quant= 255;
                 } else {
+                    /// La valeur 400 est arbitraire
                     red_quant= 400* (delta_ratio);
                     if (red_quant > 255) {
+                        if (red_quant > 255 + green_quant) {
+                            if (red_quant > 255 + green_quant + blue_quant) {
+                                blue_quant= 0;
+                            } else blue_quant-= (red_quant -510);
+
+                            red_quant= 255 + green_quant;
+                        }
                         green_quant-= (red_quant -255);
                         red_quant= 255;
                     }
                 }
+#if DEBUG_HOTMAP
                 cout << "Ecart avec moyenne : "<< delta_ratio<< " ; "
-                    << "Q. rouge : "<< red_quant<< ", Q. vert : "<< green_quant<< endl;
+                    << "Q. rouge : "<< red_quant<< ", Q. vert : "<< green_quant<< ", Q. bleu : "<< blue_quant<< endl;
+#endif
                 setColor(red_quant, green_quant, blue_quant);
             }
 
@@ -230,6 +242,7 @@ void FieldWidget::drawHotmapField()
     drawList(selecteds);
 
     bufferPainter->end();
+    update();
 }
 
 void FieldWidget::drawChanged()
