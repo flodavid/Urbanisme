@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 2.8.11)
 
 ### Definitions ###
 # Use the compile definitions defined in the Qt 5 Widgets module
-add_definitions(-Wall -std=c++11 -pthread -lpthread ${Qt5Widgets_DEFINITIONS})
+add_definitions(-Wall -std=c++11 -O2 -pthread -lpthread ${Qt5Widgets_DEFINITIONS})
 
 ### Qt ###
 # Instruct CMake to run moc automatically when needed.
