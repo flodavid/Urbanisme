@@ -99,7 +99,7 @@ public:
      * Accesseur sur la surface initiale
      * @return initialField, une Surface, modifiable
      */
-    Field& get_initialField() { return initialField; }
+    const Field& get_initialField() { return initialField; }
 
     /* Others */
 //private:

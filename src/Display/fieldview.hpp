@@ -81,7 +81,7 @@ public:
      * Accesseurs sur modified_ES
      * @return modified_ES, un booléen
      */
-    bool get_modified_ES() const { return modified_ES; }
+    bool has_modified_ES() const { return modified_ES; }
 
     /* Setters */
     /**
@@ -101,7 +101,7 @@ public:
     /**
      * Remet la valeur du "flag" modified_ES à faux
      */
-    void set_unmodified();
+    void set_unmodified_ES();
 
 private:
     /**

@@ -66,7 +66,7 @@ void FieldWidget::setColor(int r, int g, int b, int a)
     color->setRgb(r, g, b, a);
 }
 
-void FieldWidget::set_unmodified()
+void FieldWidget::set_unmodified_ES()
 {
     modified_ES= false;
 }

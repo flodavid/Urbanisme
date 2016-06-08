@@ -57,12 +57,17 @@ void Resolution::changeWorkField(Field *_field, bool newField)
 
         // Redéfinition des valeurs
         localSearch.setField(field_copy);
-        pareto_evals.clear();
         nbCells= field_copy->get_height() * field_copy->get_width();
 
+        pareto_evals.clear();
         emptyEvaluationsFile();
     } else {
-        cout << "Surface inchangée"<< endl;
+        cout << "LA SURFACE A ETE REINITIALISEE, je recopie la nouvelle, mais conserve les solutions trouvées"<< endl;
+        /// @see la copie est vraiment utile ? (elle est donnée à localsearch)
+        Field* field_copy= new Field(*_field);
+
+        // Redéfinition des valeurs
+        localSearch.setField(field_copy);
     }
 }
 

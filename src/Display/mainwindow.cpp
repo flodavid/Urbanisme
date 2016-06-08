@@ -146,13 +146,14 @@ void MainWindow::initEvents()
 
 void MainWindow::updateWorkField()
 {
-    if ( fieldWidget->get_modified_ES() /* || sizeModified*/ ) {
+
+    if ( fieldWidget->has_modified_ES() /* || sizeModified*/ ) {
         resolution->changeWorkField(fieldWidget->get_field(), true);
-        fieldWidget->set_unmodified();
+        fieldWidget->set_unmodified_ES();
     }
-//    else {
-//        resolution->changeWorkField(fieldWidget->get_field(), false);
-//    }
+    else {
+        resolution->changeWorkField(fieldWidget->get_field(), false);
+    }
 
 }
 
@@ -283,7 +284,8 @@ void MainWindow::launchEval()
 
 void MainWindow::resetField()
 {
-    fieldWidget->set_field(&initialField);
+    std::cout << initialField<< std::endl;
+    fieldWidget->set_field(new Field(initialField));
     updateWorkField();
 
     std::cout << "Solution trouvée supprimée"<< std::endl;
@@ -293,11 +295,11 @@ void MainWindow::resetField()
 
 void MainWindow::emptyField()
 {
-    if (&initialField != fieldWidget->get_field()) {
+//    if (&initialField != fieldWidget->get_field()) {
 //        delete fieldWidget->get_field();
 
-        std::cout << "Solution trouvée supprimée"<< std::endl;
-    }
+//        std::cout << "Solution trouvée supprimée"<< std::endl;
+//    }
     delete resolution;
 
     // Initialisation d'une nouvelle surface vide
