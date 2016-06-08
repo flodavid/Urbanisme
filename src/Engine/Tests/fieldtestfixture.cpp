@@ -64,6 +64,7 @@ void FieldTestFixture::test_containsInvalids()
 void FieldTestFixture::test_servingValids()
 {
     Field &example = *field;
+    example.deleteOldMatrix();
     example.set_width(20);
     example.set_height(20);
     example.resizeWithDimensions();

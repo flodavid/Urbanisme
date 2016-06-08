@@ -76,8 +76,9 @@ public:
     { nb_rows =  height; }
 
     //private:
+    void deleteOldMatrix();
     /**
-     * Redéfinit la taille du vecteur de vecteur d'états selon le nombre de lignes
+     * Redéfinit la taille de la matrice d'états selon le nombre de lignes
      * et de colonnes contenues dans la classe. On utilise la fonction resize().
      * Attention, les données contenues dans le vecteur peuvent être modifiées
      */

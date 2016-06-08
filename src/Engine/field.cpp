@@ -42,18 +42,19 @@ Field::~Field()
 ///#######################
 //@{
 
-void Field::resizeWithDimensions()
+void Field::deleteOldMatrix()
 {
-//     for (int* &parcel_row : parcels) {
-// 	free parcel_row;
-//     }
     if (parcels != NULL) {
 	for (unsigned i= 0; i < nb_rows; ++i) {
 	    free(parcels[i]);
 	}
 	free(parcels);
     }
-    
+}
+
+
+void Field::resizeWithDimensions()
+{    
     parcels= (State**)malloc(nb_rows * sizeof(State*));
 
     for (unsigned i= 0; i < nb_rows; ++i) {

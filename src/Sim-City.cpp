@@ -16,8 +16,8 @@
 
 using namespace std;
 
-#define WIDTH   8
-#define HEIGHT  8
+#define WIDTH   10
+#define HEIGHT  10
 
 /**
  * Création du terrain de l'exemple, exécution de l'évaluation, affichage du résultat,
@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
     Field& myField= *(new Field(WIDTH,HEIGHT));
 
 //     // Solution de l'exemple :
-//    myField.createExample();
+   myField.createExample();
 
 //    // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
 //    myField.defineUsables(myParameters.get_serve_distance());

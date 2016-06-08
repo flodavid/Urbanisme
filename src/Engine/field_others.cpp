@@ -130,6 +130,7 @@ void Field::createExample()
 {
     // Surface de l'exemple :
     Field &example = *this;
+    example.deleteOldMatrix();
     example.set_width(10);
     example.set_height(20);
     example.resizeWithDimensions();
@@ -209,6 +210,7 @@ void Field::createExample()
 {
     // Surface de l'exemple :
     Field &example = *this;
+    example.deleteOldMatrix();
     example.set_width(10);
     example.set_height(10);
     example.resizeWithDimensions();
@@ -256,6 +258,7 @@ void Field::createExample()
 {
     // Surface de l'exemple :
     Field &example = *this;
+    example.deleteOldMatrix();
     example.set_width(3);
     example.set_height(3);
     example.resizeWithDimensions();
