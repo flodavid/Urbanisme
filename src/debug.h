@@ -18,7 +18,8 @@
 #define DEBUG_ADD_ACCESS_GAIN   0
 #define DEBUG_HOTMAP            0
 
-#define LOGS_PARETO            1
+#define LOGS_ACCESS_ROAD	1
+#define LOGS_PARETO		1
 
 /* define all debug if DEBUG_ALL defined to 1 */
 #if DEBUG_ALL or NDEBUG

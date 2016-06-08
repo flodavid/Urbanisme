@@ -142,8 +142,8 @@ void FieldWidget::drawField()
 void FieldWidget::drawHotmapField()
 {
     field->resetUsables(serveDistance);
-    if (buffer->isNull())
-        cerr<< "Impossible de dessiner, image vide"<< endl;
+    if (buffer->isNull()) cerr<< "Impossible de dessiner, image vide"<< endl;
+    
     bufferPainter->begin(buffer);
 
     Coordinates& coord= Field::first();
@@ -151,7 +151,7 @@ void FieldWidget::drawHotmapField()
         State state= field->at(coord);
 
         // Cas d'une parcelle exploitable
-        if( state == is_usable){
+        if( state == is_usable) {
             FieldEvaluation* field_eval= (FieldEvaluation *)(field);
             if (!has_evaluation || field_eval == nullptr) {
                 cerr<< "La surface n'a pas d'évaluation"<< endl;

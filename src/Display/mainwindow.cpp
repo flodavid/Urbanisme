@@ -115,6 +115,8 @@ void MainWindow::initComponents()
     exportAction= menuBar()->addAction( tr("Export"));
 
     exportAction->setEnabled(false);
+    
+    menuBar()->show();
 }
 
 void MainWindow::initEvents()

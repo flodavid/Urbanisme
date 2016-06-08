@@ -184,37 +184,40 @@ list<Path*>* LocalSearch::getPaths(const Coordinates &coord1, const Coordinates 
         Path* path= new Path();
         paths->push_back(path);
     } else {
-        if (coord1.col != coord2.col) {
-            Coordinates coord1_col_modif= coord1;
-            coord1_col_modif.col= oneStep(coord1.col, coord2.col);
+// 	if (fieldeval->getCloseRoads(coord1, 1)->size() < 2) {
+	if (coord1.col != coord2.col) {
+	    Coordinates coord1_col_modif= coord1;
+	    coord1_col_modif.col= oneStep(coord1.col, coord2.col);
 
-            if ( fieldeval->at(coord1_col_modif) < is_road) {
-                list<Path*> * paths_col= getPaths(coord1_col_modif, coord2);
-                for (Path* path : *paths_col){
-                    path->push_front(coord1_col_modif);
-                    paths->push_back(path);
-                }
-                delete paths_col;
-            } else if (coord1_col_modif == coord2) {
-                paths->push_back(new Path);
-            }
-        }
+	    if ( fieldeval->at(coord1_col_modif) < is_road) {
+		list<Path*> * paths_col= getPaths(coord1_col_modif, coord2);
+		for (Path* path : *paths_col){
+		    path->push_front(coord1_col_modif);
+		    paths->push_back(path);
+		}
+		delete paths_col;
+	    } else if (coord1_col_modif == coord2) {
+		paths->push_back(new Path);
+	    }
+	}
 
-        if (coord1.row != coord2.row) {
-            Coordinates coord1_row_modif= coord1;
-            coord1_row_modif.row= oneStep(coord1.row, coord2.row);
+	if (coord1.row != coord2.row) {
+	    Coordinates coord1_row_modif= coord1;
+	    coord1_row_modif.row= oneStep(coord1.row, coord2.row);
 
-            if ( fieldeval->at(coord1_row_modif) < is_road) {
-                list<Path*> * paths_row= getPaths(coord1_row_modif, coord2);
-                for (Path* path : *paths_row){
-                    path->push_front(coord1_row_modif);
-                    paths->push_back(path);
-                }
-                delete paths_row;
-            } else if (coord1_row_modif == coord2) {
-                paths->push_back(new Path);
-            }
-        }
+	    if ( fieldeval->at(coord1_row_modif) < is_road
+		&& fieldeval->getCloseRoads(coord1_row_modif, 1)->size() < 2) {
+		list<Path*> * paths_row= getPaths(coord1_row_modif, coord2);
+		for (Path* path : *paths_row){
+		    path->push_front(coord1_row_modif);
+		    paths->push_back(path);
+		}
+		delete paths_row;
+	    } else if (coord1_row_modif == coord2) {
+		paths->push_back(new Path);
+	    }
+	}
+// 	}
     }
 
     return paths;
@@ -331,6 +334,12 @@ float LocalSearch::addRoadsAccess(unsigned nbToAdd)
     Path* best_path= new Path;
 
     do {
+#if LOGS_ACCESS_ROAD
+	if (coord.col == 0) {
+	    cout << "Ligne "<< coord.row<< ", gain courant : "<< gain_max<< endl;
+	}
+#endif
+	
         if (fieldeval->at(coord) == is_road) {
             list<Coordinates>* accessible_roads= fieldeval->getCloseRoads(coord, nbToAdd +1);
 

@@ -6,7 +6,7 @@
 /// #########################
 //@{
 
-/*
+// /*
 void Field::createExample()
 {
     // Surface de l'exemple :
@@ -124,7 +124,7 @@ void Field::createExample()
 }
 // */
 
-///*
+/*
 // Moitié
 void Field::createExample()
 {
