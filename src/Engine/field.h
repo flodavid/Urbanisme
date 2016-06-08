@@ -1,7 +1,6 @@
 #pragma once
 
 #include <list>
-#include <vector>
 
 #include "Coordinates.h"
 
@@ -16,11 +15,11 @@ enum State{is_undefined= -1, is_usable, is_unusable, is_road, is_in_out, max_sta
 class Field
 {
 
-private:
+protected:
     unsigned nb_cols, nb_rows;
     std::list<Coordinates> ins_outs;
 
-    std::vector<std::vector<State>> parcels;
+    State** parcels;
 
 public:
     /**
@@ -35,6 +34,8 @@ public:
      */
     Field(const Field& other);
 
+    virtual ~Field();
+    
     /*=== Getters ===*/
     /**
      * Accesseur sur le nombre de colonnes -la largeur- de la surface
@@ -171,25 +172,25 @@ public:
      * @return un itérateur constant sur la première parcelle du Field
      * @see
      */
-    inline std::vector<std::vector<State>>::const_iterator begin() const { return parcels.cbegin(); }
+//     inline std::vector<std::vector<State>>::const_iterator begin() const { return parcels.cbegin(); }
     /**
      * @brief end
      * @return un itérateur constant sur la dernière parcelle du Field
      * @see
      */
-    inline std::vector<std::vector<State>>::const_iterator end() const { return parcels.cend(); }
+//     inline std::vector<std::vector<State>>::const_iterator end() const { return parcels.cend(); }
     /**
      * @brief begin
      * @return un itérateur sur la première parcelle du Field
      * @see
      */
-    inline std::vector<std::vector<State>>::iterator begin() { return parcels.begin(); }
+//     inline std::vector<std::vector<State>>::iterator begin() { return parcels.begin(); }
     /**
      * @brief end
      * @return un itérateur sur la dernière parcelle du Field
      * @see
      */
-    inline std::vector<std::vector<State>>::iterator end() { return parcels.end(); }
+//     inline std::vector<std::vector<State>>::iterator end() { return parcels.end(); }
 
     /**
      * Retourne la première coordonée de la matrice, elle peut ensuite

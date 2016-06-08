@@ -230,9 +230,11 @@ void FieldEvaluation::initRoadDistances()
 unsigned int FieldEvaluation::evaluateTotalUsable()
 {
     unsigned nb_usables = 0;
-    for (vector<State> row_parcel_state : *this) {
-        for (State parcel_state : row_parcel_state) {
-            assert(parcel_state >= -1 &&  parcel_state < max_state);
+    
+    for (unsigned i= 0; i < nb_rows; ++i) {
+	for (unsigned j= 0; j < nb_cols; ++j) {
+	    State parcel_state= parcels[i][j];
+            assert(parcel_state >= -1 &&  parcel_state < max_state );
             if (parcel_state == is_usable) {
                 ++nb_usables;
             }

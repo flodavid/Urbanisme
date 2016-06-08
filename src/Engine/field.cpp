@@ -8,14 +8,32 @@ using namespace std;
 //@{
 
 Field::Field(unsigned width, unsigned height/*, std::list<Coordinates>& inputs_and_ouputs*/) :
-    nb_cols(width), nb_rows(height)       /*, ins_outs(inputs_and_ouputs)*/
+    nb_cols(width), nb_rows(height), parcels(NULL)       /*, ins_outs(inputs_and_ouputs)*/
 {
     resizeWithDimensions();
 }
 
 Field::Field(const Field& other) :
-    nb_cols(other.nb_cols), nb_rows(other.nb_rows), ins_outs(other.ins_outs), parcels(other.parcels)
+    nb_cols(other.nb_cols), nb_rows(other.nb_rows), ins_outs(other.ins_outs)
 {
+    parcels= (State**)malloc(nb_rows * sizeof(State*));
+    
+    for (unsigned i= 0; i < nb_rows; ++i) {
+	parcels[i]= (State*)malloc(nb_cols * sizeof(State));
+	for (unsigned j= 0; j < nb_cols; ++j) {
+	    parcels[i][j]= other.parcels[i][j];
+	}
+    }
+}
+
+Field::~Field()
+{
+    if (parcels != NULL) {
+	for (unsigned i= 0; i < nb_rows; ++i) {
+	    free(parcels[i]);
+	}
+	free(parcels);
+    }
 }
 
 //@}
@@ -26,10 +44,23 @@ Field::Field(const Field& other) :
 
 void Field::resizeWithDimensions()
 {
-    parcels.resize(nb_rows);
+//     for (int* &parcel_row : parcels) {
+// 	free parcel_row;
+//     }
+    if (parcels != NULL) {
+	for (unsigned i= 0; i < nb_rows; ++i) {
+	    free(parcels[i]);
+	}
+	free(parcels);
+    }
+    
+    parcels= (State**)malloc(nb_rows * sizeof(State*));
 
-    for (vector<State> &parcel_row : parcels) {
-        parcel_row.resize(nb_cols, is_undefined);
+    for (unsigned i= 0; i < nb_rows; ++i) {
+	parcels[i]= (State*)malloc(nb_cols * sizeof(State));
+	for (unsigned j= 0; j < nb_cols; ++j) {
+	    parcels[i][j]= is_undefined;
+	}
     }
 }
 
@@ -128,12 +159,12 @@ bool Field::nextCoordinates(Coordinates *coord) const
     // On vérifie que la coordonnée actuelle est dans la surface
     //  (vérification sur les colonnes puis sur les lignes)
     assert(coord->col >= 0 && coord->row >= 0 );
-    assert( coord->col < (int)(get_width()) && coord->row < (int)(get_height()) );
+    assert( coord->col < (int)(nb_cols) && coord->row < (int)(nb_rows) );
 
     // Si on est à la fin de la ligne, on passe à la ligne suivante
-    if ((unsigned)(coord->col) == get_width() -1) {
+    if ((unsigned)(coord->col) == nb_cols -1) {
         // seulement si on n'est pas à la fin de la surface
-        if ((unsigned)(coord->row) + 1 < get_height()) {
+	if ((unsigned)(coord->row) + 1 < nb_cols) {
             coord->col= 0;
             coord->row+= 1;
 #if DEBUG_PARCOURS_COORDS
