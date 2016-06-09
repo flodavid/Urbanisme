@@ -105,6 +105,9 @@ public:
 //private:
     void updateWorkField();
 
+private:
+    std::string get_resolution_name() const;
+
     /* Actions des boutons et de l'interface */
 public slots:
     /**
@@ -158,6 +161,10 @@ public slots:
      * Demande à l'utilisateur l'emplacement et le nom du fichier d'export du front Pareto
      */
     void exportPareto();
+    /**
+     * Demande à l'utilisateur l'emplacement et le nom du fichier d'export du front Pareto
+     */
+    void drawPareto(const std::string& ouputName);
 };
 
 #endif // MAINWINDOW_H

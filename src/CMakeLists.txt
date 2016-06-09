@@ -24,7 +24,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 add_subdirectory(Engine) # must set ${Engine_SRCS}
 add_subdirectory(Display) # must set ${Display_SRCS}
 
-set(sim-city_SRCS ${Engine_SRCS} ${Display_SRCS} resolution.cpp localsearch.cpp evaluation.cpp fieldevaluation.cpp  Sim-City.cpp)
+set(sim-city_SRCS ${Engine_SRCS} ${Display_SRCS} resolution.cpp localsearch.cpp evaluation.cpp fieldevaluation.cpp Sim-City.cpp)
 
 # Pour que les headers soient présents dans Qt Creator
 set(HEADERS debug.h)

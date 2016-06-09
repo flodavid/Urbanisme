@@ -1,4 +1,4 @@
-#include "fieldview.hpp"
+﻿#include "fieldview.hpp"
 
 #include <sstream>
 
@@ -143,7 +143,7 @@ void FieldWidget::drawHotmapField()
 {
     field->resetUsables(serveDistance);
     if (buffer->isNull()) cerr<< "Impossible de dessiner, image vide"<< endl;
-    
+
     bufferPainter->begin(buffer);
 
     Coordinates& coord= Field::first();
@@ -485,94 +485,10 @@ void FieldWidget::mouseMoveEvent(QMouseEvent* event)
     update();
 }
 
-//void FieldWidget::initRubber(QMouseEvent* event){
-//	origin = event->pos();
-
-//	if(!rubber)
-//		rubber = new QRubberBand(QRubberBand::Rectangle, this);
-
-//	rubber->setGeometry(QRect(origin, QSize(0,0)));
-//	rubber->show();
-//}
-
-//void FieldWidget::mouseReleaseEvent(QMouseEvent* event)
-//{
-//    QWidget::mouseReleaseEvent(event);
-//	if(rubber){
-//		rubber->hide();
-//		// Sauvegarde des points du rubber pour parcours de la matrice
-//		depart.setX(rubber->x());
-//		depart.setY(rubber->y());
-//		/* Vérification du point d'origine du rubber
-//		 * Celui étant toujours le point le plus en haut à gauche, il faut simplement vérifier
-//		 * qu'il n'est pas en dehors du cadre, auquel cas nous ramenons la (les) coordonnée(s) concernée(s)
-//		 * à 0.
-//		 */
-//		arrivee.setX(rubber->width()+depart.x());
-//		arrivee.setY(rubber->height()+depart.y());
-//		if(depart.x() < 0){
-//			depart.setX(0);
-//		}
-//		if(depart.y() < 0){
-//			depart.setY(0);
-//		}
-
-
-//		if(arrivee.x() > size().width() ){
-//			arrivee.setX(size().width());
-//		}
-//		if(arrivee.y() > size().height() ){
-//			arrivee.setY(size().height());
-//		}
-
-//		#if DEBUG_SELECT
-//		cout << "Taille du widget : " << this->size().width() << "; " << this->size().height()<< endl;
-//		cout << "Coordonnée de l'origine : " << rubber->x() << "; " << rubber->y() << endl;
-//		cout << "Coordonnée de départ : " << depart.x()<< ";" << depart.y() << endl;
-//		cout << "Coordonnée de l'arrivée : " << arrivee.x()<< ";" << arrivee.y() << endl;
-//		cout << "Taille de la zone de selection : " <<	arrivee.x() - depart.x() << ";" << arrivee.y() - depart.y() << endl;
-//		#endif
-//		// Emission du signal pour récupérer l'action à effectuer par firescreen
-////		emit releaseSignal(); // TODO signaux
-//	}
-
-//}
-
 //@}
 /// ############
 ///    Slots
 /// ############
 //@{
-
-//void FieldWidget::actionReceived(int action_id)
-//{
-//    // Transformation des QPoints depart et arrivée en coordonnée cellulaire
-//    int xDep = depart.x() / tailleCell;
-//    int yDep = depart.y() / tailleCell;
-
-//    unsigned xArr = arrivee.x() / tailleCell;
-
-//    if (xArr > field->get_width()) xArr= field->get_width();
-
-//    unsigned yArr = arrivee.y() / tailleCell;
-
-//    if (yArr> field->get_height())	yArr= field->get_height();
-
-
-//    #if DEBUG_RETARD
-//    cout << "Coordonnées en cellule de départ : " << xDep << ";" << yDep << endl;
-//    cout << "Coordonnées en cellule d'arrivée : " << xArr << ";" << yArr << endl;
-//    #endif
-
-//    // Appel à une fonction de forêt qui parcours la zone et effectue l'action
-
-
-////    if(action_id == CUT){
-////    }else if( action_id == DELAY){
-////    }else cerr<< "mauvais index d'action clic droit"<< endl;
-
-//    drawChanged();
-//    update();
-//}
 
 //@}

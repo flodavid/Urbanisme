@@ -11,6 +11,9 @@
 #include <QtWidgets/QInputDialog>
 #include <QtGui/QMouseEvent>
 
+//#include "../../gnuplot-iostream/gnuplot-iostream.h"
+#include "gnuplot-cpp/gnuplot_i.hpp"
+
 /// #########################
 ///      Constructeurs
 /// #########################
@@ -115,7 +118,7 @@ void MainWindow::initComponents()
     exportAction= menuBar()->addAction( tr("Export"));
 
     exportAction->setEnabled(false);
-    
+
     menuBar()->show();
 }
 
@@ -157,6 +160,13 @@ void MainWindow::updateWorkField()
         resolution->changeWorkField(fieldWidget->get_field(), false);
     }
 
+}
+
+std::string MainWindow::get_resolution_name() const
+{
+    std::ostringstream oss;
+    oss<< initialField.get_width()<<"_"<< initialField.get_height()<< "_"<< resolution->get_nb_not_dominated()<<"sol";
+    return oss.str();
 }
 
 //@}
@@ -329,9 +339,7 @@ void MainWindow::exportPareto()
     if(file_browser->exec() == QDialog::Accepted){
         std::string filename = file_browser->selectedFiles()[0].toStdString();
         if (filename == "") {
-            std::ostringstream oss;
-            oss<< initialField.get_width()<<"_"<< initialField.get_height()<< "_"<< resolution->get_nb_not_dominated()<<"sol"<<".pareto.txt";
-            filename= oss.str();
+            filename= get_resolution_name() + ".pareto.txt";
         }
         std::cout <<"taille de "<< filename<< " : "<< filename.length() << std::endl;
 
@@ -339,6 +347,31 @@ void MainWindow::exportPareto()
         resolution->trySaveParetoToTxt(filename);
 
         exportAction->setEnabled(false);
+
+        drawPareto(get_resolution_name());
+    }
+}
+
+using std::cout;
+using std::endl;
+
+void MainWindow::drawPareto(const std::string &ouputName)
+{
+    try {
+        Gnuplot gp("points");
+        gp.set_title("Pareto\\nUrbanisme");
+    //    gp.set_terminal_std("jpeg");
+        gp << "set term";
+        cout << "PLOT : "<< "set output 'resolutionPareto"<< ouputName<< ".jpeg"<< endl;
+        gp << "set output 'resolutionPareto"<< ouputName<< ".jpeg";
+        gp << "set clabel";
+        gp << "show clabel";
+        cout << "PLOT : "<< "plot '"<< ouputName<<".pareto.txt' lc rgb 'red', '"<< ouputName<<".evaluations.txt' lc rgb 'black'"<< endl;
+        gp << "plot '"<< ouputName<<".pareto.txt' lc rgb 'red', '"<< ouputName<<".evaluations.txt' lc rgb 'black'";
+    }
+    catch (GnuplotException ge)
+    {
+        cout << ge.what() << endl;
     }
 }
 

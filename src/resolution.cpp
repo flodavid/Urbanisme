@@ -98,9 +98,8 @@ void Resolution::evaluateBothObjectives()
     unsigned nb_usables= myEvaluation->evaluateTotalUsable();
     cout << "Nombre total de parcelles exploitables : "<< nb_usables<< endl;
 
-    // === LANCEMENT DES ALGOS D'EVALUATION ET DE RECHERCHE LOCALE === //
+    // === LANCEMENT DES ALGOS D'EVALUATION === //
 #if LOGS_PARETO
-    clog << "Evaluation..."<< endl;
 #endif
     time_t startTime, stopTime; startTime = time(NULL);
 
@@ -112,6 +111,7 @@ void Resolution::evaluateBothObjectives()
     stopTime = time(NULL); time_t elapsedTimeInit = stopTime - startTime; startTime = time(NULL);
 
     // Calcul de la moyenne des ratios
+    clog << "Evaluation..."<< endl;
     float avg_ratio= myEvaluation->evaluateRatio();
 
     stopTime = time(NULL); time_t elapsedTimeEval = stopTime - startTime;
