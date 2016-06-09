@@ -358,16 +358,18 @@ using std::endl;
 void MainWindow::drawPareto(const std::string &ouputName)
 {
     try {
-        Gnuplot gp("points");
-        gp.set_title("Pareto\\nUrbanisme");
-    //    gp.set_terminal_std("jpeg");
-        gp << "set term";
-        cout << "PLOT : "<< "set output 'resolutionPareto"<< ouputName<< ".jpeg"<< endl;
-        gp << "set output 'resolutionPareto"<< ouputName<< ".jpeg";
-        gp << "set clabel";
-        gp << "show clabel";
-        cout << "PLOT : "<< "plot '"<< ouputName<<".pareto.txt' lc rgb 'red', '"<< ouputName<<".evaluations.txt' lc rgb 'black'"<< endl;
-        gp << "plot '"<< ouputName<<".pareto.txt' lc rgb 'red', '"<< ouputName<<".evaluations.txt' lc rgb 'black'";
+        Gnuplot gp;
+	std::ostringstream title; 
+	title << "Front Pareto, " << resolution->get_nb_not_dominated() << " solutions";
+        gp.set_title(title.str());
+	gp.cmd("set term jpeg");
+// 	gp.set_terminal_std("jpeg");
+	cout << "PLOT : "<< "set output \"resolutionPareto"<< ouputName<< ".jpeg\""<< endl;
+	gp.cmd("set output \"resolutionPareto" + ouputName + ".jpeg\"");
+        gp.cmd("set clabel"); // TODO mettre {format ... }
+        gp.cmd("show clabel");
+	cout << "PLOT : "<< "plot \""<< ouputName<<".pareto.txt\" lc rgb \"red\", \""<< ouputName<<".evaluations.txt\" lc rgb \"black\""<< endl;
+	gp.cmd("plot \"" + ouputName + ".pareto.txt\" lc rgb \"red\", \"" + ouputName + ".evaluations.txt\" lc rgb \"black\"");
     }
     catch (GnuplotException ge)
     {
