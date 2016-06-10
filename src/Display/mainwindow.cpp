@@ -14,6 +14,9 @@
 //#include "../../gnuplot-iostream/gnuplot-iostream.h"
 #include "gnuplot-cpp/gnuplot_i.hpp"
 
+using std::cout;
+using std::endl;
+
 /// #########################
 ///      Constructeurs
 /// #########################
@@ -348,20 +351,23 @@ void MainWindow::exportPareto()
 
         exportAction->setEnabled(false);
 
-        drawPareto(get_resolution_name());
+        std::string outputName= drawPareto(get_resolution_name());
 
-//        std::string outputName("resolutionPareto" + get_resolution_name() +".jpeg");
-//        system(outputName.c_str());
+        if (outputName != "") {
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__)
+            std::clog << "resultat commande terminal : "<< ( system(outputName.c_str()) )<< endl;
+#elif defined(unix) || defined(__unix) || defined(__unix__) || defined(__APPLE__)
+            std::string cmd= "xdg-open " + outputName;
+            std::clog << "resultat commande bash : "<< ( system(cmd.c_str()) )<< endl;
+#endif
+        } else std::cerr << "La création de l'image du front Pareto a échoué"<< endl;
     }
 }
 
-using std::cout;
-using std::endl;
-
-void MainWindow::drawPareto(const std::string &dataName)
+std::string MainWindow::drawPareto(const std::string &dataName)
 {
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__)
-    if (Gnuplot::set_GNUPlotPath("D:/Apps/gnuplot/bin/gnuplot.exe")) {
+    if (Gnuplot::set_GNUPlotPath("D:/Apps/gnuplot/bin")) {
         std::cerr << "gnuplotPath a été défini"<< endl;
     } else {
         std::cerr << "gnuplotPath n'a pas pu être défini"<< endl;
@@ -375,7 +381,7 @@ void MainWindow::drawPareto(const std::string &dataName)
         gp.set_title(title.str());
         gp.cmd("set term jpeg");
     // 	gp.set_terminal_std("jpeg");
-        std::string outputName("resolutionPareto" + dataName +".jpeg");
+        std::string outputName("resolutionPareto" + dataName +".jpg");
         cout << "PLOT : "<< "set output \""+ outputName +"\""<< endl;
         gp.cmd("set output \""+ outputName +"\"");
 //        gp.cmd("set clabel {'%8.3g'}");
@@ -383,16 +389,12 @@ void MainWindow::drawPareto(const std::string &dataName)
         cout << "PLOT : "<< "plot \""<< dataName<<".pareto.txt\" lc rgb \"red\", \""<< dataName<<".evaluations.txt\" lc rgb \"black\""<< endl;
         gp.cmd("plot \"" + dataName + ".pareto.txt\" lc rgb \"red\", \"" + dataName + ".evaluations.txt\" lc rgb \"black\"");
 
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__)
-	std::clog << "resultat commande terminal : "<< ( system(outputName.c_str()) )<< endl;
-#elif defined(unix) || defined(__unix) || defined(__unix__) || defined(__APPLE__)
-	std::string cmd= "xdg-open " + outputName;
-	std::clog << "resultat commande bash : "<< ( system(cmd.c_str()) )<< endl;
-#endif
+        return outputName;
     }
     catch (GnuplotException ge)
     {
         cout << "ERROR : " << ge.what() << endl;
+        return "";
     }
 }
 

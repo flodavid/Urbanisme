@@ -164,7 +164,7 @@ public slots:
     /**
      * Demande à l'utilisateur l'emplacement et le nom du fichier d'export du front Pareto
      */
-    void drawPareto(const std::string& dataName);
+    std::string drawPareto(const std::string& dataName);
 };
 
 #endif // MAINWINDOW_H

@@ -161,8 +161,10 @@ int Resolution::spread(const Evaluation& eval)
 #if LOGS_PARETO
     cout << "Propagation de la solution dominante"<< endl;
 #endif
-    for (list<FieldEvaluation>::iterator it(pareto_evals.end()); it != pareto_evals.begin(); --it)
-    {
+//    pareto_evals.remove_if();
+    list<FieldEvaluation>::iterator it(pareto_evals.end());
+    do {
+        --it;
         if( it->is_dominated(eval) ) {
             ++nb_deleted;
 #if LOGS_PARETO
@@ -170,7 +172,7 @@ int Resolution::spread(const Evaluation& eval)
 #endif
             it= pareto_evals.erase(it); /// TODO pourquoi ça peut provoquer un seg fault ?
         }
-    }
+    } while ( it != pareto_evals.begin() );
 #if LOGS_PARETO
     clog << nb_deleted << " supprimés dominés par la solution d'éval ("<< eval.get_nbUsables()<< ";"<< eval.get_avgAccess()<< ")" << endl;
 #endif
