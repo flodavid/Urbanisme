@@ -383,7 +383,12 @@ void MainWindow::drawPareto(const std::string &dataName)
         cout << "PLOT : "<< "plot \""<< dataName<<".pareto.txt\" lc rgb \"red\", \""<< dataName<<".evaluations.txt\" lc rgb \"black\""<< endl;
         gp.cmd("plot \"" + dataName + ".pareto.txt\" lc rgb \"red\", \"" + dataName + ".evaluations.txt\" lc rgb \"black\"");
 
-        system(outputName.c_str());
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__)
+	std::clog << "resultat commande terminal : "<< ( system(outputName.c_str()) )<< endl;
+#elif defined(unix) || defined(__unix) || defined(__unix__) || defined(__APPLE__)
+	std::string cmd= "xdg-open " + outputName;
+	std::clog << "resultat commande bash : "<< ( system(cmd.c_str()) )<< endl;
+#endif
     }
     catch (GnuplotException ge)
     {
