@@ -172,6 +172,41 @@ std::string MainWindow::get_resolution_name() const
     return oss.str();
 }
 
+std::string MainWindow::drawPareto(const std::string &dataName)
+{
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__)
+    if (Gnuplot::set_GNUPlotPath("D:/Apps/gnuplot/bin")) {
+        std::cerr << "gnuplotPath a été défini"<< endl;
+    } else {
+        std::cerr << "gnuplotPath n'a pas pu être défini"<< endl;
+    }
+#endif
+
+    try {
+        Gnuplot gp;
+        std::ostringstream title;
+        title << "Front Pareto, " << resolution->get_nb_not_dominated() << " solutions";
+        gp.set_title(title.str());
+        gp.cmd("set term jpeg");
+    // 	gp.set_terminal_std("jpeg");
+        std::string outputName("resolutionPareto" + dataName +".jpg");
+        cout << "PLOT : "<< "set output \""+ outputName +"\""<< endl;
+        gp.cmd("set output \""+ outputName +"\"");
+//        gp.cmd("set clabel {'%8.3g'}");
+//        gp.cmd("show clabel");
+        cout << "PLOT : "<< "plot \""<< dataName<<".pareto.txt\" lc rgb \"red\", \""<< dataName<<".evaluations.txt\" lc rgb \"black\""<< endl;
+        gp.cmd("plot \"" + dataName + ".pareto.txt\" lc rgb \"red\", \"" + dataName + ".evaluations.txt\" lc rgb \"black\"");
+
+        return outputName;
+    }
+    catch (GnuplotException ge)
+    {
+        cout << "ERROR : " << ge.what() << endl;
+        return "";
+    }
+}
+
+
 //@}
 /// ##############################################
 ///     Actions des boutons et de l'interface
@@ -336,15 +371,14 @@ void MainWindow::exportPareto()
 {
     QFileDialog* file_browser= new QFileDialog(this);
 
-    file_browser->setAcceptMode(QFileDialog::AcceptSave);
-    file_browser->setNameFilter(tr("Save") +" (*.pareto.txt)");
+//    file_browser->setAcceptMode(QFileDialog::AcceptSave);
+//    file_browser->setNameFilter(tr("Save") +" (*.pareto.txt)");
 
-    if(file_browser->exec() == QDialog::Accepted){
-        std::string filename = file_browser->selectedFiles()[0].toStdString();
-        if (filename == "") {
-            filename= get_resolution_name() + ".pareto.txt";
-        }
-        std::cout <<"taille de "<< filename<< " : "<< filename.length() << std::endl;
+//    if(file_browser->exec() == QDialog::Accepted){
+//        std::string filename = file_browser->selectedFiles()[0].toStdString();
+//        if (filename == "") {
+        filename= get_resolution_name() + ".pareto.txt";
+//        }
 
         // Sauvegarde de la foret dans FireWidget qui effectue la procédure de Foret
         resolution->trySaveParetoToTxt(filename);
@@ -361,41 +395,6 @@ void MainWindow::exportPareto()
             std::clog << "resultat commande bash : "<< ( system(cmd.c_str()) )<< endl;
 #endif
         } else std::cerr << "La création de l'image du front Pareto a échoué"<< endl;
-    }
+//    }
 }
-
-std::string MainWindow::drawPareto(const std::string &dataName)
-{
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__)
-    if (Gnuplot::set_GNUPlotPath("D:/Apps/gnuplot/bin")) {
-        std::cerr << "gnuplotPath a été défini"<< endl;
-    } else {
-        std::cerr << "gnuplotPath n'a pas pu être défini"<< endl;
-    }
-#endif
-
-    try {
-        Gnuplot gp;
-        std::ostringstream title;
-        title << "Front Pareto, " << resolution->get_nb_not_dominated() << " solutions";
-        gp.set_title(title.str());
-        gp.cmd("set term jpeg");
-    // 	gp.set_terminal_std("jpeg");
-        std::string outputName("resolutionPareto" + dataName +".jpg");
-        cout << "PLOT : "<< "set output \""+ outputName +"\""<< endl;
-        gp.cmd("set output \""+ outputName +"\"");
-//        gp.cmd("set clabel {'%8.3g'}");
-//        gp.cmd("show clabel");
-        cout << "PLOT : "<< "plot \""<< dataName<<".pareto.txt\" lc rgb \"red\", \""<< dataName<<".evaluations.txt\" lc rgb \"black\""<< endl;
-        gp.cmd("plot \"" + dataName + ".pareto.txt\" lc rgb \"red\", \"" + dataName + ".evaluations.txt\" lc rgb \"black\"");
-
-        return outputName;
-    }
-    catch (GnuplotException ge)
-    {
-        cout << "ERROR : " << ge.what() << endl;
-        return "";
-    }
-}
-
 //@}
