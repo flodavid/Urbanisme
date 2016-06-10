@@ -349,31 +349,45 @@ void MainWindow::exportPareto()
         exportAction->setEnabled(false);
 
         drawPareto(get_resolution_name());
+
+//        std::string outputName("resolutionPareto" + get_resolution_name() +".jpeg");
+//        system(outputName.c_str());
     }
 }
 
 using std::cout;
 using std::endl;
 
-void MainWindow::drawPareto(const std::string &ouputName)
+void MainWindow::drawPareto(const std::string &dataName)
 {
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__)
+    if (Gnuplot::set_GNUPlotPath("D:/Apps/gnuplot/bin/gnuplot.exe")) {
+        std::cerr << "gnuplotPath a été défini"<< endl;
+    } else {
+        std::cerr << "gnuplotPath n'a pas pu être défini"<< endl;
+    }
+#endif
+
     try {
         Gnuplot gp;
-	std::ostringstream title; 
-	title << "Front Pareto, " << resolution->get_nb_not_dominated() << " solutions";
+        std::ostringstream title;
+        title << "Front Pareto, " << resolution->get_nb_not_dominated() << " solutions";
         gp.set_title(title.str());
-	gp.cmd("set term jpeg");
-// 	gp.set_terminal_std("jpeg");
-	cout << "PLOT : "<< "set output \"resolutionPareto"<< ouputName<< ".jpeg\""<< endl;
-	gp.cmd("set output \"resolutionPareto" + ouputName + ".jpeg\"");
-        gp.cmd("set clabel"); // TODO mettre {format ... }
-        gp.cmd("show clabel");
-	cout << "PLOT : "<< "plot \""<< ouputName<<".pareto.txt\" lc rgb \"red\", \""<< ouputName<<".evaluations.txt\" lc rgb \"black\""<< endl;
-	gp.cmd("plot \"" + ouputName + ".pareto.txt\" lc rgb \"red\", \"" + ouputName + ".evaluations.txt\" lc rgb \"black\"");
+        gp.cmd("set term jpeg");
+    // 	gp.set_terminal_std("jpeg");
+        std::string outputName("resolutionPareto" + dataName +".jpeg");
+        cout << "PLOT : "<< "set output \""+ outputName +"\""<< endl;
+        gp.cmd("set output \""+ outputName +"\"");
+//        gp.cmd("set clabel {'%8.3g'}");
+//        gp.cmd("show clabel");
+        cout << "PLOT : "<< "plot \""<< dataName<<".pareto.txt\" lc rgb \"red\", \""<< dataName<<".evaluations.txt\" lc rgb \"black\""<< endl;
+        gp.cmd("plot \"" + dataName + ".pareto.txt\" lc rgb \"red\", \"" + dataName + ".evaluations.txt\" lc rgb \"black\"");
+
+        system(outputName.c_str());
     }
     catch (GnuplotException ge)
     {
-        cout << ge.what() << endl;
+        cout << "ERROR : " << ge.what() << endl;
     }
 }
 
