@@ -369,7 +369,7 @@ void MainWindow::hotmapDraw()
 
 void MainWindow::exportPareto()
 {
-    QFileDialog* file_browser= new QFileDialog(this);
+//    QFileDialog* file_browser= new QFileDialog(this);
 
 //    file_browser->setAcceptMode(QFileDialog::AcceptSave);
 //    file_browser->setNameFilter(tr("Save") +" (*.pareto.txt)");
@@ -377,7 +377,7 @@ void MainWindow::exportPareto()
 //    if(file_browser->exec() == QDialog::Accepted){
 //        std::string filename = file_browser->selectedFiles()[0].toStdString();
 //        if (filename == "") {
-        filename= get_resolution_name() + ".pareto.txt";
+        std::string filename= get_resolution_name() + ".pareto.txt";
 //        }
 
         // Sauvegarde de la foret dans FireWidget qui effectue la procédure de Foret
