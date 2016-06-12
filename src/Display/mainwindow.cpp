@@ -14,8 +14,7 @@
 //#include "../../gnuplot-iostream/gnuplot-iostream.h"
 #include "gnuplot-cpp/gnuplot_i.hpp"
 
-using std::cout;
-using std::endl;
+using std::cout; using std::cerr; using std::endl;
 
 /// #########################
 ///      Constructeurs
@@ -172,6 +171,8 @@ std::string MainWindow::get_resolution_name() const
     return oss.str();
 }
 
+#define PARETO_FOLDER std::string("../ParetoResults/")
+
 std::string MainWindow::drawPareto(const std::string &dataName)
 {
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__)
@@ -183,19 +184,22 @@ std::string MainWindow::drawPareto(const std::string &dataName)
 #endif
 
     try {
+        std::string paretoInputName (PARETO_FOLDER + dataName +".pareto.txt");
+        std::string evalsInputName  (PARETO_FOLDER + dataName +".evaluations.txt");
+        std::string outputName      (PARETO_FOLDER + "resolutionPareto" + dataName +".jpg");
+
+//        gp.cmd("set clabel {'%8.3g'}");
+//        gp.cmd("show clabel");
+
         Gnuplot gp;
         std::ostringstream title;
         title << "Front Pareto, " << resolution->get_nb_not_dominated() << " solutions";
         gp.set_title(title.str());
-        gp.cmd("set term jpeg");
-    // 	gp.set_terminal_std("jpeg");
-        std::string outputName("resolutionPareto" + dataName +".jpg");
-        cout << "PLOT : "<< "set output \""+ outputName +"\""<< endl;
-        gp.cmd("set output \""+ outputName +"\"");
-//        gp.cmd("set clabel {'%8.3g'}");
-//        gp.cmd("show clabel");
-        cout << "PLOT : "<< "plot \""<< dataName<<".pareto.txt\" lc rgb \"red\", \""<< dataName<<".evaluations.txt\" lc rgb \"black\""<< endl;
-        gp.cmd("plot \"" + dataName + ".pareto.txt\" lc rgb \"red\", \"" + dataName + ".evaluations.txt\" lc rgb \"black\"");
+        gp.set_terminal_std("jpeg");
+            std::clog << "GNUPlot : "<< "set output '"+ outputName +"'"<< endl;
+        gp.cmd("set output '"+ outputName +"'");
+            std::clog << "GNUPlot : "<< "plot '"<< paretoInputName <<"' lc rgb 'red', '"<< evalsInputName <<"' lc rgb 'black'"<< endl;
+        gp.cmd("plot '" + paretoInputName + "' lc rgb 'red', '" + evalsInputName + "' lc rgb 'black'");
 
         return outputName;
     }
@@ -385,11 +389,14 @@ void MainWindow::exportPareto()
 
         exportAction->setEnabled(false);
 
-        std::string outputName= drawPareto(get_resolution_name());
+        std::string picturePath= drawPareto(get_resolution_name());
 
-        if (outputName != "") {
+        if (picturePath != "") {
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__)
-            std::clog << "resultat commande terminal : "<< ( system(outputName.c_str()) )<< endl;
+            cout << "emplacement image non édité : " << picturePath<< endl;
+            std::replace(picturePath.begin(), picturePath.end(), '/', '\\');
+            cout << "emplacement image : " << picturePath<< endl;
+            std::clog << "resultat commande terminal : "<< ( system(picturePath.c_str()) )<< endl;
 #elif defined(unix) || defined(__unix) || defined(__unix__) || defined(__APPLE__)
             std::string cmd= "xdg-open " + outputName;
             std::clog << "resultat commande bash : "<< ( system(cmd.c_str()) )<< endl;

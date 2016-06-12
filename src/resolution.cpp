@@ -6,6 +6,8 @@
 
 #include "fieldevaluation.h"
 
+#define PARETO_FOLDER std::string("../ParetoResults/")
+
 using namespace std;
 
 /// #########################
@@ -76,7 +78,7 @@ ofstream* Resolution::openEvaluationsFile(string filename_end)
     ofstream* file= new ofstream;
     ostringstream oss;
     oss<< localSearch.get_field().get_width()<<"_"<< localSearch.get_field().get_height()<< "_"<< pareto_evals.size()<<"sol"<< filename_end<<".evaluations.txt";
-    file->open(oss.str());
+    file->open(PARETO_FOLDER + oss.str());
 
     return file;
 }
@@ -273,8 +275,10 @@ FieldEvaluation* Resolution::initResolution()
 
 bool Resolution::trySaveParetoToTxt(string fileName)
 {
+    system("echo %cd%");
+
     clog << "Enregistrement dans le fichier "<< fileName<< endl;
-    ofstream file(fileName);
+    ofstream file(PARETO_FOLDER + fileName);
 
     if(!file.is_open()){
         cerr << "Erreur pendant l'ouverture du fichier d'enregistrement Pareto500" << endl;

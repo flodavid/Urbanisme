@@ -4,7 +4,7 @@
 
 #include "evaluation.h"
 
-using namespace std;
+using std::cout; using std::cerr; using std::cout; using std::endl;
 
 /// ####################################
 ///     Constructeurs et destructeurs
@@ -365,7 +365,7 @@ void FieldWidget::moveRoad(const Coordinates &pos)
 
 void FieldWidget::selectParcel(const Coordinates &pos)
 {
-    list<Coordinates>::iterator it= std::find(selecteds.begin(), selecteds.end(), pos);
+    std::list<Coordinates>::iterator it= std::find(selecteds.begin(), selecteds.end(), pos);
     if (it != selecteds.end()) {
         selecteds.erase(it);
     } else if (field->at(pos) == is_usable) {
@@ -397,7 +397,7 @@ void FieldWidget::paintEvent(QPaintEvent* event)
     for (unsigned x= 1; x <= field->get_width(); ++x) {
         float posX= x*tailleCell;
         paint.drawLine(posX, 0, posX, (field->get_height() +1)*tailleCell);
-        ostringstream convert;
+        std::ostringstream convert;
         convert<< (x-1);
         paint.drawText(QRect(posX +3, 2, tailleCell, tailleCell), QString::fromStdString(convert.str()));
     }
@@ -405,7 +405,7 @@ void FieldWidget::paintEvent(QPaintEvent* event)
     for (unsigned y= 1; y <= field->get_height(); ++y) {
         float posY= y*tailleCell;
         paint.drawLine(0, posY, (field->get_width() +1) *tailleCell, posY);
-        ostringstream convert;
+        std::ostringstream convert;
         convert<< (y-1);
         paint.drawText(QRect(2,posY +2, tailleCell, tailleCell), QString::fromStdString(convert.str()));
     }
@@ -419,7 +419,7 @@ void FieldWidget::resizeEvent(QResizeEvent* event)
 
     int nbCol= field->get_width() +1;
     int nbRow= field->get_height()+1;
-    tailleCell = min (event->size().width() / (float)nbCol , event->size().height() / (float)nbRow);
+    tailleCell = std::min(event->size().width() / (float)nbCol , event->size().height() / (float)nbRow);
 
     #if DEBUG_CURRENT
 // 	cout << "test apres resize dans resizeEvent (ligne 488 firewidget)"<< endl;
