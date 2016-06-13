@@ -11,7 +11,6 @@
 #include <QtWidgets/QInputDialog>
 #include <QtGui/QMouseEvent>
 
-//#include "../../gnuplot-iostream/gnuplot-iostream.h"
 #include "gnuplot-cpp/gnuplot_i.hpp"
 
 using std::cout; using std::cerr; using std::endl;
@@ -403,7 +402,7 @@ void MainWindow::exportPareto()
             std::replace(picturePath.begin(), picturePath.end(), '/', '\\');
             std::clog << "___resultat commande terminal : "<< ( system(picturePath.c_str()) )<< endl;
 #elif defined(unix) || defined(__unix) || defined(__unix__) || defined(__APPLE__)
-            std::string cmd= "xdg-open " + outputName;
+            std::string cmd= "xdg-open " + picturePath;
             std::clog << "resultat commande bash : "<< ( system(cmd.c_str()) )<< endl;
 #endif
         } else std::cerr << "La création de l'image du front Pareto a échoué"<< endl;
