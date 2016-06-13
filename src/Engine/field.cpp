@@ -17,22 +17,22 @@ Field::Field(const Field& other) :
     nb_cols(other.nb_cols), nb_rows(other.nb_rows), ins_outs(other.ins_outs)
 {
     parcels= (State**)malloc(nb_rows * sizeof(State*));
-    
+
     for (unsigned i= 0; i < nb_rows; ++i) {
-	parcels[i]= (State*)malloc(nb_cols * sizeof(State));
-	for (unsigned j= 0; j < nb_cols; ++j) {
-	    parcels[i][j]= other.parcels[i][j];
-	}
+    parcels[i]= (State*)malloc(nb_cols * sizeof(State));
+        for (unsigned j= 0; j < nb_cols; ++j) {
+            parcels[i][j]= other.parcels[i][j];
+        }
     }
 }
 
 Field::~Field()
 {
     if (parcels != NULL) {
-	for (unsigned i= 0; i < nb_rows; ++i) {
-	    free(parcels[i]);
-	}
-	free(parcels);
+    for (unsigned i= 0; i < nb_rows; ++i) {
+        free(parcels[i]);
+    }
+    free(parcels);
     }
 }
 
@@ -45,23 +45,23 @@ Field::~Field()
 void Field::deleteOldMatrix()
 {
     if (parcels != NULL) {
-	for (unsigned i= 0; i < nb_rows; ++i) {
-	    free(parcels[i]);
-	}
-	free(parcels);
+    for (unsigned i= 0; i < nb_rows; ++i) {
+        free(parcels[i]);
+    }
+    free(parcels);
     }
 }
 
 
 void Field::resizeWithDimensions()
-{    
+{
     parcels= (State**)malloc(nb_rows * sizeof(State*));
 
     for (unsigned i= 0; i < nb_rows; ++i) {
-	parcels[i]= (State*)malloc(nb_cols * sizeof(State));
-	for (unsigned j= 0; j < nb_cols; ++j) {
-	    parcels[i][j]= is_undefined;
-	}
+    parcels[i]= (State*)malloc(nb_cols * sizeof(State));
+    for (unsigned j= 0; j < nb_cols; ++j) {
+        parcels[i][j]= is_undefined;
+    }
     }
 }
 
@@ -165,7 +165,7 @@ bool Field::nextCoordinates(Coordinates *coord) const
     // Si on est à la fin de la ligne, on passe à la ligne suivante
     if ((unsigned)(coord->col) == nb_cols -1) {
         // seulement si on n'est pas à la fin de la surface
-	if ((unsigned)(coord->row) + 1 < nb_cols) {
+    if ((unsigned)(coord->row) + 1 < nb_cols) {
             coord->col= 0;
             coord->row+= 1;
 #if DEBUG_PARCOURS_COORDS

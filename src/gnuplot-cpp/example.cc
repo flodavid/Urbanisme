@@ -226,7 +226,7 @@ int main(int argc, char* argv[])
         wait_for_key();
 
     }
-    catch (GnuplotException ge)
+    catch (GnuplotException& ge)
     {
         cout << ge.what() << endl;
     }

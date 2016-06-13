@@ -192,10 +192,17 @@ std::string MainWindow::drawPareto(const std::string &dataName)
 //        gp.cmd("show clabel");
 
         Gnuplot gp;
-        std::ostringstream title;
-        title << "Front Pareto, " << resolution->get_nb_not_dominated() << " solutions";
-        gp.set_title(title.str());
         gp.set_terminal_std("jpeg");
+
+        std::ostringstream title;
+        title << "Front Pareto, pour une surface de taille " <<  initialField.get_width()<<" par "<< initialField.get_height();
+        std::ostringstream subtitle;
+        subtitle << resolution->get_nb_not_dominated() << " solution(s) non dominée(s)";
+        gp.set_title(title.str() + "\\n" + subtitle.str());
+
+        gp.set_xlabel("Nombre d'exploitables");
+        gp.set_ylabel("Accessibilité moyenne");
+
             std::clog << "GNUPlot : "<< "set output '"+ outputName +"'"<< endl;
         gp.cmd("set output '"+ outputName +"'");
             std::clog << "GNUPlot : "<< "plot '"<< paretoInputName <<"' lc rgb 'red', '"<< evalsInputName <<"' lc rgb 'black'"<< endl;
@@ -203,7 +210,7 @@ std::string MainWindow::drawPareto(const std::string &dataName)
 
         return outputName;
     }
-    catch (GnuplotException ge)
+    catch (GnuplotException& ge)
     {
         cout << "ERROR : " << ge.what() << endl;
         return "";
@@ -393,10 +400,8 @@ void MainWindow::exportPareto()
 
         if (picturePath != "") {
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__)
-            cout << "emplacement image non édité : " << picturePath<< endl;
             std::replace(picturePath.begin(), picturePath.end(), '/', '\\');
-            cout << "emplacement image : " << picturePath<< endl;
-            std::clog << "resultat commande terminal : "<< ( system(picturePath.c_str()) )<< endl;
+            std::clog << "___resultat commande terminal : "<< ( system(picturePath.c_str()) )<< endl;
 #elif defined(unix) || defined(__unix) || defined(__unix__) || defined(__APPLE__)
             std::string cmd= "xdg-open " + outputName;
             std::clog << "resultat commande bash : "<< ( system(cmd.c_str()) )<< endl;

@@ -16,9 +16,15 @@ class Field
 {
 
 protected:
-    unsigned nb_cols, nb_rows;
+
+    /// \brief nb_cols Nombre de colonnes de la surface
+    unsigned nb_cols;
+    /// \brief nb_rows Nombre de lignes de la surface
+    unsigned nb_rows;
+    /// \brief ins_outs Liste des entrées-sorties de la surface
     std::list<Coordinates> ins_outs;
 
+    /// \brief Matrice d'états des cellules
     State** parcels;
 
 public:
@@ -35,7 +41,7 @@ public:
     Field(const Field& other);
 
     virtual ~Field();
-    
+
     /*=== Getters ===*/
     /**
      * Accesseur sur le nombre de colonnes -la largeur- de la surface
