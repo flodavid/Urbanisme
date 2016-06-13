@@ -11,8 +11,6 @@
 #include <QtWidgets/QInputDialog>
 #include <QtGui/QMouseEvent>
 
-#include "gnuplot-cpp/gnuplot_i.hpp"
-
 using std::cout; using std::cerr; using std::endl;
 
 /// #########################
@@ -169,53 +167,6 @@ std::string MainWindow::get_resolution_name() const
     oss<< initialField.get_width()<<"_"<< initialField.get_height()<< "_"<< resolution->get_nb_not_dominated()<<"sol";
     return oss.str();
 }
-
-#define PARETO_FOLDER std::string("../ParetoResults/")
-
-std::string MainWindow::drawPareto(const std::string &dataName)
-{
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__)
-    if (Gnuplot::set_GNUPlotPath("D:/Apps/gnuplot/bin")) {
-        std::cerr << "gnuplotPath a été défini"<< endl;
-    } else {
-        std::cerr << "gnuplotPath n'a pas pu être défini"<< endl;
-    }
-#endif
-
-    try {
-        std::string paretoInputName (PARETO_FOLDER + dataName +".pareto.txt");
-        std::string evalsInputName  (PARETO_FOLDER + dataName +".evaluations.txt");
-        std::string outputName      (PARETO_FOLDER + "resolutionPareto" + dataName +".jpg");
-
-//        gp.cmd("set clabel {'%8.3g'}");
-//        gp.cmd("show clabel");
-
-        Gnuplot gp;
-        gp.set_terminal_std("jpeg");
-
-        std::ostringstream title;
-        title << "Front Pareto, pour une surface de taille " <<  initialField.get_width()<<" par "<< initialField.get_height();
-        std::ostringstream subtitle;
-        subtitle << resolution->get_nb_not_dominated() << " solution(s) non dominée(s)";
-        gp.set_title(title.str() + "\\n" + subtitle.str());
-
-        gp.set_xlabel("Nombre d'exploitables");
-        gp.set_ylabel("Accessibilité moyenne");
-
-            std::clog << "GNUPlot : "<< "set output '"+ outputName +"'"<< endl;
-        gp.cmd("set output '"+ outputName +"'");
-            std::clog << "GNUPlot : "<< "plot '"<< paretoInputName <<"' lc rgb 'red', '"<< evalsInputName <<"' lc rgb 'black'"<< endl;
-        gp.cmd("plot '" + paretoInputName + "' lc rgb 'red', '" + evalsInputName + "' lc rgb 'black'");
-
-        return outputName;
-    }
-    catch (GnuplotException& ge)
-    {
-        cout << "ERROR : " << ge.what() << endl;
-        return "";
-    }
-}
-
 
 //@}
 /// ##############################################
@@ -391,11 +342,13 @@ void MainWindow::exportPareto()
 //        }
 
         // Sauvegarde de la foret dans FireWidget qui effectue la procédure de Foret
-        resolution->trySaveParetoToTxt(filename);
+        if (!resolution->trySaveParetoToTxt(filename)) {
+            cerr<< "ERROR : Echec lors de la sauvegarde du front pareto sous forme de texte"<< endl;
+        }
 
         exportAction->setEnabled(false);
 
-        std::string picturePath= drawPareto(get_resolution_name());
+        std::string picturePath= resolution->drawParetoJpeg(get_resolution_name());
 
         if (picturePath != "") {
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__)

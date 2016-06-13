@@ -33,7 +33,8 @@ private:
 public:
     /* Constructeurs */
     /**
-     * Constructeur d'une résolution à partir de tous les paramètres du problème, avec une liste d'entrées et sorties
+     * Constructeur d'une résolution à partir de tous les paramètres du problème,
+     * avec une liste d'entrées et sorties
      * @param nbCols Largeur de la surface
      * @param nbRows Hauteur de la surface
      * @param serveDistance Distance de desserte des parcelles par les routes
@@ -65,7 +66,7 @@ private:
     /**
      * Ouvre le fichier des évaluations dominées, sans enregistrer l'ancien
      */
-    std::ofstream *openEvaluationsFile(std::string filename_end = "");
+    std::ofstream *openEvaluationsFile(std::string filename_end = "") const;
     /**
      * Vide le buffer d'écriture du fichier d'évaluations
      */
@@ -121,9 +122,15 @@ public:
     /**
      * @brief trySaveParetoToTxt
      * @param fileName
-     * @return
+     * @return vrai si le fichier s'est correctement ouvert
      */
-    bool trySaveParetoToTxt(std::string fileName);
+    bool trySaveParetoToTxt(std::string fileName) const;
+    /**
+     * Exporte les solutions non dominées dans une image jpeg
+     * @param dataName
+     * @return le nom du fichier image crée
+     */
+    std::string drawParetoJpeg(std::string dataName) const;
 };
 
 #endif // RESOLUTION_H

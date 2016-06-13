@@ -4,6 +4,7 @@
 #include <sstream>
 #include <QtWidgets/QErrorMessage> /// TODO Supprimer de cette classe et faire apparaître la fenêtre ailleurs
 
+#include "gnuplot-cpp/gnuplot_i.hpp"
 #include "fieldevaluation.h"
 
 #define PARETO_FOLDER std::string("../ParetoResults/")
@@ -73,11 +74,11 @@ void Resolution::changeWorkField(Field *_field, bool newField)
     }
 }
 
-ofstream* Resolution::openEvaluationsFile(string filename_end)
+ofstream* Resolution::openEvaluationsFile(string filename_end) const
 {
     ofstream* file= new ofstream;
     ostringstream oss;
-    oss<< localSearch.get_field().get_width()<<"_"<< localSearch.get_field().get_height()<< "_"<< pareto_evals.size()<<"sol"<< filename_end<<".evaluations.txt";
+    oss<< localSearch.get_field_width()<<"_"<< localSearch.get_field_height()<< "_"<< pareto_evals.size()<<"sol"<< filename_end<<".evaluations.txt";
     file->open(PARETO_FOLDER + oss.str());
 
     return file;
@@ -273,7 +274,12 @@ FieldEvaluation* Resolution::initResolution()
 /// #########################
 //@{
 
-bool Resolution::trySaveParetoToTxt(string fileName)
+void Resolution::writeDominatedEvaluation(const Evaluation &eval)
+{
+    evaluations_stream << eval.get_nbUsables()<< " " << eval.get_avgAccess() << endl;
+}
+
+bool Resolution::trySaveParetoToTxt(string fileName) const
 {
     system("echo %cd%");
 
@@ -285,8 +291,10 @@ bool Resolution::trySaveParetoToTxt(string fileName)
         return false;
     }else{
         cout << "Ecriture de "<< pareto_evals.size()<< " dans un fichier lisible par GNUplot"<< endl;
+
+        unsigned ind_eval= 0;
         for(const Evaluation& eval : pareto_evals){
-            file << eval.get_nbUsables()<< " " << eval.get_avgAccess() << endl;
+            file << eval.get_nbUsables()<< " " << eval.get_avgAccess() << " " << ++ind_eval << endl;
         }
         file.close();
 
@@ -299,9 +307,47 @@ bool Resolution::trySaveParetoToTxt(string fileName)
     return true;
 }
 
-void Resolution::writeDominatedEvaluation(const Evaluation &eval)
+std::string Resolution::drawParetoJpeg(string dataName) const
 {
-    evaluations_stream << eval.get_nbUsables()<< " " << eval.get_avgAccess() << endl;
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__)
+    if (Gnuplot::set_GNUPlotPath("D:/Apps/gnuplot/bin")) {
+        std::cerr << "gnuplotPath a été défini"<< endl;
+    } else {
+        std::cerr << "gnuplotPath n'a pas pu être défini"<< endl;
+    }
+#endif
+
+    try {
+        string paretoInputName (PARETO_FOLDER + dataName +".pareto.txt");
+        string evalsInputName  (PARETO_FOLDER + dataName +".evaluations.txt");
+        string outputName      (PARETO_FOLDER + "resolutionPareto" + dataName +".jpg");
+
+        Gnuplot gp;
+        gp.set_terminal_std("jpeg");
+
+        ostringstream title;
+        title << "Front Pareto, pour une surface de taille " <<  localSearch.get_field_width()<<" par "<< localSearch.get_field_height();
+        ostringstream subtitle;
+        subtitle << get_nb_not_dominated() << " solution(s) non dominée(s)";
+        gp.set_title(title.str() + "\\n" + subtitle.str());
+
+        gp.set_xlabel("Nombre d'exploitables");
+        gp.set_ylabel("Accessibilité moyenne");
+
+            std::clog << "GNUPlot : "<< "set output '"+ outputName +"'"<< endl;
+        gp.cmd("set output '"+ outputName +"'");
+        string plot("plot '" + paretoInputName  +"' with labels font \"arial,11\" tc lt 2 lc rgb 'red', '"+ evalsInputName +"' lc rgb 'black'");
+            std::clog << "GNUPlot : "<< plot << endl;
+        gp.cmd(plot);
+
+        return outputName;
+    }
+    catch (GnuplotException& ge)
+    {
+        cout << "ERROR : " << ge.what() << endl;
+        return "";
+    }
 }
+
 
 //@}

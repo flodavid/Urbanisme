@@ -44,6 +44,14 @@ public:
 
     /* Getters */
     /**
+     * Permet de connaitre la largeur de la surface étudiée
+     */
+    unsigned get_field_width() const { return fieldeval->get_width(); }
+    /**
+     * Permet de connaitre la hauteur de la surface étudiée
+     */
+    unsigned get_field_height() const { return fieldeval->get_height(); }
+    /**
      * Accesseur sur la surface de l'Evaluation
      * @return Une référence sur la surface, modifiable
      */

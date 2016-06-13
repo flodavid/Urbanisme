@@ -108,11 +108,6 @@ public:
 private:
     std::string get_resolution_name() const;
 
-    /**
-     * Demande à l'utilisateur l'emplacement et le nom du fichier d'export du front Pareto
-     */
-    std::string drawPareto(const std::string& dataName);
-
     /* Actions des boutons et de l'interface */
 public slots:
     /**

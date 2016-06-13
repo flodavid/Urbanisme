@@ -16,8 +16,8 @@
 
 using namespace std;
 
-#define WIDTH   8
-#define HEIGHT  8
+#define WIDTH   13
+#define HEIGHT  13
 
 /**
  * Création du terrain de l'exemple, exécution de l'évaluation, affichage du résultat,
