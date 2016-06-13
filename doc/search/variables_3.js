@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['road_5fdistances_5fare_5finitiated',['road_distances_are_initiated',['../class_evaluation.html#a2b9bd48dc36e2b67514a8c0a63ff372a',1,'Evaluation']]],
-  ['row',['row',['../class_coordinates.html#aa3e522bbc0eab18fe35a7b17186df35e',1,'Coordinates']]]
+  ['nb_5fcols',['nb_cols',['../class_field.html#a59c5e377de8894dc7675961d5d53cd6f',1,'Field']]],
+  ['nb_5frows',['nb_rows',['../class_field.html#a007005989d2db13063f25c3d5156e017',1,'Field']]],
+  ['nbusables',['nbUsables',['../class_evaluation.html#a6fbb95078dd528757a502850b93a1492',1,'Evaluation']]]
 ];

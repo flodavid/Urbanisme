@@ -26,7 +26,7 @@
   <td id="projectlogo"><img alt="Logo" src="SimCity-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Urbanisme
-   &#160;<span id="projectnumber">1.2.2</span>
+   &#160;<span id="projectnumber">1.3.0</span>
    </div>
    <div id="projectbrief">Projet visant à l&#39;optimisation du placement de routes sur une surface. https://flodavid.github.io/Urbanisme</div>
   </td>
@@ -118,14 +118,14 @@ Connecteurs publics</h2></td></tr>
 Fonctions membres publiques</h2></td></tr>
 <tr class="memitem:af944c1203d9d754d08a845364eed02fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_field.html">Field</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field_widget.html#af944c1203d9d754d08a845364eed02fa">get_field</a> ()</td></tr>
 <tr class="separator:af944c1203d9d754d08a845364eed02fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe8d1bd9824728e4b9a5f2ddbf3fa1c0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field_widget.html#abe8d1bd9824728e4b9a5f2ddbf3fa1c0">get_modified_ES</a> () const </td></tr>
-<tr class="separator:abe8d1bd9824728e4b9a5f2ddbf3fa1c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaba2cf0e44188452db5bb8d0d7a5021b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field_widget.html#aaba2cf0e44188452db5bb8d0d7a5021b">has_modified_ES</a> () const </td></tr>
+<tr class="separator:aaba2cf0e44188452db5bb8d0d7a5021b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05936bda6dbe24fe666faa2171fc6fc7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field_widget.html#a05936bda6dbe24fe666faa2171fc6fc7">set_field</a> (<a class="el" href="class_field.html">Field</a> *_field)</td></tr>
 <tr class="separator:a05936bda6dbe24fe666faa2171fc6fc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd9fde31e430c88fe16806358aca2811"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field_widget.html#acd9fde31e430c88fe16806358aca2811">update_field</a> (<a class="el" href="class_field_evaluation.html">FieldEvaluation</a> *_field)</td></tr>
 <tr class="separator:acd9fde31e430c88fe16806358aca2811"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37c13b105811667e2b84343af9a920d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field_widget.html#a37c13b105811667e2b84343af9a920d9">set_unmodified</a> ()</td></tr>
-<tr class="separator:a37c13b105811667e2b84343af9a920d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af09e8dd6076f16517da700c341dc0df3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field_widget.html#af09e8dd6076f16517da700c341dc0df3">set_unmodified_ES</a> ()</td></tr>
+<tr class="separator:af09e8dd6076f16517da700c341dc0df3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad236cd24386c6bb45626178c78478d68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_field_widget.html#ad236cd24386c6bb45626178c78478d68">drawSelecteds</a> ()</td></tr>
 <tr class="separator:ad236cd24386c6bb45626178c78478d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
@@ -217,6 +217,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>paintEvent</b> (QPain
       </table>
 </div><div class="memdoc">
 <p>Dessine la surface avec les "points chaud" de mauvaise accessibilité </p>
+<p>La valeur 400 est arbitraire </p>
 
 </div>
 </div>
@@ -260,7 +261,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>paintEvent</b> (QPain
 
 </div>
 </div>
-<a class="anchor" id="abe8d1bd9824728e4b9a5f2ddbf3fa1c0"></a>
+<a class="anchor" id="aaba2cf0e44188452db5bb8d0d7a5021b"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -268,7 +269,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>paintEvent</b> (QPain
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool FieldWidget::get_modified_ES </td>
+          <td class="memname">bool FieldWidget::has_modified_ES </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -379,12 +380,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>paintEvent</b> (QPain
 
 </div>
 </div>
-<a class="anchor" id="a37c13b105811667e2b84343af9a920d9"></a>
+<a class="anchor" id="af09e8dd6076f16517da700c341dc0df3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void FieldWidget::set_unmodified </td>
+          <td class="memname">void FieldWidget::set_unmodified_ES </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>

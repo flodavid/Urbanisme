@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['resolution',['Resolution',['../class_resolution.html',1,'']]]
+  ['parameters',['Parameters',['../class_parameters.html',1,'']]]
 ];

@@ -1,19 +1,17 @@
 var searchData=
 [
-  ['teardown',['tearDown',['../class_field_test_fixture.html#a26c4e39b4d02dba41c50dbee1dd2864d',1,'FieldTestFixture::tearDown()'],['../class_coordinates_test_fixture.html#ae71f932ef88a90c4c4fbfd8329dd3e38',1,'CoordinatesTestFixture::tearDown()'],['../class_next_coordinates_test_fixture.html#aa10a5a59c2b65d3c30e26e4fc5573cb9',1,'NextCoordinatesTestFixture::tearDown()'],['../class_min_path_road_test_fixture.html#a8a98348749e6e748ad486dfa4086e166',1,'MinPathRoadTestFixture::tearDown()']]],
-  ['test_5fcalceuclidean',['test_calcEuclidean',['../class_coordinates_test_fixture.html#a631679568eccbfb84a4f88151943a047',1,'CoordinatesTestFixture']]],
-  ['test_5fcalcmanhattan',['test_calcManhattan',['../class_coordinates_test_fixture.html#a4377358e70e7b69f1539a9f89cda3c61',1,'CoordinatesTestFixture']]],
-  ['test_5fcontainsinvalids',['test_containsInvalids',['../class_field_test_fixture.html#af9005a4804532efcb0c123c35a4fa7a4',1,'FieldTestFixture']]],
-  ['test_5fcontainsvalids',['test_containsValids',['../class_field_test_fixture.html#a5ebd51a8e9af644b266177733907c25f',1,'FieldTestFixture']]],
-  ['test_5ffindvisisted',['test_findVisisted',['../class_min_path_road_test_fixture.html#a2b35c21c61183aa973b0c5fe7f1af69c',1,'MinPathRoadTestFixture']]],
-  ['test_5finvalidscoords',['test_invalidsCoords',['../class_next_coordinates_test_fixture.html#a97704e03f63ed1753d5fb98732314ae0',1,'NextCoordinatesTestFixture']]],
-  ['test_5finvalidspath',['test_invalidsPath',['../class_min_path_road_test_fixture.html#ad242362a0b16418a96613e9fac79e41c',1,'MinPathRoadTestFixture']]],
-  ['test_5fsameparcel',['test_sameParcel',['../class_min_path_road_test_fixture.html#a3e351654a409fea66809330d8a709a28',1,'MinPathRoadTestFixture']]],
-  ['test_5fservingvalids',['test_servingValids',['../class_field_test_fixture.html#a332e8d4319e77f9322d4936a8a001909',1,'FieldTestFixture']]],
-  ['test_5fvalidscoords',['test_validsCoords',['../class_next_coordinates_test_fixture.html#a3c7bcb20dfb66817af9e6162554d28ea',1,'NextCoordinatesTestFixture']]],
-  ['test_5fvalidspath',['test_validsPath',['../class_min_path_road_test_fixture.html#ae0448460a924c47237cde215f4175886',1,'MinPathRoadTestFixture']]],
-  ['threadsevaluateratio',['threadsEvaluateRatio',['../class_field_evaluation.html#addde93b5fd0040e63c7d961e8b0d470b',1,'FieldEvaluation']]],
-  ['tryadd_5fin_5fout',['tryAdd_in_out',['../class_field.html#a8853ca2b2d01a90f4f11f99bad6a080e',1,'Field::tryAdd_in_out(const Coordinates &amp;coords)'],['../class_field.html#ae738a33aa86e541944a75c5559cc2289',1,'Field::tryAdd_in_out(unsigned col, unsigned row)']]],
-  ['tryinitsolution',['tryInitSolution',['../class_local_search.html#afa816d398099caa1ae2e2fb536ea22dd',1,'LocalSearch']]],
-  ['trysaveparetototxt',['trySaveParetoToTxt',['../class_resolution.html#a0824a857b4ce0107b1a203a0b9f62ee4',1,'Resolution']]]
+  ['unset_5fcontour',['unset_contour',['../class_gnuplot.html#a0b8522cb81e46dd4f5a22b7b48f977b1',1,'Gnuplot']]],
+  ['unset_5fgrid',['unset_grid',['../class_gnuplot.html#a53183e1487bc6977f0d46bf75d19b4d3',1,'Gnuplot']]],
+  ['unset_5fhidden3d',['unset_hidden3d',['../class_gnuplot.html#ab8688182047f746090e1e5f2a8c11c9e',1,'Gnuplot']]],
+  ['unset_5flegend',['unset_legend',['../class_gnuplot.html#ace901a18ab1a459213afd3ee0233b5ce',1,'Gnuplot']]],
+  ['unset_5fmultiplot',['unset_multiplot',['../class_gnuplot.html#aad76cdec16cfb5fdf82f45ed2786f4d8',1,'Gnuplot']]],
+  ['unset_5fsmooth',['unset_smooth',['../class_gnuplot.html#ad9dfbccd66dece1dbe5803605c6ab08c',1,'Gnuplot']]],
+  ['unset_5fsurface',['unset_surface',['../class_gnuplot.html#a4ebddacbec61aa3e7bc4b89f508ad621',1,'Gnuplot']]],
+  ['unset_5ftitle',['unset_title',['../class_gnuplot.html#aca0aeb1dc0ac8d7e68ba6a15a977be28',1,'Gnuplot']]],
+  ['unset_5fxlogscale',['unset_xlogscale',['../class_gnuplot.html#a7b178184260f1498cd0c11a197ea0ac2',1,'Gnuplot']]],
+  ['unset_5fylogscale',['unset_ylogscale',['../class_gnuplot.html#a9217543dd49c4802b1194d42c5e10b6d',1,'Gnuplot']]],
+  ['unset_5fzlogscale',['unset_zlogscale',['../class_gnuplot.html#afa67f022ca344593b054d7f2e3406c7e',1,'Gnuplot']]],
+  ['update_5ffield',['update_field',['../class_field_widget.html#acd9fde31e430c88fe16806358aca2811',1,'FieldWidget']]],
+  ['updateusables',['updateUsables',['../class_field.html#a687a4b971e05b8307a3bdf496e6f8acc',1,'Field']]],
+  ['updateworkfield',['updateWorkField',['../class_main_window.html#af24516975a3d651144abba7fdc059086',1,'MainWindow']]]
 ];

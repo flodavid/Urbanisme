@@ -1,4 +1,9 @@
 var searchData=
 [
-  ['begin',['begin',['../class_field.html#a0b3e16dd4a4591025f0804e28c055ed4',1,'Field::begin() const '],['../class_field.html#a26b4af177a6fc1f44c1eb6d134d93e8b',1,'Field::begin()']]]
+  ['changeworkfield',['changeWorkField',['../class_resolution.html#af358f534c3e4d6eadee889935bb29cd3',1,'Resolution']]],
+  ['closeprogress',['closeProgress',['../class_load_window.html#a18a890df49c26a17d78c8f160122e1b8',1,'LoadWindow::closeProgress()'],['../class_load_progress.html#a08a6565708ef1335ae68569c939c4438',1,'LoadProgress::closeProgress()']]],
+  ['cmd',['cmd',['../class_gnuplot.html#a07607803ede8dd5416906df0a1924fc5',1,'Gnuplot']]],
+  ['contains',['contains',['../class_field.html#a076fac595112044eb8acd3321a1077af',1,'Field::contains(int x, int y) const '],['../class_field.html#a922548c81c4017574936f3820d9654c9',1,'Field::contains(const Coordinates &amp;coord) const ']]],
+  ['coordinates',['Coordinates',['../class_coordinates.html#a94259eaa33fbd1aa8da205266a407bc7',1,'Coordinates::Coordinates(int _x, int _y)'],['../class_coordinates.html#ac5d41909a5b219ee3dbec3699039c562',1,'Coordinates::Coordinates(const Coordinates &amp;other)']]],
+  ['createexample',['createExample',['../class_field.html#a2ca834dee6d6ce1141c1adaf7f998ee2',1,'Field']]]
 ];

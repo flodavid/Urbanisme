@@ -1,15 +1,19 @@
 var searchData=
 [
-  ['set_5ffield',['set_field',['../class_field_widget.html#a05936bda6dbe24fe666faa2171fc6fc7',1,'FieldWidget']]],
-  ['set_5fheight',['set_height',['../class_field.html#a820a5f4fcae3cd53264b4ec87748fe3b',1,'Field']]],
-  ['set_5froad_5fwidth',['set_road_width',['../class_parameters.html#af1fcf48ceb559f001e82911040ba5a81',1,'Parameters']]],
-  ['set_5fserve_5fdistance',['set_serve_distance',['../class_parameters.html#a34640826d215df735015b9261112f289',1,'Parameters']]],
-  ['set_5funmodified',['set_unmodified',['../class_field_widget.html#a37c13b105811667e2b84343af9a920d9',1,'FieldWidget']]],
-  ['set_5fwidth',['set_width',['../class_field.html#ac3c26822851b29438f6f9f0a6b505e3b',1,'Field']]],
-  ['setfield',['setField',['../class_local_search.html#ab595de99739aad8964181d94fb66b853',1,'LocalSearch']]],
-  ['setprogress',['setProgress',['../class_load_window.html#a37767f43ad3d16ff9d3eb3624a9a888b',1,'LoadWindow::setProgress()'],['../class_load_progress.html#a599588a1f7660282b525cc7f1dfa2348',1,'LoadProgress::setProgress()']]],
-  ['setup',['setUp',['../class_field_test_fixture.html#a5112c55476929d486e9aac920a065def',1,'FieldTestFixture::setUp()'],['../class_coordinates_test_fixture.html#a10c12bcbc103fa1a589afeea54597501',1,'CoordinatesTestFixture::setUp()'],['../class_next_coordinates_test_fixture.html#ab9a207797f734a7a189c700be2a7c75d',1,'NextCoordinatesTestFixture::setUp()'],['../class_min_path_road_test_fixture.html#a07bee6f2099725b0a9a9eb78183a2bf4',1,'MinPathRoadTestFixture::setUp()']]],
-  ['setusables',['setUsables',['../class_field.html#a0a3e635c2097a12d2f05246155bbb0ec',1,'Field']]],
-  ['show_5fins_5fand_5fouts',['show_ins_and_outs',['../class_field.html#a400b4301fd5d8286827a1032fcd74ec1',1,'Field']]],
-  ['spread',['spread',['../class_resolution.html#ac765ce4a69368e66b0a100eff78befef',1,'Resolution']]]
+  ['teardown',['tearDown',['../class_field_test_fixture.html#a26c4e39b4d02dba41c50dbee1dd2864d',1,'FieldTestFixture::tearDown()'],['../class_coordinates_test_fixture.html#ae71f932ef88a90c4c4fbfd8329dd3e38',1,'CoordinatesTestFixture::tearDown()'],['../class_next_coordinates_test_fixture.html#aa10a5a59c2b65d3c30e26e4fc5573cb9',1,'NextCoordinatesTestFixture::tearDown()'],['../class_min_path_road_test_fixture.html#a8a98348749e6e748ad486dfa4086e166',1,'MinPathRoadTestFixture::tearDown()']]],
+  ['test_5fcalceuclidean',['test_calcEuclidean',['../class_coordinates_test_fixture.html#a631679568eccbfb84a4f88151943a047',1,'CoordinatesTestFixture']]],
+  ['test_5fcalcmanhattan',['test_calcManhattan',['../class_coordinates_test_fixture.html#a4377358e70e7b69f1539a9f89cda3c61',1,'CoordinatesTestFixture']]],
+  ['test_5fcontainsinvalids',['test_containsInvalids',['../class_field_test_fixture.html#af9005a4804532efcb0c123c35a4fa7a4',1,'FieldTestFixture']]],
+  ['test_5fcontainsvalids',['test_containsValids',['../class_field_test_fixture.html#a5ebd51a8e9af644b266177733907c25f',1,'FieldTestFixture']]],
+  ['test_5ffindvisisted',['test_findVisisted',['../class_min_path_road_test_fixture.html#a2b35c21c61183aa973b0c5fe7f1af69c',1,'MinPathRoadTestFixture']]],
+  ['test_5finvalidscoords',['test_invalidsCoords',['../class_next_coordinates_test_fixture.html#a97704e03f63ed1753d5fb98732314ae0',1,'NextCoordinatesTestFixture']]],
+  ['test_5finvalidspath',['test_invalidsPath',['../class_min_path_road_test_fixture.html#ad242362a0b16418a96613e9fac79e41c',1,'MinPathRoadTestFixture']]],
+  ['test_5fsameparcel',['test_sameParcel',['../class_min_path_road_test_fixture.html#a3e351654a409fea66809330d8a709a28',1,'MinPathRoadTestFixture']]],
+  ['test_5fservingvalids',['test_servingValids',['../class_field_test_fixture.html#a332e8d4319e77f9322d4936a8a001909',1,'FieldTestFixture']]],
+  ['test_5fvalidscoords',['test_validsCoords',['../class_next_coordinates_test_fixture.html#a3c7bcb20dfb66817af9e6162554d28ea',1,'NextCoordinatesTestFixture']]],
+  ['test_5fvalidspath',['test_validsPath',['../class_min_path_road_test_fixture.html#ae0448460a924c47237cde215f4175886',1,'MinPathRoadTestFixture']]],
+  ['threadsevaluateratio',['threadsEvaluateRatio',['../class_field_evaluation.html#addde93b5fd0040e63c7d961e8b0d470b',1,'FieldEvaluation']]],
+  ['tryadd_5fin_5fout',['tryAdd_in_out',['../class_field.html#a8853ca2b2d01a90f4f11f99bad6a080e',1,'Field::tryAdd_in_out(const Coordinates &amp;coords)'],['../class_field.html#ae738a33aa86e541944a75c5559cc2289',1,'Field::tryAdd_in_out(unsigned col, unsigned row)']]],
+  ['tryinitsolution',['tryInitSolution',['../class_local_search.html#afa816d398099caa1ae2e2fb536ea22dd',1,'LocalSearch']]],
+  ['trysaveparetototxt',['trySaveParetoToTxt',['../class_resolution.html#a0824a857b4ce0107b1a203a0b9f62ee4',1,'Resolution']]]
 ];
