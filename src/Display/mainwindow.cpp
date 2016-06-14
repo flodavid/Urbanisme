@@ -291,6 +291,7 @@ void MainWindow::launchEval()
     if (resolution->get_nb_not_dominated() > (size_t)0) {
         exportAction->setEnabled(true);
     }
+    fieldWidget->update();
 }
 
 void MainWindow::resetField()

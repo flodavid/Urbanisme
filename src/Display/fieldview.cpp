@@ -392,6 +392,17 @@ void FieldWidget::paintEvent(QPaintEvent* event)
     QWidget::paintEvent(event);
     QPainter paint(this);
 
+    FieldEvaluation* field_eval= (FieldEvaluation *)(field);
+    if (has_evaluation && field_eval != nullptr) {
+        std::ostringstream usables;
+        usables << field_eval->get_nbUsables();
+        paint.drawText(QRect(1, 1, tailleCell, tailleCell), QString::fromStdString(usables.str()));
+
+        std::ostringstream access;
+        access << field_eval->get_avgAccess();
+        paint.drawText(QRect(1, 12, tailleCell, tailleCell), QString::fromStdString(access.str()));
+    }
+
     paint.scale(tailleCell, tailleCell);
     paint.drawImage(1, 1, *buffer);
     paint.scale(1.0/((float)tailleCell), 1.0/((float)tailleCell));
