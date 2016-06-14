@@ -1,6 +1,5 @@
-Urbanisme
-=========
-# TER visant à l'optimisation du placement de routes sur une surface, en maximisant les zones exploitables et leur accessibilité.
+Projet TER : Urbanisme
+======================
 
             Compilation Travis                   |                  License                     |
 ------------------------------------------------ | -------------------------------------------- |
@@ -28,65 +27,60 @@ par les routes
 1. [x] Affichage et interaction avec une surface : Framework Qt
 2. [x] Créer une fonction de voisinage sur une solution afin d'effectuer une recherche locale
 3. [x] Ajouter des fonctions de mise à jour des valeurs et de l'évaluation d'une solution
-4. [x] Générer des solutions et créer le front Pareto correspondant
+4. [x] Générer et évaluer des solutions et créer le front Pareto, puis l'afficher
+    - [x] Garder les valeurs d'évaluations des solutions dominées pour pouvoir les afficher en plus du front Pareto
 
 ### IV. Améliorations et optimisations possibles
 + [ ] Stocker les voisinages dans un vecteur de listes (avec couples : valeur-voisin ?)
 + [x] Stocker les valeurs de distance par routes entre chaque parcelle et chaque autre parcelle ?
 Ou entre chaque parcelles et ses suivantes ? J'utilise une matrice à 4 dimensions
-+ [ ] Transformer la matrice en un graphe ?
-    + Implémenter des algorithmes de type Dijkstra (boost-graph ?)
++ [ ] Transformer la matrice en un graphe ? pour mplémenter des algorithmes de type Dijkstra (boost-graph ?)
++ [ ] Corriger les bugs 
+    + [x] Des boutons reset et flush (revoir qui reset, ce qui est reset et sauvegardé et comment on le fait)
+    + [ ] Vérifier que l'évaluation est correcte
+    + [ ] Pourquoi ce n'est pas toujours la meilleure route qui est choisie (apparition de "patés")
 
 ### V. Fonctionnalitées envisagées
-+ [ ] Essayer différentes techniques : Vider la matrice au lieu de remplir (pb d'évaluation), algos génétique, ...
-+ [ ] Ajouter une largeur pour les routes
++ [ ] Prendre en compte la largeur des routes
 + [ ] Changer la forme des cellules : hexagonales ...
 + [ ] Ajouter des coefficients/couts sur les cellules et routes
-+ [ ] Ajouter des couleurs à l'affichage, selon les valeurs attribuées ou selon
-les "points chauds", qui on un rapport élevé distance "directe"/distance_Manhattan 
-+ [ ] Ajouter des types et contraintes de placement des parcelles
-
-## A faire :
 + [ ] L'utilisateur demande un nombre de routes à ajouter 
     - [x] Pour maximiser le nombre d'utilisables
     - [x] Pour augmenter l'accessibilité
     - [ ] Pour améliorer les deux critères (avec une valuation des critères ? avec un alpha et un beta ?)
     - [ ] Avec une planification sur le nombre de routes demandé, plutôt que des algos gloutons
-+ [ ] Corriger les bugs 
-    + [x] Des boutons reset et flush (revoir qui reset, ce qui est reset et sauvegardé et comment on le fait)
-    + [ ] Vérifier que l'évaluation est correcte
-    + [ ] Pourquoi ce n'est pas toujours la meilleure route qui est choisie (apparition de "patés")
-+ [x] Front pareto et collection solution
-    - [x] Ajouter des solutions dans le front Pareto lors de la recherche de meilleures solutions
-    - [x] Garder les valeurs d'évaluations des solutions dominées pour pouvoir les afficher en plus du front Pareto
-+ [x] Afficher les points chauds : points avec la plus grande moyenne d'accessibilité avec les autres
-    + [x] Couleurs selon l'écart avec la moyenne 
-    + Valeurs de la moyenne avec les autres cellules ?
-    
++ [x] Ajouter des couleurs à l'affichage d'une surface, selon les valeurs attribuées ou selon, pour répérer les "points chauds" : points qui on un rapport élevé distance "directe"/distance_Manhattan, avec la plus grande mauvaise accessibilité
+    + [x] Couleurs selon l'écart avec la moyenne
+    + [ ] Valeurs d'écart avec la moyenne en sur-impression ?
++ [ ] Essayer différentes techniques : Vider la matrice au lieu de remplir (pb d'évaluation), algos génétique, ...
++ [ ] Ajouter des types et contraintes de placement des parcelles
 + [ ] Sauvegarde et chargement d'une solution ?
 
-## Algorithme/Objectifs
+
+## Algorithme et détailes techniques :
+### Algorithme
 - Pour ratio entre distance directe et par les routes, faire une moyenne ? un maximum ? garder total à coté ? Moyenne pour l'instant  (OK : Moyenne quadratique et ratio max possibles)
 
-## Code/Technique :
 ### Questions :
 - Dans listes (`list<Coordinates>*`) utiliser pointeurs ? si oui, comment utiliser,
 ou remplacer, `find(begin, end, val)` ?
-
-### Profiler :
-+ Gprof (gnu profiler)
-+ Kcachegrind
 
 ## Autres :
 + Seulement 2 entrées/sorties : 3 Cas pour relier : ligne droite, ligne avec 2 coudes, Equerre (ligne avec 1 coude (ou 2n +1 ?)).
 + Recherche locale : incrémentale
 + On peut utiliser la distance euclidienne au lieu de la distance Manhattan.
 + Distance par les routes : on passe par les routes les plus proches de la parcelle
-+ Largeur routes ?? La largeur des routes n'est prise en compte dans aucun calcul, cela entraine une lenteur importante lors du pathfinding entre parcelles, par les routes, si on utilise une largeur supérieure à 1.
 + Pour définir exploitable, je vérifie si chaque parcelle a une route voisine et l'inverse lors des mises à jour. Définir toutes les voisins de chaque route supprimée ou ajoutée comme étant exploitable.
 + S'est posée la question de comment trouver les routes à X parcelles de distance d'une parcelle donnée ?
     - Actuellement, une recherche dans un de 2*X parcelles de coté est effectuée, 
     on garde les routes qui sont à moins de 2 de distance.
     - Faudrait-il stocker les routes voisines d'une parcelle dans un vecteur de listes de paires d'une coordonnée et d'une distance ? ou juste une coordonnée ? OK : plutôt oui
 
+## Authors and Contributors
+Projet développé par @flodavid. Utilise gnuplot-cpp, développé par Jeremy Conlin (jeremit0@gmail.com)
+
+## Support or Contact
+Vous pouvez me contacter à l'adresse [fl.david.53@gmail.com](mailto:fl.david.53@gmail.com)
+
+_Urbanisme_ est un logiciel libre, licencié sous la [GPLv3](https://www.gnu.org/licenses/gpl.html).
 _Urbanisme_ is free software, licensed under the [GPLv3](https://www.gnu.org/licenses/gpl.html).
