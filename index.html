@@ -19,16 +19,11 @@
           <a id="forkme_banner" href="https://github.com/flodavid/Urbanisme">View on GitHub</a>
 
           <h1 id="project_title">Urbanisme</h1>
-          <p><img src="https://github.com/flodavid/Urbanisme/blob/gh-pages/images/SimCity-UK-gpd-logo.png?raw=true" alt="SIM-CITY"></p>
           <h2 id="project_tagline">TER visant à l&#39;optimisation du placement de routes sur une surface, en maximisant les zones exploitables et leur accessibilité.</h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/flodavid/Urbanisme/zipball/master">Download this project as a .zip file</a>
               <a class="tar_download_link" href="https://github.com/flodavid/Urbanisme/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-            
-            <section id="documentation">
-              <a class="doxygen" href="doc/index.html">Documentation du projet (Doxygen)</a>
             </section>
         </header>
     </div>
@@ -37,26 +32,27 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h1>
-<a id="urbanisme" class="anchor" href="#urbanisme" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Urbanisme</h1>
-
-<p>TER visant à l'optimisation du placement de routes sur une surface, en maximisant
-les zones exploitables et leur accessibilité.</p>
+<a id="projet-ter--urbanisme" class="anchor" href="#projet-ter--urbanisme" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Projet TER : Urbanisme</h1>
 
 <table>
 <thead>
 <tr>
+<th>Compilation Travis</th>
 <th>License</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/flodavid/Urbanisme/blob/master/COPYING.txt">GPLv3 License</a></td>
+<td><a href="https://travis-ci.org/flodavid/Urbanisme"><img src="https://travis-ci.org/flodavid/Urbanisme.svg?branch=master" alt="Build Status"></a></td>
+<td><a href="https://github.com/flodavid/Urbanisme/blob/master/COPYING.txt"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="GPLv3 License"></a></td>
 </tr>
 </tbody>
 </table>
 
+<p><a href="https://flodavid.github.io/Urbanisme"><img src="https://github.com/flodavid/Urbanisme/blob/gh-pages/images/SimCity_shadows-logo.png" alt="SIM-CITY"></a></p>
+
 <h2>
-<a id="organisation" class="anchor" href="#organisation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Organisation</h2>
+<a id="organisation-du-travail-et-du-développement" class="anchor" href="#organisation-du-travail-et-du-d%C3%A9veloppement" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Organisation du travail et du développement</h2>
 
 <h3>
 <a id="i-etudes-préliminaires-" class="anchor" href="#i-etudes-pr%C3%A9liminaires-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>I. Etudes préliminaires :</h3>
@@ -68,16 +64,14 @@ les zones exploitables et leur accessibilité.</p>
 </ol>
 
 <h3>
-<a id="ii-organisation-du-travail-et-du-développement" class="anchor" href="#ii-organisation-du-travail-et-du-d%C3%A9veloppement" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>II. Organisation du travail et du développement</h3>
+<a id="ii-fonctionnalités-essentielles" class="anchor" href="#ii-fonctionnalit%C3%A9s-essentielles" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>II. Fonctionnalités essentielles</h3>
 
 <ol>
-<li>[x] Utilisation d'une classe Coordonnées, d'une classe représentant le terrain
-et d'une classe représentant les paramètres du problème </li>
-<li>[x] Ajout des entrées et sorties et d'une matrice d'états de la surface</li>
+<li>[x] Utilisation d'une classe Coordonnées, et création d'une classe représentant les paramètres du problème</li>
+<li>[x] Représentation du terrain : des entrées et sorties et d'une matrice d'états de la surface</li>
 <li>[x] Fonction d'évaluation complète du nombre de parcelles exploitables d'une solution</li>
-<li>[x] Calcul de la distance "directe" entre deux points, Manhattant et Euclidienne,
-avec tests correspondants</li>
-<li>[x] Calcul de la distance par les routes entre deux points</li>
+<li>[x] Calcul de la distance "directe" entre deux points, Manhattant et Euclidienne, avec tests correspondants</li>
+<li>[x] Calcul de la distance par les routes entre deux points : pathfinding</li>
 <li>[x] Fonction d'évaluation complète du ratio entre les distances "directes" et les distances
 par les routes</li>
 </ol>
@@ -86,96 +80,119 @@ par les routes</li>
 <a id="iii-ajouts-futurs" class="anchor" href="#iii-ajouts-futurs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>III. Ajouts futurs</h3>
 
 <ol>
-<li>[x] Affichage d'une solution : Framework Qt</li>
-<li>[ ] Créer une fonction de voisinage sur une solution afin d'effectuer une recherche locale : En cours</li>
-<li>[ ] Ajouter des fonctions de mise à jour des valeurs et de l'évaluation d'une solution</li>
-<li>[ ] Générer des solutions et créer le front Pareto correspondant</li>
+<li>[x] Affichage et interaction avec une surface : Framework Qt</li>
+<li>[x] Créer une fonction de voisinage sur une solution afin d'effectuer une recherche locale</li>
+<li>[x] Ajouter des fonctions de mise à jour des valeurs et de l'évaluation d'une solution</li>
+<li>[x] Générer et évaluer des solutions et créer le front Pareto, puis l'afficher
+
+<ul>
+<li>[x] Garder les valeurs d'évaluations des solutions dominées pour pouvoir les afficher en plus du front Pareto</li>
+</ul>
+</li>
 </ol>
 
 <h3>
-<a id="iv-améliorations-possibles" class="anchor" href="#iv-am%C3%A9liorations-possibles" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>IV. Améliorations possibles</h3>
+<a id="iv-améliorations-et-optimisations-possibles" class="anchor" href="#iv-am%C3%A9liorations-et-optimisations-possibles" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>IV. Améliorations et optimisations possibles</h3>
 
 <ul>
 <li>[ ] Stocker les voisinages dans un vecteur de listes (avec couples : valeur-voisin ?)</li>
 <li>[x] Stocker les valeurs de distance par routes entre chaque parcelle et chaque autre parcelle ?
 Ou entre chaque parcelles et ses suivantes ? J'utilise une matrice à 4 dimensions</li>
-<li>[ ] Transformer la matrice en un graphe</li>
-<li>[ ] Implémenter des algorithmes de type Dijkstra (boost-graph ?)</li>
+<li>[ ] Transformer la matrice en un graphe ? pour mplémenter des algorithmes de type Dijkstra (boost-graph ?)</li>
+<li>[ ] Corriger les bugs 
+
+<ul>
+<li>[x] Des boutons reset et flush (revoir qui reset, ce qui est reset et sauvegardé et comment on le fait)</li>
+<li>[ ] Vérifier que l'évaluation est correcte</li>
+<li>[ ] Pourquoi ce n'est pas toujours la meilleure route qui est choisie (apparition de "patés")</li>
+</ul>
+</li>
 </ul>
 
 <h3>
 <a id="v-fonctionnalitées-envisagées" class="anchor" href="#v-fonctionnalit%C3%A9es-envisag%C3%A9es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>V. Fonctionnalitées envisagées</h3>
 
 <ul>
+<li>[ ] Prendre en compte la largeur des routes</li>
 <li>[ ] Changer la forme des cellules : hexagonales ...</li>
 <li>[ ] Ajouter des coefficients/couts sur les cellules et routes</li>
-<li>[ ] Ajouter des couleurs à l'affichage, selon les valeurs attribuées ou selon
-les "points chauds", qui on un rapport élevé distance "directe"/distance_Manhattan </li>
-<li>[ ] Ajouter des types et contraintes de placement des parcelles</li>
-</ul>
-
-<h2>
-<a id="détails-" class="anchor" href="#d%C3%A9tails-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Détails :</h2>
+<li>[ ] L'utilisateur demande un nombre de routes à ajouter 
 
 <ul>
-<li>On suppose que l'on est obligé de prendre la route la plus proche de la parcelle
-pour se déplacer</li>
+<li>[x] Pour maximiser le nombre d'utilisables</li>
+<li>[x] Pour augmenter l'accessibilité</li>
+<li>[ ] Pour améliorer les deux critères (avec une valuation des critères ? avec un alpha et un beta ?)</li>
+<li>[ ] Avec une planification sur le nombre de routes demandé, plutôt que des algos gloutons</li>
+</ul>
+</li>
+<li>[x] Ajouter des couleurs à l'affichage d'une surface, selon les valeurs attribuées ou selon, pour répérer les "points chauds" : points qui on un rapport élevé distance "directe"/distance_Manhattan, avec la plus grande mauvaise accessibilité
+
+<ul>
+<li>[x] Couleurs selon l'écart avec la moyenne</li>
+<li>[ ] Valeurs d'écart avec la moyenne en sur-impression ?</li>
+</ul>
+</li>
+<li>[ ] Essayer différentes techniques : Vider la matrice au lieu de remplir (pb d'évaluation), algos génétique, ...</li>
+<li>[ ] Ajouter des types et contraintes de placement des parcelles</li>
+<li>[ ] Sauvegarde et chargement d'une solution ?</li>
 </ul>
 
 <h2>
-<a id="questions-" class="anchor" href="#questions-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Questions :</h2>
+<a id="algorithme-et-détailes-techniques-" class="anchor" href="#algorithme-et-d%C3%A9tailes-techniques-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Algorithme et détailes techniques :</h2>
 
 <h3>
-<a id="algorithmeobjectifs" class="anchor" href="#algorithmeobjectifs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Algorithme/Objectifs</h3>
+<a id="algorithme" class="anchor" href="#algorithme" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Algorithme</h3>
 
 <ul>
-<li>Comment trouver les routes à X parcelles de distance d'une parcelle donnée ?
+<li>Pour ratio entre distance directe et par les routes, faire une moyenne ? un maximum ? garder total à coté ? Moyenne pour l'instant  (OK : Moyenne quadratique et ratio max possibles)</li>
+</ul>
+
+<h3>
+<a id="questions-" class="anchor" href="#questions-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Questions :</h3>
+
+<ul>
+<li>Dans listes (<code>list&lt;Coordinates&gt;*</code>) utiliser pointeurs ? si oui, comment utiliser,
+ou remplacer, <code>find(begin, end, val)</code> ?</li>
+</ul>
+
+<h2>
+<a id="autres-" class="anchor" href="#autres-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Autres :</h2>
+
+<ul>
+<li>Seulement 2 entrées/sorties : 3 Cas pour relier : ligne droite, ligne avec 2 coudes, Equerre (ligne avec 1 coude (ou 2n +1 ?)).</li>
+<li>Recherche locale : incrémentale</li>
+<li>On peut utiliser la distance euclidienne au lieu de la distance Manhattan.</li>
+<li>Distance par les routes : on passe par les routes les plus proches de la parcelle</li>
+<li>Pour définir exploitable, je vérifie si chaque parcelle a une route voisine et l'inverse lors des mises à jour. Définir toutes les voisins de chaque route supprimée ou ajoutée comme étant exploitable.</li>
+<li>S'est posée la question de comment trouver les routes à X parcelles de distance d'une parcelle donnée ?
 
 <ul>
 <li>Actuellement, une recherche dans un de 2*X parcelles de coté est effectuée, 
-on garde les routes qui sont à moins de 2 de distance. OK : Parcourir les routes</li>
-<li>Faudrait-il stocker les routes voisines d'une parcelle dans un vecteur de listes
-de paires d'une coordonnée et d'une distance ? ou juste une coordonnée ? OK : plutôt oui</li>
-</ul>
-</li>
-<li>Les E/S sont-elles bien des routes ? OK : Oui</li>
-<li>Pour II.6, faire une moyenne ? un maximum ? garder total à coté ? OK : Moyenne pour l'instant
-
-<ul>
-<li>Noté : moyenne 80 % (OK : Moyenne quadratique)</li>
-<li>Utiliser également distance euclidienne ? OK : plus tard</li>
-<li>Distance par les routes : compte la distance entre la parcelle et la première route ? OK : faire optimisation : 
-
-<ul>
-<li>[x] Prendre les routes les plus proches d'abord</li>
+on garde les routes qui sont à moins de 2 de distance.</li>
+<li>Faudrait-il stocker les routes voisines d'une parcelle dans un vecteur de listes de paires d'une coordonnée et d'une distance ? ou juste une coordonnée ? OK : plutôt oui</li>
 </ul>
 </li>
 </ul>
-</li>
-<li>Transformer en graphe (voir Code 2. et 4. )</li>
-<li>Collection solutions, comment démarrer ? aléatoire ? voisinage ? Comment relier les E/S ?</li>
-</ul>
 
-<h4>
-<a id="autres-" class="anchor" href="#autres-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Autres :</h4>
+<h2>
+<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h2>
 
-<ul>
-<li>Seulement 2 entrées/sorties : 3 Cas pour relier : ligne droite, ligne avec 2 coudes, Equerre (ligne avec 1 coude (ou 2n +1 ?))</li>
-<li>Recherche locale : incrémentale</li>
-</ul>
+<p>Projet développé par <a href="https://github.com/flodavid" class="user-mention">@flodavid</a>. Utilise gnuplot-cpp, développé par Jeremy Conlin (<a href="mailto:jeremit0@gmail.com">jeremit0@gmail.com</a>)</p>
 
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
+<h2>
+<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h2>
 
 <p>Vous pouvez me contacter à l'adresse <a href="mailto:fl.david.53@gmail.com">fl.david.53@gmail.com</a></p>
+
+<p><em>Urbanisme</em> est un logiciel libre, licencié sous la <a href="https://www.gnu.org/licenses/gpl.html">GPLv3</a>.
+<em>Urbanisme</em> is free software, licensed under the <a href="https://www.gnu.org/licenses/gpl.html">GPLv3</a>.</p>
       </section>
     </div>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Urbanisme développé par <a href="https://github.com/flodavid" class="user-mention">flodavid</a></p>
-        <p><em>Urbanisme</em> est un logiciel libre, licencié sous<a href="https://www.gnu.org/licenses/gpl.html">GPLv3</a>.</p>
+        <p class="copyright">Urbanisme maintained by <a href="https://github.com/flodavid">flodavid</a></p>
         <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
