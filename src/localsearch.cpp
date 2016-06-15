@@ -129,10 +129,13 @@ bool LocalSearch::tryPaveRoad(Path* path)
 
 void LocalSearch::createRoadsBetween(Coordinates &inOut1, const Coordinates &inOut2)
 {
+    // On vérifie si la première E/S est sur un bord vertical ou non
     if (inOut1.col == 0 || inOut1.col == (int)fieldeval->get_width() -1) {
+        // On vérifie si l'autre point est sur le bord en face
         if (inOut1.col + inOut2.col +1 == (int)fieldeval->get_width()){
             horizontalElbows(inOut1, inOut2);
         } else {
+            // On vérifie que l'autre E/S n'est pas sur le même bord
             if (inOut1.col != inOut2.col) {
                 horizontal_roads(inOut1, inOut2);
                 if (inOut1.row != inOut2.row) {
@@ -142,9 +145,11 @@ void LocalSearch::createRoadsBetween(Coordinates &inOut1, const Coordinates &inO
             vertical_roads(inOut1, inOut2);
         }
     } else {
+        // On vérifie si l'autre point est sur le bord en face
         if (inOut1.row + inOut2.row +1 == (int)fieldeval->get_height()){
             verticalElbows(inOut1, inOut2);
         } else {
+            // On vérifie que l'autre E/S n'est pas sur le même bord
             if (inOut1.row != inOut2.row) {
                 vertical_roads(inOut1, inOut2);
                 if (inOut1.col != inOut2.col) {
@@ -185,38 +190,38 @@ list<Path*>* LocalSearch::getPaths(const Coordinates &coord1, const Coordinates 
         paths->push_back(path);
     } else {
 // 	if (fieldeval->getCloseRoads(coord1, 1)->size() < 2) {
-	if (coord1.col != coord2.col) {
-	    Coordinates coord1_col_modif= coord1;
-	    coord1_col_modif.col= oneStep(coord1.col, coord2.col);
+    if (coord1.col != coord2.col) {
+        Coordinates coord1_col_modif= coord1;
+        coord1_col_modif.col= oneStep(coord1.col, coord2.col);
 
-	    if ( fieldeval->at(coord1_col_modif) < is_road) {
-		list<Path*> * paths_col= getPaths(coord1_col_modif, coord2);
-		for (Path* path : *paths_col){
-		    path->push_front(coord1_col_modif);
-		    paths->push_back(path);
-		}
-		delete paths_col;
-	    } else if (coord1_col_modif == coord2) {
-		paths->push_back(new Path);
-	    }
-	}
+        if ( fieldeval->at(coord1_col_modif) < is_road) {
+        list<Path*> * paths_col= getPaths(coord1_col_modif, coord2);
+        for (Path* path : *paths_col){
+            path->push_front(coord1_col_modif);
+            paths->push_back(path);
+        }
+        delete paths_col;
+        } else if (coord1_col_modif == coord2) {
+        paths->push_back(new Path);
+        }
+    }
 
-	if (coord1.row != coord2.row) {
-	    Coordinates coord1_row_modif= coord1;
-	    coord1_row_modif.row= oneStep(coord1.row, coord2.row);
+    if (coord1.row != coord2.row) {
+        Coordinates coord1_row_modif= coord1;
+        coord1_row_modif.row= oneStep(coord1.row, coord2.row);
 
-	    if ( fieldeval->at(coord1_row_modif) < is_road
-		&& fieldeval->getCloseRoads(coord1_row_modif, 1)->size() < 2) {
-		list<Path*> * paths_row= getPaths(coord1_row_modif, coord2);
-		for (Path* path : *paths_row){
-		    path->push_front(coord1_row_modif);
-		    paths->push_back(path);
-		}
-		delete paths_row;
-	    } else if (coord1_row_modif == coord2) {
-		paths->push_back(new Path);
-	    }
-	}
+        if ( fieldeval->at(coord1_row_modif) < is_road
+        && fieldeval->getCloseRoads(coord1_row_modif, 1)->size() < 2) {
+        list<Path*> * paths_row= getPaths(coord1_row_modif, coord2);
+        for (Path* path : *paths_row){
+            path->push_front(coord1_row_modif);
+            paths->push_back(path);
+        }
+        delete paths_row;
+        } else if (coord1_row_modif == coord2) {
+        paths->push_back(new Path);
+        }
+    }
 // 	}
     }
 
@@ -335,11 +340,11 @@ float LocalSearch::addRoadsAccess(unsigned nbToAdd)
 
     do {
 #if LOGS_ACCESS_ROAD
-	if (coord.col == 0) {
-	    cout << "Ligne "<< coord.row<< ", gain courant : "<< gain_max<< endl;
-	}
+    if (coord.col == 0) {
+        cout << "Ligne "<< coord.row<< ", gain courant : "<< gain_max<< endl;
+    }
 #endif
-	
+
         if (fieldeval->at(coord) == is_road) {
             list<Coordinates>* accessible_roads= fieldeval->getCloseRoads(coord, nbToAdd +1);
 
