@@ -127,9 +127,11 @@ Fonctions membres publiques</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a0c7e987bd992063cae7144b77eb00fc6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#a0c7e987bd992063cae7144b77eb00fc6">writeDominatedEvaluation</a> (const <a class="el" href="class_evaluation.html">Evaluation</a> &amp;eval)</td></tr>
 <tr class="separator:a0c7e987bd992063cae7144b77eb00fc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0824a857b4ce0107b1a203a0b9f62ee4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#a0824a857b4ce0107b1a203a0b9f62ee4">trySaveParetoToTxt</a> (std::string fileName)</td></tr>
-<tr class="memdesc:a0824a857b4ce0107b1a203a0b9f62ee4"><td class="mdescLeft">&#160;</td><td class="mdescRight">trySaveParetoToTxt  <a href="#a0824a857b4ce0107b1a203a0b9f62ee4">Plus de détails...</a><br /></td></tr>
-<tr class="separator:a0824a857b4ce0107b1a203a0b9f62ee4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad77db88069fbc035f8f179285b84e66c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#ad77db88069fbc035f8f179285b84e66c">trySaveParetoToTxt</a> (std::string fileName) const </td></tr>
+<tr class="memdesc:ad77db88069fbc035f8f179285b84e66c"><td class="mdescLeft">&#160;</td><td class="mdescRight">trySaveParetoToTxt  <a href="#ad77db88069fbc035f8f179285b84e66c">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ad77db88069fbc035f8f179285b84e66c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a649418f2ed690a3679c126b784367962"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#a649418f2ed690a3679c126b784367962">drawParetoJpeg</a> (std::string dataName) const </td></tr>
+<tr class="separator:a649418f2ed690a3679c126b784367962"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af358f534c3e4d6eadee889935bb29cd3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resolution.html#af358f534c3e4d6eadee889935bb29cd3">changeWorkField</a> (<a class="el" href="class_field.html">Field</a> *_field, bool newField)</td></tr>
 <tr class="separator:af358f534c3e4d6eadee889935bb29cd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -254,6 +256,29 @@ Fonctions membres publiques</h2></td></tr>
 <p>TODO demander à l'utilisateur si il veut sauvegarder les résultats avant d'effacer le champ </p><dl class="section see"><dt>Voir également</dt><dd>la copie est vraiment utile ? (elle est donnée à localsearch)</dd>
 <dd>
 la copie est vraiment utile ? (elle est donnée à localsearch) </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a649418f2ed690a3679c126b784367962"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Resolution::drawParetoJpeg </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>dataName</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Exporte les solutions non dominées dans une image jpeg </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dataName</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>le nom du fichier image crée </dd></dl>
 
 </div>
 </div>
@@ -402,7 +427,7 @@ la copie est vraiment utile ? (elle est donnée à localsearch) </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a0824a857b4ce0107b1a203a0b9f62ee4"></a>
+<a class="anchor" id="ad77db88069fbc035f8f179285b84e66c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -411,7 +436,7 @@ la copie est vraiment utile ? (elle est donnée à localsearch) </dd></dl>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>fileName</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -423,9 +448,7 @@ la copie est vraiment utile ? (elle est donnée à localsearch) </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Renvoie</dt><dd></dd></dl>
-<h6></h6>
-<p>Export </p><h6></h6>
+<dl class="section return"><dt>Renvoie</dt><dd>vrai si le fichier s'est correctement ouvert </dd></dl>
 
 </div>
 </div>
@@ -442,7 +465,9 @@ la copie est vraiment utile ? (elle est donnée à localsearch) </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Ecrit l'évaluation dans le fichier des évaluations dominées </p>
+<p>Ecrit l'évaluation dans le fichier des évaluations dominées</p>
+<h6></h6>
+<p>Export </p><h6></h6>
 
 </div>
 </div>

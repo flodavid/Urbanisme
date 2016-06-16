@@ -4,6 +4,8 @@ var searchData=
   ['generateinsandouts',['generateInsAndOuts',['../class_field.html#ab3e49fecc6c0c5eed1d07b761f35b8ba',1,'Field']]],
   ['get_5favgaccess',['get_avgAccess',['../class_evaluation.html#af96faa0d985feb2ab6f8f2ed4d07df9e',1,'Evaluation']]],
   ['get_5ffield',['get_field',['../class_field_widget.html#af944c1203d9d754d08a845364eed02fa',1,'FieldWidget::get_field()'],['../class_local_search.html#a7b7cf20fcffe93215175ff07ca337fe9',1,'LocalSearch::get_field()']]],
+  ['get_5ffield_5fheight',['get_field_height',['../class_local_search.html#aac5822585a54e15b090bd43332e8776d',1,'LocalSearch']]],
+  ['get_5ffield_5fwidth',['get_field_width',['../class_local_search.html#a06026410ecde4b5e9cd51b5d0232735f',1,'LocalSearch']]],
   ['get_5ffieldevaluation',['get_fieldEvaluation',['../class_local_search.html#a684a0a90a67c4bdb48341b9a6d85fd61',1,'LocalSearch']]],
   ['get_5fheight',['get_height',['../class_field.html#a85cbce7b8cf8fc7d33bc9c5d7637fd0f',1,'Field']]],
   ['get_5finitialfield',['get_initialField',['../class_main_window.html#a99e4e607a72d7bf0dbf447056ea454ed',1,'MainWindow']]],
