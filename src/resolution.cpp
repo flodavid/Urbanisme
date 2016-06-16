@@ -169,6 +169,7 @@ int Resolution::spread(const Evaluation& eval)
     do {
         --it;
         if( it->is_dominated(eval) ) {
+            writeDominatedEvaluation(*it);
             ++nb_deleted;
 #if LOGS_PARETO
             clog << "Suppression de l'élement d'éval ("<< eval.get_nbUsables()<< ";"<< eval.get_avgAccess()<< ") des non dominés"<< endl;
