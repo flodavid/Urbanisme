@@ -202,7 +202,7 @@ FieldEvaluation * Resolution::localSearchUsableObjective(unsigned maxRoadsToAdd)
         cout << endl<< "=== Ajout de la route "<< road_num<< endl;
 #endif
         ++ road_num;
-        // Evaluation de la surface avant de lancer l'algo
+        // Evaluation de la surface après avoir lancé l'algo
         evaluateBothObjectives();
     } while(gain >= 0 && road_num <= maxRoadsToAdd);
 
@@ -241,6 +241,8 @@ FieldEvaluation *Resolution::localSearchAccessObjective(unsigned maxPathsToAdd)
 //        cout << "(Gain min : "<< gain_min<< ")"<< endl;
 
         ++num_path;
+        // Evaluation de la surface après avoir lancé l'algo
+        evaluateBothObjectives();
     } while ( num_path <= maxPathsToAdd && gain_access >= 0.0);
     if (gain_access < 0.0) cout << "On a arrêté l'ajout de chemins car le gain était négatif"<< endl;
 
