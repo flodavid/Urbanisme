@@ -316,6 +316,7 @@ void MainWindow::emptyField()
 
     // Initialisation d'une nouvelle surface vide
     initialField= Field(initialField.get_width(), initialField.get_height());
+    initialField.resizeWithDimensions();
     initialField.setUsables(parameters.get_serve_distance());
 
     fieldWidget->set_field(&initialField);

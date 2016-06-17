@@ -34,29 +34,10 @@ int main(int argc, char* argv[])
     Field& myField= *(new Field(WIDTH,HEIGHT));
 
 //     // Solution de l'exemple :
-//   myField.createExample();
+//    myField.createExample();
 
 //    // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
 //    myField.defineUsables(myParameters.get_serve_distance());
-
-//   // Solutions avec recherche locale
-    // Angle 1
-//        myField.add_in_out(2,HEIGHT -1);
-//        myField.add_in_out(WIDTH -1,1);
-
-    // Angle 2
-//           myField.add_in_out(8,HEIGHT -1);
-//           myField.add_in_out(WIDTH -1,4);
-    // Mm colonne
-//            myField.add_in_out(0,4);
-//            myField.add_in_out(0,HEIGHT -1);
-    // En face : coude
-//             myField.add_in_out(WIDTH -1,8);
-//             myField.add_in_out(0,4);
-    // E/S exemple
-//    myField.add_in_out(WIDTH/2,HEIGHT -1);
-//    myField.add_in_out(WIDTH/2,0);
-
 
 //    Resolution myResolution(myField, myParameters);
 //    myResolution.launchResolution();
