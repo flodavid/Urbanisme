@@ -27,26 +27,24 @@ int main(int argc, char* argv[])
 {
     QScopedPointer<QApplication> app(new QApplication(argc, argv));
 
+    /** Tests **/
     // Paramètres du problèmes
     Parameters myParameters(2, 1);
 
-    /** Tests **/
     Field& myField= *(new Field(WIDTH,HEIGHT));
 
-//     // Solution de l'exemple :
-//    myField.createExample();
+//    myField.createExample(); // Solution de l'exemple
 
 //    // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
 //    myField.defineUsables(myParameters.get_serve_distance());
 
-//    Resolution myResolution(myField, myParameters);
-//    myResolution.launchResolution();
-
-//    mainWindow->repaint();
     /** Fin tests **/
 
     // Fenêtre
-    MainWindow* mainWindow= new MainWindow(myField, myParameters);
+    /// AVEC SURFACE INITIALE
+//    MainWindow* mainWindow= new MainWindow(myField, myParameters);
+    /// TAILLE DEFINIE PAR L'UTILISATEUR AU DEBUT
+    MainWindow* mainWindow= new MainWindow;
 
     mainWindow->show();
 

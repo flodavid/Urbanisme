@@ -10,6 +10,8 @@
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QInputDialog>
 #include <QtGui/QMouseEvent>
+#include <QDialog>
+#include <QSpinBox>
 
 using std::cout; using std::cerr; using std::endl;
 
@@ -20,39 +22,12 @@ using std::cout; using std::cerr; using std::endl;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), initialField(0,0), parameters(0,0)
 {
-    //    askParams();
-    const QPoint* size= askSizes();
-    initialField.set_width(size->x());
-    initialField.set_height(size->y());
-    delete size;
+    initWindow= nullptr;
+    askNewParams();
 
     fieldWidget= new FieldWidget(&initialField, parameters.get_serve_distance());
 
     resolution= new Resolution(initialField, parameters);
-
-    initComponents();
-    initEvents();
-}
-
-MainWindow::MainWindow(unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth, QWidget *parent)
-    : QMainWindow(parent), initialField(nbCols, nbRows), parameters(serveDistance, roadsWidth)
-{
-    fieldWidget= new FieldWidget(&initialField, serveDistance);
-    initialField.setUsables(parameters.get_serve_distance());
-
-    resolution= new Resolution(initialField, parameters);
-
-    initComponents();
-    initEvents();
-}
-
-MainWindow::MainWindow(unsigned nbCols, unsigned nbRows, const Parameters &params, QWidget *parent)
-    : QMainWindow(parent), initialField(nbCols, nbRows), parameters(params)
-{
-    fieldWidget= new FieldWidget(&initialField, params.get_serve_distance());
-    initialField.setUsables(parameters.get_serve_distance());
-
-    resolution= new Resolution(*(fieldWidget->get_field()), parameters);
 
     initComponents();
     initEvents();
@@ -70,11 +45,39 @@ MainWindow::MainWindow(const Field& field, const Parameters &params, QWidget *pa
     initEvents();
 }
 
+//MainWindow::MainWindow(unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth, QWidget *parent)
+//    : QMainWindow(parent), initialField(nbCols, nbRows), parameters(serveDistance, roadsWidth)
+//{
+//    fieldWidget= new FieldWidget(&initialField, serveDistance);
+//    initialField.setUsables(parameters.get_serve_distance());
+
+//    resolution= new Resolution(initialField, parameters);
+
+//    initComponents();
+//    initEvents();
+//}
+
+//MainWindow::MainWindow(unsigned nbCols, unsigned nbRows, const Parameters &params, QWidget *parent)
+//    : QMainWindow(parent), initialField(nbCols, nbRows), parameters(params)
+//{
+//    fieldWidget= new FieldWidget(&initialField, params.get_serve_distance());
+//    initialField.setUsables(parameters.get_serve_distance());
+
+//    resolution= new Resolution(*(fieldWidget->get_field()), parameters);
+
+//    initComponents();
+//    initEvents();
+//}
+
 MainWindow::~MainWindow()
 {
-    if (aboutWindow == nullptr) {
+    if (aboutWindow != nullptr) {
         delete aboutWindow;
     }
+    if(initWindow != nullptr){
+        delete initWindow;
+    }
+
     delete aboutAction;
     delete initAction;
     delete evalAction;
@@ -125,7 +128,7 @@ void MainWindow::initComponents()
 
 void MainWindow::initEvents()
 {
-    connect(askAction,      &QAction::triggered, this, &MainWindow::askSizes);
+    connect(askAction,      &QAction::triggered, this, &MainWindow::newWorkField);
     connect(aboutAction,    &QAction::triggered, this, &MainWindow::popAbout);
     connect(initAction,     &QAction::triggered, this, &MainWindow::launchInit);
     connect(evalAction,     &QAction::triggered, this, &MainWindow::launchEval);
@@ -177,9 +180,7 @@ std::string MainWindow::get_resolution_name() const
 /// ##############################################
 //@{
 
-#include <QDialog>
-#include <QSpinBox>
-const QPoint* MainWindow::askSizes()
+void MainWindow::askNewParams()
 {
     if(initWindow != nullptr){
         delete initWindow;
@@ -188,39 +189,61 @@ const QPoint* MainWindow::askSizes()
     initWindow->resize(190, 120);
     initWindow->setMaximumSize(190, 120);
 
+    // Layout de la fenêtre
     QVBoxLayout* VLay= new QVBoxLayout(initWindow);
-    QLabel* width_label= new QLabel("Largeur ?");
+
+    // Eléments pour entrer la distance de desserte
+    QLabel* dist_label= new QLabel( tr("Distance de desserte ?") );
+    QSpinBox* dist_spin= new QSpinBox(initWindow);
+        dist_spin->setValue(2);
+    VLay->addWidget(dist_label);
+    VLay->addWidget(dist_spin);
+
+//    // Eléments pour entrer la largeur des routes
+//    QLabel* road-width_label= new QLabel( tr("Distance de desserte ?") );
+//    QSpinBox* road-width_spin= new QSpinBox(initWindow);
+//        road-width_spin->setValue(1);
+//    VLay->addWidget(road-width_label);
+//    VLay->addWidget(road-width_spin);
+
+    // Eléments pour entrer la largeur
+    QLabel* width_label= new QLabel(tr("Largeur ?"));
     QSpinBox* width_spin= new QSpinBox(initWindow);
-        width_spin->setValue(14); /// TODO utiliser une variabe
-    QLabel* height_label= new QLabel("Hauteur ?");
-    QSpinBox* height_spin= new QSpinBox(initWindow);
-        height_spin->setValue(14); /// TODO utiliser une variabe
-
-    QPushButton* valid= new QPushButton("OK", initWindow);
-
+        width_spin->setValue(14);
     VLay->addWidget(width_label);
     VLay->addWidget(width_spin);
+
+    // Eléments pour entrer la hauteur
+    QLabel* height_label= new QLabel(tr("Hauteur ?"));
+    QSpinBox* height_spin= new QSpinBox(initWindow);
+        height_spin->setValue(14);
     VLay->addWidget(height_label);
     VLay->addWidget(height_spin);
+
+    QPushButton* valid= new QPushButton("OK", initWindow);
     VLay->addWidget(valid);
 
     width_label->setStyleSheet("QLabel {color : darkred;  }");
     height_label->setStyleSheet("QLabel {color : darkred;  }");
+    dist_label->setStyleSheet("QLabel {color : darkred;  }");
+
     connect(valid, &QPushButton::clicked, initWindow, &QDialog::close );
 
-//    QDialog* dialog= new QInputDialog(this);
-//    dialog->setLabelText("mon texte");
-//    dialog->getInt(this, "Tailles et paramètres", "Largeur", 15);
-//    dialog->getInt(this, "Tailles et paramètres", "Hauteur", 15);
     initWindow->exec();
 
-    return new QPoint(width_spin->value(), height_spin->value());
+// Utilisation des valeurs entrées
+    parameters.set_serve_distance(2);
+    parameters.set_road_width(1); /// @see changer si la largeur des routes est prise en compte
+
+    Field tmp_field= Field(width_spin->value(), height_spin->value());
+        tmp_field.setUsables(parameters.get_serve_distance());
+    initialField= tmp_field;
 }
 
 void MainWindow::popAbout()
 {
     if(aboutWindow == nullptr){
-        aboutWindow = new QWidget(/*this*/);
+        aboutWindow = new QWidget();
         QVBoxLayout* VLay= new QVBoxLayout(aboutWindow);
         QLabel* signature= new QLabel("Florian DAVID");
         QLabel* about= new QLabel("Projet première année de master");
@@ -386,6 +409,16 @@ void MainWindow::askChangeField()
             cerr<< "ERROR : Echec lors du changement de surface"<< endl;
         }
     }
+}
+
+void MainWindow::newWorkField()
+{
+    askNewParams();
+
+    fieldWidget->set_field(&initialField);
+    fieldWidget->resize(initialField.get_width() * INITIAL_SCALE , initialField.get_height() * INITIAL_SCALE);
+    fieldWidget->redraw();
+//    resolution->changeWorkField(new_field, true);
 }
 
 //@}

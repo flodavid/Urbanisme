@@ -52,26 +52,6 @@ public:
      * @param parent
      */
     explicit MainWindow(QWidget *parent = 0);
-
-    /**
-     * Constructeur avec des valeurs initiales
-     * @param nbCols Largeur de la surface
-     * @param nbRows Hauteur de la surface
-     * @param serveDistance Distance de desserte de la résolution
-     * @param roadsWidth Largeur des routes de la résolution
-     * @param parent Widget parent
-     * @param parent
-     */
-    explicit MainWindow(unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth, QWidget *parent = 0);
-
-    /**
-     * Constructeur avec des valeurs initiales
-     * @param nbCols Largeur de la surface
-     * @param nbRows Hauteur de la surface
-     * @param params Paramètres de résolution
-     * @param parent Widget parent
-     */
-    explicit MainWindow(unsigned nbCols, unsigned nbRows, const Parameters& params, QWidget *parent = 0);
     /**
      * Constructeur à partir d'une surface déjà crée
      * @param field Surface à utiliser
@@ -79,6 +59,27 @@ public:
      * @param parent Widget parent
      */
     explicit MainWindow(const Field& field, const Parameters& params, QWidget *parent = 0);
+
+//    /**
+//     * Constructeur avec des valeurs initiales
+//     * @param nbCols Largeur de la surface
+//     * @param nbRows Hauteur de la surface
+//     * @param serveDistance Distance de desserte de la résolution
+//     * @param roadsWidth Largeur des routes de la résolution
+//     * @param parent Widget parent
+//     * @oldcode
+//     */
+//    explicit MainWindow(unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth, QWidget *parent = 0);
+
+//    /**
+//     * Constructeur avec des valeurs initiales
+//     * @param nbCols Largeur de la surface
+//     * @param nbRows Hauteur de la surface
+//     * @param params Paramètres de résolution
+//     * @param parent Widget parent
+//     * @oldcode
+//     */
+//    explicit MainWindow(unsigned nbCols, unsigned nbRows, const Parameters& params, QWidget *parent = 0);
 
     /**
      * Destructeur de la classe MainWindow
@@ -110,11 +111,13 @@ private:
     std::string get_resolution_name() const;
 
     /* Actions des boutons et de l'interface */
-public slots:
+
     /**
      * Demande les tailles de la surface à traiter à l'utilisateur
      */
-    const QPoint* askSizes();
+    void askNewParams();
+
+private slots:
 //    /**
 //     * Demande les paramètres du problème avec lesquels effectuer la résolution
 //     */
@@ -167,6 +170,10 @@ public slots:
      * afficher et utilier.
      */
     void askChangeField();
+    /**
+     *  Crée une nouvelle surface en demandant sa taille
+     */
+    void newWorkField();
 };
 
 #endif // MAINWINDOW_H

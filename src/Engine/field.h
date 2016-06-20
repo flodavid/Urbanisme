@@ -165,39 +165,30 @@ public:
      * Opérateur = d'affectation
      * @param other Instance à recopier
      */
-    inline Field& operator=(const Field& other)
+    Field& operator=(const Field& other)
     {
-        assert(nb_cols == other.nb_cols && nb_rows == other.nb_cols);
+//        assert(nb_cols == other.nb_cols && nb_rows == other.nb_cols);
         ins_outs= other.ins_outs;
-        parcels= other.parcels;
+
+        if (parcels != NULL) {
+            for (unsigned i= 0; i < nb_rows; ++i) {
+                free(parcels[i]);
+            }
+            free(parcels);
+        }
+
+        nb_cols= other.nb_cols;
+        nb_rows= other.nb_rows;
+        resizeWithDimensions();
+
+        for (unsigned i= 0; i < nb_rows; ++i) {
+            for (unsigned j= 0; j < nb_cols; ++j) {
+                parcels[i][j]= other.parcels[i][j];
+            }
+        }
 
         return *this;
     }
-
-    /**
-     * @brief begin
-     * @return un itérateur constant sur la première parcelle du Field
-     * @see
-     */
-//     inline std::vector<std::vector<State>>::const_iterator begin() const { return parcels.cbegin(); }
-    /**
-     * @brief end
-     * @return un itérateur constant sur la dernière parcelle du Field
-     * @see
-     */
-//     inline std::vector<std::vector<State>>::const_iterator end() const { return parcels.cend(); }
-    /**
-     * @brief begin
-     * @return un itérateur sur la première parcelle du Field
-     * @see
-     */
-//     inline std::vector<std::vector<State>>::iterator begin() { return parcels.begin(); }
-    /**
-     * @brief end
-     * @return un itérateur sur la dernière parcelle du Field
-     * @see
-     */
-//     inline std::vector<std::vector<State>>::iterator end() { return parcels.end(); }
 
     /**
      * Retourne la première coordonée de la matrice, elle peut ensuite
@@ -290,12 +281,6 @@ private:
     bool isRoadAndNeighbourOf(const Coordinates& neighbour, const Coordinates& coord, unsigned servingDistance) const;
 
 public:
-//    /**
-//     * Recherche des parcelles qui sont concomitantes à la cellule
-//        * @param coord Coordonnées de la parcelle
-//     * @return une liste de parcelle adjacentes à la cellule
-//     */
-//    std::list<Coordinates> *getNeighbourParcels( const Coordinates& coord ) const;
     /**
      * Recherche des portions de routes qui sont concomitantes à la parcelle courante
         * @param coord Coordonnées de la parcelle

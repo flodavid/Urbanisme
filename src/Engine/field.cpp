@@ -29,10 +29,10 @@ Field::Field(const Field& other) :
 Field::~Field()
 {
     if (parcels != NULL) {
-    for (unsigned i= 0; i < nb_rows; ++i) {
-        free(parcels[i]);
-    }
-    free(parcels);
+        for (unsigned i= 0; i < nb_rows; ++i) {
+            free(parcels[i]);
+        }
+        free(parcels);
     }
 }
 
@@ -55,13 +55,13 @@ void Field::deleteOldMatrix()
 
 void Field::resizeWithDimensions()
 {
-    parcels= (State**)malloc(nb_rows * sizeof(State*));
+    parcels= (State**)(malloc(nb_rows * sizeof(State*)));
 
     for (unsigned i= 0; i < nb_rows; ++i) {
-    parcels[i]= (State*)malloc(nb_cols * sizeof(State));
-    for (unsigned j= 0; j < nb_cols; ++j) {
-        parcels[i][j]= is_undefined;
-    }
+        parcels[i]= (State*)(malloc(nb_cols * sizeof(State)));
+        for (unsigned j= 0; j < nb_cols; ++j) {
+            parcels[i][j]= is_undefined;
+        }
     }
 }
 
@@ -107,6 +107,9 @@ void Field::add_undefined(const Coordinates& coords)
     }
     parcels[coords.row][coords.col]= is_undefined;
 }
+
+//Field& operator =(const Field& other)
+
 
 //@}
 ///#####################
@@ -165,7 +168,7 @@ bool Field::nextCoordinates(Coordinates *coord) const
     // Si on est à la fin de la ligne, on passe à la ligne suivante
     if ((unsigned)(coord->col) == nb_cols -1) {
         // seulement si on n'est pas à la fin de la surface
-    if ((unsigned)(coord->row) + 1 < nb_cols) {
+        if ((unsigned)(coord->row) + 1 < nb_rows) {
             coord->col= 0;
             coord->row+= 1;
 #if DEBUG_PARCOURS_COORDS
