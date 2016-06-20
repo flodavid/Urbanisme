@@ -66,6 +66,12 @@ void FieldWidget::setColor(int r, int g, int b, int a)
     color->setRgb(r, g, b, a);
 }
 
+void FieldWidget::update_field(FieldEvaluation *_field)
+{
+    field= _field;
+    has_evaluation= true;
+}
+
 void FieldWidget::set_unmodified_ES()
 {
     modified_ES= false;
@@ -245,16 +251,6 @@ void FieldWidget::drawHotmapField()
     update();
 }
 
-void FieldWidget::drawChanged()
-{
-    bufferPainter->begin(buffer);
-
-    setColor(Red);
-//	drawList(forest->getBurned());
-//	forest->clearBurned();
-    bufferPainter->end();
-}
-
 // Test perf
 #if PERF_REDRAW
 int num_redraw= 0;
@@ -273,7 +269,6 @@ void FieldWidget::redraw()
     buffer = new QImage(field->get_width(), field->get_height(), QImage::Format_ARGB32);
 
     drawField();
-    drawChanged();
 
     update();
 }
@@ -468,7 +463,6 @@ void FieldWidget::mousePressEvent(QMouseEvent* event)
             clicInOut(cell_clic);
         }
 
-        drawChanged();
         update();
     }
 }
@@ -493,7 +487,6 @@ void FieldWidget::mouseMoveEvent(QMouseEvent* event)
         }
     }
 
-    drawChanged();
     update();
 }
 

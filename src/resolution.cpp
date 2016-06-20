@@ -19,9 +19,9 @@ using namespace std;
 Resolution::Resolution(unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth, std::list<Coordinates>& ins_outs):
     params(serveDistance, roadsWidth), localSearch(new Field(nbCols, nbRows), &params), nbCells(nbCols * nbRows)
 {
-    Field& initField= localSearch.get_field();
+    Field* initField= localSearch.get_fieldEvaluation();
     for (const Coordinates& in_out : ins_outs) {
-        if ( !initField.tryAdd_in_out(in_out)) {
+        if ( !initField->tryAdd_in_out(in_out)) {
             cerr << "Les coordonnées "<< in_out<< " ne représentent pas une entrée/sortie valide"<< endl;
         }
     }
@@ -145,7 +145,7 @@ void Resolution::evaluateBothObjectives()
 bool Resolution::isNotDominated(const Evaluation &eval)
 {
 //    int x= pareto_evals.size();
-    list<FieldEvaluation>::iterator it(pareto_evals.end());
+    auto it(pareto_evals.end());
     do {
         --it;
         if( eval.is_dominated(*it) ) {
@@ -210,7 +210,7 @@ FieldEvaluation * Resolution::localSearchUsableObjective(unsigned maxRoadsToAdd)
     cout << endl<< "===== Evaluation après maximisation du nombre d'exploitables ====="<< endl;
     evaluateBothObjectives();
 
-    return &(localSearch.get_field());
+    return localSearch.get_fieldEvaluation();
 }
 
 //#define MIN_PERCENT_GAIN 5.0 // TODO supprimer du calcul de gain min pour pouvoir le supprimer
@@ -249,7 +249,7 @@ FieldEvaluation *Resolution::localSearchAccessObjective(unsigned maxPathsToAdd)
     cout << endl<< "===== Evaluation après maximisation de l'accessibilité ====="<< endl;
     evaluateBothObjectives();
 
-    return &(localSearch.get_field());
+    return localSearch.get_fieldEvaluation();
 }
 
 //@}
@@ -268,7 +268,7 @@ FieldEvaluation* Resolution::initResolution()
         error_window->showMessage( "Impossible d'initialiser une route si il n'y a pas au moins deux entrées/sorties" );
     }
 
-    return &(localSearch.get_field());
+    return localSearch.get_fieldEvaluation();
 }
 
 //@}
@@ -352,5 +352,15 @@ std::string Resolution::drawParetoJpeg(string dataName) const
     }
 }
 
+FieldEvaluation* Resolution::trySelectSavedField(unsigned index)
+{
+    if (index < pareto_evals.size()) {
+        list<FieldEvaluation>::iterator it= pareto_evals.begin();
+        for (unsigned i= 0; i < index; ++i) ++it;
+
+        changeWorkField(new FieldEvaluation(*it, params), false);
+        return localSearch.get_fieldEvaluation();
+    } else return nullptr;
+}
 
 //@}

@@ -83,6 +83,7 @@ MainWindow::~MainWindow()
     delete resetAction;
     delete flushAction;
     delete exportAction;
+    delete change_fieldAction;
 
     delete resolution;
 
@@ -114,6 +115,7 @@ void MainWindow::initComponents()
     resetAction= actionsMenu->addAction( tr("Reset") );
     flushAction= actionsMenu->addAction( tr("Flush") );
     hotmapAction= actionsMenu->addAction( tr("Draw Hotmap") );
+    change_fieldAction= actionsMenu->addAction( tr("Change field"));
     exportAction= menuBar()->addAction( tr("Export"));
 
     exportAction->setEnabled(false);
@@ -123,16 +125,17 @@ void MainWindow::initComponents()
 
 void MainWindow::initEvents()
 {
-    connect(askAction, &QAction::triggered, this, &MainWindow::askSizes);
-    connect(aboutAction, &QAction::triggered, this, &MainWindow::popAbout);
-    connect(initAction, &QAction::triggered, this, &MainWindow::launchInit);
-    connect(evalAction, &QAction::triggered, this, &MainWindow::launchEval);
-    connect(usableAction, &QAction::triggered, this, &MainWindow::launchLocalUsable);
-    connect(accessAction, &QAction::triggered, this, &MainWindow::launchLocalAccess);
-    connect(resetAction, &QAction::triggered, this, &MainWindow::resetField);
-    connect(flushAction, &QAction::triggered, this, &MainWindow::emptyField);
-    connect(hotmapAction, &QAction::triggered, this, &MainWindow::hotmapDraw);
-    connect(exportAction, &QAction::triggered, this, &MainWindow::exportPareto);
+    connect(askAction,      &QAction::triggered, this, &MainWindow::askSizes);
+    connect(aboutAction,    &QAction::triggered, this, &MainWindow::popAbout);
+    connect(initAction,     &QAction::triggered, this, &MainWindow::launchInit);
+    connect(evalAction,     &QAction::triggered, this, &MainWindow::launchEval);
+    connect(usableAction,   &QAction::triggered, this, &MainWindow::launchLocalUsable);
+    connect(accessAction,   &QAction::triggered, this, &MainWindow::launchLocalAccess);
+    connect(resetAction,    &QAction::triggered, this, &MainWindow::resetField);
+    connect(flushAction,    &QAction::triggered, this, &MainWindow::emptyField);
+    connect(hotmapAction,   &QAction::triggered, this, &MainWindow::hotmapDraw);
+    connect(change_fieldAction, &QAction::triggered, this, &MainWindow::askChangeField);
+    connect(exportAction,   &QAction::triggered, this, &MainWindow::exportPareto);
 
     // Gestion du bouton export grisé ou non
     connect(usableAction, &QAction::triggered, exportAction, &QAction::setDisabled);
@@ -266,7 +269,6 @@ void MainWindow::launchLocalUsable()
     fieldWidget->update_field(result_field);
 
     fieldWidget->redraw();
-    fieldWidget->show();
 }
 
 void MainWindow::launchLocalAccess()
@@ -282,7 +284,6 @@ void MainWindow::launchLocalAccess()
     fieldWidget->update_field(result_field);
 
     fieldWidget->redraw();
-    fieldWidget->show();
 }
 
 void MainWindow::launchEval()
@@ -363,4 +364,28 @@ void MainWindow::exportPareto()
         } else std::cerr << "La création de l'image du front Pareto a échoué"<< endl;
 //    }
 }
+
+void MainWindow::askChangeField()
+{
+    QInputDialog* dialog= new QInputDialog(this);
+//    dialog->setLabelText( tr("Changement de surface courante") );
+    std::ostringstream question_indice;
+    question_indice << "Indice (1-" << resolution->get_nb_not_dominated() << ") :";
+
+    int ind= dialog->getInt(this, "Choix de la surface à restaurer", QString::fromStdString(question_indice.str()), 0);
+    cout << "INDICE : "<< ind<< endl;
+    if (ind <= 0 || (unsigned)ind > resolution->get_nb_not_dominated()) {
+        cerr << "Il n'y a pas de surface correspondant à l'indice donné."<< endl
+             << "Pour répéter changer de surface, répétez l'opération avec un nouvel indice"<< endl;
+    } else {
+        FieldEvaluation* selected_field= resolution->trySelectSavedField(ind-1);
+        if (selected_field != nullptr) {
+            fieldWidget->update_field(selected_field);
+            fieldWidget->redraw();
+        } else {
+            cerr<< "ERROR : Echec lors du changement de surface"<< endl;
+        }
+    }
+}
+
 //@}

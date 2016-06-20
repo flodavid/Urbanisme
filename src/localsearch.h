@@ -52,11 +52,6 @@ public:
      */
     unsigned get_field_height() const { return fieldeval->get_height(); }
     /**
-     * Accesseur sur la surface de l'Evaluation
-     * @return Une référence sur la surface, modifiable
-     */
-    FieldEvaluation& get_field() { return *fieldeval; }
-    /**
      * Accesseur sur l'Evaluation
      * @return Une pointeur sur l'évaluation, modifiable
      */

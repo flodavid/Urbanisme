@@ -131,6 +131,13 @@ public:
      * @return le nom du fichier image crée
      */
     std::string drawParetoJpeg(std::string dataName) const;
+
+    /**
+     * @brief selectSavedField
+     * @param ind
+     * @return
+     */
+    FieldEvaluation* trySelectSavedField(unsigned index);
 };
 
 #endif // RESOLUTION_H

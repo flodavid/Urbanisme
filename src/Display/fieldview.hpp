@@ -95,8 +95,7 @@ public:
      * entrée et sorties sont identiques
      * @param _field Surface à afficher mise à jour
      */
-    void update_field(FieldEvaluation* _field)
-    { field= _field;  has_evaluation= true;}
+    void update_field(FieldEvaluation* _field);
 
     /**
      * Remet la valeur du "flag" modified_ES à faux
@@ -140,14 +139,6 @@ public:
      * Dessine la surface avec les "points chaud" de mauvaise accessibilité
      */
     void drawHotmapField();
-    /**
-     * Redessine les cellules qui ont changés d'état seulement
-     */
-    void drawChanged();
-    /**
-     * Dessine les cellules sélectionnées
-     */
-    void drawSelecteds();
     /**
      * Vide le buffer et rafraichit l'affichage
      */

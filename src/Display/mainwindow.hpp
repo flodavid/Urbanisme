@@ -40,6 +40,7 @@ private:
     QAction* resetAction;
     QAction* flushAction;
     QAction* exportAction;
+    QAction* change_fieldAction;
 
     // Fenêtres
     QWidget* aboutWindow;
@@ -161,6 +162,11 @@ public slots:
      * Demande à l'utilisateur l'emplacement et le nom du fichier d'export du front Pareto
      */
     void exportPareto();
+    /**
+     * Demande à l'utilisateur l'indice de la surface, parmis celles sauvegardées, qu'il veut
+     * afficher et utilier.
+     */
+    void askChangeField();
 };
 
 #endif // MAINWINDOW_H
