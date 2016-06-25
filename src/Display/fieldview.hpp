@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QRubberBand>
@@ -16,7 +16,7 @@
 #include "../stdafx.h"
 
 // Classes
-#include "../Engine/field.h"
+#include "fieldevaluation.h"
 #include "loadwindow.h"
 
 enum Colors{Black, Gray, Red, White, LightBlue, DarkBlue};
@@ -51,6 +51,10 @@ private:
 
     std::list<Coordinates> selecteds;
 
+    // FLAGS
+    bool modified_ES;
+    bool has_evaluation;
+
 private:
     void initRubber(QMouseEvent* event);
 
@@ -73,20 +77,45 @@ public:
     Field* get_field()
     { return field; }
 
+    /**
+     * Accesseurs sur modified_ES
+     * @return modified_ES, un booléen
+     */
+    bool has_modified_ES() const { return modified_ES; }
+
     /* Setters */
     /**
-     * Mutateur sur la surface à afficher
-     * @param _field Nouvelle surface à afficher
+     * Change la surface utilisée
+     * @param _field Nouvelle surface affichée
      */
     void set_field(Field* _field)
-    { field= _field; }
+    { field= _field; has_evaluation= false;}
+    /**
+     * Les routes de la surface utilisée sont mise à jour pour l'affichage, mais on suppose que les
+     * entrée et sorties sont identiques
+     * @param _field Surface à afficher mise à jour
+     */
+    void update_field(FieldEvaluation* _field);
+
+    /**
+     * Remet la valeur du "flag" modified_ES à faux
+     */
+    void set_unmodified_ES();
 
 private:
     /**
-     * Fonction permettant de fixer la couleur à utiliser pour dessiner un arbre
+     * Fixe la couleur à utiliser pour dessiner un arbre
      * @param colorIndice Indice de la couleur de la case, parmi ceux de l'enum 'Colors'
      */
     void setColor(Colors colorIndice);
+    /**
+     * Fixe la couleur à utiliser pour dessiner un arbre
+     * @param r Quantité de rouge, max 255
+     * @param g Quantité de vert, max 255
+     * @param b Quantité de bleu, max 255
+     * @param a Transparence des couleurs, max 255, par défaut 255 (opaque)
+     */
+    void setColor(int r, int g, int b, int a = 255);
 
     /* Affichage */
 private:
@@ -101,19 +130,15 @@ private:
      */
     void drawList(const std::list< Coordinates>& list_coordinates);
 
-public:
     /**
      * Dessine toutes les cellules dans le buffer
      */
     void drawField();
+public:
     /**
-     * Redessine les cellules qui ont changés d'état seulement
+     * Dessine la surface avec les "points chaud" de mauvaise accessibilité
      */
-    void drawChanged();
-    /**
-     * Dessine les cellules sélectionnées
-     */
-    void drawSelecteds();
+    void drawHotmapField();
     /**
      * Vide le buffer et rafraichit l'affichage
      */

@@ -8,18 +8,32 @@ using namespace std;
 //@{
 
 Field::Field(unsigned width, unsigned height/*, std::list<Coordinates>& inputs_and_ouputs*/) :
-    nb_cols(width), nb_rows(height)       /*, ins_outs(inputs_and_ouputs)*/
+    nb_cols(width), nb_rows(height), parcels(NULL)       /*, ins_outs(inputs_and_ouputs)*/
 {
     resizeWithDimensions();
 }
 
 Field::Field(const Field& other) :
-    nb_cols(other.nb_cols), nb_rows(other.nb_rows), ins_outs(other.ins_outs), parcels(other.parcels)
+    nb_cols(other.nb_cols), nb_rows(other.nb_rows), ins_outs(other.ins_outs)
 {
+    parcels= (State**)malloc(nb_rows * sizeof(State*));
+
+    for (unsigned i= 0; i < nb_rows; ++i) {
+    parcels[i]= (State*)malloc(nb_cols * sizeof(State));
+        for (unsigned j= 0; j < nb_cols; ++j) {
+            parcels[i][j]= other.parcels[i][j];
+        }
+    }
 }
 
 Field::~Field()
 {
+    if (parcels != NULL) {
+        for (unsigned i= 0; i < nb_rows; ++i) {
+            free(parcels[i]);
+        }
+        free(parcels);
+    }
 }
 
 //@}
@@ -28,37 +42,43 @@ Field::~Field()
 ///#######################
 //@{
 
+void Field::deleteOldMatrix()
+{
+    if (parcels != NULL) {
+    for (unsigned i= 0; i < nb_rows; ++i) {
+        free(parcels[i]);
+    }
+    free(parcels);
+    }
+}
+
+
 void Field::resizeWithDimensions()
 {
-    parcels.resize(nb_cols);
+    parcels= (State**)(malloc(nb_rows * sizeof(State*)));
 
-    for (vector<State> &parcel_row : parcels) {
-        parcel_row.resize(nb_cols, is_undefined);
+    for (unsigned i= 0; i < nb_rows; ++i) {
+        parcels[i]= (State*)(malloc(nb_cols * sizeof(State)));
+        for (unsigned j= 0; j < nb_cols; ++j) {
+            parcels[i][j]= is_undefined;
+        }
     }
 }
 
 void Field::addRoads(std::list<Coordinates> *roads, unsigned serveDistance)
 {
     for (const Coordinates& coord_road : *roads) {
-#if LOGS_ADD_ACCESS_ROAD
-        clog << " Ajout de la route "<< coord_road<< " pour augmenter l'accessibilité"<< endl;
-#endif
         add_road(coord_road);
     }
 
     // On redéfinit les parcelles qui sont utilisables et celles qui ne le sont pas
     /// @see on pourrait améliorer, en mettant à jour seulement les parcelles proches des routes ajoutées
     resetUsables(serveDistance);
-
-
 }
 
 void Field::removeRoads(std::list<Coordinates> *roads, unsigned serveDistance)
 {
     for (const Coordinates& coord_road : *roads) {
-//#if LOGS_ADD_ACCESS_ROAD
-        clog << "Suppression de la route "<< coord_road<<" (id: "<< at(coord_road)<< ")"<< endl;
-//#endif
         add_undefined(coord_road);
     }
 
@@ -87,6 +107,9 @@ void Field::add_undefined(const Coordinates& coords)
     }
     parcels[coords.row][coords.col]= is_undefined;
 }
+
+//Field& operator =(const Field& other)
+
 
 //@}
 ///#####################
@@ -140,12 +163,12 @@ bool Field::nextCoordinates(Coordinates *coord) const
     // On vérifie que la coordonnée actuelle est dans la surface
     //  (vérification sur les colonnes puis sur les lignes)
     assert(coord->col >= 0 && coord->row >= 0 );
-    assert( coord->col < (int)(get_width()) && coord->row < (int)(get_height()) );
+    assert( coord->col < (int)(nb_cols) && coord->row < (int)(nb_rows) );
 
     // Si on est à la fin de la ligne, on passe à la ligne suivante
-    if ((unsigned)(coord->col) == get_width() -1) {
+    if ((unsigned)(coord->col) == nb_cols -1) {
         // seulement si on n'est pas à la fin de la surface
-        if ((unsigned)(coord->row) + 1 < get_height()) {
+        if ((unsigned)(coord->row) + 1 < nb_rows) {
             coord->col= 0;
             coord->row+= 1;
 #if DEBUG_PARCOURS_COORDS
@@ -177,12 +200,12 @@ bool Field::nextCoordinates(Coordinates *coord) const
 
 void Field::generateInsAndOuts(unsigned nb)
 {
-    bool on_top_or_down;
+
     for (unsigned num_in_out = 0; num_in_out < nb; ++num_in_out) {
-        on_top_or_down = (bool)(rand() % 2);
         int row, col;
 
         // On choisit une case en haut ou en bas, avec une colonne aléatoire
+        bool on_top_or_down= (bool)(rand() % 2);
         if (on_top_or_down) {
             row = (rand() % 2) * nb_rows;
             col = rand() % nb_cols;

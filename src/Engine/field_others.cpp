@@ -6,7 +6,7 @@
 /// #########################
 //@{
 
-///*
+// /*
 void Field::createExample()
 {
     // Surface de l'exemple :
@@ -125,17 +125,98 @@ void Field::createExample()
 // */
 
 /*
+// Moitié
+void Field::createExample()
+{
+    // Surface de l'exemple :
+    Field &example = *this;
+    example.deleteOldMatrix();
+    example.set_width(10);
+    example.set_height(20);
+    example.resizeWithDimensions();
+
+    example.tryAdd_in_out(9, 0);
+    // Colonne Milieu
+    example.add_road(9, 1);
+    example.add_road(9, 2);
+    example.add_road(9, 3);
+    example.add_road(9, 4);
+    example.add_road(9, 5);
+    example.add_road(9, 6);
+    example.add_road(9, 7);
+    example.add_road(9, 8);
+    example.add_road(9, 9);
+    example.add_road(9, 10);
+    example.add_road(9, 11);
+    example.add_road(9, 12);
+    example.add_road(9, 13);
+    example.add_road(9, 14);
+    example.add_road(9, 15);
+    example.add_road(9, 16);
+    example.add_road(9, 17);
+    example.add_road(9, 18);
+    // Première Ligne
+    example.add_road(0, 2);
+    example.add_road(1, 2);
+    example.add_road(2, 2);
+    example.add_road(3, 2);
+    example.add_road(4, 2);
+    example.add_road(5, 2);
+    example.add_road(6, 2);
+    example.add_road(7, 2);
+    example.add_road(8, 2);
+    // example.add_road(9, 2); déjà fait dans colonne milieu
+    // Deuxième Ligne
+    example.add_road(0, 7);
+    example.add_road(1, 7);
+    example.add_road(2, 7);
+    example.add_road(3, 7);
+    example.add_road(4, 7);
+    example.add_road(5, 7);
+    example.add_road(6, 7);
+    example.add_road(7, 7);
+    example.add_road(8, 7);
+    // example.add_road(9, 7); déjà fait dans colonne milieu
+    // Troisième Ligne
+    example.add_road(0, 12);
+    example.add_road(1, 12);
+    example.add_road(2, 12);
+    example.add_road(3, 12);
+    example.add_road(4, 12);
+    example.add_road(5, 12);
+    example.add_road(6, 12);
+    example.add_road(7, 12);
+    example.add_road(8, 12);
+    // example.add_road(9, 12); déjà fait dans colonne milieu
+    // Quatrième Ligne
+    example.add_road(0, 17);
+    example.add_road(1, 17);
+    example.add_road(2, 17);
+    example.add_road(3, 17);
+    example.add_road(4, 17);
+    example.add_road(5, 17);
+    example.add_road(6, 17);
+    example.add_road(7, 17);
+    example.add_road(8, 17);
+    // example.add_road(9, 17); déjà fait dans colonne milieu
+
+    example.tryAdd_in_out(9, 19);
+}
+// */
+
+/*
 // Petit
 void Field::createExample()
 {
     // Surface de l'exemple :
     Field &example = *this;
+    example.deleteOldMatrix();
     example.set_width(10);
     example.set_height(10);
     example.resizeWithDimensions();
 
-    example.trytryAdd_in_out(9, 0);
-    example.trytryAdd_in_out(9, 9);
+    example.tryAdd_in_out(9, 0);
+    example.tryAdd_in_out(9, 9);
     // Colonne Milieu
     example.add_road(9, 1);
     example.add_road(9, 2);
@@ -177,6 +258,7 @@ void Field::createExample()
 {
     // Surface de l'exemple :
     Field &example = *this;
+    example.deleteOldMatrix();
     example.set_width(3);
     example.set_height(3);
     example.resizeWithDimensions();

@@ -12,7 +12,7 @@
 #include "cppunit/ui/text/TestRunner.h"
 
 #include "../Engine/Coordinates.h"
-#include "../evaluation.h"
+#include "../fieldevaluation.h"
 
 /**
  * @brief Tests sur la méthode calcRoadDistance() de la classe Evaluation
@@ -21,7 +21,7 @@
 class MinPathRoadTestFixture : public CppUnit::TestFixture
 {
 private:
-    Evaluation* eval;
+    FieldEvaluation* eval;
     Field* example;
     
     Coordinates* coord1;

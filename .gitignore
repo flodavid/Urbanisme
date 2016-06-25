@@ -1,3 +1,10 @@
+# Images and others
+SimCity-logo.png
+ParetoResults/
+
+# CodeBlocks
+sim-city.cbp
+
 # Kdev files
 .kdev4/
 
@@ -250,3 +257,5 @@ _Pvt_Extensions
 # FAKE - F# Make
 .fake/
 doc/stylesheets/stylesheet.css
+doc/stylesheets/github-light.css
+.~lock.Rapport Dune.odt#

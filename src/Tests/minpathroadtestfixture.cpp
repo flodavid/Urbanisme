@@ -48,16 +48,16 @@ void MinPathRoadTestFixture::tearDown()
 void MinPathRoadTestFixture::test_validsPath()
 {
     Parameters* params= new Parameters(2, 1);
-    eval= new Evaluation(*example, *params);
+    eval= new FieldEvaluation(*example, *params);
     // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
-    example->setUsables(params->get_serve_distance());
+    eval->setUsables(params->get_serve_distance());
     
     if (!eval->road_distances_are_initiated){
         eval->initRoadDistances();
     }
 
-    cout << "Routes desservant "<< (*coord1)<< " : "<< *(example->getServingRoads(*coord1, params->get_serve_distance()));
-    cout << "Routes desservant "<< (*coord2)<< " : "<< *(example->getServingRoads(*coord2, params->get_serve_distance()));
+    cout << "Routes desservant "<< (*coord1)<< " : "<< *(eval->getServingRoads(*coord1, params->get_serve_distance()));
+    cout << "Routes desservant "<< (*coord2)<< " : "<< *(eval->getServingRoads(*coord2, params->get_serve_distance()));
     
     unsigned dist= eval->getRoadDistance(*coord1, *coord2);
     // Si on test la distance entre la première et la 2e est égale à celle attendue
@@ -82,9 +82,9 @@ void MinPathRoadTestFixture::test_validsPath()
 void MinPathRoadTestFixture::test_sameParcel()
 {
     Parameters* params= new Parameters(2, 1);
-    eval= new Evaluation(*example, *params);
+    eval= new FieldEvaluation(*example, *params);
     // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
-    example->setUsables(params->get_serve_distance());
+    eval->setUsables(params->get_serve_distance());
     
     unsigned dist= eval->parcelsRoadDistance(*coord1, *coord1);
     // Si on test la distance entre une case et elle-même, on doit obtenir 0
@@ -95,9 +95,9 @@ void MinPathRoadTestFixture::test_invalidsPath()
 {
     // Le paramètre de distance de desserte n'est pas à 2, mais à 1
     Parameters* params= new Parameters(1, 1);
-    eval= new Evaluation(*example, *params);
+    eval= new FieldEvaluation(*example, *params);
     // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
-    example->setUsables(params->get_serve_distance());
+    eval->setUsables(params->get_serve_distance());
     
     unsigned dist_out= eval->getRoadDistance(*coord1, *coord_out);
     // Si une des deux cases est en dehors, on doit obtenir l'infini

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <list>
-#include <vector>
 
 #include "Coordinates.h"
 
@@ -16,11 +15,17 @@ enum State{is_undefined= -1, is_usable, is_unusable, is_road, is_in_out, max_sta
 class Field
 {
 
-private:
-    unsigned nb_cols, nb_rows;
+protected:
+
+    /// \brief nb_cols Nombre de colonnes de la surface
+    unsigned nb_cols;
+    /// \brief nb_rows Nombre de lignes de la surface
+    unsigned nb_rows;
+    /// \brief ins_outs Liste des entrées-sorties de la surface
     std::list<Coordinates> ins_outs;
 
-    std::vector<std::vector<State>> parcels;
+    /// \brief Matrice d'états des cellules
+    State** parcels;
 
 public:
     /**
@@ -34,7 +39,8 @@ public:
      * @param other Instance à recopier
      */
     Field(const Field& other);
-    ~Field();
+
+    virtual ~Field();
 
     /*=== Getters ===*/
     /**
@@ -76,8 +82,9 @@ public:
     { nb_rows =  height; }
 
     //private:
+    void deleteOldMatrix();
     /**
-     * Redéfinit la taille du vecteur de vecteur d'états selon le nombre de lignes
+     * Redéfinit la taille de la matrice d'états selon le nombre de lignes
      * et de colonnes contenues dans la classe. On utilise la fonction resize().
      * Attention, les données contenues dans le vecteur peuvent être modifiées
      */
@@ -89,7 +96,6 @@ public:
      */
     void add_road(const Coordinates& coords)
     { parcels[coords.row][coords.col]= is_road; }
-
     /**
      * Ajoute une route à partir de coordonnées
      * @param col Colonne de la route
@@ -101,11 +107,15 @@ public:
     /**
      * Ajoute une liste de routes
      * @param roads Liste de coordonnées des routes à ajouter
+     * @param serveDistance Distance de desserte des routes, utile pour mettre à jour les parcelles
+     * exploitables
      */
     void addRoads(std::list<Coordinates>* roads, unsigned serveDistance);
     /**
      * Retire une liste de routes
      * @param roads Liste de coordonnées des routes à retirer
+     * @param serveDistance Distance de desserte des routes, utile pour mettre à jour les parcelles
+     * exploitables
      */
     void removeRoads(std::list<Coordinates>* roads, unsigned serveDistance);
 
@@ -155,37 +165,30 @@ public:
      * Opérateur = d'affectation
      * @param other Instance à recopier
      */
-    inline void operator=(const Field& other)
+    Field& operator=(const Field& other)
     {
-        assert(nb_cols == other.nb_cols && nb_rows == other.nb_cols);
+//        assert(nb_cols == other.nb_cols && nb_rows == other.nb_cols);
         ins_outs= other.ins_outs;
-        parcels= other.parcels;
-    }
 
-    /**
-     * @brief begin
-     * @return un itérateur constant sur la première parcelle du Field
-     * @see
-     */
-    inline std::vector<std::vector<State>>::const_iterator begin() const { return parcels.cbegin(); }
-    /**
-     * @brief end
-     * @return un itérateur constant sur la dernière parcelle du Field
-     * @see
-     */
-    inline std::vector<std::vector<State>>::const_iterator end() const { return parcels.cend(); }
-    /**
-     * @brief begin
-     * @return un itérateur sur la première parcelle du Field
-     * @see
-     */
-    inline std::vector<std::vector<State>>::iterator begin() { return parcels.begin(); }
-    /**
-     * @brief end
-     * @return un itérateur sur la dernière parcelle du Field
-     * @see
-     */
-    inline std::vector<std::vector<State>>::iterator end() { return parcels.end(); }
+        if (parcels != NULL) {
+            for (unsigned i= 0; i < nb_rows; ++i) {
+                free(parcels[i]);
+            }
+            free(parcels);
+        }
+
+        nb_cols= other.nb_cols;
+        nb_rows= other.nb_rows;
+        resizeWithDimensions();
+
+        for (unsigned i= 0; i < nb_rows; ++i) {
+            for (unsigned j= 0; j < nb_cols; ++j) {
+                parcels[i][j]= other.parcels[i][j];
+            }
+        }
+
+        return *this;
+    }
 
     /**
      * Retourne la première coordonée de la matrice, elle peut ensuite
@@ -278,12 +281,6 @@ private:
     bool isRoadAndNeighbourOf(const Coordinates& neighbour, const Coordinates& coord, unsigned servingDistance) const;
 
 public:
-//    /**
-//     * Recherche des parcelles qui sont concomitantes à la cellule
-//        * @param coord Coordonnées de la parcelle
-//     * @return une liste de parcelle adjacentes à la cellule
-//     */
-//    std::list<Coordinates> *getNeighbourParcels( const Coordinates& coord ) const;
     /**
      * Recherche des portions de routes qui sont concomitantes à la parcelle courante
         * @param coord Coordonnées de la parcelle

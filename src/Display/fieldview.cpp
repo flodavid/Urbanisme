@@ -1,10 +1,10 @@
-#include "fieldview.hpp"
+﻿#include "fieldview.hpp"
 
 #include <sstream>
 
 #include "evaluation.h"
 
-using namespace std;
+using std::cout; using std::cerr; using std::cout; using std::endl;
 
 /// ####################################
 ///     Constructeurs et destructeurs
@@ -12,7 +12,7 @@ using namespace std;
 //@{
 
 FieldWidget::FieldWidget(Field* _field, unsigned _serveDistance):
-    QWidget(), field(_field), serveDistance(_serveDistance)
+    QWidget(), field(_field), serveDistance(_serveDistance), modified_ES(false), has_evaluation(false)
 {
     buffer = new QImage;
     color = new QColor(Qt::white);
@@ -41,7 +41,7 @@ void FieldWidget::setColor(Colors colorIndice)
 {
     switch(colorIndice){
     case LightBlue:
-        this->color->setRgb(150,190,220);
+        this->color->setRgb(160,200,250);
         break;
     case DarkBlue:
         this->color->setRgb(50,90,160);
@@ -61,6 +61,22 @@ void FieldWidget::setColor(Colors colorIndice)
     }
 }
 
+void FieldWidget::setColor(int r, int g, int b, int a)
+{
+    color->setRgb(r, g, b, a);
+}
+
+void FieldWidget::update_field(FieldEvaluation *_field)
+{
+    field= _field;
+    has_evaluation= true;
+}
+
+void FieldWidget::set_unmodified_ES()
+{
+    modified_ES= false;
+}
+
 /// ####################
 ///		Affichages
 /// ####################
@@ -69,11 +85,9 @@ void FieldWidget::setColor(Colors colorIndice)
 void FieldWidget::drawCell(int colonne, int ligne)
 {
     QPen pe;
-//    pe.setWidth(4);
-//    pe.setBrush(QColor(0,0,0));
+    pe.setColor(*color);
     bufferPainter->setPen(pe);
-    bufferPainter->setBrush(*color);
-    bufferPainter->fillRect(colonne, ligne, 1, 1, *(color));
+    bufferPainter->drawPoint(colonne, ligne);
     #if DEBUG_TMATRICE
     cout <<"draw cell ; ";
     #endif
@@ -131,14 +145,110 @@ void FieldWidget::drawField()
     bufferPainter->end();
 }
 
-void FieldWidget::drawChanged()
+void FieldWidget::drawHotmapField()
 {
+    field->resetUsables(serveDistance);
+    if (buffer->isNull()) cerr<< "Impossible de dessiner, image vide"<< endl;
+
     bufferPainter->begin(buffer);
 
-    setColor(Red);
-//	drawList(forest->getBurned());
-//	forest->clearBurned();
+    Coordinates& coord= Field::first();
+    do {
+        State state= field->at(coord);
+
+        // Cas d'une parcelle exploitable
+        if( state == is_usable) {
+            FieldEvaluation* field_eval= (FieldEvaluation *)(field);
+            if (!has_evaluation || field_eval == nullptr) {
+                cerr<< "La surface n'a pas d'évaluation"<< endl;
+                setColor(White);
+            } else {
+                float sum= 0.0;
+                unsigned nb= 0;
+                field_eval->initRoadDistances();
+                float avg_avg_ratio= field_eval->evaluateRatio();
+
+                Coordinates& other= Field::first();
+                do {
+                    if (field_eval->at(other) == is_usable && !(other == coord)) {
+                        float ratio= field_eval->manhattanRatioBetween2Parcels(coord, other);
+                        sum+= ratio;
+                        ++nb;
+                    }
+
+                } while (field_eval->nextCoordinates(&other));
+                delete &other;
+
+                float coord_avg= sum / (float)nb;
+#if DEBUG_HOTMAP
+                cout << "\tSomme : "<< sum<< ", moy= "<< coord_avg<< endl;
+#endif
+
+                unsigned green_quant= 200;
+                float delta_ratio= coord_avg - avg_avg_ratio;
+                unsigned red_quant;
+                unsigned blue_quant= 110;
+                if (delta_ratio < 0) {
+                    if (delta_ratio +2 < 0) {
+                        blue_quant= 170;
+                        red_quant= 0;
+                    } else {
+                        red_quant= 110 * (delta_ratio +2);
+                    }
+                    green_quant= 255;
+                } else {
+                    /// La valeur 400 est arbitraire
+                    red_quant= 400* (delta_ratio);
+                    if (red_quant > 255) {
+                        if (red_quant > 255 + green_quant) {
+                            if (red_quant > 255 + green_quant + blue_quant) {
+                                blue_quant= 0;
+                            } else blue_quant-= (red_quant -510);
+
+                            red_quant= 255 + green_quant;
+                        }
+                        green_quant-= (red_quant -255);
+                        red_quant= 255;
+                    }
+                }
+#if DEBUG_HOTMAP
+                cout << "Ecart avec moyenne : "<< delta_ratio<< " ; "
+                    << "Q. rouge : "<< red_quant<< ", Q. vert : "<< green_quant<< ", Q. bleu : "<< blue_quant<< endl;
+#endif
+                setColor(red_quant, green_quant, blue_quant);
+            }
+
+            drawCell(coord.col, coord.row);
+        }
+        // Cas d'une parcelle non exploitable
+        if( state == is_unusable){
+            setColor(LightBlue);
+            drawCell(coord.col, coord.row);
+        }
+        // Cas d'une route
+        else if(state == is_road){
+            setColor(Gray);
+            drawCell(coord.col, coord.row);
+        }
+        // Cas d'une entrée/sortie
+        else if(state == is_in_out){
+            setColor(Red);
+            drawCell(coord.col, coord.row);
+        }
+        else if (state == is_undefined){
+            setColor(Black);
+            cout << "Dessin d'une case non définie"<< endl;
+            drawCell(coord.col, coord.row);
+        }
+    } while (field->nextCoordinates(&coord));
+    delete &coord;
+
+    // Dessin des cellules sélectionnées
+    setColor(DarkBlue);
+    drawList(selecteds);
+
     bufferPainter->end();
+    update();
 }
 
 // Test perf
@@ -159,7 +269,6 @@ void FieldWidget::redraw()
     buffer = new QImage(field->get_width(), field->get_height(), QImage::Format_ARGB32);
 
     drawField();
-    drawChanged();
 
     update();
 }
@@ -216,10 +325,14 @@ bool FieldWidget::tryAddRoadOnParcel(const Coordinates &pos)
 void FieldWidget::clicInOut(const Coordinates &pos)
 {
     if (field->at(pos) != is_in_out) {
-        if (field->tryAdd_in_out(pos)) field->resetUsables(serveDistance);
+        if (field->tryAdd_in_out(pos)) {
+            field->resetUsables(serveDistance);
+            modified_ES= true;
+        }
     } else {
         field->add_undefined(pos);
         field->resetUsables(serveDistance);
+        modified_ES= true;
     }
 
     redraw();
@@ -247,7 +360,7 @@ void FieldWidget::moveRoad(const Coordinates &pos)
 
 void FieldWidget::selectParcel(const Coordinates &pos)
 {
-    list<Coordinates>::iterator it= std::find(selecteds.begin(), selecteds.end(), pos);
+    std::list<Coordinates>::iterator it= std::find(selecteds.begin(), selecteds.end(), pos);
     if (it != selecteds.end()) {
         selecteds.erase(it);
     } else if (field->at(pos) == is_usable) {
@@ -256,8 +369,9 @@ void FieldWidget::selectParcel(const Coordinates &pos)
             selecteds.pop_front();
         }
         if (selecteds.size() == 2) {
-            Evaluation eval(*field, Parameters(serveDistance, 1)); // TODO voir comment on gère la taille de la route
-            eval.initSizeNeighbourhood();
+            FieldEvaluation eval(*field, Parameters(serveDistance, 1)); // TODO voir comment on gère la taille de la route
+            if (!eval.road_distances_are_initiated) eval.initRoadDistances();
+
             unsigned by_roads_distance= eval.parcelsRoadDistance(selecteds.front(), selecteds.back());
             cout << "Distance entre "<< selecteds.front() <<" et "<< selecteds.back()<< " : "<< by_roads_distance<< endl;
         }
@@ -273,13 +387,24 @@ void FieldWidget::paintEvent(QPaintEvent* event)
     QWidget::paintEvent(event);
     QPainter paint(this);
 
+    FieldEvaluation* field_eval= (FieldEvaluation *)(field);
+    if (has_evaluation && field_eval != nullptr) {
+        std::ostringstream usables;
+        usables << field_eval->get_nbUsables();
+        paint.drawText(QRect(1, 1, tailleCell, tailleCell), QString::fromStdString(usables.str()));
+
+        std::ostringstream access;
+        access << field_eval->get_avgAccess();
+        paint.drawText(QRect(1, 12, tailleCell, tailleCell), QString::fromStdString(access.str()));
+    }
+
     paint.scale(tailleCell, tailleCell);
     paint.drawImage(1, 1, *buffer);
     paint.scale(1.0/((float)tailleCell), 1.0/((float)tailleCell));
     for (unsigned x= 1; x <= field->get_width(); ++x) {
         float posX= x*tailleCell;
         paint.drawLine(posX, 0, posX, (field->get_height() +1)*tailleCell);
-        ostringstream convert;
+        std::ostringstream convert;
         convert<< (x-1);
         paint.drawText(QRect(posX +3, 2, tailleCell, tailleCell), QString::fromStdString(convert.str()));
     }
@@ -287,7 +412,7 @@ void FieldWidget::paintEvent(QPaintEvent* event)
     for (unsigned y= 1; y <= field->get_height(); ++y) {
         float posY= y*tailleCell;
         paint.drawLine(0, posY, (field->get_width() +1) *tailleCell, posY);
-        ostringstream convert;
+        std::ostringstream convert;
         convert<< (y-1);
         paint.drawText(QRect(2,posY +2, tailleCell, tailleCell), QString::fromStdString(convert.str()));
     }
@@ -301,7 +426,7 @@ void FieldWidget::resizeEvent(QResizeEvent* event)
 
     int nbCol= field->get_width() +1;
     int nbRow= field->get_height()+1;
-    tailleCell = min (event->size().width() / (float)nbCol , event->size().height() / (float)nbRow);
+    tailleCell = std::min(event->size().width() / (float)nbCol , event->size().height() / (float)nbRow);
 
     #if DEBUG_CURRENT
 // 	cout << "test apres resize dans resizeEvent (ligne 488 firewidget)"<< endl;
@@ -338,7 +463,6 @@ void FieldWidget::mousePressEvent(QMouseEvent* event)
             clicInOut(cell_clic);
         }
 
-        drawChanged();
         update();
     }
 }
@@ -363,98 +487,13 @@ void FieldWidget::mouseMoveEvent(QMouseEvent* event)
         }
     }
 
-    drawChanged();
     update();
 }
-
-//void FieldWidget::initRubber(QMouseEvent* event){
-//	origin = event->pos();
-
-//	if(!rubber)
-//		rubber = new QRubberBand(QRubberBand::Rectangle, this);
-
-//	rubber->setGeometry(QRect(origin, QSize(0,0)));
-//	rubber->show();
-//}
-
-//void FieldWidget::mouseReleaseEvent(QMouseEvent* event)
-//{
-//    QWidget::mouseReleaseEvent(event);
-//	if(rubber){
-//		rubber->hide();
-//		// Sauvegarde des points du rubber pour parcours de la matrice
-//		depart.setX(rubber->x());
-//		depart.setY(rubber->y());
-//		/* Vérification du point d'origine du rubber
-//		 * Celui étant toujours le point le plus en haut à gauche, il faut simplement vérifier
-//		 * qu'il n'est pas en dehors du cadre, auquel cas nous ramenons la (les) coordonnée(s) concernée(s)
-//		 * à 0.
-//		 */
-//		arrivee.setX(rubber->width()+depart.x());
-//		arrivee.setY(rubber->height()+depart.y());
-//		if(depart.x() < 0){
-//			depart.setX(0);
-//		}
-//		if(depart.y() < 0){
-//			depart.setY(0);
-//		}
-
-
-//		if(arrivee.x() > size().width() ){
-//			arrivee.setX(size().width());
-//		}
-//		if(arrivee.y() > size().height() ){
-//			arrivee.setY(size().height());
-//		}
-
-//		#if DEBUG_SELECT
-//		cout << "Taille du widget : " << this->size().width() << "; " << this->size().height()<< endl;
-//		cout << "Coordonnée de l'origine : " << rubber->x() << "; " << rubber->y() << endl;
-//		cout << "Coordonnée de départ : " << depart.x()<< ";" << depart.y() << endl;
-//		cout << "Coordonnée de l'arrivée : " << arrivee.x()<< ";" << arrivee.y() << endl;
-//		cout << "Taille de la zone de selection : " <<	arrivee.x() - depart.x() << ";" << arrivee.y() - depart.y() << endl;
-//		#endif
-//		// Emission du signal pour récupérer l'action à effectuer par firescreen
-////		emit releaseSignal(); // TODO signaux
-//	}
-
-//}
 
 //@}
 /// ############
 ///    Slots
 /// ############
 //@{
-
-//void FieldWidget::actionReceived(int action_id)
-//{
-//    // Transformation des QPoints depart et arrivée en coordonnée cellulaire
-//    int xDep = depart.x() / tailleCell;
-//    int yDep = depart.y() / tailleCell;
-
-//    unsigned xArr = arrivee.x() / tailleCell;
-
-//    if (xArr > field->get_width()) xArr= field->get_width();
-
-//    unsigned yArr = arrivee.y() / tailleCell;
-
-//    if (yArr> field->get_height())	yArr= field->get_height();
-
-
-//    #if DEBUG_RETARD
-//    cout << "Coordonnées en cellule de départ : " << xDep << ";" << yDep << endl;
-//    cout << "Coordonnées en cellule d'arrivée : " << xArr << ";" << yArr << endl;
-//    #endif
-
-//    // Appel à une fonction de forêt qui parcours la zone et effectue l'action
-
-
-////    if(action_id == CUT){
-////    }else if( action_id == DELAY){
-////    }else cerr<< "mauvais index d'action clic droit"<< endl;
-
-//    drawChanged();
-//    update();
-//}
 
 //@}

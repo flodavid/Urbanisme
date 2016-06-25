@@ -1,9 +1,9 @@
 #ifndef LOCALSEARCH_H
 #define LOCALSEARCH_H
 
-#include "Engine/field.h"
+//#include "Engine/field.h"
 #include "Engine/parameters.h"
-#include "evaluation.h"
+#include "fieldevaluation.h"
 
 /**
  * @brief La classe chargée d'effectuer des recherches locales sur les différentes solutions
@@ -12,10 +12,11 @@
 class LocalSearch
 {
 private:
-    Field* field;
+//    Field* field;
+    FieldEvaluation* fieldeval;
     const Parameters& params;
 
-    Evaluation eval;
+    // Données calculées
 
 public:
     /**
@@ -43,16 +44,21 @@ public:
 
     /* Getters */
     /**
-     * Accesseur sur la surface de l'Evaluation
-     * @return Une référence sur la surface, modifiable
+     * Permet de connaitre la largeur de la surface étudiée
      */
-    Field& get_field() { return eval.get_field(); }
+    unsigned get_field_width() const { return fieldeval->get_width(); }
+    /**
+     * Permet de connaitre la hauteur de la surface étudiée
+     */
+    unsigned get_field_height() const { return fieldeval->get_height(); }
     /**
      * Accesseur sur l'Evaluation
-     * @return  Une référence sur l'évaluation, modifiable
+     * @return Une pointeur sur l'évaluation, modifiable
      */
-    Evaluation& get_evaluation() { return eval; }
+    FieldEvaluation* get_fieldEvaluation() { return fieldeval; }
 
+    /* Setters */
+    void setField(Field* _field);
 
     /* Placement de routes */
 private:
@@ -90,7 +96,7 @@ public:
     /**
      * Relie les entrées et sorties entre elles, de manière directe
      */
-    void initSolution();
+    bool tryInitSolution();
 
     /* = Improvments = */
     /**

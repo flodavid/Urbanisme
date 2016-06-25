@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 2.8.11)
 
 ### Definitions ###
 # Use the compile definitions defined in the Qt 5 Widgets module
-add_definitions(-Wall -std=c++11 -pthread -lpthread ${Qt5Widgets_DEFINITIONS})
+add_definitions(-Wall -std=c++11 ${Qt5Widgets_DEFINITIONS})
 
 ### Qt ###
 # Instruct CMake to run moc automatically when needed.
@@ -24,7 +24,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 add_subdirectory(Engine) # must set ${Engine_SRCS}
 add_subdirectory(Display) # must set ${Display_SRCS}
 
-set(sim-city_SRCS ${Engine_SRCS} ${Display_SRCS} resolution.cpp localsearch.cpp evaluation.cpp Sim-City.cpp)
+set(sim-city_SRCS ${Engine_SRCS} ${Display_SRCS} resolution.cpp localsearch.cpp evaluation.cpp fieldevaluation.cpp gnuplot-cpp/gnuplot_i.hpp Sim-City.cpp)
 
 # Pour que les headers soient présents dans Qt Creator
 set(HEADERS debug.h)
