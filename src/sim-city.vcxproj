@@ -85,8 +85,8 @@
     </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalOptions> -std=c++11 -L/usr/local/lib -lcppunit %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>/usr/local/include;C:\Users\Work\git\Urbanisme\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions> -std=c++11 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:\Users\Work\git\Urbanisme\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -115,7 +115,7 @@
     </Midl>
     <Link>
       <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;Qt5::Widgets.lib;Qt5::Core.lib;Qt5::Gui.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -130,8 +130,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalOptions> -std=c++11 -L/usr/local/lib -lcppunit %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>/usr/local/include;C:\Users\Work\git\Urbanisme\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions> -std=c++11 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:\Users\Work\git\Urbanisme\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Release/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -159,7 +159,7 @@
     </Midl>
     <Link>
       <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;Qt5::Widgets.lib;Qt5::Core.lib;Qt5::Gui.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>No</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -174,8 +174,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
     <ClCompile>
-      <AdditionalOptions> -std=c++11 -L/usr/local/lib -lcppunit %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>/usr/local/include;C:\Users\Work\git\Urbanisme\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions> -std=c++11 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:\Users\Work\git\Urbanisme\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -203,7 +203,7 @@
     </Midl>
     <Link>
       <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;Qt5::Widgets.lib;Qt5::Core.lib;Qt5::Gui.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>No</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -218,8 +218,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
     <ClCompile>
-      <AdditionalOptions> -std=c++11 -L/usr/local/lib -lcppunit %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>/usr/local/include;C:\Users\Work\git\Urbanisme\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions> -std=c++11 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:\Users\Work\git\Urbanisme\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -247,7 +247,7 @@
     </Midl>
     <Link>
       <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;Qt5::Widgets.lib;Qt5::Core.lib;Qt5::Gui.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -317,12 +317,22 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="C:\Users\Work\git\Urbanisme\src\gnuplot-cpp\gnuplot_i.hpp" />
+    <ClInclude Include="C:\Users\Work\git\Urbanisme\src\debug.h" />
     <ClCompile Include="C:\Users\Work\git\Urbanisme\src\stdafx.cpp"  />
-    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Engine\coordinates.cpp"  />
-    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Engine\Field.cpp"  />
-    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Engine\Parameters.cpp"  />
-    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Resolution.cpp"  />
-    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Sim City.cpp"  />
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Engine\Coordinates.cpp"  />
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Engine\field.cpp"  />
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Engine\field_others.cpp"  />
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Engine\parameters.cpp"  />
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Engine\loadprogress.cpp"  />
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Display\fieldview.cpp"  />
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Display\mainwindow.cpp"  />
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Display\loadwindow.cpp"  />
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\resolution.cpp"  />
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\localsearch.cpp"  />
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\evaluation.cpp"  />
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\fieldevaluation.cpp"  />
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Sim-City.cpp"  />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:/Users/Work/git/Urbanisme/src/ZERO_CHECK.vcxproj">

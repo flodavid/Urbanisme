@@ -4,21 +4,53 @@
     <ClCompile Include="C:\Users\Work\git\Urbanisme\src\stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Engine\coordinates.cpp">
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Engine\Coordinates.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Engine\Field.cpp">
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Engine\field.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Engine\Parameters.cpp">
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Engine\field_others.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Resolution.cpp">
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Engine\parameters.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Sim City.cpp">
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Engine\loadprogress.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Display\fieldview.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Display\mainwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Display\loadwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\resolution.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\localsearch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\evaluation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\fieldevaluation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Work\git\Urbanisme\src\Sim-City.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Work\git\Urbanisme\src\gnuplot-cpp\gnuplot_i.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Work\git\Urbanisme\src\debug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\Work\git\Urbanisme\src\CMakeLists.txt" />
@@ -26,6 +58,9 @@
   <ItemGroup>
     <Filter Include="Source Files">
       <UniqueIdentifier>{8F35624B-4894-3C64-AB97-B501D4269FE6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{BBDA2137-7F67-3F3C-AFC1-2E81867045E6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
