@@ -28,21 +28,16 @@ int main(int argc, char* argv[])
     QScopedPointer<QApplication> app(new QApplication(argc, argv));
 
     /** Tests **/
-    // Paramètres du problèmes
-    Parameters myParameters(2, 1);
-
-    Field& myField= *(new Field(WIDTH,HEIGHT));
-
+//    // Paramètres du problèmes
+//    Parameters myParameters(2, 1);
+//    Field& myField= *(new Field(WIDTH,HEIGHT));
 //    myField.createExample(); // Solution de l'exemple
 
-//    // On définit les parcelles qui sont utilisables et celles qui ne le sont pas
-//    myField.defineUsables(myParameters.get_serve_distance());
+//    /// Fenêtre AVEC SURFACE INITIALE
+//    MainWindow* mainWindow= new MainWindow(myField, myParameters);
 
     /** Fin tests **/
 
-    // Fenêtre
-    /// AVEC SURFACE INITIALE
-//    MainWindow* mainWindow= new MainWindow(myField, myParameters);
     /// TAILLE DEFINIE PAR L'UTILISATEUR AU DEBUT
     MainWindow* mainWindow= new MainWindow;
 

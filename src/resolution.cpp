@@ -241,8 +241,7 @@ FieldEvaluation *Resolution::localSearchAccessObjective(unsigned maxPathsToAdd)
 //        cout << "(Gain min : "<< gain_min<< ")"<< endl;
 
         ++num_path;
-        // Evaluation de la surface après avoir lancé l'algo
-        evaluateBothObjectives();
+        changeWorkField(localSearch.get_fieldEvaluation(), true);
     } while ( num_path <= maxPathsToAdd && gain_access >= 0.0);
     if (gain_access < 0.0) cout << "On a arrêté l'ajout de chemins car le gain était négatif"<< endl;
 
