@@ -1,26 +1,22 @@
-project(sim-city)
+cmake_minimum_required(VERSION 3.1.0)
 
-cmake_minimum_required(VERSION 2.8.11)
+project(sim-city)
 
 ### Definitions ###
 # Use the compile definitions defined in the Qt 5 Widgets module
-add_definitions(-Wall -std=c++11 ${Qt5Widgets_DEFINITIONS})
+add_definitions(-Wall ${Qt5Widgets_DEFINITIONS})
 
 ### Qt ###
+# Find includes in corresponding build directories
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Instruct CMake to run moc automatically when needed.
 set(CMAKE_AUTOMOC ON)
-
 # Find the Qt libraries
 find_package(Qt5Widgets)
 find_package(Qt5Core)
 find_package(Qt5Gui)
 
-#include_directories(${QT_INCLUDES})
-
-### FILES ###
-# Find includes in corresponding build directories
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
+### Sources ###
 add_subdirectory(Engine) # must set ${Engine_SRCS}
 add_subdirectory(Display) # must set ${Display_SRCS}
 
@@ -29,7 +25,7 @@ set(sim-city_SRCS ${Engine_SRCS} ${Display_SRCS} resolution.cpp localsearch.cpp 
 # Pour que les headers soient présents dans Qt Creator
 set(HEADERS debug.h)
 
-# Tests
+## Tests ##
 if (UNIX)
 # Si on veut pouvoir tester seulement "Engine"
     #add_subdirectory(Engine/Tests)
@@ -37,10 +33,19 @@ if (UNIX)
 endif (UNIX)
 
 ### Compilation ###
-add_executable(sim-city stdafx.cpp ${sim-city_SRCS} ${HEADERS})
+
+## Flags ##
+# Profilage
+set(CMAKE_CXX_FLAGS_COVERAGE "${CMAKE_CXX_FLAGS_RELEASE} -fprofile-arcs -ftest-coverage")
+# Add compiler flags for building executables (-fPIE)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
+# Enable C++11
+set(CMAKE_CXX_STANDARD 11)
+
+add_executable(sim-city WIN32 stdafx.cpp ${sim-city_SRCS} ${HEADERS})
 
 # Use the Widgets module from Qt 5.
-target_link_libraries(sim-city Qt5::Widgets Qt5::Core Qt5::Gui)
+target_link_libraries(sim-city Qt5::Widgets Qt5::Core Qt5::Gui) # Warning dans cmake 3.X, "double-colons"
 #target_link_libraries(sim-city ${Qt5Widgets_LIBRARIES} ${Qt5Core_LIBRARIES} ${Qt5Gui_LIBRARIES})
 
 install(TARGETS sim-city RUNTIME DESTINATION bin)
@@ -50,6 +55,9 @@ install(TARGETS sim-city RUNTIME DESTINATION bin)
 
 # UNUSED
 
+#include_directories(${QT_INCLUDES})
+
+## Static ?
 #   if(BUILD_STATIC_EXECUTABLES)
 #     set(CMAKE_EXE_LINKER_FLAGS -static)
 #     set(CMAKE_FIND_LIBRARY_SUFFIXES .a)
