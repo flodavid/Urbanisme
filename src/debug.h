@@ -23,7 +23,7 @@
 #define LOGS_PARETO             1
 
 /* define all debug if DEBUG_ALL defined to 1 */
-#if DEBUG_ALL or NDEBUG
+#if DEBUG_ALL || _DEBUG
     #undef DEBUG
     #undef DEBUG_EVALUATION_LIGHT
     #undef DEBUG_EVALUATION

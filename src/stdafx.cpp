@@ -13,7 +13,9 @@ void error(const char *location, const char *msg)
 
 void debug(const char *msg, const char *location)
 {
-#if DEBUG
+// Generic debug
+//#define DEBUG
+#ifdef DEBUG
   printf("%s at : %s\n", msg, location);
 #endif
 }

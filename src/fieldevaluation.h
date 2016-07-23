@@ -38,7 +38,7 @@ public:
             return UNSIGNED_INFINITY;
         }
     //        assert(road_distances_are_initiated);
-        return road_distances[coord1.row][coord1.col][coord2.row][coord2.col];
+        return road_distances.at(coord1.row)[coord1.col][coord2.row][coord2.col];
     }
 
     /* Calculs de données */

@@ -50,11 +50,11 @@ public:
      */
     Resolution(const Field& field, const Parameters& _params);
 
-	/**
-	* Construit l'instance à partir d'une instance existante
-	* @param other Instance de Resolution existante
-	*/
-	Resolution(const Resolution& other);
+    /**
+    * Construit l'instance à partir d'une instance existante
+    * @param other Instance de Resolution existante
+    */
+    Resolution(const Resolution& other);
 
     ~Resolution();
 
@@ -145,14 +145,14 @@ public:
      */
     FieldEvaluation* trySelectSavedField(unsigned index);
 
-	Resolution& operator=(const Resolution& other)
-	{
-		params = other.params;
-		localSearch = other.localSearch;
-		pareto_evals = other.pareto_evals;
-		nbCells = other.nbCells;
-		evaluations_stream = other.evaluations_stream;
-	}
+//	Resolution& operator=(const Resolution& other)
+//	{
+//		params = other.params;
+//		localSearch = other.localSearch;
+//		pareto_evals = other.pareto_evals;
+//		nbCells = other.nbCells;
+//		evaluations_stream = other.evaluations_stream;
+//	}
 };
 
 #endif // RESOLUTION_H

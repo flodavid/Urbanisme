@@ -40,7 +40,6 @@ private:
     QRubberBand* rubber;
 
 //    QPoint origin;
-
     // Points de départ et d'arrivée de la zone de selection (redondance pour origine mais normal pour l'instant)
 //    QPoint depart;
 //    QPoint arrivee;

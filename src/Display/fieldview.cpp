@@ -360,6 +360,7 @@ void FieldWidget::moveRoad(const Coordinates &pos)
 
 void FieldWidget::selectParcel(const Coordinates &pos)
 {
+
     std::list<Coordinates>::iterator it= std::find(selecteds.begin(), selecteds.end(), pos);
     if (it != selecteds.end()) {
         selecteds.erase(it);
@@ -369,11 +370,21 @@ void FieldWidget::selectParcel(const Coordinates &pos)
             selecteds.pop_front();
         }
         if (selecteds.size() == 2) {
-            FieldEvaluation eval(*field, Parameters(serveDistance, 1)); // TODO voir comment on gère la taille de la route
-            if (!eval.road_distances_are_initiated) eval.initRoadDistances();
+            FieldEvaluation* eval;
+            if (has_evaluation) {
+                eval= dynamic_cast<FieldEvaluation*>(field);
+                if (eval == NULL) cerr<< "La surface devrait posséder une évaluation, mais ce n'est pas le cas (échec du dynamic_cast)"<< endl;
+            } else {
+                eval= new FieldEvaluation(*field, Parameters(serveDistance, 1)); // TODO voir comment on gère la taille de la route
+            }
+            if (!eval->road_distances_are_initiated) eval->initRoadDistances();
 
-            unsigned by_roads_distance= eval.parcelsRoadDistance(selecteds.front(), selecteds.back());
+            unsigned by_roads_distance= eval->parcelsRoadDistance(selecteds.front(), selecteds.back());
             cout << "Distance entre "<< selecteds.front() <<" et "<< selecteds.back()<< " : "<< by_roads_distance<< endl;
+
+            if (has_evaluation) {
+                delete eval;
+            }
         }
     }
 
