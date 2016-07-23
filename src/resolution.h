@@ -45,10 +45,16 @@ public:
 
     /**
      * Construit l'instance en recopiant une surface et des paramètres existants
-     * @param field
-     * @param _params
+     * @param field Surface à recopier
+     * @param _params Paramètres du problème
      */
     Resolution(const Field& field, const Parameters& _params);
+
+	/**
+	* Construit l'instance à partir d'une instance existante
+	* @param other Instance de Resolution existante
+	*/
+	Resolution(const Resolution& other);
 
     ~Resolution();
 
@@ -138,6 +144,15 @@ public:
      * @return
      */
     FieldEvaluation* trySelectSavedField(unsigned index);
+
+	Resolution& operator=(const Resolution& other)
+	{
+		params = other.params;
+		localSearch = other.localSearch;
+		pareto_evals = other.pareto_evals;
+		nbCells = other.nbCells;
+		evaluations_stream = other.evaluations_stream;
+	}
 };
 
 #endif // RESOLUTION_H
