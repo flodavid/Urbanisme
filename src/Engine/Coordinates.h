@@ -80,7 +80,7 @@ public:
 	* Calcul de la distance euclidienne entre deux points
 	* @return distance euclidienne : flottant non signé
 	*/
-    float euclideanDistance(const Coordinates& other) const;
+    double euclideanDistance(const Coordinates& other) const;
     
     
     /**

@@ -35,7 +35,7 @@ Resolution::Resolution(const Field &field, const Parameters &_params):
 Resolution::~Resolution()
 {
     ofstream& eval_file= *(openEvaluationsFile("_saved"));
-    eval_file << evaluations_stream;
+    eval_file<< evaluations_stream.str();
     eval_file.close();
     delete &eval_file;
 

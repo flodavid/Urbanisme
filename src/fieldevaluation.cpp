@@ -18,9 +18,9 @@ unsigned int FieldEvaluation::lengthBy(const Coordinates& testCoord, const Coord
 {
     // On applique la recursivité avec la coordonnée envisagée courante
     unsigned dist;
-    float current_ratio = getRoadDistance(testCoord, dest);
-    if (current_ratio != 0) {
-        dist = current_ratio;
+    unsigned current_distance = getRoadDistance(testCoord, dest);
+    if (current_distance != 0) {
+        dist = current_distance;
 #if DEBUG_ROADS_DIST
         cout << "\tIl y a déjà une valeur pour ce trajet : "<< current_ratio<< endl;
 #endif
