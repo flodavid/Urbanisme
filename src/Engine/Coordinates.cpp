@@ -36,10 +36,10 @@ std::ostream& Coordinates::print(std::ostream& out) const
 unsigned Coordinates::manhattanDistance(const Coordinates& other) const
 {
     assert(abs(col- other.col) + abs(row - other.row) >= 0);
-    return abs(col- other.col) + abs(row - other.row); 
+    return static_cast<unsigned>(abs(col- other.col) + abs(row - other.row)); 
 }
 
-float Coordinates::euclideanDistance(const Coordinates& other) const
+double Coordinates::euclideanDistance(const Coordinates& other) const
 {
     assert(sqrt( pow((col - other.col), 2)  + pow((row - other.row), 2)) >= 0.0);
     // square-root(square(x1 - x2) + square(y1 - y2))
@@ -52,4 +52,3 @@ bool Coordinates::operator <(const Coordinates& other) const
     else if (other.row == row) return col < other.col;
     else return false;
 }
-

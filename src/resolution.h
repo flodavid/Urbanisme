@@ -22,10 +22,9 @@ private:
 
     LocalSearch localSearch;
 
-    std::list<FieldEvaluation> pareto_evals;
-
     // Calulated data
     unsigned nbCells;
+    std::list<FieldEvaluation> pareto_evals;
 
     // Others attributes
     std::ostringstream evaluations_stream;
@@ -44,9 +43,9 @@ public:
     Resolution(unsigned nbCols, unsigned nbRows, unsigned serveDistance, unsigned roadsWidth, std::list<Coordinates>& ins_outs);
 
     /**
-     * Construit l'instance en recopiant une surface et des paramètres existants
-     * @param field
-     * @param _params
+     * Construit l'instance enà partir d'une surface et de paramètres existants
+     * @param field Surface à recopier
+     * @param _params Paramètres du problème
      */
     Resolution(const Field& field, const Parameters& _params);
 

@@ -99,7 +99,7 @@ void MainWindow::initComponents()
     aboutWindow= nullptr;
     initWindow= nullptr;
 
-    resize(initialField.get_width() * INITIAL_SCALE , initialField.get_height() * INITIAL_SCALE +20);
+    resize((int)(initialField.get_width()) * INITIAL_SCALE , (int)(initialField.get_height()) * INITIAL_SCALE +20);
 
     setCentralWidget(fieldWidget);
     fieldWidget->redraw();
@@ -235,7 +235,7 @@ void MainWindow::askNewParams()
     parameters.set_serve_distance(2);
     parameters.set_road_width(1); /// @see changer si la largeur des routes est prise en compte
 
-    Field tmp_field= Field(width_spin->value(), height_spin->value());
+    Field tmp_field= Field((unsigned)(width_spin->value()), (unsigned)(height_spin->value()));
         tmp_field.setUsables(parameters.get_serve_distance());
     initialField= tmp_field;
 }

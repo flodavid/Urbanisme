@@ -2,8 +2,9 @@
 
 //#define NDEBUG 1 // pour enlever les assert()
 
-// For all debugs ; be careful, many text
-#define DEBUG_ALL               0
+// All or no debugs, default value : 0
+#define DEBUG_ALL               0 // For all debugs ; be careful, many text
+#define NO_DEBUG                0 // Not any debug
 
 // Generic debug
 #define DEBUG                   0
@@ -23,7 +24,7 @@
 #define LOGS_PARETO             1
 
 /* define all debug if DEBUG_ALL defined to 1 */
-#if DEBUG_ALL or NDEBUG
+#if DEBUG_ALL || NO_DEBUG
     #undef DEBUG
     #undef DEBUG_EVALUATION_LIGHT
     #undef DEBUG_EVALUATION
@@ -47,7 +48,7 @@
     #define DEBUG_HOTMAP            1
 #endif
 
-#ifdef NDEBUG
+#if NO_DEBUG
     #define DEBUG               	0
     #define DEBUG_EVALUATION_LIGHT  0
     #define DEBUG_EVALUATION    	0

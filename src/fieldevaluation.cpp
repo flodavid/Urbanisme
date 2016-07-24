@@ -18,9 +18,9 @@ unsigned int FieldEvaluation::lengthBy(const Coordinates& testCoord, const Coord
 {
     // On applique la recursivité avec la coordonnée envisagée courante
     unsigned dist;
-    float current_ratio = getRoadDistance(testCoord, dest);
-    if (current_ratio != 0) {
-        dist = current_ratio;
+    unsigned current_distance = getRoadDistance(testCoord, dest);
+    if (current_distance != 0) {
+        dist = current_distance;
 #if DEBUG_ROADS_DIST
         cout << "\tIl y a déjà une valeur pour ce trajet : "<< current_ratio<< endl;
 #endif
@@ -155,7 +155,7 @@ unsigned FieldEvaluation::parcelsRoadDistance(const Coordinates &coord1, const C
              << params.get_serve_distance() << "))" << endl;
     return UNSIGNED_INFINITY;
     }
-#if DEBUG_FieldEvaluation || DEBUG_ROADS_DIST
+#if DEBUG_EVALUATION || DEBUG_ROADS_DIST
     else {
         cout << "### Distance entre "<< coord1<< " et "<< coord2<< " : "<< min_dist +1<< endl
              << endl;
@@ -179,7 +179,7 @@ void FieldEvaluation::initSizeNeighbourhood()
 
             // Initialisation de la deuxième colonne, à 0
             for (unsigned x2 = 0; x2 < get_height(); ++x2) {
-                road_distances[x1][y1][x2].resize(get_width(), 0.0);
+                road_distances[x1][y1][x2].resize(get_width(), 0);
             }
         }
     }
@@ -190,7 +190,7 @@ void FieldEvaluation::initSizeNeighbourhood()
 void FieldEvaluation::initRoadDistance(const Coordinates &coord)
 {
     if (at(coord) == is_usable) {
-#if DEBUG_FieldEvaluation_LIGHT
+#if DEBUG_EVALUATION_LIGHT
         cout << "Premier point : " << coord << endl;
 #endif
         // On calcule et additionne le ratio pour aller vers chacun des successeurs
@@ -230,10 +230,10 @@ void FieldEvaluation::initRoadDistances()
 unsigned int FieldEvaluation::evaluateTotalUsable()
 {
     unsigned nb_usables = 0;
-    
+
     for (unsigned i= 0; i < nb_rows; ++i) {
-	for (unsigned j= 0; j < nb_cols; ++j) {
-	    State parcel_state= parcels[i][j];
+        for (unsigned j= 0; j < nb_cols; ++j) {
+            State parcel_state= parcels[i][j];
             assert(parcel_state >= -1 &&  parcel_state < max_state );
             if (parcel_state == is_usable) {
                 ++nb_usables;
@@ -244,7 +244,7 @@ unsigned int FieldEvaluation::evaluateTotalUsable()
     // Sauvegarde de la valeur
     nbUsables= nb_usables;
 
-#if DEBUG_FieldEvaluation
+#if DEBUG_EVALUATION_LIGHT
     cout << "Total number of usables parcels : " << nb_usables << endl;
 #endif
     assert(nb_usables < getNbParcels() && "nombre d'exploitables incohérent");
@@ -258,7 +258,7 @@ float FieldEvaluation::manhattanRatioBetween2Parcels(const Coordinates &p1, cons
     unsigned manhattan_distance = p1.manhattanDistance(p2);
     float ratio = ((float)road_distance) / ((float) manhattan_distance);
 
-#if DEBUG_FieldEvaluation
+#if DEBUG_EVALUATION_LIGHT
     cout << "\tDistance route "<< p1<< "->"<< p2<< " = "<< road_distance<< endl;
     cout << "\tDistance directe "<< p1<< "->"<< p2<< " = "<< manhattan_distance<< endl;
     cout << "\t\tRatio : "<< ratio<< endl;
@@ -276,7 +276,7 @@ float FieldEvaluation::evaluateRatio()
     Coordinates& coord1 = Field::first();
     do {
         if (at(coord1) == is_usable) {
-#if DEBUG_FieldEvaluation_LIGHT
+#if DEBUG_EVALUATION_LIGHT
             cout << "Premier point : " << coord1 << endl;
 #endif
             // On calcule et additionne le ratio pour aller vers chacun des successeurs
@@ -293,7 +293,7 @@ float FieldEvaluation::evaluateRatio()
     } while (nextCoordinates(&coord1));
     delete &coord1;
 
-#if DEBUG_FieldEvaluation_LIGHT
+#if DEBUG_EVALUATION_LIGHT
     cout << "Ratio total : "<< total_ratio<< ", nb ratios : "<< nb_ratio<< " = "<< total_ratio / (float)nb_ratio<<endl;
 #endif
 

@@ -28,14 +28,14 @@ Resolution::Resolution(unsigned nbCols, unsigned nbRows, unsigned serveDistance,
 }
 
 Resolution::Resolution(const Field &field, const Parameters &_params):
-    params(_params), localSearch(new Field(field), &_params), nbCells(field.get_width()* field.get_height())
+    params(_params), localSearch(new Field(field), &_params), nbCells(field.getNbParcels())
 {
 }
 
 Resolution::~Resolution()
 {
     ofstream& eval_file= *(openEvaluationsFile("_saved"));
-    eval_file << evaluations_stream;
+    eval_file<< evaluations_stream.str();
     eval_file.close();
     delete &eval_file;
 
@@ -60,7 +60,7 @@ void Resolution::changeWorkField(Field *_field, bool newField)
 
         // Redéfinition des valeurs
         localSearch.setField(field_copy);
-        nbCells= field_copy->get_height() * field_copy->get_width();
+        nbCells= field_copy->getNbParcels();
 
         pareto_evals.clear();
         emptyEvaluationsFile();
@@ -241,8 +241,7 @@ FieldEvaluation *Resolution::localSearchAccessObjective(unsigned maxPathsToAdd)
 //        cout << "(Gain min : "<< gain_min<< ")"<< endl;
 
         ++num_path;
-        // Evaluation de la surface après avoir lancé l'algo
-        evaluateBothObjectives();
+        changeWorkField(localSearch.get_fieldEvaluation(), true);
     } while ( num_path <= maxPathsToAdd && gain_access >= 0.0);
     if (gain_access < 0.0) cout << "On a arrêté l'ajout de chemins car le gain était négatif"<< endl;
 

@@ -23,12 +23,12 @@ public:
     Parameters(const Parameters& other);
     ~Parameters();
 
-    /**
-     * Accesseur sur la largeur de la route
-     * @return La largeur de la route, unsigned int
-     */
-    inline unsigned get_road_width() const
-    { return road_width; }
+//    /**
+//     * Accesseur sur la largeur de la route
+//     * @return La largeur de la route, unsigned int
+//     */
+//    inline unsigned get_road_width() const
+//    { return road_width; }
     /**
      * Accesseur sur la distance à laquelle les parcelles sont desservies
      * @return La distance de desserte, unsigned int

@@ -12,11 +12,8 @@
 class LocalSearch
 {
 private:
-//    Field* field;
     FieldEvaluation* fieldeval;
     const Parameters& params;
-
-    // Données calculées
 
 public:
     /**

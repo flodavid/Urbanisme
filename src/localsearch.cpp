@@ -290,40 +290,21 @@ float LocalSearch::gainPath(Path *path)
 {
     FieldEvaluation tmp_eval= *fieldeval;
     Field& tmp_field= tmp_eval;
-    //    Field save_field= tmp_field;
-
-    /// Tests
-        unsigned usables= tmp_eval.get_nbUsables();
-
-        tmp_field.resetUsables(params.get_serve_distance());
-        unsigned usables_after_update= tmp_eval.evaluateTotalUsable();
-
-        assert(usables == usables_after_update && "Nombre exploitables doit être déjà calculée et à jour");
-
-    /// Fin tests
-    //    if (! eval.road_distances_are_initiated){
-    //        eval.initRoadDistances();
-    //        eval.evaluateRatio();
-    //        cerr << "LES DISTANCES PAR ROUTE DEVRAIENT ETRE INITIALISEES"<< endl<< endl;
-    //    }
-    //    float eval_before= eval.get_avgAccess();
 
     ///@see voir comment ne pas utiliser initRoadDistances et si c'est utile de recalculer le ratio
     fieldeval->initRoadDistances();
-    float eval_before= fieldeval->evaluateRatio();
-
-    //    assert(eval_before == eval_before_test && "Moyenne des ratios doit être déjà calculée et à jour");
+    float access_before= fieldeval->evaluateRatio();
 
     // Ajout des routes puis évaluation
     tmp_field.addRoads(path, params.get_serve_distance());
     ///@see voir comment ne pas utiliser initRoadDistances et si c'est utile de recalculer le ratio
     tmp_eval.initRoadDistances();
-    float eval_after= tmp_eval.evaluateRatio();
+    float access_after= tmp_eval.evaluateRatio();
 
     // Restauration de la surface
     tmp_field.removeRoads(path, params.get_serve_distance());
 
-    return eval_before - eval_after;
+    return access_before - access_after;
 }
 
 float LocalSearch::addRoadsAccess(unsigned nbToAdd)

@@ -53,7 +53,6 @@ public:
      * @return La hauteur de la surface
      */
     inline unsigned get_height() const	{ return nb_rows; }
-
     /**
      * Accesseur sur la liste des entrées et sorties
      * @return
@@ -130,7 +129,7 @@ public:
      * @param row Ligne de l'E/S
      */
     bool tryAdd_in_out(unsigned col, unsigned row)
-    { return tryAdd_in_out(Coordinates(col, row)); }
+    { return tryAdd_in_out(Coordinates((int)col, (int)row)); }
 
     /**
      * Supprime l'état de la parcelle
@@ -144,10 +143,23 @@ public:
      * @param row
      */
     void add_undefined(unsigned col, unsigned row)
-    { add_undefined(Coordinates(col, row)); }
+    { add_undefined(Coordinates((int)col, (int)row)); }
 
-    /**=== Operators ===**/
 public:
+    /* Affichage */
+    /**
+     * Impression sur la sortie standard des entrées et sorties de la surface
+     */
+    void show_ins_and_outs() const;
+
+    /**
+     * Imprime dans un flux les informations de l'instance
+     * @param out Flux dans lequel on imprime les informations
+     * @return Le flux en entrée sur lequel on a imprimé les informations
+     */
+    std::ostream& print(std::ostream& out) const;
+
+    /**=== Opérateurs ===**/
     /**
      * Retourne la parcelle de la surface aux coordonnées passées en paramètre
      * @param pos Coordonnées de la parcelle
@@ -198,19 +210,6 @@ public:
     static inline Coordinates& first()
     { return *(new Coordinates(0,0)); }
 
-public:
-    /*=== Affichage ===*/
-    /**
-     * Impression sur la sortie standard des entrées et sorties de la surface
-     */
-    void show_ins_and_outs() const;
-
-    /**
-     * Imprime dans un flux les informations de l'instance
-     * @param out Flux dans lequel on imprime les informations
-     * @return Le flux en entrée sur lequel on a imprimé les informations
-     */
-    std::ostream& print(std::ostream& out) const;
     /**
      * Surcharge de l'opérateur << de sortie sur flux
      * @param out Flux dans lequel on imprime les informations
