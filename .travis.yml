@@ -31,7 +31,8 @@ install:
 # Qt install
   #- sudo apt-get install -qy qt57base
   - if [[ "$QT" == "qt57" ]]; then sudo apt-get install -qq qt${QT_VER}base qt${QT_VER}tools qt${QT_VER}declarative; fi
-  - source /opt/qt${QT_VER}/bin/qt${QT_VER}-env.sh
+  #- source /opt/qt${QT_VER}/bin/qt${QT_VER}-env.sh
+  - source /opt/qt57/bin/qt57-env.sh
 # g++ install
   - if [ "$CXX" = "g++" ]; then export CXX="g++-4.9" CC="gcc-4.9"; fi
   # CPP Unit install
