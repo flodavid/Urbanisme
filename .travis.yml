@@ -30,7 +30,7 @@ before_install:
 install:
 # Qt install
   #- sudo apt-get install -qy qt57base
-  - if [[ "$QT" == "qt57" ]]; then sudo apt-get install -qq qt${QT_VER}base qt${QT_VER}tools qt${QT_VER}declarative; fi
+  - sudo apt-get install -qq qt${QT_VER}base qt${QT_VER}tools qt${QT_VER}declarative
   #- source /opt/qt${QT_VER}/bin/qt${QT_VER}-env.sh
   - source /opt/qt57/bin/qt57-env.sh
 # g++ install
