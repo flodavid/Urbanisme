@@ -28,7 +28,7 @@ Resolution::Resolution(unsigned nbCols, unsigned nbRows, unsigned serveDistance,
 }
 
 Resolution::Resolution(const Field &field, const Parameters &_params):
-    params(_params), localSearch(new Field(field), &_params), nbCells(field.get_width()* field.get_height())
+    params(_params), localSearch(new Field(field), &_params), nbCells(field.getNbParcels())
 {
 }
 
@@ -60,7 +60,7 @@ void Resolution::changeWorkField(Field *_field, bool newField)
 
         // Redéfinition des valeurs
         localSearch.setField(field_copy);
-        nbCells= field_copy->get_height() * field_copy->get_width();
+        nbCells= field_copy->getNbParcels();
 
         pareto_evals.clear();
         emptyEvaluationsFile();

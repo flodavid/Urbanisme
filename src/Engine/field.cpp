@@ -202,10 +202,10 @@ void Field::generateInsAndOuts(unsigned nb)
 {
 
     for (unsigned num_in_out = 0; num_in_out < nb; ++num_in_out) {
-        int row, col;
+        unsigned row, col;
 
         // On choisit une case en haut ou en bas, avec une colonne aléatoire
-        bool on_top_or_down= (bool)(rand() % 2);
+        int on_top_or_down= (rand() % 2);
         if (on_top_or_down) {
             row = (rand() % 2) * nb_rows;
             col = rand() % nb_cols;
@@ -216,7 +216,7 @@ void Field::generateInsAndOuts(unsigned nb)
             col = (rand() % 2) * nb_cols;
         }
 
-        ins_outs.push_back(Coordinates(col, row));
+        ins_outs.push_back(Coordinates((int)col, (int)row));
     }
 }
 
@@ -377,16 +377,16 @@ std::list<Coordinates> *Field::getServingRoads(const Coordinates &coord , unsign
 
 bool Field::hasServingRoad(const Coordinates &coord , unsigned servingDistance) const
 {
-    int serve_dist = (int) servingDistance;  // il est plus simple de convertir en entier
+    unsigned serve_dist = servingDistance;  // il est plus simple de convertir en entier
 
     // On vérifie si les routes entre (x +dist;y +dist) et (x -dist;y -dist)
     /// On vérifie ((2.serve_dist)+1)² parcelles,  alors qu'on pourrait en vérifier moins
-    for (int i = coord.row + serve_dist; i >= coord.row - serve_dist; --i) {
-        for (int j = coord.col + serve_dist; j >= coord.col - serve_dist; --j) {
+    for (unsigned i = coord.row + serve_dist; i >= coord.row - serve_dist; --i) {
+        for (unsigned j = coord.col + serve_dist; j >= coord.col - serve_dist; --j) {
 
             // On vérifie que la parcelle n'est pas en dehors de la matrice et qu'elle n'est pas la coordonnée courante
-            Coordinates neighbour(j,  i);
-            if (isRoadAndNeighbourOf(neighbour,  coord,  serve_dist)) {
+            Coordinates neighbour((int)j, (int)i);
+            if (isRoadAndNeighbourOf(neighbour,  coord, serve_dist)) {
 #if DEBUG_ROADS_DIST
                 cout << "parcelle en " << j << " ; " << i << " est une route voisine de la parcelle en "
                      << coord.col << " ; " << coord.row << endl;
