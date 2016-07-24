@@ -3,8 +3,7 @@ dist: trusty
 cache: apt
 
 env:
-  - QT=qt56
-  - QT=qt57
+  - QT_BASE=57
 
 os:
   - linux
@@ -22,18 +21,16 @@ addons:
       - cmake-data
 
 before_install:
-  # Alternative Qt repository
-  # sudo add-apt-repository ppa:beineri/opt-qt57-trusty -y
-  - if [[ "$QT" == "qt56" ]]; then sudo apt-add-repository -y ppa:beineri/opt-qt561-trusty; fi
-  - if [[ "$QT" == "qt57" ]]; then sudo apt-add-repository -y ppa:beineri/opt-qt57-trusty; fi
+  - export QT_VER=${QT_BASE:0:2}
+  # Qt repository
+  - sudo apt-add-repository -y ppa:beineri/opt-qt${QT_BASE}-trusty
   - sudo apt-get update -qy
 
 install:
 # Qt install
   #- sudo apt-get install -qy qt57base
-  #- source /opt/qt57/bin/qt57-env.sh
-  - if [[ "$QT" == "qt56" ]]; then sudo apt-get install -qq qt56base qt56tools qt56declarative; fi
-  - if [[ "$QT" == "qt57" ]]; then sudo apt-get install -qq qt57base qt57tools qt57declarative; fi
+  - if [[ "$QT" == "qt57" ]]; then sudo apt-get install -qq qt${QT_VER}base qt${QT_VER}tools qt${QT_VER}declarative; fi
+  - source /opt/qt${QT_VER}/bin/qt-${QT_VER}env.sh
 # g++ install
   - if [ "$CXX" = "g++" ]; then export CXX="g++-4.9" CC="gcc-4.9"; fi
   # CPP Unit install
