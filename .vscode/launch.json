@@ -1,0 +1,34 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "C++ Launch (GDB)",
+            "type": "cppdbg",
+            "request": "launch",
+            "launchOptionType": "Local",
+            "targetArchitecture": "x64",
+            "program": "${workspaceRoot}/build-src-Desktop_Qt_5_6_0_MinGW_32bit2-Release/sim-city.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceRoot}",
+            "environment": [],
+            "externalConsole": true,
+            "miDebuggerPath":"D:\\Apps\\Qt\\Tools\\mingw530_32\\bin\\gdb.exe"
+        },
+        {
+            "name": "C++ Attach (GDB)",
+            "type": "cppdbg",
+            "request": "launch",
+            "launchOptionType": "Local",
+            "targetArchitecture": "x64",
+            "program": "${workspaceRoot}/build-src-Desktop_Qt_5_6_0_MinGW_32bit2-Release/sim-city.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceRoot}",
+            "environment": [],
+            //"processId": "enter program's process ID",
+            "externalConsole": false,
+            "miDebuggerPath":"D:\\Apps\\Qt\\Tools\\mingw530_32\\bin\\gdb.exe"
+        }
+    ]
+}
