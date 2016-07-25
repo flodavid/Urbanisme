@@ -47,6 +47,7 @@ void MinPathRoadTestFixture::tearDown()
 
 void MinPathRoadTestFixture::test_validsPath()
 {
+    clog << "Test chemin de coordonnées à d'autres"<< endl;
     Parameters* params= new Parameters(2, 1);
     eval= new FieldEvaluation(*example, *params);
     // On définit les parcelles qui sont utilisables et celles qui ne le sont pas

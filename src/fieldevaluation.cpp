@@ -22,7 +22,7 @@ unsigned int FieldEvaluation::lengthBy(const Coordinates& testCoord, const Coord
     if (current_distance != 0) {
         dist = current_distance;
 #if DEBUG_ROADS_DIST
-        cout << "\tIl y a déjà une valeur pour ce trajet : "<< current_ratio<< endl;
+        cout << "\tIl y a déjà une valeur pour ce trajet : "<< current_distance<< endl;
 #endif
     } else {
         visited->push_back(testCoord);

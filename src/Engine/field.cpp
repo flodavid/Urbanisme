@@ -19,7 +19,7 @@ Field::Field(const Field& other) :
     parcels= (State**)malloc(nb_rows * sizeof(State*));
 
     for (unsigned i= 0; i < nb_rows; ++i) {
-    parcels[i]= (State*)malloc(nb_cols * sizeof(State));
+	parcels[i]= (State*)malloc(nb_cols * sizeof(State));
         for (unsigned j= 0; j < nb_cols; ++j) {
             parcels[i][j]= other.parcels[i][j];
         }
@@ -45,10 +45,10 @@ Field::~Field()
 void Field::deleteOldMatrix()
 {
     if (parcels != NULL) {
-    for (unsigned i= 0; i < nb_rows; ++i) {
-        free(parcels[i]);
-    }
-    free(parcels);
+	for (unsigned i= 0; i < nb_rows; ++i) {
+	    free(parcels[i]);
+	}
+	free(parcels);
     }
 }
 
@@ -377,15 +377,15 @@ std::list<Coordinates> *Field::getServingRoads(const Coordinates &coord , unsign
 
 bool Field::hasServingRoad(const Coordinates &coord , unsigned servingDistance) const
 {
-    unsigned serve_dist = servingDistance;  // il est plus simple de convertir en entier
+    int serve_dist = servingDistance;  // il est plus simple de convertir en entier
 
     // On vérifie si les routes entre (x +dist;y +dist) et (x -dist;y -dist)
     /// On vérifie ((2.serve_dist)+1)² parcelles,  alors qu'on pourrait en vérifier moins
-    for (unsigned i = coord.row + serve_dist; i >= coord.row - serve_dist; --i) {
-        for (unsigned j = coord.col + serve_dist; j >= coord.col - serve_dist; --j) {
+    for (int i = coord.row + serve_dist; i> 0 && i >= coord.row - serve_dist; --i) {
+        for (int j = coord.col + serve_dist; j> 0 && j >= coord.col - serve_dist; --j) {
 
             // On vérifie que la parcelle n'est pas en dehors de la matrice et qu'elle n'est pas la coordonnée courante
-            Coordinates neighbour((int)j, (int)i);
+            Coordinates neighbour(j, i);
             if (isRoadAndNeighbourOf(neighbour,  coord, serve_dist)) {
 #if DEBUG_ROADS_DIST
                 cout << "parcelle en " << j << " ; " << i << " est une route voisine de la parcelle en "
@@ -407,10 +407,10 @@ void Field::setUsables(unsigned int servingDistance)
     Coordinates &coords = first();
     do {
 #if DEBUG
-        if ((coord.col) == 0) {
-            cout << endl << coord;
+        if (coords.col == (int)nb_cols-1) {
+	    cout << coords<< endl;
         } else {
-            cout <<  "; " << coord;
+	    cout << coords <<  ";; "<< endl;
         }
 #endif
         if (at(coords) == is_undefined) {
@@ -429,10 +429,10 @@ void Field::resetUsables(unsigned int servingDistance)
     Coordinates &coords = first();
     do {
 #if DEBUG
-        if ((coord.col) == 0) {
-            cout << endl << coord;
+        if ((coords.col) == 0) {
+            cout << endl << coords;
         } else {
-            cout <<  "; " << coord;
+            cout <<  ": " << coords;
         }
 #endif
         if (at(coords) < is_road) {

@@ -5,15 +5,21 @@
 
 using namespace std;
 
+void show_suite_name(CppUnit::TestSuite *suite)
+{
+    cout << "==============================================" << endl;
+    cout << "TEST " << suite->getName() << " (" << __FILE__ << ")" << endl;
+    cout << "==============================================" << endl;
+}
+
+
 /**
  * Crée la suite de tests du "moteur" de l'application
  * @return Une TestSuite, contenant les tests à effectuer sur le "moteur"
  */
 CppUnit::TestSuite *make_suite_engine() {    
     CppUnit::TestSuite *suite = new CppUnit::TestSuite("Coordinates");
-    cout << "==============================================" << endl;
-    cout << "TEST " << suite->getName() << " (" << __FILE__ << ")" << endl;
-    cout << "==============================================" << endl;
+    show_suite_name(suite);
     
     suite->addTest( new CppUnit::TestCaller<CoordinatesTestFixture>("test_calcManhattan",
 								    &CoordinatesTestFixture::test_calcManhattan) );
@@ -42,12 +48,10 @@ CppUnit::TestSuite *make_suite_engine() {
  * Crée la suite de tests sur la recherche de plus court chemin entre deux parcelles
  * @return Une TestSuite, contenant les tests à effectuer sur l'évaluation
  */
-CppUnit::TestSuite *make_suite_pathfinding() {    
-    CppUnit::TestSuite *suite = new CppUnit::TestSuite("Operations");
-    cout << "==============================================" << endl;
-    cout << "TEST " << suite->getName() << " (" << __FILE__ << ")" << endl;
-    cout << "==============================================" << endl;
-
+CppUnit::TestSuite *make_suite_pathfinding() {
+    CppUnit::TestSuite *suite = new CppUnit::TestSuite("Operations");    
+    show_suite_name(suite);
+    
     // Tests calcRoadDistance
     suite->addTest( new CppUnit::TestCaller<MinPathRoadTestFixture>("test_validsPath",
 			&MinPathRoadTestFixture::test_validsPath) );
