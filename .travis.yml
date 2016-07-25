@@ -1,4 +1,10 @@
 language: cpp
+sudo: required
+dist: trusty
+cache: apt
+
+env:
+  - QT_BASE=57
 
 os:
   - linux
@@ -8,7 +14,7 @@ addons:
     sources:
       # gcc/g++ repository
       - ubuntu-toolchain-r-test
-      - george-edison55-precise-backports # cmake 3.2.3 / doxygen 1.8.3
+      #- george-edison55-precise-backports # cmake 3.2.3 / doxygen 1.8.3
     packages:
       - g++-4.9
       #cmake
@@ -16,24 +22,25 @@ addons:
       - cmake-data
 
 before_install:
-  # Alternative Qt repository
-  - sudo add-apt-repository ppa:beineri/opt-qt56 -y
+  - export QT_VER=${QT_BASE:0:2}
+  # Qt repository
+  - sudo apt-add-repository -y ppa:beineri/opt-qt${QT_BASE}-trusty
   - sudo apt-get update -qy
 
 install:
 # Qt install
-  - sudo apt-get install -qy qt56base
-  - source /opt/qt56/bin/qt56-env.sh
+  #- sudo apt-get install -qy qt57base
+  - sudo apt-get install -qq qt${QT_VER}base qt${QT_VER}tools qt${QT_VER}declarative
+  #- source /opt/qt${QT_VER}/bin/qt${QT_VER}-env.sh
+  - source /opt/qt57/bin/qt57-env.sh
 # g++ install
   - if [ "$CXX" = "g++" ]; then export CXX="g++-4.9" CC="gcc-4.9"; fi
   # CPP Unit install
-  - sudo apt-get install libcppunit-dev
+  - sudo apt-get install libcppunit-dev -y
 
 after_success:
 # Launch tests
   - cd Tests/
-  #- cmake CMakeLists.txt
-  #- make --file Makefile
   - ./tests
 
 script:
