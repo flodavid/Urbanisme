@@ -324,11 +324,13 @@ bool FieldWidget::tryAddRoadOnParcel(const Coordinates &pos)
 
 void FieldWidget::clicInOut(const Coordinates &pos)
 {
+    // Tente d'ajouter une E/S
     if (field->at(pos) != is_in_out) {
         if (field->tryAdd_in_out(pos)) {
             field->resetUsables(serveDistance);
             modified_ES= true;
         }
+    // Supprime l'E/S présente
     } else {
         field->add_undefined(pos);
         field->resetUsables(serveDistance);

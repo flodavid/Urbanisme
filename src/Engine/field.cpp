@@ -19,7 +19,7 @@ Field::Field(const Field& other) :
     parcels= (State**)malloc(nb_rows * sizeof(State*));
 
     for (unsigned i= 0; i < nb_rows; ++i) {
-	parcels[i]= (State*)malloc(nb_cols * sizeof(State));
+    parcels[i]= (State*)malloc(nb_cols * sizeof(State));
         for (unsigned j= 0; j < nb_cols; ++j) {
             parcels[i][j]= other.parcels[i][j];
         }
@@ -45,10 +45,10 @@ Field::~Field()
 void Field::deleteOldMatrix()
 {
     if (parcels != NULL) {
-	for (unsigned i= 0; i < nb_rows; ++i) {
-	    free(parcels[i]);
-	}
-	free(parcels);
+    for (unsigned i= 0; i < nb_rows; ++i) {
+        free(parcels[i]);
+    }
+    free(parcels);
     }
 }
 
@@ -381,9 +381,8 @@ bool Field::hasServingRoad(const Coordinates &coord , unsigned servingDistance) 
 
     // On vérifie si les routes entre (x +dist;y +dist) et (x -dist;y -dist)
     /// On vérifie ((2.serve_dist)+1)² parcelles,  alors qu'on pourrait en vérifier moins
-    for (int i = coord.row + serve_dist; i> 0 && i >= coord.row - serve_dist; --i) {
-        for (int j = coord.col + serve_dist; j> 0 && j >= coord.col - serve_dist; --j) {
-
+    for (int i = coord.row + serve_dist; i >= 0 && i >= coord.row - serve_dist; --i) {
+        for (int j = coord.col + serve_dist; j >= 0 && j >= coord.col - serve_dist; --j) {
             // On vérifie que la parcelle n'est pas en dehors de la matrice et qu'elle n'est pas la coordonnée courante
             Coordinates neighbour(j, i);
             if (isRoadAndNeighbourOf(neighbour,  coord, serve_dist)) {
@@ -408,9 +407,9 @@ void Field::setUsables(unsigned int servingDistance)
     do {
 #if DEBUG
         if (coords.col == (int)nb_cols-1) {
-	    cout << coords<< endl;
+        cout << coords<< endl;
         } else {
-	    cout << coords <<  ";; "<< endl;
+        cout << coords <<  ";; "<< endl;
         }
 #endif
         if (at(coords) == is_undefined) {

@@ -2,6 +2,7 @@
 
 #include <ctime>
 #include <sstream>
+#include <algorithm>
 #include <QtWidgets/QErrorMessage> /// TODO Supprimer de cette classe et faire apparaître la fenêtre ailleurs
 
 #include "gnuplot-cpp/gnuplot_i.hpp"
@@ -102,8 +103,6 @@ void Resolution::evaluateBothObjectives()
     cout << "Nombre total de parcelles exploitables : "<< nb_usables<< endl;
 
     // === LANCEMENT DES ALGOS D'EVALUATION === //
-#if LOGS_PARETO
-#endif
     time_t startTime, stopTime; startTime = time(NULL);
 
     // Evaluation
@@ -144,18 +143,7 @@ void Resolution::evaluateBothObjectives()
 
 bool Resolution::isNotDominated(const Evaluation &eval)
 {
-//    int x= pareto_evals.size();
-    auto it(pareto_evals.end());
-    do {
-        --it;
-        if( eval.is_dominated(*it) ) {
-            #if DEBUG_PARETO
-            cout << "La solutions est dominée par une des précédentes solutions"<< endl;
-            #endif
-            return false;
-        }
-    } while ( it != pareto_evals.begin() );
-    return true;
+    return std::none_of(pareto_evals.begin(), pareto_evals.end(), [&eval](Evaluation other_eval){return eval.is_dominated(other_eval);});
 }
 
 int Resolution::spread(const Evaluation& eval)
@@ -165,9 +153,8 @@ int Resolution::spread(const Evaluation& eval)
     cout << "Propagation de la solution dominante"<< endl;
 #endif
 //    pareto_evals.remove_if();
-    list<FieldEvaluation>::iterator it(pareto_evals.end());
-    do {
-        --it;
+
+    for (list<FieldEvaluation>::iterator it(pareto_evals.begin()); it != pareto_evals.end(); ++it) {
         if( it->is_dominated(eval) ) {
             writeDominatedEvaluation(*it);
             ++nb_deleted;
@@ -176,7 +163,7 @@ int Resolution::spread(const Evaluation& eval)
 #endif
             it= pareto_evals.erase(it); /// TODO pourquoi ça peut provoquer un seg fault ?
         }
-    } while ( it != pareto_evals.begin() );
+    }
 #if LOGS_PARETO
     clog << nb_deleted << " supprimés dominés par la solution d'éval ("<< eval.get_nbUsables()<< ";"<< eval.get_avgAccess()<< ")" << endl;
 #endif
@@ -201,9 +188,11 @@ FieldEvaluation * Resolution::localSearchUsableObjective(unsigned maxRoadsToAdd)
 #if DEBUG_ADD_USABLE_ROAD
         cout << endl<< "=== Ajout de la route "<< road_num<< endl;
 #endif
+        cout << endl<< " Gain de "<< gain<< endl;
         ++ road_num;
         // Evaluation de la surface après avoir lancé l'algo
         evaluateBothObjectives();
+
     } while(gain >= 0 && road_num <= maxRoadsToAdd);
 
     cout << road_num<< " ajoutées"<< endl;
@@ -241,7 +230,7 @@ FieldEvaluation *Resolution::localSearchAccessObjective(unsigned maxPathsToAdd)
 //        cout << "(Gain min : "<< gain_min<< ")"<< endl;
 
         ++num_path;
-        changeWorkField(localSearch.get_fieldEvaluation(), true);
+        changeWorkField(localSearch.get_fieldEvaluation(), false);
     } while ( num_path <= maxPathsToAdd && gain_access >= 0.0);
     if (gain_access < 0.0) cout << "On a arrêté l'ajout de chemins car le gain était négatif"<< endl;
 
