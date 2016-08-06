@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package>
+    <DisplayName>Core application MSVC</DisplayName>
+    <Description>Install the application, compiled with MSVC2015. This component is essential.</Description>
+    <Version>1.2.0-1</Version>
+    <ReleaseDate>2016-07-25</ReleaseDate>
+    <Licenses>
+        <License name=" GPLv3 Public License Agreement" file="license.txt" />
+    </Licenses>
+    <Default>true</Default>
+    <Script>installscript.qs</Script>
+    <UserInterfaces>
+        <UserInterface>page.ui</UserInterface>
+    </UserInterfaces>
+</Package>
