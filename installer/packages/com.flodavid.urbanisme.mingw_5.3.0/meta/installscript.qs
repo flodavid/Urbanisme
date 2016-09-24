@@ -39,7 +39,6 @@ function Component()
     if (!installer.addWizardPage(component, "Page", QInstaller.TargetDirectory))
         console.log("Could not add the dynamic page.");
 */
-
     if (installer.value("os") === "win") {
         component.addOperation("CreateShortcut", "@TargetDir@/Urbanisme 1.2.0_MinGW/sim-city.exe", "@UserStartMenuProgramsPath@/@StartMenuDir@.lnk");
     }
@@ -53,6 +52,10 @@ Component.prototype.createOperations = function()
         component.createOperations();
     } catch (e) {
         console.log(e);
+    }
+
+    if (installer.value("os") === "win") {
+        component.addOperation("CreateShortcut", "@TargetDir@/Urbanisme 1.2.0_MinGW/sim-city.exe", "@UserStartMenuProgramsPath@/@StartMenuDir@.lnk");
     }
 }
 
