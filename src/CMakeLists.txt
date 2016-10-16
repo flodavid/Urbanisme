@@ -4,17 +4,26 @@ project(sim-city)
 
 ### Definitions ###
 # Use the compile definitions defined in the Qt 5 Widgets module
-add_definitions(-Wall ${Qt5Widgets_DEFINITIONS})
+add_definitions(-Wall ${Qt5Widgets_DEFINITIONS} -fopenmp)
 
 ### Qt ###
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
 # Instruct CMake to run moc automatically when needed.
 set(CMAKE_AUTOMOC ON)
+
 # Find the Qt libraries
 find_package(Qt5Widgets)
 find_package(Qt5Core)
 find_package(Qt5Gui)
+
+# Find and set the Open MP Librairie
+find_package(OpenMP)
+if (OPENMP_FOUND)
+    set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+endif()
 
 ### Sources ###
 add_subdirectory(Engine) # must set ${Engine_SRCS}

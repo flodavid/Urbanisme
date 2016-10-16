@@ -2,6 +2,7 @@
 
 #include <list>
 #include <map>
+#include <omp.h>
 
 typedef std::list<Coordinates> Path;
 
@@ -314,12 +315,15 @@ float LocalSearch::addRoadsAccess(unsigned nbToAdd)
         fieldeval->initRoadDistances();
     }
 
-    Coordinates& coord= Field::first();
+//    Coordinates& coord= Field::first();
 
     float gain_max= 0.0;
     Path* best_path= new Path;
 
-    do {
+    #pragma omp parallel for
+    for (size_t i= 0; i < fieldeval->getNbParcels(); ++i) {
+       Coordinates coord(i%fieldeval->get_width(), i/fieldeval->get_height());
+//    do {
 #if LOGS_ACCESS_ROAD
     if (coord.col == 0) {
         cout << "Ligne "<< coord.row<< ", gain courant : "<< gain_max<< endl;
@@ -332,22 +336,25 @@ float LocalSearch::addRoadsAccess(unsigned nbToAdd)
 #if DEBUG_ADD_ACCESS_ROAD
             clog << "NOMBRE DE ROUTES ACCESSIBLES "<< coord<<" : "<< accessible_roads->size();
 #endif
-
             list<Coordinates>* neighbour_roads= fieldeval->getNeighbourRoads(coord);
             list<Coordinates> accessible_roads_clean;
+
             for(const Coordinates& accessible_road : *accessible_roads) {
                 if ( fieldeval->getRoadDistance(coord, accessible_road) > coord.manhattanDistance(accessible_road)
-                     && find(neighbour_roads->begin(), neighbour_roads->end(), accessible_road) == neighbour_roads->end()) {
+                     && find(neighbour_roads->begin(), neighbour_roads->end(), accessible_road) == neighbour_roads->end())
+                {
                     accessible_roads_clean.push_back(accessible_road);
                 }
             }
+
             delete neighbour_roads;
             delete accessible_roads;
 #if DEBUG_ADD_ACCESS_ROAD
             clog << ", APRES NETTOYAGE : "<< accessible_roads_clean.size()<< " : "
                  << accessible_roads_clean<<endl;
 #endif
-
+            // On tente de relier chaque route accessible depuis la coordonnée courante,
+            // puis on calcul le gain d'accessibilité offert
             for(const Coordinates& accessible_road : accessible_roads_clean) {
                 list<Path*>* possible_paths= getPaths(coord, accessible_road);
 #if DEBUG_ADD_ACCESS_ROAD
@@ -356,6 +363,7 @@ float LocalSearch::addRoadsAccess(unsigned nbToAdd)
 #endif
                 for (Path* path: *possible_paths) {
                     float gain= gainPath(path) / (float)(path->size());
+
 #if DEBUG_ADD_ACCESS_GAIN
                     clog << "Gain potentiel "<< gain<< " (chemin de longueur "<< path->size()
                          << ") (max : "<< gain_max<< ")"<< endl;
@@ -373,8 +381,9 @@ float LocalSearch::addRoadsAccess(unsigned nbToAdd)
             }
         }
 
-    } while(fieldeval->nextCoordinates(&coord));
-    delete &coord;
+    }
+//    while(fieldeval->nextCoordinates(&coord));
+//    delete &coord;
 
     tryPaveRoad(best_path);
 #if LOGS_ADD_ACCESS_ROAD
