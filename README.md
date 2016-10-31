@@ -1,9 +1,9 @@
 Projet TER : Urbanisme
 ======================
 
-            Compilation Travis                   |                  License                     |
------------------------------------------------- | -------------------------------------------- |
-[![Build Status](https://travis-ci.org/flodavid/Urbanisme.svg?branch=master)](https://travis-ci.org/flodavid/Urbanisme) | [![GPLv3 License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/flodavid/Urbanisme/blob/master/COPYING.txt)
+        Compilation Travis           |               License             |           Qualité de code         |
+------------------------------------ | --------------------------------- | --------------------------------- |
+[![Build Status](https://travis-ci.org/flodavid/Urbanisme.svg?branch=master)](https://travis-ci.org/flodavid/Urbanisme) | [![GPLv3 License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/flodavid/Urbanisme/blob/master/COPYING.txt) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a2b2d69da4a8477798543812f4ac9b0e)](https://www.codacy.com/app/flodavid/Urbanisme?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=flodavid/Urbanisme&amp;utm_campaign=Badge_Grade)
 
 [![SIM-CITY](https://github.com/flodavid/Urbanisme/blob/gh-pages/images/SimCity_shadows-logo.png)](https://flodavid.github.io/Urbanisme)
 
@@ -63,7 +63,7 @@ Ou entre chaque parcelles et ses suivantes ? J'utilise une matrice à 4 dimensio
 
 ### Questions :
 - Dans listes (`list<Coordinates>*`) utiliser pointeurs ? si oui, comment utiliser,
-ou remplacer, `find(begin, end, val)` ?
+ou remplacer, ` find(begin, end, val)` ?
 
 ## Autres :
 + Seulement 2 entrées/sorties : 3 Cas pour relier : ligne droite, ligne avec 2 coudes, Equerre (ligne avec 1 coude (ou 2n +1 ?)).
@@ -76,10 +76,13 @@ ou remplacer, `find(begin, end, val)` ?
     on garde les routes qui sont à moins de 2 de distance.
     - Faudrait-il stocker les routes voisines d'une parcelle dans un vecteur de listes de paires d'une coordonnée et d'une distance ? ou juste une coordonnée ? OK : plutôt oui
 
-## Authors and Contributors
+## Auteurs et Contributeurs
+[![Florian David](https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-1/p160x160/12039502_10207794162116445_6260808179769504531_n.jpg?oh=7323beeea320c84bd64a22a651146643&oe=588902F0)](https://flodavid.github.io) |
+---|
+[Florian David](https://flodavid.github.io) |
 Projet développé par @flodavid. Utilise gnuplot-cpp, développé par Jeremy Conlin (jeremit0@gmail.com)
 
-## Support or Contact
+## Support ou Contact
 Vous pouvez me contacter à l'adresse [fl.david.53@gmail.com](mailto:fl.david.53@gmail.com)
 
 _Urbanisme_ est un logiciel libre, licencié sous la [GPLv3](https://www.gnu.org/licenses/gpl.html).
