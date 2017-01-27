@@ -77,10 +77,12 @@ ou remplacer, ` find(begin, end, val)` ?
     - Faudrait-il stocker les routes voisines d'une parcelle dans un vecteur de listes de paires d'une coordonnée et d'une distance ? ou juste une coordonnée ? OK : plutôt oui
 
 ## Auteurs et Contributeurs
-[![Florian David](https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-1/p160x160/12039502_10207794162116445_6260808179769504531_n.jpg?oh=7323beeea320c84bd64a22a651146643&oe=588902F0)](https://flodavid.github.io) |
+
+[<img alt="Florian David" src="https://avatars0.githubusercontent.com/u/11854849" width="140" height="140">](https://flodavid.github.io) |
 ---|
-[Florian David](https://flodavid.github.io) |
-Projet développé par @flodavid. Utilise gnuplot-cpp, développé par Jeremy Conlin (jeremit0@gmail.com)
+[@flodavid](https://github.com/flodavid) |
+
+Projet développé par [Florian David](https://flodavid.github.io). Utilise gnuplot-cpp, développé par Jeremy Conlin (jeremit0@gmail.com)
 
 ## Support ou Contact
 Vous pouvez me contacter à l'adresse [fl.david.53@gmail.com](mailto:fl.david.53@gmail.com)
