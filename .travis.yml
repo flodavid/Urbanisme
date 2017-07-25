@@ -3,9 +3,6 @@ sudo: required
 dist: trusty
 cache: apt
 
-env:
-  - QT_BASE=57
-
 os:
   - linux
   
@@ -14,30 +11,27 @@ addons:
     sources:
       # gcc/g++ repository
       - ubuntu-toolchain-r-test
+      - ubuntu-sdk-team
+      - trusty-media
+      # Qt 5.9
+      #- sourceline: 'ppa:beineri/opt-qt591-trusty'
       #- george-edison55-precise-backports # cmake 3.2.3 / doxygen 1.8.3
     packages:
-      - g++-4.9
-      #cmake
+      - g++-5
       - cmake
       - cmake-data
-
-before_install:
-  - export QT_VER=${QT_BASE:0:2}
-  # Qt repository
-  - sudo apt-add-repository -y ppa:beineri/opt-qt${QT_BASE}-trusty
-  - sudo apt-get update -qy
-
+      - build-essential
+      - qt5-default
+      - qttools5-dev-tools
+      - qtbase5-dev
+      - libcppunit-dev
+      #- qt59tools
+      #- qt59base     
+      
 install:
-# Qt install
-  #- sudo apt-get install -qy qt57base
-  - sudo apt-get install -qq qt${QT_VER}base qt${QT_VER}tools qt${QT_VER}declarative
-  #- source /opt/qt${QT_VER}/bin/qt${QT_VER}-env.sh
-  - source /opt/qt57/bin/qt57-env.sh
-# g++ install
-  - if [ "$CXX" = "g++" ]; then export CXX="g++-4.9" CC="gcc-4.9"; fi
-  # CPP Unit install
-  - sudo apt-get install libcppunit-dev -y
-
+  # g++ install
+  - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
+ 
 after_success:
 # Launch tests
   - cd Tests/
@@ -47,24 +41,3 @@ script:
   - cd src/
   - cmake CMakeLists.txt
   - make --file Makefile -j2
-  
-### Tests ###
-  # Qt repository
-  #- sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa # marche
-  # g++ repository
-  #- sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y # marche
-  # g++ update : 2 versions
-  #- if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.9; fi
-  #- sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 50
-#after_failure:
-  #- sudo apt-get install -qy qt56declarative #marche
-  #- sudo apt-get install -qy qt56tools  #marche, inutile ?
-  #- sudo apt-get install -qy qt56default   ne marche pas
-  #- sudo apt-get install -qy qt56base-dev  ne marche pas
-  #- sudo apt-get install -qy qt5base-dev   ne marche pas
-  #- sudo apt-get install -qy qttools5-dev-tools  ne marche pas
-  #- sudo apt-get install -qy qt5base   ne marche pas
-  #- sudo apt-get install -qy qt5tools  ne marche pas
-  #- sudo apt-get install -qy qt5declarative-dev
-  #- sudo apt-get install -qy qtdeclarative5-dev
-  #- sudo apt-get install -qy qtdeclarative5
