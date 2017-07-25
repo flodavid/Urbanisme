@@ -1,8 +1,8 @@
 Projet TER : Urbanisme
 ======================
 
-     Compilation Travis      |            License          |         Qualité de code      |          Hit counter         |
----------------------------- | --------------------------- | ---------------------------- | ---------------------------- |
+|      Compilation Travis      |            License          |         Qualité de code      |          Hit counter         |
+| :----------------------------: | :---------------------------: | :----------------------------: | :----------------------------: |
 [![Build Status](https://travis-ci.org/flodavid/Urbanisme.svg?branch=master)](https://travis-ci.org/flodavid/Urbanisme) | [![GPLv3 License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/flodavid/Urbanisme/blob/master/COPYING.txt) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a2b2d69da4a8477798543812f4ac9b0e)](https://www.codacy.com/app/flodavid/Urbanisme?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=flodavid/Urbanisme&amp;utm_campaign=Badge_Grade) | [![ghit.me](https://ghit.me/badge.svg?repo=flodavid/Urbanisme)](https://ghit.me/repo/flodavid/Urbanisme)
 
 [![SIM-CITY](https://github.com/flodavid/Urbanisme/blob/gh-pages/images/SimCity_shadows-logo.png)](https://flodavid.github.io/Urbanisme)
