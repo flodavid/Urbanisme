@@ -47,14 +47,14 @@ public:
      * Accesseur sur l'attribut de nombre de parcelle exploitables
      * @return nbUsables, un entier non signé
      */
-    unsigned get_nbUsables() const
+    inline unsigned get_nbUsables() const
     { return nbUsables; }
     /**
      * Accesseur sur l'attribut de moyenne de ratio, entre la distance directe et
      * la distance par les routes
      * @return avgAccess, un flotant
      */
-    float get_avgAccess() const
+    inline float get_avgAccess() const
     { return avgAccess; }
 
     /* Fonctions utiles à l'évaluation */
@@ -65,7 +65,7 @@ public:
      * @return vrai si les deux objectifs de l'évaluation sont inférieurs à ceux
      * de l'autre instance
      */
-    bool is_dominated(const Evaluation& other) const
+    inline bool is_dominated(const Evaluation& other) const
     {
         return ( other.nbUsables >= nbUsables && other.avgAccess <= avgAccess );
     }

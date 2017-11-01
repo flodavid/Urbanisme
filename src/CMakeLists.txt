@@ -4,7 +4,7 @@ project(sim-city)
 
 ### Definitions ###
 # Use the compile definitions defined in the Qt 5 Widgets module
-add_definitions(-Wall ${Qt5Widgets_DEFINITIONS} -fopenmp)
+add_definitions(-Wall ${Qt5Widgets_DEFINITIONS} -openmp)
 
 ### Qt ###
 # Find includes in corresponding build directories

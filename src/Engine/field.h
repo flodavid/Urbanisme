@@ -177,7 +177,7 @@ public:
      * Opérateur = d'affectation
      * @param other Instance à recopier
      */
-    Field& operator=(const Field& other)
+    inline Field& operator=(const Field& other)
     {
 //        assert(nb_cols == other.nb_cols && nb_rows == other.nb_cols);
         ins_outs= other.ins_outs;
@@ -217,7 +217,7 @@ public:
      * @return  Le flux en entrée sur lequel on a imprimé les informations de la
      * surface passée en entrée
      */
-    friend std::ostream& operator<<(std::ostream& out, const Field& field)
+    friend inline std::ostream& operator<<(std::ostream& out, const Field& field)
     { return field.print(out); }
 
     /**=== Fonctions sur les coordonnées ===**/
@@ -227,7 +227,7 @@ public:
     * @param y ordonnée de la coordonnée
     * @return true si la coordonnée appartient à la matrice
     */
-    bool contains(int x, int y) const ;
+    inline bool contains(int x, int y) const ;
     /**
     * Effectue un test d'appartenance des coordonnées à la matrice
     * @param coord Coordonnées de la position

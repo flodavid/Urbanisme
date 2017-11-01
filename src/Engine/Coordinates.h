@@ -90,7 +90,7 @@ public:
     * @return  Le flux en entrée sur lequel on a imprimé les informations des
     * coordonnées passées en entrée
     */
-   friend std::ostream& operator<<( std::ostream &out, const std::list< Coordinates > &coords )
+   inline friend std::ostream& operator<<( std::ostream &out, const std::list< Coordinates > &coords )
    {
        for (const Coordinates& coord : coords) {
            out << coord<< "; ";

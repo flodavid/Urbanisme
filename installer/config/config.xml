@@ -2,7 +2,7 @@
 <Installer>
     <Name>Urbanisme</Name>
     <Version>1.2.0</Version>
-    <Title>Installation de Urbanisme</Title>
+    <Title>Installation of Urbanisme</Title>
     <Publisher>flodavid</Publisher>
     <StartMenuDir>Urbanisme by flodavid</StartMenuDir>
     <TargetDir>@ApplicationsDir@/Urbanisme</TargetDir>

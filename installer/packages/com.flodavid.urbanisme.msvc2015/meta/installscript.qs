@@ -40,7 +40,7 @@ function Component()
         console.log("Could not add the dynamic page.");
 */
     if (installer.value("os") === "win") {
-        component.addOperation("CreateShortcut", "@TargetDir@/Urbanisme 1.2.0_MSVC/sim-city.exe", "@UserStartMenuProgramsPath@/@StartMenuDir@.lnk");
+        component.addOperation("CreateShortcut", "@TargetDir@/Urbanisme MSVC/sim-city.exe", "@UserStartMenuProgramsPath@/@StartMenuDir@.lnk");
     }
 
 }

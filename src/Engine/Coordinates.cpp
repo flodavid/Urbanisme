@@ -1,4 +1,4 @@
-#include "../stdafx.h"
+#include "stdafx.h"
 #include "Coordinates.h"
 
 Coordinates::Coordinates(int _x, int _y)

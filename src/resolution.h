@@ -59,13 +59,13 @@ public:
     inline size_t get_nb_not_dominated() const { return pareto_evals.size(); }
 
     /* Setters */
-    void changeWorkField(Field* _field, bool newField);
+    void changeWorkField(const Field *_field, bool newField);
 
 private:
     /**
      * Ouvre le fichier des évaluations dominées, sans enregistrer l'ancien
      */
-    std::ofstream *openEvaluationsFile(std::string filename_end = "") const;
+    std::ofstream *openEvaluationsFile(const std::string &filename_end = "") const;
     /**
      * Vide le buffer d'écriture du fichier d'évaluations
      */
@@ -123,13 +123,13 @@ public:
      * @param fileName
      * @return vrai si le fichier s'est correctement ouvert
      */
-    bool trySaveParetoToTxt(std::string fileName) const;
+    bool trySaveParetoToTxt(const std::string &fileName) const;
     /**
      * Exporte les solutions non dominées dans une image jpeg
      * @param dataName
      * @return le nom du fichier image crée
      */
-    std::string drawParetoJpeg(std::string dataName) const;
+    std::string drawParetoJpeg(const std::string &dataName) const;
 
     /**
      * @brief selectSavedField

@@ -12,7 +12,7 @@
 #include <fstream>
 
 // Macros
-#include "../stdafx.h"
+#include "stdafx.h"
 
 // Classes
 #include "fieldevaluation.h"

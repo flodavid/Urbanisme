@@ -62,7 +62,7 @@ void LocalSearch::horizontal_roads(Coordinates &InOut1, const Coordinates &InOut
 {
     InOut1.col= oneStep(InOut1.col, InOut2.col);
     if(InOut1.col != InOut2.col) {
-        fieldeval->add_road(InOut1.col, InOut1.row);
+        fieldeval->add_road((unsigned)(InOut1.col), (unsigned)(InOut1.row));
         horizontal_roads(InOut1, InOut2);
     }
 }
@@ -242,8 +242,8 @@ int LocalSearch::addRoadUsable() const
         if ( neighours->size()> 0) {
             list<Coordinates>* serving_roads= fieldeval->getServingRoads(coord, params.get_serve_distance());
             list<Coordinates>* close_unusable_parcels= fieldeval->getCloseUnusableParcels(coord, params.get_serve_distance());
-            unsigned nb_roads_neighbours= serving_roads->size();
-            unsigned nb_parcels_neighbours= close_unusable_parcels->size();
+            unsigned nb_roads_neighbours= (unsigned)(serving_roads->size());
+            unsigned nb_parcels_neighbours= (unsigned)(close_unusable_parcels->size());
 
             delete serving_roads;
             delete close_unusable_parcels;
@@ -254,7 +254,7 @@ int LocalSearch::addRoadUsable() const
 #endif
 
             /// TODO est-ce utile de soustraire le nombre de voisin, mettre un coef, ... ? OUI, ça a une utilité, pour éviter de coller 2 routes
-            int ratio=  (nb_parcels_neighbours) - (nb_roads_neighbours/2);
+            int ratio= (int)(nb_parcels_neighbours) - (int)(nb_roads_neighbours>>1);
 
             if (ratio > gain_max) {
 #if DEBUG_ADD_USABLE_ROAD
@@ -321,8 +321,8 @@ float LocalSearch::addRoadsAccess(unsigned nbToAdd)
     Path* best_path= new Path;
 
     #pragma omp parallel for
-    for (size_t i= 0; i < fieldeval->getNbParcels(); ++i) {
-       Coordinates coord(i%fieldeval->get_width(), i/fieldeval->get_height());
+    for (int i= 0; i < (int)(fieldeval->getNbParcels()); ++i) {
+       Coordinates coord(i%(int)fieldeval->get_width(), i/(int)fieldeval->get_height());
 //    do {
 #if LOGS_ACCESS_ROAD
     if (coord.col == 0) {

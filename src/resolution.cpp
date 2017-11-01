@@ -51,7 +51,7 @@ Resolution::~Resolution()
 /// ##################
 //@{
 
-void Resolution::changeWorkField(Field *_field, bool newField)
+void Resolution::changeWorkField(const Field *_field, bool newField)
 {
     if (newField) {
         cout << "LA SURFACE A CHANGEE, je recopie la nouvelle et efface solutions précédemment trouvées"<< endl;
@@ -75,7 +75,7 @@ void Resolution::changeWorkField(Field *_field, bool newField)
     }
 }
 
-ofstream* Resolution::openEvaluationsFile(string filename_end) const
+ofstream* Resolution::openEvaluationsFile(const string &filename_end) const
 {
     ofstream* file= new ofstream;
     ostringstream oss;
@@ -270,7 +270,7 @@ void Resolution::writeDominatedEvaluation(const Evaluation &eval)
     evaluations_stream << eval.get_nbUsables()<< " " << eval.get_avgAccess() << endl;
 }
 
-bool Resolution::trySaveParetoToTxt(string fileName) const
+bool Resolution::trySaveParetoToTxt(const string &fileName) const
 {
     system("echo %cd%");
 
@@ -298,7 +298,7 @@ bool Resolution::trySaveParetoToTxt(string fileName) const
     return true;
 }
 
-std::string Resolution::drawParetoJpeg(string dataName) const
+std::string Resolution::drawParetoJpeg(const string &dataName) const
 {
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__)
     if (Gnuplot::set_GNUPlotPath("D:/Apps/gnuplot/bin")) {

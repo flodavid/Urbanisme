@@ -43,16 +43,16 @@ public:
     /**
      * Permet de connaitre la largeur de la surface étudiée
      */
-    unsigned get_field_width() const { return fieldeval->get_width(); }
+    inline unsigned get_field_width() const { return fieldeval->get_width(); }
     /**
      * Permet de connaitre la hauteur de la surface étudiée
      */
-    unsigned get_field_height() const { return fieldeval->get_height(); }
+    inline unsigned get_field_height() const { return fieldeval->get_height(); }
     /**
      * Accesseur sur l'Evaluation
      * @return Une pointeur sur l'évaluation, modifiable
      */
-    FieldEvaluation* get_fieldEvaluation() { return fieldeval; }
+    inline FieldEvaluation* get_fieldEvaluation() { return fieldeval; }
 
     /* Setters */
     void setField(Field* _field);
